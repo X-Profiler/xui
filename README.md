@@ -1,4 +1,4 @@
-# xui
+# X-UI
 
 ## Project setup
 ```

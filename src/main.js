@@ -6,6 +6,7 @@ import App from './App.vue';
 import Routers from './router.js';
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
+import './theme/index.less';
 
 Vue.use(VueRouter);
 Vue.use(ViewUI);
