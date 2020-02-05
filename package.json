@@ -1,6 +1,7 @@
 {
   "name": "xui",
   "version": "0.1.0",
+  "description": "ui for xprofiler",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -37,5 +38,15 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "author": "yeekwanvong@gmail.com",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/hyj1991/xui/issues"
+  },
+  "homepage": "https://github.com/hyj1991/xui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyj1991/xui.git"
+  }
 }
