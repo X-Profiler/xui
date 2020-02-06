@@ -34,49 +34,28 @@
 </template>
 
 <script>
-export default {
-  props: {
-    active: String
-  },
-  created() {
-    for (const nav of this.navActions) {
-      if (nav.value === this.active) {
-        nav.active = true;
-      }
-    }
-  },
-  data() {
-    return {
-      user: {
-        name: "hyj1991"
-      },
-      navActions: [
-        { active: false, label: "使用指南", value: "docs", href: "" },
-        { active: false, label: "控制台", value: "console" },
-        { active: false, label: "user", value: "user", href: "" }
-      ]
-    };
-  },
-  methods: {
-    resetActiveNav() {
-      for (const nav of this.navActions) {
-        nav.active = false;
-      }
+import headerModule from "../../javascripts/layout/Header";
+
+const headerData = Object.assign(
+  {
+    props: {
+      active: String
     },
-    activeNav(index) {
-      const nav = this.navActions[index];
-      if (nav && !nav.active) {
-        if (["console"].includes(nav.value)) {
-          this.resetActiveNav();
-          nav.active = true;
-          const target = `/${nav.value}`;
-          if (this.$route.path !== target) this.$router.push({ path: target });
-        } else if (nav.href) {
-          const { href } = this.$router.resolve({ path: nav.href });
-          window.open(href, "_blank");
-        }
-      }
+    data() {
+      return {
+        user: {
+          name: ""
+        },
+        navActions: [
+          { active: false, label: "使用指南", value: "docs", href: "" },
+          { active: false, label: "控制台", value: "console" },
+          { active: false, label: "user", value: "user", href: "" }
+        ]
+      };
     }
-  }
-};
+  },
+  headerModule
+);
+
+export default headerData;
 </script>
