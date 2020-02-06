@@ -1,7 +1,7 @@
 'use strict';
 
-import { http } from "../Config";
-import * as utils from "../Utils";
+import { http } from "../lib/Config";
+import * as utils from "../lib/Utils";
 
 export default {
   created() {

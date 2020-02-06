@@ -3,13 +3,25 @@
   text-align: right;
 }
 
-.nav-selection {
+.logo {
+  position: fixed;
+  left: 20px;
+  cursor: pointer;
   color: white;
+}
+
+.icon {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.nav-selection {
   display: inline-block;
   padding-left: 30px;
   padding-right: 30px;
   cursor: pointer;
   user-select: none;
+  color: white;
 }
 
 .nav-selection.active {
@@ -20,6 +32,9 @@
 <template>
   <div>
     <Header class="header">
+      <a href="https://github.com/hyj1991/easy-monitor" target="_blank" class="logo">
+        <Icon class="icon" type="md-desktop" />EZM 3.0
+      </a>
       <span
         v-for="(nav, index) in navActions"
         :class="'nav-selection' + (nav.active ? ' active' :'')"
@@ -35,8 +50,8 @@
 
 <script>
 import headerModule from "../../javascripts/layout/Header";
-import { tags } from "../../javascripts/Config";
-import { getTag } from "../../javascripts/Utils";
+import { tags } from "../../javascripts/lib/Config";
+import { getTag } from "../../javascripts/lib/Utils";
 
 const headerData = Object.assign(
   {

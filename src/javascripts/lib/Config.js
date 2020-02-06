@@ -23,5 +23,15 @@ export const tags = {
   lang: {
     ch: '切换英文',
     en: 'Chinese'
+  },
+
+  // tab
+  myApps: {
+    ch: '我的应用',
+    en: 'My Apps'
+  },
+  joinedApps: {
+    ch: '加入的应用',
+    en: 'Joined Apps'
   }
 }

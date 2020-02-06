@@ -1,4 +1,8 @@
 <style scoped>
+.content {
+  margin: 10px 20px;
+}
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -13,7 +17,16 @@
       <x-header active="console"></x-header>
 
       <!-- body content -->
-      <Content>// TODO: Dashboard Content</Content>
+      <Content class="content">
+        <Tabs>
+          <TabPane :label="myApps">
+            <x-app type="myApps"></x-app>
+          </TabPane>
+          <TabPane :label="joinedApps">
+            <x-app type="joinedApps"></x-app>
+          </TabPane>
+        </Tabs>
+      </Content>
 
       <!-- footer -->
       <Footer class="footer">
@@ -29,13 +42,21 @@
 
 <script>
 import xHeader from "./layout/Header";
+import xApp from "./App";
+import consoleModule from "../javascripts/Console";
 
-export default {
-  data() {
-    return {};
+const consoleData = Object.assign(
+  {
+    data() {
+      return {};
+    },
+    components: {
+      "x-header": xHeader,
+      "x-app": xApp
+    }
   },
-  components: {
-    "x-header": xHeader
-  }
-};
+  consoleModule
+);
+
+export default consoleData;
 </script>
