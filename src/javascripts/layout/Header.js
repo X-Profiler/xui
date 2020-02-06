@@ -1,6 +1,6 @@
 'use strict';
 
-import config from "../Config";
+import { http } from "../Config";
 import * as utils from "../Utils";
 
 export default {
@@ -21,7 +21,7 @@ export default {
 
   methods: {
     getUserInfo() {
-      this.get(config.user.msg, config.user.url, data => {
+      this.get(http.user.msg, http.user.url, data => {
         this.user.name = data.name || 'Unknown';
       });
     },

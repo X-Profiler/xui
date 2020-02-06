@@ -8,6 +8,10 @@ export function setLang(lang_) {
   lang = lang_;
 }
 
+export function getTag(tags) {
+  return tags[lang];
+}
+
 export function error(content, code, duration) {
   if (Number(code) === 401) {
     location.reload();

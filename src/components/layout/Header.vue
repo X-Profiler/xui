@@ -35,6 +35,8 @@
 
 <script>
 import headerModule from "../../javascripts/layout/Header";
+import { tags } from "../../javascripts/Config";
+import { getTag } from "../../javascripts/Utils";
 
 const headerData = Object.assign(
   {
@@ -47,8 +49,9 @@ const headerData = Object.assign(
           name: ""
         },
         navActions: [
-          { active: false, label: "使用指南", value: "docs", href: "" },
-          { active: false, label: "控制台", value: "console" },
+          { active: false, label: getTag(tags.docs), value: "docs", href: "" },
+          { active: false, label: getTag(tags.console), value: "console" },
+          // { active: false, label: getTag(tags.lang), value: "lang" },
           { active: false, label: "user", value: "user", href: "" }
         ]
       };

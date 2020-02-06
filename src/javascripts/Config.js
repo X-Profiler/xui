@@ -1,6 +1,6 @@
 'use strict';
 
-export default {
+export const http = {
   user: {
     url: '/xapi/user',
     msg: {
@@ -9,3 +9,19 @@ export default {
     }
   }
 };
+
+export const tags = {
+  // nav
+  docs: {
+    ch: '使用指南',
+    en: 'User Guide'
+  },
+  console: {
+    ch: '控制台',
+    en: 'Console'
+  },
+  lang: {
+    ch: '切换英文',
+    en: 'Chinese'
+  }
+}
