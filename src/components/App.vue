@@ -52,6 +52,28 @@
   margin: 5px 10px;
   font-weight: bold;
 }
+
+.app-content-metrics {
+  height: 100%;
+  padding-top: 15px;
+}
+
+.app-content-metric {
+  width: 33.3%;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.instances {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.instance-ico {
+  font-size: 18px;
+}
 </style>
 
 <template>
@@ -116,6 +138,35 @@
               <div>
                 <p class="app-content-title-metric-key">依赖风险数</p>
                 <p class="app-content-title-metric-value app-content-select">0</p>
+              </div>
+            </div>
+          </Col>
+
+          <!-- metrics -->
+          <Col span="18" class="app-content-metrics">
+            <div style="display: flex;">
+              <!-- node process cpu -->
+              <div class="app-content-metric">
+                <p>Node.js 进程 CPU 负载</p>
+                <div class="instances">
+                  <Icon class="instance-ico" type="md-egg" />
+                </div>
+              </div>
+
+              <!-- node process memory -->
+              <div class="app-content-metric">
+                <p>Node.js 进程 Memory 负载</p>
+                <div class="instances">
+                  <Icon class="instance-ico" type="md-egg" />
+                </div>
+              </div>
+
+              <!-- node process memory -->
+              <div class="app-content-metric">
+                <p>系统磁盘状态</p>
+                <div class="instances">
+                  <Icon class="instance-ico" type="md-egg" />
+                </div>
               </div>
             </div>
           </Col>
