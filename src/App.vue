@@ -18,4 +18,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
+.spin-loading {
+  display: inline-block;
+  position: relative;
+}
 </style>

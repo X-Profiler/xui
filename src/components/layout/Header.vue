@@ -4,7 +4,7 @@
 }
 
 .logo {
-  position: fixed;
+  position: absolute;
   left: 20px;
   cursor: pointer;
   color: white;
