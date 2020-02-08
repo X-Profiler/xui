@@ -20,10 +20,10 @@
       <Content class="content">
         <Tabs>
           <TabPane :label="myApps">
-            <x-app type="myApps"></x-app>
+            <x-apps type="myApps"></x-apps>
           </TabPane>
           <TabPane :label="joinedApps">
-            <x-app type="joinedApps"></x-app>
+            <x-apps type="joinedApps"></x-apps>
           </TabPane>
         </Tabs>
       </Content>
@@ -42,7 +42,7 @@
 
 <script>
 import xHeader from "./layout/Header";
-import xApp from "./App";
+import xApps from "./Apps";
 import consoleModule from "../javascripts/Console";
 
 const consoleData = Object.assign(
@@ -52,7 +52,7 @@ const consoleData = Object.assign(
     },
     components: {
       "x-header": xHeader,
-      "x-app": xApp
+      "x-apps": xApps
     }
   },
   consoleModule

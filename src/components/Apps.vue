@@ -8,6 +8,10 @@
   flex-basis: 7px;
 }
 
+.no-apps {
+  margin-top: 200px;
+}
+
 .app-border {
   height: 100%;
   flex-basis: 7px;
@@ -41,6 +45,7 @@
   display: flex;
   font-size: 10px;
   text-align: center;
+  margin-left: 5px;
 }
 
 .app-content-title-metric-key {
@@ -68,7 +73,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 6px;
+  margin-top: 15px;
 }
 
 .instance-ico {
@@ -83,6 +88,7 @@
     </div>
     <div v-else>
       <!-- app overview -->
+      <div v-if="apps.length === 0" class="no-apps">{{ noAppTip }}</div>
       <div
         v-for="(app, index) in apps"
         :key="index"
@@ -100,43 +106,20 @@
             <div class="app-content-title-name" :style="'background-color: ' + randomColor(index)">
               <p>xprofiler</p>
               <div style="display: flex">
-                <div class="app-content-select">
-                  <p style="font-size: 10px">实例</p>
-                  <Icon type="md-albums" />
-                </div>
-
-                <div class="app-content-select" style="margin-left: 10px;">
-                  <p style="font-size: 10px">文件</p>
-                  <Icon type="ios-folder" />
-                </div>
-
-                <div class="app-content-select" style="margin-left: 10px;">
-                  <p style="font-size: 10px">团队</p>
-                  <Icon type="md-people" />
-                </div>
-
-                <div class="app-content-select" style="margin-left: 10px;">
-                  <p style="font-size: 10px">报警</p>
-                  <Icon type="ios-alarm" />
-                </div>
-
-                <div class="app-content-select" style="margin-left: 10px;">
-                  <p style="font-size: 10px">设置</p>
-                  <Icon type="md-settings" />
+                <div
+                  v-for="(func, index) in functions"
+                  :key="index"
+                  class="app-content-select"
+                  :style="'margin-top: 1px;' + (index !== 0 ? 'margin-left: 10px;':'')"
+                >
+                  <p style="font-size: 10px">{{ func.label }}</p>
+                  <Icon :type="func.icon" />
                 </div>
               </div>
             </div>
             <div class="app-content-title-metric">
-              <div>
-                <p class="app-content-title-metric-key">实例个数</p>
-                <p class="app-content-title-metric-value app-content-select">0</p>
-              </div>
-              <div>
-                <p class="app-content-title-metric-key">24h 告警数</p>
-                <p class="app-content-title-metric-value app-content-select">0</p>
-              </div>
-              <div>
-                <p class="app-content-title-metric-key">依赖风险数</p>
+              <div v-for="(metric, index) in metrics" :key="index">
+                <p class="app-content-title-metric-key">{{ metric.label }}</p>
                 <p class="app-content-title-metric-value app-content-select">0</p>
               </div>
             </div>
@@ -177,9 +160,9 @@
 </template>
 
 <script>
-import appModule from "../javascripts/App";
+import appsModule from "../javascripts/Apps";
 
-const appData = Object.assign(
+const appsData = Object.assign(
   {
     props: {
       type: String
@@ -196,13 +179,25 @@ const appData = Object.assign(
           "#ed4014",
           "#c5c8ce"
         ],
+        functions: [
+          { label: "实例", icon: "md-albums" },
+          { label: "文件", icon: "ios-folder" },
+          { label: "团队", icon: "md-people" },
+          { label: "告警", icon: "ios-alarm" },
+          { label: "设置", icon: "md-settings" }
+        ],
+        metrics: [
+          { label: "实例个数" },
+          { label: "24h 告警数" },
+          { label: "依赖风险数" }
+        ],
         appLoading: false,
-        apps: [{}, {}, {}, {}, {}, {}, {}, {}]
+        apps: []
       };
     }
   },
-  appModule
+  appsModule
 );
 
-export default appData;
+export default appsData;
 </script>
