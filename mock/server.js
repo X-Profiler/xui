@@ -14,11 +14,7 @@ app.get('/xapi/user', function (req, res) {
   res.send({ ok: true, data });
 });
 
-app.get('/xapi/apps', function (req, res) {
-  console.log(`get apps type ${req.query.type}`);
-  const data = [{}];
-  // setTimeout(() => res.send({ ok: true, data }), 500);
-  res.send({ ok: true, data })
-});
+// apps
+require('./apps')(app);
 
 app.listen(7442);

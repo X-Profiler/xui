@@ -22,10 +22,12 @@
 .app-content {
   height: 100%;
   flex-grow: 1;
+  display: flex;
 }
 
 .app-content-title {
   height: 100%;
+  width: 25%;
 }
 
 .app-content-title-name {
@@ -61,6 +63,7 @@
 .app-content-metrics {
   height: 100%;
   padding-top: 15px;
+  width: 75%;
 }
 
 .app-content-metric {
@@ -99,12 +102,12 @@
         <div class="app-border" :style="'background-color: ' + randomColor(index)"></div>
 
         <!-- app content -->
-        <Row class="app-content">
+        <div class="app-content">
           <!-- title -->
           <!-- :style="'border-right: 1px solid ' + randomColor(index) + ';border-bottom: 1px solid ' + randomColor(index)" -->
-          <Col span="6" class="app-content-title">
+          <div class="app-content-title">
             <div class="app-content-title-name" :style="'background-color: ' + randomColor(index)">
-              <p>xprofiler</p>
+              <p>{{ app.name }}</p>
               <div style="display: flex">
                 <div
                   v-for="(func, index) in functions"
@@ -123,10 +126,10 @@
                 <p class="app-content-title-metric-value app-content-select">0</p>
               </div>
             </div>
-          </Col>
+          </div>
 
           <!-- metrics -->
-          <Col span="18" class="app-content-metrics">
+          <div class="app-content-metrics">
             <div style="display: flex;">
               <!-- node process cpu -->
               <div class="app-content-metric">
@@ -152,8 +155,8 @@
                 </div>
               </div>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
     </div>
   </div>
