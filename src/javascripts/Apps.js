@@ -1,9 +1,13 @@
-'use strict';
+"use strict";
 
 import { http } from "./lib/Config";
 import * as utils from "./lib/Utils";
 
 const { apps } = http;
+
+const INSTANCE_COUNT = "instanceCount";
+const ALARM_COUNT = "alarmCount";
+const RISK_COUNT = "riskCount";
 
 export default {
   created() {
@@ -22,7 +26,7 @@ export default {
     formatCount(count) {
       let res = count;
       if (count > 9999) {
-        res = (res / 1000).toFixed(1) + 'K';
+        res = (res / 1000).toFixed(1) + "K";
       }
       return res;
     },
@@ -37,16 +41,16 @@ export default {
       const appIds = [];
       for (const app of apps) {
         appIds.push(app.appId);
-        app['instanceCount'] = 0;
-        app['instanceCountLoading'] = true;
-        app['alarmCount'] = 0;
-        app['alarmCountLoading'] = true;
-        app['riskCount'] = 0;
-        app['riskCountLoading'] = true;
+        app[INSTANCE_COUNT] = 0;
+        app[`${INSTANCE_COUNT}Loading`] = true;
+        app[ALARM_COUNT] = 0;
+        app[`${ALARM_COUNT}Loading`] = true;
+        app[RISK_COUNT] = 0;
+        app[`${RISK_COUNT}Loading`] = true;
       }
-      this.getTitleMetricData('instanceCount', appIds);
-      this.getTitleMetricData('alarmCount', appIds);
-      this.getTitleMetricData('riskCount', appIds);
+      this.getTitleMetricData(INSTANCE_COUNT, appIds);
+      this.getTitleMetricData(ALARM_COUNT, appIds);
+      this.getTitleMetricData(RISK_COUNT, appIds);
       return apps;
     },
 
@@ -56,7 +60,7 @@ export default {
         if (value && !isNaN(value) || value === 0) {
           app[key] = value;
         } else {
-          app[key] = '-';
+          app[key] = "-";
         }
         app[`${key}Loading`] = false;
       }
@@ -68,7 +72,7 @@ export default {
         if (Array.isArray(data)) {
           this.apps = this.handleApps(data);
         }
-      }, 'appLoading');
+      }, "appLoading");
     },
 
     getTitleMetricData(key, appIds) {
