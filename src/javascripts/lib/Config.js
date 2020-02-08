@@ -7,6 +7,13 @@ export const http = {
       ch: '获取用户信息失败，请重试',
       en: 'Get user info failed, please retry'
     }
+  },
+  apps: {
+    url: '/xapi/apps',
+    msg: {
+      ch: '获取应用列表失败，请重试',
+      en: 'Get applications failed, please retry'
+    }
   }
 };
 

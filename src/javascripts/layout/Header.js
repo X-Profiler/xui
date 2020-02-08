@@ -21,7 +21,7 @@ export default {
 
   methods: {
     getUserInfo() {
-      this.get(http.user.msg, http.user.url, data => {
+      this.get(http.user.msg, http.user.url, {}, data => {
         this.user.name = data.name || 'Unknown';
       });
     },

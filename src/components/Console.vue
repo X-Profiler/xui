@@ -18,14 +18,15 @@
 
       <!-- body content -->
       <Content class="content">
-        <Tabs>
-          <TabPane :label="myApps">
-            <x-apps type="myApps"></x-apps>
-          </TabPane>
-          <TabPane :label="joinedApps">
-            <x-apps type="joinedApps"></x-apps>
-          </TabPane>
+
+        <!-- tab -->
+        <Tabs v-model="selectedType">
+          <TabPane :label="myApps" name="myApps"></TabPane>
+          <TabPane :label="joinedApps" name="joinedApps"></TabPane>
         </Tabs>
+
+        <!-- app list -->
+        <x-apps :type="selectedType"></x-apps>
       </Content>
 
       <!-- footer -->
@@ -48,7 +49,9 @@ import consoleModule from "../javascripts/Console";
 const consoleData = Object.assign(
   {
     data() {
-      return {};
+      return {
+        selectedType: "myApps"
+      };
     },
     components: {
       "x-header": xHeader,

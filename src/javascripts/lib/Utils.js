@@ -31,9 +31,9 @@ export function resolveData(message, loadingKey, data) {
     res = data.data;
   } else {
     error.call(this, data.message || `${message}`, data.code);
-    if (loadingKey) {
-      this[loadingKey] = false;
-    }
+  }
+  if (loadingKey) {
+    this[loadingKey] = false;
   }
   return res;
 }
@@ -43,13 +43,13 @@ export function handleError(message, loadingKey, err) {
   this[loadingKey] = false;
 }
 
-export function get(message, url, callback, params = {}, loadingKey = '') {
+export function get(message, url, params, callback, loadingKey = '') {
   if (loadingKey) {
     this[loadingKey] = true;
   }
   message = message[lang];
   axios
-    .get(url, params)
+    .get(url, { params })
     .then(resolveData.bind(this, message, loadingKey))
     .then(callback)
     .catch(handleError.bind(this, message, loadingKey));
