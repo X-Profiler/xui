@@ -1,8 +1,10 @@
 [
   {
-    "name": "Easy-Monitor"
+    "name": "Easy-Monitor",
+    "appId": 1
   },
   {
-    "name": "Xprofiler"
+    "name": "Xprofiler",
+    "appId": 2
   }
 ]

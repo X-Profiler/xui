@@ -1,5 +1,42 @@
 [
   {
-    "name": "Test"
+    "name": "EZM-01",
+    "appId": 3
+  },
+  {
+    "name": "EZM-02",
+    "appId": 4
+  },
+  {
+    "name": "EZM-03",
+    "appId": 5
+  },
+  {
+    "name": "EZM-04",
+    "appId": 6
+  },
+  {
+    "name": "EZM-05",
+    "appId": 7
+  },
+  {
+    "name": "EZM-06",
+    "appId": 8
+  },
+  {
+    "name": "EZM-07",
+    "appId": 9
+  },
+  {
+    "name": "EZM-08",
+    "appId": 10
+  },
+  {
+    "name": "EZM-09",
+    "appId": 11
+  },
+  {
+    "name": "EZM-10",
+    "appId": 12
   }
 ]
