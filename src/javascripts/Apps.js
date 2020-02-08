@@ -5,9 +5,15 @@ import * as utils from "./lib/Utils";
 
 const { apps } = http;
 
+// title metric key
 const INSTANCE_COUNT = "instanceCount";
 const ALARM_COUNT = "alarmCount";
 const RISK_COUNT = "riskCount";
+
+// main metric key
+const PROCESS_CPU_USAGE = "processCpuUsage";
+const PROCESS_MEMORY_USAGE = "processMemoryUsage";
+const DISK_USAGE = "diskUsage";
 
 export default {
   created() {
@@ -41,13 +47,24 @@ export default {
       const appIds = [];
       for (const app of apps) {
         appIds.push(app.appId);
+        // title metric
         app[INSTANCE_COUNT] = 0;
         app[`${INSTANCE_COUNT}Loading`] = true;
         app[ALARM_COUNT] = 0;
         app[`${ALARM_COUNT}Loading`] = true;
         app[RISK_COUNT] = 0;
         app[`${RISK_COUNT}Loading`] = true;
+
+        // main metrics
+        app[PROCESS_CPU_USAGE] = [];
+        app[`${PROCESS_CPU_USAGE}Loading`] = true;
+        app[PROCESS_MEMORY_USAGE] = [];
+        app[`${PROCESS_MEMORY_USAGE}Loading`] = true;
+        app[DISK_USAGE] = [];
+        app[`${DISK_USAGE}Loading`] = true;
       }
+
+      // get title metrics
       this.getTitleMetricData(INSTANCE_COUNT, appIds);
       this.getTitleMetricData(ALARM_COUNT, appIds);
       this.getTitleMetricData(RISK_COUNT, appIds);
