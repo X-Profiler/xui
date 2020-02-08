@@ -11,7 +11,7 @@
 }
 
 .icon {
-  font-size: 14px;
+  font-size: 15px;
   margin-right: 10px;
 }
 
