@@ -41,6 +41,7 @@ export function resolveData(message, loadingKey, data) {
 export function handleError(message, loadingKey, err) {
   error.call(this, `${message} ${err}`, err.code);
   this[loadingKey] = false;
+  throw err;
 }
 
 export function get(message, url, params, callback, loadingKey = '') {
@@ -48,7 +49,7 @@ export function get(message, url, params, callback, loadingKey = '') {
     this[loadingKey] = true;
   }
   message = message[lang];
-  axios
+  return axios
     .get(url, { params })
     .then(resolveData.bind(this, message, loadingKey))
     .then(callback)

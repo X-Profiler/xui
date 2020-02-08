@@ -123,7 +123,15 @@
             <div class="app-content-title-metric">
               <div v-for="(metric, index) in metrics" :key="index">
                 <p class="app-content-title-metric-key">{{ metric.label }}</p>
-                <p class="app-content-title-metric-value app-content-select">0</p>
+                <!-- loading -->
+                <div v-if="app[`${metric.value}Loading`]" class="spin-loading">
+                  <Spin size="small"></Spin>
+                </div>
+                <!-- show data -->
+                <p
+                  v-else
+                  class="app-content-title-metric-value app-content-select"
+                >{{ formatCount(app[metric.value]) }}</p>
               </div>
             </div>
           </div>
@@ -190,9 +198,9 @@ const appsData = Object.assign(
           { label: "设置", icon: "md-settings" }
         ],
         metrics: [
-          { label: "实例个数" },
-          { label: "24h 告警数" },
-          { label: "依赖风险数" }
+          { label: "实例个数", value: "instanceCount" },
+          { label: "24h 告警数", value: "alarmCount" },
+          { label: "依赖风险数", value: "riskCount" }
         ],
         appLoading: false,
         apps: []
