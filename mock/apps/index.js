@@ -45,4 +45,28 @@ module.exports = app => {
     setTimeout(() => res.send({ ok: true, data }), 300);
     // res.send({ ok: true, data });
   });
+
+  // get cpu usage overview
+  app.get('/xapi/overview/process_cpu_usage', function (req, res) {
+    const appId = req.query.appId;
+    console.log(`get app ${appId} process cpu usage overview`);
+    // set data
+    const instanceCount = parseInt(Math.random() * 50);
+    // const instanceCount = 200;
+    // 0: no data, 1 healthy, 2 warning, 3 errored
+    const list = new Array(instanceCount).fill('*').map(() => ({ status: 1 }));
+
+    // set no data
+    const noDataIndex = parseInt(Math.random() * instanceCount);
+    list[noDataIndex] && (list[noDataIndex].status = 0);
+
+    // set warning
+    const warningIndex = parseInt(Math.random() * instanceCount);
+    list[warningIndex] && (list[warningIndex].status = 2);
+
+    // set error
+    const errorIndex = parseInt(Math.random() * instanceCount);
+    list[errorIndex] && (list[errorIndex].status = 3);
+    setTimeout(() => res.send({ ok: true, data: { list } }), 500);
+  });
 };;

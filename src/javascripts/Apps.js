@@ -43,6 +43,20 @@ export default {
       return color;
     },
 
+    getInstanceStyle(instance) {
+      let style = 'color: ';
+      if (instance.status === 0) {
+        style += '#c5c8ce';
+      } else if (instance.status === 1) {
+        style += '#2a9446';
+      } else if (instance.status == 2) {
+        style += '#db7c00';
+      } else {
+        style += '#e33900';
+      }
+      return style;
+    },
+
     handleApps(apps) {
       const appIds = [];
       for (const app of apps) {
@@ -62,6 +76,9 @@ export default {
         app[`${PROCESS_MEMORY_USAGE}Loading`] = true;
         app[DISK_USAGE] = [];
         app[`${DISK_USAGE}Loading`] = true;
+
+        // get main metrics
+        this.getMainMetricData(PROCESS_CPU_USAGE, app.appId);
       }
 
       // get title metrics
@@ -83,6 +100,15 @@ export default {
       }
     },
 
+    setMainMetricDataToApp(appId, key, list) {
+      for (const app of this.apps) {
+        if (Array.isArray(list) && appId === app.appId) {
+          app[key] = list;
+          app[`${key}Loading`] = false;
+        }
+      }
+    },
+
     getApps() {
       this.reset();
       this.get(apps.msg, apps.url, { type: this.type }, data => {
@@ -97,6 +123,12 @@ export default {
         data => this.setDataToApps(key, data))
         .catch(() => this.setDataToApps(key, {}));
     },
+
+    getMainMetricData(key, appId) {
+      this.get(http[key].msg, http[key].url, { appId }, data => {
+        this.setMainMetricDataToApp(appId, key, data.list);
+      });
+    }
   },
 
   computed: {

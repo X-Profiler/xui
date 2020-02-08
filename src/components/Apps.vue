@@ -18,7 +18,7 @@
         <!-- app content -->
         <div class="app-content">
           <!-- title -->
-          <!-- :style="'border-right: 1px solid ' + randomColor(index) + ';border-bottom: 1px solid ' + randomColor(index)" -->
+          <!-- :style="'border-right: 1px dashed ' + randomColor(index) + ';border-bottom: 1px dashed ' + randomColor(index)" -->
           <div class="app-content-title">
             <div class="app-content-title-name" :style="'background-color: ' + randomColor(index)">
               <p>{{ app.name }}</p>
@@ -53,15 +53,15 @@
 
           <!-- metrics -->
           <div class="app-content-metrics">
-            <div style="display: flex;">
+            <div style="display: flex;height: 100%">
               <!-- node process cpu -->
               <div v-for="(metric, index) in mainMetrics" :key="index" class="app-content-metric">
-                <p>{{ metric.label }}</p>
+                <div>{{ metric.label }}</div>
                 <!-- loading -->
                 <div
                   v-if="app[`${metric.value}Loading`]"
                   class="spin-loading"
-                  style="margin-top: 20px;"
+                  style="margin-top: 15px;"
                 >
                   <Spin size="small"></Spin>
                 </div>
@@ -70,13 +70,16 @@
                 <div v-else-if="app[metric.value].length === 0" class="no-data">-</div>
 
                 <!-- show data -->
-                <div v-else class="instances">
-                  <Icon
-                    v-for="(instance, index) in app[metric.value]"
-                    :key="index"
-                    class="instance-ico"
-                    type="md-egg"
-                  />
+                <div v-else>
+                  <div class="instances">
+                    <Icon
+                      v-for="(instance, index) in app[metric.value]"
+                      :key="index"
+                      class="instance-ico"
+                      type="md-egg"
+                      :style="getInstanceStyle(instance)"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -138,7 +141,6 @@ export default appsData;
 <style scoped>
 .app {
   text-align: left;
-  height: 150px;
   margin-bottom: 20px;
   background-color: #fafbfd;
   display: flex;
@@ -150,14 +152,15 @@ export default appsData;
 }
 
 .app-border {
-  height: 100%;
+  min-width: 7px;
   flex-basis: 7px;
+  /* height: 100%; */
   background-image: url("/images/bg1.jpg");
   background-blend-mode: multiply;
 }
 
 .app-content {
-  height: 100%;
+  /* height: 100%; */
   flex-grow: 1;
   display: flex;
 }
@@ -165,6 +168,7 @@ export default appsData;
 .app-content-title {
   height: 100%;
   width: 25%;
+  background-color: #f8f8f9;
 }
 
 .app-content-title-name {
@@ -212,16 +216,20 @@ export default appsData;
 .instances {
   display: flex;
   flex-wrap: wrap;
+  /* align-items: center; */
   justify-content: center;
-  margin-top: 15px;
+  padding-top: 7px;
+  /* height: 100%; */
 }
 
 .instance-ico {
   font-size: 18px;
+  padding: 2px;
+  cursor: pointer;
 }
 
 .no-data {
-  margin-top: 20px;
+  padding-top: 20px;
   font-weight: bold;
   font-size: 15px;
 }

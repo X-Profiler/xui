@@ -37,7 +37,14 @@ export const http = {
       ch: '获取依赖风险数失败，请重试',
       en: 'Get risk count failed, please retry'
     }
-  }
+  },
+  processCpuUsage: {
+    url: '/xapi/overview/process_cpu_usage',
+    msg: {
+      ch: '获取进程 CPU 概览信息失败，请重试',
+      en: 'Get cpu usage overview failed, please retry'
+    }
+  },
 };
 
 export const tags = {
