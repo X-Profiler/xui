@@ -53,7 +53,7 @@
 
           <!-- metrics -->
           <div class="app-content-metrics">
-            <div style="display: flex;height: 100%">
+            <div style="display: flex;height: 100%;padding-bottom: 10px;">
               <!-- node process cpu -->
               <div v-for="(metric, index) in mainMetrics" :key="index" class="app-content-metric">
                 <div>{{ metric.label }}</div>
@@ -218,7 +218,7 @@ export default appsData;
   flex-wrap: wrap;
   /* align-items: center; */
   justify-content: center;
-  padding-top: 7px;
+  padding-top: 10px;
   /* height: 100%; */
 }
 

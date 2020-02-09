@@ -79,6 +79,7 @@ export default {
 
         // get main metrics
         this.getMainMetricData(PROCESS_CPU_USAGE, app.appId);
+        this.getMainMetricData(PROCESS_MEMORY_USAGE, app.appId);
       }
 
       // get title metrics
@@ -125,9 +126,9 @@ export default {
     },
 
     getMainMetricData(key, appId) {
-      this.get(http[key].msg, http[key].url, { appId }, data => {
-        this.setMainMetricDataToApp(appId, key, data.list);
-      });
+      this.get(http[key].msg, http[key].url, { appId },
+        data => this.setMainMetricDataToApp(appId, key, data.list))
+        .catch(() => this.setMainMetricDataToApp(appId, key, []));
     }
   },
 

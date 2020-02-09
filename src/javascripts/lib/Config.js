@@ -45,6 +45,13 @@ export const http = {
       en: 'Get cpu usage overview failed, please retry'
     }
   },
+  processMemoryUsage: {
+    url: '/xapi/overview/process_memory_usage',
+    msg: {
+      ch: '获取进程堆内存概览信息失败，请重试',
+      en: 'Get heap memory overview failed, please retry'
+    }
+  }
 };
 
 export const tags = {
