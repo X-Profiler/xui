@@ -139,6 +139,20 @@ export default {
       this.get(http[key].msg, http[key].url, { appId },
         data => this.setMainMetricDataToApp(appId, key, data.list), this.cancelToken.token)
         .catch(() => this.setMainMetricDataToApp(appId, key, []));
+    },
+
+    goToAgent(appId, type, agentId, pid) {
+      const query = {};
+      if (type === 'processCpuUsage' || type === 'processMemoryUsage') {
+        query.tab = 'process';
+        query.agentId = agentId;
+        query.pid = pid;
+      } else {
+        query.instanceTab = 'system';
+        query.agentId = agentId;
+      }
+
+      this.$router.push({ path: `/app/${appId}/instance`, query });
     }
   },
 

@@ -17,7 +17,9 @@ function randomInstance(instanceCount) {
   // 0: no data, 1 healthy, 2 warning, 3 errored
   const list = new Array(instanceCount).fill('*').map(() => ({
     status: 1,
-    title: (Math.random() * 60).toFixed(2) + '%'
+    title: (Math.random() * 60).toFixed(2) + '%',
+    agentId: Math.random().toString(16).slice(2, 10),
+    pid: 10000 + parseInt(Math.random() * 89999)
   }));
 
   // set no data

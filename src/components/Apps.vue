@@ -81,6 +81,7 @@
                       type="md-egg"
                       :style="getInstanceStyle(instance)"
                       :title="instance.title"
+                      @click="goToAgent(app.appId, metric.value, instance.agentId, instance.pid)"
                     />
                   </div>
                 </div>
