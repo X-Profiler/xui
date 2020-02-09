@@ -2,6 +2,8 @@
 
 import axios from "axios";
 
+const CancelToken = axios.CancelToken;
+
 let lang = 'ch';
 
 export function setLang(lang_) {
@@ -39,18 +41,29 @@ export function resolveData(message, loadingKey, data) {
 }
 
 export function handleError(message, loadingKey, err) {
+  if (axios.isCancel(err)) {
+    return;
+  }
   error.call(this, `${message} ${err}`, err.code);
   this[loadingKey] = false;
   throw err;
 }
 
-export function get(message, url, params, callback, loadingKey = '') {
+export function createCancelToken() {
+  return CancelToken.source();
+}
+
+export function cancelRequest(source) {
+  source.cancel('Operation canceled by the user.');
+}
+
+export function get(message, url, params, callback, cancelToken, loadingKey = '') {
   if (loadingKey) {
     this[loadingKey] = true;
   }
   message = message[lang];
   return axios
-    .get(url, { params })
+    .get(url, { cancelToken, params })
     .then(resolveData.bind(this, message, loadingKey))
     .then(callback)
     .catch(handleError.bind(this, message, loadingKey));

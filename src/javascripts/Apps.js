@@ -20,6 +20,7 @@ const DISK_USAGE = "diskUsage";
 export default {
   created() {
     // set common http methods
+    this.cancelToken = utils.createCancelToken();
     this.get = utils.get.bind(this);
 
     // get apps
@@ -125,18 +126,18 @@ export default {
         if (Array.isArray(data)) {
           this.apps = this.handleApps(data);
         }
-      }, "appLoading");
+      }, this.cancelToken.token, "appLoading");
     },
 
     getTitleMetricData(key, appIds) {
       this.get(http[key].msg, http[key].url, { appIds },
-        data => this.setDataToApps(key, data))
+        data => this.setDataToApps(key, data), this.cancelToken.token)
         .catch(() => this.setDataToApps(key, {}));
     },
 
     getMainMetricData(key, appId) {
       this.get(http[key].msg, http[key].url, { appId },
-        data => this.setMainMetricDataToApp(appId, key, data.list))
+        data => this.setMainMetricDataToApp(appId, key, data.list), this.cancelToken.token)
         .catch(() => this.setMainMetricDataToApp(appId, key, []));
     }
   },
@@ -155,6 +156,8 @@ export default {
 
   watch: {
     type() {
+      utils.cancelRequest(this.cancelToken);
+      this.cancelToken = utils.createCancelToken();
       this.getApps();
     }
   }

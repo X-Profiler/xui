@@ -35,7 +35,7 @@
         <a
           href="https://github.com/hyj1991/easy-monitor"
           target="_blank"
-        >Easy-Monitor</a> v3.0
+        >Easy-Monitor</a> V3.0
       </Footer>
     </Layout>
   </div>
