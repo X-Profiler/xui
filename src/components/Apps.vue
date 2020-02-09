@@ -29,8 +29,10 @@
                   class="app-content-select"
                   :style="'margin-top: 1px;' + (index !== 0 ? 'margin-left: 10px;':'')"
                 >
-                  <p style="font-size: 10px">{{ func.label }}</p>
-                  <Icon :type="func.icon" />
+                  <div v-if="!func.disabled || func.disabled !== type">
+                    <p style="font-size: 10px">{{ func.label }}</p>
+                    <Icon :type="func.icon" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -116,7 +118,7 @@ const appsData = Object.assign(
           { label: "文件", icon: "ios-folder" },
           { label: "团队", icon: "md-people" },
           { label: "告警", icon: "ios-alarm" },
-          { label: "设置", icon: "md-settings" }
+          { label: "设置", icon: "md-settings", disabled: "joinedApps" }
         ],
         metrics: [
           { label: "实例个数", value: "instanceCount" },
