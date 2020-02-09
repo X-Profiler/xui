@@ -13,6 +13,8 @@ const RISK_COUNT = "riskCount";
 // main metric key
 const PROCESS_CPU_USAGE = "processCpuUsage";
 const PROCESS_MEMORY_USAGE = "processMemoryUsage";
+const SYSTEM_CPU_USAGE = "systemCpuUsage";
+const SYSTEM_MEMORY_USAGE = "systemMemoryUsage";
 const DISK_USAGE = "diskUsage";
 
 export default {
@@ -74,6 +76,10 @@ export default {
         app[`${PROCESS_CPU_USAGE}Loading`] = true;
         app[PROCESS_MEMORY_USAGE] = [];
         app[`${PROCESS_MEMORY_USAGE}Loading`] = true;
+        app[SYSTEM_CPU_USAGE] = [];
+        app[`${SYSTEM_CPU_USAGE}Loading`] = true;
+        app[SYSTEM_MEMORY_USAGE] = [];
+        app[`${SYSTEM_MEMORY_USAGE}Loading`] = true;
         app[DISK_USAGE] = [];
         app[`${DISK_USAGE}Loading`] = true;
 

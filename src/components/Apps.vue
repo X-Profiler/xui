@@ -124,7 +124,9 @@ const appsData = Object.assign(
         ],
         mainMetrics: [
           { label: "Node.js 进程 CPU 负载", value: "processCpuUsage" },
-          { label: "Node.js 进程 Memory 负载", value: "processMemoryUsage" },
+          { label: "Node.js 进程堆内存状态", value: "processMemoryUsage" },
+          { label: "系统整体 CPU 负载", value: "systemCpuUsage" },
+          { label: "系统整体可用内存状态", value: "systemMemoryUsage" },
           { label: "系统磁盘状态", value: "diskUsage" }
         ],
         appLoading: false,
@@ -208,7 +210,7 @@ export default appsData;
 }
 
 .app-content-metric {
-  width: 33.3%;
+  width: 20%;
   padding: 0 10px;
   text-align: center;
 }
