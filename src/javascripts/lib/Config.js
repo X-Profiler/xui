@@ -52,6 +52,13 @@ export const http = {
       en: 'Get heap memory overview failed, please retry'
     }
   },
+  systemCpuUsage: {
+    url: '/xapi/overview/system_cpu_usage',
+    msg: {
+      ch: '获取系统 CPU 概览信息失败，请重试',
+      en: 'Get system cpu overview failed, please retry'
+    }
+  },
   diskUsage: {
     url: '/xapi/overview/disk_usage',
     msg: {

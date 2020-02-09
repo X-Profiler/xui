@@ -107,6 +107,18 @@ module.exports = app => {
     setTimeout(() => res.send({ ok: true, data: { list } }), 550);
   });
 
+  app.get('/xapi/overview/system_cpu_usage', function (req, res) {
+    const appId = req.query.appId;
+    console.log(`get app ${appId} system cpu usage overview`);
+
+    // set data
+    const instanceCount = getInstances(appId).count;
+    // const instanceCount = 200;
+    const list = randomInstance(instanceCount);
+
+    setTimeout(() => res.send({ ok: true, data: { list } }), 450);
+  });
+
   app.get('/xapi/overview/disk_usage', function (req, res) {
     const appId = req.query.appId;
     console.log(`get app ${appId} disk usage overview`);
