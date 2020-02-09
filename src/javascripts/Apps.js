@@ -80,6 +80,7 @@ export default {
         // get main metrics
         this.getMainMetricData(PROCESS_CPU_USAGE, app.appId);
         this.getMainMetricData(PROCESS_MEMORY_USAGE, app.appId);
+        this.getMainMetricData(DISK_USAGE, app.appId);
       }
 
       // get title metrics

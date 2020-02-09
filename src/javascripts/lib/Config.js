@@ -51,6 +51,13 @@ export const http = {
       ch: '获取进程堆内存概览信息失败，请重试',
       en: 'Get heap memory overview failed, please retry'
     }
+  },
+  diskUsage: {
+    url: '/xapi/overview/disk_usage',
+    msg: {
+      ch: '获取磁盘概览信息失败，请重试',
+      en: 'Get disk usage overview failed, please retry'
+    }
   }
 };
 

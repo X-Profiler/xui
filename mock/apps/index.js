@@ -11,7 +11,7 @@ function randomSetInstances() {
 }
 
 randomSetInstances();
-setInterval(randomSetInstances, 5000);
+setInterval(randomSetInstances, 60 * 1000);
 
 function randomInstance(instanceCount) {
   // 0: no data, 1 healthy, 2 warning, 3 errored
@@ -64,7 +64,7 @@ module.exports = app => {
     console.log(`get alarm count: ${JSON.stringify(appIds)}`);
     const data = {};
     for (const appId of appIds) {
-      data[appId] = parseInt(Math.random() * 10e5)
+      data[appId] = parseInt(Math.random() * 10e4)
     }
     setTimeout(() => res.send({ ok: true, data }), 500);
     // res.send({ ok: true, data });
@@ -105,5 +105,17 @@ module.exports = app => {
     const list = randomInstance(instanceCount);
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 550);
+  });
+
+  app.get('/xapi/overview/disk_usage', function (req, res) {
+    const appId = req.query.appId;
+    console.log(`get app ${appId} disk usage overview`);
+
+    // set data
+    const instanceCount = getInstances(appId).count;
+    // const instanceCount = 200;
+    const list = randomInstance(instanceCount);
+
+    setTimeout(() => res.send({ ok: true, data: { list } }), 450);
   });
 };;
