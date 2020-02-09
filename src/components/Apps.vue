@@ -194,6 +194,7 @@ export default appsData;
   font-size: 10px;
   text-align: center;
   margin-left: 5px;
+  height: 51px;
 }
 
 .app-content-title-metric-key {
