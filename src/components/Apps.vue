@@ -78,6 +78,7 @@
                       class="instance-ico"
                       type="md-egg"
                       :style="getInstanceStyle(instance)"
+                      :title="instance.title"
                     />
                   </div>
                 </div>

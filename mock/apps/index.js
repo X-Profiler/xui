@@ -15,19 +15,31 @@ setInterval(randomSetInstances, 60 * 1000);
 
 function randomInstance(instanceCount) {
   // 0: no data, 1 healthy, 2 warning, 3 errored
-  const list = new Array(instanceCount).fill('*').map(() => ({ status: 1 }));
+  const list = new Array(instanceCount).fill('*').map(() => ({
+    status: 1,
+    title: (Math.random() * 60).toFixed(2) + '%'
+  }));
 
   // set no data
   const noDataIndex = parseInt(Math.random() * instanceCount);
-  list[noDataIndex] && (list[noDataIndex].status = 0);
+  if (list[noDataIndex]) {
+    list[noDataIndex].status = 0;
+    list[noDataIndex].title = '-';
+  }
 
   // set warning
   const warningIndex = parseInt(Math.random() * instanceCount);
-  list[warningIndex] && (list[warningIndex].status = 2);
+  if (list[warningIndex]) {
+    list[warningIndex].status = 2;
+    list[warningIndex].title = (60 + Math.random() * 25).toFixed(2) + '%';
+  }
 
   // set error
   const errorIndex = parseInt(Math.random() * instanceCount);
-  list[errorIndex] && (list[errorIndex].status = 3);
+  if (list[errorIndex]) {
+    list[errorIndex].status = 3;
+    list[errorIndex].title = (85 + Math.random() * 15).toFixed(2) + '%';
+  }
 
   return list;
 }
