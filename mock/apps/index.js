@@ -82,7 +82,6 @@ module.exports = app => {
     // res.send({ ok: true, data });
   });
 
-  // get cpu usage overview
   app.get('/xapi/overview/process_cpu_usage', function (req, res) {
     const appId = req.query.appId;
     console.log(`get app ${appId} process cpu usage overview`);
@@ -108,6 +107,18 @@ module.exports = app => {
   });
 
   app.get('/xapi/overview/system_cpu_usage', function (req, res) {
+    const appId = req.query.appId;
+    console.log(`get app ${appId} system cpu usage overview`);
+
+    // set data
+    const instanceCount = getInstances(appId).count;
+    // const instanceCount = 200;
+    const list = randomInstance(instanceCount);
+
+    setTimeout(() => res.send({ ok: true, data: { list } }), 450);
+  });
+
+  app.get('/xapi/overview/system_memory_usage', function (req, res) {
     const appId = req.query.appId;
     console.log(`get app ${appId} system cpu usage overview`);
 

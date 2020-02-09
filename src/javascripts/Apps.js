@@ -87,6 +87,7 @@ export default {
         this.getMainMetricData(PROCESS_CPU_USAGE, app.appId);
         this.getMainMetricData(PROCESS_MEMORY_USAGE, app.appId);
         this.getMainMetricData(SYSTEM_CPU_USAGE, app.appId);
+        this.getMainMetricData(SYSTEM_MEMORY_USAGE, app.appId);
         this.getMainMetricData(DISK_USAGE, app.appId);
       }
 
