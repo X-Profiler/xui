@@ -7,7 +7,7 @@
       <!-- body content -->
       <Content class="content">
         <!-- create new app -->
-        <Button type="primary" ghost class="create-new-app">
+        <Button type="primary" ghost class="create-new-app" @click="showNewAppCreation">
           <Icon type="md-person-add" class="new-app-icon" />创建新应用
         </Button>
 
@@ -30,10 +30,37 @@
         >Easy-Monitor</a> V3.0
       </Footer>
     </Layout>
+
+    <!-- modal -->
+    <x-modal
+      title="创建新应用"
+      okText="提交"
+      okLoadingText="提交中..."
+      cancelText="关闭"
+      :loading="newAppCreationLoading"
+      :show="showNewAppCreationModal"
+      @status="status=>showNewAppCreationModal = status"
+      @canceled="()=>newAppName = ''"
+      @submited="submitNewAppCreation"
+    >
+      <!-- content -->
+      <template slot="content">
+        <div class="modal-content modal-self">
+          <Input v-model="newAppName" placeholder="请输入您的应用名称">
+            <span slot="prepend">应用名称</span>
+          </Input>
+          <p class="modal-attention">
+            <strong>注意:</strong>
+            <span style="margin-left: 10px;">应用名称最大长度不能超过 30 个字符</span>
+          </p>
+        </div>
+      </template>
+    </x-modal>
   </div>
 </template>
 
 <script>
+import xModal from "./common/Modal";
 import xHeader from "./layout/Header";
 import xApps from "./Apps";
 import consoleModule from "../javascripts/Console";
@@ -42,10 +69,14 @@ const consoleData = Object.assign(
   {
     data() {
       return {
-        selectedType: "myApps"
+        selectedType: "myApps",
+        showNewAppCreationModal: false,
+        newAppName: "",
+        newAppCreationLoading: false
       };
     },
     components: {
+      "x-modal": xModal,
       "x-header": xHeader,
       "x-apps": xApps
     }
@@ -81,5 +112,14 @@ export default consoleData;
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.modal-self {
+  padding-top: 8px;
+}
+
+.modal-attention {
+  /* position: absolute; */
+  margin-top: -30px;
 }
 </style>

@@ -12,6 +12,34 @@ export default {
     }
   },
 
+  methods: {
+    showNewAppCreation() {
+      this.showNewAppCreationModal = true;
+    },
+
+    submitNewAppCreation() {
+      const newAppName = this.newAppName;
+
+      // check app name
+      if (!newAppName) {
+        utils.error.call(this, '应用名称不能为空！');
+        return;
+      }
+      if (newAppName.length > 30) {
+        utils.error.call(this, '应用名称不能超过 30 个字符！');
+        return;
+      }
+
+      // submit
+      this.newAppCreationLoading = true;
+      setTimeout(() => {
+        this.newAppCreationLoading = false;
+        this.showNewAppCreationModal = false;
+        this.newAppName = '';
+      }, 1000);
+    }
+  },
+
   computed: {
     myApps() {
       return utils.getTag(tags.myApps);
