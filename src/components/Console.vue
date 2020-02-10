@@ -1,15 +1,3 @@
-<style scoped>
-.content {
-  margin: 10px 20px;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-</style>
-
 <template>
   <div>
     <Layout>
@@ -18,9 +6,11 @@
 
       <!-- body content -->
       <Content class="content">
+        <!-- create new app -->
+        <Button type="primary" ghost class="create-new-app">创建新应用</Button>
 
         <!-- tab -->
-        <Tabs v-model="selectedType">
+        <Tabs class="app-tab" v-model="selectedType">
           <TabPane :label="myApps" name="myApps"></TabPane>
           <TabPane :label="joinedApps" name="joinedApps"></TabPane>
         </Tabs>
@@ -63,3 +53,26 @@ const consoleData = Object.assign(
 
 export default consoleData;
 </script>
+
+<style scoped>
+.content {
+  margin: 10px 20px;
+}
+
+.create-new-app {
+  position: absolute;
+  right: 20px;
+  z-index: 999;
+}
+
+.app-tab {
+  margin-top: 7px;
+  user-select: none;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+</style>

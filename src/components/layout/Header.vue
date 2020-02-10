@@ -1,34 +1,3 @@
-<style scoped>
-.header {
-  text-align: right;
-}
-
-.logo {
-  position: absolute;
-  left: 20px;
-  cursor: pointer;
-  color: white;
-}
-
-.icon {
-  font-size: 15px;
-  margin-right: 10px;
-}
-
-.nav-selection {
-  display: inline-block;
-  padding-left: 30px;
-  padding-right: 30px;
-  cursor: pointer;
-  user-select: none;
-  color: white;
-}
-
-.nav-selection.active {
-  background-color: #0f0e0e;
-}
-</style>
-
 <template>
   <div>
     <Header class="header">
@@ -77,3 +46,34 @@ const headerData = Object.assign(
 
 export default headerData;
 </script>
+
+<style scoped>
+.header {
+  text-align: right;
+}
+
+.logo {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.icon {
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.nav-selection {
+  display: inline-block;
+  padding-left: 30px;
+  padding-right: 30px;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+}
+
+.nav-selection.active {
+  background-color: #0f0e0e;
+}
+</style>
