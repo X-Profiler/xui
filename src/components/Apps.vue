@@ -30,7 +30,7 @@
                   :style="'margin-top: 1px;' + (index !== 0 ? 'margin-left: 10px;':'')"
                 >
                   <div v-if="!func.disabled || func.disabled !== type">
-                    <p style="font-size: 10px">{{ func.label }}</p>
+                    <p style="font-size: 11px">{{ func.label }}</p>
                     <Icon :type="func.icon" />
                   </div>
                 </div>
@@ -192,7 +192,7 @@ export default appsData;
 
 .app-content-title-metric {
   display: flex;
-  font-size: 10px;
+  font-size: 11px;
   text-align: center;
   margin-left: 5px;
   height: 51px;

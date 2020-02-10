@@ -27,6 +27,10 @@ export default {
     this.getApps();
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
     reset() {
       this.apps = [];
