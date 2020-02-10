@@ -13,25 +13,34 @@
         :style="index === apps.length - 1 ? 'margin-bottom: 80px':''"
       >
         <!-- app border -->
-        <div class="app-border background-image-china-style" :style="'background-color: ' + randomColor(index)"></div>
+        <div
+          class="app-border background-image-china-style"
+          :style="'background-color: ' + randomColor(index)"
+        ></div>
 
         <!-- app content -->
         <div class="app-content">
           <!-- title -->
           <!-- :style="'border-right: 1px dashed ' + randomColor(index) + ';border-bottom: 1px dashed ' + randomColor(index)" -->
           <div class="app-content-title">
-            <div class="app-content-title-name background-image-china-style" :style="'background-color: ' + randomColor(index)">
+            <div
+              class="app-content-title-name background-image-china-style"
+              :style="'background-color: ' + randomColor(index)"
+            >
               <p>{{ app.name }}</p>
               <div style="display: flex">
                 <div
                   v-for="(func, index) in functions"
                   :key="index"
-                  class="app-content-select"
                   :style="'margin-top: 1px;' + (index !== 0 ? 'margin-left: 10px;':'')"
                 >
                   <div v-if="!func.disabled || func.disabled !== type">
                     <p style="font-size: 11px">{{ func.label }}</p>
-                    <Icon :type="func.icon" />
+                    <Icon
+                      class="app-content-select"
+                      :type="func.icon"
+                      @click="goToFunction(app.appId, func.value)"
+                    />
                   </div>
                 </div>
               </div>
@@ -115,11 +124,16 @@ const appsData = Object.assign(
           "#c5c8ce"
         ],
         functions: [
-          { label: "实例", icon: "md-albums" },
-          { label: "文件", icon: "ios-folder" },
-          { label: "团队", icon: "md-people" },
-          { label: "告警", icon: "ios-alarm" },
-          { label: "设置", icon: "md-settings", disabled: "joinedApps" }
+          { label: "实例", value: "instance", icon: "md-albums" },
+          { label: "文件", value: "file", icon: "ios-folder" },
+          { label: "团队", value: "team", icon: "md-people" },
+          { label: "告警", value: "alarm", icon: "ios-alarm" },
+          {
+            label: "设置",
+            value: "setting",
+            icon: "md-settings",
+            disabled: "joinedApps"
+          }
         ],
         metrics: [
           { label: "实例个数", value: "instanceCount" },

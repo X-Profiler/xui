@@ -145,6 +145,10 @@ export default {
         .catch(() => this.setMainMetricDataToApp(appId, key, []));
     },
 
+    goToFunction(appId, func) {
+      this.$router.push({ path: `/app/${appId}/${func}` });
+    },
+
     goToAgent(appId, type, agentId, pid) {
       const query = {};
       if (type === 'processCpuUsage' || type === 'processMemoryUsage') {
