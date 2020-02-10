@@ -149,6 +149,20 @@ export default {
       this.$router.push({ path: `/app/${appId}/${func}` });
     },
 
+    goToFunction2(appId, metricType) {
+      let func = '';
+      const query = {};
+      if (metricType === 'instanceCount') {
+        func = 'instance';
+      } else if (metricType === 'alarmCount') {
+        func = 'alarm';
+      } else if (metricType === 'riskCount') {
+        func = 'instance';
+        query.tab = 'package'
+      }
+      this.$router.push({ path: `/app/${appId}/${func}`, query });
+    },
+
     goToAgent(appId, type, agentId, pid) {
       const query = {};
       if (type === 'processCpuUsage' || type === 'processMemoryUsage') {
@@ -156,7 +170,7 @@ export default {
         query.agentId = agentId;
         query.pid = pid;
       } else {
-        query.instanceTab = 'system';
+        query.tab = 'system';
         query.agentId = agentId;
       }
 

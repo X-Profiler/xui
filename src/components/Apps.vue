@@ -57,6 +57,7 @@
                 <p
                   v-else
                   class="app-content-title-metric-value app-content-select"
+                  @click="goToFunction2(app.appId, metric.value)"
                 >{{ formatCount(app[metric.value]) }}</p>
               </div>
             </div>
