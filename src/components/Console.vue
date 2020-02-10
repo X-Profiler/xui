@@ -7,7 +7,9 @@
       <!-- body content -->
       <Content class="content">
         <!-- create new app -->
-        <Button type="primary" ghost class="create-new-app">创建新应用</Button>
+        <Button type="primary" ghost class="create-new-app">
+          <Icon type="md-person-add" class="new-app-icon" />创建新应用
+        </Button>
 
         <!-- tab -->
         <Tabs class="app-tab" v-model="selectedType">
@@ -63,6 +65,11 @@ export default consoleData;
   position: absolute;
   right: 20px;
   z-index: 999;
+}
+
+.new-app-icon {
+  margin-right: 6px;
+  margin-top: 4px;
 }
 
 .app-tab {
