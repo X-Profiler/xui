@@ -13,14 +13,14 @@
         :style="index === apps.length - 1 ? 'margin-bottom: 80px':''"
       >
         <!-- app border -->
-        <div class="app-border" :style="'background-color: ' + randomColor(index)"></div>
+        <div class="app-border background-image-china-style" :style="'background-color: ' + randomColor(index)"></div>
 
         <!-- app content -->
         <div class="app-content">
           <!-- title -->
           <!-- :style="'border-right: 1px dashed ' + randomColor(index) + ';border-bottom: 1px dashed ' + randomColor(index)" -->
           <div class="app-content-title">
-            <div class="app-content-title-name" :style="'background-color: ' + randomColor(index)">
+            <div class="app-content-title-name background-image-china-style" :style="'background-color: ' + randomColor(index)">
               <p>{{ app.name }}</p>
               <div style="display: flex">
                 <div
@@ -161,7 +161,6 @@ export default appsData;
   min-width: 7px;
   flex-basis: 7px;
   /* height: 100%; */
-  background-image: url("/images/bg1.jpg");
   background-blend-mode: multiply;
 }
 
@@ -182,7 +181,6 @@ export default appsData;
   padding: 10px 15px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: #fff;
-  background-image: url("/images/bg1.jpg");
   background-blend-mode: multiply;
 }
 
