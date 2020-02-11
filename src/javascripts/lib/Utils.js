@@ -4,7 +4,7 @@ import axios from "axios";
 
 const CancelToken = axios.CancelToken;
 
-let lang = 'ch';
+let lang = 'en';
 
 export const failedCode = -99999;
 

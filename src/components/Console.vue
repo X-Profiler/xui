@@ -15,7 +15,8 @@
             class="create-new-app"
             @click="showNewAppCreation"
           >
-            <Icon type="md-person-add" class="new-app-icon" />创建新应用
+            <Icon type="md-person-add" class="new-app-icon" />
+            {{ newAppCreationTag }}
           </Button>
         </transition>
 
@@ -42,10 +43,10 @@
     <!-- modal -->
     <x-modal
       ref="consoleModal"
-      title="创建新应用"
-      okText="提交"
-      okLoadingText="提交中..."
-      cancelText="关闭"
+      :title="newAppCreationTag"
+      :okText="submitTag"
+      :okLoadingText="submittingTag"
+      :cancelText="closeTag"
       :loading="newAppCreationLoading"
       @canceled="()=>newAppName = ''"
       @submited="submitNewAppCreation"
@@ -53,12 +54,12 @@
       <!-- content -->
       <template slot="content">
         <div class="modal-content modal-self">
-          <Input v-model="newAppName" placeholder="请输入您的应用名称">
-            <span slot="prepend">应用名称</span>
+          <Input v-model="newAppName" :placeholder="newAppNamePlaceholderTag">
+            <span slot="prepend">{{ applicationNameTag }}</span>
           </Input>
           <p class="modal-attention">
-            <strong>注意:</strong>
-            <span style="margin-left: 10px;">应用名称最大长度不能超过 30 个字符</span>
+            <strong>{{ newAppNameAttentionTag }}:</strong>
+            <span style="margin-left: 10px;">{{ newAppNameAttentionDetailTag }}</span>
           </p>
         </div>
       </template>

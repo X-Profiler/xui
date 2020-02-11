@@ -65,6 +65,38 @@ export default {
 
     joinedApps() {
       return utils.getTag(tags.joinedApps);
+    },
+
+    newAppCreationTag() {
+      return utils.getTag(tags.newAppCreation);
+    },
+
+    applicationNameTag() {
+      return utils.getTag(tags.newAppName);
+    },
+
+    newAppNamePlaceholderTag() {
+      return utils.getTag(tags.newAppNamePlaceholder);
+    },
+
+    newAppNameAttentionTag() {
+      return utils.getTag(tags.newAppNameAttention);
+    },
+
+    newAppNameAttentionDetailTag() {
+      return utils.getTag(tags.newAppNameAttentionDetail);
+    },
+
+    submitTag() {
+      return utils.getTag(tags.submit);
+    },
+
+    submittingTag() {
+      return utils.getTag(tags.submitting);
+    },
+
+    closeTag() {
+      return utils.getTag(tags.close);
     }
   },
 

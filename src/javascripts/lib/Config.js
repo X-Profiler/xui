@@ -90,7 +90,7 @@ export const tags = {
   // nav
   docs: {
     ch: '使用指南',
-    en: 'User Guide'
+    en: 'Document'
   },
   console: {
     ch: '控制台',
@@ -109,5 +109,39 @@ export const tags = {
   joinedApps: {
     ch: '加入的应用',
     en: 'Joined Apps'
+  },
+
+  // create new app
+  newAppCreation: {
+    ch: '创建新应用',
+    en: 'New Application'
+  },
+  newAppName: {
+    ch: '应用名称',
+    en: 'App Name'
+  },
+  newAppNamePlaceholder: {
+    ch: '请输入您的应用名称',
+    en: 'Input your new application name'
+  },
+  newAppNameAttention: {
+    ch: '注意',
+    en: 'Attention'
+  },
+  newAppNameAttentionDetail: {
+    ch: '应用名称最大长度不能超过 30 个字符',
+    en: 'Length of the application name cannot exceed 30 characters.'
+  },
+  submit: {
+    ch: '提交',
+    en: 'Submit'
+  },
+  submitting: {
+    ch: '提交中...',
+    en: 'submitting...'
+  },
+  close: {
+    ch: '关闭',
+    en: 'Close'
   }
 }
