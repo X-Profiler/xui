@@ -9,6 +9,11 @@
         </div>
       </template>
 
+      <!-- closable -->
+      <template slot="close">
+        <Icon class="modal-title-close" type="md-close" />
+      </template>
+
       <!-- content -->
       <slot name="content"></slot>
 
