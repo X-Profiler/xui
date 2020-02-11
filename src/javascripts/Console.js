@@ -1,7 +1,9 @@
 'use strict';
 
-import { tags } from "./lib/Config";
+import { tags, http } from "./lib/Config";
 import * as utils from "./lib/Utils";
+
+const { app } = http;
 
 export default {
   created() {
@@ -10,6 +12,10 @@ export default {
     if (query.type) {
       this.selectedType = query.type;
     }
+
+    // set common http methods
+    this.cancelToken = utils.createCancelToken();
+    this.post = utils.post.bind(this);
   },
 
   mounted() {
@@ -37,12 +43,9 @@ export default {
       }
 
       // submit
-      this.newAppCreationLoading = true;
-      setTimeout(() => {
-        this.newAppCreationLoading = false;
+      this.post(app.msg.post, app.url, { newAppName }, () => {
         this.consoleModal.cancelModal();
-        this.newAppName = '';
-      }, 1000);
+      }, this.cancelToken.token, 'newAppCreationLoading');
     }
   },
 

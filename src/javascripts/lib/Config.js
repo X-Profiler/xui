@@ -72,6 +72,17 @@ export const http = {
       ch: '获取磁盘概览信息失败，请重试',
       en: 'Get disk usage overview failed, please retry'
     }
+  },
+
+  // single app
+  app: {
+    url: '/xapi/app',
+    msg: {
+      post: {
+        ch: '创建应用失败，请重试',
+        en: 'Create application failed, please retry'
+      }
+    }
   }
 };
 

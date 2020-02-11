@@ -155,4 +155,11 @@ module.exports = app => {
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 450);
   });
+
+  app.post('/xapi/app', function (req, res) {
+    const newAppName = req.body.newAppName;
+    console.log(`create new app ${newAppName}`);
+
+    setTimeout(() => res.send({ ok: true }), 450);
+  });
 };;
