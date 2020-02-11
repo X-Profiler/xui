@@ -25,6 +25,10 @@ export default {
     this.appList = this.$refs.appList;
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
     showNewAppCreation() {
       this.consoleModal.showModal();
