@@ -18,7 +18,7 @@
         </Tabs>
 
         <!-- app list -->
-        <x-apps :type="selectedType"></x-apps>
+        <x-apps ref="appList" :type="selectedType"></x-apps>
       </Content>
 
       <!-- footer -->

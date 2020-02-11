@@ -21,6 +21,8 @@ export default {
   mounted() {
     // get modal
     this.consoleModal = this.$refs.consoleModal;
+    // get app list
+    this.appList = this.$refs.appList;
   },
 
   methods: {
@@ -29,14 +31,13 @@ export default {
     },
 
     submitNewAppCreation() {
-      let newAppName = this.newAppName;
+      let newAppName = this.newAppName.trim();
 
       // check app name
       if (!newAppName) {
         utils.error.call(this, '应用名称不能为空！');
         return;
       }
-      newAppName = newAppName.trim();
       if (newAppName.length > 30) {
         utils.error.call(this, '应用名称不能超过 30 个字符！');
         return;
@@ -48,6 +49,7 @@ export default {
           return;
         }
         this.consoleModal.cancelModal();
+        this.appList.refreshApps();
       }, this.cancelToken.token, 'newAppCreationLoading');
     }
   },
