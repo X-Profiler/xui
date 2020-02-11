@@ -35,7 +35,8 @@
                 <div
                   v-for="(func, index) in functions"
                   :key="index"
-                  :style="'margin-top: 1px;' + (index !== 0 ? 'margin-left: 10px;':'')"
+                  class="app-title-content-metric"
+                  :style="(index !== 0 ? 'margin-left: 10px;':'')"
                 >
                   <div v-if="!func.disabled || func.disabled !== type">
                     <p style="font-size: 11px">{{ func.label }}</p>
@@ -112,6 +113,8 @@
 
 <script>
 import appsModule from "../javascripts/Apps";
+import { tags } from "../javascripts/lib/Config";
+import { getTag } from "../javascripts/lib/Utils";
 
 const appsData = Object.assign(
   {
@@ -131,28 +134,35 @@ const appsData = Object.assign(
           "#c5c8ce"
         ],
         functions: [
-          { label: "实例", value: "instance", icon: "md-albums" },
-          { label: "文件", value: "file", icon: "ios-folder" },
-          { label: "团队", value: "team", icon: "md-people" },
-          { label: "告警", value: "alarm", icon: "ios-alarm" },
           {
-            label: "设置",
+            label: getTag(tags.instance),
+            value: "instance",
+            icon: "md-albums"
+          },
+          { label: getTag(tags.file), value: "file", icon: "ios-folder" },
+          { label: getTag(tags.team), value: "team", icon: "md-people" },
+          { label: getTag(tags.alarm), value: "alarm", icon: "ios-alarm" },
+          {
+            label: getTag(tags.settings),
             value: "setting",
             icon: "md-settings",
             disabled: "joinedApps"
           }
         ],
         metrics: [
-          { label: "实例个数", value: "instanceCount" },
-          { label: "24h 告警数", value: "alarmCount" },
-          { label: "依赖风险数", value: "riskCount" }
+          { label: getTag(tags.instanceCount), value: "instanceCount" },
+          { label: getTag(tags.alarmCount), value: "alarmCount" },
+          { label: getTag(tags.rsikCount), value: "riskCount" }
         ],
         mainMetrics: [
-          { label: "Node.js 进程 CPU 负载", value: "processCpuUsage" },
-          { label: "Node.js 进程堆内存状态", value: "processMemoryUsage" },
-          { label: "系统整体 CPU 负载", value: "systemCpuUsage" },
-          { label: "系统整体可用内存状态", value: "systemMemoryUsage" },
-          { label: "系统磁盘状态", value: "diskUsage" }
+          { label: getTag(tags.processCpuUsage), value: "processCpuUsage" },
+          {
+            label: getTag(tags.processMemoryUsage),
+            value: "processMemoryUsage"
+          },
+          { label: getTag(tags.systemCpuUsage), value: "systemCpuUsage" },
+          { label: getTag(tags.systemMemoryUsage), value: "systemMemoryUsage" },
+          { label: getTag(tags.diskUsage), value: "diskUsage" }
         ],
         appLoading: false,
         apps: []
@@ -189,6 +199,12 @@ export default appsData;
   /* height: 100%; */
   flex-grow: 1;
   display: flex;
+}
+
+.app-title-content-metric {
+  min-width: 30px;
+  margin-top: 1px;
+  text-align: center;
 }
 
 .app-content-title {

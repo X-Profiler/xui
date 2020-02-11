@@ -111,7 +111,7 @@ export const tags = {
     en: 'Joined Apps'
   },
 
-  // create new app
+  // create new app modal
   newAppCreation: {
     ch: '创建新应用',
     en: 'New Application'
@@ -143,5 +143,61 @@ export const tags = {
   close: {
     ch: '关闭',
     en: 'Close'
+  },
+
+  // overview title metrics
+  instance: {
+    ch: '实例',
+    en: 'agent'
+  },
+  file: {
+    ch: '文件',
+    en: 'file'
+  },
+  team: {
+    ch: '团队',
+    en: 'team'
+  },
+  alarm: {
+    ch: '告警',
+    en: 'alarm'
+  },
+  settings: {
+    ch: '设置',
+    en: 'settings'
+  },
+  instanceCount: {
+    ch: '实例个数',
+    en: 'agents'
+  },
+  alarmCount: {
+    ch: '24h 告警数',
+    en: 'alarms (24h)'
+  },
+  rsikCount: {
+    ch: '依赖风险数',
+    en: 'risk module'
+  },
+
+  // main metrics
+  processCpuUsage: {
+    ch: 'Node.js 进程 CPU 负载',
+    en: 'cpu status'
+  },
+  processMemoryUsage: {
+    ch: 'Node.js 进程堆内存状态',
+    en: 'heap memory status'
+  },
+  systemCpuUsage: {
+    ch: '系统整体 CPU 负载',
+    en: 'system cpu status'
+  },
+  systemMemoryUsage: {
+    ch: '系统整体可用内存状态',
+    en: 'system memory status'
+  },
+  diskUsage: {
+    ch: '磁盘使用率',
+    en: 'disk usage'
   }
 }
