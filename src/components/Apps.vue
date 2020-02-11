@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div v-if="appLoading" class="spin-loading" style="margin-top:200px;">
+    <!-- loading -->
+    <div v-show="appLoading" class="spin-loading" style="margin-top:200px;">
       <Spin size="large"></Spin>
     </div>
-    <div v-else>
+
+    <!-- app list -->
+    <div v-show="!appLoading">
       <!-- app overview -->
       <div v-if="apps.length === 0" class="no-apps">{{ noAppTip }}</div>
       <div
@@ -71,7 +74,7 @@
                 <div>{{ metric.label }}</div>
                 <!-- loading -->
                 <div
-                  v-if="app[`${metric.value}Loading`]"
+                  v-show="app[`${metric.value}Loading`]"
                   class="spin-loading"
                   style="margin-top: 15px;"
                 >
@@ -79,10 +82,13 @@
                 </div>
 
                 <!-- no data -->
-                <div v-else-if="app[metric.value].length === 0" class="no-data">-</div>
+                <div
+                  v-show="!app[`${metric.value}Loading`] && app[metric.value].length === 0"
+                  class="no-data"
+                >-</div>
 
                 <!-- show data -->
-                <div v-else>
+                <div v-show="!app[`${metric.value}Loading`] && app[metric.value].length !== 0">
                   <div class="instances">
                     <Icon
                       v-for="(instance, index) in app[metric.value]"
