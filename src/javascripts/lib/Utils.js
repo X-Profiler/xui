@@ -57,14 +57,35 @@ export function cancelRequest(source) {
   source.cancel('Operation canceled by the user.');
 }
 
-export function get(message, url, params, callback, cancelToken, loadingKey = '') {
+export function request(method, message, url, data, callback, cancelToken, loadingKey = '') {
   if (loadingKey) {
     this[loadingKey] = true;
   }
   message = message[lang];
-  return axios
-    .get(url, { cancelToken, params })
+
+  const obj = {};
+  if (method === 'GET') {
+    obj.params = data;
+  } else {
+    obj.data = data;
+  }
+
+  return axios(Object.assign({
+    url,
+    method,
+    cancelToken
+  }, obj))
     .then(resolveData.bind(this, message, loadingKey))
     .then(callback)
     .catch(handleError.bind(this, message, loadingKey));
+}
+
+export function get(...args) {
+  args.unshift('GET');
+  return request.call(this, ...args);
+}
+
+export function post(...args) {
+  args.unshift('POST');
+  return request.call(this, ...args);
 }
