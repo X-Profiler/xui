@@ -43,7 +43,10 @@ export default {
       }
 
       // submit
-      this.post(app.msg.post, app.url, { newAppName }, () => {
+      this.post(app.msg.post, app.url, { newAppName }, data => {
+        if (data === utils.failedCode) {
+          return;
+        }
         this.consoleModal.cancelModal();
       }, this.cancelToken.token, 'newAppCreationLoading');
     }

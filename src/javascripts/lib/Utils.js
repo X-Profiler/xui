@@ -6,6 +6,8 @@ const CancelToken = axios.CancelToken;
 
 let lang = 'ch';
 
+export const failedCode = -99999;
+
 export function setLang(lang_) {
   lang = lang_;
 }
@@ -33,6 +35,7 @@ export function resolveData(message, loadingKey, data) {
     res = data.data;
   } else {
     error.call(this, data.message || `${message}`, data.code);
+    res = failedCode;
   }
   if (loadingKey) {
     this[loadingKey] = false;
