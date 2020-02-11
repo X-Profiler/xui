@@ -175,6 +175,12 @@ export default {
       }
 
       this.$router.push({ path: `/app/${appId}/instance`, query });
+    },
+
+    refreshApps() {
+      utils.cancelRequest(this.cancelToken);
+      this.cancelToken = utils.createCancelToken();
+      this.getApps();
     }
   },
 
@@ -192,9 +198,7 @@ export default {
 
   watch: {
     type() {
-      utils.cancelRequest(this.cancelToken);
-      this.cancelToken = utils.createCancelToken();
-      this.getApps();
+      this.refreshApps();
     }
   }
 };

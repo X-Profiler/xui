@@ -12,9 +12,14 @@ export default {
     }
   },
 
+  mounted() {
+    // get modal
+    this.consoleModal = this.$refs.consoleModal;
+  },
+
   methods: {
     showNewAppCreation() {
-      this.showNewAppCreationModal = true;
+      this.consoleModal.showModal();
     },
 
     submitNewAppCreation() {
@@ -35,7 +40,7 @@ export default {
       this.newAppCreationLoading = true;
       setTimeout(() => {
         this.newAppCreationLoading = false;
-        this.showNewAppCreationModal = false;
+        this.consoleModal.cancelModal();
         this.newAppName = '';
       }, 1000);
     }

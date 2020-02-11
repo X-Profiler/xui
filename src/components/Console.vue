@@ -33,13 +33,12 @@
 
     <!-- modal -->
     <x-modal
+      ref="consoleModal"
       title="创建新应用"
       okText="提交"
       okLoadingText="提交中..."
       cancelText="关闭"
       :loading="newAppCreationLoading"
-      :show="showNewAppCreationModal"
-      @status="status=>showNewAppCreationModal = status"
       @canceled="()=>newAppName = ''"
       @submited="submitNewAppCreation"
     >
@@ -70,7 +69,6 @@ const consoleData = Object.assign(
     data() {
       return {
         selectedType: "myApps",
-        showNewAppCreationModal: false,
         newAppName: "",
         newAppCreationLoading: false
       };
@@ -116,6 +114,7 @@ export default consoleData;
 
 .modal-self {
   padding-top: 8px;
+  user-select: none;
 }
 
 .modal-attention {

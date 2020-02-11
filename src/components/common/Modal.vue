@@ -1,11 +1,11 @@
 <template>
   <div>
-    <Modal v-model="showModal" title="Common Modal dialog box title" :closable="false">
+    <Modal v-model="show" :mask-closable="false">
       <!-- header -->
       <template slot="header">
         <div>
           <Icon class="modal-title-icon" :type="iconType" />
-          <span>{{ title }}</span>
+          <span style="user-select: none;">{{ title }}</span>
         </div>
       </template>
 
@@ -25,12 +25,11 @@
 export default {
   data() {
     return {
-      showModal: false
+      show: false
     };
   },
 
   props: {
-    show: Boolean,
     type: String,
     title: String,
     okText: String,
@@ -40,8 +39,12 @@ export default {
   },
 
   methods: {
+    showModal() {
+      this.show = true;
+    },
+
     cancelModal() {
-      this.showModal = false;
+      this.show = false;
       this.$emit("canceled");
     },
 
@@ -74,16 +77,6 @@ export default {
 
     cancel() {
       return this.cancelText || "取消";
-    }
-  },
-
-  watch: {
-    show() {
-      this.showModal = this.show;
-    },
-
-    showModal() {
-      this.$emit("status", this.showModal);
     }
   }
 };
