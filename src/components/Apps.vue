@@ -192,7 +192,6 @@ export default appsData;
   min-width: 7px;
   flex-basis: 7px;
   /* height: 100%; */
-  background-blend-mode: multiply;
 }
 
 .app-content {
@@ -218,7 +217,6 @@ export default appsData;
   padding: 10px 15px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: #fff;
-  background-blend-mode: multiply;
 }
 
 .app-content-select {
