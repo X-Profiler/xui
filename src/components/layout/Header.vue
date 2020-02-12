@@ -7,6 +7,7 @@
       <span
         v-for="(nav, index) in navActions"
         :class="'nav-selection' + (nav.active ? ' active' :'')"
+        :style="'text-align: center;' + (nav.value !== 'docs' ? 'min-width: 100px;' : '')"
         :key="index"
         @click="activeNav(index)"
       >
@@ -66,12 +67,11 @@ export default headerData;
 
 .nav-selection {
   display: inline-block;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 25px;
+  padding-right: 25px;
   cursor: pointer;
   user-select: none;
   color: white;
-  min-width: 100px;
 }
 
 .nav-selection.active {

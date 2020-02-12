@@ -3,6 +3,8 @@
 import { http } from "../lib/Config";
 import * as utils from "../lib/Utils";
 
+const cache = { user: { name: '' } };
+
 export default {
   created() {
     // set common http methods
@@ -16,7 +18,11 @@ export default {
     }
 
     // get user info
-    this.getUserInfo();
+    if (cache.user.name) {
+      this.user.name = cache.user.name;
+    } else {
+      this.getUserInfo();
+    }
   },
 
   methods: {
@@ -45,6 +51,12 @@ export default {
           window.open(href, "_blank");
         }
       }
+    }
+  },
+
+  watch: {
+    'user.name': function () {
+      cache.user.name = this.user.name;
     }
   }
 };
