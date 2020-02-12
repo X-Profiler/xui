@@ -151,8 +151,8 @@ const appsData = Object.assign(
         ],
         metrics: [
           { label: getTag(tags.instanceCount), value: "instanceCount" },
-          { label: getTag(tags.alarmCount), value: "alarmCount" },
-          { label: getTag(tags.rsikCount), value: "riskCount" }
+          { label: getTag(tags.rsikCount), value: "riskCount" },
+          { label: getTag(tags.alarmCount), value: "alarmCount" }
         ],
         mainMetrics: [
           { label: getTag(tags.processCpuUsage), value: "processCpuUsage" },
