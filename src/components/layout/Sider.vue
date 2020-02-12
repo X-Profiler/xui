@@ -1,16 +1,22 @@
 <template>
   <div>
     <Sider :width="55" class="sider">
-      <div class="menu active">
-        <Icon type="md-albums" class="menu-icon" />
-        <p class="menu-name">实例</p>
+      <div v-for="(menu, index) in menuGroup" :key="index" class="menu">
+        <Icon :type="menu.icon" class="menu-icon" />
+        <p class="menu-name">{{ menu.label }}</p>
       </div>
     </Sider>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      menuGroup: [{ label: "实例", value: "instance", icon: "md-albums" }]
+    };
+  }
+};
 </script>
 
 <style scoped>
