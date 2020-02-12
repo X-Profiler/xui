@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition name="slide">
+      <router-view />
+    </transition>
   </div>
 </template>
 
 <script>
-export default {
-  name: "app"
-};
+export default {};
 </script>
 
 <style>
@@ -66,5 +66,18 @@ export default {
 
 .x-body {
   display: flex;
+}
+
+.slide-enter-active {
+  transition: all 0.5s ease;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(-10px);
+  /* transform: rotate(20deg); */
+  /* transform: scale(.8); */
+  /* transform: skewX(-5deg); */
+  /* transform: perspective(300px) rotateX(-10deg); */
+  opacity: 0;
 }
 </style>
