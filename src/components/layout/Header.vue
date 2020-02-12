@@ -71,6 +71,7 @@ export default headerData;
   cursor: pointer;
   user-select: none;
   color: white;
+  min-width: 100px;
 }
 
 .nav-selection.active {

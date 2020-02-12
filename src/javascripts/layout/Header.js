@@ -34,7 +34,7 @@ export default {
 
     activeNav(index) {
       const nav = this.navActions[index];
-      if (nav && !nav.active) {
+      if (nav) {
         if (["console"].includes(nav.value)) {
           this.resetActiveNav();
           nav.active = true;
