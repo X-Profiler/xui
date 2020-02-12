@@ -5,7 +5,7 @@
 
     <div class="x-body">
       <!-- sider -->
-      <x-sider></x-sider>
+      <x-sider active="instance"></x-sider>
 
       <Content>Content</Content>
     </div>
