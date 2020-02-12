@@ -13,7 +13,13 @@
 export default {
   data() {
     return {
-      menuGroup: [{ label: "实例", value: "instance", icon: "md-albums" }]
+      menuGroup: [
+        { label: "实例", value: "instance", icon: "md-albums" },
+        { label: "文件", value: "file", icon: "ios-folder" },
+        { label: "团队", value: "team", icon: "md-people" },
+        { label: "告警", value: "alarm", icon: "ios-alarm" },
+        { label: "设置", value: "setting", icon: "md-settings" }
+      ]
     };
   }
 };
@@ -27,8 +33,9 @@ export default {
 .menu {
   color: white;
   height: 70px;
-  padding-top: 10px;
+  padding: 15px 0;
   cursor: pointer;
+  user-select: none;
 }
 
 .menu-icon {
@@ -36,7 +43,7 @@ export default {
 }
 
 .menu-name {
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .active {
