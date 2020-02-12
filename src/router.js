@@ -2,17 +2,20 @@
 
 // import Home from '@/components/Home';
 import Console from '@/components/Console';
+import InstanceIndex from '@/components/instance/Index';
 
 export default [
   {
     path: '/',
-    name: 'Home',
     // component: Home,
     redirect: { path: '/console' }
   },
   {
     path: '/console',
-    name: 'Console',
     component: Console
+  },
+  {
+    path: '/app/:appId/instance',
+    component: InstanceIndex
   }
 ]
