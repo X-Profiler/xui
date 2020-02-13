@@ -16,6 +16,8 @@
 
 <script>
 import siderModule from "../../javascripts/layout/Sider";
+import { tags } from "../../javascripts/lib/Config";
+import { getTag } from "../../javascripts/lib/Utils";
 
 const siderData = Object.assign(
   {
@@ -26,16 +28,31 @@ const siderData = Object.assign(
       return {
         menuGroup: [
           {
-            label: "实例",
+            label: getTag(tags.instance),
             value: "instance",
-            icon: "md-albums",
+            icon: "md-cloud",
             active: false
           },
-          { label: "文件", value: "file", icon: "ios-folder", active: false },
-          { label: "团队", value: "team", icon: "md-people", active: false },
-          { label: "告警", value: "alarm", icon: "ios-alarm", active: false },
           {
-            label: "设置",
+            label: getTag(tags.file),
+            value: "file",
+            icon: "md-folder",
+            active: false
+          },
+          {
+            label: getTag(tags.team),
+            value: "team",
+            icon: "md-people",
+            active: false
+          },
+          {
+            label: getTag(tags.alarm),
+            value: "alarm",
+            icon: "ios-alarm",
+            active: false
+          },
+          {
+            label: getTag(tags.settings),
             value: "setting",
             icon: "md-settings",
             active: false

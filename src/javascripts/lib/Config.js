@@ -164,7 +164,7 @@ export const tags = {
   },
   settings: {
     ch: '设置',
-    en: 'settings'
+    en: 'setting'
   },
   instanceCount: {
     ch: '实例个数',
@@ -176,7 +176,7 @@ export const tags = {
   },
   rsikCount: {
     ch: '依赖风险数',
-    en: 'risk module'
+    en: 'risk modules'
   },
 
   // main metrics

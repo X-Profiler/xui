@@ -137,9 +137,9 @@ const appsData = Object.assign(
           {
             label: getTag(tags.instance),
             value: "instance",
-            icon: "md-albums"
+            icon: "md-cloud"
           },
-          { label: getTag(tags.file), value: "file", icon: "ios-folder" },
+          { label: getTag(tags.file), value: "file", icon: "md-folder" },
           { label: getTag(tags.team), value: "team", icon: "md-people" },
           { label: getTag(tags.alarm), value: "alarm", icon: "ios-alarm" },
           {
