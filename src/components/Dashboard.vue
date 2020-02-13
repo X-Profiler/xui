@@ -15,31 +15,24 @@
 <script>
 import xHeader from "./layout/Header";
 import xSider from "./layout/Sider";
-export default {
-  components: {
-    "x-header": xHeader,
-    "x-sider": xSider
-  },
+import dashboardModule from "../javascripts/Dashboard";
 
-  data() {
-    return {
-      appId: null,
-      menuTab: null
-    };
-  },
+const dashboardData = Object.assign(
+  {
+    components: {
+      "x-header": xHeader,
+      "x-sider": xSider
+    },
 
-  created() {
-    this.appId = this.$route.params.appId;
-    this.menuTab = this.$route.params.menuTab;
-  },
-
-  methods: {
-    menuChanged(active) {
-      this.menuTab = active;
-      if (this.$route.params.menuTab !== active) {
-        this.$router.push({ path: active });
-      }
+    data() {
+      return {
+        appId: null,
+        menuTab: null
+      };
     }
-  }
-};
+  },
+  dashboardModule
+);
+
+export default dashboardData;
 </script>
