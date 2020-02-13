@@ -5,6 +5,7 @@
         v-for="(menu, index) in menuGroup"
         :key="index"
         :class="'menu' + (menu.active ? ' active':'')"
+        @click="changeMenu(menu.value)"
       >
         <Icon :type="menu.icon" class="menu-icon" />
         <p class="menu-name">{{ menu.label }}</p>

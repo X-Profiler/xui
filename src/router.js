@@ -2,7 +2,7 @@
 
 // import Home from '@/components/Home';
 import Console from '@/components/Console';
-import InstanceIndex from '@/components/instance/Index';
+import DashboardIndex from '@/components/dashboard/Index';
 
 export default [
   {
@@ -15,7 +15,7 @@ export default [
     component: Console
   },
   {
-    path: '/app/:appId/instance',
-    component: InstanceIndex
+    path: '/app/:appId/:menuTab',
+    component: DashboardIndex
   }
 ]

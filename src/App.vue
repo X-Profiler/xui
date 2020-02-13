@@ -73,7 +73,7 @@ export default {};
 }
 .slide-enter,
 .slide-leave-to {
-  transform: translateX(-10px);
+  transform: translateX(-5px);
   /* transform: rotate(20deg); */
   /* transform: scale(.8); */
   /* transform: skewX(-5deg); */

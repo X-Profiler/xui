@@ -8,5 +8,11 @@ export default {
         menu.active = true;
       }
     }
+  },
+
+  methods: {
+    changeMenu(menu) {
+      console.log(menu);
+    }
   }
 };

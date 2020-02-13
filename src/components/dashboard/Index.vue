@@ -5,7 +5,7 @@
 
     <div class="x-body">
       <!-- sider -->
-      <x-sider active="instance"></x-sider>
+      <x-sider :active="menuTab"></x-sider>
 
       <Content>Content</Content>
     </div>
@@ -19,6 +19,18 @@ export default {
   components: {
     "x-header": xHeader,
     "x-sider": xSider
+  },
+
+  data() {
+    return {
+      appId: null,
+      menuTab: null
+    };
+  },
+
+  created() {
+    this.appId = this.$route.params.appId;
+    this.menuTab = this.$route.params.menuTab;
   }
 };
 </script>
