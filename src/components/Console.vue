@@ -117,7 +117,8 @@ export default consoleData;
 
 .footer {
   position: fixed;
-  bottom: 0;
+  height: 69px;
+  top: calc(100vh - 69px);
   width: 100%;
 }
 
