@@ -13,5 +13,13 @@ export default {
         this.$router.push({ path: active });
       }
     }
+  },
+
+  watch: {
+    $route(to) {
+      if (to.params.menuTab !== this.menuTab) {
+        this.menuTab = to.params.menuTab;
+      }
+    }
   }
 };
