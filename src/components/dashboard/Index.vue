@@ -5,7 +5,7 @@
 
     <div class="x-body">
       <!-- sider -->
-      <x-sider :active="menuTab"></x-sider>
+      <x-sider :active="menuTab" @menuChanged="menuChanged"></x-sider>
 
       <Content>Content</Content>
     </div>
@@ -31,6 +31,15 @@ export default {
   created() {
     this.appId = this.$route.params.appId;
     this.menuTab = this.$route.params.menuTab;
+  },
+
+  methods: {
+    menuChanged(active) {
+      this.menuTab = active;
+      if (this.$route.params.menuTab !== active) {
+        this.$router.push({ path: active });
+      }
+    }
   }
 };
 </script>
