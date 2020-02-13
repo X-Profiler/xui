@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import xHeader from "../layout/Header";
-import xSider from "../layout/Sider";
+import xHeader from "./layout/Header";
+import xSider from "./layout/Sider";
 export default {
   components: {
     "x-header": xHeader,

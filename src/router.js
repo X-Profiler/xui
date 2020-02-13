@@ -2,7 +2,7 @@
 
 // import Home from '@/components/Home';
 import Console from '@/components/Console';
-import DashboardIndex from '@/components/dashboard/Index';
+import Dashboard from '@/components/Dashboard';
 
 export default [
   {
@@ -16,6 +16,6 @@ export default [
   },
   {
     path: '/app/:appId/:menuTab',
-    component: DashboardIndex
+    component: Dashboard
   }
 ]
