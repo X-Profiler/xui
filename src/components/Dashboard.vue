@@ -7,7 +7,11 @@
       <!-- sider -->
       <x-sider :active="menuTab" @menuChanged="menuChanged"></x-sider>
 
-      <Content>Content</Content>
+      <Content>
+        <transition v-for="(content, index) in contentGroup" :key="index" name="slide-dashboard">
+          <div v-show="menuTab === content.value">{{ content.value }}</div>
+        </transition>
+      </Content>
     </div>
   </div>
 </template>
@@ -27,7 +31,14 @@ const dashboardData = Object.assign(
     data() {
       return {
         appId: null,
-        menuTab: null
+        menuTab: null,
+        contentGroup: [
+          { component: "", value: "instance" },
+          { component: "", value: "file" },
+          { component: "", value: "team" },
+          { component: "", value: "alarm" },
+          { component: "", value: "setting" }
+        ]
       };
     }
   },
@@ -36,3 +47,16 @@ const dashboardData = Object.assign(
 
 export default dashboardData;
 </script>
+
+<style scoped>
+.slide-dashboard-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-dashboard-leave {
+  display: none;
+}
+.slide-dashboard-enter {
+  transform: translateX(-5px);
+  opacity: 0;
+}
+</style>

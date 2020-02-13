@@ -71,8 +71,10 @@ export default {};
 .slide-enter-active {
   transition: all 0.5s ease;
 }
-.slide-enter,
-.slide-leave-to {
+.slide-leave {
+  display: none;
+}
+.slide-enter {
   transform: translateX(-5px);
   /* transform: rotate(20deg); */
   /* transform: scale(.8); */
