@@ -23,13 +23,21 @@ import dashboardModule from "../javascripts/Dashboard";
 
 // menu components
 import xInstance from "./instance/Index";
+import xFile from "./file/Index";
+import xTeam from "./team/Index";
+import xAlarm from "./alarm/Index";
+import xSetting from "./setting/Index";
 
 const dashboardData = Object.assign(
   {
     components: {
       "x-header": xHeader,
       "x-sider": xSider,
-      "x-instance": xInstance
+      "x-instance": xInstance,
+      "x-file": xFile,
+      "x-team": xTeam,
+      "x-alarm": xAlarm,
+      "x-setting": xSetting
     },
 
     data() {
@@ -38,10 +46,10 @@ const dashboardData = Object.assign(
         menuTab: null,
         contentGroup: [
           { component: "x-instance", value: "instance" },
-          { component: "", value: "file" },
-          { component: "", value: "team" },
-          { component: "", value: "alarm" },
-          { component: "", value: "setting" }
+          { component: "x-file", value: "file" },
+          { component: "x-team", value: "team" },
+          { component: "x-alarm", value: "alarm" },
+          { component: "x-setting", value: "setting" }
         ]
       };
     }
