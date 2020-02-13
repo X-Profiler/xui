@@ -9,7 +9,7 @@
 
       <Content>
         <transition v-for="(content, index) in contentGroup" :key="index" name="slide-dashboard">
-          <div v-show="menuTab === content.value">{{ content.value }}</div>
+          <component v-show="menuTab === content.value" :is="content.component"></component>
         </transition>
       </Content>
     </div>
@@ -21,11 +21,15 @@ import xHeader from "./layout/Header";
 import xSider from "./layout/Sider";
 import dashboardModule from "../javascripts/Dashboard";
 
+// menu components
+import xInstance from "./instance/Index";
+
 const dashboardData = Object.assign(
   {
     components: {
       "x-header": xHeader,
-      "x-sider": xSider
+      "x-sider": xSider,
+      "x-instance": xInstance
     },
 
     data() {
@@ -33,7 +37,7 @@ const dashboardData = Object.assign(
         appId: null,
         menuTab: null,
         contentGroup: [
-          { component: "", value: "instance" },
+          { component: "x-instance", value: "instance" },
           { component: "", value: "file" },
           { component: "", value: "team" },
           { component: "", value: "alarm" },
