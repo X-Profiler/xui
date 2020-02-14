@@ -79,8 +79,8 @@ export const http = {
     url: "/xapi/app",
     msg: {
       get: {
-        ch: '获取应用信息失败，请重试',
-        en: 'Get application info failed, please retry'
+        ch: "获取应用信息失败，请重试",
+        en: "Get application info failed, please retry"
       },
       post: {
         ch: "创建应用失败，请重试",
@@ -207,27 +207,27 @@ export const tags = {
 
   // dashboard
   nameUnknown: {
-    ch: '未知应用',
-    en: 'Unknown Application'
+    ch: "未知应用",
+    en: "Unknown Application"
   },
   instanceTitle: {
-    ch: '实例详情',
-    en: 'Agents'
+    ch: "实例详情",
+    en: "Agents"
   },
   fileTitle: {
-    ch: '性能文件',
-    en: 'Files'
+    ch: "性能文件",
+    en: "Files"
   },
   teamTitle: {
-    ch: '团队协作',
-    en: 'Collaborators'
+    ch: "团队协作",
+    en: "Collaborators"
   },
   alarmTitle: {
-    ch: '阈值告警',
-    en: 'Alerts'
+    ch: "阈值告警",
+    en: "Alerts"
   },
   settingTitle: {
-    ch: '系统设置',
-    en: 'Settings'
+    ch: "系统设置",
+    en: "Settings"
   }
 }
