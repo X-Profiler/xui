@@ -3,6 +3,7 @@
     <Sider :width="60" class="sider">
       <div
         v-for="(menu, index) in menuGroup"
+        v-show="menu.value !== 'setting' || owner"
         :key="index"
         :class="'menu' + (menu.active ? ' active':'')"
         @click="changeMenu(menu.value)"
@@ -22,7 +23,8 @@ import { getTag } from "../../javascripts/lib/Utils";
 const siderData = Object.assign(
   {
     props: {
-      active: String
+      active: String,
+      owner: Boolean
     },
     data() {
       return {

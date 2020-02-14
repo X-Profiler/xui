@@ -5,7 +5,7 @@
 
     <div class="x-body">
       <!-- sider -->
-      <x-sider :active="menuTab" @menuChanged="menuChanged"></x-sider>
+      <x-sider :active="menuTab" :owner="currentUserIsOwner" @menuChanged="menuChanged"></x-sider>
 
       <Content>
         <!-- loading -->
