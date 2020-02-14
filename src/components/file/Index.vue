@@ -1,7 +1,21 @@
 <template>
-  <div>file</div>
+  <div class="detail-content">
+    <!-- title -->
+    <x-dashboard-title :appName="appName" dashboardTitle="性能文件"></x-dashboard-title>
+  </div>
 </template>
 
 <script>
-export default {};
+import dashboardTitle from "../common/DashboardTitle";
+
+export default {
+  props: {
+    appId: Number,
+    appName: String,
+    currentUserIsOwner: Boolean
+  },
+  components: {
+    "x-dashboard-title": dashboardTitle
+  }
+};
 </script>
