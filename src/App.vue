@@ -71,9 +71,11 @@ export default {};
 .slide-enter-active {
   transition: all 0.5s ease;
 }
+
 .slide-leave {
   display: none;
 }
+
 .slide-enter {
   transform: translateX(-5px);
   /* transform: rotate(20deg); */
@@ -81,5 +83,9 @@ export default {};
   /* transform: skewX(-5deg); */
   /* transform: perspective(300px) rotateX(-10deg); */
   opacity: 0;
+}
+
+.detail-content {
+  margin: 10px 20px;
 }
 </style>
