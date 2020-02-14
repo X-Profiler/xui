@@ -18,6 +18,10 @@ export default {
     this.getAppInfo();
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
     menuChanged(active) {
       this.menuTab = active;
@@ -32,7 +36,7 @@ export default {
           this.appName = data.appName;
         }
         this.currentUserIsOwner = data.currentUserIsOwner;
-      }, this.cancelToken.token);
+      }, this.cancelToken.token, "appInfoLoading");
     }
   },
 

@@ -8,9 +8,15 @@
       <x-sider :active="menuTab" @menuChanged="menuChanged"></x-sider>
 
       <Content>
+        <!-- loading -->
+        <div v-show="appInfoLoading" class="spin-loading" style="margin-top:300px;">
+          <Spin size="large"></Spin>
+        </div>
+
         <transition v-for="(content, index) in contentGroup" :key="index" name="slide-dashboard">
+          <!-- dashboard component -->
           <component
-            v-show="menuTab === content.value"
+            v-show="!appInfoLoading && menuTab === content.value"
             :is="content.component"
             :appId="appId"
             :appName="appName"
@@ -51,6 +57,7 @@ const dashboardData = Object.assign(
         appId: null,
         appName: "未知应用",
         currentUserIsOwner: false,
+        appInfoLoading: false,
         menuTab: null,
         contentGroup: [
           { component: "x-instance", value: "instance" },
