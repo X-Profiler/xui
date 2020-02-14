@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 import axios from "axios";
 
 const CancelToken = axios.CancelToken;
 
-let lang = 'ch';
+let lang = "ch";
 
 export const failedCode = -99999;
 
@@ -57,17 +57,17 @@ export function createCancelToken() {
 }
 
 export function cancelRequest(source) {
-  source.cancel('Operation canceled by the user.');
+  source.cancel("Operation canceled by the user.");
 }
 
-export function request(method, message, url, data, callback, cancelToken, loadingKey = '') {
+export function request(method, message, url, data, callback, cancelToken, loadingKey = "") {
   if (loadingKey) {
     this[loadingKey] = true;
   }
   message = message[lang];
 
   const obj = {};
-  if (method === 'GET') {
+  if (method === "GET") {
     obj.params = data;
   } else {
     obj.data = data;
@@ -84,11 +84,11 @@ export function request(method, message, url, data, callback, cancelToken, loadi
 }
 
 export function get(...args) {
-  args.unshift('GET');
+  args.unshift("GET");
   return request.call(this, ...args);
 }
 
 export function post(...args) {
-  args.unshift('POST');
+  args.unshift("POST");
   return request.call(this, ...args);
 }

@@ -1,21 +1,21 @@
-'use strict';
+"use strict";
 
 // import Home from '@/components/Home';
-import Console from '@/components/Console';
-import Dashboard from '@/components/Dashboard';
+import Console from "@/components/Console";
+import Dashboard from "@/components/Dashboard";
 
 export default [
   {
-    path: '/',
+    path: "/",
     // component: Home,
-    redirect: { path: '/console' }
+    redirect: { path: "/console" }
   },
   {
-    path: '/console',
+    path: "/console",
     component: Console
   },
   {
-    path: '/app/:appId/:menuTab',
+    path: "/app/:appId/:menuTab",
     component: Dashboard
   }
 ]

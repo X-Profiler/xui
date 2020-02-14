@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 import { http } from "../lib/Config";
 import * as utils from "../lib/Utils";
 
-const cache = { user: { name: '' } };
+const cache = { user: { name: "" } };
 
 export default {
   created() {
@@ -28,7 +28,7 @@ export default {
   methods: {
     getUserInfo() {
       this.get(http.user.msg, http.user.url, {}, data => {
-        this.user.name = data.name || 'Unknown';
+        this.user.name = data.name || "Unknown";
       });
     },
 
@@ -55,7 +55,7 @@ export default {
   },
 
   watch: {
-    'user.name': function () {
+    "user.name": function () {
       cache.user.name = this.user.name;
     }
   }

@@ -46,6 +46,10 @@
         {
           "x-invalid-end-tag": false
         }
+      ],
+      "quotes": [
+        "error",
+        "double"
       ]
     },
     "parserOptions": {

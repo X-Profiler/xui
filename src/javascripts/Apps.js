@@ -51,15 +51,15 @@ export default {
     },
 
     getInstanceStyle(instance) {
-      let style = 'color: ';
+      let style = "color: ";
       if (instance.status === 0) {
-        style += '#c5c8ce';
+        style += "#c5c8ce";
       } else if (instance.status === 1) {
-        style += '#2a9446';
+        style += "#2a9446";
       } else if (instance.status == 2) {
-        style += '#db7c00';
+        style += "#db7c00";
       } else {
-        style += '#e33900';
+        style += "#e33900";
       }
       return style;
     },
@@ -150,27 +150,27 @@ export default {
     },
 
     goToFunction2(appId, metricType) {
-      let func = '';
+      let func = "";
       const query = {};
-      if (metricType === 'instanceCount') {
-        func = 'instance';
-      } else if (metricType === 'alarmCount') {
-        func = 'alarm';
-      } else if (metricType === 'riskCount') {
-        func = 'instance';
-        query.tab = 'package'
+      if (metricType === "instanceCount") {
+        func = "instance";
+      } else if (metricType === "alarmCount") {
+        func = "alarm";
+      } else if (metricType === "riskCount") {
+        func = "instance";
+        query.tab = "package"
       }
       this.$router.push({ path: `/app/${appId}/${func}`, query });
     },
 
     goToAgent(appId, type, agentId, pid) {
       const query = {};
-      if (type === 'processCpuUsage' || type === 'processMemoryUsage') {
-        query.tab = 'process';
+      if (type === "processCpuUsage" || type === "processMemoryUsage") {
+        query.tab = "process";
         query.agentId = agentId;
         query.pid = pid;
       } else {
-        query.tab = 'system';
+        query.tab = "system";
         query.agentId = agentId;
       }
 

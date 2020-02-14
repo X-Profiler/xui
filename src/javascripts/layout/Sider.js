@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 export default {
   created() {
@@ -24,7 +24,7 @@ export default {
       if (menu === this.active) {
         return;
       }
-      this.$emit('menuChanged', menu);
+      this.$emit("menuChanged", menu);
     }
   },
 

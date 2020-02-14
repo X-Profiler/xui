@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = {
   css: {
@@ -10,8 +10,8 @@ module.exports = {
   },
   devServer: {
     proxy: {
-      '/xapi': {
-        target: 'http://localhost:7442',
+      "/xapi": {
+        target: "http://localhost:7442",
         changeOrigin: true
       },
     }

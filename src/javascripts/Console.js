@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 import { tags, http } from "./lib/Config";
 import * as utils from "./lib/Utils";
@@ -39,11 +39,11 @@ export default {
 
       // check app name
       if (!newAppName) {
-        utils.error.call(this, '应用名称不能为空！');
+        utils.error.call(this, "应用名称不能为空！");
         return;
       }
       if (newAppName.length > 30) {
-        utils.error.call(this, '应用名称不能超过 30 个字符！');
+        utils.error.call(this, "应用名称不能超过 30 个字符！");
         return;
       }
 
@@ -54,7 +54,7 @@ export default {
         }
         this.consoleModal.cancelModal();
         this.appList.refreshApps();
-      }, this.cancelToken.token, 'newAppCreationLoading');
+      }, this.cancelToken.token, "newAppCreationLoading");
     }
   },
 
