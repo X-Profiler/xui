@@ -20,6 +20,7 @@
             :is="content.component"
             :appId="appId"
             :appName="appName"
+            :title="content.title"
             :currentUserIsOwner="currentUserIsOwner"
           ></component>
         </transition>
@@ -32,6 +33,8 @@
 import xHeader from "./layout/Header";
 import xSider from "./layout/Sider";
 import dashboardModule from "../javascripts/Dashboard";
+import { tags } from "../javascripts/lib/Config";
+import { getTag } from "../javascripts/lib/Utils";
 
 // menu components
 import xInstance from "./instance/Index";
@@ -55,16 +58,32 @@ const dashboardData = Object.assign(
     data() {
       return {
         appId: null,
-        appName: "未知应用",
+        appName: getTag(tags.nameUnknown),
         currentUserIsOwner: false,
         appInfoLoading: false,
         menuTab: null,
         contentGroup: [
-          { component: "x-instance", value: "instance" },
-          { component: "x-file", value: "file" },
-          { component: "x-team", value: "team" },
-          { component: "x-alarm", value: "alarm" },
-          { component: "x-setting", value: "setting" }
+          {
+            component: "x-instance",
+            value: "instance",
+            title: getTag(tags.instanceTitle)
+          },
+          {
+            component: "x-file",
+            value: "file",
+            title: getTag(tags.fileTitle)
+          },
+          { component: "x-team", value: "team", title: getTag(tags.teamTitle) },
+          {
+            component: "x-alarm",
+            value: "alarm",
+            title: getTag(tags.alarmTitle)
+          },
+          {
+            component: "x-setting",
+            value: "setting",
+            title: getTag(tags.settingTitle)
+          }
         ]
       };
     }

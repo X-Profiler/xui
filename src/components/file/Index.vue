@@ -1,7 +1,7 @@
 <template>
   <div class="detail-content">
     <!-- title -->
-    <x-dashboard-title :appName="appName" dashboardTitle="性能文件"></x-dashboard-title>
+    <x-dashboard-title :appName="appName" :dashboardTitle="title"></x-dashboard-title>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
   props: {
     appId: Number,
     appName: String,
+    title: String,
     currentUserIsOwner: Boolean
   },
   components: {

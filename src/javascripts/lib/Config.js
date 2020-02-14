@@ -203,5 +203,31 @@ export const tags = {
   diskUsage: {
     ch: "磁盘使用率",
     en: "disk usage"
+  },
+
+  // dashboard
+  nameUnknown: {
+    ch: '未知应用',
+    en: 'Unknown Application'
+  },
+  instanceTitle: {
+    ch: '实例详情',
+    en: 'Agents'
+  },
+  fileTitle: {
+    ch: '性能文件',
+    en: 'Files'
+  },
+  teamTitle: {
+    ch: '团队协作',
+    en: 'Collaborators'
+  },
+  alarmTitle: {
+    ch: '阈值告警',
+    en: 'Alerts'
+  },
+  settingTitle: {
+    ch: '系统设置',
+    en: 'Settings'
   }
 }
