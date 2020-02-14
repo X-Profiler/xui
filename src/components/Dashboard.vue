@@ -9,7 +9,13 @@
 
       <Content>
         <transition v-for="(content, index) in contentGroup" :key="index" name="slide-dashboard">
-          <component v-show="menuTab === content.value" :is="content.component"></component>
+          <component
+            v-show="menuTab === content.value"
+            :is="content.component"
+            :appId="appId"
+            :appName="appName"
+            :currentUserIsOwner="currentUserIsOwner"
+          ></component>
         </transition>
       </Content>
     </div>
@@ -43,6 +49,8 @@ const dashboardData = Object.assign(
     data() {
       return {
         appId: null,
+        appName: "未知应用",
+        currentUserIsOwner: false,
         menuTab: null,
         contentGroup: [
           { component: "x-instance", value: "instance" },

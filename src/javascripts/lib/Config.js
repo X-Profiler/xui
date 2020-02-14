@@ -78,6 +78,10 @@ export const http = {
   app: {
     url: "/xapi/app",
     msg: {
+      get: {
+        ch: '获取应用信息失败，请重试',
+        en: 'Get application info failed, please retry'
+      },
       post: {
         ch: "创建应用失败，请重试",
         en: "Create application failed, please retry"
