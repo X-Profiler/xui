@@ -71,7 +71,8 @@ export default siderData;
 
 <style scoped>
 .sider {
-  min-height: 100vh;
+  min-height: calc(100vh - 50px);
+  height: 100%;
 }
 
 .menu {
