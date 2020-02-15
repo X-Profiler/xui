@@ -15,6 +15,16 @@
         <Button type="primary" class="agent-button" size="small">查看信息</Button>
       </template>
     </x-dashboard-title>
+
+    <!-- content -->
+    <Tabs class="instance-tab" v-model="selectedType">
+      <TabPane
+        v-for="(tab, index) in instanceTabs"
+        :key="index"
+        :label="tab.label"
+        :name="tab.value"
+      ></TabPane>
+    </Tabs>
   </div>
 </template>
 
@@ -33,7 +43,14 @@ export default {
       selectedAgentId: "",
       agents: [],
       placeholder: "请选择实例 ID",
-      notFoundText: "暂无实例"
+      notFoundText: "暂无实例",
+      selectedType: "process",
+      instanceTabs: [
+        { label: "进程数据", icon: "", value: "process" },
+        { label: "系统监控", icon: "", value: "system" },
+        { label: "异常日志", icon: "", value: "error_log" },
+        { label: "模块风险", icon: "", value: "module_risk" }
+      ]
     };
   },
   components: {
@@ -52,5 +69,9 @@ export default {
   width: 65px;
   margin-left: 10px;
   font-size: 12px;
+}
+
+.instance-tab {
+  margin-top: 15px;
 }
 </style>
