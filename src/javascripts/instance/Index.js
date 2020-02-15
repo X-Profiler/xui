@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 import { http } from "../lib/Config";
 import * as utils from "../lib/Utils";
