@@ -22,6 +22,7 @@
         v-for="(tab, index) in instanceTabs"
         :key="index"
         :label="tab.label"
+        :icon="tab.icon"
         :name="tab.value"
       ></TabPane>
     </Tabs>
@@ -46,10 +47,10 @@ export default {
       notFoundText: "暂无实例",
       selectedType: "process",
       instanceTabs: [
-        { label: "进程数据", icon: "", value: "process" },
-        { label: "系统监控", icon: "", value: "system" },
-        { label: "异常日志", icon: "", value: "error_log" },
-        { label: "模块风险", icon: "", value: "module_risk" }
+        { label: "进程数据", icon: "md-skip-forward", value: "process" },
+        { label: "系统监控", icon: "md-desktop", value: "system" },
+        { label: "异常日志", icon: "md-warning", value: "error_log" },
+        { label: "模块风险", icon: "md-nuclear", value: "module_risk" }
       ]
     };
   },

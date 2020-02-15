@@ -95,4 +95,12 @@ export default {};
   .ivu-select-not-found {
   font-size: 13px;
 }
+
+.ivu-tabs-nav .ivu-tabs-tab .ivu-icon.ivu-icon-md-nuclear,
+.ivu-tabs-nav .ivu-tabs-tab .ivu-icon.ivu-icon-md-warning,
+.ivu-tabs-nav .ivu-tabs-tab .ivu-icon.ivu-icon-md-desktop,
+.ivu-tabs-nav .ivu-tabs-tab .ivu-icon.ivu-icon-md-skip-forward {
+  font-size: 15px;
+  margin-right: 2px;
+}
 </style>
