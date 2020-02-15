@@ -12,6 +12,7 @@
         >
           <Option v-for="item in agents" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </Select>
+        <Button type="primary" class="agent-button" size="small">查看信息</Button>
       </template>
     </x-dashboard-title>
   </div>
@@ -30,7 +31,7 @@ export default {
   data() {
     return {
       selectedAgentId: "",
-      agents: [/* { label: "hyj1991-mac-book", value: "aa" } */],
+      agents: [],
       placeholder: "请选择实例 ID",
       notFoundText: "暂无实例"
     };
@@ -45,5 +46,11 @@ export default {
 .agent-selector {
   width: 250px;
   margin-left: 20px;
+}
+
+.agent-button {
+  width: 65px;
+  margin-left: 10px;
+  font-size: 12px;
 }
 </style>
