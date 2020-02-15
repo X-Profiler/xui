@@ -88,4 +88,11 @@ export default {};
 .detail-content {
   margin: 10px 20px;
 }
+
+.agent-selector.ivu-select.ivu-select-single.ivu-select-small
+  .ivu-select-placeholder,
+.agent-selector.ivu-select.ivu-select-single.ivu-select-small
+  .ivu-select-not-found {
+  font-size: 13px;
+}
 </style>
