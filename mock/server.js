@@ -14,7 +14,10 @@ app.get('/xapi/user', function (req, res) {
   res.send({ ok: true, data });
 });
 
-// apps
+// console
 require('./apps')(app);
+
+// instance
+require('./instance')(app);
 
 app.listen(7442);
