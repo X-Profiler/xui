@@ -87,6 +87,15 @@ export const http = {
         en: "Create application failed, please retry"
       }
     }
+  },
+
+  // instance
+  agents: {
+    url: '/xapi/agents',
+    msg: {
+      ch: '获取应用实例信息失败，请重试',
+      en: 'Get agents failed, please retry'
+    }
   }
 };
 

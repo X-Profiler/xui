@@ -89,11 +89,16 @@ export default {};
   margin: 10px 20px;
 }
 
-.agent-selector.ivu-select.ivu-select-single.ivu-select-small
-  .ivu-select-placeholder,
-.agent-selector.ivu-select.ivu-select-single.ivu-select-small
-  .ivu-select-not-found {
-  font-size: 13px;
+.agent-selector .ivu-select-selection .ivu-select-input,
+.agent-selector .ivu-select-dropdown .ivu-select-not-found {
+  font-size: 12px;
+}
+
+.agent-selector
+  .ivu-select-dropdown
+  .ivu-select-dropdown-list
+  .ivu-select-item {
+  font-size: 13px !important;
 }
 
 .instance-tab .ivu-tabs-nav .ivu-tabs-tab .ivu-icon {

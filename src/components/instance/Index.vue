@@ -4,19 +4,20 @@
     <x-dashboard-title :appName="appName" :dashboardTitle="title">
       <template slot="extra">
         <Select
+          filterable
           v-model="selectedAgentId"
           class="agent-selector"
           size="small"
           :placeholder="placeholder"
           :not-found-text="notFoundText"
         >
-          <Option v-for="item in agents" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          <Option v-for="(item, index) in agents" :key="index" :value="item.value">{{ item.label }}</Option>
         </Select>
         <Button type="primary" class="agent-button" size="small">查看信息</Button>
       </template>
     </x-dashboard-title>
 
-    <!-- content -->
+    <!-- instance tab -->
     <Tabs class="instance-tab" v-model="selectedType">
       <TabPane
         v-for="(tab, index) in instanceTabs"
@@ -26,38 +27,46 @@
         :name="tab.value"
       ></TabPane>
     </Tabs>
+
+    <!-- instance content -->
   </div>
 </template>
 
 <script>
 import dashboardTitle from "../common/DashboardTitle";
+import indexModule from "../../javascripts/instance/Index";
 
-export default {
-  props: {
-    appId: Number,
-    appName: String,
-    title: String,
-    currentUserIsOwner: Boolean
+const indexData = Object.assign(
+  {
+    props: {
+      appId: Number,
+      appName: String,
+      title: String,
+      currentUserIsOwner: Boolean
+    },
+    data() {
+      return {
+        selectedAgentId: "",
+        agents: [],
+        placeholder: "请选择实例 ID",
+        notFoundText: "暂无实例",
+        selectedType: "process",
+        instanceTabs: [
+          { label: "进程数据", icon: "md-skip-forward", value: "process" },
+          { label: "系统监控", icon: "md-desktop", value: "system" },
+          { label: "异常日志", icon: "md-warning", value: "error_log" },
+          { label: "模块风险", icon: "md-nuclear", value: "module_risk" }
+        ]
+      };
+    },
+    components: {
+      "x-dashboard-title": dashboardTitle
+    }
   },
-  data() {
-    return {
-      selectedAgentId: "",
-      agents: [],
-      placeholder: "请选择实例 ID",
-      notFoundText: "暂无实例",
-      selectedType: "process",
-      instanceTabs: [
-        { label: "进程数据", icon: "md-skip-forward", value: "process" },
-        { label: "系统监控", icon: "md-desktop", value: "system" },
-        { label: "异常日志", icon: "md-warning", value: "error_log" },
-        { label: "模块风险", icon: "md-nuclear", value: "module_risk" }
-      ]
-    };
-  },
-  components: {
-    "x-dashboard-title": dashboardTitle
-  }
-};
+  indexModule
+);
+
+export default indexData;
 </script>
 
 <style scoped>
