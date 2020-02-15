@@ -91,10 +91,10 @@ export const http = {
 
   // instance
   agents: {
-    url: '/xapi/agents',
+    url: "/xapi/agents",
     msg: {
-      ch: '获取应用实例信息失败，请重试',
-      en: 'Get agents failed, please retry'
+      ch: "获取应用实例信息失败，请重试",
+      en: "Get agents failed, please retry"
     }
   }
 };
