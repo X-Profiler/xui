@@ -45,6 +45,14 @@ export default {
       if (to.params.menuTab !== this.menuTab) {
         this.menuTab = to.params.menuTab;
       }
+    },
+
+    menuTab() {
+      for (const content of this.contentGroup) {
+        if (content.value === this.menuTab) {
+          this.activeContent = content;
+        }
+      }
     }
   }
 };
