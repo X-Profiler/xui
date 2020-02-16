@@ -126,6 +126,9 @@ export default {
 
     getApps() {
       this.reset();
+      if (!this.type) {
+        return;
+      }
       this.get(apps.msg, apps.url, { type: this.type }, data => {
         if (Array.isArray(data)) {
           this.apps = this.handleApps(data);
