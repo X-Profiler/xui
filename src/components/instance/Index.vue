@@ -13,7 +13,7 @@
         >
           <Option v-for="(item, index) in agents" :key="index" :value="item.value">{{ item.label }}</Option>
         </Select>
-        <Button type="info" class="agent-button" size="small">查看信息</Button>
+        <Button type="info" class="agent-button" size="small">查看实例</Button>
       </template>
     </x-dashboard-title>
 
@@ -76,9 +76,9 @@ export default indexData;
 }
 
 .agent-button {
-  width: 65px;
+  width: 70px;
   margin-left: 10px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .instance-tab {
