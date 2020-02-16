@@ -102,15 +102,7 @@ export default {
 
   watch: {
     selectedType() {
-      if (this.$route.query.type === this.selectedType) {
-        return;
-      }
-
-      // go to new tab
-      this.$router.push({
-        path: this.$route.path,
-        query: { type: this.selectedType }
-      });
+      utils.watchRoute.call(this, 'type', 'selectedType')
     },
 
     $route(to) {
