@@ -47,7 +47,7 @@ export default {
           this.agents = this.formatAgents(list);
           this.setDefaultAgent();
         }
-      }, this.cancelToken.token)
+      }, this.cancelToken.token, 'agentsLoading')
     }
   },
 
