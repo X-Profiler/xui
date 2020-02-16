@@ -51,12 +51,12 @@ const indexData = Object.assign(
     },
     data() {
       return {
-        selectedAgentId: "",
+        selectedAgentId: undefined,
+        selectedTab: undefined,
         agents: [],
         agentsLoading: true,
         placeholder: "请选择实例 ID",
         notFoundText: "暂无实例",
-        selectedTab: "",
         instanceTabs: [
           { label: "进程数据", icon: "md-skip-forward", value: "process" },
           { label: "系统监控", icon: "md-desktop", value: "system" },
@@ -93,17 +93,13 @@ export default indexData;
 }
 
 .slide-instance-enter-active {
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 .slide-instance-leave {
   display: none;
 }
 .slide-instance-enter {
-  /* transform: rotate(20deg); */
   transform: translateY(-5px);
-  /* transform: scale(.8); */
-  /* transform: skewX(-10deg); */
-  /* transform: perspective(300px) rotateX(-5deg); */
   opacity: 0;
 }
 </style>
