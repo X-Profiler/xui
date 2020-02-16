@@ -18,7 +18,7 @@
     </x-dashboard-title>
 
     <!-- instance tab -->
-    <Tabs class="instance-tab" v-model="selectedType">
+    <Tabs class="instance-tab" v-model="selectedTab">
       <TabPane
         v-for="(tab, index) in instanceTabs"
         :key="index"
@@ -50,7 +50,7 @@ const indexData = Object.assign(
         agents: [],
         placeholder: "请选择实例 ID",
         notFoundText: "暂无实例",
-        selectedType: "process",
+        selectedTab: "",
         instanceTabs: [
           { label: "进程数据", icon: "md-skip-forward", value: "process" },
           { label: "系统监控", icon: "md-desktop", value: "system" },

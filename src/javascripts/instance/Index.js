@@ -11,6 +11,10 @@ export default {
     this.cancelToken = utils.createCancelToken();
     this.get = utils.get.bind(this);
 
+    // set variables by router
+    const query = this.$route.query;
+    this.selectedTab = query.tab || 'process';
+
     // get agents
     this.getAgents();
   },
@@ -43,6 +47,21 @@ export default {
           this.setDefaultAgent();
         }
       }, this.cancelToken.token)
+    }
+  },
+
+  watch: {
+    selectedTab() {
+      if (this.$route.query.tab === this.selectedTab) {
+        return;
+      }
+
+      // go to new instance tab
+      const agentId = this.$route.query.agentId;
+      this.$router.push({
+        path: this.$route.path,
+        query: { tab: this.selectedTab, agentId }
+      });
     }
   }
 };
