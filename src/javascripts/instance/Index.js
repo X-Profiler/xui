@@ -14,6 +14,7 @@ export default {
     // set variables by router
     const query = this.$route.query;
     this.selectedTab = query.tab || 'process';
+    this.selectedAgentId = query.agentId;
 
     // get agents
     this.getAgents();
@@ -51,16 +52,39 @@ export default {
   },
 
   watch: {
+    $route(to) {
+      if (to.query.tab !== this.selectedTab) {
+        this.selectedTab = to.query.tab;
+      }
+
+      if (to.query.agentId !== this.selectedAgentId) {
+        this.selectedAgentId = to.query.agentId;
+      }
+    },
+
     selectedTab() {
-      if (this.$route.query.tab === this.selectedTab) {
+      const query = this.$route.query;
+      if (query.tab === this.selectedTab) {
         return;
       }
 
-      // go to new instance tab
-      const agentId = this.$route.query.agentId;
+      const agentId = query.agentId;
       this.$router.push({
         path: this.$route.path,
         query: { tab: this.selectedTab, agentId }
+      });
+    },
+
+    selectedAgentId() {
+      const query = this.$route.query;
+      if (query.agentId === this.selectedAgentId) {
+        return;
+      }
+
+      const tab = query.tab;
+      this.$router.push({
+        path: this.$route.path,
+        query: { tab, agentId: this.selectedAgentId }
       });
     }
   }
