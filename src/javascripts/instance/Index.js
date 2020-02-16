@@ -62,12 +62,14 @@ export default {
       }
     },
 
-    selectedTab() {
-      utils.watchRoute.call(this, 'tab', 'selectedTab')
+    selectedTab(newVal, oldVal) {
+      const replace = oldVal === undefined;
+      utils.watchRoute.call(this, 'tab', 'selectedTab', replace)
     },
 
-    selectedAgentId() {
-      utils.watchRoute.call(this, 'agentId', 'selectedAgentId')
+    selectedAgentId(newVal, oldVal) {
+      const replace = oldVal === undefined;
+      utils.watchRoute.call(this, 'agentId', 'selectedAgentId', replace)
     }
   }
 };
