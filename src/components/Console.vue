@@ -79,7 +79,8 @@ const consoleData = Object.assign(
       return {
         selectedType: "myApps",
         newAppName: "",
-        newAppCreationLoading: false
+        newAppCreationLoading: false,
+        nessaryQueryArgs: ["type"]
       };
     },
     components: {
