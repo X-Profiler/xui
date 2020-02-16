@@ -5,11 +5,7 @@ module.exports = app => {
     const appId = req.query.appId;
     console.log(`get app ${appId} agents`);
 
-    const list = new Array(20).fill('*').map(() => {
-      return {
-        agentId: `EZM_` + Math.random().toString(16).slice(2, 10)
-      }
-    })
+    const list = require('./agents.json');
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 550);
   });
