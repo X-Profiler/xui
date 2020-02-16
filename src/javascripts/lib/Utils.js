@@ -92,3 +92,19 @@ export function post(...args) {
   args.unshift("POST");
   return request.call(this, ...args);
 }
+
+export function watchRoute(queryKey, componentKey) {
+  const nessaryQueryArgs = this.nessaryQueryArgs || []
+  const query = this.$route.query;
+  if (query[queryKey] === this[componentKey]) {
+    return;
+  }
+
+  const $query = { [queryKey]: this[componentKey] };
+  for (const nessaryArg of nessaryQueryArgs) {
+    if (nessaryArg !== queryKey) {
+      $query[nessaryArg] = query[nessaryArg];
+    }
+  }
+  this.$router.push({ path: this.$route.path, query: $query });
+}

@@ -63,29 +63,11 @@ export default {
     },
 
     selectedTab() {
-      const query = this.$route.query;
-      if (query.tab === this.selectedTab) {
-        return;
-      }
-
-      const agentId = query.agentId;
-      this.$router.push({
-        path: this.$route.path,
-        query: { tab: this.selectedTab, agentId }
-      });
+      utils.watchRoute.call(this, 'tab', 'selectedTab')
     },
 
     selectedAgentId() {
-      const query = this.$route.query;
-      if (query.agentId === this.selectedAgentId) {
-        return;
-      }
-
-      const tab = query.tab;
-      this.$router.push({
-        path: this.$route.path,
-        query: { tab, agentId: this.selectedAgentId }
-      });
+      utils.watchRoute.call(this, 'agentId', 'selectedAgentId')
     }
   }
 };

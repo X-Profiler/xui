@@ -56,7 +56,8 @@ const indexData = Object.assign(
           { label: "系统监控", icon: "md-desktop", value: "system" },
           { label: "异常日志", icon: "md-warning", value: "error_log" },
           { label: "模块风险", icon: "md-nuclear", value: "module_risk" }
-        ]
+        ],
+        nessaryQueryArgs: ["tab", "agentId"]
       };
     },
     components: {
