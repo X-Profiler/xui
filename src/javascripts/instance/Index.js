@@ -13,7 +13,7 @@ export default {
 
     // set variables by router
     const query = this.$route.query;
-    this.selectedTab = query.tab || 'process';
+    this.selectedTab = query.tab || "process";
     this.selectedAgentId = query.agentId;
 
     // get agents
@@ -47,7 +47,7 @@ export default {
           this.agents = this.formatAgents(list);
           this.setDefaultAgent();
         }
-      }, this.cancelToken.token, 'agentsLoading')
+      }, this.cancelToken.token, "agentsLoading")
     }
   },
 
@@ -64,12 +64,12 @@ export default {
 
     selectedTab(newVal, oldVal) {
       const replace = oldVal === undefined;
-      utils.watchRoute.call(this, 'tab', 'selectedTab', replace)
+      utils.watchRoute.call(this, "tab", "selectedTab", replace)
     },
 
     selectedAgentId(newVal, oldVal) {
       const replace = oldVal === undefined;
-      utils.watchRoute.call(this, 'agentId', 'selectedAgentId', replace)
+      utils.watchRoute.call(this, "agentId", "selectedAgentId", replace)
     }
   }
 };

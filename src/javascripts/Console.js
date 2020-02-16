@@ -102,7 +102,7 @@ export default {
 
   watch: {
     selectedType() {
-      utils.watchRoute.call(this, 'type', 'selectedType')
+      utils.watchRoute.call(this, "type", "selectedType")
     },
 
     $route(to) {
