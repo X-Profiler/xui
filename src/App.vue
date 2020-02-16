@@ -98,7 +98,7 @@ export default {};
   .ivu-select-dropdown
   .ivu-select-dropdown-list
   .ivu-select-item {
-  font-size: 13px !important;
+  font-size: 12px !important;
 }
 
 .instance-tab .ivu-tabs-nav .ivu-tabs-tab .ivu-icon {
