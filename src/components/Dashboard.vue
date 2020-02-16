@@ -13,14 +13,14 @@
           <Spin size="large"></Spin>
         </div>
 
-        <transition v-for="(content, index) in contentGroup" :key="index" name="slide-dashboard">
+        <transition name="slide-dashboard">
           <!-- dashboard component -->
           <component
-            v-show="!appInfoLoading && menuTab === content.value"
-            :is="content.component"
+            v-show="!appInfoLoading && activeContent"
+            :is="activeContent.component"
             :appId="appId"
             :appName="appName"
-            :title="content.title"
+            :title="activeContent.title"
             :currentUserIsOwner="currentUserIsOwner"
           ></component>
         </transition>
@@ -62,6 +62,7 @@ const dashboardData = Object.assign(
         currentUserIsOwner: false,
         appInfoLoading: false,
         menuTab: null,
+        activeContent: {},
         contentGroup: [
           {
             component: "x-instance",

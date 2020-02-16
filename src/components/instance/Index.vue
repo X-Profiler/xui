@@ -13,7 +13,7 @@
         >
           <Option v-for="(item, index) in agents" :key="index" :value="item.value">{{ item.label }}</Option>
         </Select>
-        <Button type="primary" class="agent-button" size="small">查看信息</Button>
+        <Button type="info" class="agent-button" size="small">查看信息</Button>
       </template>
     </x-dashboard-title>
 
