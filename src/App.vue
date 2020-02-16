@@ -101,6 +101,27 @@ export default {};
   font-size: 12px !important;
 }
 
+.agent-selector
+  .ivu-select-dropdown
+  .ivu-select-dropdown-list
+  .ivu-select-item-selected {
+  color: #2376b7;
+  /* background-color: #f3f3f3; */
+  display: flex;
+  align-items: center;
+}
+
+.agent-selector
+  .ivu-select-dropdown
+  .ivu-select-dropdown-list
+  .ivu-select-item-selected:after {
+  font-family: "Ionicons";
+  font-size: 24px;
+  content: "\F171";
+  position: absolute;
+  right : 6px;
+}
+
 .instance-tab .ivu-tabs-nav .ivu-tabs-tab .ivu-icon {
   font-size: 15px;
   margin-right: 2px;
