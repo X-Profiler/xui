@@ -5,6 +5,7 @@
       <template slot="extra">
         <Select
           filterable
+          clearable
           v-model="selectedAgentId"
           class="agent-selector"
           size="small"

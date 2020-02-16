@@ -35,7 +35,7 @@ export default {
     },
 
     setDefaultAgent() {
-      if (this.agents.length > 0) {
+      if (this.agents.length > 0 && !this.selectedAgentId) {
         this.selectedAgentId = this.agents[0].value;
       }
     },
