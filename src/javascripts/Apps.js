@@ -149,7 +149,11 @@ export default {
     },
 
     goToFunction(appId, func) {
-      this.$router.push({ path: `/app/${appId}/${func}` });
+      const query = {};
+      if (func === 'instance') {
+        query.tab = 'process';
+      }
+      this.$router.push({ path: `/app/${appId}/${func}`, query });
     },
 
     goToFunction2(appId, metricType) {

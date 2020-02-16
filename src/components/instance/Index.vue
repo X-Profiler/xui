@@ -5,7 +5,6 @@
       <template slot="extra">
         <Select
           filterable
-          clearable
           v-model="selectedAgentId"
           class="agent-selector"
           size="small"
@@ -18,16 +17,21 @@
       </template>
     </x-dashboard-title>
 
-    <!-- instance tab -->
-    <Tabs class="instance-tab" v-model="selectedTab">
-      <TabPane
-        v-for="(tab, index) in instanceTabs"
-        :key="index"
-        :label="tab.label"
-        :icon="tab.icon"
-        :name="tab.value"
-      ></TabPane>
-    </Tabs>
+    <!-- content -->
+    <transition name="slide-instance">
+      <div class="instance-content" v-show="!agentsLoading">
+        <!-- instance tab -->
+        <Tabs class="instance-tab" v-model="selectedTab">
+          <TabPane
+            v-for="(tab, index) in instanceTabs"
+            :key="index"
+            :label="tab.label"
+            :icon="tab.icon"
+            :name="tab.value"
+          ></TabPane>
+        </Tabs>
+      </div>
+    </transition>
 
     <!-- instance content -->
   </div>
@@ -49,6 +53,7 @@ const indexData = Object.assign(
       return {
         selectedAgentId: "",
         agents: [],
+        agentsLoading: true,
         placeholder: "请选择实例 ID",
         notFoundText: "暂无实例",
         selectedTab: "",
@@ -83,7 +88,23 @@ export default indexData;
   font-size: 11px;
 }
 
-.instance-tab {
-  margin-top: 15px;
+.instance-content {
+  margin: 15px 0;
+}
+
+.slide-instance-enter-active {
+  transition: all .5s ease;
+}
+.slide-instance-leave {
+  display: none;
+}
+.slide-instance-enter {
+  /* transform: rotate(20deg); */
+  transform: translateY(-5px);
+  /* transform: scale(.8); */
+  /* transform: skewX(-10deg); */
+  /* transform: perspective(300px) rotateX(-5deg); */
+  opacity: 0;
 }
 </style>
+
