@@ -8,6 +8,7 @@ const cache = { user: { name: "" } };
 export default {
   created() {
     // set common http methods
+    this.cancelToken = utils.createCancelToken();
     this.get = utils.get.bind(this);
 
     // init active nav
@@ -25,11 +26,15 @@ export default {
     }
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
     getUserInfo() {
       this.get(http.user.msg, http.user.url, {}, data => {
         this.user.name = data.name || "Unknown";
-      });
+      }, this.cancelToken.token);
     },
 
     resetActiveNav() {
