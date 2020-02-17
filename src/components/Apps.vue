@@ -6,100 +6,102 @@
     </div>
 
     <!-- app list -->
-    <div v-show="!appLoading">
-      <!-- app overview -->
-      <div v-if="apps.length === 0" class="no-apps">{{ noAppTip }}</div>
-      <div
-        v-for="(app, index) in apps"
-        :key="index"
-        class="app"
-        :style="index === apps.length - 1 ? 'margin-bottom: 80px':''"
-      >
-        <!-- app border -->
+    <transition name="slide">
+      <div v-show="!appLoading">
+        <!-- app overview -->
+        <div v-if="apps.length === 0" class="no-apps">{{ noAppTip }}</div>
         <div
-          class="app-border background-image-china-style"
-          :style="'background-color: ' + randomColor(index)"
-        ></div>
+          v-for="(app, index) in apps"
+          :key="index"
+          class="app"
+          :style="index === apps.length - 1 ? 'margin-bottom: 80px':''"
+        >
+          <!-- app border -->
+          <div
+            class="app-border background-image-china-style"
+            :style="'background-color: ' + randomColor(index)"
+          ></div>
 
-        <!-- app content -->
-        <div class="app-content">
-          <!-- title -->
-          <!-- :style="'border-right: 1px dashed ' + randomColor(index) + ';border-bottom: 1px dashed ' + randomColor(index)" -->
-          <div class="app-content-title">
-            <div
-              class="app-content-title-name background-image-china-style"
-              :style="'background-color: ' + randomColor(index)"
-            >
-              <p>{{ app.name }}</p>
-              <div style="display: flex">
-                <div
-                  v-for="(func, index) in functions"
-                  :key="index"
-                  class="app-title-content-metric"
-                  :style="(index !== 0 ? 'margin-left: 10px;':'')"
-                >
-                  <div v-if="!func.disabled || func.disabled !== type">
-                    <p style="font-size: 11px">{{ func.label }}</p>
-                    <Icon
-                      class="app-content-select"
-                      :type="func.icon"
-                      @click="goToFunction(app.appId, func.value)"
-                    />
+          <!-- app content -->
+          <div class="app-content">
+            <!-- title -->
+            <!-- :style="'border-right: 1px dashed ' + randomColor(index) + ';border-bottom: 1px dashed ' + randomColor(index)" -->
+            <div class="app-content-title">
+              <div
+                class="app-content-title-name background-image-china-style"
+                :style="'background-color: ' + randomColor(index)"
+              >
+                <p>{{ app.name }}</p>
+                <div style="display: flex">
+                  <div
+                    v-for="(func, index) in functions"
+                    :key="index"
+                    class="app-title-content-metric"
+                    :style="(index !== 0 ? 'margin-left: 10px;':'')"
+                  >
+                    <div v-if="!func.disabled || func.disabled !== type">
+                      <p style="font-size: 11px">{{ func.label }}</p>
+                      <Icon
+                        class="app-content-select"
+                        :type="func.icon"
+                        @click="goToFunction(app.appId, func.value)"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="app-content-title-metric">
-              <div v-for="(metric, index) in metrics" :key="index">
-                <p class="app-content-title-metric-key">{{ metric.label }}</p>
-                <!-- loading -->
-                <div v-if="app[`${metric.value}Loading`]" class="spin-loading">
-                  <Spin size="small"></Spin>
-                </div>
+              <div class="app-content-title-metric">
+                <div v-for="(metric, index) in metrics" :key="index">
+                  <p class="app-content-title-metric-key">{{ metric.label }}</p>
+                  <!-- loading -->
+                  <div v-if="app[`${metric.value}Loading`]" class="spin-loading">
+                    <Spin size="small"></Spin>
+                  </div>
 
-                <!-- show data -->
-                <p
-                  v-else
-                  class="app-content-title-metric-value app-content-select"
-                  @click="goToFunction2(app.appId, metric.value)"
-                >{{ formatCount(app[metric.value]) }}</p>
+                  <!-- show data -->
+                  <p
+                    v-else
+                    class="app-content-title-metric-value app-content-select"
+                    @click="goToFunction2(app.appId, metric.value)"
+                  >{{ formatCount(app[metric.value]) }}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- metrics -->
-          <div class="app-content-metrics">
-            <div style="display: flex;height: 100%;padding-bottom: 10px;">
-              <!-- node process cpu -->
-              <div v-for="(metric, index) in mainMetrics" :key="index" class="app-content-metric">
-                <div>{{ metric.label }}</div>
-                <!-- loading -->
-                <div
-                  v-show="app[`${metric.value}Loading`]"
-                  class="spin-loading"
-                  style="margin-top: 15px;"
-                >
-                  <Spin size="small"></Spin>
-                </div>
+            <!-- metrics -->
+            <div class="app-content-metrics">
+              <div style="display: flex;height: 100%;padding-bottom: 10px;">
+                <!-- node process cpu -->
+                <div v-for="(metric, index) in mainMetrics" :key="index" class="app-content-metric">
+                  <div>{{ metric.label }}</div>
+                  <!-- loading -->
+                  <div
+                    v-show="app[`${metric.value}Loading`]"
+                    class="spin-loading"
+                    style="margin-top: 15px;"
+                  >
+                    <Spin size="small"></Spin>
+                  </div>
 
-                <!-- no data -->
-                <div
-                  v-show="!app[`${metric.value}Loading`] && app[metric.value].length === 0"
-                  class="no-data"
-                >-</div>
+                  <!-- no data -->
+                  <div
+                    v-show="!app[`${metric.value}Loading`] && app[metric.value].length === 0"
+                    class="no-data"
+                  >-</div>
 
-                <!-- show data -->
-                <div v-show="!app[`${metric.value}Loading`] && app[metric.value].length !== 0">
-                  <div class="instances">
-                    <Icon
-                      v-for="(instance, index) in app[metric.value]"
-                      :key="index"
-                      class="instance-ico"
-                      type="md-egg"
-                      :style="getInstanceStyle(instance)"
-                      :title="instance.title"
-                      @click="goToAgent(app.appId, metric.value, instance.agentId, instance.pid)"
-                    />
+                  <!-- show data -->
+                  <div v-show="!app[`${metric.value}Loading`] && app[metric.value].length !== 0">
+                    <div class="instances">
+                      <Icon
+                        v-for="(instance, index) in app[metric.value]"
+                        :key="index"
+                        class="instance-ico"
+                        type="md-egg"
+                        :style="getInstanceStyle(instance)"
+                        :title="instance.title"
+                        @click="goToAgent(app.appId, metric.value, instance.agentId, instance.pid)"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -107,7 +109,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
