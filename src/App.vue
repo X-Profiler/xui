@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="slide">
+    <transition name="slide-router">
       <router-view />
     </transition>
   </div>
@@ -68,22 +68,54 @@ export default {};
   display: flex;
 }
 
+/* ----------------------- transition start ----------------------- */
+
+/* enter-active */
+.slide-button-enter-active,
+.slide-downward-enter-active,
 .slide-enter-active {
+  transition: all 0.3s ease;
+}
+
+.slide-router-enter-active {
   transition: all 0.5s ease;
 }
 
-.slide-leave {
-  display: none;
-}
-
+/* enter */
+.slide-router-enter,
 .slide-enter {
-  transform: translateX(-5px);
   /* transform: rotate(20deg); */
   /* transform: scale(.8); */
   /* transform: skewX(-5deg); */
   /* transform: perspective(300px) rotateX(-10deg); */
+  transform: translateX(-5px);
   opacity: 0;
 }
+
+.slide-downward-enter {
+  transform: translateY(-5px);
+  opacity: 0;
+}
+
+.slide-button-enter,
+.slide-button-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+/* leave-active */
+.slide-button-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+/* leave */
+.slide-downward-leave,
+.slide-router-leave,
+.slide-leave {
+  display: none;
+}
+
+/* ----------------------- transition end ----------------------- */
 
 .detail-content {
   margin: 10px 20px;
@@ -119,7 +151,7 @@ export default {};
   font-size: 24px;
   content: "\F171";
   position: absolute;
-  right : 6px;
+  right: 6px;
 }
 
 .instance-tab .ivu-tabs-nav .ivu-tabs-tab .ivu-icon {
