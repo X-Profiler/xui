@@ -59,7 +59,7 @@
                   </div>
 
                   <!-- show data -->
-                  <transition name="slide-upward">
+                  <transition name="slide-noward">
                     <p
                       v-show="!app[`${metric.value}Loading`]"
                       class="app-content-title-metric-value app-content-select"
@@ -86,7 +86,7 @@
                   </div>
 
                   <!-- no data -->
-                  <transition name="slide">
+                  <transition name="slide-noward">
                     <div
                       v-show="!app[`${metric.value}Loading`] && app[metric.value].length === 0"
                       class="no-data"
@@ -94,7 +94,7 @@
                   </transition>
 
                   <!-- show data -->
-                  <transition name="slide">
+                  <transition name="slide-noward">
                     <div v-show="!app[`${metric.value}Loading`] && app[metric.value].length !== 0">
                       <div class="instances">
                         <Icon

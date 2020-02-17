@@ -1,5 +1,6 @@
 /* enter-active */
 .slide-button-enter-active,
+.slide-noward-enter-active,
 .slide-downward-enter-active,
 .slide-upward-enter-active,
 .slide-enter-active {
@@ -12,7 +13,6 @@
 
 
 /* enter */
-.slide-router-enter,
 .slide-enter {
   /* transform: rotate(20deg); */
   /* transform: scale(.8); */
@@ -38,6 +38,12 @@
   opacity: 0;
 }
 
+.slide-router-enter,
+.slide-noward-enter {
+  transform: translateX(0px);
+  opacity: 0;
+}
+
 
 /* leave-active */
 .slide-button-leave-active {
@@ -47,6 +53,7 @@
 
 /* leave */
 .slide-downward-leave,
+.slide-noward-leave,
 .slide-upward-leave,
 .slide-router-leave,
 .slide-leave {

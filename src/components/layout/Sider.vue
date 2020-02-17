@@ -7,7 +7,7 @@
         :class="'menu' + (menu.active ? ' active':'')"
         @click="changeMenu(menu.value)"
       >
-        <transition name="slide">
+        <transition name="slide-noward">
           <div v-show="menu.value !== 'setting' || owner">
             <Icon :type="menu.icon" class="menu-icon" />
             <p class="menu-name">{{ menu.label }}</p>
