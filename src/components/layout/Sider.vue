@@ -3,13 +3,16 @@
     <Sider :width="60" class="sider">
       <div
         v-for="(menu, index) in menuGroup"
-        v-show="menu.value !== 'setting' || owner"
         :key="index"
         :class="'menu' + (menu.active ? ' active':'')"
         @click="changeMenu(menu.value)"
       >
-        <Icon :type="menu.icon" class="menu-icon" />
-        <p class="menu-name">{{ menu.label }}</p>
+        <transition name="slide">
+          <div v-show="menu.value !== 'setting' || owner">
+            <Icon :type="menu.icon" class="menu-icon" />
+            <p class="menu-name">{{ menu.label }}</p>
+          </div>
+        </transition>
       </div>
     </Sider>
   </div>
