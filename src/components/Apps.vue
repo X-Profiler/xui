@@ -86,25 +86,29 @@
                   </div>
 
                   <!-- no data -->
-                  <div
-                    v-show="!app[`${metric.value}Loading`] && app[metric.value].length === 0"
-                    class="no-data"
-                  >-</div>
+                  <transition name="slide-downward">
+                    <div
+                      v-show="!app[`${metric.value}Loading`] && app[metric.value].length === 0"
+                      class="no-data"
+                    >-</div>
+                  </transition>
 
                   <!-- show data -->
-                  <div v-show="!app[`${metric.value}Loading`] && app[metric.value].length !== 0">
-                    <div class="instances">
-                      <Icon
-                        v-for="(instance, index) in app[metric.value]"
-                        :key="index"
-                        class="instance-ico"
-                        type="md-egg"
-                        :style="getInstanceStyle(instance)"
-                        :title="instance.title"
-                        @click="goToAgent(app.appId, metric.value, instance.agentId, instance.pid)"
-                      />
+                  <transition name="slide-downward">
+                    <div v-show="!app[`${metric.value}Loading`] && app[metric.value].length !== 0">
+                      <div class="instances">
+                        <Icon
+                          v-for="(instance, index) in app[metric.value]"
+                          :key="index"
+                          class="instance-ico"
+                          type="md-egg"
+                          :style="getInstanceStyle(instance)"
+                          :title="instance.title"
+                          @click="goToAgent(app.appId, metric.value, instance.agentId, instance.pid)"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </transition>
                 </div>
               </div>
             </div>
