@@ -54,16 +54,18 @@
                 <div v-for="(metric, index) in metrics" :key="index">
                   <p class="app-content-title-metric-key">{{ metric.label }}</p>
                   <!-- loading -->
-                  <div v-if="app[`${metric.value}Loading`]" class="spin-loading">
+                  <div v-show="app[`${metric.value}Loading`]" class="spin-loading">
                     <Spin size="small"></Spin>
                   </div>
 
                   <!-- show data -->
-                  <p
-                    v-else
-                    class="app-content-title-metric-value app-content-select"
-                    @click="goToFunction2(app.appId, metric.value)"
-                  >{{ formatCount(app[metric.value]) }}</p>
+                  <transition name="slide-down">
+                    <p
+                      v-show="!app[`${metric.value}Loading`]"
+                      class="app-content-title-metric-value app-content-select"
+                      @click="goToFunction2(app.appId, metric.value)"
+                    >{{ formatCount(app[metric.value]) }}</p>
+                  </transition>
                 </div>
               </div>
             </div>
