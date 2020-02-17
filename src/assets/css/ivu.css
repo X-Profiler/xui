@@ -1,0 +1,50 @@
+.ivu-modal-header {
+  background-color: #4d4565;
+  color: white;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ivu-modal-close .modal-title-close:hover {
+  color: #808695;
+}
+
+.agent-selector .ivu-select-selection .ivu-select-input,
+.agent-selector .ivu-select-dropdown .ivu-select-not-found {
+  font-size: 12px;
+}
+
+.agent-selector
+  .ivu-select-dropdown
+  .ivu-select-dropdown-list
+  .ivu-select-item {
+  font-size: 12px !important;
+}
+
+.agent-selector
+  .ivu-select-dropdown
+  .ivu-select-dropdown-list
+  .ivu-select-item-selected {
+  color: #2376b7;
+  /* background-color: #f3f3f3; */
+  display: flex;
+  align-items: center;
+}
+
+.agent-selector
+  .ivu-select-dropdown
+  .ivu-select-dropdown-list
+  .ivu-select-item-selected:after {
+  font-family: "Ionicons";
+  font-size: 24px;
+  content: "\F171";
+  position: absolute;
+  right: 6px;
+}
+
+.instance-tab .ivu-tabs-nav .ivu-tabs-tab .ivu-icon {
+  font-size: 15px;
+  margin-right: 2px;
+}
