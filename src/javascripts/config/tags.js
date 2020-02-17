@@ -169,5 +169,13 @@ export default {
   moduleRisk: {
     ch: "模块风险",
     en: "Security Risks"
+  },
+  choseInstance: {
+    ch: "请选择实例 ID",
+    en: "Chose agent"
+  },
+  noAgent: {
+    ch: "没有相关实例 ID",
+    en: "No agent"
   }
 }
