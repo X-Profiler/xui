@@ -18,7 +18,7 @@
     </x-dashboard-title>
 
     <!-- content -->
-    <transition name="slide-instance">
+    <transition name="slide-downward">
       <div class="instance-content" v-show="!agentsLoading">
         <!-- instance tab -->
         <Tabs class="instance-tab" v-model="selectedTab">
@@ -90,17 +90,6 @@ export default indexData;
 
 .instance-content {
   margin: 15px 0;
-}
-
-.slide-instance-enter-active {
-  transition: all 0.5s ease;
-}
-.slide-instance-leave {
-  display: none;
-}
-.slide-instance-enter {
-  transform: translateY(-5px);
-  opacity: 0;
 }
 </style>
 

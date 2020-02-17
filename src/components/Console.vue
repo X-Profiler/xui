@@ -7,17 +7,13 @@
       <!-- body content -->
       <Content class="content">
         <!-- create new app -->
-        <transition name="slide-fade">
-          <Button
-            v-show="selectedType === 'myApps'"
-            type="primary"
-            ghost
-            class="create-new-app"
-            @click="showNewAppCreation"
-          >
-            <Icon type="md-person-add" class="new-app-icon" />
-            {{ newAppCreationTag }}
-          </Button>
+        <transition name="slide-button">
+          <div v-show="selectedType === 'myApps'" class="create-new-app">
+            <Button type="primary" ghost @click="showNewAppCreation">
+              <Icon type="md-person-add" class="new-app-icon" />
+              {{ newAppCreationTag }}
+            </Button>
+          </div>
         </transition>
 
         <!-- tab -->
@@ -131,17 +127,5 @@ export default consoleData;
 .modal-attention {
   /* position: absolute; */
   margin-top: -30px;
-}
-
-.slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateX(10px);
-  opacity: 0;
 }
 </style>

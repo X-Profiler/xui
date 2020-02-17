@@ -13,7 +13,7 @@
           <Spin size="large"></Spin>
         </div>
 
-        <transition name="slide-dashboard">
+        <transition name="slide">
           <!-- dashboard component -->
           <component
             v-show="!appInfoLoading && activeContent"
@@ -94,16 +94,3 @@ const dashboardData = Object.assign(
 
 export default dashboardData;
 </script>
-
-<style scoped>
-.slide-dashboard-enter-active {
-  transition: all 0.3s ease;
-}
-.slide-dashboard-leave {
-  display: none;
-}
-.slide-dashboard-enter {
-  transform: translateX(-5px);
-  opacity: 0;
-}
-</style>
