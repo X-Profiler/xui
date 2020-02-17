@@ -5,7 +5,14 @@
       <template slot="extra">
         <transition name="slide">
           <div v-show="agents.length">
-            <Select filterable v-model="selectedAgentId" class="agent-selector" size="small">
+            <Select
+              v-model="selectedAgentId"
+              class="agent-selector"
+              size="small"
+              filterable
+              :placeholder="placeholder"
+              :not-found-text="notFoundText"
+            >
               <Option
                 v-for="(item, index) in agents"
                 :key="index"
@@ -58,6 +65,8 @@ const indexData = Object.assign(
         selectedTab: undefined,
         agents: [],
         agentsLoading: true,
+        placeholder: getTag(tags.choseInstance),
+        notFoundText: getTag(tags.noAgent),
         instanceTabs: [
           {
             label: getTag(tags.processTrend),
