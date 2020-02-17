@@ -33,8 +33,8 @@
 import xHeader from "./layout/Header";
 import xSider from "./layout/Sider";
 import dashboardModule from "../javascripts/Dashboard";
-import { tags } from "../javascripts/lib/Config";
-import { getTag } from "../javascripts/lib/Utils";
+import { tags } from "../javascripts/config";
+import { getTag } from "../javascripts/lib/utils";
 
 // menu components
 import xInstance from "./instance/Index";

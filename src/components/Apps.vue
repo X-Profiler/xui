@@ -121,8 +121,8 @@
 
 <script>
 import appsModule from "../javascripts/Apps";
-import { tags } from "../javascripts/lib/Config";
-import { getTag } from "../javascripts/lib/Utils";
+import { tags } from "../javascripts/config";
+import { getTag } from "../javascripts/lib/utils";
 
 const appsData = Object.assign(
   {

@@ -20,8 +20,8 @@
 
 <script>
 import siderModule from "../../javascripts/layout/Sider";
-import { tags } from "../../javascripts/lib/Config";
-import { getTag } from "../../javascripts/lib/Utils";
+import { tags } from "../../javascripts/config";
+import { getTag } from "../../javascripts/lib/utils";
 
 const siderData = Object.assign(
   {
