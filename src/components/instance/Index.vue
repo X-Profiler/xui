@@ -5,21 +5,14 @@
       <template slot="extra">
         <transition name="slide">
           <div v-show="agents.length">
-            <Select
-              filterable
-              v-model="selectedAgentId"
-              class="agent-selector"
-              size="small"
-              :placeholder="placeholder"
-              :not-found-text="notFoundText"
-            >
+            <Select filterable v-model="selectedAgentId" class="agent-selector" size="small">
               <Option
                 v-for="(item, index) in agents"
                 :key="index"
                 :value="item.value"
               >{{ item.label }}</Option>
             </Select>
-            <Button type="info" class="agent-button" size="small">查看实例</Button>
+            <Button type="info" class="agent-button" size="small">{{ checkAgentTip }}</Button>
           </div>
         </transition>
       </template>
@@ -48,6 +41,8 @@
 <script>
 import dashboardTitle from "../common/DashboardTitle";
 import indexModule from "../../javascripts/instance/Index";
+import { tags } from "../../javascripts/lib/Config";
+import { getTag } from "../../javascripts/lib/Utils";
 
 const indexData = Object.assign(
   {
@@ -63,13 +58,27 @@ const indexData = Object.assign(
         selectedTab: undefined,
         agents: [],
         agentsLoading: true,
-        placeholder: "请选择实例 ID",
-        notFoundText: "暂无实例",
         instanceTabs: [
-          { label: "进程数据", icon: "md-skip-forward", value: "process" },
-          { label: "系统监控", icon: "md-desktop", value: "system" },
-          { label: "异常日志", icon: "md-warning", value: "error_log" },
-          { label: "模块风险", icon: "md-nuclear", value: "module_risk" }
+          {
+            label: getTag(tags.processTrend),
+            icon: "md-skip-forward",
+            value: "process"
+          },
+          {
+            label: getTag(tags.systemData),
+            icon: "md-desktop",
+            value: "system"
+          },
+          {
+            label: getTag(tags.errorLog),
+            icon: "md-warning",
+            value: "error_log"
+          },
+          {
+            label: getTag(tags.moduleRisk),
+            icon: "md-nuclear",
+            value: "module_risk"
+          }
         ],
         nessaryQueryArgs: ["tab", "agentId"]
       };
