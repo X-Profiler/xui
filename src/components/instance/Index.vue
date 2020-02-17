@@ -3,17 +3,25 @@
     <!-- title -->
     <x-dashboard-title :appName="appName" :dashboardTitle="title">
       <template slot="extra">
-        <Select
-          filterable
-          v-model="selectedAgentId"
-          class="agent-selector"
-          size="small"
-          :placeholder="placeholder"
-          :not-found-text="notFoundText"
-        >
-          <Option v-for="(item, index) in agents" :key="index" :value="item.value">{{ item.label }}</Option>
-        </Select>
-        <Button type="info" class="agent-button" size="small">查看实例</Button>
+        <transition name="slide">
+          <div v-show="agents.length">
+            <Select
+              filterable
+              v-model="selectedAgentId"
+              class="agent-selector"
+              size="small"
+              :placeholder="placeholder"
+              :not-found-text="notFoundText"
+            >
+              <Option
+                v-for="(item, index) in agents"
+                :key="index"
+                :value="item.value"
+              >{{ item.label }}</Option>
+            </Select>
+            <Button type="info" class="agent-button" size="small">查看实例</Button>
+          </div>
+        </transition>
       </template>
     </x-dashboard-title>
 
