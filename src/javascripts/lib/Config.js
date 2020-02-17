@@ -214,6 +214,16 @@ export const tags = {
     en: "disk usage"
   },
 
+  // no app
+  noAppTipOnMyAccount: {
+    ch: '您的账号下暂无应用，点击右上角【创建新应用】按钮可以创建新应用',
+    en: 'There is no application on your account, click the [New Application] button at the upper right corner to create.'
+  },
+  noAppTipOnJoinedAccount: {
+    ch: '您暂时没有加入任何应用',
+    en: `You haven't added to any applications yet.`
+  },
+
   // dashboard
   nameUnknown: {
     ch: "未知应用",
@@ -238,5 +248,27 @@ export const tags = {
   settingTitle: {
     ch: "系统设置",
     en: "Settings"
+  },
+
+  // instance
+  checkAgent: {
+    ch: '查看实例',
+    en: 'CHECK'
+  },
+  processTrend: {
+    ch: '进程数据',
+    en: 'Process Data'
+  },
+  systemData: {
+    ch: '系统监控',
+    en: 'System Info'
+  },
+  errorLog: {
+    ch: '异常日志',
+    en: 'Error Logs'
+  },
+  moduleRisk: {
+    ch: '模块风险',
+    en: 'Security Risks'
   }
 }

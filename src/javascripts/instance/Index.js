@@ -1,6 +1,6 @@
 "use strict";
 
-import { http } from "../lib/Config";
+import { http, tags } from "../lib/Config";
 import * as utils from "../lib/Utils";
 
 const { agents } = http;
@@ -48,6 +48,12 @@ export default {
           this.setDefaultAgent();
         }
       }, this.cancelToken.token, "agentsLoading")
+    }
+  },
+
+  computed: {
+    checkAgentTip() {
+      return utils.getTag(tags.checkAgent);
     }
   },
 

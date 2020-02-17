@@ -1,6 +1,6 @@
 "use strict";
 
-import { http } from "./lib/Config";
+import { http, tags } from "./lib/Config";
 import * as utils from "./lib/Utils";
 
 const { apps } = http;
@@ -191,9 +191,9 @@ export default {
     noAppTip() {
       let tip = "";
       if (this.type === "myApps") {
-        tip = "您的账号下暂无应用，点击右上角【创建新应用】按钮可以创建新应用";
+        tip = utils.getTag(tags.noAppTipOnMyAccount);
       } else {
-        tip = "您暂时没有加入任何应用";
+        tip = utils.getTag(tags.noAppTipOnJoinedAccount);
       }
       return tip;
     }
