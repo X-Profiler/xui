@@ -1,7 +1,7 @@
 "use strict";
 
-import { http } from "./lib/Config";
-import * as utils from "./lib/Utils";
+import { http } from "./config";
+import * as utils from "./lib/utils";
 
 const { app } = http;
 
