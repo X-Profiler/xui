@@ -1,6 +1,7 @@
 /* enter-active */
 .slide-button-enter-active,
 .slide-downward-enter-active,
+.slide-upward-enter-active,
 .slide-enter-active {
   transition: all 0.3s ease;
 }
@@ -26,6 +27,11 @@
   opacity: 0;
 }
 
+.slide-upward-enter {
+  transform: translateY(5px);
+  opacity: 0;
+}
+
 .slide-button-enter,
 .slide-button-leave-to {
   transform: translateX(10px);
@@ -41,6 +47,7 @@
 
 /* leave */
 .slide-downward-leave,
+.slide-upward-leave,
 .slide-router-leave,
 .slide-leave {
   display: none;
