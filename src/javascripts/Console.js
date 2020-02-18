@@ -103,9 +103,8 @@ export default {
       utils.watchRoute.call(this, args, "type", "selectedType");
     },
 
-    selectedType(newVal, oldVal) {
-      const replace = oldVal === undefined;
-      utils.watchQueryKey.call(this, "type", "selectedType", replace);
+    selectedType(...args) {
+      utils.watchQueryKey.call(this, "type", "selectedType", args);
     }
   }
 };

@@ -113,7 +113,9 @@ export function watchRoute(args, queryKey, componentKey) {
   checkValueSetting.call(this, componentKey, queryValue);
 }
 
-export function watchQueryKey(queryKey, componentKey, replace = false) {
+export function watchQueryKey(queryKey, componentKey, args) {
+  const [, oldVal] = args;
+
   const setValue = this[componentKey];
   if (!checkValueSetting.call(this, componentKey, setValue)) {
     return;
@@ -131,7 +133,8 @@ export function watchQueryKey(queryKey, componentKey, replace = false) {
       $query[nessaryArg] = query[nessaryArg];
     }
   }
-  if (replace) {
+
+  if (oldVal === undefined) {
     this.$router.replace({ path: this.$route.path, query: $query });
   } else {
     this.$router.push({ path: this.$route.path, query: $query });
