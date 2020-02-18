@@ -26,7 +26,8 @@ import { getTag } from "../../javascripts/lib/utils";
 const headerData = Object.assign(
   {
     props: {
-      active: String
+      active: String,
+      owner: Boolean
     },
     data() {
       return {

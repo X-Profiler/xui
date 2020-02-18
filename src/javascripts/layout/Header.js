@@ -50,7 +50,18 @@ export default {
           this.resetActiveNav();
           nav.active = true;
           const target = `/${nav.value}`;
-          if (this.$route.path !== target) this.$router.push({ path: target });
+          if (this.$route.path !== target) {
+            const query = {};
+            // go to /console
+            if (nav.value === "console") {
+              if (this.owner) {
+                query.type = "myApps";
+              } else {
+                query.type = "joinedApps";
+              }
+            }
+            this.$router.push({ path: target, query });
+          }
         } else if (nav.href) {
           const { href } = this.$router.resolve({ path: nav.href });
           window.open(href, "_blank");

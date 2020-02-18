@@ -2,7 +2,7 @@
   <div>
     <Layout>
       <!-- header -->
-      <x-header active="console"></x-header>
+      <x-header active="console" :owner="selectedType === 'myApps'"></x-header>
 
       <!-- body content -->
       <Content class="content">
