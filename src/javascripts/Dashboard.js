@@ -42,9 +42,7 @@ export default {
 
   watch: {
     $route(to) {
-      if (to.params.menuTab !== this.menuTab) {
-        this.menuTab = to.params.menuTab;
-      }
+      this.menuTab = to.params.menuTab;
     },
 
     menuTab() {
