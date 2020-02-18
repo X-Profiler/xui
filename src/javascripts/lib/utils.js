@@ -94,16 +94,24 @@ export function post(...args) {
   return request.call(this, ...args);
 }
 
-function checkValueSetting(componentKey, setValue) {
+function checkValueSetting(componentKey, setValue, notSetting = false) {
   const whiteList = this.valueWhiteList && this.valueWhiteList[componentKey];
-  const shouldDoNext = !Array.isArray(whiteList) || whiteList.includes(setValue);
+  const shouldDoNext = !setValue || !Array.isArray(whiteList) || whiteList.includes(setValue);
   if (!shouldDoNext) {
-    error.call(this, getTag(tags.illegalType) + setValue);
+    if (!notSetting) {
+      error.call(this, getTag(tags.illegalType) + setValue);
+    }
     if (Array.isArray(whiteList)) {
       this[componentKey] = whiteList[0];
     }
-  } else {
-    this[componentKey] = setValue;
+  } else if (!notSetting) {
+    if (setValue) {
+      this[componentKey] = setValue;
+    } else {
+      if (Array.isArray(whiteList)) {
+        this[componentKey] = whiteList[0];
+      }
+    }
   }
   return shouldDoNext;
 }
@@ -133,7 +141,8 @@ export function watchQueryKey(queryKey, componentKey, args) {
     }
   }
 
-  if (oldVal === undefined) {
+  const replace = oldVal === undefined || !checkValueSetting.call(this, componentKey, oldVal, true);
+  if (replace) {
     this.$router.replace({ path: this.$route.path, query: $query });
   } else {
     this.$router.push({ path: this.$route.path, query: $query });

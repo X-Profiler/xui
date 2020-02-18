@@ -35,9 +35,11 @@ export default {
     },
 
     setDefaultAgent() {
-      if (this.agents.length > 0 && !this.selectedAgentId) {
+      if (this.agents.length > 0 &&
+        (!this.selectedAgentId || !this.agents.includes(this.selectedAgentId))) {
         this.selectedAgentId = this.agents[0].value;
       }
+      this.valueWhiteList.selectedAgentId = this.agents.map(agent => agent.value);
     },
 
     getAgents() {
