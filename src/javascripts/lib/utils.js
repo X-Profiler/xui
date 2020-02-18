@@ -114,20 +114,19 @@ export function watchRoute(args, queryKey, componentKey) {
 }
 
 export function watchQueryKey(queryKey, componentKey, args) {
-  const [, oldVal] = args;
+  const [newVal, oldVal] = args;
 
-  const setValue = this[componentKey];
-  if (!checkValueSetting.call(this, componentKey, setValue)) {
+  if (!checkValueSetting.call(this, componentKey, newVal)) {
     return;
   }
 
   const nessaryQueryArgs = this.nessaryQueryArgs || [];
   const query = this.$route.query;
-  if (query[queryKey] === setValue) {
+  if (query[queryKey] === newVal) {
     return;
   }
 
-  const $query = { [queryKey]: setValue };
+  const $query = { [queryKey]: newVal };
   for (const nessaryArg of nessaryQueryArgs) {
     if (nessaryArg !== queryKey) {
       $query[nessaryArg] = query[nessaryArg];
