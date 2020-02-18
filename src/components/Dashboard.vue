@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- header -->
-    <x-header active="console"></x-header>
+    <x-header active="console" :owner="currentUserIsOwner"></x-header>
 
     <div class="x-body">
       <!-- sider -->
