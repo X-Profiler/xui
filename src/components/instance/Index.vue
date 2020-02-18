@@ -89,6 +89,10 @@ const indexData = Object.assign(
             value: "module_risk"
           }
         ],
+        valueWhiteList: {
+          selectedTab: ["process", "system", "error_log", "module_risk"],
+          selectedAgentId: null
+        },
         nessaryQueryArgs: ["tab", "agentId"]
       };
     },

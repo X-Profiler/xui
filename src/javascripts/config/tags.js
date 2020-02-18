@@ -23,8 +23,8 @@ export default {
     en: "Joined Apps"
   },
   illegalType: {
-    ch: "非法的类型：",
-    en: "Illegal type:"
+    ch: "不合法的参数：",
+    en: "Illegal query type:"
   },
 
   // create new app modal
