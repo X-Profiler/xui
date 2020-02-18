@@ -71,7 +71,7 @@ export default {
   },
 
   watch: {
-    "user.name": function () {
+    "user.name": function() {
       cache.user.name = this.user.name;
     }
   }

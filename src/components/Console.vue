@@ -73,7 +73,7 @@ const consoleData = Object.assign(
   {
     data() {
       return {
-        selectedType: "myApps",
+        selectedType: undefined,
         newAppName: "",
         newAppCreationLoading: false,
         nessaryQueryArgs: ["type"]
