@@ -70,12 +70,12 @@ export default {
 
     selectedTab(newVal, oldVal) {
       const replace = oldVal === undefined;
-      utils.watchRoute.call(this, "tab", "selectedTab", replace);
+      utils.watchQueryKey.call(this, "tab", "selectedTab", replace);
     },
 
     selectedAgentId(newVal, oldVal) {
       const replace = oldVal === undefined;
-      utils.watchRoute.call(this, "agentId", "selectedAgentId", replace);
+      utils.watchQueryKey.call(this, "agentId", "selectedAgentId", replace);
     }
   }
 };

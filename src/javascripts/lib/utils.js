@@ -93,7 +93,7 @@ export function post(...args) {
   return request.call(this, ...args);
 }
 
-export function watchRoute(queryKey, componentKey, replace = false) {
+export function watchQueryKey(queryKey, componentKey, replace = false) {
   const nessaryQueryArgs = this.nessaryQueryArgs || [];
   const query = this.$route.query;
   if (query[queryKey] === this[componentKey]) {
