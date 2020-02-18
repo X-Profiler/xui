@@ -9,9 +9,7 @@ export default {
   created() {
     // get type from query
     const query = this.$route.query;
-    if (query.type) {
-      this.selectedType = query.type;
-    }
+    this.selectedType = query.type || "myApps";
 
     // set common http methods
     this.cancelToken = utils.createCancelToken();
@@ -101,14 +99,15 @@ export default {
   },
 
   watch: {
-    selectedType() {
-      utils.watchRoute.call(this, "type", "selectedType")
-    },
-
     $route(to) {
       if (to.query.type !== this.selectedType) {
         this.selectedType = to.query.type;
       }
+    },
+
+    selectedType(newVal, oldVal) {
+      const replace = oldVal === undefined;
+      utils.watchRoute.call(this, "type", "selectedType", replace);
     }
   }
 };

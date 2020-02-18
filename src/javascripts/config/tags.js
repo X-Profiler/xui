@@ -178,4 +178,4 @@ export default {
     ch: "没有相关实例 ID",
     en: "No agent"
   }
-}
+};

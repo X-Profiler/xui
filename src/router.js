@@ -18,4 +18,4 @@ export default [
     path: "/app/:appId/:menuTab",
     component: Dashboard
   }
-]
+];
