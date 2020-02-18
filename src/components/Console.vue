@@ -76,6 +76,7 @@ const consoleData = Object.assign(
         selectedType: undefined,
         newAppName: "",
         newAppCreationLoading: false,
+        valueWhiteList: { selectedType: ["myApps", "joinedApps"] },
         nessaryQueryArgs: ["type"]
       };
     },
