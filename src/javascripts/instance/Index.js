@@ -63,14 +63,12 @@ export default {
       utils.watchRoute.call(this, args, "agentId", "selectedAgentId");
     },
 
-    selectedTab(newVal, oldVal) {
-      const replace = oldVal === undefined;
-      utils.watchQueryKey.call(this, "tab", "selectedTab", replace);
+    selectedTab(...args) {
+      utils.watchQueryKey.call(this, "tab", "selectedTab", args);
     },
 
-    selectedAgentId(newVal, oldVal) {
-      const replace = oldVal === undefined;
-      utils.watchQueryKey.call(this, "agentId", "selectedAgentId", replace);
+    selectedAgentId(...args) {
+      utils.watchQueryKey.call(this, "agentId", "selectedAgentId", args);
     }
   }
 };
