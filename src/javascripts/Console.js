@@ -99,10 +99,8 @@ export default {
   },
 
   watch: {
-    $route(to) {
-      if (to.query.type !== this.selectedType) {
-        this.selectedType = to.query.type;
-      }
+    $route(...args) {
+      utils.watchRoute.call(this, args, "type", "selectedType");
     },
 
     selectedType(newVal, oldVal) {

@@ -93,6 +93,11 @@ export function post(...args) {
   return request.call(this, ...args);
 }
 
+export function watchRoute(args, queryKey, componentKey) {
+  const to = args[0];
+  this[componentKey] = to.query[queryKey];
+}
+
 export function watchQueryKey(queryKey, componentKey, replace = false) {
   const nessaryQueryArgs = this.nessaryQueryArgs || [];
   const query = this.$route.query;

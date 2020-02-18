@@ -58,14 +58,9 @@ export default {
   },
 
   watch: {
-    $route(to) {
-      if (to.query.tab !== this.selectedTab) {
-        this.selectedTab = to.query.tab;
-      }
-
-      if (to.query.agentId !== this.selectedAgentId) {
-        this.selectedAgentId = to.query.agentId;
-      }
+    $route(...args) {
+      utils.watchRoute.call(this, args, "tab", "selectedTab");
+      utils.watchRoute.call(this, args, "agentId", "selectedAgentId");
     },
 
     selectedTab(newVal, oldVal) {
