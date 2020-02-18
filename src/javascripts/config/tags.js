@@ -22,6 +22,10 @@ export default {
     ch: "加入的应用",
     en: "Joined Apps"
   },
+  illegalType: {
+    ch: "非法的类型：",
+    en: "Illegal type:"
+  },
 
   // create new app modal
   newAppCreation: {

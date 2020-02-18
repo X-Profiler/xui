@@ -1,6 +1,7 @@
 "use strict";
 
 import axios from "axios";
+import { tags } from "../config";
 
 const CancelToken = axios.CancelToken;
 
@@ -93,19 +94,38 @@ export function post(...args) {
   return request.call(this, ...args);
 }
 
+function checkValueSetting(componentKey, setValue) {
+  const whiteList = this.valueWhiteList && this.valueWhiteList[componentKey];
+  const shouldDoNext = !Array.isArray(whiteList) || whiteList.includes(setValue);
+  if (!shouldDoNext) {
+    error.call(this, getTag(tags.illegalType) + setValue);
+    if (Array.isArray(whiteList)) {
+      this[componentKey] = whiteList[0];
+    }
+  } else {
+    this[componentKey] = setValue;
+  }
+  return shouldDoNext;
+}
+
 export function watchRoute(args, queryKey, componentKey) {
-  const to = args[0];
-  this[componentKey] = to.query[queryKey];
+  const queryValue = args[0].query[queryKey];
+  checkValueSetting.call(this, componentKey, queryValue);
 }
 
 export function watchQueryKey(queryKey, componentKey, replace = false) {
-  const nessaryQueryArgs = this.nessaryQueryArgs || [];
-  const query = this.$route.query;
-  if (query[queryKey] === this[componentKey]) {
+  const setValue = this[componentKey];
+  if (!checkValueSetting.call(this, componentKey, setValue)) {
     return;
   }
 
-  const $query = { [queryKey]: this[componentKey] };
+  const nessaryQueryArgs = this.nessaryQueryArgs || [];
+  const query = this.$route.query;
+  if (query[queryKey] === setValue) {
+    return;
+  }
+
+  const $query = { [queryKey]: setValue };
   for (const nessaryArg of nessaryQueryArgs) {
     if (nessaryArg !== queryKey) {
       $query[nessaryArg] = query[nessaryArg];
