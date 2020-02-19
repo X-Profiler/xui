@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-show="loading" class="spin-loading" :style="style">
-      <Spin size="large"></Spin>
+      <Spin :size="spinSize"></Spin>
     </div>
   </div>
 </template>
@@ -10,7 +10,8 @@
 export default {
   props: {
     loading: Boolean,
-    top: Number
+    top: Number,
+    size: String
   },
 
   computed: {
@@ -20,6 +21,9 @@ export default {
         style += "margin-top: " + this.top + "px;";
       }
       return style;
+    },
+    spinSize() {
+      return this.size || "large";
     }
   }
 };
