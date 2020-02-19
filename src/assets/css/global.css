@@ -6,11 +6,6 @@
   text-align: center;
 }
 
-.spin-loading {
-  display: inline-block;
-  position: relative;
-}
-
 .modal-title-icon {
   font-size: 15px;
   margin-right: 5px;
