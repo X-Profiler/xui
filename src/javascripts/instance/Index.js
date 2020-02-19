@@ -65,7 +65,7 @@ export default {
           component = "x-process-data";
           break;
         default:
-          break
+          break;
       }
 
       return component;
