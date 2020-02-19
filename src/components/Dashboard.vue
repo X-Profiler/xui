@@ -9,9 +9,7 @@
 
       <Content>
         <!-- loading -->
-        <div v-show="appInfoLoading" class="spin-loading" style="margin-top:300px;">
-          <Spin size="large"></Spin>
-        </div>
+        <x-loading :loading="appInfoLoading" :top="300"></x-loading>
 
         <transition name="slide">
           <!-- dashboard component -->
@@ -32,6 +30,7 @@
 <script>
 import xHeader from "./layout/Header";
 import xSider from "./layout/Sider";
+import xLoading from "./common/Loading";
 import dashboardModule from "../javascripts/Dashboard";
 import { tags } from "../javascripts/config";
 import { getTag } from "../javascripts/lib/utils";
@@ -52,7 +51,8 @@ const dashboardData = Object.assign(
       "x-file": xFile,
       "x-team": xTeam,
       "x-alarm": xAlarm,
-      "x-setting": xSetting
+      "x-setting": xSetting,
+      "x-loading": xLoading
     },
 
     data() {
