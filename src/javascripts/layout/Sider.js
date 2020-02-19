@@ -25,6 +25,10 @@ export default {
         return;
       }
       this.$emit("menuChanged", menu);
+    },
+
+    checkAuth(menu) {
+      return menu.value !== "setting" || this.owner;
     }
   },
 
