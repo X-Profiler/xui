@@ -1,9 +1,7 @@
 <template>
   <div>
     <!-- loading -->
-    <div v-show="appLoading" class="spin-loading" style="margin-top:200px;">
-      <Spin size="large"></Spin>
-    </div>
+    <x-loading :top="250" :loading="appLoading"></x-loading>
 
     <!-- app list -->
     <transition name="slide">
@@ -120,6 +118,7 @@
 </template>
 
 <script>
+import xLoading from "./common/Loading";
 import appsModule from "../javascripts/Apps";
 import { tags } from "../javascripts/config";
 import { getTag } from "../javascripts/lib/utils";
@@ -128,6 +127,9 @@ const appsData = Object.assign(
   {
     props: {
       type: String
+    },
+    components: {
+      "x-loading": xLoading
     },
     data() {
       return {
