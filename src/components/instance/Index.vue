@@ -42,9 +42,9 @@
     </transition>
 
     <!-- instance content -->
-    <transition name="slide-noward">
+    <transition name="slide">
       <component
-        v-show="!agentsLoading"
+        v-if="!agentsLoading && selectedAgentId"
         :is="activeComponent"
         :appId="appId"
         :agentId="selectedAgentId"

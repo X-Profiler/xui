@@ -9,12 +9,12 @@
 
       <Content>
         <!-- loading -->
-        <x-loading :loading="appInfoLoading" :top="300"></x-loading>
+        <x-loading :loading="appInfoLoading" :top="300" type="dot"></x-loading>
 
         <transition name="slide">
           <!-- dashboard component -->
           <component
-            v-show="!appInfoLoading && activeContent"
+            v-if="!appInfoLoading && activeContent"
             :is="activeContent.component"
             :appId="appId"
             :appName="appName"
