@@ -42,14 +42,25 @@
     </transition>
 
     <!-- instance content -->
+    <transition name="slide-noward">
+      <component
+        v-show="!agentsLoading"
+        :is="activeComponent"
+        :appId="appId"
+        :agentId="selectedAgentId"
+      ></component>
+    </transition>
   </div>
 </template>
 
 <script>
-import dashboardTitle from "../common/DashboardTitle";
 import indexModule from "../../javascripts/instance/Index";
 import { tags } from "../../javascripts/config";
 import { getTag } from "../../javascripts/lib/utils";
+
+// instance component
+import xDashboardTitle from "../common/DashboardTitle";
+import xProcessData from "./ProcessData";
 
 const indexData = Object.assign(
   {
@@ -97,7 +108,8 @@ const indexData = Object.assign(
       };
     },
     components: {
-      "x-dashboard-title": dashboardTitle
+      "x-dashboard-title": xDashboardTitle,
+      "x-process-data": xProcessData
     }
   },
   indexModule
