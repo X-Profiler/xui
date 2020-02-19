@@ -7,7 +7,8 @@
 
     <!-- dot -->
     <div v-if="loadingType === 'dot'" v-show="loading" class="dot-loading" :style="style">
-      <div class="dot-pulse"></div>
+      <div v-if="spinSize !== 'small'" class="dot-pulse-base dot-pulse"></div>
+      <div v-else class="dot-pulse-base dot-pulse-small"></div>
     </div>
   </div>
 </template>
@@ -57,42 +58,79 @@ export default {
   position: relative;
 }
 
-.dot-pulse {
+.dot-pulse-base {
   position: relative;
   left: -9999px;
-  width: 10px;
-  height: 10px;
   border-radius: 5px;
   background-color: #ccccd6;
   color: #ccccd6;
-  box-shadow: 9984px 0 0 0 #ccccd6, 9999px 0 0 0 #ccccd6, 10014px 0 0 0 #ccccd6;
+}
+
+.dot-pulse {
+  width: 10px;
+  height: 10px;
+  box-shadow: 9980px 0 0 0 #ccccd6, 9999px 0 0 0 #ccccd6, 10018px 0 0 0 #ccccd6;
   animation: dotPulse 1.5s infinite linear;
+}
+
+.dot-pulse-small {
+  width: 5px;
+  height: 5px;
+  box-shadow: 9988px 0 0 0 #ccccd6, 9999px 0 0 0 #ccccd6, 10010px 0 0 0 #ccccd6;
+  animation: dotPulseSmall 1.5s infinite linear;
 }
 
 @keyframes dotPulse {
   0% {
-    box-shadow: 9984px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
-      10014px 0 0 2px #ccccd6;
+    box-shadow: 9980px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10018px 0 0 2px #ccccd6;
   }
 
   25% {
-    box-shadow: 9984px 0 0 0 #ccccd6, 9999px 0 0 2px #ccccd6,
-      10014px 0 0 0 #ccccd6;
+    box-shadow: 9980px 0 0 0 #ccccd6, 9999px 0 0 2px #ccccd6,
+      10018px 0 0 0 #ccccd6;
   }
 
   50% {
-    box-shadow: 9984px 0 0 2px #ccccd6, 9999px 0 0 0 #ccccd6,
-      10014px 0 0 -5px #ccccd6;
+    box-shadow: 9980px 0 0 2px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10018px 0 0 -5px #ccccd6;
   }
 
   75% {
-    box-shadow: 9984px 0 0 0 #ccccd6, 9999px 0 0 -5px #ccccd6,
-      10014px 0 0 0 #ccccd6;
+    box-shadow: 9980px 0 0 0 #ccccd6, 9999px 0 0 -5px #ccccd6,
+      10018px 0 0 0 #ccccd6;
   }
 
   100% {
-    box-shadow: 9984px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
-      10014px 0 0 2px #ccccd6;
+    box-shadow: 9980px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10018px 0 0 2px #ccccd6;
+  }
+}
+
+@keyframes dotPulseSmall {
+  0% {
+    box-shadow: 9988px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10010px 0 0 2px #ccccd6;
+  }
+
+  25% {
+    box-shadow: 9988px 0 0 0 #ccccd6, 9999px 0 0 2px #ccccd6,
+      10010px 0 0 0 #ccccd6;
+  }
+
+  50% {
+    box-shadow: 9988px 0 0 2px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10010px 0 0 -5px #ccccd6;
+  }
+
+  75% {
+    box-shadow: 9988px 0 0 0 #ccccd6, 9999px 0 0 -5px #ccccd6,
+      10010px 0 0 0 #ccccd6;
+  }
+
+  100% {
+    box-shadow: 9988px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10010px 0 0 2px #ccccd6;
   }
 }
 </style>
