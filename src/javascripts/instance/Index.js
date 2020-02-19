@@ -56,6 +56,19 @@ export default {
   computed: {
     checkAgentTip() {
       return utils.getTag(tags.checkAgent);
+    },
+
+    activeComponent() {
+      let component = "";
+      switch (this.selectedTab) {
+        case "process":
+          component = "x-process-data";
+          break;
+        default:
+          break
+      }
+
+      return component;
     }
   },
 
