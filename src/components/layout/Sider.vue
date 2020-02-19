@@ -4,11 +4,11 @@
       <div
         v-for="(menu, index) in menuGroup"
         :key="index"
-        :class="'menu' + (menu.active ? ' active':'')"
+        :class="'menu' + (checkAuth(menu) && menu.active ? ' active':'')"
         @click="changeMenu(menu.value)"
       >
         <transition name="slide-noward">
-          <div v-show="menu.value !== 'setting' || owner">
+          <div v-show="checkAuth(menu)">
             <Icon :type="menu.icon" class="menu-icon" />
             <p class="menu-name">{{ menu.label }}</p>
           </div>
