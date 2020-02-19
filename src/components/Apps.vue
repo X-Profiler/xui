@@ -52,9 +52,7 @@
                 <div v-for="(metric, index) in metrics" :key="index">
                   <p class="app-content-title-metric-key">{{ metric.label }}</p>
                   <!-- loading -->
-                  <div v-show="app[`${metric.value}Loading`]" class="spin-loading">
-                    <Spin size="small"></Spin>
-                  </div>
+                  <x-loading :loading="app[`${metric.value}Loading`]" size="small"></x-loading>
 
                   <!-- show data -->
                   <transition name="slide-noward">
