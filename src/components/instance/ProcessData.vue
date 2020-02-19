@@ -11,7 +11,7 @@
 
         <!-- loading -->
         <div style="text-align: center">
-          <x-loading :loading="xProcessesLoading" :top="45" size="middle"></x-loading>
+          <x-loading :loading="xProcessesLoading" :top="45" size="small" type="dot"></x-loading>
         </div>
 
         <!-- show process line -->
