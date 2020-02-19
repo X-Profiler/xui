@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- loading -->
-    <x-loading :top="250" :loading="appLoading"></x-loading>
+    <x-loading :top="250" :loading="appLoading" type="dot"></x-loading>
 
     <!-- app list -->
     <transition name="slide">

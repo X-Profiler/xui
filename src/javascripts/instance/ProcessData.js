@@ -18,6 +18,10 @@ export default {
     this.getAgentXProcesses();
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
     setDefaultPid() {
       if (this.xProcesses.length > 0) {
@@ -32,7 +36,7 @@ export default {
           this.xProcesses = list;
           this.setDefaultPid();
         }
-      }, this.cancelToken.token);
+      }, this.cancelToken.token, "xProcessesLoading");
     },
 
     setLastTime() {

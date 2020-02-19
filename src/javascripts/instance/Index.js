@@ -43,13 +43,15 @@ export default {
     },
 
     getAgents() {
+      this.agentsLoading = true;
       this.get(agents.msg, agents.url, { appId: this.appId }, data => {
         const list = data.list;
         if (Array.isArray(list)) {
           this.agents = this.formatAgents(list);
           this.setDefaultAgent();
+          this.agentsLoading = false;
         }
-      }, this.cancelToken.token, "agentsLoading");
+      }, this.cancelToken.token);
     }
   },
 
