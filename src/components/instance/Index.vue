@@ -61,6 +61,7 @@ import { getTag } from "../../javascripts/lib/utils";
 // instance component
 import xDashboardTitle from "../common/DashboardTitle";
 import xProcessData from "./ProcessData";
+import xSystemData from "./SystemData";
 
 const indexData = Object.assign(
   {
@@ -109,7 +110,8 @@ const indexData = Object.assign(
     },
     components: {
       "x-dashboard-title": xDashboardTitle,
-      "x-process-data": xProcessData
+      "x-process-data": xProcessData,
+      "x-system-data": xSystemData
     }
   },
   indexModule

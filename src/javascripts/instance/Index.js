@@ -66,6 +66,9 @@ export default {
         case "process":
           component = "x-process-data";
           break;
+        case "system":
+          component = "x-system-data";
+          break;
         default:
           break;
       }
