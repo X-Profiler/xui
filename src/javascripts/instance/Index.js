@@ -69,6 +69,9 @@ export default {
         case "system":
           component = "x-system-data";
           break;
+        case "error_log":
+          component = "x-error-log";
+          break;
         default:
           break;
       }
