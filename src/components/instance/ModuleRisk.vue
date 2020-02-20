@@ -3,5 +3,9 @@
 </template>
 
 <script>
-export default {};
+import riskModule from "../../javascripts/instance/ModuleRisk";
+
+const riskData = Object.assign({}, riskModule);
+
+export default riskData;
 </script>
