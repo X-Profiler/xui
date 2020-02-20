@@ -23,6 +23,10 @@ module.exports = app => {
       if (pid.time === 'half') {
         pid.startTime = Date.now() - 12 * 60 * 60 * 1000;
       }
+      if (pid.time === 'pre') {
+        pid.startTime = Date.now() - 16 * 60 * 60 * 1000;
+        pid.endTime = Date.now() - 8 * 60 * 60 * 1000;
+      }
       return pid;
     });
     setTimeout(() => res.send({ ok: true, data: { list } }), 450);
