@@ -18,11 +18,13 @@
         <transition name="slide-noward">
           <div v-show="!xProcessesLoading">
             <div class="process-line-group">
-              <div class="process-line"></div>
-              <div class="process-line"></div>
-              <div class="process-line"></div>
-              <div class="process-line"></div>
-              <div class="process-line"></div>
+              <div
+                v-for="(xProcesse, index) in xProcesses"
+                :key="index"
+                style="background-color: #e8eaec;width: 100%"
+              >
+                <div class="process-line" :style="getProcessLineStyle(index)"></div>
+              </div>
             </div>
             <div class="process-line-label-group">
               <div v-for="(time, index) in times" :key="index" class="process-line-label">
@@ -99,7 +101,6 @@ export default processData;
 .process-line {
   height: 5px;
   margin-top: 10px;
-  background-color: #f8f8f9;
 }
 
 .process-line-label-group {

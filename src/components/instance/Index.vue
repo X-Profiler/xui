@@ -131,7 +131,7 @@ export default indexData;
 }
 
 .instance-content {
-  margin: 15px 0;
+  margin: 15px 0 0 0;
 }
 </style>
 
