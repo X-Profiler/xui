@@ -36,11 +36,19 @@
         </transition>
       </div>
     </div>
+
+    <!-- tooltip -->
+    <x-tooltip>
+      <template slot="header">
+        <div style="height:20px;background-color: blue"></div>
+      </template>
+    </x-tooltip>
   </div>
 </template>
 
 <script>
 import xLoading from "../common/Loading";
+import xTooltip from "../common/Tooltip";
 import processModule from "../../javascripts/instance/ProcessData";
 
 const processData = Object.assign(
@@ -50,7 +58,8 @@ const processData = Object.assign(
       agentId: String
     },
     components: {
-      "x-loading": xLoading
+      "x-loading": xLoading,
+      "x-tooltip": xTooltip
     },
     data() {
       return {
