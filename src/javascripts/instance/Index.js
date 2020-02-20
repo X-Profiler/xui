@@ -72,6 +72,9 @@ export default {
         case "error_log":
           component = "x-error-log";
           break;
+        case "module_risk":
+          component = "x-module-risk";
+          break;
         default:
           break;
       }
