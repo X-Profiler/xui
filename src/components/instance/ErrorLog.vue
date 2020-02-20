@@ -3,5 +3,9 @@
 </template>
 
 <script>
-export default {};
+import errorLogModule from "../../javascripts/instance/ErrorLog";
+
+const errorLogData = Object.assign({}, errorLogModule);
+
+export default errorLogData;
 </script>
