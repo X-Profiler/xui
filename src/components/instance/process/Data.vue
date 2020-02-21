@@ -49,7 +49,18 @@ const processData = Object.assign(
       return {
         selectedPid: undefined,
         xProcesses: [],
-        xProcessesLoading: false
+        xProcessesLoading: false,
+        colors: [
+          "rgb(42, 125, 194)",
+          "rgb(41, 145, 65)",
+          "rgb(55, 189, 94)",
+          "rgb(47, 149, 176)",
+          "rgb(57, 175, 209)",
+          "rgb(215, 124, 0)",
+          "rgb(248, 152, 0)",
+          "rgb(137, 130, 113)",
+          "rgb(169, 159, 141)"
+        ]
       };
     }
   },

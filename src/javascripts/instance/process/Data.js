@@ -4,17 +4,6 @@ import { http } from "../../config";
 import * as utils from "../../lib/utils";
 
 const { xProcesses } = http;
-const colors = [
-  "rgb(42, 125, 194)",
-  "rgb(41, 145, 65)",
-  "rgb(55, 189, 94)",
-  "rgb(47, 149, 176)",
-  "rgb(57, 175, 209)",
-  "rgb(215, 124, 0)",
-  "rgb(248, 152, 0)",
-  "rgb(137, 130, 113)",
-  "#rgb(169, 159, 141)",
-];
 
 export default {
   created() {
@@ -37,6 +26,7 @@ export default {
     formatXprocesses(list) {
       return list.map(proc => {
         // add process line color
+        const colors = this.colors;
         const hash = Math.abs(utils.hashCode(proc.cmd));
         proc.color = colors[hash % colors.length];
 
@@ -62,15 +52,6 @@ export default {
       }, this.cancelToken.token, "xProcessesLoading");
     },
 
-    getSelectedXProcess() {
-      for (const lineData of this.xProcesses) {
-        if (lineData.pid === this.selectedPid) {
-          return lineData;
-        }
-      }
-      return undefined;
-    },
-
     selectPid(index) {
       const lineData = this.xProcesses[index];
       this.selectedPid = lineData.pid;
@@ -79,7 +60,12 @@ export default {
 
   watch: {
     selectedPid() {
-      const lineData = this.getSelectedXProcess();
+      let lineData;
+      for (const data of this.xProcesses) {
+        if (data.pid === this.selectedPid) {
+          lineData = data;
+        }
+      }
       if (!lineData) return;
 
       // line

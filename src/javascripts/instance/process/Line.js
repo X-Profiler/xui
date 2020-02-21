@@ -77,7 +77,7 @@ export default {
       const scaleY = 1.3;
       lineData.selectedStyle = `box-shadow: 0 0 0 2px ${lineData.color.replace(")", ", 0.4)")};`
         + `-webkit-transform: scaleY(${scaleY});transform: scaleY(${scaleY});`
-        + "transition: box-shadow .1s linear"
+        + "transition: box-shadow .1s"
     },
 
     updateSelectedProcess(lineData) {
@@ -87,16 +87,23 @@ export default {
       this.setBoxShadow(lineData);
     },
 
+    getLineWidth() {
+      const width = window.getComputedStyle(this.$refs.line).width;
+      return parseInt(width, 10);
+    },
+
     mouseover(data, event) {
       // show box shadow
       this.resetSelectedStyle(true);
       this.setBoxShadow(data);
 
       // show tooltip
-      this.tip.show(data, event)
+      this.tip.show(data, this.getLineWidth(), event)
     },
 
-    mousemove() {
+    mousemove(data, event) {
+      // show tooltip
+      this.tip.show(data, this.getLineWidth(), event)
     },
 
     mouseout() {
