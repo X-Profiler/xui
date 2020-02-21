@@ -19,11 +19,15 @@
           <div v-show="!xProcessesLoading">
             <div class="process-line-group">
               <div
-                v-for="(xProcesse, index) in xProcesses"
+                v-for="(xProcess, index) in xProcesses"
                 :key="index"
                 style="background-color: #e8eaec;width: 100%"
               >
-                <div class="process-line" :style="getProcessLineStyle(index)"></div>
+                <div
+                  class="process-line"
+                  :style="getProcessLineStyle(index) + xProcess.selectedStyle"
+                  @click="selectPid(index)"
+                ></div>
               </div>
             </div>
             <div class="process-line-label-group">
@@ -130,6 +134,12 @@ export default processData;
 .process-line {
   height: 5px;
   margin-top: 10px;
+}
+
+.process-line:hover {
+  -webkit-transform: scaleY(1.3);
+  transform: scaleY(1.3);
+  /* box-shadow: 0 0 0 2px rgb(248, 152, 0, 0.4); */
 }
 
 .process-line-label-group {
