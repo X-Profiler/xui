@@ -2,7 +2,6 @@
 
 import { http } from "../../config";
 import * as utils from "../../lib/utils";
-import * as moment from "moment";
 
 const { xProcesses } = http;
 const colors = [
@@ -78,29 +77,13 @@ export default {
     }
   },
 
-  computed: {
-    activeXProcess() {
-      const lineData = this.getSelectedXProcess();
-      if (!lineData) {
-        return { pid: "未知", cmd: "未知" };
-      }
-      return {
-        pid: lineData.pid,
-        cmd: lineData.cmd,
-        startTime: moment(lineData.startTime).format("YYYY-MM-DD HH:mm:SS"),
-        updateTime: moment(lineData.updateTime).format("YYYY-MM-DD HH:mm:SS"),
-        color: lineData.color
-      };
-    }
-  },
-
   watch: {
     selectedPid() {
       const lineData = this.getSelectedXProcess();
       if (!lineData) return;
 
       // line
-      this.line.updateSelectedLine(lineData);
+      this.line.updateSelectedProcess(lineData);
     },
   }
 };

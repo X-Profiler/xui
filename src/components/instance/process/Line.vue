@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- line group -->
     <div class="process-line-group">
       <div
         v-for="(process, index) in processes"
@@ -13,16 +14,22 @@
         ></div>
       </div>
     </div>
+
+    <!-- time group -->
     <div class="process-line-label-group">
       <div v-for="(time, index) in times" :key="index" class="process-line-label">
         <div>{{ time.value }}</div>
         <div>{{ time.label }}</div>
       </div>
     </div>
+
+    <!-- tooltip -->
+    <x-tip :processData="processData"></x-tip>
   </div>
 </template>
 
 <script>
+import Tip from "./Tip";
 import lineModule from "../../../javascripts/instance/process/Line";
 
 const lineData = Object.assign(
@@ -30,9 +37,13 @@ const lineData = Object.assign(
     props: {
       processes: Array
     },
+    components: {
+      "x-tip": Tip
+    },
     data() {
       return {
-        times: []
+        times: [],
+        processData: undefined
       };
     }
   },
@@ -56,7 +67,6 @@ export default lineData;
 .process-line:hover {
   -webkit-transform: scaleY(1.3);
   transform: scaleY(1.3);
-  /* box-shadow: 0 0 0 2px rgb(248, 152, 0, 0.4); */
 }
 
 .process-line-label-group {
