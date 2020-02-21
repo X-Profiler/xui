@@ -2,13 +2,13 @@
   <div>
     <div class="process-line-group">
       <div
-        v-for="(xProcess, index) in xProcesses"
+        v-for="(process, index) in processes"
         :key="index"
         style="background-color: #e8eaec;width: 100%"
       >
         <div
           class="process-line"
-          :style="getProcessLineStyle(index) + xProcess.selectedStyle"
+          :style="getProcessLineStyle(index) + process.selectedStyle"
           @click="selectPid(index)"
         ></div>
       </div>
@@ -28,7 +28,7 @@ import lineModule from "../../../javascripts/instance/process/Line";
 const lineData = Object.assign(
   {
     props: {
-      xProcesses: Array
+      processes: Array
     },
     data() {
       return {
