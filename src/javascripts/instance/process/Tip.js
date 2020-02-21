@@ -8,9 +8,9 @@ export default {
   },
 
   methods: {
-    show(data, event) {
+    show(data, maxWidth, event) {
       this.processData = data;
-      this.tooltip.showToolTip(event);
+      this.tooltip.showToolTip(maxWidth, event);
     },
 
     remove() {

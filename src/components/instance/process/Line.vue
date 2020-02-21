@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="line">
     <!-- line group -->
     <div class="process-line-group">
       <div

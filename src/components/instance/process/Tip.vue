@@ -78,11 +78,13 @@ export default tipData;
 .tooltip-content-group-key {
   font-size: 12px;
   font-weight: bold;
-  width: 100px;
+  min-width: 100px;
 }
 
 .tooltip-content-group-value {
   font-size: 12px;
   flex-grow: 1;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 </style>
