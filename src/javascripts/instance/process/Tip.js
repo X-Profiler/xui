@@ -3,6 +3,21 @@
 import * as moment from "moment";
 
 export default {
+  mounted() {
+    this.tooltip = this.$refs.tooltip;
+  },
+
+  methods: {
+    show(data, event) {
+      this.processData = data;
+      this.tooltip.showToolTip(event);
+    },
+
+    remove() {
+      this.tooltip.removeToolTip();
+    }
+  },
+
   computed: {
     activeXProcess() {
       const processData = this.processData;

@@ -27,7 +27,7 @@
     </div>
 
     <!-- tooltip -->
-    <x-tip :processData="processData"></x-tip>
+    <x-tip ref="tip"></x-tip>
   </div>
 </template>
 
@@ -45,8 +45,7 @@ const lineData = Object.assign(
     },
     data() {
       return {
-        times: [],
-        processData: undefined
+        times: []
       };
     }
   },
