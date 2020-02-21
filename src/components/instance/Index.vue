@@ -60,7 +60,7 @@ import { getTag } from "../../javascripts/lib/utils";
 
 // instance component
 import xDashboardTitle from "../common/DashboardTitle";
-import xProcessData from "./ProcessData";
+import xProcessData from "./process/Data";
 import xSystemData from "./SystemData";
 import xErrorLog from "./ErrorLog";
 import xModuleRisk from "./ModuleRisk";
