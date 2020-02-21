@@ -84,7 +84,7 @@ export default {
       let style = "background-color: " + lineData.color + ";";
 
       // add width
-      style += "width: " + (lineData.endTime - lineData.startTime) / oneDay * 100 + "%;";
+      style += "width: " + (lineData.updateTime - lineData.startTime) / oneDay * 100 + "%;";
 
       // margin-left
       if (lineData.startTime > start) {
@@ -92,11 +92,29 @@ export default {
       }
 
       // margin-right
-      if (end - lineData.endTime > 2 * 60 * 1000) {
-        style += "margin-right:" + (end - lineData.endTime) / oneDay * 100 + "%;";
+      if (end - lineData.updateTime > 2 * 60 * 1000) {
+        style += "margin-right:" + (end - lineData.updateTime) / oneDay * 100 + "%;";
       }
 
       return style;
+    }
+  },
+
+  computed: {
+    activeXProcess() {
+      for (const lineData of this.xProcesses) {
+        if (lineData.pid === this.selectedPid) {
+          return {
+            pid: lineData.pid,
+            cmd: lineData.cmd,
+            startTime: moment(lineData.startTime).format("YYYY-MM-DD HH:mm:SS"),
+            updateTime: moment(lineData.updateTime).format("YYYY-MM-DD HH:mm:SS"),
+            color: lineData.color
+          };
+        }
+      }
+
+      return { pid: "未知", cmd: "未知" };
     }
   }
 };

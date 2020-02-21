@@ -16,7 +16,7 @@ module.exports = app => {
     console.log(`get app ${appId} agent ${agentId} pids`);
 
     const list = require('./pids.json').map(pid => {
-      pid.endTime = Date.now();
+      pid.updateTime = Date.now();
       if (pid.time === 'full') {
         pid.startTime = Date.now() - 24 * 60 * 60 * 1000;
       }
@@ -25,7 +25,7 @@ module.exports = app => {
       }
       if (pid.time === 'pre') {
         pid.startTime = Date.now() - 16 * 60 * 60 * 1000;
-        pid.endTime = Date.now() - 8 * 60 * 60 * 1000;
+        pid.updateTime = Date.now() - 8 * 60 * 60 * 1000;
       }
       return pid;
     });
