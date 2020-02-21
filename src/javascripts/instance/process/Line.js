@@ -64,10 +64,13 @@ export default {
       }
     },
 
-    updateSelectedLine(lineData) {
+    updateSelectedProcess(lineData) {
       // add box shadow
       this.resetSelectedStyle();
       lineData.selectedStyle = `box-shadow: 0 0 0 2px ${lineData.color.replace(")", ", 0.4)")};-webkit-transform: scaleY(1.3);transform: scaleY(1.3);`
+
+      // set process data
+      this.processData = lineData;
     }
   },
 }
