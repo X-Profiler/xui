@@ -19,7 +19,9 @@ export default {};
 .tooltip {
   background: #f8f8f9;
   position: absolute;
-  z-index: -9999;
+  left: 0;
+  top: 0;
+  z-index: 9999;
   min-width: 300px;
   max-width: 500px;
 }
