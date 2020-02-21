@@ -1,5 +1,5 @@
 <template>
-  <div class="tooltip">
+  <div ref="tooltip" class="tooltip">
     <!-- title -->
     <slot name="header"></slot>
 
@@ -12,7 +12,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.tooltip = this.$refs.tooltip;
+  },
+
+  methods: {
+    showToolTip() {
+      const style = this.tooltip.style;
+      // enable tooltip
+      style.zIndex = 9999;
+      style.display = "block";
+    },
+
+    removeToolTip() {
+      const style = this.tooltip.style;
+      style.zIndex = -9999;
+      style.display = "none";
+    }
+  }
+};
 </script>
 
 <style scoped>

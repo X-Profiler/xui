@@ -1,5 +1,5 @@
 <template>
-  <x-tooltip>
+  <x-tooltip ref="tooltip">
     <template slot="header">
       <!-- header -->
       <div
@@ -28,14 +28,12 @@ import tipModule from "../../../javascripts/instance/process/Tip";
 
 const tipData = Object.assign(
   {
-    props: {
-      processData: Object
-    },
     components: {
       "x-tooltip": xTooltip
     },
     data() {
       return {
+        processData: undefined,
         tooltipContent: [
           { key: "启动命令", value: "cmd" },
           { key: "创建时间", value: "startTime" },

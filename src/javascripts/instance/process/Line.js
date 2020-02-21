@@ -9,6 +9,10 @@ export default {
     this.setLastTime();
   },
 
+  mounted() {
+    this.tip = this.$refs.tip;
+  },
+
   methods: {
     setLineData(item) {
       item.selectedStyle = "";
@@ -73,6 +77,7 @@ export default {
       const scaleY = 1.3;
       lineData.selectedStyle = `box-shadow: 0 0 0 2px ${lineData.color.replace(")", ", 0.4)")};`
         + `-webkit-transform: scaleY(${scaleY});transform: scaleY(${scaleY});`
+        + "transition: box-shadow .1s linear"
     },
 
     updateSelectedProcess(lineData) {
@@ -80,21 +85,26 @@ export default {
       this.resetSelectedStyle();
       lineData.selected = true;
       this.setBoxShadow(lineData);
-
-      // set process data
-      this.processData = lineData;
     },
 
-    mouseover(data) {
+    mouseover(data, event) {
+      // show box shadow
       this.resetSelectedStyle(true);
       this.setBoxShadow(data);
+
+      // show tooltip
+      this.tip.show(data, event)
     },
 
     mousemove() {
     },
 
     mouseout() {
+      // reset box shadow
       this.resetSelectedStyle(true);
+
+      // remove tooltip
+      this.tip.remove();
     }
   },
 }
