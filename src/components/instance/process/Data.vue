@@ -60,7 +60,8 @@ const processData = Object.assign(
           "rgb(248, 152, 0)",
           "rgb(137, 130, 113)",
           "rgb(169, 159, 141)"
-        ]
+        ],
+        nessaryQueryArgs: ["tab", "agentId"]
       };
     }
   },
