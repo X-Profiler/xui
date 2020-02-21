@@ -1,7 +1,7 @@
 "use strict";
 
-import { http } from "../config";
-import * as utils from "../lib/utils";
+import { http } from "../../config";
+import * as utils from "../../lib/utils";
 import * as moment from "moment";
 
 const { xProcesses } = http;

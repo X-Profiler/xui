@@ -66,9 +66,9 @@
 </template>
 
 <script>
-import xLoading from "../common/Loading";
-import xTooltip from "../common/Tooltip";
-import processModule from "../../javascripts/instance/ProcessData";
+import xLoading from "../../common/Loading";
+import xTooltip from "../../common/Tooltip";
+import processModule from "../../../javascripts/instance/process/Data";
 
 const processData = Object.assign(
   {
