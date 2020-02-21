@@ -12,6 +12,7 @@ export default {
   methods: {
     setLineData(item) {
       item.selectedStyle = "";
+      item.selected = false;
     },
 
     setLastTime() {
@@ -58,19 +59,42 @@ export default {
       this.$emit("selectPid", index);
     },
 
-    resetSelectedStyle() {
+    resetSelectedStyle(ignoreSelected = false) {
       for (const lineData of this.processes) {
+        if (ignoreSelected && lineData.selected) {
+          continue;
+        }
+        lineData.selected = false;
         lineData.selectedStyle = "";
       }
+    },
+
+    setBoxShadow(lineData) {
+      const scaleY = 1.3;
+      lineData.selectedStyle = `box-shadow: 0 0 0 2px ${lineData.color.replace(")", ", 0.4)")};`
+        + `-webkit-transform: scaleY(${scaleY});transform: scaleY(${scaleY});`
     },
 
     updateSelectedProcess(lineData) {
       // add box shadow
       this.resetSelectedStyle();
-      lineData.selectedStyle = `box-shadow: 0 0 0 2px ${lineData.color.replace(")", ", 0.4)")};-webkit-transform: scaleY(1.3);transform: scaleY(1.3);`
+      lineData.selected = true;
+      this.setBoxShadow(lineData);
 
       // set process data
       this.processData = lineData;
+    },
+
+    mouseover(data) {
+      this.resetSelectedStyle(true);
+      this.setBoxShadow(data);
+    },
+
+    mousemove() {
+    },
+
+    mouseout() {
+      this.resetSelectedStyle(true);
     }
   },
 }

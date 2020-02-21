@@ -10,6 +10,9 @@
         <div
           class="process-line"
           :style="getProcessLineStyle(index) + process.selectedStyle"
+          @mouseover="mouseover(process, $event)"
+          @mousemove="mousemove(process, $event)"
+          @mouseout="mouseout(process, $event)"
           @click="selectPid(index)"
         ></div>
       </div>
@@ -62,11 +65,6 @@ export default lineData;
   height: 5px;
   margin-top: 10px;
   cursor: pointer;
-}
-
-.process-line:hover {
-  -webkit-transform: scaleY(1.3);
-  transform: scaleY(1.3);
 }
 
 .process-line-label-group {
