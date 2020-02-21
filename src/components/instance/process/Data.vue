@@ -16,7 +16,12 @@
 
         <!-- show process line -->
         <transition name="slide-noward">
-          <x-line v-show="!xProcessesLoading" :xProcesses="xProcesses" @selectPid="selectPid"></x-line>
+          <x-line
+            ref="line"
+            v-show="!xProcessesLoading"
+            :processes="xProcesses"
+            @selectPid="selectPid"
+          ></x-line>
         </transition>
       </div>
     </div>

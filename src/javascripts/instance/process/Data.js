@@ -26,6 +26,10 @@ export default {
     this.getAgentXProcesses();
   },
 
+  mounted() {
+    this.line = this.$refs.line;
+  },
+
   beforeDestroy() {
     utils.cancelRequest(this.cancelToken);
   },
@@ -36,7 +40,9 @@ export default {
         // add process line color
         const hash = Math.abs(utils.hashCode(proc.cmd));
         proc.color = colors[hash % colors.length];
-        proc.selectedStyle = "";
+
+        // add line data
+        this.line.setLineData(proc);
         return proc;
       });
     },
@@ -66,12 +72,6 @@ export default {
       return undefined;
     },
 
-    resetSelectedStyle() {
-      for (const lineData of this.xProcesses) {
-        lineData.selectedStyle = "";
-      }
-    },
-
     selectPid(index) {
       const lineData = this.xProcesses[index];
       this.selectedPid = lineData.pid;
@@ -98,9 +98,9 @@ export default {
     selectedPid() {
       const lineData = this.getSelectedXProcess();
       if (!lineData) return;
-      // add box shadow
-      this.resetSelectedStyle();
-      lineData.selectedStyle = `box-shadow: 0 0 0 2px ${lineData.color.replace(")", ", 0.4)")};-webkit-transform: scaleY(1.3);transform: scaleY(1.3);`
+
+      // line
+      this.line.updateSelectedLine(lineData);
     },
   }
 };
