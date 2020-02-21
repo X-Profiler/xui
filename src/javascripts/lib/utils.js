@@ -130,7 +130,7 @@ export function watchQueryKey(queryKey, componentKey, args) {
 
   const nessaryQueryArgs = this.nessaryQueryArgs || [];
   const query = this.$route.query;
-  if (query[queryKey] === newVal) {
+  if (query[queryKey] == newVal) {
     return;
   }
 

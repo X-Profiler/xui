@@ -104,8 +104,7 @@ const indexData = Object.assign(
           }
         ],
         valueWhiteList: {
-          selectedTab: ["process", "system", "error_log", "module_risk"],
-          selectedAgentId: null
+          selectedTab: ["process", "system", "error_log", "module_risk"]
         },
         nessaryQueryArgs: ["tab", "agentId"]
       };

@@ -11,7 +11,7 @@ export default {
     this.cancelToken = utils.createCancelToken();
     this.get = utils.get.bind(this);
 
-    this.getAgentXProcesses();
+    this.getAgentXprocesses();
   },
 
   mounted() {
@@ -23,6 +23,11 @@ export default {
   },
 
   methods: {
+    resetXprocesses() {
+      this.selectedPid = undefined;
+      this.xProcesses = [];
+    },
+
     formatXprocesses(list) {
       return list.map(proc => {
         // add process line color
@@ -37,12 +42,19 @@ export default {
     },
 
     setDefaultPid() {
+      // set pid from query
+      const query = this.$route.query;
+      if (query.pid) {
+        this.selectedPid = query.pid;
+        return;
+      }
+      // set pid from data
       if (this.xProcesses.length > 0) {
         this.selectedPid = this.xProcesses[0].pid;
       }
     },
 
-    getAgentXProcesses() {
+    getAgentXprocesses() {
       this.get(xProcesses.msg, xProcesses.url, { appId: this.appId, agentId: this.agentId }, data => {
         const list = data.list;
         if (Array.isArray(list)) {
@@ -53,23 +65,35 @@ export default {
     },
 
     selectPid(index) {
-      const lineData = this.xProcesses[index];
-      this.selectedPid = lineData.pid;
+      const data = this.xProcesses[index];
+      this.selectedPid = data.pid;
     }
   },
 
   watch: {
-    selectedPid() {
-      let lineData;
+    $route(...args) {
+      utils.watchRoute.call(this, args, "pid", "selectedPid");
+    },
+
+    selectedPid(...args) {
+      utils.watchQueryKey.call(this, "pid", "selectedPid", args);
+
+      // get line
+      let procData;
       for (const data of this.xProcesses) {
-        if (data.pid === this.selectedPid) {
-          lineData = data;
+        if (data.pid == this.selectedPid) {
+          procData = data;
         }
       }
-      if (!lineData) return;
+      if (!procData) return;
 
       // line
-      this.line.updateSelectedProcess(lineData);
+      this.line.updateSelectedProcess(procData);
     },
+
+    agentId() {
+      this.resetXprocesses();
+      this.getAgentXprocesses();
+    }
   }
 };
