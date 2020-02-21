@@ -8,15 +8,15 @@ const { xProcesses } = http;
 
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const colors = [
-  "#2a7dc2",
-  "#299141",
-  "#37bd5e",
-  "#2f95b0",
-  "#39afd1",
-  "#d77c00",
-  "#f89800",
-  "#898271",
-  "#a99f8d",
+  "rgb(42, 125, 194)",
+  "rgb(41, 145, 65)",
+  "rgb(55, 189, 94)",
+  "rgb(47, 149, 176)",
+  "rgb(57, 175, 209)",
+  "rgb(215, 124, 0)",
+  "rgb(248, 152, 0)",
+  "rgb(137, 130, 113)",
+  "#rgb(169, 159, 141)",
 ];
 
 export default {
@@ -39,6 +39,7 @@ export default {
         // add process line color
         const hash = Math.abs(utils.hashCode(proc.cmd));
         proc.color = colors[hash % colors.length];
+        proc.selectedStyle = "";
         return proc;
       });
     },
@@ -97,24 +98,52 @@ export default {
       }
 
       return style;
+    },
+
+    getSelectedXProcess() {
+      for (const lineData of this.xProcesses) {
+        if (lineData.pid === this.selectedPid) {
+          return lineData;
+        }
+      }
+      return undefined;
+    },
+
+    resetSelectedStyle() {
+      for (const lineData of this.xProcesses) {
+        lineData.selectedStyle = "";
+      }
+    },
+
+    selectPid(index) {
+      const lineData = this.xProcesses[index];
+      this.selectedPid = lineData.pid;
     }
   },
 
   computed: {
     activeXProcess() {
-      for (const lineData of this.xProcesses) {
-        if (lineData.pid === this.selectedPid) {
-          return {
-            pid: lineData.pid,
-            cmd: lineData.cmd,
-            startTime: moment(lineData.startTime).format("YYYY-MM-DD HH:mm:SS"),
-            updateTime: moment(lineData.updateTime).format("YYYY-MM-DD HH:mm:SS"),
-            color: lineData.color
-          };
-        }
+      const lineData = this.getSelectedXProcess();
+      if (!lineData) {
+        return { pid: "未知", cmd: "未知" };
       }
-
-      return { pid: "未知", cmd: "未知" };
+      return {
+        pid: lineData.pid,
+        cmd: lineData.cmd,
+        startTime: moment(lineData.startTime).format("YYYY-MM-DD HH:mm:SS"),
+        updateTime: moment(lineData.updateTime).format("YYYY-MM-DD HH:mm:SS"),
+        color: lineData.color
+      };
     }
+  },
+
+  watch: {
+    selectedPid() {
+      const lineData = this.getSelectedXProcess();
+      if (!lineData) return;
+      // add box shadow
+      this.resetSelectedStyle();
+      lineData.selectedStyle = `box-shadow: 0 0 0 2px ${lineData.color.replace(")", ", 0.4)")};-webkit-transform: scaleY(1.3);transform: scaleY(1.3);`
+    },
   }
 };
