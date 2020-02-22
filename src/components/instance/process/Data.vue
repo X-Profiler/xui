@@ -7,7 +7,7 @@
     <div class="data">
       <!-- process line -->
       <div class="process-line-body">
-        <div class="process-line-title">进程存活时间线</div>
+        <div class="process-line-title">{{ lineTitle }}</div>
 
         <!-- loading -->
         <div style="text-align: center">

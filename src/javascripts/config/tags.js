@@ -181,5 +181,23 @@ export default {
   noAgent: {
     ch: "没有相关实例 ID",
     en: "No agent"
+  },
+
+  // instance process data
+  lineTitle: {
+    ch: "进程存活时间线",
+    en: "Process Running Status"
+  },
+  cmd: {
+    ch: "启动命令",
+    en: "Command"
+  },
+  startTime: {
+    ch: "创建时间",
+    en: "Created Time"
+  },
+  updateTime: {
+    ch: "更新时间",
+    en: "Updated Time"
   }
 };
