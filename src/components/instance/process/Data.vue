@@ -1,7 +1,9 @@
 <template>
   <div class="content">
     <!-- process panel -->
-    <div class="panel"></div>
+    <div class="panel">
+      <x-panel></x-panel>
+    </div>
 
     <!-- process data -->
     <div class="data">
@@ -29,11 +31,12 @@
 </template>
 
 <script>
-import xLoading from "../../common/Loading";
 import processModule from "../../../javascripts/instance/process/Data";
 
 // module
+import xLoading from "../../common/Loading";
 import xLine from "./Line";
+import xPanel from "./Panel";
 
 const processData = Object.assign(
   {
@@ -43,7 +46,8 @@ const processData = Object.assign(
     },
     components: {
       "x-loading": xLoading,
-      "x-line": xLine
+      "x-line": xLine,
+      "x-panel": xPanel
     },
     data() {
       return {
@@ -79,7 +83,6 @@ export default processData;
 
 .panel {
   width: 200px;
-  background-color: #f8f8f9;
 }
 
 .data {
