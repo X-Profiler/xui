@@ -17,11 +17,14 @@
       <div class="panel-content">
         <div class="panel-content-metric">
           <div v-for="(metric, index) in metrics" :key="index" class="panel-content-metric-group">
-            <div>{{ metric.label }}</div>
-            <div v-if="!metric.time">{{ processData[metric.value] }}</div>
+            <div class="panel-content-metric-key">{{ metric.label }}</div>
+            <div
+              v-if="!metric.time"
+              class="panel-content-metric-value"
+            >{{ processData[metric.value] }}</div>
             <div v-else>
-              <p>{{ splitTime(processData[metric.value])[0] }}</p>
-              <p>{{ splitTime(processData[metric.value])[1] }}</p>
+              <p class="panel-content-metric-value">{{ splitTime(processData[metric.value])[1] }}</p>
+              <p style="font-size: 13px;">{{ splitTime(processData[metric.value])[0] }}</p>
             </div>
           </div>
         </div>
@@ -90,6 +93,7 @@ export default panelData;
 }
 
 .panel-content {
+  padding: 10px 0;
   background-color: #f9fafc;
 }
 
@@ -99,5 +103,19 @@ export default panelData;
 
 .panel-content-metric-group {
   width: 50%;
+  margin-bottom: 20px;
+}
+
+.panel-content-metric-key {
+  font-size: 13px;
+  color: #919597;
+}
+
+.panel-content-metric-value {
+  font-size: 17px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  margin-top: 5px;
+  color: #37314d;
 }
 </style>
