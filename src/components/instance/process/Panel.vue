@@ -3,5 +3,16 @@
 </template>
 
 <script>
-export default {};
+import panelModule from "../../../javascripts/instance/process/Panel";
+
+const panelData = Object.assign(
+  {
+    props: {
+      processes: Array
+    }
+  },
+  panelModule
+);
+
+export default panelData;
 </script>
