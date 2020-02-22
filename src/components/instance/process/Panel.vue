@@ -16,14 +16,13 @@
 
       <div class="panel-content">
         <div class="panel-content-metric">
-          <div class="panel-content-metric-group">
-            <div>启动时间</div>
-            <div>{{ processData.startTimeFormat }}</div>
-          </div>
-
-          <div class="panel-content-metric-group">
-            <div>更新时间</div>
-            <div>{{ processData.updateTimeFormat }}</div>
+          <div v-for="(metric, index) in metrics" :key="index" class="panel-content-metric-group">
+            <div>{{ metric.label }}</div>
+            <div v-if="!metric.time">{{ processData[metric.value] }}</div>
+            <div v-else>
+              <p>{{ splitTime(processData[metric.value])[0] }}</p>
+              <p>{{ splitTime(processData[metric.value])[1] }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -40,7 +39,12 @@ const panelData = Object.assign(
       return {
         processData: {
           pid: "未知"
-        }
+        },
+
+        metrics: [
+          { label: "启动时间", value: "startTimeFormat", time: true },
+          { label: "更新时间", value: "updateTimeFormat", time: true }
+        ]
       };
     }
   },

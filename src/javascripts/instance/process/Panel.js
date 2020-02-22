@@ -4,6 +4,11 @@ export default {
   methods: {
     updateSelectedProcess(data) {
       this.processData = data;
+    },
+
+    splitTime(time) {
+      if (!time) return ["", ""];
+      return time.split(" ");
     }
   },
 
