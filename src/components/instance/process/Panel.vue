@@ -13,6 +13,20 @@
         <div class="panel-title-pid">PID: {{ processData.pid }}</div>
         <div class="panel-title-cmd" :title="processData.cmd">{{ processData.cmd }}</div>
       </div>
+
+      <div class="panel-content">
+        <div class="panel-content-metric">
+          <div class="panel-content-metric-group">
+            <div>启动时间</div>
+            <div>{{ processData.startTime }}</div>
+          </div>
+
+          <div class="panel-content-metric-group">
+            <div>更新时间</div>
+            <div>{{ processData.updateTime }}</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -69,5 +83,17 @@ export default panelData;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.panel-content {
+  background-color: #f9fafc;
+}
+
+.panel-content-metric {
+  display: flex;
+}
+
+.panel-content-metric-group {
+  width: 50%;
 }
 </style>
