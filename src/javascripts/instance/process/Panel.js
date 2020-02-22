@@ -1,17 +1,9 @@
 "use strict";
 
-import * as moment from "moment";
-
 export default {
   methods: {
     updateSelectedProcess(data) {
-      this.processData = {
-        pid: data.pid,
-        cmd: data.cmd,
-        startTime: moment(data.startTime).format("YYYY-MM-DD HH:mm:SS"),
-        updateTime: moment(data.updateTime).format("YYYY-MM-DD HH:mm:SS"),
-        color: data.color
-      };
+      this.processData = data;
     }
   },
 

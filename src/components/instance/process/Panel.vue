@@ -18,12 +18,12 @@
         <div class="panel-content-metric">
           <div class="panel-content-metric-group">
             <div>启动时间</div>
-            <div>{{ processData.startTime }}</div>
+            <div>{{ processData.startTimeFormat }}</div>
           </div>
 
           <div class="panel-content-metric-group">
             <div>更新时间</div>
-            <div>{{ processData.updateTime }}</div>
+            <div>{{ processData.updateTimeFormat }}</div>
           </div>
         </div>
       </div>

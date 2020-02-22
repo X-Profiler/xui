@@ -1,5 +1,6 @@
 "use strict";
 
+import * as moment from "moment";
 import { http, tags } from "../../config";
 import * as utils from "../../lib/utils";
 
@@ -35,6 +36,10 @@ export default {
         const colors = this.colors;
         const hash = Math.abs(utils.hashCode(proc.cmd));
         proc.color = colors[hash % colors.length];
+
+        // format time
+        proc.startTimeFormat = moment(proc.startTime).format("YYYY-MM-DD HH:mm:SS");
+        proc.updateTimeFormat = moment(proc.updateTime).format("YYYY-MM-DD HH:mm:SS");
 
         // add line data
         this.line.setLineData(proc);
