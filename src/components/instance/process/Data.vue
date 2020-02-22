@@ -90,7 +90,7 @@ export default processData;
 }
 
 .panel {
-  width: 270px;
+  width: 265px;
 }
 
 .data {
