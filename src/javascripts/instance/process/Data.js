@@ -41,6 +41,10 @@ export default {
         proc.startTimeFormat = moment(proc.startTime).format("YYYY-MM-DD HH:mm:SS");
         proc.updateTimeFormat = moment(proc.updateTime).format("YYYY-MM-DD HH:mm:SS");
 
+        // format cpu & memory usage
+        proc.cpuUsageFormat = proc.cpuUsage + "%";
+        proc.heapUsageFormat = proc.heapUsage + "%";
+
         // add line data
         this.line.setLineData(proc);
         return proc;

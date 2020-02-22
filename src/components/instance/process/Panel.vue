@@ -22,9 +22,9 @@
               v-if="!metric.time"
               class="panel-content-metric-value"
             >{{ processData[metric.value] }}</div>
-            <div v-else>
-              <p class="panel-content-metric-value">{{ splitTime(processData[metric.value])[1] }}</p>
-              <p style="font-size: 13px;">{{ splitTime(processData[metric.value])[0] }}</p>
+            <div v-else class="panel-content-metric-value">
+              <p>{{ splitTime(processData[metric.value])[1] }}</p>
+              <p style="font-size: 12px;">{{ splitTime(processData[metric.value])[0] }}</p>
             </div>
           </div>
         </div>
@@ -46,7 +46,9 @@ const panelData = Object.assign(
 
         metrics: [
           { label: "启动时间", value: "startTimeFormat", time: true },
-          { label: "更新时间", value: "updateTimeFormat", time: true }
+          { label: "更新时间", value: "updateTimeFormat", time: true },
+          { label: "CPU 使用率", value: "cpuUsageFormat" },
+          { label: "堆内存使用率", value: "heapUsageFormat" }
         ]
       };
     }
@@ -99,11 +101,12 @@ export default panelData;
 
 .panel-content-metric {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .panel-content-metric-group {
   width: 50%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .panel-content-metric-key {
@@ -112,10 +115,10 @@ export default panelData;
 }
 
 .panel-content-metric-value {
-  font-size: 17px;
+  font-size: 16px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   font-weight: bold;
-  margin-top: 5px;
+  margin-top: 3px;
   color: #37314d;
 }
 </style>

@@ -15,19 +15,26 @@ module.exports = app => {
     const agentId = req.query.agentId;
     console.log(`get app ${appId} agent ${agentId} pids`);
 
-    const list = require('./xprocesses.json').map(pid => {
-      pid.updateTime = Date.now();
-      if (pid.time === 'full') {
-        pid.startTime = Date.now() - 24 * 60 * 60 * 1000;
+    const list = require('./xprocesses.json').map(proc => {
+      proc.updateTime = Date.now();
+      if (proc.time === 'full') {
+        proc.startTime = Date.now() - 24 * 60 * 60 * 1000;
       }
-      if (pid.time === 'half') {
-        pid.startTime = Date.now() - 12 * 60 * 60 * 1000;
+      if (proc.time === 'half') {
+        proc.startTime = Date.now() - 12 * 60 * 60 * 1000;
       }
-      if (pid.time === 'pre') {
-        pid.startTime = Date.now() - 16 * 60 * 60 * 1000;
-        pid.updateTime = Date.now() - 8 * 60 * 60 * 1000;
+      if (proc.time === 'pre') {
+        proc.startTime = Date.now() - 16 * 60 * 60 * 1000;
+        proc.updateTime = Date.now() - 8 * 60 * 60 * 1000;
       }
-      return pid;
+
+      // add cpu usage
+      proc.cpuUsage = (Math.random() * 100).toFixed(2);
+
+      // add heap memory usage
+      proc.heapUsage = (Math.random() * 100).toFixed(2);
+
+      return proc;
     });
     setTimeout(() => res.send({ ok: true, data: { list } }), 450);
   });
