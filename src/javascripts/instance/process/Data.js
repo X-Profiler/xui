@@ -16,6 +16,7 @@ export default {
 
   mounted() {
     this.line = this.$refs.line;
+    this.panel = this.$refs.panel;
   },
 
   beforeDestroy() {
@@ -95,6 +96,9 @@ export default {
 
       // line
       this.line.updateSelectedProcess(procData);
+
+      // panel
+      this.panel.updateSelectedProcess(procData);
     },
 
     agentId() {

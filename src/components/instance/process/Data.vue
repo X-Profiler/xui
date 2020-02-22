@@ -2,7 +2,15 @@
   <div class="content">
     <!-- process panel -->
     <div class="panel">
-      <x-panel></x-panel>
+      <!-- loading -->
+      <div style="text-align: center">
+        <x-loading :loading="xProcessesLoading" :top="300" size="small" type="dot"></x-loading>
+      </div>
+
+      <!-- show process panel -->
+      <transition name="slide-noward">
+        <x-panel ref="panel" v-show="!xProcessesLoading"></x-panel>
+      </transition>
     </div>
 
     <!-- process data -->
@@ -82,7 +90,7 @@ export default processData;
 }
 
 .panel {
-  width: 200px;
+  width: 250px;
 }
 
 .data {
