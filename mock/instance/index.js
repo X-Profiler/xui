@@ -15,7 +15,7 @@ module.exports = app => {
     const agentId = req.query.agentId;
     console.log(`get app ${appId} agent ${agentId} pids`);
 
-    const list = require('./pids.json').map(pid => {
+    const list = require('./xprocesses.json').map(pid => {
       pid.updateTime = Date.now();
       if (pid.time === 'full') {
         pid.startTime = Date.now() - 24 * 60 * 60 * 1000;
