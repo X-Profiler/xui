@@ -25,6 +25,8 @@
 <script>
 import xTooltip from "../../common/Tooltip";
 import tipModule from "../../../javascripts/instance/process/Tip";
+import { tags } from "../../../javascripts/config";
+import { getTag } from "../../../javascripts/lib/utils";
 
 const tipData = Object.assign(
   {
@@ -35,9 +37,9 @@ const tipData = Object.assign(
       return {
         processData: undefined,
         tooltipContent: [
-          { key: "启动命令", value: "cmd" },
-          { key: "创建时间", value: "startTime" },
-          { key: "更新时间", value: "updateTime" }
+          { key: getTag(tags.cmd), value: "cmd" },
+          { key: getTag(tags.startTime), value: "startTime" },
+          { key: getTag(tags.updateTime), value: "updateTime" }
         ]
       };
     }

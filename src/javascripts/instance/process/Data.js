@@ -1,6 +1,6 @@
 "use strict";
 
-import { http } from "../../config";
+import { http, tags } from "../../config";
 import * as utils from "../../lib/utils";
 
 const { xProcesses } = http;
@@ -67,6 +67,12 @@ export default {
     selectPid(index) {
       const data = this.xProcesses[index];
       this.selectedPid = data.pid;
+    }
+  },
+
+  computed: {
+    lineTitle() {
+      return utils.getTag(tags.lineTitle);
     }
   },
 
