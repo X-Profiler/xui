@@ -63,15 +63,11 @@ const processData = Object.assign(
         xProcesses: [],
         xProcessesLoading: false,
         colors: [
-          "rgb(42, 125, 194)",
-          "rgb(41, 145, 65)",
-          "rgb(55, 189, 94)",
-          "rgb(47, 149, 176)",
-          "rgb(57, 175, 209)",
-          "rgb(215, 124, 0)",
-          "rgb(248, 152, 0)",
-          "rgb(137, 130, 113)",
-          "rgb(169, 159, 141)"
+          "rgb(42, 125, 194)", // dark blue
+          "rgb(47, 149, 176)", // sapphire blue
+          "rgb(106, 90, 205)", // slate blue
+          "rgb(41, 145, 65)", // dark green
+          "rgb(215, 124, 0)" // dark orange
         ],
         nessaryQueryArgs: ["tab", "agentId"]
       };
