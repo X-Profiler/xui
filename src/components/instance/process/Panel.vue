@@ -14,7 +14,7 @@
           <div class="panel-title-pid">PID: {{ processData.pid }}</div>
           <div class="panel-title-pid-list">
             进程列表
-            <Icon type="ios-arrow-down" />
+            <Icon class="panel-title-pid-icon" type="ios-arrow-down" />
           </div>
         </div>
         <div class="panel-title-cmd" :title="processData.cmd">{{ processData.cmd }}</div>
@@ -109,6 +109,11 @@ export default panelData;
   text-align: center;
   margin-top: 2px;
   cursor: pointer;
+}
+
+.panel-title-pid-list:hover .panel-title-pid-icon {
+  transform: rotate(180deg) translateY(3px);
+  transition: all 0.1s ease-out;
 }
 
 .panel-title-cmd {
