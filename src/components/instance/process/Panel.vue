@@ -82,12 +82,12 @@ export default panelData;
   height: 65px;
   background-color: #c5c8ce;
   text-align: left;
-  padding: 9px 15px;
+  padding: 10px 15px;
   color: #fff;
 }
 
 .panel-title-pid {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
