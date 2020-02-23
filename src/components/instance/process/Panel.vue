@@ -50,7 +50,9 @@ const panelData = Object.assign(
           { label: "CPU 使用率", value: "cpuUsageFmt" },
           { label: "堆内存使用率", value: "heapUsageFmt" },
           { label: "GC 占比", value: "gcUsageFmt" },
-          { label: "物理内存占用", value: "rssFmt" }
+          { label: "物理内存占用", value: "rssFmt" },
+          { label: "UV 活跃句柄", value: "uvHandles" },
+          { label: "定时器数量", value: "timers" }
         ]
       };
     }

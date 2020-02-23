@@ -40,6 +40,12 @@ module.exports = app => {
       // add rss
       proc.rss = parseInt(Math.random() * 1024 * 1024 * 1024 * 2);
 
+      // add libuv active handles
+      proc.uvHandles = 1 + parseInt(Math.random() * 4000);
+
+      // add timers
+      proc.timers = 1 + parseInt(Math.random() * 200);
+
       return proc;
     });
     setTimeout(() => res.send({ ok: true, data: { list } }), 450);
