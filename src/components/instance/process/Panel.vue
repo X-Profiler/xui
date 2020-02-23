@@ -22,8 +22,8 @@
               v-if="!metric.time"
               class="panel-content-metric-value"
             >{{ processData[metric.value] }}</div>
-            <div v-else class="panel-content-metric-value">
-              <p>{{ splitTime(processData[metric.value])[1] }}</p>
+            <div v-else>
+              <p class="panel-content-metric-value">{{ splitTime(processData[metric.value])[1] }}</p>
               <p style="font-size: 12px;">{{ splitTime(processData[metric.value])[0] }}</p>
             </div>
           </div>
@@ -76,18 +76,18 @@ export default panelData;
   height: 65px;
   background-color: #c5c8ce;
   text-align: left;
-  padding: 10px 15px;
+  padding: 9px 15px;
   color: #fff;
 }
 
 .panel-title-pid {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 .panel-title-cmd {
-  margin-top: 3px;
+  margin-top: 2px;
   font-size: 12px;
   overflow: hidden;
   white-space: nowrap;
@@ -115,8 +115,8 @@ export default panelData;
 }
 
 .panel-content-metric-value {
-  font-size: 16px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  font-family: PingFangSC-Regular;
   font-weight: bold;
   margin-top: 3px;
   color: #37314d;
