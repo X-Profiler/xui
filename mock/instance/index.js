@@ -34,6 +34,12 @@ module.exports = app => {
       // add heap memory usage
       proc.heapUsage = (Math.random() * 100).toFixed(2);
 
+      // add gc
+      proc.gcUsage = (Math.random() * 100).toFixed(2);
+
+      // add rss
+      proc.rss = parseInt(Math.random() * 1024 * 1024 * 1024 * 2);
+
       return proc;
     });
     setTimeout(() => res.send({ ok: true, data: { list } }), 450);

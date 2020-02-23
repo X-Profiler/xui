@@ -45,10 +45,12 @@ const panelData = Object.assign(
         },
 
         metrics: [
-          { label: "启动时间", value: "startTimeFormat", time: true },
-          { label: "更新时间", value: "updateTimeFormat", time: true },
-          { label: "CPU 使用率", value: "cpuUsageFormat" },
-          { label: "堆内存使用率", value: "heapUsageFormat" }
+          { label: "启动时间", value: "startTimeFmt", time: true },
+          { label: "更新时间", value: "updateTimeFmt", time: true },
+          { label: "CPU 使用率", value: "cpuUsageFmt" },
+          { label: "堆内存使用率", value: "heapUsageFmt" },
+          { label: "GC 占比", value: "gcUsageFmt" },
+          { label: "物理内存占用", value: "rssFmt" }
         ]
       };
     }
