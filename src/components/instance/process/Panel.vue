@@ -10,7 +10,13 @@
     <!-- process panel -->
     <div class="panel">
       <div class="panel-title" :style="panelStyle">
-        <div class="panel-title-pid">PID: {{ processData.pid }}</div>
+        <div class="panel-title-line">
+          <div class="panel-title-pid">PID: {{ processData.pid }}</div>
+          <div class="panel-title-pid-list">
+            进程列表
+            <Icon type="ios-arrow-down" />
+          </div>
+        </div>
         <div class="panel-title-cmd" :title="processData.cmd">{{ processData.cmd }}</div>
       </div>
 
@@ -86,10 +92,23 @@ export default panelData;
   color: #fff;
 }
 
+.panel-title-line {
+  display: flex;
+}
+
 .panel-title-pid {
   font-size: 17px;
   font-weight: bold;
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  flex-grow: 1;
+}
+
+.panel-title-pid-list {
+  font-size: 12px;
+  width: 70px;
+  text-align: center;
+  margin-top: 2px;
+  cursor: pointer;
 }
 
 .panel-title-cmd {
