@@ -31,11 +31,13 @@ export default {
     },
 
     formatXprocesses(list) {
+      const cmdMap = Array.from(new Set(list.map(proc => proc.cmd)));
+
       return list.map(proc => {
         // add process line color
         const colors = this.colors;
-        const hash = Math.abs(utils.hashCode(proc.cmd));
-        proc.color = colors[hash % colors.length];
+        const index = cmdMap.indexOf(proc.cmd);
+        proc.color = colors[index % colors.length];
 
         // format time
         proc.startTimeFmt = moment(proc.startTime).format("YYYY-MM-DD HH:mm:SS");
