@@ -38,8 +38,8 @@ const tipData = Object.assign(
         processData: undefined,
         tooltipContent: [
           { key: getTag(tags.cmd), value: "cmd" },
-          { key: getTag(tags.startTime), value: "startTimeFormat" },
-          { key: getTag(tags.updateTime), value: "updateTimeFormat" }
+          { key: getTag(tags.startTime), value: "startTimeFmt" },
+          { key: getTag(tags.updateTime), value: "updateTimeFmt" }
         ]
       };
     }
