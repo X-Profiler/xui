@@ -22,9 +22,9 @@
               v-if="!metric.time"
               class="panel-content-metric-value"
             >{{ processData[metric.value] }}</div>
-            <div v-else>
-              <p class="panel-content-metric-value">{{ splitTime(processData[metric.value])[1] }}</p>
-              <p style="font-size: 12px;">{{ splitTime(processData[metric.value])[0] }}</p>
+            <div v-else class="panel-content-metric-value">
+              <p>{{ splitTime(processData[metric.value])[1] }}</p>
+              <p>{{ splitTime(processData[metric.value])[0] }}</p>
             </div>
           </div>
         </div>
