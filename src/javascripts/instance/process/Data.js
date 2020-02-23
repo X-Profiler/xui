@@ -41,9 +41,11 @@ export default {
         proc.startTimeFormat = moment(proc.startTime).format("YYYY-MM-DD HH:mm:SS");
         proc.updateTimeFormat = moment(proc.updateTime).format("YYYY-MM-DD HH:mm:SS");
 
-        // format cpu & memory usage
-        proc.cpuUsageFormat = proc.cpuUsage + "%";
-        proc.heapUsageFormat = proc.heapUsage + "%";
+        // format cpu, gc & memory usage
+        proc.cpuUsageFmt = proc.cpuUsage + "%";
+        proc.heapUsageFmt = proc.heapUsage + "%";
+        proc.gcUsageFmt = proc.gcUsage + "%";
+        proc.rssFmt = utils.formatSize(proc.rss, 1);
 
         // add line data
         this.line.setLineData(proc);
