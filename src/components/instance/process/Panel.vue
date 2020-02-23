@@ -116,15 +116,15 @@ export default panelData;
 }
 
 .panel-content-metric-key {
-  font-size: 13px;
+  font-size: 12px;
   color: #919597;
 }
 
 .panel-content-metric-value {
-  font-size: 17px;
+  font-size: 13px;
   font-family: PingFangSC-Regular;
   font-weight: bold;
   margin-top: 3px;
-  color: #37314d;
+  color: #17233d;
 }
 </style>
