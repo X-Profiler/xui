@@ -38,8 +38,8 @@ export default {
         proc.color = colors[hash % colors.length];
 
         // format time
-        proc.startTimeFormat = moment(proc.startTime).format("YYYY-MM-DD HH:mm:SS");
-        proc.updateTimeFormat = moment(proc.updateTime).format("YYYY-MM-DD HH:mm:SS");
+        proc.startTimeFmt = moment(proc.startTime).format("YYYY-MM-DD HH:mm:SS");
+        proc.updateTimeFmt = moment(proc.updateTime).format("YYYY-MM-DD HH:mm:SS");
 
         // format cpu, gc & memory usage
         proc.cpuUsageFmt = proc.cpuUsage + "%";
