@@ -46,6 +46,12 @@ module.exports = app => {
       // add timers
       proc.timers = 1 + parseInt(Math.random() * 200);
 
+      // add tcp handles
+      proc.tcpHandles = parseInt(Math.random() * 3800);
+
+      // add udp handles
+      proc.udpHandles = parseInt(Math.random() * 100);
+
       return proc;
     });
     setTimeout(() => res.send({ ok: true, data: { list } }), 450);

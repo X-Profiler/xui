@@ -52,7 +52,9 @@ const panelData = Object.assign(
           { label: "GC 占比", value: "gcUsageFmt" },
           { label: "物理内存占用", value: "rssFmt" },
           { label: "UV 活跃句柄", value: "uvHandles" },
-          { label: "定时器数量", value: "timers" }
+          { label: "定时器数量", value: "timers" },
+          { label: "TCP 句柄数", value: "tcpHandles" },
+          { label: "UDP 句柄数", value: "udpHandles" }
         ]
       };
     }
