@@ -1,5 +1,5 @@
 <template>
-  <div ref="tooltip" class="tooltip">
+  <div ref="tooltip" class="tooltip box-shadow">
     <!-- title -->
     <slot name="header"></slot>
 
@@ -65,10 +65,7 @@ export default {
   top: 0;
   z-index: -9999;
   min-width: 300px;
-  max-width: 450px;
+  max-width: 400px;
   display: none;
-  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
-  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
 }
 </style>
