@@ -9,7 +9,9 @@
         :class="'nav-selection' + (nav.active ? ' active' :'')"
         :style="'text-align: center;' + (nav.value !== 'docs' ? 'min-width: 100px;' : '')"
         :key="index"
-        @click="activeNav(index)"
+        @click="activeNav(nav)"
+        @mouseover="mouseover(nav)"
+        @mouseout="mouseout(nav)"
       >
         <span v-if="nav.label !== 'user'">{{ nav.label }}</span>
         <span v-else>{{ user.name }}</span>
