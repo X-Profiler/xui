@@ -4,6 +4,7 @@ import { http } from "../config";
 import * as utils from "../lib/utils";
 
 const cache = { user: { name: "" } };
+const menuFlag = "MAIN_FLAG";
 
 export default {
   created() {
@@ -43,29 +44,42 @@ export default {
       }
     },
 
-    activeNav(index) {
-      const nav = this.navActions[index];
-      if (nav) {
-        if (["console"].includes(nav.value)) {
-          this.resetActiveNav();
-          nav.active = true;
-          const target = `/${nav.value}`;
-          if (this.$route.path !== target) {
-            const query = {};
-            // go to /console
-            if (nav.value === "console") {
-              if (this.owner) {
-                query.type = "myApps";
-              } else {
-                query.type = "joinedApps";
-              }
+    activeNav(nav) {
+      if (["console"].includes(nav.value)) {
+        this.resetActiveNav();
+        nav.active = true;
+        const target = `/${nav.value}`;
+        if (this.$route.path !== target) {
+          const query = {};
+          // go to /console
+          if (nav.value === "console") {
+            if (this.owner) {
+              query.type = "myApps";
+            } else {
+              query.type = "joinedApps";
             }
-            this.$router.push({ path: target, query });
           }
-        } else if (nav.href) {
-          const { href } = this.$router.resolve({ path: nav.href });
-          window.open(href, "_blank");
+          this.$router.push({ path: target, query });
         }
+      } else if (nav.href) {
+        const { href } = this.$router.resolve({ path: nav.href });
+        window.open(href, "_blank");
+      }
+    },
+
+    mouseover(nav) {
+      if (nav.active) {
+        nav[menuFlag] = true;
+      } else {
+        nav.active = true;
+      }
+    },
+
+    mouseout(nav) {
+      if (nav[menuFlag]) {
+        delete nav[menuFlag];
+      } else {
+        nav.active = false;
       }
     }
   },
