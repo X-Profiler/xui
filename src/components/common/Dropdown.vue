@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="panel-title-pid-list">
+    <div class="dropdown-list">
       {{ title }}
-      <div class="panel-title-pid-icon-rotate">
-        <Icon class="panel-title-pid-icon-translate" type="ios-arrow-down" />
+      <div class="dropdown-icon-rotate">
+        <Icon class="dropdown-icon-translate" type="ios-arrow-down" />
       </div>
     </div>
   </div>
@@ -18,21 +18,21 @@ export default {
 </script>
 
 <style scoped>
-.panel-title-pid-list {
+.dropdown-list {
   text-align: center;
   cursor: pointer;
   display: flex;
 }
 
-.panel-title-pid-list:hover .panel-title-pid-icon-translate {
+.dropdown-list:hover .dropdown-icon-translate {
   transform: translateY(1px);
 }
 
-.panel-title-pid-icon-rotate {
+.dropdown-icon-rotate {
   margin-left: 3px;
 }
 
-.panel-title-pid-list:hover .panel-title-pid-icon-rotate {
+.dropdown-list:hover .dropdown-icon-rotate {
   transform: rotate(180deg);
   transition: transform 0.1s ease-out;
 }

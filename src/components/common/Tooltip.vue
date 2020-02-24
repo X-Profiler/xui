@@ -67,8 +67,8 @@ export default {
   min-width: 300px;
   max-width: 450px;
   display: none;
-  -webkit-box-shadow: #808695 0px 0px 1px;
-  -moz-box-shadow: #808695 0px 0px 1px;
-  box-shadow: #808695 0px 0px 1px;
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
 }
 </style>
