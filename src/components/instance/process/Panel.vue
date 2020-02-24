@@ -12,7 +12,20 @@
       <div class="panel-title" :style="panelStyle">
         <div class="panel-title-line">
           <div class="panel-title-pid">PID: {{ processData.pid }}</div>
-          <x-dropdown class="panel-title-dropdown" title="进程列表"></x-dropdown>
+          <x-dropdown class="panel-title-dropdown" title="进程列表" :right="35">
+            <template slot="content">
+              <div
+                class="panel-title-dropdown-li"
+                v-for="(proc, index) in processes"
+                :key="index"
+                @click="selectPid(index)"
+              >
+                <div class="panel-title-dropdown-dot" :style="'background-color: '+ proc.color"></div>
+                <div class="panel-title-dropdown-pid">{{ proc.pid }}</div>
+                <div class="panel-title-dropdown-cmd" :title="proc.cmd">{{ proc.cmd }}</div>
+              </div>
+            </template>
+          </x-dropdown>
         </div>
         <div class="panel-title-cmd" :title="processData.cmd">{{ processData.cmd }}</div>
       </div>
@@ -42,6 +55,9 @@ import panelModule from "../../../javascripts/instance/process/Panel";
 
 const panelData = Object.assign(
   {
+    props: {
+      processes: Array
+    },
     components: {
       "x-dropdown": xDropdown
     },
@@ -96,6 +112,36 @@ export default panelData;
   font-size: 12px;
   width: 70px;
   margin-top: 2px;
+}
+
+.panel-title-dropdown-li {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 3px 10px;
+}
+
+.panel-title-dropdown-li:hover {
+  background-color: #eff1f4;
+}
+
+.panel-title-dropdown-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.panel-title-dropdown-pid {
+  margin-left: 10px;
+  font-weight: bold;
+  width: 50px;
+}
+
+.panel-title-dropdown-cmd {
+  width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .panel-title-line {

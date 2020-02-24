@@ -35,3 +35,9 @@
 .detail-content {
   margin: 10px 20px;
 }
+
+.box-shadow {
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
+}

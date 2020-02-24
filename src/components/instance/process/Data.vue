@@ -9,7 +9,12 @@
 
       <!-- show process panel -->
       <transition name="slide-noward">
-        <x-panel ref="panel" v-show="!xProcessesLoading"></x-panel>
+        <x-panel
+          ref="panel"
+          v-show="!xProcessesLoading"
+          :processes="xProcesses"
+          @selectPid="selectPid"
+        ></x-panel>
       </transition>
     </div>
 

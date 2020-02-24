@@ -9,6 +9,10 @@ export default {
     splitTime(time) {
       if (!time) return ["", ""];
       return time.split(" ");
+    },
+
+    selectPid(index) {
+      this.$emit("selectPid", index);
     }
   },
 
@@ -19,7 +23,7 @@ export default {
 
       // add color
       if (processData.color) {
-        style += "background-color: " + processData.color + ";"
+        style += "background-color: " + processData.color + ";";
       }
 
       return style;
