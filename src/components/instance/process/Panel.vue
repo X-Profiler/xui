@@ -12,10 +12,7 @@
       <div class="panel-title" :style="panelStyle">
         <div class="panel-title-line">
           <div class="panel-title-pid">PID: {{ processData.pid }}</div>
-          <div class="panel-title-pid-list">
-            进程列表
-            <Icon class="panel-title-pid-icon" type="ios-arrow-down" />
-          </div>
+          <x-dropdown class="panel-title-dropdown" title="进程列表"></x-dropdown>
         </div>
         <div class="panel-title-cmd" :title="processData.cmd">{{ processData.cmd }}</div>
       </div>
@@ -40,16 +37,19 @@
 </template>
 
 <script>
+import xDropdown from "../../common/Dropdown";
 import panelModule from "../../../javascripts/instance/process/Panel";
 
 const panelData = Object.assign(
   {
+    components: {
+      "x-dropdown": xDropdown
+    },
     data() {
       return {
         processData: {
           pid: "未知"
         },
-
         metrics: [
           { label: "启动时间", value: "startTimeFmt", time: true },
           { label: "更新时间", value: "updateTimeFmt", time: true },
@@ -92,6 +92,12 @@ export default panelData;
   color: #fff;
 }
 
+.panel-title-dropdown {
+  font-size: 12px;
+  width: 70px;
+  margin-top: 2px;
+}
+
 .panel-title-line {
   display: flex;
 }
@@ -101,19 +107,6 @@ export default panelData;
   font-weight: bold;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   flex-grow: 1;
-}
-
-.panel-title-pid-list {
-  font-size: 12px;
-  width: 70px;
-  text-align: center;
-  margin-top: 2px;
-  cursor: pointer;
-}
-
-.panel-title-pid-list:hover .panel-title-pid-icon {
-  transform: rotate(180deg) translateY(3px);
-  transition: all 0.1s ease-out;
 }
 
 .panel-title-cmd {
