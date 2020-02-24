@@ -1,5 +1,7 @@
 "use strict";
 
+const menuFlag = "MAIN_FLAG";
+
 export default {
   created() {
     this.activeMenuGroup(this.active);
@@ -21,14 +23,31 @@ export default {
     },
 
     changeMenu(menu) {
-      if (menu === this.active) {
+      if (menu.value === this.active) {
         return;
       }
-      this.$emit("menuChanged", menu);
+      menu[menuFlag] = true;
+      this.$emit("menuChanged", menu.value);
     },
 
     checkAuth(menu) {
       return menu.value !== "setting" || this.owner;
+    },
+
+    mouseover(menu) {
+      if (menu.active) {
+        menu[menuFlag] = true;
+      } else {
+        menu.active = true;
+      }
+    },
+
+    mouseout(menu) {
+      if (menu[menuFlag]) {
+        delete menu[menuFlag];
+      } else {
+        menu.active = false;
+      }
     }
   },
 

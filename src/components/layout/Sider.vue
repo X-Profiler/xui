@@ -5,7 +5,9 @@
         v-for="(menu, index) in menuGroup"
         :key="index"
         :class="'menu' + (checkAuth(menu) && menu.active ? ' active':'')"
-        @click="changeMenu(menu.value)"
+        @click="changeMenu(menu)"
+        @mouseover="mouseover(menu)"
+        @mouseout="mouseout(menu)"
       >
         <transition name="slide-noward">
           <div v-show="checkAuth(menu)">
