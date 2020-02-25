@@ -30,6 +30,7 @@
         <div class="panel-title-cmd" :title="processData.cmd">{{ processData.cmd }}</div>
       </div>
 
+      <!-- panel metrics -->
       <div class="panel-content">
         <div class="panel-content-metric">
           <div v-for="(metric, index) in metrics" :key="index" class="panel-content-metric-group">
@@ -45,6 +46,10 @@
           </div>
         </div>
       </div>
+
+      <!-- process detail -->
+
+      <!-- process actions -->
     </div>
   </div>
 </template>
@@ -118,7 +123,7 @@ export default panelData;
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 3px 10px;
+  padding: 3px 15px;
 }
 
 .panel-title-dropdown-li:hover {
