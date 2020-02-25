@@ -30,8 +30,8 @@
         <div class="panel-title-cmd" :title="processData.cmd">{{ processData.cmd }}</div>
       </div>
 
-      <!-- panel metrics -->
       <div class="panel-content">
+        <!-- panel metrics -->
         <div class="panel-content-metric">
           <div v-for="(metric, index) in metrics" :key="index" class="panel-content-metric-group">
             <div class="panel-content-metric-key">{{ metric.label }}</div>
@@ -44,12 +44,26 @@
               <p>{{ splitTime(processData[metric.value])[0] }}</p>
             </div>
           </div>
+
+          <!-- process detail -->
+          <div class="panel-chapter">进程详细信息</div>
+          <div class="panel-long-button">
+            <Button size="small" type="info" ghost long>
+              <div class="panel-button-value">查看 X-Profiler 插件状态</div>
+            </Button>
+          </div>
+          <div class="panel-button">
+            <div class="panel-normal-button" v-for="(button, index) in detailButtons" :key="index">
+              <Button size="small" type="info" long>
+                <div class="panel-button-value">{{ button.label }}</div>
+              </Button>
+            </div>
+          </div>
+
+          <!-- process actions -->
+          <div class="panel-chapter">进程详细信息</div>
         </div>
       </div>
-
-      <!-- process detail -->
-
-      <!-- process actions -->
     </div>
   </div>
 </template>
@@ -82,6 +96,10 @@ const panelData = Object.assign(
           { label: "定时器数量", value: "timers" },
           { label: "TCP 句柄数", value: "tcpHandles" },
           { label: "UDP 句柄数", value: "udpHandles" }
+        ],
+        detailButtons: [
+          { label: "数据趋势", value: "processTrend" },
+          { label: "保存数据", value: "saveProcessData" }
         ]
       };
     }
@@ -94,7 +112,7 @@ export default panelData;
 
 <style scoped>
 .check-button {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .check-button-icon {
@@ -177,6 +195,16 @@ export default panelData;
   background-color: #f9fafc;
 }
 
+.panel-chapter {
+  margin-left: 15px;
+  font-family: PingFangSC-Regular, "Titillium Web", "Helvetica Neue", Helvetica,
+    Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei",
+    sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
 .panel-content-metric {
   display: flex;
   flex-wrap: wrap;
@@ -198,5 +226,28 @@ export default panelData;
   font-weight: bold;
   margin-top: 3px;
   color: #17233d;
+}
+
+.panel-normal-button {
+  width: 50%;
+  margin-bottom: 15px;
+  width: 105px;
+}
+
+.panel-long-button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 0 15px;
+}
+
+.panel-button {
+  width: 100%;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel-button-value {
+  font-size: 13px;
 }
 </style>
