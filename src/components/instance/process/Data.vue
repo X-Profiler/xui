@@ -8,7 +8,7 @@
       </div>
 
       <!-- show process panel -->
-      <transition name="slide-noward">
+      <transition name="slide">
         <x-panel
           ref="panel"
           v-show="!xProcessesLoading"
@@ -30,7 +30,7 @@
         </div>
 
         <!-- show process line -->
-        <transition name="slide-noward">
+        <transition name="slide-rightward">
           <x-line
             ref="line"
             v-show="!xProcessesLoading"
@@ -95,7 +95,7 @@ export default processData;
 }
 
 .panel {
-  width: 255px;
+  width: 260px;
 }
 
 .data {
