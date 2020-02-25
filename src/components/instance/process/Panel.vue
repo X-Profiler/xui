@@ -15,7 +15,7 @@
           <x-dropdown class="panel-title-dropdown" title="进程列表" :right="35">
             <template slot="content">
               <div
-                class="panel-title-dropdown-li"
+                :class="'panel-title-dropdown-li' + (proc.pid === processData.pid ? ' selected':'')"
                 v-for="(proc, index) in processes"
                 :key="index"
                 @click="selectPid(index)"
@@ -127,6 +127,10 @@ export default panelData;
 }
 
 .panel-title-dropdown-li:hover {
+  background-color: #eff1f4;
+}
+
+.panel-title-dropdown-li.selected {
   background-color: #eff1f4;
 }
 
