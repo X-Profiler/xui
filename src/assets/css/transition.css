@@ -3,6 +3,7 @@
 .slide-noward-enter-active,
 .slide-downward-enter-active,
 .slide-upward-enter-active,
+.slide-rightward-enter-active,
 .slide-enter-active {
   transition: all 0.3s ease;
 }
@@ -24,6 +25,11 @@
 
 .slide-downward-enter {
   transform: translateY(-5px);
+  opacity: 0;
+}
+
+.slide-rightward-enter {
+  transform: translateX(5px);
   opacity: 0;
 }
 
@@ -55,6 +61,7 @@
 .slide-downward-leave,
 .slide-noward-leave,
 .slide-upward-leave,
+.slide-rightward-leave,
 .slide-router-leave,
 .slide-leave {
   display: none;
