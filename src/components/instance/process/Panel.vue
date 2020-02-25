@@ -61,7 +61,19 @@
           </div>
 
           <!-- process actions -->
-          <div class="panel-chapter">进程详细信息</div>
+          <div class="panel-chapter">抓取性能数据</div>
+          <div class="panel-button">
+            <div
+              class="panel-normal-button"
+              v-for="(button, index) in actionButtons"
+              :key="index"
+              :style="index === actionButtons.length - 1 && index % 2 === 0 ? 'width: 100%':''"
+            >
+              <Button size="small" type="info" long>
+                <div class="panel-button-value">{{ button.label }}</div>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -100,6 +112,13 @@ const panelData = Object.assign(
         detailButtons: [
           { label: "数据趋势", value: "processTrend" },
           { label: "保存数据", value: "saveProcessData" }
+        ],
+        actionButtons: [
+          { label: "CPU Profile", value: "cpuprofile" },
+          { label: "堆快照", value: "heapsnapshot" },
+          { label: "Heap Profile", value: "heapprofile" },
+          { label: "GC 追踪", value: "gcprofile" },
+          { label: "Node.js 实时诊断", value: "diag" }
         ]
       };
     }
@@ -245,6 +264,7 @@ export default panelData;
   padding: 0 15px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .panel-button-value {
