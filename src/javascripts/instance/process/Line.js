@@ -77,7 +77,7 @@ export default {
       const scaleY = 1.3;
       lineData.selectedStyle = `box-shadow: 0 0 0 2px ${lineData.color.replace(")", ", 0.4)")};`
         + `-webkit-transform: scaleY(${scaleY});transform: scaleY(${scaleY});`
-        + "transition: box-shadow .1s"
+        + "transition: box-shadow .1s";
     },
 
     updateSelectedProcess(lineData) {
@@ -98,12 +98,12 @@ export default {
       this.setBoxShadow(data);
 
       // show tooltip
-      this.tip.show(data, this.getLineWidth(), event)
+      this.tip.show(data, this.getLineWidth(), event);
     },
 
     mousemove(data, event) {
       // show tooltip
-      this.tip.show(data, this.getLineWidth(), event)
+      this.tip.show(data, this.getLineWidth(), event);
     },
 
     mouseout() {
@@ -114,4 +114,4 @@ export default {
       this.tip.remove();
     }
   },
-}
+};
