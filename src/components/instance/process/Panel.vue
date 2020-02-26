@@ -12,7 +12,7 @@
       <div class="panel-title" :style="panelStyle">
         <div class="panel-title-line">
           <div class="panel-title-pid">PID: {{ processData.pid }}</div>
-          <x-dropdown class="panel-title-dropdown" title="进程列表" :right="35">
+          <x-dropdown class="panel-title-dropdown" title="进程列表">
             <template slot="content">
               <div
                 :class="'panel-title-dropdown-li' + (proc.pid === processData.pid ? ' selected':'')"
