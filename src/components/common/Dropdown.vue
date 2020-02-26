@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <div class="dropdown-content box-shadow" :style="contentStyle">
+    <div class="dropdown-content box-shadow">
       <slot name="content"></slot>
     </div>
   </div>
@@ -16,25 +16,21 @@
 <script>
 export default {
   props: {
-    title: String,
-    right: Number
-  },
-
-  computed: {
-    contentStyle() {
-      let style = "";
-
-      if (this.right) {
-        style += "right: " + this.right + "px;";
-      }
-
-      return style;
-    }
+    title: String
   }
 };
 </script>
 
 <style scoped>
+.dropdown {
+  position: relative;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  pointer-events: inherit;
+  transform: translateY(6px);
+}
 
 .dropdown-list {
   text-align: center;
@@ -63,6 +59,7 @@ export default {
   background-color: #fff;
   pointer-events: none;
   position: absolute;
+  right: 0;
   opacity: 0;
   border-radius: 4px;
   padding: 10px 0;
@@ -81,11 +78,5 @@ export default {
   position: absolute;
   top: -5px;
   right: 20px;
-}
-
-.dropdown:hover .dropdown-content {
-  opacity: 1;
-  pointer-events: inherit;
-  transform: translateY(6px);
 }
 </style>
