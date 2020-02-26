@@ -1,5 +1,11 @@
 'use strict';
 
+const xprofiler = require('xprofiler');
+xprofiler.start({
+  patch_http: true,
+  log_type: 1
+});
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
