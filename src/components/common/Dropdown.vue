@@ -35,18 +35,19 @@ export default {
 </script>
 
 <style scoped>
+
 .dropdown-list {
   text-align: center;
   cursor: pointer;
   display: flex;
 }
 
-.dropdown:hover .dropdown-icon-translate {
-  transform: translateY(1px);
-}
-
 .dropdown-icon-rotate {
   margin-left: 3px;
+}
+
+.dropdown:hover .dropdown-icon-translate {
+  transform: translateY(1px);
 }
 
 .dropdown:hover .dropdown-icon-rotate {
