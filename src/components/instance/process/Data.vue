@@ -22,7 +22,7 @@
     <div class="data">
       <!-- process line -->
       <div class="process-line-body">
-        <div class="process-line-title">{{ lineTitle }}</div>
+        <div class="process-body-title">{{ lineTitle }}</div>
 
         <!-- loading -->
         <div style="text-align: center">
@@ -39,6 +39,21 @@
           ></x-line>
         </transition>
       </div>
+
+      <!-- process sorted catalogue-->
+      <div class="process-catalogue-body">
+        <div class="process-body-title">进程指标排序</div>
+
+        <!-- loading -->
+        <div style="text-align: center;">
+          <x-loading :loading="xProcessesLoading" :top="10" size="small" type="dot"></x-loading>
+        </div>
+
+        <!-- show sorted catalogue -->
+        <transition name="slide-rightward">
+          <x-catalogue v-show="!xProcessesLoading" :processes="xProcesses" @selectPid="selectPid"></x-catalogue>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -50,6 +65,7 @@ import processModule from "../../../javascripts/instance/process/Data";
 import xLoading from "../../common/Loading";
 import xLine from "./Line";
 import xPanel from "./Panel";
+import xCatalogue from "./Catalogue";
 
 const processData = Object.assign(
   {
@@ -60,7 +76,8 @@ const processData = Object.assign(
     components: {
       "x-loading": xLoading,
       "x-line": xLine,
-      "x-panel": xPanel
+      "x-panel": xPanel,
+      "x-catalogue": xCatalogue
     },
     data() {
       return {
@@ -109,7 +126,13 @@ export default processData;
   border-bottom: 1px solid #f8f8f9;
 }
 
-.process-line-title {
+.process-catalogue-body {
+  margin-top: 15px;
+  border-bottom: 1px solid #f8f8f9;
+  min-height: 60px;
+}
+
+.process-body-title {
   font-weight: bold;
 }
 </style>
