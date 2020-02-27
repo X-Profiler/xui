@@ -44,7 +44,12 @@
       <div class="process-catalogue-body">
         <!-- show sorted catalogue -->
         <transition name="slide-rightward">
-          <x-catalogue v-show="!xProcessesLoading" :processes="xProcesses" @selectPid="selectPid"></x-catalogue>
+          <x-catalogue
+            ref="catalogue"
+            v-show="!xProcessesLoading"
+            :processes="xProcesses"
+            @selectPid="selectPid"
+          ></x-catalogue>
         </transition>
       </div>
     </div>

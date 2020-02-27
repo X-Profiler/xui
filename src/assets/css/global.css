@@ -41,3 +41,18 @@
   -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.28);
 }
+
+.x-dropdown-li {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 15px;
+}
+
+.x-dropdown-li:hover {
+  background-color: #eff1f4;
+}
+
+.x-dropdown-li.selected {
+  background-color: #eff1f4;
+}
