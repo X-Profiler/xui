@@ -48,12 +48,14 @@ export default catalogueData;
 .tag {
   height: 26px;
   font-size: 13px;
-  padding: 3px 7px 2px 19px;
+  padding: 3px 7px 2px 20px;
   background-color: rgb(42, 125, 194);
   color: white;
   border-radius: 4px;
   border-top-left-radius: 26px;
   border-bottom-left-radius: 26px;
+  border-top-right-radius: 26px;
+  border-bottom-right-radius: 26px;
   margin-right: 40px;
   margin-top: 6px;
   user-select: none;
