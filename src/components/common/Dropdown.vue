@@ -1,9 +1,9 @@
 <template>
   <div class="dropdown">
     <div class="dropdown-list">
-      {{ title }}
-      <div class="dropdown-icon-rotate">
-        <Icon class="dropdown-icon-translate" type="ios-arrow-down" />
+      <div style="padding-bottom: 6px;">{{ title }}</div>
+      <div class="dropdown-icon-translate">
+        <Icon class="dropdown-icon-rotate" type="ios-arrow-down" />
       </div>
     </div>
 
@@ -43,7 +43,7 @@ export default {
 }
 
 .dropdown:hover .dropdown-icon-translate {
-  transform: translateY(1px);
+  transform: translateY(-3px);
 }
 
 .dropdown:hover .dropdown-icon-rotate {
@@ -60,6 +60,7 @@ export default {
   pointer-events: none;
   position: absolute;
   right: 0;
+  top: 18px;
   opacity: 0;
   border-radius: 4px;
   padding: 10px 0;
