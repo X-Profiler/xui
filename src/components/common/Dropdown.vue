@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <div class="dropdown-content box-shadow">
+    <div :class="'dropdown-content box-shadow ' + posit">
       <slot name="content"></slot>
     </div>
   </div>
@@ -16,7 +16,14 @@
 <script>
 export default {
   props: {
-    title: String
+    title: String,
+    position: String
+  },
+
+  computed: {
+    posit() {
+      return this.position || "right";
+    }
   }
 };
 </script>
@@ -59,7 +66,6 @@ export default {
   background-color: #fff;
   pointer-events: none;
   position: absolute;
-  right: 0;
   top: 18px;
   opacity: 0;
   border-radius: 4px;
@@ -67,6 +73,14 @@ export default {
   transition: all 0.2s ease;
   min-width: 100px;
   z-index: 1000;
+}
+
+.dropdown-content.right {
+  right: 0;
+}
+
+.dropdown-content.left {
+  left: 0;
 }
 
 .dropdown-content::before {
@@ -78,6 +92,17 @@ export default {
   transform: rotate(45deg);
   position: absolute;
   top: -5px;
+}
+
+.dropdown-content.right::before {
   right: 20px;
+}
+
+.dropdown-content.left::before {
+  left: 20px;
+}
+
+.dropdown-content.center::before {
+  left: calc(50% - 5px);
 }
 </style>

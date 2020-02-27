@@ -15,7 +15,7 @@
           <x-dropdown class="panel-title-dropdown" title="进程列表">
             <template slot="content">
               <div
-                :class="'panel-title-dropdown-li' + (proc.pid === processData.pid ? ' selected':'')"
+                :class="'x-dropdown-li' + (proc.pid === processData.pid ? ' selected':'')"
                 v-for="(proc, index) in processes"
                 :key="index"
                 @click="selectPid(index)"
@@ -154,21 +154,6 @@ export default panelData;
   font-size: 13px;
   width: 70px;
   margin-top: 2px;
-}
-
-.panel-title-dropdown-li {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  padding: 5px 15px;
-}
-
-.panel-title-dropdown-li:hover {
-  background-color: #eff1f4;
-}
-
-.panel-title-dropdown-li.selected {
-  background-color: #eff1f4;
 }
 
 .panel-title-dropdown-dot {

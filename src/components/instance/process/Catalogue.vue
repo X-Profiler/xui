@@ -2,7 +2,21 @@
   <div class="catalogue">
     <div style="position: relative" v-for="(catg, index) in catalogues" :key="index">
       <div class="tag">
-        <x-dropdown :title="catg.label"></x-dropdown>
+        <x-dropdown :title="catg.label" position="left">
+          <template slot="content">
+            <div
+              v-for="(proc, index) in sort(catg.value)"
+              :class="'x-dropdown-li' + (proc.pid === processData.pid ? ' selected':'')"
+              :key="index"
+              @click="selectPid(proc)"
+            >
+              <div class="catalogue-dropdown-dot" :style="'background-color: '+ proc.color"></div>
+              <div class="catalogue-dropdown-pid">{{ proc.pid }}:</div>
+              <div class="catalogue-dropdown-fmt">{{ proc[catg.fmt] }}</div>
+              <div class="catalogue-dropdown-cmd" :title="proc.cmd">{{ proc.cmd }}</div>
+            </div>
+          </template>
+        </x-dropdown>
       </div>
     </div>
   </div>
@@ -14,19 +28,23 @@ import catalogueModule from "../../../javascripts/instance/process/Catalogue";
 
 const catalogueData = Object.assign(
   {
+    props: {
+      processes: Array
+    },
     components: {
       "x-dropdown": xDropdown
     },
     data() {
       return {
+        processData: {},
         catalogues: [
-          { label: "CPU", value: "cpu" },
-          { label: "堆内存", value: "heapMemory" },
-          { label: "物理内存 (RSS)", value: "rss" },
-          { label: "GC", value: "gc" },
-          { label: "定时器数量", value: "timer" },
-          { label: "TCP 连接数", value: "tcp" },
-          { label: "UDP 连接数", value: "tcp" }
+          { label: "CPU", value: "cpu", fmt: "cpuUsageFmt" },
+          { label: "堆内存", value: "heapMemory", fmt: "heapUsageFmt" },
+          { label: "物理内存 (RSS)", value: "rss", fmt: "rssFmt" },
+          { label: "GC", value: "gc", fmt: "gcUsageFmt" },
+          { label: "定时器数量", value: "timer", fmt: "timers" },
+          { label: "TCP 连接数", value: "tcp", fmt: "tcpHandles" },
+          { label: "UDP 连接数", value: "udp", fmt: "udpHandles" }
         ]
       };
     }
@@ -70,5 +88,29 @@ export default catalogueData;
   height: 6px;
   background-color: #fff;
   border-radius: 50%;
+}
+
+.catalogue-dropdown-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.catalogue-dropdown-pid {
+  margin-left: 12px;
+  font-weight: bold;
+  width: 60px;
+}
+
+.catalogue-dropdown-fmt {
+  font-weight: bold;
+  width: 80px;
+}
+
+.catalogue-dropdown-cmd {
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

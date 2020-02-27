@@ -18,6 +18,7 @@ export default {
   mounted() {
     this.line = this.$refs.line;
     this.panel = this.$refs.panel;
+    this.catalogue = this.$refs.catalogue;
   },
 
   beforeDestroy() {
@@ -112,6 +113,9 @@ export default {
 
       // panel
       this.panel.updateSelectedProcess(procData);
+
+      // catalogue
+      this.catalogue.updateSelectedProcess(procData);
     },
 
     agentId() {
