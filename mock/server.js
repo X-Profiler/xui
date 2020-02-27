@@ -2,8 +2,7 @@
 
 const xprofiler = require('xprofiler');
 xprofiler.start({
-  patch_http: true,
-  log_type: 1
+  patch_http: true
 });
 
 const express = require('express');

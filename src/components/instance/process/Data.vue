@@ -42,13 +42,6 @@
 
       <!-- process sorted catalogue-->
       <div class="process-catalogue-body">
-        <div class="process-body-title">进程指标排序</div>
-
-        <!-- loading -->
-        <div style="text-align: center;">
-          <x-loading :loading="xProcessesLoading" :top="10" size="small" type="dot"></x-loading>
-        </div>
-
         <!-- show sorted catalogue -->
         <transition name="slide-rightward">
           <x-catalogue v-show="!xProcessesLoading" :processes="xProcesses" @selectPid="selectPid"></x-catalogue>
@@ -127,9 +120,8 @@ export default processData;
 }
 
 .process-catalogue-body {
-  margin-top: 15px;
+  margin-top: 5px;
   border-bottom: 1px solid #f8f8f9;
-  min-height: 60px;
 }
 
 .process-body-title {

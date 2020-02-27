@@ -22,8 +22,8 @@ const catalogueData = Object.assign(
         catalogues: [
           { label: "CPU", value: "cpu" },
           { label: "堆内存", value: "heapMemory" },
-          { label: "GC", value: "gc" },
           { label: "物理内存 (RSS)", value: "rss" },
+          { label: "GC", value: "gc" },
           { label: "定时器数量", value: "timer" },
           { label: "TCP 连接数", value: "tcp" },
           { label: "UDP 连接数", value: "tcp" }
@@ -41,23 +41,23 @@ export default catalogueData;
 .catalogue {
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   /* justify-content: space-between; */
 }
 
 .tag {
-  height: 26px;
+  height: 25px;
   font-size: 13px;
   padding: 3px 7px 2px 20px;
   background-color: rgb(42, 125, 194);
   color: white;
   border-radius: 4px;
-  border-top-left-radius: 26px;
-  border-bottom-left-radius: 26px;
-  border-top-right-radius: 26px;
-  border-bottom-right-radius: 26px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   margin-right: 40px;
-  margin-top: 6px;
+  margin-top: 7px;
   user-select: none;
 }
 
