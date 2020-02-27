@@ -151,7 +151,7 @@ export default panelData;
 }
 
 .panel-title-dropdown {
-  font-size: 12px;
+  font-size: 13px;
   width: 70px;
   margin-top: 2px;
 }
@@ -160,7 +160,7 @@ export default panelData;
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 3px 15px;
+  padding: 5px 15px;
 }
 
 .panel-title-dropdown-li:hover {
@@ -178,13 +178,13 @@ export default panelData;
 }
 
 .panel-title-dropdown-pid {
-  margin-left: 10px;
+  margin-left: 12px;
   font-weight: bold;
-  width: 50px;
+  width: 60px;
 }
 
 .panel-title-dropdown-cmd {
-  width: 260px;
+  width: 300px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -202,7 +202,7 @@ export default panelData;
 }
 
 .panel-title-cmd {
-  margin-top: 2px;
+  margin-top: 1px;
   font-size: 12px;
   overflow: hidden;
   white-space: nowrap;

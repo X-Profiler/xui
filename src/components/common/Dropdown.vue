@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <div class="dropdown-list">
-      <div style="padding-bottom: 6px;">{{ title }}</div>
+      <div style="padding-bottom: 6px;font-size: 12px;">{{ title }}</div>
       <div class="dropdown-icon-translate">
         <Icon class="dropdown-icon-rotate" type="ios-arrow-down" />
       </div>
@@ -63,7 +63,7 @@ export default {
   top: 18px;
   opacity: 0;
   border-radius: 4px;
-  padding: 10px 0;
+  padding: 15px 0;
   transition: all 0.2s ease;
   min-width: 100px;
   z-index: 1000;

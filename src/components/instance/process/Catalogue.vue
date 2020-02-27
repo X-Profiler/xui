@@ -1,8 +1,8 @@
 <template>
   <div class="catalogue">
     <div style="position: relative" v-for="(catg, index) in catalogues" :key="index">
-      <div class="tag dropdown-list">
-        <x-dropdown class="panel-title-dropdown" :title="catg.label"></x-dropdown>
+      <div class="tag">
+        <x-dropdown :title="catg.label"></x-dropdown>
       </div>
     </div>
   </div>
