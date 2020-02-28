@@ -2,7 +2,7 @@
   <div class="catalogue">
     <div style="position: relative" v-for="(catg, index) in catalogues" :key="index">
       <div class="tag">
-        <x-dropdown :title="catg.label" position="left">
+        <x-dropdown style="padding-left: 17px;" :title="catg.label" position="left">
           <template slot="content">
             <div
               v-for="(proc, index) in sort(catg.value)"
@@ -13,7 +13,7 @@
               <div class="catalogue-dropdown-dot" :style="'background-color: '+ proc.color"></div>
               <div class="catalogue-dropdown-pid">{{ proc.pid }}:</div>
               <div class="catalogue-dropdown-fmt">{{ proc[catg.fmt] }}</div>
-              <div class="catalogue-dropdown-cmd" :title="proc.cmd">{{ proc.cmd }}</div>
+              <!-- <div class="catalogue-dropdown-cmd" :title="proc.cmd">{{ proc.cmd }}</div> -->
             </div>
           </template>
         </x-dropdown>
@@ -66,7 +66,7 @@ export default catalogueData;
 .tag {
   height: 25px;
   font-size: 13px;
-  padding: 3px 7px 2px 20px;
+  padding: 3px 7px 2px 3px;
   background-color: rgb(42, 125, 194);
   color: white;
   border-radius: 4px;
