@@ -5,7 +5,7 @@ import { tags } from "../config";
 
 const CancelToken = axios.CancelToken;
 
-let lang = "ch";
+let lang = "en";
 
 export const failedCode = -99999;
 

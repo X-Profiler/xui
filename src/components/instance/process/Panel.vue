@@ -3,7 +3,8 @@
     <!-- check running process -->
     <div style="text-align:right">
       <Button class="check-button" type="info" size="small">
-        <Icon type="md-apps" class="check-button-icon" />查看运行中的 Node.js 进程
+        <Icon type="md-apps" class="check-button-icon" />
+        {{ checkProcessesTag }}
       </Button>
     </div>
 
@@ -12,7 +13,7 @@
       <div class="panel-title" :style="panelStyle">
         <div class="panel-title-line">
           <div class="panel-title-pid">PID: {{ processData.pid }}</div>
-          <x-dropdown class="panel-title-dropdown" title="进程列表">
+          <x-dropdown class="panel-title-dropdown" :title="processListTag">
             <template slot="content">
               <div
                 :class="'x-dropdown-li' + (proc.pid === processData.pid ? ' selected':'')"
@@ -38,9 +39,9 @@
             <div
               v-if="!metric.time"
               class="panel-content-metric-value"
-            >{{ processData[metric.value] }}</div>
+            >{{ processData[metric.value] || '-' }}</div>
             <div v-else class="panel-content-metric-value">
-              <p>{{ splitTime(processData[metric.value])[1] }}</p>
+              <p>{{ splitTime(processData[metric.value])[1] || '-' }}</p>
               <p>{{ splitTime(processData[metric.value])[0] }}</p>
             </div>
           </div>
@@ -83,6 +84,8 @@
 <script>
 import xDropdown from "../../common/Dropdown";
 import panelModule from "../../../javascripts/instance/process/Panel";
+import { tags } from "../../../javascripts/config";
+import { getTag } from "../../../javascripts/lib/utils";
 
 const panelData = Object.assign(
   {
@@ -98,14 +101,18 @@ const panelData = Object.assign(
           pid: "未知"
         },
         metrics: [
-          { label: "启动时间", value: "startTimeFmt", time: true },
-          { label: "更新时间", value: "updateTimeFmt", time: true },
-          { label: "CPU 使用率", value: "cpuUsageFmt" },
-          { label: "堆内存使用率", value: "heapUsageFmt" },
-          { label: "GC 占比", value: "gcUsageFmt" },
-          { label: "物理内存占用", value: "rssFmt" },
-          { label: "UV 活跃句柄", value: "uvHandles" },
-          { label: "定时器数量", value: "timers" },
+          { label: getTag(tags.startTime), value: "startTimeFmt", time: true },
+          {
+            label: getTag(tags.updateTime),
+            value: "updateTimeFmt",
+            time: true
+          },
+          { label: getTag(tags.cpuUsage), value: "cpuUsageFmt" },
+          { label: getTag(tags.heapMemory), value: "heapUsageFmt" },
+          { label: getTag(tags.gcUsage), value: "gcUsageFmt" },
+          { label: getTag(tags.rssUsage), value: "rssFmt" },
+          { label: getTag(tags.uvHandles), value: "uvHandles" },
+          { label: getTag(tags.timers), value: "timers" },
           { label: "TCP 句柄数", value: "tcpHandles" },
           { label: "UDP 句柄数", value: "udpHandles" }
         ],
@@ -135,7 +142,7 @@ export default panelData;
 }
 
 .check-button-icon {
-  margin-right: 5px;
+  margin-right: 2px;
 }
 
 .panel {

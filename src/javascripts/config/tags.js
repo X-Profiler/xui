@@ -193,11 +193,45 @@ export default {
     en: "Command"
   },
   startTime: {
-    ch: "创建时间",
+    ch: "启动时间",
     en: "Created Time"
   },
   updateTime: {
     ch: "更新时间",
     en: "Updated Time"
+  },
+
+  // instance panel
+  checkProcesses: {
+    ch: "查看运行中的 Node.js 进程",
+    en: "CHECK PROCESSES"
+  },
+  processList: {
+    ch: "进程列表",
+    en: "PROCESS"
+  },
+  cpuUsage: {
+    ch: "CPU 使用率",
+    en: "CPU"
+  },
+  heapMemory: {
+    ch: "堆内存使用率",
+    en: "HEAP"
+  },
+  gcUsage: {
+    ch: "GC 占比",
+    en: "GC"
+  },
+  rssUsage: {
+    ch: "物理内存占用",
+    en: "RSS"
+  },
+  uvHandles: {
+    ch: "UV 活跃句柄",
+    en: "Active Handles"
+  },
+  timers: {
+    ch: "定时器数量",
+    en: "Timers"
   }
 };
