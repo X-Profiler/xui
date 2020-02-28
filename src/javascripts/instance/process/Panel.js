@@ -1,5 +1,8 @@
 "use strict";
 
+import { tags } from "../../config";
+import * as utils from "../../lib/utils";
+
 export default {
   methods: {
     updateSelectedProcess(data) {
@@ -27,6 +30,14 @@ export default {
       }
 
       return style;
+    },
+
+    checkProcessesTag() {
+      return utils.getTag(tags.checkProcesses);
+    },
+
+    processListTag() {
+      return utils.getTag(tags.processList);
     }
   }
 };
