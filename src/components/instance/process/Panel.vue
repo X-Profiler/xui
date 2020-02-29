@@ -47,10 +47,10 @@
           </div>
 
           <!-- process detail -->
-          <div class="panel-chapter">进程详细信息</div>
+          <div class="panel-chapter">{{ processDetailTag }}</div>
           <div class="panel-long-button">
             <Button size="small" type="info" ghost long>
-              <div class="panel-button-value">查看 X-Profiler 插件状态</div>
+              <div class="panel-button-value">{{ checkXprofilerTag }}</div>
             </Button>
           </div>
           <div class="panel-button">
@@ -62,7 +62,7 @@
           </div>
 
           <!-- process actions -->
-          <div class="panel-chapter">抓取性能数据</div>
+          <div class="panel-chapter">{{ actionsTag }}</div>
           <div class="panel-button">
             <div
               class="panel-normal-button"
@@ -113,19 +113,19 @@ const panelData = Object.assign(
           { label: getTag(tags.rssUsage), value: "rssFmt" },
           { label: getTag(tags.uvHandles), value: "uvHandles" },
           { label: getTag(tags.timers), value: "timers" },
-          { label: "TCP 句柄数", value: "tcpHandles" },
-          { label: "UDP 句柄数", value: "udpHandles" }
+          { label: getTag(tags.tcpHandles), value: "tcpHandles" },
+          { label: getTag(tags.udpHandles), value: "udpHandles" }
         ],
         detailButtons: [
-          { label: "数据趋势", value: "processTrend" },
-          { label: "保存数据", value: "saveProcessData" }
+          { label: getTag(tags.processDataTrend), value: "processTrend" },
+          { label: getTag(tags.saveProcessData), value: "saveProcessData" }
         ],
         actionButtons: [
-          { label: "CPU Profile", value: "cpuprofile" },
-          { label: "堆快照", value: "heapsnapshot" },
-          { label: "Heap Profile", value: "heapprofile" },
-          { label: "GC 追踪", value: "gcprofile" },
-          { label: "Node.js 实时诊断", value: "diag" }
+          { label: getTag(tags.cpuprofile), value: "cpuprofile" },
+          { label: getTag(tags.heapsnapshot), value: "heapsnapshot" },
+          { label: getTag(tags.heapprofile), value: "heapprofile" },
+          { label: getTag(tags.gcprofile), value: "gcprofile" },
+          { label: getTag(tags.diag), value: "diag" }
         ]
       };
     }
