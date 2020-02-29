@@ -38,6 +38,18 @@ export default {
 
     processListTag() {
       return utils.getTag(tags.processList);
+    },
+
+    processDetailTag() {
+      return utils.getTag(tags.processDetail);
+    },
+
+    checkXprofilerTag() {
+      return utils.getTag(tags.checkXprofiler);
+    },
+
+    actionsTag() {
+      return utils.getTag(tags.actions);
     }
   }
 };

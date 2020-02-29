@@ -168,11 +168,11 @@ export default {
   },
   errorLog: {
     ch: "异常日志",
-    en: "Error Logs"
+    en: "Error Log"
   },
   moduleRisk: {
     ch: "模块风险",
-    en: "Security Risks"
+    en: "Security Risk"
   },
   choseInstance: {
     ch: "请选择实例 ID",
@@ -233,5 +233,52 @@ export default {
   timers: {
     ch: "定时器数量",
     en: "Timers"
+  },
+  tcpHandles: {
+    ch: "TCP 句柄数",
+    en: "TCP Handles"
+  },
+  udpHandles: {
+    ch: "UDP 句柄数",
+    en: "UDP Handles"
+  },
+  processDetail: {
+    ch: "进程详细信息",
+    en: "DETAIL"
+  },
+  checkXprofiler: {
+    ch: "查看 X-Profiler 插件状态",
+    en: "Check X-Profiler Status"
+  },
+  processDataTrend: {
+    ch: "数据趋势",
+    en: "Insights"
+  },
+  saveProcessData: {
+    ch: "保存数据",
+    en: "Save"
+  },
+  actions: {
+    ch: "抓取性能数据",
+    en: "ACTIONS"
+  },
+  cpuprofile: {
+    ch: "CPU Profile",
+    en: "CPU Profile"
+  },
+  heapsnapshot: {
+    ch: "堆快照",
+    en: "Heapsnapshot"
+  },
+  heapprofile: {
+    ch: "Heap Profile",
+    en: "Heap Profile"
+  },
+  gcprofile: {
+    ch: "GC 追踪",
+    en: "GC Trace"
+  }, diag: {
+    ch: "Node.js 实时诊断",
+    en: "Trigger Node Report"
   }
 };
