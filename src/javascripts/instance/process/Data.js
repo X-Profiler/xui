@@ -88,6 +88,26 @@ export default {
   computed: {
     lineTitle() {
       return utils.getTag(tags.lineTitle);
+    },
+
+    scatterHeapCpu() {
+      return this.xProcesses.map(proc => {
+        return {
+          HEAP: Number(proc.heapUsage),
+          CPU: Number(proc.cpuUsage),
+          color: proc.color
+        };
+      });
+    },
+
+    scatterGcRss() {
+      return this.xProcesses.map(proc => {
+        return {
+          GC: Number(proc.gcUsage),
+          RSS: Math.round((proc.rss / 1024 / 1024)),
+          color: proc.color
+        };
+      });
     }
   },
 
