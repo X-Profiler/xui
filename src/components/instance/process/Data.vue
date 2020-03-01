@@ -52,6 +52,36 @@
           ></x-catalogue>
         </transition>
       </div>
+
+      <!-- process scatter -->
+      <div class="process-chart-body">
+        <div class="process-body-title">指标分布状况</div>
+
+        <!-- show chart -->
+        <div class="process-chart-group">
+          <transition name="slide-rightward">
+            <x-scatter
+              v-show="!xProcessesLoading"
+              class="process-scatter"
+              :fields="['HEAP', 'CPU']"
+              :xAxisUnit="['%', '-3.8em']"
+              :yAxisUnit="['%', '0']"
+              :data="scatterHeapCpu"
+            ></x-scatter>
+          </transition>
+
+          <transition name="slide-rightward">
+            <x-scatter
+              v-show="!xProcessesLoading"
+              class="process-scatter"
+              :fields="['RSS', 'GC']"
+              :xAxisUnit="['MB', '-3.8em']"
+              :yAxisUnit="['%', '0']"
+              :data="scatterGcRss"
+            ></x-scatter>
+          </transition>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +94,7 @@ import xLoading from "../../common/Loading";
 import xLine from "./Line";
 import xPanel from "./Panel";
 import xCatalogue from "./Catalogue";
+import xScatter from "../../chart/Scatter";
 
 const processData = Object.assign(
   {
@@ -75,7 +106,8 @@ const processData = Object.assign(
       "x-loading": xLoading,
       "x-line": xLine,
       "x-panel": xPanel,
-      "x-catalogue": xCatalogue
+      "x-catalogue": xCatalogue,
+      "x-scatter": xScatter
     },
     data() {
       return {
@@ -130,7 +162,23 @@ export default processData;
   border-bottom: 1px solid #f8f8f9;
 }
 
+.process-chart-body {
+  margin-top: 15px;
+}
+
 .process-body-title {
   font-weight: bold;
+}
+
+.process-chart-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.process-scatter {
+  min-width: 300px;
+  min-height: 300px;
+  flex: 1 0 300px;
 }
 </style>
