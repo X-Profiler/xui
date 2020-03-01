@@ -1,6 +1,6 @@
 <template>
   <div ref="content">
-    <svg width="100%" height="100%" :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`">
+    <svg :width="viewWidth" :height="viewHeight" :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`">
       <!-- chart axis -->
       <g>
         <!-- x axis -->
@@ -114,7 +114,22 @@ export default {
     };
   },
 
+  mounted() {
+    this.content = this.$refs.content;
+    window.addEventListener("resize", this.setViewBox.bind(this));
+  },
+
   methods: {
+    setViewBox() {
+      const width = parseInt(window.getComputedStyle(this.content).width, 10);
+      if (!width) {
+        return;
+      }
+      console.log(this.fields[0], width);
+      this.viewWidth = width;
+      this.viewHeight = (width / 5) * 4;
+    },
+
     getScale(index, count) {
       if (!Array.isArray(this.data) || !Array.isArray(this.fields)) {
         return;
