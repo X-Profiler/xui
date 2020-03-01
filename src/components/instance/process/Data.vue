@@ -126,6 +126,7 @@ export default processData;
 
 .process-catalogue-body {
   margin-top: 5px;
+  min-height: 40px;
   border-bottom: 1px solid #f8f8f9;
 }
 
