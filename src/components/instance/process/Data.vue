@@ -59,27 +59,21 @@
 
         <!-- show chart -->
         <div class="process-chart-group">
-          <transition name="slide-rightward">
-            <x-scatter
-              v-show="!xProcessesLoading"
-              class="process-scatter"
-              :fields="['HEAP', 'CPU']"
-              :xAxisUnit="['%', '-3.8em']"
-              :yAxisUnit="['%', '0']"
-              :data="scatterHeapCpu"
-            ></x-scatter>
-          </transition>
+          <x-scatter
+            class="process-scatter"
+            :fields="['HEAP', 'CPU']"
+            :xAxisUnit="['%', '-3.8em']"
+            :yAxisUnit="['%', '0']"
+            :data="scatterHeapCpu"
+          ></x-scatter>
 
-          <transition name="slide-rightward">
-            <x-scatter
-              v-show="!xProcessesLoading"
-              class="process-scatter"
-              :fields="['RSS', 'GC']"
-              :xAxisUnit="['MB', '-3.8em']"
-              :yAxisUnit="['%', '0']"
-              :data="scatterGcRss"
-            ></x-scatter>
-          </transition>
+          <x-scatter
+            class="process-scatter"
+            :fields="['RSS', 'GC']"
+            :xAxisUnit="['MB', '-3.8em']"
+            :yAxisUnit="['%', '0']"
+            :data="scatterGcRss"
+          ></x-scatter>
         </div>
       </div>
     </div>
