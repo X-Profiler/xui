@@ -104,14 +104,29 @@
             :stroke="info.color"
             :fill="info.color"
             @click="select(index)"
+            @mouseover="mouseover(info, $event)"
+            @mousemove="mousemove(info, $event)"
+            @mouseout="mouseout()"
           />
         </g>
       </svg>
     </transition>
+
+    <!-- tooltip -->
+    <x-tooltip ref="tooltip">
+      <template slot="header">
+        <div>header</div>
+      </template>
+      <template slot="content">
+        <div>content</div>
+      </template>
+    </x-tooltip>
   </div>
 </template>
 
 <script>
+import xTooltip from "../common/Tooltip";
+
 export default {
   props: {
     fields: Array,
@@ -121,6 +136,10 @@ export default {
     xAxisScaleCount: Number,
     yAxisScaleCount: Number,
     display: Boolean
+  },
+
+  components: {
+    "x-tooltip": xTooltip
   },
 
   data() {
@@ -137,7 +156,9 @@ export default {
   },
 
   mounted() {
+    this.tooltip = this.$refs.tooltip;
     this.content = this.$refs.content;
+
     this.setViewBox();
     window.addEventListener("resize", this.setViewBox.bind(this));
   },
@@ -200,6 +221,18 @@ export default {
 
     select(index) {
       this.$emit("select", index);
+    },
+
+    mouseover(proc, event) {
+      this.tooltip.showToolTip(this.viewWidth, event);
+    },
+
+    mousemove(proc, event) {
+      this.tooltip.showToolTip(this.viewWidth, event);
+    },
+
+    mouseout() {
+      this.tooltip.removeToolTip();
     }
   },
 

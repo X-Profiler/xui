@@ -12,7 +12,7 @@
           :style="getProcessLineStyle(index) + process.selectedStyle"
           @mouseover="mouseover(process, $event)"
           @mousemove="mousemove(process, $event)"
-          @mouseout="mouseout(process, $event)"
+          @mouseout="mouseout()"
           @click="selectPid(index)"
         ></div>
       </div>
