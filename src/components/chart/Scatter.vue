@@ -1,6 +1,6 @@
 <template>
   <div ref="content">
-    <svg :width="viewWidth" :height="viewHeight" :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`">
+    <svg width="100%" :height="viewHeight" :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`">
       <!-- chart axis -->
       <g>
         <!-- x axis -->
@@ -125,7 +125,6 @@ export default {
       if (!width) {
         return;
       }
-      console.log(this.fields[0], width);
       this.viewWidth = width;
       this.viewHeight = (width / 5) * 4;
     },
