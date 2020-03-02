@@ -71,6 +71,7 @@
             :xAxisUnit="['%', '-3.8em']"
             :yAxisUnit="['%', '0']"
             :data="xProcesses"
+            @select="selectPid"
           ></x-scatter>
 
           <x-scatter
@@ -80,6 +81,7 @@
             :xAxisUnit="['MB', '-3.8em']"
             :yAxisUnit="['%', '0']"
             :data="xProcesses"
+            @select="selectPid"
           ></x-scatter>
         </div>
       </div>
