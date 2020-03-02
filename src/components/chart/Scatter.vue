@@ -87,7 +87,7 @@
             :cx="getCx(info)"
             :cy="getCy(info)"
             :class="'circle ' + (info.selected ? 'selected': '')"
-            r="6"
+            :r="info.selected ? 6 * 0.9 : 6"
             :stroke="info.color"
             :fill="info.color"
             @click="select(index)"
@@ -226,7 +226,7 @@ export default {
 .selected {
   transition: all 0.1s ease-out;
   stroke-opacity: 0.4;
-  stroke-width: 8px;
+  stroke-width: 9px;
 }
 </style>
 

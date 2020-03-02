@@ -199,6 +199,7 @@ export default panelData;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  min-width: 230px;
 }
 
 .panel-content {
