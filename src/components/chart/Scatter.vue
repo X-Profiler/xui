@@ -115,10 +115,10 @@
     <!-- tooltip -->
     <x-tooltip ref="tooltip">
       <template slot="header">
-        <div>header</div>
+        <slot name="header" v-bind:proc="selectedProc"></slot>
       </template>
       <template slot="content">
-        <div>content</div>
+        <slot name="content" v-bind:proc="selectedProc"></slot>
       </template>
     </x-tooltip>
   </div>
@@ -151,7 +151,8 @@ export default {
       paddingLeft: 30,
       paddingRight: 20,
       paddingTop: 20,
-      paddingBottom: 20
+      paddingBottom: 20,
+      selectedProc: {}
     };
   },
 
@@ -224,11 +225,13 @@ export default {
     },
 
     mouseover(proc, event) {
-      this.tooltip.showToolTip(this.viewWidth, event);
+      this.selectedProc = proc;
+      this.tooltip.showToolTip(this.viewWidth * 2, event);
     },
 
     mousemove(proc, event) {
-      this.tooltip.showToolTip(this.viewWidth, event);
+      this.selectedProc = proc;
+      this.tooltip.showToolTip(this.viewWidth * 2, event);
     },
 
     mouseout() {
@@ -284,10 +287,11 @@ export default {
   cursor: pointer;
 }
 
+.circle:hover,
 .selected {
   transition: all 0.1s ease-out;
   stroke-opacity: 0.4;
-  stroke-width: 9px;
+  stroke-width: 8px;
 }
 
 .bg-rect {
