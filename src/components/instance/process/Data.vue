@@ -65,21 +65,13 @@
         <!-- show chart -->
         <div class="process-chart-group">
           <x-scatter
+            v-for="(chart, index) in scatters"
             class="process-scatter"
+            :key="index"
             :display="!xProcessesLoading"
-            :fields="['HEAP', 'CPU']"
-            :xAxisUnit="['%', '-3.8em']"
-            :yAxisUnit="['%', '0']"
-            :data="xProcesses"
-            @select="selectPid"
-          ></x-scatter>
-
-          <x-scatter
-            class="process-scatter"
-            :display="!xProcessesLoading"
-            :fields="['RSS', 'GC']"
-            :xAxisUnit="['MB', '-3.8em']"
-            :yAxisUnit="['%', '0']"
+            :fields="chart.fields"
+            :xAxisUnit="chart.xAxisUnit"
+            :yAxisUnit="chart.yAxisUnit"
             :data="xProcesses"
             @select="selectPid"
           ></x-scatter>
@@ -128,7 +120,19 @@ const processData = Object.assign(
           "rgb(19, 141, 117)",
           "rgb(34, 153, 84)"
         ],
-        nessaryQueryArgs: ["tab", "agentId"]
+        nessaryQueryArgs: ["tab", "agentId"],
+        scatters: [
+          {
+            fields: ["HEAP", "CPU"],
+            xAxisUnit: ["%", "-3.8em"],
+            yAxisUnit: ["%", "0"]
+          },
+          {
+            fields: ["RSS", "GC"],
+            xAxisUnit: ["MB", "-3.8em"],
+            yAxisUnit: ["%", "0"]
+          }
+        ]
       };
     }
   },
