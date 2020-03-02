@@ -75,9 +75,10 @@ export default headerData;
   cursor: pointer;
   user-select: none;
   color: white;
+  transition: background-color 0.2s ease-out;
 }
 
 .nav-selection.active {
-  background-color: #0f0e0e;
+  background-color: #0f1423;
 }
 </style>

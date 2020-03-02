@@ -86,6 +86,7 @@ export default siderData;
   padding: 15px 0;
   cursor: pointer;
   user-select: none;
+  transition: background-color 0.2s ease-out;
 }
 
 .menu-icon {
