@@ -27,6 +27,19 @@
             :y2="viewHeight - paddingBottom"
           />
 
+          <!-- x grid -->
+          <g>
+            <rect
+              v-for="(xAxis, index) in xAxisScale"
+              :key="index"
+              class="bg-rect"
+              :width="index === 0 ? 0: xGridFullWidth * 0.5"
+              :height="viewHeight - paddingTop - paddingBottom"
+              :x="getXGridBgInterval(index)"
+              :y="paddingTop"
+            />
+          </g>
+
           <!-- y grid -->
           <g v-for="(yAxis, index) in yAxisScale" :key="index">
             <text
@@ -87,7 +100,7 @@
             :cx="getCx(info)"
             :cy="getCy(info)"
             :class="'circle ' + (info.selected ? 'selected': '')"
-            :r="info.selected ? 6 * 0.9 : 6"
+            :r="info.selected ? 6 * 1 : 6"
             :stroke="info.color"
             :fill="info.color"
             @click="select(index)"
@@ -177,6 +190,14 @@ export default {
       return yPosition;
     },
 
+    getXGridBgInterval(index) {
+      return (
+        this.paddingLeft -
+        this.xGridFullWidth * 0.75 +
+        this.xGridFullWidth * index
+      );
+    },
+
     select(index) {
       this.$emit("select", index);
     }
@@ -199,6 +220,13 @@ export default {
 
     yAxisScale() {
       return this.getScale(1, this.yAxisScaleCountInner);
+    },
+
+    xGridFullWidth() {
+      return (
+        (this.viewWidth - this.paddingLeft - this.paddingRight) /
+        this.xAxisScaleCountInner
+      );
     }
   }
 };
@@ -227,6 +255,10 @@ export default {
   transition: all 0.1s ease-out;
   stroke-opacity: 0.4;
   stroke-width: 9px;
+}
+
+.bg-rect {
+  fill: #f9f9f9;
 }
 </style>
 
