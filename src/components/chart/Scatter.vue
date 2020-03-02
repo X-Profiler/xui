@@ -2,7 +2,7 @@
   <div ref="content">
     <transition name="slide-rightward">
       <svg
-        v-show="data.length"
+        v-show="display"
         width="100%"
         :height="viewHeight"
         :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
@@ -86,7 +86,7 @@
           <circle
             :cx="getCx(info)"
             :cy="getCy(info)"
-            class
+            :class="info.selected ? 'selected': ''"
             r="6"
             :stroke="info.color"
             :fill="info.color"
@@ -105,7 +105,8 @@ export default {
     xAxisUnit: Array,
     yAxisUnit: Array,
     xAxisScaleCount: Number,
-    yAxisScaleCount: Number
+    yAxisScaleCount: Number,
+    display: Boolean
   },
 
   data() {
@@ -214,7 +215,7 @@ export default {
 }
 
 .selected {
-  transform: scale(0.9);
+  transition: all 0.1s ease-out;
   stroke-opacity: 0.4;
   stroke-width: 8px;
 }

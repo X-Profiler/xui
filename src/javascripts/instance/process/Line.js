@@ -16,7 +16,6 @@ export default {
   methods: {
     setLineData(item) {
       item.selectedStyle = "";
-      item.selected = false;
     },
 
     setLastTime() {
