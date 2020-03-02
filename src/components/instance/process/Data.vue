@@ -57,22 +57,29 @@
       <div class="process-chart-body">
         <div class="process-body-title">指标分布状况</div>
 
+        <!-- loading -->
+        <div style="text-align: center">
+          <x-loading :loading="xProcessesLoading" :top="150" size="small" type="dot"></x-loading>
+        </div>
+
         <!-- show chart -->
         <div class="process-chart-group">
           <x-scatter
             class="process-scatter"
+            :display="!xProcessesLoading"
             :fields="['HEAP', 'CPU']"
             :xAxisUnit="['%', '-3.8em']"
             :yAxisUnit="['%', '0']"
-            :data="scatterHeapCpu"
+            :data="xProcesses"
           ></x-scatter>
 
           <x-scatter
             class="process-scatter"
+            :display="!xProcessesLoading"
             :fields="['RSS', 'GC']"
             :xAxisUnit="['MB', '-3.8em']"
             :yAxisUnit="['%', '0']"
-            :data="scatterGcRss"
+            :data="xProcesses"
           ></x-scatter>
         </div>
       </div>

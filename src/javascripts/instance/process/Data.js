@@ -39,6 +39,7 @@ export default {
         const colors = this.colors;
         const index = cmdMap.indexOf(proc.cmd);
         proc.color = colors[index % colors.length];
+        proc.selected = false;
 
         // format time
         proc.startTimeFmt = moment(proc.startTime).format("YYYY-MM-DD HH:mm:SS");
@@ -50,8 +51,15 @@ export default {
         proc.gcUsageFmt = proc.gcUsage + "%";
         proc.rssFmt = utils.formatSize(proc.rss, 1);
 
+        // add scatter data
+        proc.HEAP = Number(proc.heapUsage);
+        proc.CPU = Number(proc.cpuUsage);
+        proc.GC = Number(proc.gcUsage);
+        proc.RSS = Math.round((proc.rss / 1024 / 1024));
+
         // add line data
         this.line.setLineData(proc);
+
         return proc;
       });
     },
@@ -88,26 +96,6 @@ export default {
   computed: {
     lineTitle() {
       return utils.getTag(tags.lineTitle);
-    },
-
-    scatterHeapCpu() {
-      return this.xProcesses.map(proc => {
-        return {
-          HEAP: Number(proc.heapUsage),
-          CPU: Number(proc.cpuUsage),
-          color: proc.color
-        };
-      });
-    },
-
-    scatterGcRss() {
-      return this.xProcesses.map(proc => {
-        return {
-          GC: Number(proc.gcUsage),
-          RSS: Math.round((proc.rss / 1024 / 1024)),
-          color: proc.color
-        };
-      });
     }
   },
 
