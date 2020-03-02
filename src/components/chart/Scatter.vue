@@ -86,10 +86,11 @@
           <circle
             :cx="getCx(info)"
             :cy="getCy(info)"
-            :class="info.selected ? 'selected': ''"
+            :class="'circle ' + (info.selected ? 'selected': '')"
             r="6"
             :stroke="info.color"
             :fill="info.color"
+            @click="select(index)"
           />
         </g>
       </svg>
@@ -174,6 +175,10 @@ export default {
         : 0;
       const yPosition = this.viewHeight - this.paddingBottom - offset;
       return yPosition;
+    },
+
+    select(index) {
+      this.$emit("select", index);
     }
   },
 
@@ -212,6 +217,10 @@ export default {
 .axis {
   stroke: #eff1f4;
   stroke-width: 1;
+}
+
+.circle {
+  cursor: pointer;
 }
 
 .selected {
