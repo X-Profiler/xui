@@ -54,7 +54,25 @@
     </transition>
 
     <!-- modal for check instance -->
-    <x-modal ref="checkAgent" title="查看实例"></x-modal>
+    <x-modal ref="checkAgent" title="查看实例" :width="540">
+      <template slot="content">
+        <div style="text-align: center">
+          <x-loading :loading="checkAgentLoading" type="dot" size="middle"></x-loading>
+          <x-table
+            v-show="!checkAgentLoading"
+            :columns="checkAgentColumns"
+            :data="checkAgentData"
+            noDataText="没有获取到实例信息"
+          ></x-table>
+        </div>
+      </template>
+
+      <template slot="footer">
+        <div v-show="!checkAgentLoading">
+          <Button type="primary" ghost @click="closeAgentCheck">关闭</Button>
+        </div>
+      </template>
+    </x-modal>
   </div>
 </template>
 
@@ -120,7 +138,13 @@ const indexData = Object.assign(
         valueWhiteList: {
           selectedTab: ["process", "system", "error_log", "module_risk"]
         },
-        nessaryQueryArgs: ["tab", "agentId"]
+        nessaryQueryArgs: ["tab", "agentId"],
+        checkAgentColumns: [
+          { title: "类型", value: "type", width: "130" },
+          { title: "信息详情", value: "value" }
+        ],
+        checkAgentData: [],
+        checkAgentLoading: true
       };
     }
   },

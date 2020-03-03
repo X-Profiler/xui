@@ -3,7 +3,7 @@
 import { http, tags } from "../config";
 import * as utils from "../lib/utils";
 
-const { agents } = http;
+const { agents, agent } = http;
 
 export default {
   created() {
@@ -59,8 +59,21 @@ export default {
       }, this.cancelToken.token);
     },
 
+    getAgentInfo() {
+      this.get(agent.msg, agent.url, { appId: this.appId, agentId: this.selectedAgentId }, data => {
+        if (Array.isArray(data.list)) {
+          this.checkAgentData = data.list;
+        }
+      }, this.cancelToken.token, "checkAgentLoading");
+    },
+
     checkAgent() {
       this.checkAgentModal.showModal();
+      this.getAgentInfo();
+    },
+
+    closeAgentCheck() {
+      this.checkAgentModal.cancelModal();
     }
   },
 

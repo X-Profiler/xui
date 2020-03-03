@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal v-model="show" :mask-closable="false">
+    <Modal v-model="show" :mask-closable="false" :width="width">
       <!-- header -->
       <template slot="header">
         <div>
@@ -19,8 +19,10 @@
 
       <!-- footer -->
       <template slot="footer">
-        <Button type="primary" ghost style="margin-right: 2px" @click="cancelModal">{{ cancel }}</Button>
-        <Button type="primary" :loading="loading" @click="submitModal">{{ submit }}</Button>
+        <slot name="footer">
+          <Button type="primary" ghost style="margin-right: 2px" @click="cancelModal">{{ cancel }}</Button>
+          <Button type="primary" :loading="loading" @click="submitModal">{{ submit }}</Button>
+        </slot>
       </template>
     </Modal>
   </div>
@@ -40,7 +42,8 @@ export default {
     okText: String,
     okLoadingText: String,
     cancelText: String,
-    loading: Boolean
+    loading: Boolean,
+    width: Number
   },
 
   methods: {

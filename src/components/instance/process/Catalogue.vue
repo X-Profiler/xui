@@ -103,7 +103,7 @@ export default catalogueData;
 }
 
 .catalogue-dropdown-fmt {
-  font-weight: bold;
+  /* font-weight: bold; */
   width: 80px;
 }
 
