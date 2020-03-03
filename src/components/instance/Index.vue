@@ -19,7 +19,12 @@
                 :value="item.value"
               >{{ item.label }}</Option>
             </Select>
-            <Button type="info" class="agent-button" size="small">{{ checkAgentTip }}</Button>
+            <Button
+              type="info"
+              class="agent-button"
+              size="small"
+              @click="checkAgent"
+            >{{ checkAgentTip }}</Button>
           </div>
         </transition>
       </template>
@@ -47,6 +52,9 @@
         :agentId="selectedAgentId"
       ></component>
     </transition>
+
+    <!-- modal for check instance -->
+    <x-modal ref="checkAgent" title="查看实例"></x-modal>
   </div>
 </template>
 
@@ -61,6 +69,7 @@ import xProcessData from "./process/Data";
 import xSystemData from "./SystemData";
 import xErrorLog from "./ErrorLog";
 import xModuleRisk from "./ModuleRisk";
+import xModal from "../common/Modal";
 
 const indexData = Object.assign(
   {
@@ -69,6 +78,14 @@ const indexData = Object.assign(
       appName: String,
       title: String,
       currentUserIsOwner: Boolean
+    },
+    components: {
+      "x-dashboard-title": xDashboardTitle,
+      "x-process-data": xProcessData,
+      "x-system-data": xSystemData,
+      "x-error-log": xErrorLog,
+      "x-module-risk": xModuleRisk,
+      "x-modal": xModal
     },
     data() {
       return {
@@ -105,13 +122,6 @@ const indexData = Object.assign(
         },
         nessaryQueryArgs: ["tab", "agentId"]
       };
-    },
-    components: {
-      "x-dashboard-title": xDashboardTitle,
-      "x-process-data": xProcessData,
-      "x-system-data": xSystemData,
-      "x-error-log": xErrorLog,
-      "x-module-risk": xModuleRisk
     }
   },
   indexModule

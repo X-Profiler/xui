@@ -20,6 +20,10 @@ export default {
     this.getAgents();
   },
 
+  mounted() {
+    this.checkAgentModal = this.$refs.checkAgent;
+  },
+
   beforeDestroy() {
     utils.cancelRequest(this.cancelToken);
   },
@@ -53,6 +57,10 @@ export default {
           this.agentsLoading = false;
         }
       }, this.cancelToken.token);
+    },
+
+    checkAgent() {
+      this.checkAgentModal.showModal();
     }
   },
 
