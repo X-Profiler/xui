@@ -115,10 +115,15 @@
     <!-- tooltip -->
     <x-tooltip ref="tooltip">
       <template slot="header">
-        <slot name="header" v-bind:proc="selectedProc"></slot>
+        <slot name="header" :proc="selectedProc"></slot>
       </template>
       <template slot="content">
-        <slot name="content" v-bind:proc="selectedProc"></slot>
+        <slot
+          name="content"
+          :proc="selectedProc"
+          :fields="[fields[1], fields[0]]"
+          :unit="[yAxisUnit[0], xAxisUnit[0]]"
+        ></slot>
       </template>
     </x-tooltip>
   </div>
