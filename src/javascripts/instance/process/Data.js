@@ -55,7 +55,7 @@ export default {
         proc.HEAP = Number(proc.heapUsage);
         proc.CPU = Number(proc.cpuUsage);
         proc.GC = Number(proc.gcUsage);
-        proc.RSS = Math.round((proc.rss / 1024 / 1024));
+        proc.RSS = Number((proc.rss / 1024 / 1024).toFixed(2));
 
         // add line data
         this.line.setLineData(proc);

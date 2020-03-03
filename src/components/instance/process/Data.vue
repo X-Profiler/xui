@@ -81,7 +81,7 @@
                 :style="'background-color: ' + proc.color"
               >PID: {{ proc.pid }}</div>
             </template>
-            <template v-slot:content="{ proc }">
+            <template v-slot:content="{ proc, fields, unit }">
               <div class="scatter-content">
                 <div
                   v-for="(scatter, index) in scatterContent"
@@ -90,6 +90,16 @@
                 >
                   <div class="scatter-content-key">{{ scatter.label }}</div>
                   <div class="scatter-content-value">{{ proc[scatter.value] }}</div>
+                </div>
+
+                <div
+                  style="margin-top:3px;"
+                  v-for="(field, index) in fields"
+                  :key="field"
+                  class="scatter-content-group"
+                >
+                  <div class="scatter-content-key">{{ field }}</div>
+                  <div class="scatter-content-value">{{ proc[field] }}{{ unit[index] }}</div>
                 </div>
               </div>
             </template>
@@ -230,8 +240,9 @@ export default processData;
 }
 
 .scatter-content-key {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   font-weight: bold;
-  min-width: 40px;
+  min-width: 50px;
 }
 
 .scatter-content-value {
