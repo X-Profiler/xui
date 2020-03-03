@@ -28,11 +28,11 @@
 
       <!-- footer -->
       <Footer class="footer">
-        2020 &copy; Powered by
-        <a
-          href="https://github.com/hyj1991/easy-monitor"
-          target="_blank"
-        >Easy-Monitor v3</a> & <a href="https://eggjs.org/" target="_blank">Egg.js</a>
+        2020 &copy;
+        <a href="https://github.com/hyj1991/easy-monitor" target="_blank">Easy-Monitor</a> 3.0 Powered by
+        <a href="https://eggjs.org/" target="_blank">
+          <x-egg-logo class="egg-logo"></x-egg-logo>
+        </a>
       </Footer>
     </Layout>
 
@@ -67,6 +67,7 @@
 import xModal from "./common/Modal";
 import xHeader from "./layout/Header";
 import xApps from "./Apps";
+import xEggLogo from "./logo/Egg";
 import consoleModule from "../javascripts/Console";
 
 const consoleData = Object.assign(
@@ -83,7 +84,8 @@ const consoleData = Object.assign(
     components: {
       "x-modal": xModal,
       "x-header": xHeader,
-      "x-apps": xApps
+      "x-apps": xApps,
+      "x-egg-logo": xEggLogo
     }
   },
   consoleModule
@@ -128,5 +130,11 @@ export default consoleData;
 .modal-attention {
   /* position: absolute; */
   margin-top: -30px;
+}
+
+.egg-logo {
+  position: absolute;
+  top: 25px;
+  left: calc(50vw + 122px);
 }
 </style>
