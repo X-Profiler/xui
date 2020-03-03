@@ -25,20 +25,17 @@
       </template>
     </x-dashboard-title>
 
-    <!-- content -->
+    <!-- instance tab -->
     <transition name="slide-downward">
-      <div class="instance-content" v-show="!agentsLoading">
-        <!-- instance tab -->
-        <Tabs class="instance-tab" v-model="selectedTab">
-          <TabPane
-            v-for="(tab, index) in instanceTabs"
-            :key="index"
-            :label="tab.label"
-            :icon="tab.icon"
-            :name="tab.value"
-          ></TabPane>
-        </Tabs>
-      </div>
+      <Tabs class="instance-tab" v-model="selectedTab">
+        <TabPane
+          v-for="(tab, index) in instanceTabs"
+          :key="index"
+          :label="tab.label"
+          :icon="tab.icon"
+          :name="tab.value"
+        ></TabPane>
+      </Tabs>
     </transition>
 
     <!-- instance content -->
@@ -135,7 +132,7 @@ export default indexData;
   font-size: 11px;
 }
 
-.instance-content {
+.instance-tab {
   margin: 15px 0 0 0;
 }
 </style>
