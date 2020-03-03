@@ -60,6 +60,9 @@
       "space-before-function-paren": [
         "error",
         "never"
+      ],
+      "no-empty": [
+        "warn"
       ]
     },
     "parserOptions": {

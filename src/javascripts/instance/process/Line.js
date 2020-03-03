@@ -35,24 +35,28 @@ export default {
 
     getProcessLineStyle(index) {
       const oneDay = 24 * 60 * 60 * 1000;
-      const end = Date.now();
       const start = Date.now() - oneDay;
+      const end = Date.now();
+
       const lineData = this.processes[index];
+      const lineStart = lineData.startTime;
+      const lineEnd = lineData.updateTime;
+
+      if (lineEnd < lineStart || lineEnd <= start) {
+        return "";
+      }
 
       // add color
       let style = "background-color: " + lineData.color + ";";
 
-      // add width
-      style += "width: " + (lineData.updateTime - lineData.startTime) / oneDay * 100 + "%;";
-
       // margin-left
-      if (lineData.startTime > start) {
-        style += "margin-left:" + (lineData.startTime - start) / oneDay * 100 + "%;";
+      if (lineStart > start) {
+        style += "margin-left:" + (lineStart - start) / oneDay * 100 + "%;";
       }
 
       // margin-right
-      if (end - lineData.updateTime > 2 * 60 * 1000) {
-        style += "margin-right:" + (end - lineData.updateTime) / oneDay * 100 + "%;";
+      if (end > (lineEnd + 3 * 60 * 1000)) {
+        style += "margin-right:" + (end - lineEnd) / oneDay * 100 + "%;";
       }
 
       return style;
