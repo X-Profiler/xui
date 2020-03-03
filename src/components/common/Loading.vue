@@ -7,8 +7,9 @@
 
     <!-- dot -->
     <div v-if="loadingType === 'dot'" v-show="loading" class="dot-loading" :style="style">
-      <div v-if="spinSize !== 'small'" class="dot-pulse-base dot-pulse"></div>
-      <div v-else class="dot-pulse-base dot-pulse-small"></div>
+      <div v-if="spinSize === 'small'" class="dot-pulse-base dot-pulse-small"></div>
+      <div v-else-if="spinSize === 'middle'" class="dot-pulse-base dot-pulse-middle"></div>
+      <div v-else class="dot-pulse-base dot-pulse"></div>
     </div>
   </div>
 </template>
@@ -33,7 +34,7 @@ export default {
 
     spinSize() {
       let size = this.size || "large";
-      if (!["large", "small"].includes(size)) {
+      if (!["large", "middle", "small"].includes(size)) {
         size = undefined;
       }
       return size;
@@ -73,6 +74,13 @@ export default {
   animation: dotPulse 1.5s infinite linear;
 }
 
+.dot-pulse-middle {
+  width: 7px;
+  height: 7px;
+  box-shadow: 9984px 0 0 0 #ccccd6, 9999px 0 0 0 #ccccd6, 10014px 0 0 0 #ccccd6;
+  animation: dotPulseMiddle 1.5s infinite linear;
+}
+
 .dot-pulse-small {
   width: 5px;
   height: 5px;
@@ -104,6 +112,33 @@ export default {
   100% {
     box-shadow: 9980px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
       10018px 0 0 2px #ccccd6;
+  }
+}
+
+@keyframes dotPulseMiddle {
+  0% {
+    box-shadow: 9984px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10014px 0 0 2px #ccccd6;
+  }
+
+  25% {
+    box-shadow: 9984px 0 0 0 #ccccd6, 9999px 0 0 2px #ccccd6,
+      10014px 0 0 0 #ccccd6;
+  }
+
+  50% {
+    box-shadow: 9984px 0 0 2px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10014px 0 0 -5px #ccccd6;
+  }
+
+  75% {
+    box-shadow: 9984px 0 0 0 #ccccd6, 9999px 0 0 -5px #ccccd6,
+      10014px 0 0 0 #ccccd6;
+  }
+
+  100% {
+    box-shadow: 9984px 0 0 -5px #ccccd6, 9999px 0 0 0 #ccccd6,
+      10014px 0 0 2px #ccccd6;
   }
 }
 

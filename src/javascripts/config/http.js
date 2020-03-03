@@ -110,5 +110,12 @@ export default {
       ch: "获取应用实例上接入 Xprofiler 插件的进程列表失败，请重试",
       en: "Get agent xprofiler's processes failed. please retry."
     }
+  },
+  agent: {
+    url: "/xapi/agent",
+    msg: {
+      ch: "获取实例信息失败，请重试",
+      en: "Get agent info  failed, please retry."
+    }
   }
 };
