@@ -40,7 +40,7 @@
         </transition>
       </div>
 
-      <!-- process sorted catalogue-->
+      <!-- show process sorted catalogue-->
       <div class="process-catalogue-body">
         <!-- show sorted catalogue -->
         <transition name="slide-rightward">
@@ -53,7 +53,7 @@
         </transition>
       </div>
 
-      <!-- process scatter -->
+      <!-- show process scatter -->
       <div class="process-chart-body">
         <div class="process-body-title">指标分布状况</div>
 
@@ -63,47 +63,13 @@
         </div>
 
         <!-- show chart -->
-        <div class="process-chart-group">
+        <div style="margin-top: 10px;">
           <x-scatter
-            v-for="(chart, index) in scatters"
-            class="process-scatter"
-            :key="index"
+            ref="scatter"
             :display="!xProcessesLoading"
-            :fields="chart.fields"
-            :xAxisUnit="chart.xAxisUnit"
-            :yAxisUnit="chart.yAxisUnit"
-            :data="xProcesses"
-            @select="selectPid"
-          >
-            <template v-slot:header="{ proc }">
-              <div
-                class="scatter-header"
-                :style="'background-color: ' + proc.color"
-              >PID: {{ proc.pid }}</div>
-            </template>
-            <template v-slot:content="{ proc, fields, unit }">
-              <div class="scatter-content">
-                <div
-                  v-for="(scatter, index) in scatterContent"
-                  :key="index"
-                  class="scatter-content-group"
-                >
-                  <div class="scatter-content-key">{{ scatter.label }}</div>
-                  <div class="scatter-content-value">{{ proc[scatter.value] }}</div>
-                </div>
-
-                <div
-                  style="margin-top:3px;"
-                  v-for="(field, index) in fields"
-                  :key="field"
-                  class="scatter-content-group"
-                >
-                  <div class="scatter-content-key">{{ field }}</div>
-                  <div class="scatter-content-value">{{ proc[field] }}{{ unit[index] }}</div>
-                </div>
-              </div>
-            </template>
-          </x-scatter>
+            :processes="xProcesses"
+            @selectPid="selectPid"
+          ></x-scatter>
         </div>
       </div>
     </div>
@@ -118,7 +84,7 @@ import xLoading from "../../common/Loading";
 import xLine from "./Line";
 import xPanel from "./Panel";
 import xCatalogue from "./Catalogue";
-import xScatter from "../../chart/Scatter";
+import xScatter from "./Scatter";
 
 const processData = Object.assign(
   {
@@ -149,20 +115,7 @@ const processData = Object.assign(
           "rgb(19, 141, 117)",
           "rgb(34, 153, 84)"
         ],
-        nessaryQueryArgs: ["tab", "agentId"],
-        scatters: [
-          {
-            fields: ["HEAP", "CPU"],
-            xAxisUnit: ["%", "-3.8em"],
-            yAxisUnit: ["%", "0"]
-          },
-          {
-            fields: ["RSS", "GC"],
-            xAxisUnit: ["MB", "-3.8em"],
-            yAxisUnit: ["%", "0"]
-          }
-        ],
-        scatterContent: [{ label: "命令", value: "cmd" }]
+        nessaryQueryArgs: ["tab", "agentId"]
       };
     }
   },
@@ -205,48 +158,5 @@ export default processData;
 
 .process-body-title {
   font-weight: bold;
-}
-
-.process-chart-group {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-.process-scatter {
-  min-width: 300px;
-  min-height: 300px;
-  flex: 1 0 300px;
-}
-
-.scatter-header {
-  color: #fff;
-  padding-top: 3px;
-  padding-bottom: 1px;
-  padding-left: 5px;
-  font-size: 12px;
-  max-width: 300px;
-}
-
-.scatter-content {
-  padding: 5px 5px;
-  font-size: 12px;
-  max-width: 300px;
-}
-
-.scatter-content-group {
-  display: flex;
-  align-items: center;
-}
-
-.scatter-content-key {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  min-width: 50px;
-}
-
-.scatter-content-value {
-  word-wrap: break-word;
-  word-break: break-all;
 }
 </style>

@@ -32,7 +32,7 @@
         <a
           href="https://github.com/hyj1991/easy-monitor"
           target="_blank"
-        >Easy-Monitor</a> V3.0
+        >Easy-Monitor v3</a> & <a href="https://eggjs.org/" target="_blank">Egg.js</a>
       </Footer>
     </Layout>
 

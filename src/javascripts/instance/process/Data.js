@@ -19,6 +19,7 @@ export default {
     this.line = this.$refs.line;
     this.panel = this.$refs.panel;
     this.catalogue = this.$refs.catalogue;
+    this.scatter = this.$refs.scatter;
   },
 
   beforeDestroy() {
@@ -51,14 +52,11 @@ export default {
         proc.gcUsageFmt = proc.gcUsage + "%";
         proc.rssFmt = utils.formatSize(proc.rss, 1);
 
-        // add scatter data
-        proc.HEAP = Number(proc.heapUsage);
-        proc.CPU = Number(proc.cpuUsage);
-        proc.GC = Number(proc.gcUsage);
-        proc.RSS = Number((proc.rss / 1024 / 1024).toFixed(2));
-
         // add line data
         this.line.setLineData(proc);
+
+        // add scatter data
+        this.scatter.setScatterData(proc);
 
         return proc;
       });
