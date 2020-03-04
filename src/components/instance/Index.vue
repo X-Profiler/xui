@@ -58,12 +58,14 @@
       <template slot="content">
         <div style="text-align: center">
           <x-loading :loading="checkAgentLoading" type="dot" size="middle"></x-loading>
-          <x-table
-            v-show="!checkAgentLoading"
-            :columns="checkAgentColumns"
-            :data="checkAgentData"
-            noDataText="没有获取到实例信息"
-          ></x-table>
+          <transition name="slide-noward">
+            <x-table
+              v-show="!checkAgentLoading"
+              :columns="checkAgentColumns"
+              :data="checkAgentData"
+              noDataText="没有获取到实例信息"
+            ></x-table>
+          </transition>
         </div>
       </template>
 
@@ -95,12 +97,14 @@ const indexData = Object.assign(
       title: String,
       currentUserIsOwner: Boolean
     },
+
     components: {
       "x-process-data": xProcessData,
       "x-system-data": xSystemData,
       "x-error-log": xErrorLog,
       "x-module-risk": xModuleRisk
     },
+
     data() {
       return {
         selectedAgentId: undefined,

@@ -91,6 +91,7 @@ const panelData = Object.assign(
     props: {
       processes: Array
     },
+
     data() {
       return {
         processData: {

@@ -40,9 +40,11 @@ const lineData = Object.assign(
     props: {
       processes: Array
     },
+
     components: {
       "x-tip": Tip
     },
+
     data() {
       return {
         times: []

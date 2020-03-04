@@ -71,6 +71,12 @@ import consoleModule from "../javascripts/Console";
 
 const consoleData = Object.assign(
   {
+    components: {
+      "x-header": xHeader,
+      "x-apps": xApps,
+      "x-egg-logo": xEggLogo
+    },
+
     data() {
       return {
         selectedType: undefined,
@@ -79,11 +85,6 @@ const consoleData = Object.assign(
         valueWhiteList: { selectedType: ["myApps", "joinedApps"] },
         nessaryQueryArgs: ["type"]
       };
-    },
-    components: {
-      "x-header": xHeader,
-      "x-apps": xApps,
-      "x-egg-logo": xEggLogo
     }
   },
   consoleModule

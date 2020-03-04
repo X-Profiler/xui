@@ -31,6 +31,7 @@ const siderData = Object.assign(
       active: String,
       owner: Boolean
     },
+
     data() {
       return {
         menuGroup: [

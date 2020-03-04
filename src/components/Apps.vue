@@ -124,6 +124,7 @@ const appsData = Object.assign(
     props: {
       type: String
     },
+
     data() {
       return {
         colors: [

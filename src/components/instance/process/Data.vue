@@ -91,12 +91,14 @@ const processData = Object.assign(
       appId: Number,
       agentId: String
     },
+
     components: {
       "x-line": xLine,
       "x-panel": xPanel,
       "x-catalogue": xCatalogue,
       "x-scatter": xScatter
     },
+
     data() {
       return {
         selectedPid: undefined,
