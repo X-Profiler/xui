@@ -16,7 +16,7 @@ module.exports = app => {
     console.log(`get app ${appId} agent ${agentId}`);
 
     const list = [{ type: "Node.js 版本", value: "v12.16.1" }, {
-      type: "Xtransit 版本", value: "v1.0.0"
+      type: "Xtransit 版本", value: "xtransit@v1.0.0"
     }, {
       type: "核心转储限制", value: "unlimited"
     }, {

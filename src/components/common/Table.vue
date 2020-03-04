@@ -16,7 +16,7 @@
       </tr>
 
       <!-- show data -->
-      <tr v-for="(row, index) in data" :key="index">
+      <tr :class="hover ? 'tr-hover' : ''" v-for="(row, index) in data" :key="index">
         <td class="row-data" v-for="(col, index) in columns" :key="index">
           <slot :name="col.value" :row="row">{{ row[col.value] }}</slot>
         </td>
@@ -30,7 +30,8 @@ export default {
   props: {
     columns: Array,
     data: Array,
-    noDataText: String
+    noDataText: String,
+    hover: Boolean
   },
 
   methods: {
@@ -65,7 +66,7 @@ export default {
 }
 
 .table thead tr th {
-  padding: 10px 15px;
+  padding: 13px 15px;
   border-bottom: 1px solid #e7e7e8;
 }
 
@@ -73,14 +74,19 @@ export default {
   border-bottom: 1px solid #e7e7e8;
 }
 
+.table tbody .tr-hover:hover {
+  transition: all 0.3s ease-out;
+  background-color: #ebf7ff;
+}
+
 .no-data {
   text-align: center;
-  padding: 10px 15px;
+  padding: 13px 15px;
 }
 
 .row-data {
   text-align: left;
-  padding: 10px 15px;
+  padding: 13px 15px;
 }
 </style>
 

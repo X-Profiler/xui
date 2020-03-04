@@ -54,7 +54,7 @@
     </transition>
 
     <!-- modal for check instance -->
-    <x-modal ref="checkAgent" title="查看实例" :width="540">
+    <x-modal ref="checkAgent" title="查看实例" :width="560">
       <template slot="content">
         <div style="text-align: center">
           <x-loading :loading="checkAgentLoading" type="dot" size="middle"></x-loading>
