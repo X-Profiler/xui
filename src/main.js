@@ -1,8 +1,10 @@
 "use strict";
 
 import Vue from "vue";
+import Vuex from "vuex";
 import VueRouter from "vue-router";
 import App from "./App.vue";
+import Store from "./store";
 import Routers from "./router.js";
 import ViewUI from "view-design";
 import "view-design/dist/styles/iview.css";
@@ -19,6 +21,7 @@ import xTooltip from "@/components/common/Tooltip";
 // charts
 import xScatter from "@/components/chart/Scatter";
 
+Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(ViewUI);
 
@@ -30,12 +33,18 @@ Vue.component("x-table", xTable);
 Vue.component("x-tooltip", xTooltip);
 Vue.component("x-scatter", xScatter);
 
+
+// add vuex store
+const store = new Vuex.Store(Store);
+
+// add vue router
 const RouterConfig = {
   routes: Routers
 };
 const router = new VueRouter(RouterConfig);
 
 new Vue({
+  store,
   router,
   render: h => h(App),
 }).$mount("#app");
