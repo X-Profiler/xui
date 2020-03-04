@@ -12,6 +12,7 @@ import "./theme/index.less";
 
 // global components
 import xDashboardTitle from "@/components/common/DashboardTitle";
+import xDrawer from "@/components/common/Drawer";
 import xDropdown from "@/components/common/Dropdown";
 import xLoading from "@/components/common/Loading";
 import xModal from "@/components/common/Modal";
@@ -26,6 +27,7 @@ Vue.use(VueRouter);
 Vue.use(ViewUI);
 
 Vue.component("x-dashboard-title", xDashboardTitle);
+Vue.component("x-drawer", xDrawer);
 Vue.component("x-dropdown", xDropdown);
 Vue.component("x-loading", xLoading);
 Vue.component("x-modal", xModal);

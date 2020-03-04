@@ -24,6 +24,8 @@
         </transition>
       </Content>
     </div>
+
+    <x-drawer></x-drawer>
   </div>
 </template>
 

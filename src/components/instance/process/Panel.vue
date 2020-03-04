@@ -2,7 +2,7 @@
   <div>
     <!-- check running process -->
     <div style="text-align:right">
-      <Button class="check-button" type="info" size="small">
+      <Button class="check-button" type="info" size="small" @click="openProcessesDrawer">
         <Icon type="md-apps" class="check-button-icon" />
         {{ checkProcessesTag }}
       </Button>
