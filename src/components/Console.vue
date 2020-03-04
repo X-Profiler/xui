@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import xModal from "./common/Modal";
 import xHeader from "./layout/Header";
 import xApps from "./Apps";
 import xEggLogo from "./logo/Egg";
@@ -82,7 +81,6 @@ const consoleData = Object.assign(
       };
     },
     components: {
-      "x-modal": xModal,
       "x-header": xHeader,
       "x-apps": xApps,
       "x-egg-logo": xEggLogo

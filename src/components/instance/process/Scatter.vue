@@ -42,7 +42,6 @@
 
 <script>
 import scatModule from "../../../javascripts/instance/process/Scat";
-import xScatter from "../../chart/Scatter";
 
 const scatData = Object.assign(
   {
@@ -50,9 +49,7 @@ const scatData = Object.assign(
       display: Boolean,
       processes: Array
     },
-    components: {
-      "x-scatter": xScatter
-    },
+
     data() {
       return {
         scatters: [

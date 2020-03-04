@@ -6,17 +6,12 @@
 </template>
 
 <script>
-import dashboardTitle from "../common/DashboardTitle";
-
 export default {
   props: {
     appId: Number,
     appName: String,
     title: String,
     currentUserIsOwner: Boolean
-  },
-  components: {
-    "x-dashboard-title": dashboardTitle
   }
 };
 </script>

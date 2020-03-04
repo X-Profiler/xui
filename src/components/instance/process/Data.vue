@@ -80,7 +80,6 @@
 import processModule from "../../../javascripts/instance/process/Data";
 
 // module
-import xLoading from "../../common/Loading";
 import xLine from "./Line";
 import xPanel from "./Panel";
 import xCatalogue from "./Catalogue";
@@ -93,7 +92,6 @@ const processData = Object.assign(
       agentId: String
     },
     components: {
-      "x-loading": xLoading,
       "x-line": xLine,
       "x-panel": xPanel,
       "x-catalogue": xCatalogue,

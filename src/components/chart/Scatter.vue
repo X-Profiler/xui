@@ -130,8 +130,6 @@
 </template>
 
 <script>
-import xTooltip from "../common/Tooltip";
-
 export default {
   props: {
     fields: Array,
@@ -141,10 +139,6 @@ export default {
     xAxisScaleCount: Number,
     yAxisScaleCount: Number,
     display: Boolean
-  },
-
-  components: {
-    "x-tooltip": xTooltip
   },
 
   data() {

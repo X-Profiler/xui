@@ -23,16 +23,12 @@
 </template>
 
 <script>
-import xDropdown from "../../common/Dropdown";
 import catalogueModule from "../../../javascripts/instance/process/Catalogue";
 
 const catalogueData = Object.assign(
   {
     props: {
       processes: Array
-    },
-    components: {
-      "x-dropdown": xDropdown
     },
     data() {
       return {
