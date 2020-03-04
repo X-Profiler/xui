@@ -30,7 +30,6 @@
 <script>
 import xHeader from "./layout/Header";
 import xSider from "./layout/Sider";
-import xLoading from "./common/Loading";
 import dashboardModule from "../javascripts/Dashboard";
 import { tags } from "../javascripts/config";
 import { getTag } from "../javascripts/lib/utils";
@@ -51,8 +50,7 @@ const dashboardData = Object.assign(
       "x-file": xFile,
       "x-team": xTeam,
       "x-alarm": xAlarm,
-      "x-setting": xSetting,
-      "x-loading": xLoading
+      "x-setting": xSetting
     },
 
     data() {

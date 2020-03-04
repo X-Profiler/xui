@@ -49,7 +49,7 @@
           <!-- process detail -->
           <div class="panel-chapter">{{ processDetailTag }}</div>
           <div class="panel-long-button">
-            <Button size="small" type="info" ghost long>
+            <Button size="small" type="primary" ghost long>
               <div class="panel-button-value">{{ checkXprofilerTag }}</div>
             </Button>
           </div>
@@ -82,7 +82,6 @@
 </template>
 
 <script>
-import xDropdown from "../../common/Dropdown";
 import panelModule from "../../../javascripts/instance/process/Panel";
 import { tags } from "../../../javascripts/config";
 import { getTag } from "../../../javascripts/lib/utils";
@@ -91,9 +90,6 @@ const panelData = Object.assign(
   {
     props: {
       processes: Array
-    },
-    components: {
-      "x-dropdown": xDropdown
     },
     data() {
       return {

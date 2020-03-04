@@ -23,16 +23,12 @@
 </template>
 
 <script>
-import xTooltip from "../../common/Tooltip";
 import tipModule from "../../../javascripts/instance/process/Tip";
 import { tags } from "../../../javascripts/config";
 import { getTag } from "../../../javascripts/lib/utils";
 
 const tipData = Object.assign(
   {
-    components: {
-      "x-tooltip": xTooltip
-    },
     data() {
       return {
         processData: undefined,

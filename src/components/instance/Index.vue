@@ -82,12 +82,10 @@ import { tags } from "../../javascripts/config";
 import { getTag } from "../../javascripts/lib/utils";
 
 // instance component
-import xDashboardTitle from "../common/DashboardTitle";
 import xProcessData from "./process/Data";
 import xSystemData from "./SystemData";
 import xErrorLog from "./ErrorLog";
 import xModuleRisk from "./ModuleRisk";
-import xModal from "../common/Modal";
 
 const indexData = Object.assign(
   {
@@ -98,12 +96,10 @@ const indexData = Object.assign(
       currentUserIsOwner: Boolean
     },
     components: {
-      "x-dashboard-title": xDashboardTitle,
       "x-process-data": xProcessData,
       "x-system-data": xSystemData,
       "x-error-log": xErrorLog,
-      "x-module-risk": xModuleRisk,
-      "x-modal": xModal
+      "x-module-risk": xModuleRisk
     },
     data() {
       return {
