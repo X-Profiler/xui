@@ -16,6 +16,10 @@ export default {
 
     selectPid(index) {
       this.$emit("selectPid", index);
+    },
+
+    openProcessesDrawer() {
+      this.$store.commit("openDrawer");
     }
   },
 

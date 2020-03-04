@@ -12,6 +12,11 @@
   transition: all 0.5s ease;
 }
 
+.slide-drawer-wrapper-active,
+.slide-drawer-enter-active {
+  transition: all 0.2s ease;
+}
+
 
 /* enter */
 .slide-enter {
@@ -44,6 +49,17 @@
   opacity: 0;
 }
 
+.slide-drawer-enter,
+.slide-drawer-leave-to {
+  opacity: 0;
+}
+
+.slide-drawer-wrapper-leave-to {
+  transform: translateX(calc(50vw + 70px));
+  /* transform: translateX(100vw); */
+  opacity: 0;
+}
+
 .slide-router-enter,
 .slide-noward-enter {
   transform: translateX(0px);
@@ -54,6 +70,11 @@
 /* leave-active */
 .slide-button-leave-active {
   transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-drawer-leave-active,
+.slide-drawer-wrapper-leave-active {
+  transition: all 0.4s ease;
 }
 
 
