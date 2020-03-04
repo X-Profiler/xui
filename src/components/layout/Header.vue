@@ -31,6 +31,7 @@ const headerData = Object.assign(
       active: String,
       owner: Boolean
     },
+
     data() {
       return {
         user: {
