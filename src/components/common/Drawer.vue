@@ -75,7 +75,6 @@ export default {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  overflow: scroll;
 }
 
 .container {
@@ -84,6 +83,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+  /* overflow-x: hidden; */
 }
 
 .display {
@@ -107,7 +108,7 @@ export default {
 
 .wrapper {
   margin-left: 70px;
-  width: 100%;
+  width: calc(100% - 70px);
   height: 100%;
   position: relative;
 }
@@ -128,9 +129,9 @@ export default {
 }
 
 .close-icon {
-  margin-left: 5px;
+  margin-left: 6px;
   transform: rotate(180deg) scale(1);
-  font-size: 22px;
+  font-size: 21px;
   /* color: #2b7ab5; */
 }
 
