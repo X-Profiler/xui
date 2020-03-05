@@ -52,12 +52,10 @@
         }
       ],
       "quotes": [
-        "error",
-        "double"
+        "warn"
       ],
       "semi": [
-        "error",
-        "always"
+        "warn"
       ],
       "no-empty": [
         "warn"

@@ -3,22 +3,21 @@
 import { tags } from "../../config";
 import * as utils from "../../lib/utils";
 
+const drawerTag = "YES";
+
 export default {
   mounted() {
-    this.drawer = this.$refs.drawer;
-
     const query = this.$route.query;
-    this.handleProcesses(query);
-
+    this.handleDrawer(query, this.processesDrawerKey);
   },
 
   methods: {
-    handleProcesses(query) {
-      // check need show processes
-      if (query.processes === "YES") {
-        this.drawer.open();
+    handleDrawer(query, key) {
+      const drawer = this.$refs[key];
+      if (query[key] === drawerTag) {
+        drawer.open();
       } else {
-        this.drawer.close();
+        drawer.close();
       }
     },
 
@@ -35,16 +34,17 @@ export default {
       this.$emit("selectPid", index);
     },
 
-    openProcessesDrawer() {
+    openDrawer(key) {
       const route = this.$route;
-      const query = Object.assign({}, route.query, { processes: "YES" });
+      const query = Object.assign({}, route.query, { [key]: drawerTag });
       this.$router.push({ path: route.path, query });
     },
 
-    closeProcessDrawer() {
+    closeDrawer(key) {
       const route = this.$route;
-      const query = Object.assign({}, route.query, { processes: undefined });
-      this.$router.replace({ path: route.path, query });
+      if (route.query[key] === drawerTag) {
+        this.$router.go(-1);
+      }
     }
   },
 
@@ -84,7 +84,7 @@ export default {
 
   watch: {
     $route(to) {
-      this.handleProcesses(to.query);
+      this.handleDrawer(to.query, this.processesDrawerKey);
     },
   }
 };
