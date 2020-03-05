@@ -37,6 +37,8 @@ export default {
 
   methods: {
     open() {
+      if (this.show) return;
+
       // diable touchmove
       const mo = function(e) {
         e.preventDefault();
@@ -53,6 +55,8 @@ export default {
     },
 
     close() {
+      if (!this.show) return;
+
       // enable touchmove
       const mo = function(e) {
         e.preventDefault();
@@ -61,6 +65,7 @@ export default {
       document.removeEventListener("touchmove", mo, false);
 
       this.show = false;
+      this.$emit("close");
     }
   }
 };

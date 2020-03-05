@@ -6,9 +6,22 @@ import * as utils from "../../lib/utils";
 export default {
   mounted() {
     this.drawer = this.$refs.drawer;
+
+    const query = this.$route.query;
+    this.handleProcesses(query);
+
   },
 
   methods: {
+    handleProcesses(query) {
+      // check need show processes
+      if (query.processes === "YES") {
+        this.drawer.open();
+      } else {
+        this.drawer.close();
+      }
+    },
+
     updateSelectedProcess(data) {
       this.processData = data;
     },
@@ -23,7 +36,15 @@ export default {
     },
 
     openProcessesDrawer() {
-      this.drawer.open();
+      const route = this.$route;
+      const query = Object.assign({}, route.query, { processes: "YES" });
+      this.$router.push({ path: route.path, query });
+    },
+
+    closeProcessDrawer() {
+      const route = this.$route;
+      const query = Object.assign({}, route.query, { processes: undefined });
+      this.$router.replace({ path: route.path, query });
     }
   },
 
@@ -59,5 +80,11 @@ export default {
     actionsTag() {
       return utils.getTag(tags.actions);
     }
+  },
+
+  watch: {
+    $route(to) {
+      this.handleProcesses(to.query);
+    },
   }
 };
