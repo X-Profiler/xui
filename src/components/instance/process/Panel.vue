@@ -8,7 +8,7 @@
       </Button>
 
       <!-- processes drawer -->
-      <x-drawer ref="drawer"></x-drawer>
+      <x-drawer ref="drawer" @close="closeProcessDrawer"></x-drawer>
     </div>
 
     <!-- process panel -->
