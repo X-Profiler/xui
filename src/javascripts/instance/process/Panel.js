@@ -19,7 +19,6 @@ export default {
     },
 
     openProcessesDrawer() {
-      this.$store.commit("openDrawer");
     }
   },
 

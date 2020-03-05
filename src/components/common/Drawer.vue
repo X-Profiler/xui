@@ -25,23 +25,34 @@
 
 <script>
 export default {
-  methods: {
-    close() {
-      this.$store.commit("closeDrawer");
-    }
+  data() {
+    return {
+      show: false
+    };
   },
 
-  computed: {
-    drawer() {
-      return this.$store.state.drawer;
+  methods: {
+    open() {
+      // diable touchmove
+      const mo = function(e) {
+        e.preventDefault();
+      };
+      document.body.style.overflow = "hidden";
+      // document.body.style.poxition = "fixed";
+      document.addEventListener("touchmove", mo, false);
+
+      this.show = true;
     },
 
-    show() {
-      return this.drawer.show;
-    },
+    close() {
+      // enable touchmove
+      const mo = function(e) {
+        e.preventDefault();
+      };
+      document.body.style.overflow = "";
+      document.removeEventListener("touchmove", mo, false);
 
-    data() {
-      return this.drawer.data;
+      this.show = false;
     }
   }
 };
