@@ -6,6 +6,9 @@
         <Icon type="md-apps" class="check-button-icon" />
         {{ checkProcessesTag }}
       </Button>
+
+      <!-- processes drawer -->
+      <x-drawer></x-drawer>
     </div>
 
     <!-- process panel -->

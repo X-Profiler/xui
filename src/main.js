@@ -7,6 +7,7 @@ import App from "./App.vue";
 import Store from "./store";
 import Routers from "./router.js";
 import ViewUI from "view-design";
+import DomPortal from "vue-dom-portal";
 import "view-design/dist/styles/iview.css";
 import "./theme/index.less";
 
@@ -25,6 +26,7 @@ import xScatter from "@/components/chart/Scatter";
 Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(ViewUI);
+Vue.use(DomPortal);
 
 Vue.component("x-dashboard-title", xDashboardTitle);
 Vue.component("x-drawer", xDrawer);

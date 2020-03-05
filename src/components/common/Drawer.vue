@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-drawer">
-    <div v-show="show" class="mask">
+    <div v-dom-portal v-show="show" class="mask">
       <transition name="slide-drawer-wrapper">
         <div v-show="show" class="wrapper">
           <div class="close" @click="close">
@@ -54,7 +54,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   overflow: scroll;
   z-index: 2000;
