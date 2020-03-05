@@ -1,34 +1,38 @@
 <template>
-  <transition name="slide-drawer">
-    <div v-dom-portal v-show="show" class="mask">
-      <transition name="slide-drawer-wrapper">
-        <div v-show="show" class="wrapper">
-          <div class="close" @click="close">
-            <Icon style="margin-left: 5px;" type="md-play" />
+  <div v-show="firstShow" ref="mask" v-dom-portal :class="'mask ' + (show ? 'display' : 'hidden')">
+    <div ref="container" :class="'container ' + (show ? 'load' : 'leave')">
+      <div class="wrapper">
+        <div class="close" @click="close">
+          <Icon style="margin-left: 5px;" type="md-play" />
+        </div>
+        <div class="content">
+          <!-- header -->
+          <div>
+            <slot name="header"></slot>
           </div>
-          <div class="content">
-            <!-- header -->
-            <div>
-              <slot name="header"></slot>
-            </div>
 
-            <!-- content -->
-            <div>
-              <slot name="content"></slot>
-            </div>
+          <!-- content -->
+          <div>
+            <slot name="content"></slot>
           </div>
         </div>
-      </transition>
+      </div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      firstShow: false,
       show: false
     };
+  },
+
+  mounted() {
+    this.mask = this.$refs.mask;
+    this.container = this.$refs.container;
   },
 
   methods: {
@@ -38,8 +42,12 @@ export default {
         e.preventDefault();
       };
       document.body.style.overflow = "hidden";
-      // document.body.style.poxition = "fixed";
+      document.body.style.poxition = "fixed";
       document.addEventListener("touchmove", mo, false);
+
+      if (!this.firstShow) {
+        this.firstShow = true;
+      }
 
       this.show = true;
     },
@@ -68,19 +76,45 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   overflow: scroll;
-  z-index: 2000;
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.display {
+  animation: display 0.3s ease;
+  z-index: 1200;
+}
+
+.hidden {
+  animation: hidden 0.3s ease;
+  z-index: -9999;
+  opacity: 0;
+}
+
+.load {
+  animation: load 0.3s ease;
+}
+
+.leave {
+  animation: leave 0.3s ease;
 }
 
 .wrapper {
   margin-left: 70px;
   width: 100%;
+  height: 100%;
   position: relative;
-  animation: load 0.2s;
 }
 
 .close {
-  position: absolute;
-  left: -25px;
+  position: fixed;
+  left: 41px;
   top: 15px;
   height: 60px;
   width: 0;
@@ -103,14 +137,53 @@ export default {
   background-color: #fff;
 }
 
-@keyframes load {
+@keyframes display {
   0% {
-    margin-left: calc(50vh - 70px);
-    /* margin-left: 100vh; */
+    opacity: 0;
   }
 
   100% {
-    margin-left: 70px;
+    opacity: 1;
+  }
+}
+
+@keyframes hidden {
+  0% {
+    opacity: 1;
+    z-index: 1200;
+  }
+
+  100% {
+    opacity: 0;
+    z-index: 1200;
+  }
+}
+
+@keyframes load {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(50vw - 70px));
+    z-index: 2000;
+    /* transform: translateX(100vw); */
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 2000;
+    /* transform: translateX(100vw); */
+  }
+}
+
+@keyframes leave {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(calc(50vw - 70px));
   }
 }
 </style>

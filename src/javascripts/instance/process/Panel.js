@@ -4,6 +4,10 @@ import { tags } from "../../config";
 import * as utils from "../../lib/utils";
 
 export default {
+  mounted() {
+    this.drawer = this.$refs.drawer;
+  },
+
   methods: {
     updateSelectedProcess(data) {
       this.processData = data;
@@ -19,6 +23,7 @@ export default {
     },
 
     openProcessesDrawer() {
+      this.drawer.open();
     }
   },
 
