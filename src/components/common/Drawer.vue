@@ -3,7 +3,7 @@
     <div ref="container" :class="'container ' + (show ? 'load' : 'leave')">
       <div class="wrapper">
         <div class="close" @click="close">
-          <Icon style="margin-left: 5px;" type="md-play" />
+          <Icon class="close-icon" type="md-skip-backward" />
         </div>
         <div class="content">
           <!-- header -->
@@ -115,7 +115,7 @@ export default {
 .close {
   position: fixed;
   left: 41px;
-  top: 15px;
+  top: 10px;
   height: 60px;
   width: 0;
   border-right: 30px solid #fff;
@@ -123,13 +123,21 @@ export default {
   border-bottom: 14px solid transparent;
   display: flex;
   align-items: center;
-  font-size: 20px;
   cursor: pointer;
   z-index: -999;
 }
 
+.close-icon {
+  margin-left: 5px;
+  transform: rotate(180deg) scale(1);
+  font-size: 22px;
+  /* color: #2b7ab5; */
+}
+
 .close:hover {
-  border-right: 30px solid #e8eaec;
+  color: white;
+  border-right: 30px solid #2b7ab5;
+  transition: border-right 0.2s ease-out;
 }
 
 .content {
@@ -163,14 +171,14 @@ export default {
   0% {
     opacity: 0;
     transform: translateX(calc(50vw - 70px));
-    z-index: 2000;
+    z-index: 1200;
     /* transform: translateX(100vw); */
   }
 
   100% {
     opacity: 1;
     transform: translateX(0);
-    z-index: 2000;
+    z-index: 1200;
     /* transform: translateX(100vw); */
   }
 }
