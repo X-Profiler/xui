@@ -2,13 +2,13 @@
   <div>
     <!-- check running process -->
     <div style="text-align:right">
-      <Button class="check-button" type="info" size="small" @click="openProcessesDrawer">
+      <Button class="check-button" type="info" size="small" @click="openDrawer(processesDrawerKey)">
         <Icon type="md-apps" class="check-button-icon" />
         {{ checkProcessesTag }}
       </Button>
 
       <!-- processes drawer -->
-      <x-drawer ref="drawer" @close="closeProcessDrawer"></x-drawer>
+      <x-drawer :ref="processesDrawerKey" @close="closeDrawer(processesDrawerKey)"></x-drawer>
     </div>
 
     <!-- process panel -->
@@ -126,7 +126,8 @@ const panelData = Object.assign(
           { label: getTag(tags.heapprofile), value: "heapprofile" },
           { label: getTag(tags.gcprofile), value: "gcprofile" },
           { label: getTag(tags.diag), value: "diag" }
-        ]
+        ],
+        processesDrawerKey: "process-drawer"
       };
     }
   },
