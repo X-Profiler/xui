@@ -8,7 +8,6 @@
 <script>
 export default {
   props: {
-    appId: Number,
     appName: String,
     title: String,
     currentUserIsOwner: Boolean

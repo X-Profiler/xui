@@ -1,5 +1,6 @@
 "use strict";
 
+import { createNamespacedHelpers } from "vuex";
 import axios from "axios";
 import { tags } from "../config";
 
@@ -172,4 +173,8 @@ export function formatSize(size, fixed = 2, showPlus) {
     str = `${(size / 1024 / 1024 / 1024).toFixed(fixed)}GB`;
   }
   return size ? `${symbol ? `${showPlus ? `+${str}` : str}` : `-${str}`}` : str;
+}
+
+export function createNamespace(namespace) {
+  return createNamespacedHelpers(namespace);
 }

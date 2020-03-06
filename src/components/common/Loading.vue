@@ -18,7 +18,7 @@
 export default {
   props: {
     loading: Boolean,
-    top: Number,
+    top: [Number, String],
     size: String,
     type: String
   },
@@ -26,8 +26,12 @@ export default {
   computed: {
     style() {
       let style = "";
-      if (this.top && !isNaN(this.top)) {
-        style += "margin-top: " + this.top + "px;";
+      if (this.top) {
+        if (!isNaN(this.top)) {
+          style += "margin-top: " + this.top + "px;";
+        } else {
+          style += "margin-top: " + this.top + ";";
+        }
       }
       return style;
     },

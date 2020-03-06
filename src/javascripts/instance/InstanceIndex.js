@@ -3,6 +3,9 @@
 import { http, tags } from "../config";
 import * as utils from "../lib/utils";
 
+const { mapState: mapStateDashboard } = utils.createNamespace("dashboard");
+const { mapMutations: mapMutationsInstance } = utils.createNamespace("dashboard/instance");
+
 const { agents, agent } = http;
 
 export default {
@@ -29,6 +32,8 @@ export default {
   },
 
   methods: {
+    ...mapMutationsInstance(["setAgentId"]),
+
     formatAgents(list) {
       return list.map(({ agentId }) => {
         return {
@@ -78,6 +83,8 @@ export default {
   },
 
   computed: {
+    ...mapStateDashboard(["appId"]),
+
     checkAgentTip() {
       return utils.getTag(tags.checkAgent);
     },
@@ -116,6 +123,7 @@ export default {
     },
 
     selectedAgentId(...args) {
+      this.setAgentId(this.selectedAgentId);
       utils.watchQueryKey.call(this, "agentId", "selectedAgentId", args);
     }
   }

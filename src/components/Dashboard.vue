@@ -16,7 +16,6 @@
           <component
             v-if="!appInfoLoading && activeContent"
             :is="activeContent.component"
-            :appId="appId"
             :appName="appName"
             :title="activeContent.title"
             :currentUserIsOwner="currentUserIsOwner"
@@ -35,7 +34,7 @@ import { tags } from "../javascripts/config";
 import { getTag } from "../javascripts/lib/utils";
 
 // menu components
-import xInstance from "./instance/Index";
+import xInstance from "./instance/InstanceIndex";
 import xFile from "./file/Index";
 import xTeam from "./team/Index";
 import xAlarm from "./alarm/Index";
@@ -55,7 +54,6 @@ const dashboardData = Object.assign(
 
     data() {
       return {
-        appId: null,
         appName: getTag(tags.nameUnknown),
         currentUserIsOwner: false,
         appInfoLoading: false,

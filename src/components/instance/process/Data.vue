@@ -87,11 +87,6 @@ import xScatter from "./Scatter";
 
 const processData = Object.assign(
   {
-    props: {
-      appId: Number,
-      agentId: String
-    },
-
     components: {
       "x-line": xLine,
       "x-panel": xPanel,

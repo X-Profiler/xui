@@ -8,7 +8,17 @@
       </Button>
 
       <!-- processes drawer -->
-      <x-drawer :ref="processesDrawerKey" @close="closeDrawer(processesDrawerKey)"></x-drawer>
+      <x-drawer :ref="processesDrawerKey" @close="closeDrawer(processesDrawerKey)">
+        <template slot="header">
+          <div class="processes-header">实例 {{agentId}} 存在以下 Node.js 进程（不一定接入 Xprofiler 插件）</div>
+        </template>
+
+        <template slot="content">
+          <div class="process-content">
+            <x-node></x-node>
+          </div>
+        </template>
+      </x-drawer>
     </div>
 
     <!-- process panel -->
@@ -88,11 +98,16 @@
 import panelModule from "../../../javascripts/instance/process/Panel";
 import { tags } from "../../../javascripts/config";
 import { getTag } from "../../../javascripts/lib/utils";
+import xNode from "./Node";
 
 const panelData = Object.assign(
   {
     props: {
       processes: Array
+    },
+
+    components: {
+      "x-node": xNode
     },
 
     data() {
@@ -238,7 +253,7 @@ export default panelData;
   font-family: PingFangSC-Regular;
   font-weight: bold;
   margin-top: 3px;
-  color: #17233d;
+  color: #373d41;
 }
 
 .panel-normal-button {
@@ -263,5 +278,14 @@ export default panelData;
 
 .panel-button-value {
   font-size: 13px;
+}
+
+.processes-header {
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.process-content {
+  padding: 10px 20px 20px 20px;
 }
 </style>
