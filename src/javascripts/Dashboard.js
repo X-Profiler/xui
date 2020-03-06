@@ -4,10 +4,11 @@ import { http } from "./config";
 import * as utils from "./lib/utils";
 
 const { app } = http;
+const { mapState, mapMutations } = utils.createNamespace("dashboard");
 
 export default {
   created() {
-    this.appId = Number(this.$route.params.appId);
+    this.setAppId(Number(this.$route.params.appId));
     this.menuTab = this.$route.params.menuTab;
 
     // set common http methods
@@ -23,6 +24,8 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["setAppId"]),
+
     menuChanged(active) {
       this.menuTab = active;
       if (this.$route.params.menuTab !== active) {
@@ -38,6 +41,10 @@ export default {
         this.currentUserIsOwner = data.currentUserIsOwner;
       }, this.cancelToken.token, "appInfoLoading");
     }
+  },
+
+  computed: {
+    ...mapState(["appId"])
   },
 
   watch: {

@@ -4,6 +4,9 @@ import * as moment from "moment";
 import { http, tags } from "../../config";
 import * as utils from "../../lib/utils";
 
+const { mapState: mapStateDashboard } = utils.createNamespace("dashboard");
+const { mapState: mapStateInstance } = utils.createNamespace("dashboard/instance");
+
 const { xProcesses } = http;
 
 export default {
@@ -92,6 +95,10 @@ export default {
   },
 
   computed: {
+    ...mapStateDashboard(["appId"]),
+
+    ...mapStateInstance(["agentId"]),
+
     lineTitle() {
       return utils.getTag(tags.lineTitle);
     }
@@ -103,6 +110,10 @@ export default {
     },
 
     selectedPid(...args) {
+      if (!this.selectedPid) {
+        return;
+      }
+
       utils.watchQueryKey.call(this, "pid", "selectedPid", args);
 
       // get line

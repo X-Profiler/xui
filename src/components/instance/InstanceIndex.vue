@@ -45,12 +45,7 @@
 
     <!-- instance content -->
     <transition name="slide">
-      <component
-        v-if="!agentsLoading && selectedAgentId"
-        :is="activeComponent"
-        :appId="appId"
-        :agentId="selectedAgentId"
-      ></component>
+      <component v-if="!agentsLoading && selectedAgentId" :is="activeComponent" :appId="appId"></component>
     </transition>
 
     <!-- modal for check instance -->
@@ -79,7 +74,7 @@
 </template>
 
 <script>
-import indexModule from "../../javascripts/instance/Index";
+import indexModule from "../../javascripts/instance/InstanceIndex";
 import { tags } from "../../javascripts/config";
 import { getTag } from "../../javascripts/lib/utils";
 
@@ -92,7 +87,6 @@ import xModuleRisk from "./ModuleRisk";
 const indexData = Object.assign(
   {
     props: {
-      appId: Number,
       appName: String,
       title: String,
       currentUserIsOwner: Boolean

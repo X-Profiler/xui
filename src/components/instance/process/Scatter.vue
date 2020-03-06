@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import scatModule from "../../../javascripts/instance/process/Scat";
+import scatModule from "../../../javascripts/instance/process/Scatter";
 
 const scatData = Object.assign(
   {

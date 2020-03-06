@@ -3,6 +3,8 @@
 import { tags } from "../../config";
 import * as utils from "../../lib/utils";
 
+const { mapState } = utils.createNamespace("dashboard/instance");
+
 const drawerTag = "YES";
 
 export default {
@@ -49,6 +51,8 @@ export default {
   },
 
   computed: {
+    ...mapState(["agentId"]),
+
     panelStyle() {
       const processData = this.processData;
       let style = "";

@@ -25,4 +25,7 @@ require('./apps')(app);
 // instance
 require('./instance')(app);
 
+// dashboard/instance/process
+require("./mock_process")(app);
+
 app.listen(7442);
