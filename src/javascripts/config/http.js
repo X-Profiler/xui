@@ -70,52 +70,5 @@ export default {
       ch: "获取磁盘概览信息失败，请重试",
       en: "Get disk usage overview failed, please retry."
     }
-  },
-
-  // single app
-  app: {
-    url: "/xapi/app",
-    msg: {
-      get: {
-        ch: "获取应用信息失败，请重试",
-        en: "Get application info failed, please retry."
-      },
-      post: {
-        ch: "创建应用失败，请重试",
-        en: "Create application failed, please retry."
-      }
-    }
-  },
-
-  // instance
-  agents: {
-    url: "/xapi/agents",
-    msg: {
-      ch: "获取应用实例信息失败，请重试",
-      en: "Get agents failed, please retry."
-    }
-  },
-
-  // instance process
-  processes: {
-    url: "/xapi/processes",
-    msg: {
-      ch: "获取应用实例上的 Node.js 进程列表失败，请重试",
-      en: "Get agent Node.js processes failed. please retry."
-    }
-  },
-  xProcesses: {
-    url: "/xapi/x_processes",
-    msg: {
-      ch: "获取应用实例上接入 Xprofiler 插件的进程列表失败，请重试",
-      en: "Get agent xprofiler's processes failed. please retry."
-    }
-  },
-  agent: {
-    url: "/xapi/agent",
-    msg: {
-      ch: "获取实例信息失败，请重试",
-      en: "Get agent info  failed, please retry."
-    }
   }
 };

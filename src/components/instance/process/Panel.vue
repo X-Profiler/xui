@@ -10,7 +10,7 @@
       <!-- processes drawer -->
       <x-drawer :ref="processesDrawerKey" @close="closeDrawer(processesDrawerKey)">
         <template slot="header">
-          <div class="processes-header">实例 {{agentId}} 存在以下 Node.js 进程（不一定接入 Xprofiler 插件）</div>
+          <div class="processes-header">实例 {{ agentId }} 存在以下 {{ processCount }} 个 Node.js 进程（不一定接入 Xprofiler 插件）</div>
         </template>
 
         <template slot="content">
@@ -282,7 +282,7 @@ export default panelData;
 
 .processes-header {
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 20px 20px 10px 20px;
 }
 
 .process-content {

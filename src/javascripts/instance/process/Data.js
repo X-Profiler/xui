@@ -1,21 +1,19 @@
 "use strict";
 
 import * as moment from "moment";
-import { http, tags } from "../../config";
+import { tags } from "../../config";
 import * as utils from "../../lib/utils";
 
 const { mapState: mapStateDashboard } = utils.createNamespace("dashboard");
 const { mapState: mapStateInstance } = utils.createNamespace("dashboard/instance");
-
-const { xProcesses } = http;
+const { mapState: mapStateProcess, mapActions: mapActionsProcess } = utils.createNamespace("dashboard/instance/process");
 
 export default {
   created() {
     // set common http methods
     this.cancelToken = utils.createCancelToken();
-    this.get = utils.get.bind(this);
 
-    this.getAgentXprocesses();
+    this.getXprofilerProcesses(this.cancelToken.token);
   },
 
   mounted() {
@@ -30,6 +28,8 @@ export default {
   },
 
   methods: {
+    ...mapActionsProcess(["getXprofilerProcesses"]),
+
     resetXprocesses() {
       this.selectedPid = undefined;
       this.xProcesses = [];
@@ -78,16 +78,6 @@ export default {
       }
     },
 
-    getAgentXprocesses() {
-      this.get(xProcesses.msg, xProcesses.url, { appId: this.appId, agentId: this.agentId }, data => {
-        const list = data.list;
-        if (Array.isArray(list)) {
-          this.xProcesses = this.formatXprocesses(list);
-          this.setDefaultPid();
-        }
-      }, this.cancelToken.token, "xProcessesLoading");
-    },
-
     selectPid(index) {
       const data = this.xProcesses[index];
       this.selectedPid = data.pid;
@@ -98,6 +88,8 @@ export default {
     ...mapStateDashboard(["appId"]),
 
     ...mapStateInstance(["agentId"]),
+
+    ...mapStateProcess(["xprofiler_processes_loading", "xprofiler_processes_load_error", "xprofiler_processes_data"]),
 
     lineTitle() {
       return utils.getTag(tags.lineTitle);
@@ -137,7 +129,16 @@ export default {
 
     agentId() {
       this.resetXprocesses();
-      this.getAgentXprocesses();
+      this.getXprofilerProcesses();
+    },
+
+    xprofiler_processes_data() {
+      const list = this.xprofiler_processes_data;
+
+      if (Array.isArray(list)) {
+        this.xProcesses = this.formatXprocesses(list);
+        this.setDefaultPid();
+      }
     }
   }
 };

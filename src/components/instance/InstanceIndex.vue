@@ -3,6 +3,12 @@
     <!-- title -->
     <x-dashboard-title :appName="appName" :dashboardTitle="title">
       <template slot="extra">
+        <x-loading
+          :loading="agents_loading"
+          :top="5"
+          size="small"
+          :style="agents_loading ? 'margin-left: 25px':''"
+        ></x-loading>
         <transition name="slide">
           <div v-show="agents.length">
             <Select
@@ -30,46 +36,30 @@
       </template>
     </x-dashboard-title>
 
-    <!-- instance tab -->
-    <transition name="slide-downward">
-      <Tabs class="instance-tab" v-model="selectedTab">
-        <TabPane
-          v-for="(tab, index) in instanceTabs"
-          :key="index"
-          :label="tab.label"
-          :icon="tab.icon"
-          :name="tab.value"
-        ></TabPane>
-      </Tabs>
-    </transition>
+    <x-error-message v-if="agents_load_error" :message="agents_load_error" top="calc(35vh - 50px)"></x-error-message>
 
-    <!-- instance content -->
-    <transition name="slide">
-      <component v-if="!agentsLoading && selectedAgentId" :is="activeComponent" :appId="appId"></component>
-    </transition>
+    <div v-if="!agents_loading && !agents_load_error">
+      <!-- instance tab -->
+      <transition name="slide-downward">
+        <Tabs class="instance-tab" v-model="selectedTab">
+          <TabPane
+            v-for="(tab, index) in instanceTabs"
+            :key="index"
+            :label="tab.label"
+            :icon="tab.icon"
+            :name="tab.value"
+          ></TabPane>
+        </Tabs>
+      </transition>
+
+      <!-- instance content -->
+      <transition name="slide">
+        <component v-if="selectedAgentId" :is="activeComponent" :appId="appId"></component>
+      </transition>
+    </div>
 
     <!-- modal for check instance -->
-    <x-modal ref="checkAgent" title="查看实例" :width="560">
-      <template slot="content">
-        <div style="text-align: center">
-          <x-loading :loading="checkAgentLoading" type="dot" size="middle"></x-loading>
-          <transition name="slide-noward">
-            <x-table
-              v-show="!checkAgentLoading"
-              :columns="checkAgentColumns"
-              :data="checkAgentData"
-              noDataText="没有获取到实例信息"
-            ></x-table>
-          </transition>
-        </div>
-      </template>
-
-      <template slot="footer">
-        <div v-show="!checkAgentLoading">
-          <Button type="primary" ghost @click="closeAgentCheck">关闭</Button>
-        </div>
-      </template>
-    </x-modal>
+    <x-check-agent></x-check-agent>
   </div>
 </template>
 
@@ -83,6 +73,7 @@ import xProcessData from "./process/Data";
 import xSystemData from "./SystemData";
 import xErrorLog from "./ErrorLog";
 import xModuleRisk from "./ModuleRisk";
+import xCheckAgent from "./CheckAgent";
 
 const indexData = Object.assign(
   {
@@ -96,7 +87,8 @@ const indexData = Object.assign(
       "x-process-data": xProcessData,
       "x-system-data": xSystemData,
       "x-error-log": xErrorLog,
-      "x-module-risk": xModuleRisk
+      "x-module-risk": xModuleRisk,
+      "x-check-agent": xCheckAgent
     },
 
     data() {
@@ -104,7 +96,6 @@ const indexData = Object.assign(
         selectedAgentId: undefined,
         selectedTab: undefined,
         agents: [],
-        agentsLoading: true,
         placeholder: getTag(tags.choseInstance),
         notFoundText: getTag(tags.noAgent),
         instanceTabs: [
@@ -132,13 +123,7 @@ const indexData = Object.assign(
         valueWhiteList: {
           selectedTab: ["process", "system", "error_log", "module_risk"]
         },
-        nessaryQueryArgs: ["tab", "agentId"],
-        checkAgentColumns: [
-          { title: "类型", value: "type", width: "130" },
-          { title: "信息详情", value: "value" }
-        ],
-        checkAgentData: [],
-        checkAgentLoading: true
+        nessaryQueryArgs: ["tab", "agentId"]
       };
     }
   },

@@ -1,18 +1,15 @@
 "use strict";
 
-import { http, tags } from "../config";
+import { tags } from "../config";
 import * as utils from "../lib/utils";
 
 const { mapState: mapStateDashboard } = utils.createNamespace("dashboard");
-const { mapMutations: mapMutationsInstance } = utils.createNamespace("dashboard/instance");
-
-const { agents, agent } = http;
+const { mapState: mapStateInstance, mapMutations: mapMutationsInstance, mapActions: mapActionsInstance } = utils.createNamespace("dashboard/instance");
 
 export default {
   created() {
     // set common http methods
     this.cancelToken = utils.createCancelToken();
-    this.get = utils.get.bind(this);
 
     // set variables by router
     const query = this.$route.query;
@@ -20,11 +17,7 @@ export default {
     this.selectedAgentId = query.agentId;
 
     // get agents
-    this.getAgents();
-  },
-
-  mounted() {
-    this.checkAgentModal = this.$refs.checkAgent;
+    this.getAgents(this.cancelToken.token);
   },
 
   beforeDestroy() {
@@ -32,7 +25,9 @@ export default {
   },
 
   methods: {
-    ...mapMutationsInstance(["setAgentId"]),
+    ...mapMutationsInstance(["setAgentId", "setAgentModal"]),
+
+    ...mapActionsInstance(["getAgents"]),
 
     formatAgents(list) {
       return list.map(({ agentId }) => {
@@ -52,38 +47,15 @@ export default {
       this.valueWhiteList.selectedAgentId = agents;
     },
 
-    getAgents() {
-      this.agentsLoading = true;
-      this.get(agents.msg, agents.url, { appId: this.appId }, data => {
-        const list = data.list;
-        if (Array.isArray(list)) {
-          this.agents = this.formatAgents(list);
-          this.setDefaultAgent();
-          this.agentsLoading = false;
-        }
-      }, this.cancelToken.token);
-    },
-
-    getAgentInfo() {
-      this.get(agent.msg, agent.url, { appId: this.appId, agentId: this.selectedAgentId }, data => {
-        if (Array.isArray(data.list)) {
-          this.checkAgentData = data.list;
-        }
-      }, this.cancelToken.token, "checkAgentLoading");
-    },
-
     checkAgent() {
-      this.checkAgentModal.showModal();
-      this.getAgentInfo();
-    },
-
-    closeAgentCheck() {
-      this.checkAgentModal.cancelModal();
+      this.setAgentModal(true);
     }
   },
 
   computed: {
     ...mapStateDashboard(["appId"]),
+
+    ...mapStateInstance(["agents_loading", "agents_load_error", "agents_data"]),
 
     checkAgentTip() {
       return utils.getTag(tags.checkAgent);
@@ -125,6 +97,14 @@ export default {
     selectedAgentId(...args) {
       this.setAgentId(this.selectedAgentId);
       utils.watchQueryKey.call(this, "agentId", "selectedAgentId", args);
+    },
+
+    agents_data() {
+      const list = this.agents_data;
+      if (Array.isArray(list)) {
+        this.agents = this.formatAgents(list);
+        this.setDefaultAgent();
+      }
     }
   }
 };

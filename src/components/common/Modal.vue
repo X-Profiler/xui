@@ -86,6 +86,14 @@ export default {
     cancel() {
       return this.cancelText || "取消";
     }
+  },
+
+  watch: {
+    show() {
+      if (!this.show) {
+        this.cancelModal();
+      }
+    }
   }
 };
 </script>

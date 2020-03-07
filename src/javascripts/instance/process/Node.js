@@ -19,6 +19,6 @@ export default {
   },
 
   computed: {
-    ...mapState(["processesLoading", "processesLoadError", "processes"])
+    ...mapState(["processes_loading", "processes_load_error", "processes_data"])
   }
 };

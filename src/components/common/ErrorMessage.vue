@@ -1,9 +1,9 @@
 <template>
   <div class="error" :style="style">
-    <div class="icon">
-      <Icon type="ios-alert-outline" />
+    <div class="container">
+      <Icon class="icon" type="ios-alert-outline" />
+      <div>{{ message }}</div>
     </div>
-    <div>{{ message }}</div>
   </div>
 </template>
 
@@ -38,6 +38,14 @@ export default {
 
 .error {
   color: #515a6e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  width: 100%;
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;

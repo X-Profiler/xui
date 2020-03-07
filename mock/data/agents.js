@@ -1,4 +1,7 @@
-[
+
+"use strict";
+
+module.exports = [
   {
     "agentId": "iZ99e0fb39b0128b9e4a6fZ"
   },
@@ -47,4 +50,4 @@
   {
     "agentId": "iZbfb0e776c067c7a37865Z"
   }
-]
+];

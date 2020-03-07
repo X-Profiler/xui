@@ -23,7 +23,11 @@ export default {
   },
 
   actions: {
-    async request({ commit }, { url, method = "GET", cancelToken, data = {}, disableGlobalError = false }) {
+    async request({ commit }, { url, method = "GET", cancelToken, data = {}, globalError = false }) {
+      if (!cancelToken) {
+        throw new Error("cancel token should be passed in!");
+      }
+
       const obj = {};
       if (method === "GET") {
         obj.params = data;
@@ -40,14 +44,14 @@ export default {
 
         const data = res.data;
         if (!data.ok) {
-          throw new Error(data.message || 'unknown inner server error')
+          throw new Error(data.message || "unknown inner server error");
         }
         return data.data;
       } catch (err) {
-        if (disableGlobalError) {
-          throw err;
-        } else {
+        if (globalError) {
           commit("updateGlobalError", err);
+        } else {
+          throw err;
         }
       }
     }

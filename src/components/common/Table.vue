@@ -1,11 +1,11 @@
 <template>
-  <table class="table">
+  <table class="table" :style="getTableStyle">
     <thead class="table-background">
       <tr v-if="data && data.length">
         <th
           v-for="(column, index) in columns"
           :key="index"
-          :style="getThStyle(column)"
+          :style="getCellStyle(column)"
         >{{ column.title }}</th>
       </tr>
     </thead>
@@ -17,7 +17,7 @@
 
       <!-- show data -->
       <tr v-for="(row, index) in data" :key="index" :class="getClasses(index)">
-        <td class="row-data" v-for="(col, index) in columns" :key="index">
+        <td class="row-data" v-for="(col, index) in columns" :key="index" :style="getCellStyle(col)">
           <slot :name="col.value" :row="row">{{ row[col.value] }}</slot>
         </td>
       </tr>
@@ -32,14 +32,19 @@ export default {
     data: Array,
     noDataText: String,
     hover: Boolean,
-    stribe: Boolean
+    stribe: Boolean,
+    fontSize: [Number, String]
   },
 
   methods: {
-    getThStyle(column) {
+    getCellStyle(column) {
       let style = "";
       if (column.width) {
-        style = "width: " + column.width + "px";
+        style += "width: " + column.width + "px;";
+      }
+
+      if (column.align) {
+        style += "text-align: " + column.align + ";";
       }
 
       return style;
@@ -57,6 +62,21 @@ export default {
       }
 
       return classes;
+    }
+  },
+
+  computed: {
+    getTableStyle() {
+      let style = "";
+      if (this.fontSize) {
+        if (!isNaN(this.fontSize)) {
+          style += "font-size: " + this.fontSize + "px;";
+        } else {
+          style += "font-size: " + this.fontSize + ";";
+        }
+      }
+
+      return style;
     }
   }
 };

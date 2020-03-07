@@ -4,6 +4,7 @@ import { tags } from "../../config";
 import * as utils from "../../lib/utils";
 
 const { mapState } = utils.createNamespace("dashboard/instance");
+const { mapGetters: mapGettersProcess } = utils.createNamespace("dashboard/instance/process");
 
 const drawerTag = "YES";
 
@@ -52,6 +53,8 @@ export default {
 
   computed: {
     ...mapState(["agentId"]),
+
+    ...mapGettersProcess(["processCount"]),
 
     panelStyle() {
       const processData = this.processData;

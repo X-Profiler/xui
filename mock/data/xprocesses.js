@@ -1,4 +1,6 @@
-[
+"use strict";
+
+module.exports = [
   {
     "pid": 12623,
     "cmd": "node test1.js",
@@ -24,4 +26,4 @@
     "cmd": "/Users/hyj1991/.tnvm/versions/node/v12.14.0/bin/node dispatch.js",
     "time": "half"
   }
-]
+];
