@@ -9,12 +9,14 @@
 
       <Content>
         <!-- loading -->
-        <x-loading :loading="appInfoLoading" :top="300" type="dot"></x-loading>
+        <x-loading :loading="app_loading" :top="300" type="dot"></x-loading>
+
+        <x-error-message v-if="app_load_error" :message="app_load_error" top="calc(35vh - 50px)"></x-error-message>
 
         <transition name="slide">
           <!-- dashboard component -->
           <component
-            v-if="!appInfoLoading && activeContent"
+            v-if="!app_loading && !app_load_error && activeContent"
             :is="activeContent.component"
             :appName="appName"
             :title="activeContent.title"
@@ -56,7 +58,6 @@ const dashboardData = Object.assign(
       return {
         appName: getTag(tags.nameUnknown),
         currentUserIsOwner: false,
-        appInfoLoading: false,
         menuTab: null,
         activeContent: {},
         contentGroup: [

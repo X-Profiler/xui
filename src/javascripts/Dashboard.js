@@ -1,22 +1,19 @@
 "use strict";
 
-import { http } from "./config";
 import * as utils from "./lib/utils";
 
-const { app } = http;
-const { mapState, mapMutations } = utils.createNamespace("dashboard");
+const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard");
 
 export default {
   created() {
+    // set common http methods
+    this.cancelToken = utils.createCancelToken();
+
     this.setAppId(Number(this.$route.params.appId));
     this.menuTab = this.$route.params.menuTab;
 
-    // set common http methods
-    this.cancelToken = utils.createCancelToken();
-    this.get = utils.get.bind(this);
-
     // get app info
-    this.getAppInfo();
+    this.getAppInfo(this.cancelToken.token);
   },
 
   beforeDestroy() {
@@ -26,25 +23,18 @@ export default {
   methods: {
     ...mapMutations(["setAppId"]),
 
+    ...mapActions(["getAppInfo"]),
+
     menuChanged(active) {
       this.menuTab = active;
       if (this.$route.params.menuTab !== active) {
         this.$router.push({ path: active });
       }
     },
-
-    getAppInfo() {
-      this.get(app.msg.get, app.url, { appId: this.appId }, data => {
-        if (data.appName) {
-          this.appName = data.appName;
-        }
-        this.currentUserIsOwner = data.currentUserIsOwner;
-      }, this.cancelToken.token, "appInfoLoading");
-    }
   },
 
   computed: {
-    ...mapState(["appId"])
+    ...mapState(["appId", "app_loading", "app_load_error", "app_data"])
   },
 
   watch: {
@@ -57,6 +47,14 @@ export default {
         if (content.value === this.menuTab) {
           this.activeContent = content;
         }
+      }
+    },
+
+    app_data() {
+      const data = this.app_data || {};
+      if (data.appName) {
+        this.appName = data.appName;
+        this.currentUserIsOwner = data.currentUserIsOwner;
       }
     }
   }

@@ -22,8 +22,11 @@ app.get('/xapi/user', function (req, res) {
 // console
 require('./apps')(app);
 
-// instance
-require('./instance')(app);
+// dashboard
+require("./mock_dashboard")(app);
+
+// dashboard/instance
+require("./mock_instance")(app);
 
 // dashboard/instance/process
 require("./mock_process")(app);

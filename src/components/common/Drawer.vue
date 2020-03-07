@@ -5,7 +5,7 @@
         <div v-if="show" class="container">
           <div class="wrapper">
             <div class="close" @click="close">
-              <Icon class="close-icon" type="md-skip-backward" />
+              <Icon class="close-icon" type="md-archive" />
             </div>
             <div class="content">
               <!-- header -->
@@ -110,13 +110,13 @@ export default {
   align-items: center;
   cursor: pointer;
   z-index: -999;
+  color: #373d41;
 }
 
 .close-icon {
-  margin-left: 6px;
-  transform: rotate(180deg) scale(1);
-  font-size: 21px;
-  /* color: #2b7ab5; */
+  margin-left: 3px;
+  transform: rotate(270deg) scale(1);
+  font-size: 22px;
 }
 
 .close:hover {

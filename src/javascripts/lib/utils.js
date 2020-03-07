@@ -10,6 +10,10 @@ let lang = "ch";
 
 export const failedCode = -99999;
 
+const checkType = {
+  array: v => Array.isArray(v)
+};
+
 export function setLang(lang_) {
   lang = lang_;
 }
@@ -177,4 +181,58 @@ export function formatSize(size, fixed = 2, showPlus) {
 
 export function createNamespace(namespace) {
   return createNamespacedHelpers(namespace);
+}
+
+export function storeFactory(key, value) {
+  const loading = `${key}_loading`;
+  const error = `${key}_load_error`;
+  const finalKey = `${key}_data`;
+
+  const loadingMutation = `set_${loading}_status`;
+  const errorMutation = `set_${error}`;
+  const keyMutation = `set_${key}`;
+
+  return {
+    state: {
+      [loading]: false,
+      [error]: undefined,
+      [finalKey]: value
+    },
+
+    mutations: {
+      [loadingMutation](state, status) {
+        state[loading] = status;
+      },
+
+      [errorMutation](state, message) {
+        state[error] = message;
+      },
+
+      [keyMutation](state, data) {
+        state[finalKey] = data;
+      }
+    },
+
+    async handle({ dispatch, commit }, options, resKey, type) {
+      commit(loadingMutation, true);
+      commit(errorMutation, undefined);
+      try {
+        commit(keyMutation, value);
+        let data = await dispatch("request", options, { root: true });
+        if (resKey) {
+          data = data[resKey];
+        }
+        if (type && typeof checkType[type] === "function") {
+          if (checkType[type](data)) {
+            commit(keyMutation, data);
+          }
+        } else {
+          commit(keyMutation, data);
+        }
+      } catch (err) {
+        commit(errorMutation, err.message);
+      }
+      commit(loadingMutation, false);
+    }
+  };
 }

@@ -1,12 +1,21 @@
 "use stritc";
 
+import * as utils from "../javascripts/lib/utils";
+
+const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } = utils.storeFactory("xprofiler_processes", []);
+const { state: procState, mutations: procMutations, handle: handlePorc } = utils.storeFactory("processes", []);
+
 export default {
   namespaced: true,
 
   state: {
-    processesLoading: false,
-    processesLoadError: undefined,
-    processes: []
+    ...procState,
+    ...xprofilerProcState
+  },
+
+  mutations: {
+    ...procMutations,
+    ...xprofilerProcMutations
   },
 
   getters: {
@@ -18,28 +27,35 @@ export default {
     agentId(...args) {
       const rootState = args[2];
       return rootState.dashboard.instance.agentId;
-    }
-  },
-
-  mutations: {
-    setProcessLoadingStatus(state, status) {
-      state.processesLoading = status;
     },
 
-    updateProcessLoadError(state, err) {
-      state.processesLoadError = err;
-    },
-
-    setProcesses(state, processes) {
-      state.processes = processes;
+    processCount(state) {
+      return state.processes_data.length;
     }
   },
 
   actions: {
-    async getNodeProcesses({ dispatch, commit, getters, rootState }, cancelToken) {
-      commit("setProcessLoadingStatus", true);
+    async getXprofilerProcesses(context, cancelToken) {
+      const { getters, rootState } = context;
+
       const options = {
-        disableGlobalError: true,
+        cancelToken,
+
+        // user data
+        url: rootState.url.agentXprofilerProcesses,
+        data: {
+          appId: getters.appId,
+          agentId: getters.agentId
+        }
+      };
+
+      await handleXprofilerProc(context, options, "list", "array");
+    },
+
+    async getNodeProcesses(context, cancelToken) {
+      const { getters, rootState } = context;
+
+      const options = {
         cancelToken,
 
         // user data
@@ -50,16 +66,7 @@ export default {
         }
       };
 
-      try {
-        commit("updateProcessLoadError", undefined);
-        const { list } = await dispatch("request", options, { root: true });
-        if (Array.isArray(list)) {
-          commit("setProcesses", list);
-        }
-      } catch (err) {
-        commit("updateProcessLoadError", err.message);
-      }
-      commit("setProcessLoadingStatus", false);
+      await handlePorc(context, options, "list", "array");
     }
   }
 };

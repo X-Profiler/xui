@@ -4,14 +4,20 @@
     <div class="panel">
       <!-- loading -->
       <div style="text-align: center">
-        <x-loading :loading="xProcessesLoading" :top="300" size="small" type="dot"></x-loading>
+        <x-loading :loading="xprofiler_processes_loading" :top="300" size="small" type="dot"></x-loading>
       </div>
+
+      <x-error-message
+        v-if="xprofiler_processes_load_error"
+        :message="xprofiler_processes_load_error"
+        top="calc(35vh - 50px)"
+      ></x-error-message>
 
       <!-- show process panel -->
       <transition name="slide">
         <x-panel
           ref="panel"
-          v-show="!xProcessesLoading"
+          v-show="!xprofiler_processes_loading && !xprofiler_processes_load_error"
           :processes="xProcesses"
           @selectPid="selectPid"
         ></x-panel>
@@ -26,14 +32,20 @@
 
         <!-- loading -->
         <div style="text-align: center">
-          <x-loading :loading="xProcessesLoading" :top="45" size="small" type="dot"></x-loading>
+          <x-loading :loading="xprofiler_processes_loading" :top="45" size="small" type="dot"></x-loading>
         </div>
+
+        <x-error-message
+          v-if="xprofiler_processes_load_error"
+          :message="xprofiler_processes_load_error"
+          top="25"
+        ></x-error-message>
 
         <!-- show process line -->
         <transition name="slide-rightward">
           <x-line
             ref="line"
-            v-show="!xProcessesLoading"
+            v-show="!xprofiler_processes_loading && !xprofiler_processes_load_error"
             :processes="xProcesses"
             @selectPid="selectPid"
           ></x-line>
@@ -46,7 +58,7 @@
         <transition name="slide-rightward">
           <x-catalogue
             ref="catalogue"
-            v-show="!xProcessesLoading"
+            v-show="!xprofiler_processes_loading && !xprofiler_processes_load_error"
             :processes="xProcesses"
             @selectPid="selectPid"
           ></x-catalogue>
@@ -59,14 +71,20 @@
 
         <!-- loading -->
         <div style="text-align: center">
-          <x-loading :loading="xProcessesLoading" :top="150" size="small" type="dot"></x-loading>
+          <x-loading :loading="xprofiler_processes_loading" :top="150" size="small" type="dot"></x-loading>
         </div>
+
+        <x-error-message
+          v-if="xprofiler_processes_load_error"
+          :message="xprofiler_processes_load_error"
+          top="200"
+        ></x-error-message>
 
         <!-- show chart -->
         <div style="margin-top: 10px;">
           <x-scatter
             ref="scatter"
-            :display="!xProcessesLoading"
+            :display="!xprofiler_processes_loading && !xprofiler_processes_load_error"
             :processes="xProcesses"
             @selectPid="selectPid"
           ></x-scatter>
@@ -98,7 +116,6 @@ const processData = Object.assign(
       return {
         selectedPid: undefined,
         xProcesses: [],
-        xProcessesLoading: false,
         colors: [
           "rgb(42, 125, 194)",
           "rgb(106, 90, 205)",
