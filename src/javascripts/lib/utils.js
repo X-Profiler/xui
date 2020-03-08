@@ -10,10 +10,6 @@ let lang = "ch";
 
 export const failedCode = -99999;
 
-const checkType = {
-  array: v => Array.isArray(v)
-};
-
 export function setLang(lang_) {
   lang = lang_;
 }
@@ -22,6 +18,7 @@ export function getTag(tags) {
   return tags[lang];
 }
 
+// TODO: need remove
 export function error(content, code, duration) {
   if (Number(code) === 401) {
     location.reload();
@@ -34,6 +31,7 @@ export function error(content, code, duration) {
   }
 }
 
+// TODO: need remove
 export function resolveData(message, loadingKey, data) {
   data = data.data;
   let res;
@@ -49,6 +47,7 @@ export function resolveData(message, loadingKey, data) {
   return res;
 }
 
+// TODO: need remove
 export function handleError(message, loadingKey, err) {
   if (axios.isCancel(err)) {
     return;
@@ -58,14 +57,7 @@ export function handleError(message, loadingKey, err) {
   throw err;
 }
 
-export function createCancelToken() {
-  return CancelToken.source();
-}
-
-export function cancelRequest(source) {
-  source.cancel("Operation canceled by the user.");
-}
-
+// TODO: need remove
 export function request(method, message, url, data, callback, cancelToken, loadingKey = "") {
   if (loadingKey) {
     this[loadingKey] = true;
@@ -89,14 +81,29 @@ export function request(method, message, url, data, callback, cancelToken, loadi
     .catch(handleError.bind(this, message, loadingKey));
 }
 
+// TODO: need remove
 export function get(...args) {
   args.unshift("GET");
   return request.call(this, ...args);
 }
 
+// TODO: need remove
 export function post(...args) {
   args.unshift("POST");
   return request.call(this, ...args);
+}
+
+// valid utils
+const checkType = {
+  array: v => Array.isArray(v)
+};
+
+export function createCancelToken() {
+  return CancelToken.source();
+}
+
+export function cancelRequest(source) {
+  source.cancel("Operation canceled by the user.");
 }
 
 function checkValueSetting(componentKey, setValue, notSetting = false) {
@@ -233,6 +240,70 @@ export function storeFactory(key, value) {
         commit(errorMutation, err.message);
       }
       commit(loadingMutation, false);
+    }
+  };
+}
+
+export function modalRouteFactory(flag, refKey, setFlag, request, loading, extra = []) {
+  const tag = "YES";
+  const queryKey = "modalQueryKey";
+
+  return {
+    handleMounted(enable = false) {
+      if (enable) {
+        this.handleModal(this.$route.query);
+      } else {
+        const route = this.$route;
+        if (route.query[this[queryKey]] === tag) {
+          const query = Object.assign({}, route.query, { [this[queryKey]]: undefined });
+          this.$router.push({ path: route.path, query });
+        }
+        this[setFlag]({ status: false });
+      }
+    },
+
+    mapMethods: {
+      handleModal(query) {
+        const element = this.$refs[refKey];
+        if (query[this[queryKey]] === tag) {
+          this[setFlag]({ status: true });
+          element.showModal();
+          if (request) {
+            const extraData = {};
+            for (const keyId of extra) {
+              extraData[keyId] = this[keyId];
+            }
+            this[request](Object.assign({
+              cancelToken: this.cancelToken.token
+            }, extraData));
+          }
+        } else {
+          this[setFlag]({ status: false });
+          element.cancelModal();
+          if (loading && this[loading]) {
+            cancelRequest(this.cancelToken);
+            this.cancelToken = createCancelToken();
+          }
+        }
+      },
+    },
+
+    mapWatch: {
+      [flag]() {
+        if (this[flag]) {
+          const route = this.$route;
+          if (route.query[this[queryKey]] === tag) {
+            return;
+          }
+          const query = Object.assign({}, route.query, { [this[queryKey]]: tag });
+          this.$router.push({ path: route.path, query });
+        } else {
+          const route = this.$route;
+          if (route.query[this[queryKey]] === tag) {
+            this.$router.go(-1);
+          }
+        }
+      }
     }
   };
 }

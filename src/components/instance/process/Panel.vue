@@ -10,7 +10,9 @@
       <!-- processes drawer -->
       <x-drawer :ref="processesDrawerKey" @close="closeDrawer(processesDrawerKey)">
         <template slot="header">
-          <div class="processes-header">实例 {{ agentId }} 存在以下 {{ processCount }} 个 Node.js 进程（不一定接入 Xprofiler 插件）</div>
+          <div
+            class="processes-header"
+          >实例 {{ agentId }} 存在以下 {{ processCount }} 个 Node.js 进程（不一定接入 Xprofiler 插件）</div>
         </template>
 
         <template slot="content">
@@ -62,7 +64,7 @@
           <!-- process detail -->
           <div class="panel-chapter">{{ processDetailTag }}</div>
           <div class="panel-long-button">
-            <Button size="small" type="primary" ghost long>
+            <Button size="small" type="primary" ghost long @click="checkXprofiler">
               <div class="panel-button-value">{{ checkXprofilerTag }}</div>
             </Button>
           </div>
@@ -91,6 +93,9 @@
         </div>
       </div>
     </div>
+
+    <!-- check xprofiler status -->
+    <x-check-xprofiler></x-check-xprofiler>
   </div>
 </template>
 
@@ -99,6 +104,7 @@ import panelModule from "../../../javascripts/instance/process/Panel";
 import { tags } from "../../../javascripts/config";
 import { getTag } from "../../../javascripts/lib/utils";
 import xNode from "./Node";
+import xCheckXprofiler from "./CheckXprofiler";
 
 const panelData = Object.assign(
   {
@@ -107,7 +113,8 @@ const panelData = Object.assign(
     },
 
     components: {
-      "x-node": xNode
+      "x-node": xNode,
+      "x-check-xprofiler": xCheckXprofiler
     },
 
     data() {

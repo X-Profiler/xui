@@ -2,20 +2,36 @@
 
 import * as utils from "../javascripts/lib/utils";
 
-const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } = utils.storeFactory("xprofiler_processes", []);
 const { state: procState, mutations: procMutations, handle: handlePorc } = utils.storeFactory("processes", []);
+const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } = utils.storeFactory("xprofiler_processes", []);
+const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle: handleXprofilerStatus } = utils.storeFactory("xprofiler_status", undefined);
 
 export default {
   namespaced: true,
 
   state: {
     ...procState,
-    ...xprofilerProcState
+    ...xprofilerProcState,
+    ...xprofilerStatusState,
+
+    xprofilerStatusModal: undefined,
+    xprofilerCheckPid: undefined
   },
 
   mutations: {
     ...procMutations,
-    ...xprofilerProcMutations
+    ...xprofilerProcMutations,
+    ...xprofilerStatusMutations,
+
+    setXprofilerStatusModal(state, { status, pid }) {
+      if (status === false || status === true) {
+        state.xprofilerStatusModal = status;
+      }
+
+      if (pid && !isNaN(pid)) {
+        state.xprofilerCheckPid = pid;
+      }
+    }
   },
 
   getters: {
@@ -35,6 +51,23 @@ export default {
   },
 
   actions: {
+    async getNodeProcesses(context, cancelToken) {
+      const { getters, rootState } = context;
+
+      const options = {
+        cancelToken,
+
+        // user data
+        url: rootState.url.agentNodeProcesses,
+        data: {
+          appId: getters.appId,
+          agentId: getters.agentId
+        }
+      };
+
+      await handlePorc(context, options, "list", "array");
+    },
+
     async getXprofilerProcesses(context, cancelToken) {
       const { getters, rootState } = context;
 
@@ -52,21 +85,22 @@ export default {
       await handleXprofilerProc(context, options, "list", "array");
     },
 
-    async getNodeProcesses(context, cancelToken) {
+    async getXprofilerStatus(context, { cancelToken, pid }) {
       const { getters, rootState } = context;
 
       const options = {
         cancelToken,
 
         // user data
-        url: rootState.url.agentNodeProcesses,
+        url: rootState.url.xprofilerStatus,
         data: {
           appId: getters.appId,
-          agentId: getters.agentId
+          agentId: getters.agentId,
+          pid
         }
       };
 
-      await handlePorc(context, options, "list", "array");
+      await handleXprofilerStatus(context, options);
     }
   }
 };

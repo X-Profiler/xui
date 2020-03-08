@@ -13,7 +13,7 @@ export default {
     ...agentState,
 
     agentId: undefined,
-    agentModal: false,
+    agentModal: undefined,
   },
 
   getters: {
@@ -31,8 +31,10 @@ export default {
       state.agentId = agentId;
     },
 
-    setAgentModal(state, status) {
-      state.agentModal = status;
+    setAgentModal(state, { status }) {
+      if (status === true || status === false) {
+        state.agentModal = status;
+      }
     }
   },
 
@@ -52,7 +54,7 @@ export default {
       await handleAgents(context, options, "list", "array");
     },
 
-    async getAgentInfo(context, cancelToken) {
+    async getAgentInfo(context, { cancelToken }) {
       const { state, getters, rootState } = context;
 
       const options = {

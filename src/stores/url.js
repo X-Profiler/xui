@@ -11,6 +11,7 @@ export default {
 
     // dashboard/instance/process
     agentXprofilerProcesses: "/xapi/xprofiler_processes",
-    agentNodeProcesses: "/xapi/node_processes"
+    agentNodeProcesses: "/xapi/node_processes",
+    xprofilerStatus: "/xapi/xprofiler_status"
   }
 };

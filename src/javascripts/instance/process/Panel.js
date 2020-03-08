@@ -4,7 +4,7 @@ import { tags } from "../../config";
 import * as utils from "../../lib/utils";
 
 const { mapState } = utils.createNamespace("dashboard/instance");
-const { mapGetters: mapGettersProcess } = utils.createNamespace("dashboard/instance/process");
+const { mapGetters: mapGettersProcess, mapMutations: mapMutationsProcess } = utils.createNamespace("dashboard/instance/process");
 
 const drawerTag = "YES";
 
@@ -15,6 +15,8 @@ export default {
   },
 
   methods: {
+    ...mapMutationsProcess(["setXprofilerStatusModal"]),
+
     handleDrawer(query, key) {
       const drawer = this.$refs[key];
       if (query[key] === drawerTag) {
@@ -48,6 +50,13 @@ export default {
       if (route.query[key] === drawerTag) {
         this.$router.go(-1);
       }
+    },
+
+    checkXprofiler() {
+      this.setXprofilerStatusModal({
+        status: true,
+        pid: this.processData.pid
+      });
     }
   },
 
