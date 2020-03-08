@@ -1,7 +1,7 @@
 "use strict";
 
 import * as utils from "../../lib/utils";
-const { mapState, mapActions } = utils.createNamespace("dashboard/instance/process");
+const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/instance/process");
 
 export default {
   created() {
@@ -15,7 +15,16 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["setXprofilerStatusModal"]),
+
     ...mapActions(["getNodeProcesses"]),
+
+    checkXprofiler(row) {
+      this.setXprofilerStatusModal({
+        status: true,
+        pid: row.pid
+      });
+    }
   },
 
   computed: {

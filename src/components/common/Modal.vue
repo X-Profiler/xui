@@ -51,9 +51,11 @@ export default {
       this.show = true;
     },
 
-    cancelModal() {
+    cancelModal(emit) {
       this.show = false;
-      this.$emit("canceled");
+      if (emit) {
+        this.$emit("canceled");
+      }
     },
 
     submitModal() {
@@ -91,7 +93,7 @@ export default {
   watch: {
     show() {
       if (!this.show) {
-        this.cancelModal();
+        this.cancelModal(true);
       }
     }
   }

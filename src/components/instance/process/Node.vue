@@ -19,8 +19,8 @@
             <div class="process-command">{{ row.command }}</div>
           </template>
 
-          <template v-slot:options>
-            <Button type="info" size="small">
+          <template v-slot:options="{ row }">
+            <Button type="info" size="small" @click="checkXprofiler(row)">
               <div class="process-check">插件状态</div>
             </Button>
           </template>

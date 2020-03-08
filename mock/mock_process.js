@@ -61,4 +61,71 @@ module.exports = app => {
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 600);
   });
+
+  app.get("/xapi/xprofiler_status", function (req, res) {
+    utils.checkParam(req.query, ["appId", "agentId", "pid"]);
+
+    const appId = req.query.appId;
+    const agentId = req.query.agentId;
+    const pid = Number(req.query.pid);
+    console.log(`get app ${appId} agent ${agentId} pid ${pid}'s xprofiler status.`);
+
+    let data;
+
+    if ([12623].includes(pid)) {
+      data = {
+        installXprofiler: true,
+        enableXprofiler: true,
+        xprofilerLogdir: "/var/folders/rw/g1t4bp_x2_n0dwk_82xx_0vh0000gn/T",
+        xtransitLogdir: "/var/folders/rw/g1t4bp_x2_n0dwk_82xx_0vh0000gn/T",
+        nodeVersion: "v12.16.1",
+        xprofilerVersion: "v1.2.2",
+        xprofilerConfig: {
+          enable_fatal_error_hook: true,
+          enable_log_uv_handles: true,
+          patch_http: false,
+          patch_http_timeout: 30,
+          log_interval: 60,
+          log_level: 1,
+        }
+      }
+    } else if ([2986].includes(pid)) {
+      data = {
+        installXprofiler: false,
+        nodeVersion: "v12.16.1",
+      }
+    } else if ([4908].includes(pid)) {
+      data = {
+        installXprofiler: true,
+        enableXprofiler: false,
+        nodeVersion: "v12.16.1"
+      }
+    } else if ([6578].includes(pid)) {
+      data = {
+        installXprofiler: true,
+        enableXprofiler: true,
+        xprofilerLogdir: "/var/folders/rw/g1t4bp_x2_n0dwk_82xx_0vh0000gn/T",
+        xtransitLogdir: "/tmp",
+        nodeVersion: "v12.16.1",
+        xprofilerVersion: "v1.2.2",
+        xprofilerConfig: {
+          enable_fatal_error_hook: true,
+          enable_log_uv_handles: true,
+          patch_http: false,
+          patch_http_timeout: 30,
+          log_interval: 60,
+          log_level: 1,
+        }
+      }
+    } else {
+      data = {
+        installXprofiler: true,
+        enableXprofiler: false,
+        nodeVersion: "v12.16.1"
+      }
+    }
+
+    // agentId.b = c;
+    setTimeout(() => res.send({ ok: true, data }), 600);
+  });
 };

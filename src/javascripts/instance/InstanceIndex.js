@@ -48,7 +48,7 @@ export default {
     },
 
     checkAgent() {
-      this.setAgentModal(true);
+      this.setAgentModal({ status: true });
     }
   },
 

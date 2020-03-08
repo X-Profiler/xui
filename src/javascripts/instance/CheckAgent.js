@@ -3,15 +3,15 @@
 import * as utils from "../lib/utils";
 
 const { mapState: mapStateInstance, mapMutations: mapMutationsInstance, mapActions: mapActionsInstance } = utils.createNamespace("dashboard/instance");
+const { mapMethods, mapWatch, handleMounted } = utils.modalRouteFactory("agentModal", "checkAgent", "setAgentModal", "getAgentInfo", "agent_loading");
 
 export default {
-
   created() {
     this.cancelToken = utils.createCancelToken();
   },
 
   mounted() {
-    this.checkAgent = this.$refs.checkAgent;
+    handleMounted.call(this);
   },
 
   methods: {
@@ -19,8 +19,10 @@ export default {
 
     ...mapActionsInstance(["getAgentInfo"]),
 
+    ...mapMethods,
+
     closeAgentCheck() {
-      this.setAgentModal(false);
+      this.setAgentModal({ status: false });
     },
   },
 
@@ -29,18 +31,11 @@ export default {
   },
 
   watch: {
-    agentModal() {
-      if (this.agentModal) {
-        this.checkAgent.showModal();
-        this.getAgentInfo(this.cancelToken.token);
-      } else {
-        this.checkAgent.cancelModal();
-        if (this.agent_loading) {
-          utils.cancelRequest(this.cancelToken);
-          this.cancelToken = utils.createCancelToken();
-        }
-      }
-    }
+    ...mapWatch,
+
+    $route(to) {
+      this.handleModal(to.query);
+    },
   }
 
-}
+};

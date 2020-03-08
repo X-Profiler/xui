@@ -74,7 +74,7 @@ export default {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  z-index: 1200;
+  z-index: 999;
 }
 
 .container {

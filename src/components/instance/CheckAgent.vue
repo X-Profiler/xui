@@ -35,7 +35,8 @@ const checkAgentData = Object.assign(
         checkAgentColumns: [
           { title: "类型", value: "type", width: "130" },
           { title: "信息详情", value: "value" }
-        ]
+        ],
+        modalQueryKey: "check-agent"
       };
     }
   },

@@ -39,6 +39,8 @@ export default {
       const cmdMap = Array.from(new Set(list.map(proc => proc.cmd)));
 
       return list.map(proc => {
+        proc = Object.assign({}, proc);
+
         // add process line color
         const colors = this.colors;
         const index = cmdMap.indexOf(proc.cmd);
@@ -81,6 +83,26 @@ export default {
     selectPid(index) {
       const data = this.xProcesses[index];
       this.selectedPid = data.pid;
+    },
+
+    dispatchProc() {
+      // get line
+      let procData;
+      for (const data of this.xProcesses) {
+        if (data.pid == this.selectedPid) {
+          procData = data;
+        }
+      }
+      if (!procData) return;
+
+      // line
+      this.line.updateSelectedProcess(procData);
+
+      // panel
+      this.panel.updateSelectedProcess(procData);
+
+      // catalogue
+      this.catalogue.updateSelectedProcess(procData);
     }
   },
 
@@ -108,28 +130,13 @@ export default {
 
       utils.watchQueryKey.call(this, "pid", "selectedPid", args);
 
-      // get line
-      let procData;
-      for (const data of this.xProcesses) {
-        if (data.pid == this.selectedPid) {
-          procData = data;
-        }
-      }
-      if (!procData) return;
+      this.dispatchProc();
 
-      // line
-      this.line.updateSelectedProcess(procData);
-
-      // panel
-      this.panel.updateSelectedProcess(procData);
-
-      // catalogue
-      this.catalogue.updateSelectedProcess(procData);
     },
 
     agentId() {
       this.resetXprocesses();
-      this.getXprofilerProcesses();
+      this.getXprofilerProcesses(this.cancelToken.token);
     },
 
     xprofiler_processes_data() {
@@ -138,6 +145,7 @@ export default {
       if (Array.isArray(list)) {
         this.xProcesses = this.formatXprocesses(list);
         this.setDefaultPid();
+        this.dispatchProc();
       }
     }
   }
