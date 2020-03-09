@@ -15,11 +15,11 @@ export default {
   },
 
   methods: {
+    ...mapMethods,
+
     ...mapMutationsInstance(["setAgentModal"]),
 
     ...mapActionsInstance(["getAgentInfo"]),
-
-    ...mapMethods,
 
     closeAgentCheck() {
       this.setAgentModal({ status: false });
@@ -34,7 +34,7 @@ export default {
     ...mapWatch,
 
     $route(to) {
-      this.handleModal(to.query);
+      this.handleComponent(to.query);
     },
   }
 

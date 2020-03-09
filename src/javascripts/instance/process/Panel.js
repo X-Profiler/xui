@@ -4,18 +4,26 @@ import { tags } from "../../config";
 import * as utils from "../../lib/utils";
 
 const { mapState } = utils.createNamespace("dashboard/instance");
-const { mapGetters: mapGettersProcess, mapMutations: mapMutationsProcess } = utils.createNamespace("dashboard/instance/process");
+const { mapState: mapStateProcess, mapGetters: mapGettersProcess, mapMutations: mapMutationsProcess } = utils.createNamespace("dashboard/instance/process");
+const { mapMethods, mapWatch, handleMounted } = utils.drawerRouteFactory("processTrendDrawer", "trend", "setProcessTrendDrawer");
 
 const drawerTag = "YES";
 
 export default {
+  created() {
+    this.cancelToken = utils.createCancelToken();
+  },
+
   mounted() {
     const query = this.$route.query;
     this.handleDrawer(query, this.processesDrawerKey);
+    handleMounted.call(this, true, "processData");
   },
 
   methods: {
-    ...mapMutationsProcess(["setXprofilerStatusModal"]),
+    ...mapMethods,
+
+    ...mapMutationsProcess(["setXprofilerStatusModal", "setProcessTrendDrawer"]),
 
     handleDrawer(query, key) {
       const drawer = this.$refs[key];
@@ -57,11 +65,23 @@ export default {
         status: true,
         pid: this.processData.pid
       });
+    },
+
+    actDetail(type) {
+      if (type === "processTrend") {
+        this.setProcessTrendDrawer({ status: true, processData: this.processData });
+      }
+    },
+
+    closeTrendDrawer() {
+      this.setProcessTrendDrawer({ status: false });
     }
   },
 
   computed: {
     ...mapState(["agentId"]),
+
+    ...mapStateProcess(["processTrendDrawer", "processTrendData"]),
 
     ...mapGettersProcess(["processCount"]),
 
@@ -99,8 +119,11 @@ export default {
   },
 
   watch: {
+    ...mapWatch,
+
     $route(to) {
       this.handleDrawer(to.query, this.processesDrawerKey);
+      this.handleComponent(to.query);
     },
   }
 };

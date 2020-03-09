@@ -1,13 +1,15 @@
 <template>
-  <div class="dropdown">
+  <div class="dropdown" @mouseover="mouseover()" @mousemove="mousemove()" @mouseout="mouseout()">
     <div class="dropdown-list">
-      <div style="padding-bottom: 6px;font-size: 12px;">{{ title }}</div>
+      <slot name="title">
+        <div style="padding-bottom: 6px;font-size: 12px;">{{ title }}</div>
+      </slot>
       <div class="dropdown-icon-translate">
         <Icon class="dropdown-icon-rotate" type="ios-arrow-down" />
       </div>
     </div>
 
-    <div :class="'dropdown-content box-shadow ' + posit">
+    <div ref="dropdown-content" :class="'dropdown-content box-shadow ' + posit">
       <slot name="content"></slot>
     </div>
   </div>
@@ -17,12 +19,44 @@
 export default {
   props: {
     title: String,
-    position: String
+    position: String,
+    transformY: Number
+  },
+
+  mounted() {
+    this.style = this.$refs["dropdown-content"].style;
+  },
+
+  methods: {
+    mouseover() {
+      const style = this.style;
+      style["opacity"] = 1;
+      style["pointer-events"] = "inherit";
+      style["transform"] = `translateY(${this.ty})`;
+    },
+
+    mousemove() {
+      const style = this.style;
+      style["opacity"] = 1;
+      style["pointer-events"] = "inherit";
+      style["transform"] = `translateY(${this.ty})`;
+    },
+
+    mouseout() {
+      const style = this.style;
+      style["opacity"] = 0;
+      style["pointer-events"] = "none";
+      style["transform"] = "translateY(0)";
+    }
   },
 
   computed: {
     posit() {
       return this.position || "right";
+    },
+
+    ty() {
+      return (this.transformY || 6) + "px";
     }
   }
 };
@@ -31,12 +65,6 @@ export default {
 <style scoped>
 .dropdown {
   position: relative;
-}
-
-.dropdown:hover .dropdown-content {
-  opacity: 1;
-  pointer-events: inherit;
-  transform: translateY(6px);
 }
 
 .dropdown-list {
@@ -90,6 +118,15 @@ export default {
   content: " ";
   background-color: #fff;
   transform: rotate(45deg);
+  position: absolute;
+  top: -5px;
+}
+
+.dropdown-content::after {
+  width: 100%;
+  height: 10px;
+  display: block;
+  content: " ";
   position: absolute;
   top: -5px;
 }

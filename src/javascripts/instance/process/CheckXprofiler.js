@@ -23,8 +23,6 @@ export default {
     ...mapMethods,
 
     closeXprofilerCheck() {
-      this.showLogdir = false;
-      this.showConfig = false;
       this.setXprofilerStatusModal({ status: false });
     },
 
@@ -39,7 +37,9 @@ export default {
       }
       return {
         icon: status ? "md-checkmark-circle" : "md-close-circle",
-        style: "color: " + (status ? this.healthyColor : this.wrongColor) + ";"
+        style: "color: " + (status ? this.healthyColor : this.wrongColor) + ";",
+        color: status ? this.healthyColor : this.wrongColor,
+        status
       };
     }
   },
@@ -70,7 +70,7 @@ export default {
 
     config() {
       const xprofiler_status_data = this.xprofiler_status_data;
-      if (!xprofiler_status_data) {
+      if (!xprofiler_status_data || !xprofiler_status_data.xprofilerConfig) {
         return [];
       }
       return Object.entries(xprofiler_status_data.xprofilerConfig).map(([key, value]) => {
@@ -84,7 +84,7 @@ export default {
         return "";
       }
       const nodeVersion = xprofiler_status_data.nodeVersion || "未知";
-      let str = `3. 进程 ${this.pid} 使用的运行时版本为 <code style="font-size: 12px;color: #2a9446;font-weight: bold;">${nodeVersion}</code>`;
+      let str = `进程 ${this.pid} 使用的运行时版本为 <code style="font-size: 12px;color: #2a9446;font-weight: bold;">${nodeVersion}</code>`;
       // let str = `2. 进程 ${this.pid} 使用的运行时版本为 ${nodeVersion}`;
 
       const xprofilerVersion = xprofiler_status_data.xprofilerVersion;
@@ -93,6 +93,61 @@ export default {
       }
 
       return str;
+    },
+
+    checkList() {
+      const installStatus = this.installStatus;
+      const enableStatus = this.enableStatus;
+      const logdirStatus = this.logdirStatus;
+      const xprofiler_status_data = this.xprofiler_status_data;
+      const validXprofiler = this.validXprofiler;
+
+      if (!xprofiler_status_data) {
+        return [];
+      }
+
+      const marginTop = "margin-top: 8px;";
+
+      return [
+        {
+          label: "插件 X-Profiler 状态：",
+          children: [
+            { label: installStatus.status ? "已安装" : "未安装", icon: installStatus.icon, style: installStatus.style },
+            { label: enableStatus.status ? "已启用" : "未启用", icon: enableStatus.icon, style: enableStatus.style },
+            {
+              label: logdirStatus.status ? "日志目录配置成功" : "日志目录配置失败", icon: logdirStatus.icon, style: logdirStatus.style, dropdown: validXprofiler,
+              children: [
+                { label: "配置 xprofiler 日志目录：" + xprofiler_status_data.xprofilerLogdir, color: logdirStatus.color },
+                { label: "配置 xtransit 日志目录： " + xprofiler_status_data.xtransitLogdir, color: logdirStatus.color }
+              ]
+            }
+          ]
+        },
+
+        {
+          label: "插件 X-Profiler 配置：",
+          style: marginTop,
+          children: [
+            {
+              label: validXprofiler ? "配置获取成功" : "无法获取配置",
+              icon: validXprofiler ? "md-checkmark-circle" : "md-close-circle",
+              style: "color: " + (validXprofiler ? this.healthyColor : this.wrongColor) + ";",
+              dropdown: validXprofiler,
+              children: this.config.map(cfg => {
+                return {
+                  label: `<div style="font-size: 14px">${cfg.key}: ${cfg.value}</div>`,
+                  color: validXprofiler ? this.healthyColor : this.wrongColor
+                };
+              })
+            }
+          ]
+        },
+
+        {
+          label: this.versionInfo,
+          style: marginTop
+        }
+      ];
     }
   },
 
@@ -100,7 +155,7 @@ export default {
     ...mapWatch,
 
     $route(to) {
-      this.handleModal(to.query);
+      this.handleComponent(to.query);
     }
   }
 };

@@ -70,7 +70,7 @@
           </div>
           <div class="panel-button">
             <div class="panel-normal-button" v-for="(button, index) in detailButtons" :key="index">
-              <Button size="small" type="info" long>
+              <Button size="small" type="info" long @click="actDetail(button.value)">
                 <div class="panel-button-value">{{ button.label }}</div>
               </Button>
             </div>
@@ -96,6 +96,19 @@
 
     <!-- check xprofiler status -->
     <x-check-xprofiler></x-check-xprofiler>
+
+    <!-- show process details -->
+    <x-drawer ref="trend" @close="closeTrendDrawer()">
+      <template slot="header">
+        <div class="processes-header">进程 {{ processTrendData.pid }} 数据趋势</div>
+      </template>
+
+      <template slot="content">
+        <div class="process-content">
+          <x-trend></x-trend>
+        </div>
+      </template>
+    </x-drawer>
   </div>
 </template>
 
@@ -105,6 +118,7 @@ import { tags } from "../../../javascripts/config";
 import { getTag } from "../../../javascripts/lib/utils";
 import xNode from "./Node";
 import xCheckXprofiler from "./CheckXprofiler";
+import xTrend from "./Trend";
 
 const panelData = Object.assign(
   {
@@ -114,7 +128,8 @@ const panelData = Object.assign(
 
     components: {
       "x-node": xNode,
-      "x-check-xprofiler": xCheckXprofiler
+      "x-check-xprofiler": xCheckXprofiler,
+      "x-trend": xTrend
     },
 
     data() {
@@ -149,7 +164,8 @@ const panelData = Object.assign(
           { label: getTag(tags.gcprofile), value: "gcprofile" },
           { label: getTag(tags.diag), value: "diag" }
         ],
-        processesDrawerKey: "process-drawer"
+        processesDrawerKey: "process-drawer",
+        drawerQueryKey: "process-trend"
       };
     }
   },
