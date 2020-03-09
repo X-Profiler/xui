@@ -244,18 +244,19 @@ export function storeFactory(key, value) {
   };
 }
 
-export function modalRouteFactory(flag, refKey, setFlag, request, loading, extra = []) {
+function routeFactory(queryKeyName, openName, closeName, ...args) {
   const tag = "YES";
-  const queryKey = "modalQueryKey";
+
+  const [flag, refKey, setFlag, request, loading, extra = []] = args;
 
   return {
-    handleMounted(enable = false) {
+    handleMounted(enable = false, dataKey = false) {
       if (enable) {
-        this.handleModal(this.$route.query);
+        this.handleComponent(this.$route.query, dataKey);
       } else {
         const route = this.$route;
-        if (route.query[this[queryKey]] === tag) {
-          const query = Object.assign({}, route.query, { [this[queryKey]]: undefined });
+        if (route.query[this[queryKeyName]] === tag) {
+          const query = Object.assign({}, route.query, { [this[queryKeyName]]: undefined });
           this.$router.push({ path: route.path, query });
         }
         this[setFlag]({ status: false });
@@ -263,11 +264,15 @@ export function modalRouteFactory(flag, refKey, setFlag, request, loading, extra
     },
 
     mapMethods: {
-      handleModal(query) {
+      handleComponent(query, dataKey) {
         const element = this.$refs[refKey];
-        if (query[this[queryKey]] === tag) {
-          this[setFlag]({ status: true });
-          element.showModal();
+        if (query[this[queryKeyName]] === tag) {
+          const data = { status: true };
+          if (dataKey) {
+            data[dataKey] = query;
+          }
+          this[setFlag](data);
+          element[openName]();
           if (request) {
             const extraData = {};
             for (const keyId of extra) {
@@ -279,7 +284,7 @@ export function modalRouteFactory(flag, refKey, setFlag, request, loading, extra
           }
         } else {
           this[setFlag]({ status: false });
-          element.cancelModal();
+          element[closeName]();
           if (loading && this[loading]) {
             cancelRequest(this.cancelToken);
             this.cancelToken = createCancelToken();
@@ -292,18 +297,26 @@ export function modalRouteFactory(flag, refKey, setFlag, request, loading, extra
       [flag]() {
         if (this[flag]) {
           const route = this.$route;
-          if (route.query[this[queryKey]] === tag) {
+          if (route.query[this[queryKeyName]] === tag) {
             return;
           }
-          const query = Object.assign({}, route.query, { [this[queryKey]]: tag });
+          const query = Object.assign({}, route.query, { [this[queryKeyName]]: tag });
           this.$router.push({ path: route.path, query });
         } else {
           const route = this.$route;
-          if (route.query[this[queryKey]] === tag) {
+          if (route.query[this[queryKeyName]] === tag) {
             this.$router.go(-1);
           }
         }
       }
     }
   };
+}
+
+export function drawerRouteFactory(...args) {
+  return routeFactory("drawerQueryKey", "open", "close", ...args);
+}
+
+export function modalRouteFactory(...args) {
+  return routeFactory("modalQueryKey", "showModal", "cancelModal", ...args);
 }

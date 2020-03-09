@@ -15,7 +15,10 @@ export default {
     ...xprofilerStatusState,
 
     xprofilerStatusModal: undefined,
-    xprofilerCheckPid: undefined
+    xprofilerCheckPid: undefined,
+
+    processTrendDrawer: undefined,
+    processTrendData: {}
   },
 
   mutations: {
@@ -30,6 +33,16 @@ export default {
 
       if (pid && !isNaN(pid)) {
         state.xprofilerCheckPid = pid;
+      }
+    },
+
+    setProcessTrendDrawer(state, { status, processData }) {
+      if (status === false || status === true) {
+        state.processTrendDrawer = status;
+      }
+
+      if (processData) {
+        state.processTrendData = processData;
       }
     }
   },
