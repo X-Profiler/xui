@@ -111,7 +111,7 @@ export default {
 
     ...mapStateInstance(["agentId"]),
 
-    ...mapStateProcess(["xprofiler_processes_loading", "xprofiler_processes_load_error", "xprofiler_processes_data"]),
+    ...mapStateProcess(["colors", "xprofiler_processes_loading", "xprofiler_processes_load_error", "xprofiler_processes_data"]),
 
     lineTitle() {
       return utils.getTag(tags.lineTitle);

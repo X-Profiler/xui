@@ -7,3 +7,21 @@ exports.checkParam = function (obj, keys) {
     }
   }
 };
+
+exports.createAreaData = function (yaxis, fn) {
+  const data = [];
+  const now = Date.now();
+  const interval = 3 * 60 * 1000;
+  const end = now - 24 * 60 * 60 * 1000;
+
+  for (let time = now; time > end; time -= interval) {
+    const item = { time };
+    for (const y of yaxis) {
+      item[y] = fn();
+    }
+
+    data.push(item);
+  }
+
+  return data;
+};

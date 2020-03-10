@@ -47,6 +47,7 @@ module.exports = app => {
 
       return proc;
     });
+    // agentId.Number = c
     setTimeout(() => res.send({ ok: true, data: { list } }), 450);
   });
 
@@ -127,5 +128,23 @@ module.exports = app => {
 
     // agentId.b = c;
     setTimeout(() => res.send({ ok: true, data }), 600);
+  });
+
+  app.get("/xapi/process_trend", function (req, res) {
+    utils.checkParam(req.query, ["appId", "agentId", "pid", "trendType"]);
+
+    const appId = req.query.appId;
+    const agentId = req.query.agentId;
+    const pid = Number(req.query.pid);
+    const trendType = req.query.trendType;
+    console.log(`get app ${appId} agent ${agentId} pid ${pid} trend ${trendType} data`);
+
+    let list = [];
+
+    if (trendType === 'heapTrend') {
+      list = utils.createAreaData(["rss", "heap_total", "heap_used"], () => (200 + parseInt(Math.random() * 50) * 1024 * 1204))
+    }
+
+    setTimeout(() => res.send({ ok: true, data: { list } }), 1000);
   });
 };

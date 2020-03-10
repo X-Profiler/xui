@@ -92,13 +92,13 @@ export default scatData;
   padding-bottom: 1px;
   padding-left: 5px;
   font-size: 12px;
-  max-width: 300px;
+  max-width: 350px;
 }
 
 .scatter-content {
   padding: 5px 5px;
   font-size: 12px;
-  max-width: 300px;
+  max-width: 350px;
 }
 
 .scatter-content-group {

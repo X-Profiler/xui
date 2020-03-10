@@ -5,6 +5,7 @@ import * as utils from "../javascripts/lib/utils";
 const { state: procState, mutations: procMutations, handle: handlePorc } = utils.storeFactory("processes", []);
 const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } = utils.storeFactory("xprofiler_processes", []);
 const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle: handleXprofilerStatus } = utils.storeFactory("xprofiler_status", undefined);
+const { state: trendState, mutations: trendMutations, handle: handleTrend } = utils.storeFactory("process_trend", []);
 
 export default {
   namespaced: true,
@@ -13,18 +14,32 @@ export default {
     ...procState,
     ...xprofilerProcState,
     ...xprofilerStatusState,
+    ...trendState,
 
     xprofilerStatusModal: undefined,
     xprofilerCheckPid: undefined,
 
     processTrendDrawer: undefined,
-    processTrendData: {}
+    processTrendData: {},
+
+    colors: [
+      "rgb(42, 125, 194)",
+      "rgb(106, 90, 205)",
+      "rgb(41, 145, 65)",
+      "rgb(215, 124, 0)",
+      "rgb(186, 74, 0)",
+      "rgb(46, 134, 193)",
+      "rgb(136, 78, 160)",
+      "rgb(19, 141, 117)",
+      "rgb(34, 153, 84)"
+    ],
   },
 
   mutations: {
     ...procMutations,
     ...xprofilerProcMutations,
     ...xprofilerStatusMutations,
+    ...trendMutations,
 
     setXprofilerStatusModal(state, { status, pid }) {
       if (status === false || status === true) {
@@ -114,6 +129,25 @@ export default {
       };
 
       await handleXprofilerStatus(context, options);
-    }
-  }
+    },
+
+    async getProcessTrend(context, { cancelToken, trendType }) {
+      const { state, getters, rootState } = context;
+
+      const options = {
+        cancelToken,
+
+        // user data
+        url: rootState.url.processTrend,
+        data: {
+          appId: getters.appId,
+          agentId: getters.agentId,
+          pid: state.processTrendData.pid,
+          trendType
+        }
+      };
+
+      await handleTrend(context, options, "list", "array");
+    },
+  },
 };
