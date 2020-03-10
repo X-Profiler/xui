@@ -104,7 +104,7 @@
       </template>
 
       <template slot="content">
-        <div class="process-content">
+        <div class="trend-content">
           <x-trend></x-trend>
         </div>
       </template>
@@ -310,5 +310,9 @@ export default panelData;
 
 .process-content {
   padding: 10px 20px 20px 20px;
+}
+
+.trend-content {
+  padding: 0 20px 20px 20px;
 }
 </style>

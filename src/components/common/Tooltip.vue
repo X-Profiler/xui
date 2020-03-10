@@ -65,7 +65,7 @@ export default {
   top: 0;
   z-index: -9999;
   min-width: 300px;
-  max-width: 400px;
+  max-width: 500px;
   display: none;
 }
 </style>
