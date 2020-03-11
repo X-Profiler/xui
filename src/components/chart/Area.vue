@@ -123,12 +123,12 @@ export default {
       defaultXAxisScaleCount: 8,
       defaultYAxisScaleCount: 4,
       viewWidth: 500,
-      viewHeight: 240,
-      paddingLeft: 38,
-      paddingRight: 8,
+      viewHeight: 250,
+      paddingLeft: 40,
+      paddingRight: 35,
       paddingTop: 20,
-      paddingBottom: 36,
-      colors: ["#30d8f2", "#99d8ff", "#49b1f2"]
+      paddingBottom: 40,
+      colors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
     };
   },
 
