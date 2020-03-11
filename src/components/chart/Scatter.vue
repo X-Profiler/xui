@@ -273,15 +273,6 @@ export default {
   fill: #808695;
 }
 
-.axisScale {
-  fill: #515a6e;
-}
-
-.axis {
-  stroke: #eff1f4;
-  stroke-width: 1;
-}
-
 .circle {
   cursor: pointer;
 }

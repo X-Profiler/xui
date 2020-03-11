@@ -15,4 +15,5 @@ export default {};
 @import url(assets/css/ivu.css);
 @import url(assets/css/bg-image.css);
 @import url(assets/css/transition.css);
+@import url(assets/css/chart.css);
 </style>
