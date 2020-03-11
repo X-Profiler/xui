@@ -284,20 +284,3 @@ export default {
   stroke-width: 8px;
 }
 </style>
-
-<!-- <g>
-        <defs>
-          <linearGradient id="orange_red" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:rgba(36,185,13,0.4); stop-opacity:1" />
-            <stop offset="100%" style="stop-color:rgba(255,255,255,0.6); stop-opacity:1" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M50,110 L100,210 L170,60 L240,40 L310,50 L380,140 L380,350 L50,350 Z"
-          style="fill:url(#orange_red);stroke:none;"
-        />
-        <polyline
-          points="50,110 100,210 170,60 240,40 310,50 380,140"
-          style="fill:none;stroke:#3fc371;stroke-width:1"
-        />
-      </g> -->

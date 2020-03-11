@@ -142,7 +142,11 @@ module.exports = app => {
     let list = [];
 
     if (trendType === 'heapTrend') {
-      list = utils.createAreaData(["rss", "heap_total", "heap_used"], () => (2000 + parseInt(Math.random() * 50)) * 1024 * 1204)
+      list = utils.createAreaData(["rss", "heap_total", "heap_used"], {
+        rss: () => (300 + parseInt(Math.random() * 50)) * 1024 * 1204,
+        heap_total: () => (200 + parseInt(Math.random() * 50)) * 1024 * 1204,
+        heap_used: () => (150 + parseInt(Math.random() * 50)) * 1024 * 1204
+      })
     }
 
     // agentId.Number = c;
