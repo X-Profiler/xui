@@ -36,7 +36,7 @@ export default {
       }
 
       if (this.type === "cpuTrend") {
-        return ["now", "cpu_15", "cpu_30", "cpu_60"];
+        return ["cpu_now", "cpu_15", "cpu_30", "cpu_60"];
       }
     },
 

@@ -149,6 +149,15 @@ module.exports = app => {
       })
     }
 
+    if (trendType === 'cpuTrend') {
+      list = utils.createAreaData(["cpu_now", "cpu_15", "cpu_30", "cpu_60"], {
+        cpu_now: () => 50 + parseInt(Math.random() * 40),
+        cpu_15: () => 50 + parseInt(Math.random() * 30),
+        cpu_30: () => 50 + parseInt(Math.random() * 20),
+        cpu_60: () => 50 + parseInt(Math.random() * 10)
+      })
+    }
+
     // agentId.Number = c;
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 1000);
