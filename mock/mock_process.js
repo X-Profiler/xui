@@ -145,6 +145,8 @@ module.exports = app => {
       list = utils.createAreaData(["rss", "heap_total", "heap_used"], () => (2000 + parseInt(Math.random() * 50)) * 1024 * 1204)
     }
 
+    // agentId.Number = c;
+
     setTimeout(() => res.send({ ok: true, data: { list } }), 1000);
   });
 };
