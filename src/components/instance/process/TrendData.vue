@@ -14,8 +14,8 @@
       ></x-error-message>
 
       <x-area
-        class="chart-area"
         v-if="!process_trend_loading && !process_trend_load_error"
+        xAxis="time"
         :yAxis="yAxis"
         :data="areaData"
       ></x-area>
@@ -43,9 +43,5 @@ export default trendData;
 .title {
   font-size: 15px;
   font-weight: bold;
-}
-
-.chart-area {
-  height: 250px;
 }
 </style>

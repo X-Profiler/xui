@@ -52,6 +52,22 @@
             :y2="getYAxisLabel(index)"
           />
         </g>
+
+        <!-- chart xAxis scale  -->
+        <g>
+          <text
+            v-for="(xAxis, index) in xAxisScale"
+            :key="index"
+            class="axisScale"
+            style="text-anchor: middle;"
+            :x="getXAxisLabel(index)"
+            :y="viewHeight-paddingBottom"
+            dy="1.4em"
+          >
+            <tspan>{{ xAxis.value }}</tspan>
+            <tspan class="time-label" :x="getXAxisLabel(index)" dy="1.1em">{{ xAxis.label }}</tspan>
+          </text>
+        </g>
       </g>
     </svg>
   </div>
@@ -60,6 +76,7 @@
 <script>
 export default {
   props: {
+    xAxis: [String, Array],
     yAxis: Array,
     data: Array,
     xAxisScaleCount: Number,
@@ -71,11 +88,11 @@ export default {
       defaultXAxisScaleCount: 8,
       defaultYAxisScaleCount: 4,
       viewWidth: 500,
-      viewHeight: 210,
+      viewHeight: 240,
       paddingLeft: 38,
-      paddingRight: 5,
+      paddingRight: 8,
       paddingTop: 20,
-      paddingBottom: 20
+      paddingBottom: 33
     };
   },
 
@@ -120,11 +137,69 @@ export default {
       return scales;
     },
 
+    getTimeScale(count) {
+      const data = this.data;
+      if (!Array.isArray(data) || !data.length) {
+        return [];
+      }
+      let start = data[0].time;
+      let end = data[data.length - 1].time;
+      // console.log(1233, start, end);
+
+      return [
+        {
+          value: "01",
+          label: "AM"
+        },
+        {
+          value: "01",
+          label: "AM"
+        },
+        {
+          value: "01",
+          label: "AM"
+        },
+        {
+          value: "01",
+          label: "AM"
+        },
+        {
+          value: "01",
+          label: "AM"
+        },
+        {
+          value: "01",
+          label: "AM"
+        },
+        {
+          value: "01",
+          label: "AM"
+        },
+        {
+          value: "01",
+          label: "AM"
+        },
+        {
+          value: "01",
+          label: "AM"
+        }
+      ];
+    },
+
     getXGridBgInterval(index) {
       return (
         this.paddingLeft -
         this.xGridFullWidth * 0.75 +
         this.xGridFullWidth * index
+      );
+    },
+
+    getXAxisLabel(index) {
+      return (
+        this.paddingLeft +
+        ((this.viewWidth - this.paddingLeft - this.paddingRight) /
+          this.xAxisScaleCountInner) *
+          index
       );
     },
 
@@ -148,8 +223,12 @@ export default {
     },
 
     xAxisScale() {
-      const scales = this.getScale(this.xAxisScaleCountInner);
-      scales.reverse();
+      let scales = [];
+
+      if (this.xAxis === "time") {
+        scales = this.getTimeScale(this.xAxisScaleCountInner);
+      }
+
       return scales;
     },
 
