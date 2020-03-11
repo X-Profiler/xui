@@ -5,7 +5,6 @@ import * as utils from "../javascripts/lib/utils";
 const { state: procState, mutations: procMutations, handle: handlePorc } = utils.storeFactory("processes", []);
 const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } = utils.storeFactory("xprofiler_processes", []);
 const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle: handleXprofilerStatus } = utils.storeFactory("xprofiler_status", undefined);
-const { state: trendState, mutations: trendMutations, handle: handleTrend } = utils.storeFactory("process_trend", []);
 
 export default {
   namespaced: true,
@@ -14,7 +13,6 @@ export default {
     ...procState,
     ...xprofilerProcState,
     ...xprofilerStatusState,
-    ...trendState,
 
     xprofilerStatusModal: undefined,
     xprofilerCheckPid: undefined,
@@ -39,7 +37,6 @@ export default {
     ...procMutations,
     ...xprofilerProcMutations,
     ...xprofilerStatusMutations,
-    ...trendMutations,
 
     setXprofilerStatusModal(state, { status, pid }) {
       if (status === false || status === true) {
@@ -132,7 +129,7 @@ export default {
     },
 
     async getProcessTrend(context, { cancelToken, trendType }) {
-      const { state, getters, rootState } = context;
+      const { state, getters, dispatch, rootState } = context;
 
       const options = {
         cancelToken,
@@ -147,7 +144,7 @@ export default {
         }
       };
 
-      await handleTrend(context, options, "list", "array");
+      return dispatch("request", options, { root: true });
     },
   },
 };
