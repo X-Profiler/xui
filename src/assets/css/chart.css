@@ -10,3 +10,7 @@
 .bg-rect {
   fill: #f9f9f9;
 }
+
+.time-label {
+  font-size: 12px;
+}

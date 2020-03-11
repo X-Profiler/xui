@@ -142,7 +142,7 @@ module.exports = app => {
     let list = [];
 
     if (trendType === 'heapTrend') {
-      list = utils.createAreaData(["rss", "heap_total", "heap_used"], () => (200 + parseInt(Math.random() * 50)) * 1024 * 1204)
+      list = utils.createAreaData(["rss", "heap_total", "heap_used"], () => (2000 + parseInt(Math.random() * 50)) * 1024 * 1204)
     }
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 1000);
