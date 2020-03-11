@@ -283,10 +283,6 @@ export default {
   stroke-opacity: 0.4;
   stroke-width: 8px;
 }
-
-.bg-rect {
-  fill: #f9f9f9;
-}
 </style>
 
 <!-- <g>
