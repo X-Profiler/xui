@@ -1,6 +1,11 @@
 <template>
   <div ref="area">
-    <svg width="100%" :height="viewHeight" :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`">
+    <svg
+      width="100%"
+      :height="viewHeight"
+      :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
+      @mousemove="mousemove"
+    >
       <!-- chart axis -->
       <g>
         <!-- x axis -->
@@ -53,51 +58,65 @@
             :y2="getYAxisLabel(index)"
           />
         </g>
+      </g>
 
-        <!-- chart xAxis scale  -->
-        <g>
-          <text
-            v-for="(xAxis, index) in xAxisScale"
-            :key="index"
-            class="axisScale"
-            text-anchor="middle"
-            :x="getXAxisLabel(index)"
-            :y="viewHeight-paddingBottom"
-            dy="1.4em"
-          >
-            <tspan>{{ xAxis.value }}</tspan>
-            <tspan class="time-label" :x="getXAxisLabel(index)" dy="1.3em">{{ xAxis.label }}</tspan>
-          </text>
-        </g>
+      <!-- chart xAxis scale  -->
+      <g>
+        <text
+          v-for="(xAxis, index) in xAxisScale"
+          :key="index"
+          class="axisScale"
+          text-anchor="middle"
+          :x="getXAxisLabel(index)"
+          :y="viewHeight-paddingBottom"
+          dy="1.4em"
+        >
+          <tspan>{{ xAxis.value }}</tspan>
+          <tspan class="time-label" :x="getXAxisLabel(index)" dy="1.3em">{{ xAxis.label }}</tspan>
+        </text>
+      </g>
 
-        <!-- no data text -->
-        <g v-if="noData">
-          <text
-            :x="paddingLeft + (viewWidth - paddingLeft - paddingRight) / 2"
-            :y="paddingTop + (viewHeight- paddingTop - paddingBottom) * 0.4"
-            text-anchor="middle"
-            dominant-baseline="middle"
-            class="no-data-text"
-          >{{ noDataText }}</text>
-        </g>
+      <!-- no data text -->
+      <g v-if="noData">
+        <text
+          :x="paddingLeft + (viewWidth - paddingLeft - paddingRight) / 2"
+          :y="paddingTop + (viewHeight- paddingTop - paddingBottom) * 0.4"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          class="no-data-text"
+        >{{ noDataText }}</text>
+      </g>
 
-        <!-- area -->
-        <g v-for="y in yAxisData" :key="y.key">
-          <defs>
-            <linearGradient :id="'color_bg_' + y.key" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-opacity:0.16" :stop-color="y.bg" />
-              <stop offset="100%" style="stop-opacity: 0.1" stop-color="rgba(255, 255, 255, 1)" />
-            </linearGradient>
-          </defs>
-          <path :d="y.path" :fill="'url(#' + 'color_bg_' + y.key + ')'" stroke="none" />
-          <polyline
-            stroke-opacity="0.75"
-            :points="y.points"
-            :stroke="y.color"
-            fill="none"
-            stroke-width="1"
-          />
-        </g>
+      <!-- area -->
+      <g v-for="y in yAxisData" :key="y.key">
+        <defs>
+          <linearGradient :id="'color_bg_' + y.key" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-opacity:0.16" :stop-color="y.bg" />
+            <stop offset="100%" style="stop-opacity: 0.1" stop-color="rgba(255, 255, 255, 1)" />
+          </linearGradient>
+        </defs>
+        <path :d="y.path" :fill="'url(#' + 'color_bg_' + y.key + ')'" stroke="none" />
+        <polyline
+          stroke-opacity="0.75"
+          :points="y.points"
+          :stroke="y.color"
+          fill="none"
+          stroke-width="1"
+        />
+      </g>
+
+      <!-- intersection -->
+      <g>
+        <line
+          :x1="intersectionOffsetX"
+          :y1="paddingTop"
+          :x2="intersectionOffsetX"
+          :y2="viewHeight- paddingBottom"
+          fill="none"
+          stroke-width="1px"
+          stroke="#adbcc9"
+          class="intersection"
+        />
       </g>
     </svg>
   </div>
@@ -128,6 +147,7 @@ export default {
       paddingRight: 35,
       paddingTop: 20,
       paddingBottom: 40,
+      intersectionOffsetXParams: 0,
       colors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
     };
   },
@@ -259,6 +279,10 @@ export default {
     getColor(axis) {
       const index = this.yAxis.indexOf(axis);
       return this.colors[index % this.colors.length];
+    },
+
+    mousemove(event) {
+      this.intersectionOffsetXParams = event.offsetX;
     }
   },
 
@@ -335,6 +359,16 @@ export default {
 
         return data;
       });
+    },
+
+    intersectionOffsetX() {
+      const params = this.intersectionOffsetXParams;
+      const minLegalX = this.paddingLeft;
+      const maxLegalX = this.viewWidth - this.paddingRight;
+      if (params >= minLegalX && params < maxLegalX) {
+        return params;
+      }
+      return maxLegalX;
     }
   }
 };

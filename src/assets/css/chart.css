@@ -19,3 +19,7 @@
   fill: #373d41;
   font-size: 13px;
 }
+
+.intersection {
+  pointer-events: none;
+}
