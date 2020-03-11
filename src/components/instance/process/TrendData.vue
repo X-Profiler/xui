@@ -9,7 +9,13 @@
 
       <x-error-message v-if="loadError" :message="loadError" top="100"></x-error-message>
 
-      <x-area v-if="!loading && !loadError" xAxis="time" :yAxis="yAxis" :data="areaData"></x-area>
+      <x-area
+        v-if="!loading && !loadError"
+        xAxis="time"
+        :yAxis="yAxis"
+        :data="areaData"
+        :noDataText="noDataText"
+      ></x-area>
     </div>
   </div>
 </template>

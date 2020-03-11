@@ -59,7 +59,7 @@
             v-for="(xAxis, index) in xAxisScale"
             :key="index"
             class="axisScale"
-            style="text-anchor: middle;"
+            text-anchor="middle"
             :x="getXAxisLabel(index)"
             :y="viewHeight-paddingBottom"
             dy="1.4em"
@@ -67,6 +67,17 @@
             <tspan>{{ xAxis.value }}</tspan>
             <tspan class="time-label" :x="getXAxisLabel(index)" dy="1.3em">{{ xAxis.label }}</tspan>
           </text>
+        </g>
+
+        <!-- no data text -->
+        <g v-if="!xAxisScale.length && !yAxisScale.length">
+          <text
+            :x="paddingLeft + (viewWidth - paddingLeft - paddingRight) / 2"
+            :y="paddingTop + (viewHeight- paddingTop - paddingBottom) * 0.4"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            class="no-data-text"
+          >{{ noDataText }}</text>
         </g>
       </g>
     </svg>
@@ -84,7 +95,8 @@ export default {
     yAxis: Array,
     data: Array,
     xAxisScaleCount: Number,
-    yAxisScaleCount: Number
+    yAxisScaleCount: Number,
+    noDataText: String
   },
 
   data() {
@@ -130,7 +142,7 @@ export default {
       }
 
       if (max === 0) {
-        return [0];
+        return [];
       }
 
       const interval = max / count;
@@ -228,6 +240,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>
