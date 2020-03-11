@@ -17,7 +17,7 @@
         class="chart-area"
         v-if="!process_trend_loading && !process_trend_load_error"
         :yAxis="yAxis"
-        :data="process_trend_data"
+        :data="areaData"
       ></x-area>
     </div>
   </div>
