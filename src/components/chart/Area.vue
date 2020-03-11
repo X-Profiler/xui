@@ -21,22 +21,35 @@
           :y2="viewHeight - paddingBottom"
         />
 
+        <!-- x grid -->
+        <g>
+          <rect
+            v-for="(xAxis, index) in xAxisScale"
+            :key="index"
+            class="bg-rect"
+            :width="index === 0 ? 0: xGridFullWidth * 0.5"
+            :height="viewHeight - paddingTop - paddingBottom"
+            :x="getXGridBgInterval(index)"
+            :y="paddingTop"
+          />
+        </g>
+
         <!-- y grid -->
         <g v-for="(yAxis, index) in yAxisScale" :key="index">
           <text
             class="axisScale"
             style="text-anchor: end;"
             :x="paddingLeft"
-            :y="paddingTop + (viewHeight - paddingTop - paddingBottom ) / yAxisScaleCountInner * index"
+            :y="getYAxisLabel(index)"
             dx="-0.5em"
             dy="0.32em"
           >{{ yAxis }}</text>
           <line
             class="axis"
             :x1="paddingLeft"
-            :y1="paddingTop + (viewHeight - paddingTop - paddingBottom ) / yAxisScaleCountInner * index"
+            :y1="getYAxisLabel(index)"
             :x2="viewWidth - paddingRight"
-            :y2="paddingTop + (viewHeight - paddingTop - paddingBottom ) / yAxisScaleCountInner * index"
+            :y2="getYAxisLabel(index)"
           />
         </g>
       </g>
@@ -95,12 +108,33 @@ export default {
         }
       }
 
+      if (max === 0) {
+        return [0];
+      }
+
       const interval = max / count;
       const scales = [];
       for (let i = 0; i <= count; i++) {
         scales.push(Math.round(max - interval * i));
       }
       return scales;
+    },
+
+    getXGridBgInterval(index) {
+      return (
+        this.paddingLeft -
+        this.xGridFullWidth * 0.75 +
+        this.xGridFullWidth * index
+      );
+    },
+
+    getYAxisLabel(index) {
+      return (
+        this.paddingTop +
+        ((this.viewHeight - this.paddingTop - this.paddingBottom) /
+          this.yAxisScaleCountInner) *
+          (this.yAxisScaleCountInner - index)
+      );
     }
   },
 
@@ -113,8 +147,23 @@ export default {
       return this.yAxisScaleCount || this.defaultYAxisScaleCount;
     },
 
+    xAxisScale() {
+      const scales = this.getScale(this.xAxisScaleCountInner);
+      scales.reverse();
+      return scales;
+    },
+
     yAxisScale() {
-      return this.getScale(this.yAxisScaleCountInner);
+      const scales = this.getScale(this.yAxisScaleCountInner);
+      scales.reverse();
+      return scales;
+    },
+
+    xGridFullWidth() {
+      return (
+        (this.viewWidth - this.paddingLeft - this.paddingRight) /
+        this.xAxisScaleCountInner
+      );
     }
   }
 };
