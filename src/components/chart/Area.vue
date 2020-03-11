@@ -81,25 +81,18 @@
         </g>
 
         <!-- area -->
-        <g>
+        <g v-for="y in yAxisData" :key="y.key">
           <defs>
             <linearGradient id="orange_red" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" style="stop-color:rgba(36,185,13,0.4); stop-opacity:1" />
               <stop offset="100%" style="stop-color:rgba(255,255,255,0.6); stop-opacity:1" />
             </linearGradient>
           </defs>
-          <!-- <path
+          <path
             d="M50,110 L100,210 L170,60 L240,40 L310,50 L380,140 L380,350 L50,350 Z"
             style="fill:url(#orange_red);stroke:none;"
-          />-->
-          <polyline
-            v-for="(y, index) in yAxis"
-            :key="index"
-            :points="getPoints(y)"
-            :stroke="getColor(y)"
-            fill="none"
-            stroke-width="1"
           />
+          <polyline :points="y.points" :stroke="y.color" fill="none" stroke-width="1" />
         </g>
       </g>
     </svg>
@@ -272,7 +265,6 @@ export default {
     getColor(axis) {
       const index = this.yAxis.indexOf(axis);
       return this.colors[index % this.colors.length];
-      // return "#3fc371";
     }
   },
 
@@ -307,6 +299,23 @@ export default {
         (this.viewWidth - this.paddingLeft - this.paddingRight) /
         this.xAxisScaleCountInner
       );
+    },
+
+    yAxisData() {
+      return this.yAxis.map(y => {
+        const data = {
+          key: y
+        };
+
+        // points
+        const points = this.getPoints(y);
+        data.points = points;
+
+        // color
+        data.color = this.getColor(y);
+
+        return data;
+      });
     }
   }
 };
