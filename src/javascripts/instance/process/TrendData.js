@@ -53,6 +53,20 @@ export default {
       }
 
       return trendData;
+    },
+
+    noDataText() {
+      let text = "";
+
+      if (this.type === "heapTrend") {
+        text = "暂无内存趋势数据";
+      }
+
+      if (this.type === "cpuTrend") {
+        text = "暂无 CPU 趋势数据";
+      }
+
+      return text;
     }
   }
 };
