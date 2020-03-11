@@ -45,6 +45,7 @@
             dy="0.32em"
           >{{ yAxis }}</text>
           <line
+            v-if="index !== yAxisScale.length -1"
             class="axis"
             :x1="paddingLeft"
             :y1="getYAxisLabel(index)"
@@ -70,7 +71,7 @@
         </g>
 
         <!-- no data text -->
-        <g v-if="!xAxisScale.length && !yAxisScale.length">
+        <g v-if="noData">
           <text
             :x="paddingLeft + (viewWidth - paddingLeft - paddingRight) / 2"
             :y="paddingTop + (viewHeight- paddingTop - paddingBottom) * 0.4"
@@ -83,17 +84,19 @@
         <!-- area -->
         <g v-for="y in yAxisData" :key="y.key">
           <defs>
-            <linearGradient id="orange_red" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:rgba(36,185,13,0.4); stop-opacity:1" />
-              <stop offset="100%" style="stop-color:rgba(255,255,255,0.6); stop-opacity:1" />
+            <linearGradient :id="'color_bg_' + y.key" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-opacity:0.16" :stop-color="y.bg" />
+              <stop offset="100%" style="stop-opacity: 0.1" stop-color="rgba(255, 255, 255, 1)" />
             </linearGradient>
           </defs>
-          <!-- <path
-            d="M50,110 L100,210 L170,60 L240,40 L310,50 L380,140 L380,350 L50,350 Z"
-            style="fill:url(#orange_red);stroke:none;"
-          />-->
-          <path :d="y.path" style="fill:url(#orange_red);stroke:none;" />
-          <polyline :points="y.points" :stroke="y.color" fill="none" stroke-width="1" />
+          <path :d="y.path" :fill="'url(#' + 'color_bg_' + y.key + ')'" stroke="none" />
+          <polyline
+            stroke-opacity="0.75"
+            :points="y.points"
+            :stroke="y.color"
+            fill="none"
+            stroke-width="1"
+          />
         </g>
       </g>
     </svg>
@@ -125,17 +128,7 @@ export default {
       paddingRight: 8,
       paddingTop: 20,
       paddingBottom: 36,
-      colors: [
-        "rgb(42, 125, 194)",
-        "rgb(106, 90, 205)",
-        "rgb(41, 145, 65)",
-        "rgb(215, 124, 0)",
-        "rgb(186, 74, 0)",
-        "rgb(46, 134, 193)",
-        "rgb(136, 78, 160)",
-        "rgb(19, 141, 117)",
-        "rgb(34, 153, 84)"
-      ]
+      colors: ["#30d8f2", "#99d8ff", "#49b1f2"]
     };
   },
 
@@ -302,7 +295,15 @@ export default {
       );
     },
 
+    noData() {
+      return !this.xAxisScale.length && !this.yAxisScale.length;
+    },
+
     yAxisData() {
+      if (this.noData) {
+        return [];
+      }
+
       return this.yAxis.map(y => {
         const data = {
           key: y
@@ -318,7 +319,6 @@ export default {
         let path = "";
         if (first && last) {
           points = points.map(p => `L${p}`);
-          // console.log(points)
           path += `M${first} ` + points.join(" ") + ` L${last}`;
           const buttom = this.viewHeight - this.paddingBottom;
           path += ` L${last.split(",")[0]},${buttom}`;
@@ -327,7 +327,11 @@ export default {
         data.path = path;
 
         // color
-        data.color = this.getColor(y);
+        const color = this.getColor(y);
+        data.color = color;
+
+        // data.bg = "rgba(36,185,13,0.4)";
+        data.bg = color;
 
         return data;
       });
