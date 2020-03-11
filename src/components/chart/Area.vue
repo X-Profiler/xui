@@ -65,7 +65,7 @@
             dy="1.4em"
           >
             <tspan>{{ xAxis.value }}</tspan>
-            <tspan class="time-label" :x="getXAxisLabel(index)" dy="1.1em">{{ xAxis.label }}</tspan>
+            <tspan class="time-label" :x="getXAxisLabel(index)" dy="1.3em">{{ xAxis.label }}</tspan>
           </text>
         </g>
       </g>
@@ -74,6 +74,10 @@
 </template>
 
 <script>
+import * as moment from "moment";
+
+const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 export default {
   props: {
     xAxis: [String, Array],
@@ -92,7 +96,7 @@ export default {
       paddingLeft: 38,
       paddingRight: 8,
       paddingTop: 20,
-      paddingBottom: 33
+      paddingBottom: 36
     };
   },
 
@@ -142,48 +146,24 @@ export default {
       if (!Array.isArray(data) || !data.length) {
         return [];
       }
-      let start = data[0].time;
-      let end = data[data.length - 1].time;
-      // console.log(1233, start, end);
-
-      return [
-        {
-          value: "01",
-          label: "AM"
-        },
-        {
-          value: "01",
-          label: "AM"
-        },
-        {
-          value: "01",
-          label: "AM"
-        },
-        {
-          value: "01",
-          label: "AM"
-        },
-        {
-          value: "01",
-          label: "AM"
-        },
-        {
-          value: "01",
-          label: "AM"
-        },
-        {
-          value: "01",
-          label: "AM"
-        },
-        {
-          value: "01",
-          label: "AM"
-        },
-        {
-          value: "01",
-          label: "AM"
+      const start = data[0].time;
+      const end = data[data.length - 1].time;
+      const interval = (end - start) / count;
+      const today = moment().day();
+      const scales = [];
+      let crossDayFlag = false;
+      for (let i = 0; i <= count; i++) {
+        const time = moment(end).subtract(i * interval, "ms");
+        const hour = time.hours();
+        if (time.day() !== today && !crossDayFlag) {
+          crossDayFlag = true;
+          scales.push({ label: time.format("MM.DD"), value: week[time.day()] });
+        } else {
+          scales.push({ label: hour < 12 ? "AM" : "PM", value: hour });
         }
-      ];
+      }
+
+      return scales;
     },
 
     getXGridBgInterval(index) {
@@ -227,6 +207,7 @@ export default {
 
       if (this.xAxis === "time") {
         scales = this.getTimeScale(this.xAxisScaleCountInner);
+        scales.reverse();
       }
 
       return scales;
