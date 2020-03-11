@@ -88,10 +88,11 @@
               <stop offset="100%" style="stop-color:rgba(255,255,255,0.6); stop-opacity:1" />
             </linearGradient>
           </defs>
-          <path
+          <!-- <path
             d="M50,110 L100,210 L170,60 L240,40 L310,50 L380,140 L380,350 L50,350 Z"
             style="fill:url(#orange_red);stroke:none;"
-          />
+          />-->
+          <path :d="y.path" style="fill:url(#orange_red);stroke:none;" />
           <polyline :points="y.points" :stroke="y.color" fill="none" stroke-width="1" />
         </g>
       </g>
@@ -236,10 +237,10 @@ export default {
       const xMinData = data[0] && data[0].time;
       const yMaxData = this.yAxisScale[this.yAxisScale.length - 1];
       if (!xMaxData || !xMinData || !yMaxData) {
-        return "";
+        return [];
       }
 
-      let points = "";
+      const points = [];
       for (const dt of this.data) {
         const time = dt.time;
         const value = dt[axis];
@@ -256,7 +257,7 @@ export default {
           (this.viewHeight - this.paddingTop - this.paddingBottom);
         const yPosition = this.viewHeight - this.paddingBottom - yOffset;
 
-        points += `${xPosition},${yPosition} `;
+        points.push(`${xPosition},${yPosition}`);
       }
 
       return points;
@@ -308,8 +309,22 @@ export default {
         };
 
         // points
-        const points = this.getPoints(y);
-        data.points = points;
+        let points = this.getPoints(y);
+        data.points = points.join(" ");
+
+        // path
+        const first = points.shift();
+        const last = points.pop();
+        let path = "";
+        if (first && last) {
+          points = points.map(p => `L${p}`);
+          // console.log(points)
+          path += `M${first} ` + points.join(" ") + ` L${last}`;
+          const buttom = this.viewHeight - this.paddingBottom;
+          path += ` L${last.split(",")[0]},${buttom}`;
+          path += ` L${first.split(",")[0]},${buttom} Z`;
+        }
+        data.path = path;
 
         // color
         data.color = this.getColor(y);
