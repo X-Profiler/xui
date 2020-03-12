@@ -1,10 +1,12 @@
 <template>
   <div ref="area">
     <svg
+      v-if="viewWidth"
       width="100%"
       :height="viewHeight"
       :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
       @mousemove="mousemove"
+      @mouseout="mouseout"
     >
       <!-- chart axis -->
       <g>
@@ -141,13 +143,15 @@ export default {
     return {
       defaultXAxisScaleCount: 8,
       defaultYAxisScaleCount: 4,
-      viewWidth: 500,
+      viewWidth: 0,
       viewHeight: 250,
       paddingLeft: 40,
       paddingRight: 35,
       paddingTop: 20,
       paddingBottom: 40,
       intersectionOffsetXParams: 0,
+      xPointMap: {},
+      xPoint: [],
       colors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
     };
   },
@@ -244,7 +248,7 @@ export default {
       );
     },
 
-    getPoints(axis) {
+    getPoints(yAxis) {
       const data = this.data;
       const xMaxData = data[data.length - 1] && data[data.length - 1].time;
       const xMinData = data[0] && data[0].time;
@@ -253,27 +257,40 @@ export default {
         return [];
       }
 
-      const points = [];
+      const xPointMap = this.xPointMap;
+      const xPoint = this.xPoint;
+
+      const group = {};
+
       for (const dt of this.data) {
         const time = dt.time;
-        const value = dt[axis];
-
         // x position
         const xOffset =
           ((time - xMinData) / (xMaxData - xMinData)) *
           (this.viewWidth - this.paddingLeft - this.paddingRight);
         const xPosition = this.paddingLeft + xOffset;
 
-        // y position
-        const yOffset =
-          (value / yMaxData) *
-          (this.viewHeight - this.paddingTop - this.paddingBottom);
-        const yPosition = this.viewHeight - this.paddingBottom - yOffset;
+        xPointMap[xPosition] = [];
+        xPoint.push(xPosition);
 
-        points.push(`${xPosition},${yPosition}`);
+        for (const axis of yAxis) {
+          if (!group[axis]) {
+            group[axis] = [];
+          }
+          const value = dt[axis];
+
+          // y position
+          const yOffset =
+            (value / yMaxData) *
+            (this.viewHeight - this.paddingTop - this.paddingBottom);
+          const yPosition = this.viewHeight - this.paddingBottom - yOffset;
+
+          xPointMap[xPosition].push({ axis, yPosition });
+          group[axis].push(`${xPosition},${yPosition}`);
+        }
       }
 
-      return points;
+      return group;
     },
 
     getColor(axis) {
@@ -282,7 +299,12 @@ export default {
     },
 
     mousemove(event) {
-      this.intersectionOffsetXParams = event.offsetX;
+      const offsetX = event.offsetX;
+      this.intersectionOffsetXParams = offsetX;
+    },
+
+    mouseout() {
+      this.intersectionOffsetXParams = 0;
     }
   },
 
@@ -328,15 +350,14 @@ export default {
         return [];
       }
 
-      return this.yAxis.map(y => {
+      const group = this.getPoints(this.yAxis);
+
+      return Object.entries(group).map(([y, points]) => {
         const data = {
           key: y
         };
-
         // points
-        let points = this.getPoints(y);
         data.points = points.join(" ");
-
         // path
         const first = points.shift();
         const last = points.pop();
@@ -349,14 +370,11 @@ export default {
           path += ` L${first.split(",")[0]},${buttom} Z`;
         }
         data.path = path;
-
         // color
         const color = this.getColor(y);
         data.color = color;
-
         // data.bg = "rgba(36,185,13,0.4)";
         data.bg = color;
-
         return data;
       });
     },

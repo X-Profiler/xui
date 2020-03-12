@@ -10,7 +10,7 @@ exports.checkParam = function (obj, keys) {
 
 exports.createAreaData = function (yaxis, fn) {
   const data = [];
-  const interval = 3 * 60 * 1000;
+  const interval = 2 * 60 * 1000;
   const end = Date.now();
   const start = end - 24 * 60 * 60 * 1000;
 
