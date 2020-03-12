@@ -107,9 +107,9 @@ export default {
         return [];
       }
 
-      const xPointMap = this.xPointMap;
-      const xValueMap = this.xValueMap;
-      const xPoint = this.xPoint;
+      const xPointMap = this.xPointMap = [];
+      const xValueMap = this.xValueMap = [];
+      const xPoint = this.xPoint = [];
 
       const group = {};
 
