@@ -37,11 +37,13 @@ export default {
     },
 
     showTip(time) {
-      this.$refs.area.showTip(time);
+      const area = this.$refs.area;
+      area && area.showTip(time);
     },
 
     hiddenTip() {
-      this.$refs.area.hiddenTip();
+      const area = this.$refs.area;
+      area && area.hiddenTip();
     },
   },
 

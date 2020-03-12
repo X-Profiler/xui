@@ -5,8 +5,9 @@
       width="100%"
       :height="viewHeight"
       :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
+      @mouseover="mouseover"
       @mousemove="mousemove"
-      @mouseout="mouseout"
+      @mouseleave="mouseleave"
     >
       <!-- chart axis -->
       <g>
@@ -116,7 +117,7 @@
           :x2="intersectionOffsetX"
           :y2="viewHeight- paddingBottom"
           fill="none"
-          stroke-width="1px"
+          stroke-width="1"
           stroke="#adbcc9"
           class="intersection"
         />
@@ -326,13 +327,25 @@ export default {
       return this.colors[index % this.colors.length];
     },
 
+    mouseover(event) {
+      this.mousemove(event);
+    },
+
     mousemove(event) {
       const offsetX = event.offsetX;
+      const offsetY = event.offsetY;
       const minLegalX = this.paddingLeft;
       const maxLegalX = this.viewWidth - this.paddingRight;
+      const minLegalY = this.paddingTop;
+      const maxLegalY = this.viewHeight - this.paddingBottom;
       if (offsetX < minLegalX || offsetX > maxLegalX) {
         return;
       }
+      if (offsetY < minLegalY || offsetY > maxLegalY) {
+        this.mouseleave();
+        return;
+      }
+
       // set intersection offset x
       this.intersectionOffsetX = offsetX;
 
@@ -351,7 +364,7 @@ export default {
       }
     },
 
-    mouseout() {
+    mouseleave() {
       this.intersectionOffsetX = 0;
       this.dots = [];
       this.$emit("hidden");
