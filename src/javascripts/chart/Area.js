@@ -11,6 +11,8 @@ export default {
 
     this.setViewBox();
     window.addEventListener("resize", this.setViewBox.bind(this));
+
+    this.$emit("mounted");
   },
 
   methods: {

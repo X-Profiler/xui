@@ -45,6 +45,17 @@ export default {
       const area = this.$refs.area;
       area && area.hiddenTip();
     },
+
+    getLabelIconStyle(axis) {
+      const area = this.$refs.area;
+      let style = "";
+      const color = area && area.getColor(axis, this.yAxis);
+      if (color) {
+        style += "background-color: " + color + ";";
+      }
+
+      return style;
+    }
   },
 
   computed: {
