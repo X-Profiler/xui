@@ -126,10 +126,10 @@
           :key="index"
           :cx="dot.xPosition"
           :cy="dot.yPosition"
-          :stroke="dot.color"
-          fill="#fff"
-          r="3.5"
-          stroke-width="3"
+          :fill="dot.color"
+          stroke="#fff"
+          r="4"
+          stroke-width="2"
         />
       </g>
     </svg>
@@ -329,7 +329,11 @@ export default {
       // set dots
       const xPointMap = this.xPointMap;
       const [before, after] = dichotomy(this.xPoint, offsetX);
-      this.dots = xPointMap[before];
+      if (Math.abs(offsetX - before < Math.abs(offsetX - after))) {
+        this.dots = xPointMap[before];
+      } else {
+        this.dots = xPointMap[after];
+      }
     },
 
     mouseout() {
