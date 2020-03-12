@@ -18,11 +18,12 @@
           :noDataText="noDataText"
           @linkage="linkage"
           @hidden="hidden"
+          @mounted="chartMounted = true"
         ></x-area>
 
-        <div class="chart-label">
+        <div v-if="chartMounted" class="chart-label">
           <div class="chart-label-group" v-for="(axis, index) in yAxis" :key="index">
-            <div class="label-icon"></div>
+            <div class="label-icon" :style="getLabelIconStyle(axis)"></div>
             <div class="label-value">{{axis}}</div>
           </div>
         </div>
@@ -45,6 +46,7 @@ const trendData = Object.assign(
       return {
         loading: false,
         loadError: undefined,
+        chartMounted: false,
         trendData: []
       };
     }
@@ -62,7 +64,7 @@ export default trendData;
 }
 
 .chart-label {
-  margin-top: 5px;
+  margin-top: 6px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -84,5 +86,7 @@ export default trendData;
 
 .label-value {
   margin: 0 25px 0 5px;
+  font-size: 13px;
+  color: #808695;
 }
 </style>
