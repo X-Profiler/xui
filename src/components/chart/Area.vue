@@ -110,6 +110,7 @@
       <!-- intersection -->
       <g>
         <line
+          v-show="intersectionOffsetX"
           :x1="intersectionOffsetX"
           :y1="paddingTop"
           :x2="intersectionOffsetX"
@@ -118,6 +119,17 @@
           stroke-width="1px"
           stroke="#adbcc9"
           class="intersection"
+        />
+
+        <circle
+          v-for="(dot, index) in dots"
+          :key="index"
+          :cx="dot.xPosition"
+          :cy="dot.yPosition"
+          :stroke="dot.color"
+          fill="#fff"
+          r="3.5"
+          stroke-width="3"
         />
       </g>
     </svg>
@@ -150,9 +162,10 @@ export default {
       paddingRight: 35,
       paddingTop: 20,
       paddingBottom: 40,
-      intersectionOffsetXParams: 0,
+      intersectionOffsetX: 0,
       xPointMap: {},
       xPoint: [],
+      dots: [],
       colors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
     };
   },
@@ -286,7 +299,11 @@ export default {
             (this.viewHeight - this.paddingTop - this.paddingBottom);
           const yPosition = this.viewHeight - this.paddingBottom - yOffset;
 
-          xPointMap[xPosition].push({ axis, yPosition });
+          xPointMap[xPosition].push({
+            xPosition,
+            yPosition,
+            color: this.getColor(axis)
+          });
           group[axis].push(`${xPosition},${yPosition}`);
         }
       }
@@ -301,17 +318,23 @@ export default {
 
     mousemove(event) {
       const offsetX = event.offsetX;
-      this.intersectionOffsetXParams = offsetX;
       const minLegalX = this.paddingLeft;
       const maxLegalX = this.viewWidth - this.paddingRight;
       if (offsetX < minLegalX || offsetX > maxLegalX) {
         return;
       }
+      // set intersection offset x
+      this.intersectionOffsetX = offsetX;
+
+      // set dots
+      const xPointMap = this.xPointMap;
       const [before, after] = dichotomy(this.xPoint, offsetX);
+      this.dots = xPointMap[before];
     },
 
     mouseout() {
-      this.intersectionOffsetXParams = 0;
+      this.intersectionOffsetX = 0;
+      this.dots = [];
     }
   },
 
@@ -384,16 +407,6 @@ export default {
         data.bg = color;
         return data;
       });
-    },
-
-    intersectionOffsetX() {
-      const params = this.intersectionOffsetXParams;
-      const minLegalX = this.paddingLeft;
-      const maxLegalX = this.viewWidth - this.paddingRight;
-      if (params >= minLegalX && params < maxLegalX) {
-        return params;
-      }
-      return maxLegalX;
     }
   }
 };
