@@ -26,7 +26,23 @@ export default {
         })
         .catch(err => this.loadError = err.message)
         .then(() => this.loading = false);
-    }
+    },
+
+    linkage(time) {
+      this.$emit("linkage", time);
+    },
+
+    hidden() {
+      this.$emit("hidden");
+    },
+
+    showTip(time) {
+      this.$refs.area.showTip(time);
+    },
+
+    hiddenTip() {
+      this.$refs.area.hiddenTip();
+    },
   },
 
   computed: {

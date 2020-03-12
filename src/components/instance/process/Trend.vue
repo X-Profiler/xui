@@ -43,8 +43,11 @@
             class="trend-data"
             v-for="(dt, index) in dts1"
             :key="index"
+            :ref="dt.value"
             :type="dt.value"
             :title="dt.label"
+            @linkage="linkage"
+            @hidden="hidden"
           ></x-trend-data>
         </div>
       </div>

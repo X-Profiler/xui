@@ -164,6 +164,7 @@ export default {
       paddingBottom: 40,
       intersectionOffsetX: 0,
       xPointMap: {},
+      xValueMap: {},
       xPoint: [],
       dots: [],
       colors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
@@ -272,6 +273,7 @@ export default {
       }
 
       const xPointMap = this.xPointMap;
+      const xValueMap = this.xValueMap;
       const xPoint = this.xPoint;
 
       const group = {};
@@ -284,7 +286,9 @@ export default {
           (this.viewWidth - this.paddingLeft - this.paddingRight);
         const xPosition = this.paddingLeft + xOffset;
 
+        const timeKey = moment(time).format("YYYY-MM-DD HH:mm");
         xPointMap[xPosition] = [];
+        xValueMap[timeKey] = [];
         xPoint.push(xPosition);
 
         for (const axis of yAxis) {
@@ -300,6 +304,12 @@ export default {
           const yPosition = this.viewHeight - this.paddingBottom - yOffset;
 
           xPointMap[xPosition].push({
+            xPosition,
+            yPosition,
+            color: this.getColor(axis),
+            time: timeKey
+          });
+          xValueMap[timeKey].push({
             xPosition,
             yPosition,
             color: this.getColor(axis)
@@ -334,9 +344,27 @@ export default {
       } else {
         this.dots = xPointMap[after];
       }
+
+      // linkage
+      if (this.dots.length) {
+        this.$emit("linkage", this.dots[0].time);
+      }
     },
 
     mouseout() {
+      this.intersectionOffsetX = 0;
+      this.dots = [];
+      this.$emit("hidden");
+    },
+
+    showTip(time) {
+      this.dots = this.xValueMap[time] || [];
+      if (this.dots.length) {
+        this.intersectionOffsetX = this.dots[0].xPosition;
+      }
+    },
+
+    hiddenTip() {
       this.intersectionOffsetX = 0;
       this.dots = [];
     }
