@@ -126,6 +126,7 @@
 
 <script>
 import * as moment from "moment";
+import { dichotomy } from "../../javascripts/lib/utils";
 
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -301,6 +302,12 @@ export default {
     mousemove(event) {
       const offsetX = event.offsetX;
       this.intersectionOffsetXParams = offsetX;
+      const minLegalX = this.paddingLeft;
+      const maxLegalX = this.viewWidth - this.paddingRight;
+      if (offsetX < minLegalX || offsetX > maxLegalX) {
+        return;
+      }
+      const [before, after] = dichotomy(this.xPoint, offsetX);
     },
 
     mouseout() {
