@@ -12,9 +12,12 @@
       <x-area
         v-if="!loading && !loadError"
         xAxis="time"
+        ref="area"
         :yAxis="yAxis"
         :data="areaData"
         :noDataText="noDataText"
+        @linkage="linkage"
+        @hidden="hidden"
       ></x-area>
     </div>
   </div>

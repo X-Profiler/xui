@@ -20,6 +20,26 @@ export default {
       style["font-weight"] = "normal";
       style["color"] = "#fff";
       style["font-style"] = "normal";
+    },
+
+    showTip(refs, time) {
+      for (const ref of refs) {
+        this.$refs[ref][0].showTip(time);
+      }
+    },
+
+    hiddenTip(refs) {
+      for (const ref of refs) {
+        this.$refs[ref][0].hiddenTip();
+      }
+    },
+
+    linkage(time) {
+      this.showTip(this.dts1.map(item => item.value), time);
+    },
+
+    hidden() {
+      this.hiddenTip(this.dts1.map(item => item.value));
     }
   },
 
