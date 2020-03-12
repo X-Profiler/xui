@@ -3,7 +3,7 @@
     <div class="title">{{ title }}</div>
 
     <div>
-      <div style="text-align: center;">
+      <div style="text-align: center;margin-top: 10px;">
         <x-loading :loading="loading" top="100" type="dot" size="middle"></x-loading>
       </div>
 
