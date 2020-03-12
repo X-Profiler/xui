@@ -24,7 +24,8 @@ export default {
 
     showTip(refs, time) {
       for (const ref of refs) {
-        this.$refs[ref][0].showTip(time);
+        const element = this.$refs[ref][0];
+        element && element.showTip(time);
       }
     },
 
