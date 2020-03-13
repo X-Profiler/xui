@@ -147,7 +147,7 @@
     </svg>
 
     <!-- chartip -->
-    <x-chartip>
+    <x-chartip class="chartip">
       <div slot="header">
         <div>随便写的</div>
       </div>
@@ -194,3 +194,10 @@ const areaData = Object.assign(
 
 export default areaData;
 </script>
+
+<style scoped>
+.chartip {
+  height: 70px;
+  width: 110px;
+}
+</style>
