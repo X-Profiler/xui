@@ -98,46 +98,52 @@
             <stop offset="100%" style="stop-opacity: 0.1" stop-color="rgba(255, 255, 255, 1)" />
           </linearGradient>
         </defs>
-        <path
-          v-if="pathWidthMap[y.axis]"
-          :d="y.path"
-          :fill="'url(#' + 'color_bg_' + y.axis + ')'"
-          stroke="none"
-        />
-        <polyline
-          stroke-opacity="0.75"
-          :points="y.points"
-          :stroke="y.color"
-          fill="none"
-          :stroke-width="pathWidthMap[y.axis]"
-        />
+        <transition name="slide-noward">
+          <path
+            v-show="pathWidthMap[y.axis]"
+            :d="y.path"
+            :fill="'url(#' + 'color_bg_' + y.axis + ')'"
+            stroke="none"
+          />
+        </transition>
+        <transition name="slide-noward">
+          <polyline
+            v-show="pathWidthMap[y.axis]"
+            stroke-opacity="0.75"
+            :points="y.points"
+            :stroke="y.color"
+            fill="none"
+            :stroke-width="pathWidthMap[y.axis]"
+          />
+        </transition>
       </g>
 
       <!-- intersection -->
-      <g>
-        <line
-          v-show="intersectionOffsetX"
-          :x1="intersectionOffsetX"
-          :y1="paddingTop"
-          :x2="intersectionOffsetX"
-          :y2="viewHeight- paddingBottom"
-          fill="none"
-          stroke-width="1"
-          stroke="#adbcc9"
-          class="intersection"
-        />
+      <transition name="slide-noward">
+        <g v-show="intersectionOffsetX">
+          <line
+            :x1="intersectionOffsetX"
+            :y1="paddingTop"
+            :x2="intersectionOffsetX"
+            :y2="viewHeight- paddingBottom"
+            fill="none"
+            stroke-width="1"
+            stroke="#adbcc9"
+            class="intersection"
+          />
 
-        <circle
-          v-for="(dot, index) in dots"
-          :key="index"
-          :cx="dot.xPosition"
-          :cy="dot.yPosition"
-          :fill="dot.color"
-          stroke="#fff"
-          r="4"
-          stroke-width="2"
-        />
-      </g>
+          <circle
+            v-for="(dot, index) in dots"
+            :key="index"
+            :cx="dot.xPosition"
+            :cy="dot.yPosition"
+            :fill="dot.color"
+            stroke="#fff"
+            r="4"
+            stroke-width="2"
+          />
+        </g>
+      </transition>
     </svg>
   </div>
 </template>
