@@ -55,6 +55,16 @@ export default {
       }
 
       return style;
+    },
+
+    mouseover(axis) {
+      const area = this.$refs.area;
+      area && area.setWidthMap(axis, 2, 0);
+    },
+
+    mouseleave(axis) {
+      const area = this.$refs.area;
+      area && area.setWidthMap(axis, 1, 1);
     }
   },
 
