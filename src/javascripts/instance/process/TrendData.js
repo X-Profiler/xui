@@ -60,11 +60,19 @@ export default {
     mouseover(axis) {
       const area = this.$refs.area;
       area && area.setWidthMap(axis, 2, 0);
+
+      // scale
+      const style = this.$refs[this.labelKey + axis][0].style;
+      style["transform"] = "scale(1.1)";
     },
 
     mouseleave(axis) {
       const area = this.$refs.area;
       area && area.setWidthMap(axis, 1, 1);
+
+      // scale
+      const style = this.$refs[this.labelKey + axis][0].style;
+      style["transform"] = "scale(1)";
     }
   },
 
