@@ -145,6 +145,13 @@
         </g>
       </transition>
     </svg>
+
+    <!-- chartip -->
+    <x-chartip>
+      <div slot="header">
+        <div>随便写的</div>
+      </div>
+    </x-chartip>
   </div>
 </template>
 

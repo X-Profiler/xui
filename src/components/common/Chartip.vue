@@ -12,7 +12,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {}
+};
 </script>
 
 <style scoped>
@@ -22,8 +24,6 @@ export default {};
   left: 0;
   top: 0;
   z-index: -9999;
-  min-width: 300px;
-  max-width: 500px;
   display: none;
 }
 </style>
