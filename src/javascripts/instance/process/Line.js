@@ -21,12 +21,12 @@ export default {
     setLastTime() {
       const list = [];
       const today = moment().day();
-      let crossDayFlag = false;
+      let lastday = today;
       for (let i = 0; i < 24; i += 2) {
         const time = moment().subtract(i, "hours");
         const hour = time.hours();
-        if (time.day() !== today && !crossDayFlag) {
-          crossDayFlag = true;
+        if (time.day() !== lastday) {
+          lastday = time.day();
           list.push({ label: time.format("MM.DD"), value: week[time.day()] });
         } else {
           list.push({ label: hour < 12 ? "AM" : "PM", value: hour });

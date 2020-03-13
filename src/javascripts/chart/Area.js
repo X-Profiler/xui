@@ -82,12 +82,12 @@ export default {
       const interval = (end - start) / count;
       const today = moment().day();
       const scales = [];
-      let crossDayFlag = false;
+      let lastday = today;
       for (let i = 0; i <= count; i++) {
         const time = moment(end).subtract(i * interval, "ms");
         const hour = time.hours();
-        if (time.day() !== today && !crossDayFlag) {
-          crossDayFlag = true;
+        if (time.day() !== lastday) {
+          lastday = time.day();
           scales.push({ label: time.format("MM.DD"), value: week[time.day()] });
         } else {
           scales.push({ label: hour < 12 ? "AM" : "PM", value: hour });
@@ -164,12 +164,14 @@ export default {
           const yPosition = this.viewHeight - this.paddingBottom - yOffset;
 
           xPointMap[xPosition].push({
+            axis,
             xPosition,
             yPosition,
             color: this.getColor(axis),
             time: timeKey
           });
           xValueMap[timeKey].push({
+            axis,
             xPosition,
             yPosition,
             color: this.getColor(axis)
@@ -184,6 +186,10 @@ export default {
     getColor(axis) {
       const index = this.yAxis.indexOf(axis);
       return this.colors[index % this.colors.length];
+    },
+
+    fiterDot(dots) {
+      return dots.filter(dot => this.pathWidthMap[dot.axis]);
     },
 
     mouseover(event) {
@@ -212,9 +218,9 @@ export default {
       const xPointMap = this.xPointMap;
       const [before, after] = dichotomy(this.xPoint, offsetX);
       if (Math.abs(offsetX - before < Math.abs(offsetX - after))) {
-        this.dots = xPointMap[before];
+        this.dots = this.fiterDot(xPointMap[before]);
       } else {
-        this.dots = xPointMap[after];
+        this.dots = this.fiterDot(xPointMap[after]);
       }
 
       // linkage
@@ -230,7 +236,7 @@ export default {
     },
 
     showTip(time) {
-      this.dots = this.xValueMap[time] || [];
+      this.dots = this.xValueMap[time] && this.fiterDot(this.xValueMap[time]) || [];
       if (this.dots.length) {
         this.intersectionOffsetX = this.dots[0].xPosition;
       }
