@@ -91,20 +91,25 @@
       </g>
 
       <!-- area -->
-      <g v-for="y in yAxisData" :key="y.key">
+      <g v-for="y in yAxisData" :key="y.axis">
         <defs>
-          <linearGradient :id="'color_bg_' + y.key" x1="0%" y1="0%" x2="0%" y2="100%">
+          <linearGradient :id="'color_bg_' + y.axis" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" style="stop-opacity:0.16" :stop-color="y.bg" />
             <stop offset="100%" style="stop-opacity: 0.1" stop-color="rgba(255, 255, 255, 1)" />
           </linearGradient>
         </defs>
-        <path :d="y.path" :fill="'url(#' + 'color_bg_' + y.key + ')'" stroke="none" />
+        <path
+          v-if="pathWidthMap[y.axis]"
+          :d="y.path"
+          :fill="'url(#' + 'color_bg_' + y.axis + ')'"
+          stroke="none"
+        />
         <polyline
           stroke-opacity="0.75"
           :points="y.points"
           :stroke="y.color"
           fill="none"
-          stroke-width="1"
+          :stroke-width="pathWidthMap[y.axis]"
         />
       </g>
 
@@ -162,6 +167,7 @@ const areaData = Object.assign(
         paddingTop: 20,
         paddingBottom: 40,
         intersectionOffsetX: 0,
+        pathWidthMap: {},
         xPointMap: {},
         xValueMap: {},
         xPoint: [],

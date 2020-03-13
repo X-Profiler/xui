@@ -6,16 +6,39 @@ import { dichotomy } from "../lib/utils";
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default {
+  created() {
+    this.setWidthMap();
+  },
+
   mounted() {
     this.area = this.$refs.area;
 
     this.setViewBox();
     window.addEventListener("resize", this.setViewBox.bind(this));
 
+
     this.$emit("mounted");
   },
 
   methods: {
+    setWidthMap(axis, width, other) {
+      if (axis) {
+        this.pathWidthMap[axis] = width;
+        for (const y of this.yAxis) {
+          if (y !== axis) {
+            this.pathWidthMap[y] = other;
+          }
+        }
+        return;
+      }
+
+      const map = {};
+      for (const y of this.yAxis) {
+        map[y] = 1;
+      }
+      this.pathWidthMap = map;
+    },
+
     setViewBox() {
       const width = parseInt(window.getComputedStyle(this.area).width, 10);
       if (!width) {
@@ -265,7 +288,7 @@ export default {
 
       return Object.entries(group).map(([y, points]) => {
         const data = {
-          key: y
+          axis: y
         };
         // points
         data.points = points.join(" ");

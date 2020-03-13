@@ -22,7 +22,14 @@
         ></x-area>
 
         <div v-if="chartMounted" class="chart-label">
-          <div class="chart-label-group" v-for="(axis, index) in yAxis" :key="index">
+          <div
+            class="chart-label-group"
+            v-for="(axis, index) in yAxis"
+            :key="index"
+            :style="index !== 0 ? 'margin-left: 25px;' : ''"
+            @mouseover="mouseover(axis)"
+            @mouseleave="mouseleave(axis)"
+          >
             <div class="label-icon" :style="getLabelIconStyle(axis)"></div>
             <div class="label-value">{{axis}}</div>
           </div>
@@ -75,6 +82,7 @@ export default trendData;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .label-icon {
@@ -85,7 +93,7 @@ export default trendData;
 }
 
 .label-value {
-  margin: 0 25px 0 5px;
+  margin-left: 5px;
   font-size: 13px;
   color: #808695;
 }
