@@ -12,6 +12,7 @@ import "view-design/dist/styles/iview.css";
 import "./theme/index.less";
 
 // global components
+import xChartip from "@/components/common/Chartip";
 import xDashboardTitle from "@/components/common/DashboardTitle";
 import xDrawer from "@/components/common/Drawer";
 import xDropdown from "@/components/common/Dropdown";
@@ -30,6 +31,7 @@ Vue.use(VueRouter);
 Vue.use(ViewUI);
 Vue.use(DomPortal);
 
+Vue.component("x-chartip", xChartip);
 Vue.component("x-dashboard-title", xDashboardTitle);
 Vue.component("x-drawer", xDrawer);
 Vue.component("x-dropdown", xDropdown);
