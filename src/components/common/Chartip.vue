@@ -19,11 +19,11 @@ export default {
 
 <style scoped>
 .tooltip {
-  background-color: rgb(255, 255, 255);
+  display: none;
   position: absolute;
   left: 0;
   top: 0;
   z-index: -9999;
-  display: none;
+  background-color: rgb(255, 255, 255);
 }
 </style>
