@@ -57,22 +57,40 @@ export default {
       return style;
     },
 
-    mouseover(axis) {
+    singleton(axis) {
       const area = this.$refs.area;
       area && area.setWidthMap(axis, 2, 0);
 
       // scale
       const style = this.$refs[this.labelKey + axis][0].style;
-      style["transform"] = "scale(1.1)";
+      style["transform"] = "scale(1.2)";
     },
 
-    mouseleave(axis) {
+    restore(axis) {
       const area = this.$refs.area;
       area && area.setWidthMap(axis, 1, 1);
 
       // scale
       const style = this.$refs[this.labelKey + axis][0].style;
       style["transform"] = "scale(1)";
+    },
+
+    mouseover(axis) {
+      this.singleton(axis);
+    },
+
+    mouseleave(axis) {
+      this.restore(axis);
+    },
+
+    chose(axis) {
+      if (!this.single) {
+        this.singleton(axis);
+        this.single = axis;
+      } else {
+        this.restore(axis);
+        this.single = undefined;
+      }
     }
   },
 
