@@ -30,6 +30,7 @@
             :style="index !== 0 ? 'margin-left: 25px;' : ''"
             @mouseover="mouseover(axis)"
             @mouseleave="mouseleave(axis)"
+            @click="chose(axis)"
           >
             <div class="label-icon" :style="getLabelIconStyle(axis)"></div>
             <div class="label-value">{{axis}}</div>
@@ -56,7 +57,8 @@ const trendData = Object.assign(
         loadError: undefined,
         chartMounted: false,
         trendData: [],
-        labelKey: "label-"
+        labelKey: "label-",
+        single: undefined
       };
     }
   },
@@ -85,6 +87,7 @@ export default trendData;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  user-select: none;
   transition: all 0.1s ease;
 }
 
