@@ -26,6 +26,7 @@
             class="chart-label-group"
             v-for="(axis, index) in yAxis"
             :key="index"
+            :ref="labelKey + axis"
             :style="index !== 0 ? 'margin-left: 25px;' : ''"
             @mouseover="mouseover(axis)"
             @mouseleave="mouseleave(axis)"
@@ -54,7 +55,8 @@ const trendData = Object.assign(
         loading: false,
         loadError: undefined,
         chartMounted: false,
-        trendData: []
+        trendData: [],
+        labelKey: "label-"
       };
     }
   },
@@ -83,6 +85,7 @@ export default trendData;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: all 0.1s ease;
 }
 
 .label-icon {
