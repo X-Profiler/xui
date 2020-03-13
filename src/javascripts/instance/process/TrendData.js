@@ -76,14 +76,24 @@ export default {
     },
 
     mouseover(axis) {
-      this.singleton(axis);
+      if (!this.single) {
+        this.singleton(axis);
+      }
     },
 
     mouseleave(axis) {
-      this.restore(axis);
+      if (!this.single) {
+        this.restore(axis);
+      }
     },
 
     chose(axis) {
+      for (const y of this.yAxis) {
+        this.restore(y);
+      }
+      if (axis !== this.single) {
+        this.single = undefined;
+      }
       if (!this.single) {
         this.singleton(axis);
         this.single = axis;
