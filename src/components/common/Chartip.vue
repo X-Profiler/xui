@@ -1,14 +1,16 @@
 <template>
-  <div ref="tooltip" class="tooltip box-shadow">
-    <div :class="type">
-      <!-- title -->
-      <slot name="header"></slot>
+  <div style="position: relative;">
+    <div ref="chartip" class="chartip box-shadow">
+      <div :class="type">
+        <!-- title -->
+        <slot name="header"></slot>
 
-      <!-- content -->
-      <slot name="content"></slot>
+        <!-- content -->
+        <slot name="content"></slot>
 
-      <!-- footer -->
-      <slot name="footer"></slot>
+        <!-- footer -->
+        <slot name="footer"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -17,49 +19,107 @@
 export default {
   data() {
     return {
-      type: "left"
+      type: ""
     };
+  },
+
+  mounted() {
+    this.chartip = this.$refs.chartip;
+  },
+
+  methods: {
+    show(event, minLegalY, maxLegalX) {
+      const style = this.chartip.style;
+      style["opacity"] = 1;
+      style["z-index"] = 1200;
+
+      const tipComputedStyle = this.tipComputedStyle;
+      const tipWidth = parseInt(tipComputedStyle.width, 10);
+      const tipHeight = parseInt(tipComputedStyle.height);
+      const offsetX = event.offsetX;
+      const offsetY = event.offsetY;
+      const intervalX = 12;
+      const intervalY = 10;
+
+      if (offsetX + tipWidth + intervalX < maxLegalX) {
+        style["left"] = offsetX + intervalX + "px";
+        this.type = "left";
+      } else {
+        style["left"] = offsetX - intervalX - tipWidth + "px";
+        this.type = "right";
+      }
+
+      if (offsetY - tipHeight / 2 > minLegalY) {
+        style["top"] = offsetY - tipHeight / 2 - intervalY + "px";
+      }
+    },
+
+    hidden() {
+      const style = this.chartip.style;
+      style["opacity"] = 0;
+      style["z-index"] = -9999;
+    }
+  },
+
+  computed: {
+    tipComputedStyle() {
+      return window.getComputedStyle(this.chartip);
+    }
   }
 };
 </script>
 
 <style scoped>
-.tooltip {
-  /* display: none; */
-  /* position: absolute; */
-  /* z-index: 1000; */
+.chartip {
+  opacity: 0;
+  z-index: -9999;
+  position: absolute;
   left: 0;
   top: 0;
   background-color: rgb(255, 255, 255);
-  position: relative;
   max-width: 200px;
   border-radius: 3px;
   padding: 0 5px;
+  transition: opacity 0.1s ease;
 }
 
-.left::before {
+.left::before,
+.right::before {
   content: " ";
   position: absolute;
-  border: 12px solid;
+  border: 8px solid;
   border-color: #dcdee2 transparent transparent;
-  top: 30px;
-}
-
-.left::after {
-  content: " ";
-  position: absolute;
-  border: 14px solid;
-  border-color: #fff transparent transparent;
-  top: 28px;
+  top: calc(50% - 8px);
+  pointer-events: none;
 }
 
 .left::before {
-  left: -24px;
+  left: calc(-10px - 6px);
   transform: rotate(90deg);
 }
 
+.right::before {
+  right: calc(-10px - 6px);
+  transform: rotate(270deg);
+}
+
 .left::after {
-  left: -24px;
+  left: calc(-10px - 6px);
   transform: rotate(90deg);
+}
+
+.right::after {
+  right: calc(-10px - 6px);
+  transform: rotate(270deg);
+}
+
+.left::after,
+.right::after {
+  content: " ";
+  position: absolute;
+  border: 10px solid;
+  border-color: #fff transparent transparent;
+  top: calc(50% - 10px);
+  pointer-events: none;
 }
 </style>

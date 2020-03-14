@@ -28,17 +28,17 @@ export default {
         .then(() => this.loading = false);
     },
 
-    linkage(time) {
-      this.$emit("linkage", time);
+    linkage(data) {
+      this.$emit("linkage", data);
     },
 
     hidden() {
       this.$emit("hidden");
     },
 
-    showTip(time) {
+    showTip(data) {
       const area = this.$refs.area;
-      area && area.showTip(time);
+      area && area.showTip(data);
     },
 
     hiddenTip() {
