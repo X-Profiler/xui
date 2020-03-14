@@ -12,6 +12,7 @@ export default {
 
   mounted() {
     this.area = this.$refs.area;
+    this.chartip = this.$refs.chartip;
 
     this.setViewBox();
     window.addEventListener("resize", this.setViewBox.bind(this));
@@ -223,28 +224,36 @@ export default {
         this.dots = this.fiterDot(xPointMap[after]);
       }
 
+      // show chartip
+      this.chartip.show(event, minLegalY, maxLegalX);
+
       // linkage
       if (this.dots.length) {
-        this.$emit("linkage", this.dots[0].time);
+        this.$emit("linkage", { time: this.dots[0].time, mouse: { offsetX, offsetY } });
       }
     },
 
     mouseleave() {
       this.intersectionOffsetX = 0;
       this.dots = [];
+      this.chartip.hidden();
       this.$emit("hidden");
     },
 
-    showTip(time) {
+    showTip({ time, mouse }) {
       this.dots = this.xValueMap[time] && this.fiterDot(this.xValueMap[time]) || [];
       if (this.dots.length) {
         this.intersectionOffsetX = this.dots[0].xPosition;
+        const maxLegalX = this.viewWidth - this.paddingRight;
+        const minLegalY = this.paddingTop;
+        this.chartip.show(mouse, minLegalY, maxLegalX);
       }
     },
 
     hiddenTip() {
       this.intersectionOffsetX = 0;
       this.dots = [];
+      this.chartip.hidden();
     }
   },
 

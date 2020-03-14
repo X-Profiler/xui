@@ -88,7 +88,7 @@ export default trendData;
   align-items: center;
   cursor: pointer;
   user-select: none;
-  transition: all 0.1s ease;
+  transition: all 0.15s ease;
 }
 
 .label-icon {

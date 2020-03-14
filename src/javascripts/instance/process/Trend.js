@@ -22,10 +22,10 @@ export default {
       style["font-style"] = "normal";
     },
 
-    showTip(refs, time) {
+    showTip(refs, data) {
       for (const ref of refs) {
         const element = this.$refs[ref][0];
-        element && element.showTip(time);
+        element && element.showTip(data);
       }
     },
 
@@ -35,8 +35,8 @@ export default {
       }
     },
 
-    linkage(time) {
-      this.showTip(this.dts1.map(item => item.value), time);
+    linkage(data) {
+      this.showTip(this.dts1.map(item => item.value), data);
     },
 
     hidden() {

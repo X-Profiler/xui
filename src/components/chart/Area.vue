@@ -1,5 +1,17 @@
 <template>
   <div ref="area">
+    <!-- chartip -->
+    <x-chartip ref="chartip">
+      <div slot="header">
+        <div>随便写的标题</div>
+      </div>
+      <div slot="content">
+        <div>随便写的内容</div>
+        <div>随便写的内容</div>
+      </div>
+    </x-chartip>
+
+    <!-- chart -->
     <svg
       v-if="viewWidth"
       width="100%"
@@ -145,17 +157,6 @@
         </g>
       </transition>
     </svg>
-
-    <!-- chartip -->
-    <x-chartip>
-      <div slot="header">
-        <div>随便写的标题</div>
-      </div>
-      <div slot="content">
-        <div>随便写的内容</div>
-        <div>随便写的内容</div>
-      </div>
-    </x-chartip>
   </div>
 </template>
 
