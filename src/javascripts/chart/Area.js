@@ -121,7 +121,7 @@ export default {
       );
     },
 
-    getPoints(yAxis) {
+    getPoints(yAxis, list) {
       const data = this.data;
       const xMaxData = data[data.length - 1] && data[data.length - 1].time;
       const xMinData = data[0] && data[0].time;
@@ -134,9 +134,14 @@ export default {
       const xValueMap = this.xValueMap = {};
       const xPoint = this.xPoint = [];
 
+      const results = {};
       const group = {};
+      for (const axis of yAxis) {
+        results[axis] = [];
+        group[axis] = [];
+      }
 
-      for (const dt of this.data) {
+      for (const dt of list) {
         const time = dt.time;
         // x position
         const xOffset =
@@ -147,13 +152,19 @@ export default {
         const timeKey = moment(time).format("YYYY-MM-DD HH:mm");
         xPointMap[xPosition] = { data: dt, dots: [] };
         xValueMap[timeKey] = { data: dt, dots: [] };
-        xPoint.push(xPosition);
+        if (yAxis.some(y => dt[y])) {
+          xPoint.push(xPosition);
+        }
 
         for (const axis of yAxis) {
-          if (!group[axis]) {
-            group[axis] = [];
-          }
           const value = dt[axis];
+          if (value === null || isNaN(value)) {
+            if (group[axis].length) {
+              results[axis].push(group[axis]);
+            }
+            group[axis] = [];
+            continue;
+          }
 
           // y position
           const yOffset =
@@ -178,7 +189,11 @@ export default {
         }
       }
 
-      return group;
+      for (const axis of yAxis) {
+        results[axis].push(group[axis]);
+      }
+
+      return results;
     },
 
     getColor(axis) {
@@ -213,28 +228,29 @@ export default {
         return;
       }
 
-      // set intersection offset x
-      this.intersectionOffsetX = offsetX;
-
       // set dots
       const xPointMap = this.xPointMap;
       const [before, after] = dichotomy(this.xPoint, offsetX);
-      let chartipData;
+      let xPointData;
       if (Math.abs(offsetX - before < Math.abs(offsetX - after))) {
-        this.dots = this.filterDot(xPointMap[before].dots);
-        chartipData = xPointMap[before].data;
+        xPointData = xPointMap[before];
       } else {
-        this.dots = this.filterDot(xPointMap[after].dots);
-        chartipData = xPointMap[after].data;
+        xPointData = xPointMap[after];
       }
+      this.dots = this.filterDot(xPointData.dots);
+      const trueOffsetX = this.dots.length ? this.dots[0].xPosition : offsetX;
+
+      // set intersection offset x
+      this.intersectionOffsetX = trueOffsetX;
 
       // show chartip
-      this.chartipData = chartipData;
-      this.chartip.show(event, minLegalY, maxLegalX);
+      this.chartipData = xPointData.data;
+      const mouse = { offsetX: trueOffsetX, offsetY };
+      this.chartip.show(mouse, minLegalY, maxLegalX);
 
       // linkage
       if (this.dots.length) {
-        this.$emit("linkage", { time: this.dots[0].time, mouse: { offsetX, offsetY } });
+        this.$emit("linkage", { time: this.dots[0].time, mouse });
       }
     },
 
@@ -350,39 +366,43 @@ export default {
         return [];
       }
 
-      const group = this.getPoints(this.yAxis);
+      const group = this.getPoints(this.yAxis, this.data);
 
-      return Object.entries(group).map(([y, points]) => {
-        const data = {
-          axis: y
-        };
-        // points
-        data.points = points.join(" ");
-        // path
-        const first = points.shift();
-        const last = points.pop();
-        let path = "";
-        if (first && last) {
-          points = points.map(p => `L${p}`);
-          path += `M${first} ` + points.join(" ") + ` L${last}`;
-          const buttom = this.viewHeight - this.paddingBottom;
-          path += ` L${last.split(",")[0]},${buttom}`;
-          path += ` L${first.split(",")[0]},${buttom} Z`;
-        }
-        data.path = path;
-        // color
-        const color = this.getColor(y);
-        data.color = color;
-        // data.bg = "rgba(36,185,13,0.4)";
-        data.bg = color;
-        return data;
+      const results = Object.entries(group).map(([y, pointsList]) => {
+        return pointsList.map(points => {
+          const data = {
+            axis: y
+          };
+          // points
+          data.points = points.join(" ");
+          // path
+          const first = points.shift();
+          const last = points.pop();
+          let path = "";
+          if (first && last) {
+            points = points.map(p => `L${p}`);
+            path += `M${first} ` + points.join(" ") + ` L${last}`;
+            const buttom = this.viewHeight - this.paddingBottom;
+            path += ` L${last.split(",")[0]},${buttom}`;
+            path += ` L${first.split(",")[0]},${buttom} Z`;
+          }
+          data.path = path;
+          // color
+          const color = this.getColor(y);
+          data.color = color;
+          // data.bg = "rgba(36,185,13,0.4)";
+          data.bg = color;
+          return data;
+        });
       });
+
+      return results;
     },
 
     chartipTitle() {
       const chartipData = this.chartipData;
       if (chartipData.time) {
-        return moment(chartipData.time).format("YYYY-MM-DD HH:mm:SS")
+        return moment(chartipData.time).format("YYYY-MM-DD HH:mm:SS");
       }
     }
   }
