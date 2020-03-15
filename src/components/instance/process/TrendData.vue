@@ -14,28 +14,12 @@
           xAxis="time"
           ref="area"
           :yAxis="yAxis"
+          :yAxisUnit="yAxisUnit"
           :data="areaData"
           :noDataText="noDataText"
           @linkage="linkage"
           @hidden="hidden"
-          @mounted="chartMounted = true"
         ></x-area>
-
-        <div v-if="chartMounted" class="chart-label">
-          <div
-            class="chart-label-group"
-            v-for="(axis, index) in yAxis"
-            :key="index"
-            :ref="labelKey + axis"
-            :style="index !== 0 ? 'margin-left: 25px;' : ''"
-            @mouseover="mouseover(axis)"
-            @mouseleave="mouseleave(axis)"
-            @click="chose(axis)"
-          >
-            <div class="label-icon" :style="getLabelIconStyle(axis)"></div>
-            <div class="label-value">{{axis}}</div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -55,10 +39,7 @@ const trendData = Object.assign(
       return {
         loading: false,
         loadError: undefined,
-        chartMounted: false,
-        trendData: [],
-        labelKey: "label-",
-        single: undefined
+        trendData: []
       };
     }
   },
@@ -72,35 +53,5 @@ export default trendData;
 .title {
   font-size: 15px;
   font-weight: bold;
-}
-
-.chart-label {
-  margin-top: 6px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.chart-label-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.15s ease;
-}
-
-.label-icon {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background-color: black;
-}
-
-.label-value {
-  margin-left: 5px;
-  font-size: 13px;
-  color: #808695;
 }
 </style>
