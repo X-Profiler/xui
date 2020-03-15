@@ -49,7 +49,7 @@ export default {
 
   computed: {
     yAxis() {
-      let yAxis = []
+      let yAxis = [];
       if (this.type === "heapTrend") {
         yAxis = ["rss", "heap_total", "heap_used"];
       }
@@ -62,16 +62,16 @@ export default {
     },
 
     yAxisUnit() {
-      let yAxisUnit = ""
+      let yAxisUnit = "";
       if (this.type === "heapTrend") {
         yAxisUnit = "MB";
       }
 
       if (this.type === "cpuTrend") {
-        yAxisUnit = "%"
+        yAxisUnit = "%";
       }
 
-      return yAxisUnit
+      return yAxisUnit;
     },
 
     areaData() {

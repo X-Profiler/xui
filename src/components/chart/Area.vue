@@ -99,13 +99,7 @@
       <!-- scale unit -->
       <g>
         <!-- y axis -->
-        <text
-          :x="paddingLeft"
-          :y="paddingTop"
-          text-anchor="middle"
-          dy="-0.8em"
-          class="axisUnit"
-        >{{ yAxisUnit }}</text>
+        <text :x="paddingLeft" :y="paddingTop" dy="-0.5em" class="axisUnit">{{ yAxisUnit }}</text>
       </g>
 
       <!-- no data text -->
@@ -120,31 +114,43 @@
       </g>
 
       <!-- area -->
-      <g v-for="y in yAxisData" :key="y.axis">
-        <defs>
-          <linearGradient :id="'color_bg_' + y.axis" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-opacity:0.16" :stop-color="y.bg" />
-            <stop offset="100%" style="stop-opacity: 0.1" stop-color="rgba(255, 255, 255, 1)" />
-          </linearGradient>
-        </defs>
-        <transition name="slide-noward">
-          <path
-            v-show="pathWidthMap[y.axis]"
-            :d="y.path"
-            :fill="'url(#' + 'color_bg_' + y.axis + ')'"
-            stroke="none"
-          />
-        </transition>
-        <transition name="slide-noward">
-          <polyline
-            v-show="pathWidthMap[y.axis]"
-            stroke-opacity="0.75"
-            :points="y.points"
-            :stroke="y.color"
-            fill="none"
-            :stroke-width="pathWidthMap[y.axis]"
-          />
-        </transition>
+      <g>
+        <g v-for="(seg, index) in yAxisData" :key="index">
+          <g v-for="(y, index) in seg" :key="index">
+            <defs v-if="index === 0">
+              <linearGradient
+                :id="'color_bg_' + y.axis"
+                gradientUnits="userSpaceOnUse"
+                :x1="paddingLeft"
+                :y1="paddingTop"
+                :x2="paddingLeft"
+                :y2="viewHeight - paddingBottom"
+              >
+                <stop offset="0%" stop-opacity="0.15" :stop-color="y.bg" />
+                <stop offset="50%" stop-opacity="0.08" :stop-color="y.bg" />
+                <stop offset="100%" stop-opacity="0.01" :stop-color="y.bg" />
+              </linearGradient>
+            </defs>
+            <transition name="slide-noward">
+              <path
+                v-show="pathWidthMap[y.axis]"
+                :d="y.path"
+                :fill="'url(#' + 'color_bg_' + y.axis + ')'"
+                stroke="none"
+              />
+            </transition>
+            <transition name="slide-noward">
+              <polyline
+                v-show="pathWidthMap[y.axis]"
+                stroke-opacity="0.75"
+                :points="y.points"
+                :stroke="y.color"
+                fill="none"
+                :stroke-width="pathWidthMap[y.axis]"
+              />
+            </transition>
+          </g>
+        </g>
       </g>
 
       <!-- intersection -->
