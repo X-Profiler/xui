@@ -2,12 +2,17 @@
   <div ref="area">
     <!-- chartip -->
     <x-chartip ref="chartip">
-      <div slot="header">
-        <div>随便写的标题</div>
+      <div slot="header" class="chartip-header">
+        <div>{{ chartipTitle }}</div>
       </div>
-      <div slot="content">
-        <div>随便写的内容</div>
-        <div>随便写的内容</div>
+      <div slot="content" class="chartip-content">
+        <div v-for="(y, index) in yAxis" :key="index">
+          <div v-if="pathWidthMap[y]" class="chartip-content-group">
+            <div class="chartip-label" :style="'background-color: ' + getColor(y)"></div>
+            <div class="chartip-key">{{ y }}:</div>
+            <div>{{ chartipData[y] }}{{ yAxisUnit }}</div>
+          </div>
+        </div>
       </div>
     </x-chartip>
 
@@ -91,6 +96,18 @@
         </text>
       </g>
 
+      <!-- scale unit -->
+      <g>
+        <!-- y axis -->
+        <text
+          :x="paddingLeft"
+          :y="paddingTop"
+          text-anchor="middle"
+          dy="-0.8em"
+          class="axisUnit"
+        >{{ yAxisUnit }}</text>
+      </g>
+
       <!-- no data text -->
       <g v-if="noData">
         <text
@@ -132,7 +149,7 @@
 
       <!-- intersection -->
       <transition name="slide-noward">
-        <g v-show="intersectionOffsetX">
+        <g v-show="!noData && intersectionOffsetX">
           <line
             :x1="intersectionOffsetX"
             :y1="paddingTop"
@@ -157,6 +174,23 @@
         </g>
       </transition>
     </svg>
+
+    <!-- chart label -->
+    <div v-if="data.length" class="chart-label">
+      <div
+        class="chart-label-group"
+        v-for="(axis, index) in yAxis"
+        :key="index"
+        :ref="labelKey + axis"
+        :style="index !== 0 ? 'margin-left: 25px;' : ''"
+        @mouseover="mouseoverLabel(axis)"
+        @mouseleave="mouseleaveLabel(axis)"
+        @click="choseLabel(axis)"
+      >
+        <div class="label-icon" :style="'background-color: ' + getColor(axis)"></div>
+        <div class="label-value">{{axis}}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -168,6 +202,7 @@ const areaData = Object.assign(
     props: {
       xAxis: [String, Array],
       yAxis: Array,
+      yAxisUnit: String,
       data: Array,
       xAxisScaleCount: Number,
       yAxisScaleCount: Number,
@@ -190,6 +225,9 @@ const areaData = Object.assign(
         xValueMap: {},
         xPoint: [],
         dots: [],
+        chartipData: {},
+        single: undefined,
+        labelKey: "label-",
         colors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
       };
     }
@@ -199,3 +237,60 @@ const areaData = Object.assign(
 
 export default areaData;
 </script>
+
+<style scoped>
+.chartip-header {
+  font-weight: bold;
+  padding: 5px;
+}
+
+.chartip-content {
+  padding: 0px 5px 5px 5px;
+}
+
+.chartip-content-group {
+  display: flex;
+  align-items: center;
+}
+
+.chartip-label {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.chartip-key {
+  margin-left: 5px;
+  min-width: 88px;
+}
+
+.chart-label {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-label-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+.label-icon {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.label-value {
+  margin-left: 5px;
+  font-size: 13px;
+  color: #808695;
+}
+</style>

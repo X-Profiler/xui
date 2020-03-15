@@ -16,9 +16,6 @@ export default {
 
     this.setViewBox();
     window.addEventListener("resize", this.setViewBox.bind(this));
-
-
-    this.$emit("mounted");
   },
 
   methods: {
@@ -133,8 +130,8 @@ export default {
         return [];
       }
 
-      const xPointMap = this.xPointMap = [];
-      const xValueMap = this.xValueMap = [];
+      const xPointMap = this.xPointMap = {};
+      const xValueMap = this.xValueMap = {};
       const xPoint = this.xPoint = [];
 
       const group = {};
@@ -148,8 +145,8 @@ export default {
         const xPosition = this.paddingLeft + xOffset;
 
         const timeKey = moment(time).format("YYYY-MM-DD HH:mm");
-        xPointMap[xPosition] = [];
-        xValueMap[timeKey] = [];
+        xPointMap[xPosition] = { data: dt, dots: [] };
+        xValueMap[timeKey] = { data: dt, dots: [] };
         xPoint.push(xPosition);
 
         for (const axis of yAxis) {
@@ -164,14 +161,14 @@ export default {
             (this.viewHeight - this.paddingTop - this.paddingBottom);
           const yPosition = this.viewHeight - this.paddingBottom - yOffset;
 
-          xPointMap[xPosition].push({
+          xPointMap[xPosition].dots.push({
             axis,
             xPosition,
             yPosition,
             color: this.getColor(axis),
             time: timeKey
           });
-          xValueMap[timeKey].push({
+          xValueMap[timeKey].dots.push({
             axis,
             xPosition,
             yPosition,
@@ -189,7 +186,7 @@ export default {
       return this.colors[index % this.colors.length];
     },
 
-    fiterDot(dots) {
+    filterDot(dots) {
       return dots.filter(dot => this.pathWidthMap[dot.axis]);
     },
 
@@ -198,6 +195,10 @@ export default {
     },
 
     mousemove(event) {
+      if (this.noData) {
+        return;
+      }
+
       const offsetX = event.offsetX;
       const offsetY = event.offsetY;
       const minLegalX = this.paddingLeft;
@@ -218,13 +219,17 @@ export default {
       // set dots
       const xPointMap = this.xPointMap;
       const [before, after] = dichotomy(this.xPoint, offsetX);
+      let chartipData;
       if (Math.abs(offsetX - before < Math.abs(offsetX - after))) {
-        this.dots = this.fiterDot(xPointMap[before]);
+        this.dots = this.filterDot(xPointMap[before].dots);
+        chartipData = xPointMap[before].data;
       } else {
-        this.dots = this.fiterDot(xPointMap[after]);
+        this.dots = this.filterDot(xPointMap[after].dots);
+        chartipData = xPointMap[after].data;
       }
 
       // show chartip
+      this.chartipData = chartipData;
       this.chartip.show(event, minLegalY, maxLegalX);
 
       // linkage
@@ -241,11 +246,13 @@ export default {
     },
 
     showTip({ time, mouse }) {
-      this.dots = this.xValueMap[time] && this.fiterDot(this.xValueMap[time]) || [];
+      const dots = this.xValueMap[time] && this.xValueMap[time].dots || [];
+      this.dots = this.filterDot(dots);
       if (this.dots.length) {
         this.intersectionOffsetX = this.dots[0].xPosition;
         const maxLegalX = this.viewWidth - this.paddingRight;
         const minLegalY = this.paddingTop;
+        this.chartipData = this.xValueMap[time].data;
         this.chartip.show(mouse, minLegalY, maxLegalX);
       }
     },
@@ -254,6 +261,50 @@ export default {
       this.intersectionOffsetX = 0;
       this.dots = [];
       this.chartip.hidden();
+    },
+
+    singleton(axis) {
+      this.setWidthMap(axis, 2, 0);
+
+      // scale
+      const style = this.$refs[this.labelKey + axis][0].style;
+      style["transform"] = "scale(1.2)";
+    },
+
+    restore(axis) {
+      this.setWidthMap(axis, 1, 1);
+
+      // scale
+      const style = this.$refs[this.labelKey + axis][0].style;
+      style["transform"] = "scale(1)";
+    },
+
+    mouseoverLabel(axis) {
+      if (!this.single) {
+        this.singleton(axis);
+      }
+    },
+
+    mouseleaveLabel(axis) {
+      if (!this.single) {
+        this.restore(axis);
+      }
+    },
+
+    choseLabel(axis) {
+      for (const y of this.yAxis) {
+        this.restore(y);
+      }
+      if (axis !== this.single) {
+        this.single = undefined;
+      }
+      if (!this.single) {
+        this.singleton(axis);
+        this.single = axis;
+      } else {
+        this.restore(axis);
+        this.single = undefined;
+      }
     }
   },
 
@@ -326,6 +377,13 @@ export default {
         data.bg = color;
         return data;
       });
+    },
+
+    chartipTitle() {
+      const chartipData = this.chartipData;
+      if (chartipData.time) {
+        return moment(chartipData.time).format("YYYY-MM-DD HH:mm:SS")
+      }
     }
   }
 };

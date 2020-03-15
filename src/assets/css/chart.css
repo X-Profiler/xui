@@ -23,3 +23,8 @@
 .intersection {
   pointer-events: none;
 }
+
+.axisUnit {
+  font-size: 12px;
+  fill: #808695;
+}

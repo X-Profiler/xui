@@ -81,6 +81,12 @@ export default {
   border-radius: 3px;
   padding: 0 5px;
   transition: opacity 0.1s ease;
+  pointer-events: none;
+  font-family: "Titillium Web", "Helvetica Neue", Helvetica, Arial,
+    "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei",
+    sans-serif;
+  font-size: 12px;
+  color: #515a6e;
 }
 
 .left::before,

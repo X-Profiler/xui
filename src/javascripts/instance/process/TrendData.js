@@ -44,75 +44,34 @@ export default {
     hiddenTip() {
       const area = this.$refs.area;
       area && area.hiddenTip();
-    },
-
-    getLabelIconStyle(axis) {
-      const area = this.$refs.area;
-      let style = "";
-      const color = area && area.getColor(axis, this.yAxis);
-      if (color) {
-        style += "background-color: " + color + ";";
-      }
-
-      return style;
-    },
-
-    singleton(axis) {
-      const area = this.$refs.area;
-      area && area.setWidthMap(axis, 2, 0);
-
-      // scale
-      const style = this.$refs[this.labelKey + axis][0].style;
-      style["transform"] = "scale(1.2)";
-    },
-
-    restore(axis) {
-      const area = this.$refs.area;
-      area && area.setWidthMap(axis, 1, 1);
-
-      // scale
-      const style = this.$refs[this.labelKey + axis][0].style;
-      style["transform"] = "scale(1)";
-    },
-
-    mouseover(axis) {
-      if (!this.single) {
-        this.singleton(axis);
-      }
-    },
-
-    mouseleave(axis) {
-      if (!this.single) {
-        this.restore(axis);
-      }
-    },
-
-    chose(axis) {
-      for (const y of this.yAxis) {
-        this.restore(y);
-      }
-      if (axis !== this.single) {
-        this.single = undefined;
-      }
-      if (!this.single) {
-        this.singleton(axis);
-        this.single = axis;
-      } else {
-        this.restore(axis);
-        this.single = undefined;
-      }
     }
   },
 
   computed: {
     yAxis() {
+      let yAxis = []
       if (this.type === "heapTrend") {
-        return ["rss", "heap_total", "heap_used"];
+        yAxis = ["rss", "heap_total", "heap_used"];
       }
 
       if (this.type === "cpuTrend") {
-        return ["cpu_now", "cpu_15", "cpu_30", "cpu_60"];
+        yAxis = ["cpu_now", "cpu_15", "cpu_30", "cpu_60"];
       }
+
+      return yAxis;
+    },
+
+    yAxisUnit() {
+      let yAxisUnit = ""
+      if (this.type === "heapTrend") {
+        yAxisUnit = "MB";
+      }
+
+      if (this.type === "cpuTrend") {
+        yAxisUnit = "%"
+      }
+
+      return yAxisUnit
     },
 
     areaData() {

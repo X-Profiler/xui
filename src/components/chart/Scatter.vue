@@ -268,11 +268,6 @@ export default {
 </script>
 
 <style scoped>
-.axisUnit {
-  font-size: 12px;
-  fill: #808695;
-}
-
 .circle {
   cursor: pointer;
 }
