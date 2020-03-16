@@ -32,7 +32,7 @@ export default {
 
       const map = {};
       for (const y of this.yAxis) {
-        map[y] = 1;
+        map[y] = 1.2;
       }
       this.pathWidthMap = map;
     },
@@ -252,6 +252,11 @@ export default {
       if (this.dots.length) {
         this.$emit("linkage", { time: this.dots[0].time, mouse });
       }
+
+      // status
+      if (this.showStatus) {
+        this.$emit("status", xPointData.data);
+      }
     },
 
     mouseleave() {
@@ -270,6 +275,11 @@ export default {
         const minLegalY = this.paddingTop;
         this.chartipData = this.xValueMap[time].data;
         this.chartip.show(mouse, minLegalY, maxLegalX);
+      }
+
+      if (this.showStatus) {
+        const trend = this.xValueMap[time] && this.xValueMap[time].data || {};
+        this.$emit("status", trend);
       }
     },
 
