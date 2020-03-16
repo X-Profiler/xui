@@ -274,7 +274,7 @@ export default {
         const maxLegalX = this.viewWidth - this.paddingRight;
         const minLegalY = this.paddingTop;
         this.chartipData = this.xValueMap[time].data;
-        this.chartip.show(mouse, minLegalY, maxLegalX);
+        this.chartip.show({ offsetX: this.intersectionOffsetX, offsetY: mouse.offsetY }, minLegalY, maxLegalX);
       }
 
       if (this.showStatus) {
