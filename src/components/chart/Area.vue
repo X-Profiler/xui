@@ -6,11 +6,19 @@
         <div>{{ chartipTitle }}</div>
       </div>
       <div slot="content" class="chartip-content">
-        <div v-for="(y, index) in yAxis" :key="index">
-          <div v-if="pathWidthMap[y]" class="chartip-content-group">
-            <div class="chartip-label" :style="'background-color: ' + getColor(y)"></div>
-            <div class="chartip-key">{{ y }}:</div>
-            <div>{{ chartipData[y] }}{{ yAxisUnit }}</div>
+        <div>
+          <div v-for="(y, index) in yAxis" :key="index">
+            <div v-if="pathWidthMap[y]" class="chartip-content-group">
+              <div class="chartip-label" :style="'background-color: ' + getColor(y)"></div>
+              <div class="chartip-key">{{ y }}:</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-left: 23px;">
+          <div v-for="(y, index) in yAxis" :key="index">
+            <div v-if="pathWidthMap[y]" class="chartip-content-group">
+              <div>{{ chartipData[y] }}{{ yAxisUnit }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -252,6 +260,7 @@ export default areaData;
 }
 
 .chartip-content {
+  display: flex;
   padding: 0px 5px 5px 5px;
 }
 
@@ -268,7 +277,6 @@ export default areaData;
 
 .chartip-key {
   margin-left: 5px;
-  min-width: 88px;
 }
 
 .chart-label {
