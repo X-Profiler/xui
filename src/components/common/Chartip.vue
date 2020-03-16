@@ -51,6 +51,8 @@ export default {
 
       if (offsetY - tipHeight / 2 > minLegalY) {
         style["top"] = offsetY - tipHeight / 2 - intervalY + "px";
+      } else {
+        style["top"] = "0";
       }
     },
 
