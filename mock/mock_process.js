@@ -160,6 +160,20 @@ module.exports = app => {
       })
     }
 
+    if (trendType === 'heapSpaceTrend') {
+      list = utils.createAreaData(["new_space", "old_space", "code_space", "map_space",
+        "lo_space", "read_only_space", "new_lo_space", "code_lo_space"], {
+        old_space: () => (200 + parseInt(Math.random() * 50)) * 1024 * 1204,
+        new_space: () => (25 + parseInt(Math.random() * 10)) * 1024 * 1204,
+        code_space: () => 8 * 1024 * 1204,
+        map_space: () => 8 * 1024 * 1204,
+        lo_space: () => 2 * 1024 * 1204,
+        read_only_space: () => 2 * 1024 * 1204,
+        new_lo_space: () => 1 * 1024 * 1204,
+        code_lo_space: () => 1 * 1024 * 1204
+      });
+    }
+
     // agentId.Number = c;
 
     setTimeout(() => res.send({ ok: true, data: { list, limit } }), 1000);

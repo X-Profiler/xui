@@ -36,11 +36,11 @@ export default {
     },
 
     linkage(data) {
-      this.showTip(this.dts1.map(item => item.value), data);
+      this.showTip(this.chartRefs, data);
     },
 
     hidden() {
-      this.hiddenTip(this.dts1.map(item => item.value));
+      this.hiddenTip(this.chartRefs);
     }
   },
 
@@ -62,6 +62,16 @@ export default {
       const proc = this.proc;
       const index = this.cmdMap.indexOf(proc.cmd);
       return colors[index % colors.length] || colors[0];
+    },
+
+    chartRefs() {
+      const refs = [];
+      for (const charts of this.chartGroup) {
+        for (const { value } of charts) {
+          refs.push(value);
+        }
+      }
+      return refs;
     }
   }
 };

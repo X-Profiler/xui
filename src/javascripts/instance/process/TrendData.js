@@ -109,6 +109,14 @@ export default {
         common.showStatus = true;
       }
 
+      if (type === "heapSpaceTrend") {
+        common.yAxis = ["new_space", "old_space", "code_space", "map_space",
+          "lo_space", "read_only_space", "new_lo_space", "code_lo_space"];
+        common.yAxisUnit = "MB";
+        common.noDataText = "暂无堆空间趋势数据";
+        common.showStatus = false;
+      }
+
       return common;
     },
 
@@ -117,7 +125,7 @@ export default {
       const commonData = this.commonData;
       const trendData = this.trendData;
 
-      if (type === "heapTrend") {
+      if (["heapTrend", "heapSpaceTrend"].includes(type)) {
         return trendData.map(item => {
           for (const key of commonData.yAxis) {
             item[key] = Math.round(item[key] / 1024 / 1024);

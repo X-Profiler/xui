@@ -37,34 +37,21 @@
           <div class="cmd">{{ proc.cmd }}</div>
         </div>
 
-        <!-- heap & cpu detail -->
-        <div class="detail" style="margin-top: 20px;">
-          <x-trend-data
-            class="trend-data"
-            v-for="(dt, index) in dts1"
-            :key="index"
-            :ref="dt.value"
-            :type="dt.value"
-            :title="dt.label"
-            @linkage="linkage"
-            @hidden="hidden"
-          ></x-trend-data>
-        </div>
+        <div v-for="(charts, index) in chartGroup" :key="index">
+          <div class="detail" :style="index === 0 ? 'margin-top: 20px;': 'margin-top: 15px;'">
+            <x-trend-data
+              class="trend-data"
+              v-for="(dt, index) in charts"
+              :key="index"
+              :ref="dt.value"
+              :type="dt.value"
+              :title="dt.label"
+              @linkage="linkage"
+              @hidden="hidden"
+            ></x-trend-data>
+          </div>
 
-        <div class="interval-section"></div>
-
-        <!-- heap composed -->
-        <div class="detail">
-          <x-trend-data
-            class="trend-data-circle-line"
-            v-for="(dt, index) in dts2"
-            :key="index"
-            :ref="dt.value"
-            :type="dt.value"
-            :title="dt.label"
-            @linkage="linkage"
-            @hidden="hidden"
-          ></x-trend-data>
+          <!-- <div v-if="index !== chartGroup.length - 1" class="interval-section"></div> -->
         </div>
       </div>
     </transition>
@@ -91,12 +78,13 @@ const trendData = Object.assign(
           { label: "Node.js 实时诊断", value: "diag", ghost: true }
         ],
 
-        dts1: [
-          { label: "堆内存趋势", value: "heapTrend" },
-          { label: "CPU 趋势", value: "cpuTrend" }
-        ],
-
-        dts2: [{ label: "堆空间组成", value: "heapSpaceTrend" }]
+        chartGroup: [
+          [
+            { label: "堆内存趋势", value: "heapTrend" },
+            { label: "CPU 趋势", value: "cpuTrend" }
+          ],
+          [{ label: "堆空间组成", value: "heapSpaceTrend" }]
+        ]
       };
     }
   },
@@ -158,10 +146,6 @@ export default trendData;
   min-width: 300px;
   min-height: 300px;
   flex: 1 0 300px;
-}
-
-.trend-data-circle-line {
-  width: 100%;
 }
 
 .interval-section {
