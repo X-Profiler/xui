@@ -156,7 +156,7 @@ module.exports = app => {
         cpu_now: () => 50 + parseInt(Math.random() * 40),
         cpu_15: () => 50 + parseInt(Math.random() * 30),
         cpu_30: () => 50 + parseInt(Math.random() * 20),
-        cpu_60: () => 50 + parseInt(Math.random() * 50)
+        cpu_60: () => 50 + parseInt(Math.random() * 10)
       })
     }
 
