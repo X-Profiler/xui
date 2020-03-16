@@ -2,7 +2,7 @@
   <div>
     <div class="title-group">
       <div class="title">{{ title }}</div>
-      <transition name="slide">
+      <transition name="slide-noward">
         <div v-if="commonData.showStatus && trendStatus.status" class="status-group">
           <div class="status" :style="statusLabelStyle">{{ trendStatus.statusLabel }}</div>
           <div class="tip">{{ trendStatus.statusTip }}</div>

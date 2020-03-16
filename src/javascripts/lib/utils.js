@@ -305,7 +305,13 @@ function routeFactory(queryKeyName, openName, closeName, ...args) {
         } else {
           const route = this.$route;
           if (route.query[this[queryKeyName]] === tag) {
-            this.$router.go(-1);
+            if (this.$store.state.first) {
+              this.$store.commit("first", false);
+              const query = Object.assign({}, route.query, { [this[queryKeyName]]: undefined });
+              this.$router.push({ path: route.path, query });
+            } else {
+              this.$router.go(-1);
+            }
           }
         }
       }

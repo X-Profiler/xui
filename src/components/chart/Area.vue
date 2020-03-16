@@ -272,7 +272,7 @@ export default areaData;
 }
 
 .chart-label {
-  margin-top: 6px;
+  margin-top: 5px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

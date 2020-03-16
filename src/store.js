@@ -13,12 +13,17 @@ export default {
   state: {
     ...url,
     ...i18n,
-    globalError: undefined
+    globalError: undefined,
+    first: true
   },
 
   mutations: {
     updateGlobalError(state, err) {
       state.globalError = err;
+    },
+
+    first(state, value) {
+      state.first = value;
     }
   },
 
