@@ -140,13 +140,15 @@ module.exports = app => {
     console.log(`get app ${appId} agent ${agentId} pid ${pid} trend ${trendType} data`);
 
     let list = [];
+    let limit = 0;
 
     if (trendType === 'heapTrend') {
       list = utils.createAreaData(["rss", "heap_total", "heap_used"], {
         rss: () => (300 + parseInt(Math.random() * 50)) * 1024 * 1204,
         heap_total: () => (200 + parseInt(Math.random() * 50)) * 1024 * 1204,
         heap_used: () => (150 + parseInt(Math.random() * 50)) * 1024 * 1204
-      })
+      });
+      limit = 2 * 1024 * 1024 * 1024;
     }
 
     if (trendType === 'cpuTrend') {
@@ -154,12 +156,12 @@ module.exports = app => {
         cpu_now: () => 50 + parseInt(Math.random() * 40),
         cpu_15: () => 50 + parseInt(Math.random() * 30),
         cpu_30: () => 50 + parseInt(Math.random() * 20),
-        cpu_60: () => 50 + parseInt(Math.random() * 10)
+        cpu_60: () => 50 + parseInt(Math.random() * 50)
       })
     }
 
     // agentId.Number = c;
 
-    setTimeout(() => res.send({ ok: true, data: { list } }), 1000);
+    setTimeout(() => res.send({ ok: true, data: { list, limit } }), 1000);
   });
 };

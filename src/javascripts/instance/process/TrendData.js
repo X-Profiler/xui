@@ -23,9 +23,53 @@ export default {
           if (Array.isArray(list)) {
             this.trendData = list;
           }
+          if (data.limit && !isNaN(data.limit)) {
+            this.limit = data.limit;
+          }
+          this.checkStatus(this.lastValidData);
         })
         .catch(err => this.loadError = err.message)
         .then(() => this.loading = false);
+    },
+
+    setStatus(usage, values) {
+      return usage < 60 ? values[0] : usage < 85 ? values[1] : values[2];
+    },
+
+    checkStatus(trend) {
+      const type = this.type;
+      const limit = this.limit;
+      const trendStatus = {};
+
+      const labels = ["健康态", "警告态", "紧急态"];
+
+      if (type === "heapTrend") {
+        const heapUsage = trend.heap_used * 1024 * 1024 / limit * 100;
+        const tips = [
+          "堆内存使用率在正常范围内 ( 0 - 60% )",
+          "堆内存使用率偏高 ( 60% - 85% )",
+          "堆内存使用率极高 ( 85%+ )"
+        ];
+
+        trendStatus.status = heapUsage;
+        trendStatus.statusLabel = this.setStatus(heapUsage, labels);
+        trendStatus.statusTip = this.setStatus(heapUsage, tips);
+      }
+
+      if (type === "cpuTrend") {
+        const cpuUsage = trend.cpu_60;
+        const tips = [
+          "一分钟内 CPU 平均使用率在正常范围内 ( 0 - 60% )",
+          "一分钟内 CPU 平均使用率偏高 ( 60% - 85% )",
+          "一分钟内 CPU 平均使用率极高 ( 85%+ )"
+        ];
+
+        trendStatus.status = cpuUsage;
+        trendStatus.statusLabel = this.setStatus(cpuUsage, labels);
+        trendStatus.statusTip = this.setStatus(cpuUsage, tips);
+      }
+
+      this.trendStatus = trendStatus;
     },
 
     linkage(data) {
@@ -48,38 +92,34 @@ export default {
   },
 
   computed: {
-    yAxis() {
-      let yAxis = [];
-      if (this.type === "heapTrend") {
-        yAxis = ["rss", "heap_total", "heap_used"];
+    commonData() {
+      const type = this.type;
+      const common = { yAxis: [], yAxisUnit: "", noDataText: "", showStatus: false };
+      if (type === "heapTrend") {
+        common.yAxis = ["rss", "heap_total", "heap_used"];
+        common.yAxisUnit = "MB";
+        common.noDataText = "暂无内存趋势数据";
+        common.showStatus = true;
       }
 
-      if (this.type === "cpuTrend") {
-        yAxis = ["cpu_now", "cpu_15", "cpu_30", "cpu_60"];
+      if (type === "cpuTrend") {
+        common.yAxis = ["cpu_now", "cpu_15", "cpu_30", "cpu_60"];
+        common.yAxisUnit = "%";
+        common.noDataText = "暂无 CPU 趋势数据";
+        common.showStatus = true;
       }
 
-      return yAxis;
+      return common;
     },
 
-    yAxisUnit() {
-      let yAxisUnit = "";
-      if (this.type === "heapTrend") {
-        yAxisUnit = "MB";
-      }
-
-      if (this.type === "cpuTrend") {
-        yAxisUnit = "%";
-      }
-
-      return yAxisUnit;
-    },
-
-    areaData() {
+    chartData() {
+      const type = this.type;
+      const commonData = this.commonData;
       const trendData = this.trendData;
 
-      if (this.type === "heapTrend") {
+      if (type === "heapTrend") {
         return trendData.map(item => {
-          for (const key of this.yAxis) {
+          for (const key of commonData.yAxis) {
             item[key] = Math.round(item[key] / 1024 / 1024);
           }
           return item;
@@ -89,18 +129,24 @@ export default {
       return trendData;
     },
 
-    noDataText() {
-      let text = "";
-
-      if (this.type === "heapTrend") {
-        text = "暂无内存趋势数据";
+    lastValidData() {
+      const yAxis = this.commonData.yAxis;
+      const chartData = this.chartData;
+      let length = chartData.length;
+      while (length) {
+        length--;
+        const data = chartData[length];
+        if (yAxis.every(axis => data[axis] === 0 || !isNaN(data[axis]))) {
+          return data;
+        }
       }
+    },
 
-      if (this.type === "cpuTrend") {
-        text = "暂无 CPU 趋势数据";
-      }
-
-      return text;
+    statusLabelStyle() {
+      let style = "";
+      const colors = ["#19be6b", "#ff9900", "#ed4014"];
+      style += "background-color: " + this.setStatus(this.trendStatus.status, colors) + ";";
+      return style;
     }
   }
 };

@@ -212,7 +212,8 @@ const areaData = Object.assign(
       data: Array,
       xAxisScaleCount: Number,
       yAxisScaleCount: Number,
-      noDataText: String
+      noDataText: String,
+      showStatus: Boolean
     },
 
     data() {
