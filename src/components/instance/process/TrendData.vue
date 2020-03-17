@@ -26,6 +26,7 @@
           :yAxisUnit="commonData.yAxisUnit"
           :noDataText="commonData.noDataText"
           :showStatus="commonData.showStatus"
+          :solid="solid"
           @linkage="linkage"
           @hidden="hidden"
           @status="checkStatus"
@@ -42,7 +43,8 @@ const trendData = Object.assign(
   {
     props: {
       type: String,
-      title: String
+      title: String,
+      solid: Boolean
     },
 
     data() {

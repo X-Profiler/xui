@@ -51,9 +51,19 @@ export default {
       const data = this.data;
       let max = 0;
       for (const dt of data) {
-        for (const field of fileds) {
-          if (dt[field] && !isNaN(dt[field]) && dt[field] > max) {
-            max = dt[field];
+        if (this.solid) {
+          let tmpMax = 0;
+          for (const field of fileds) {
+            tmpMax += dt[field];
+          }
+          if (tmpMax > max) {
+            max = tmpMax;
+          }
+        } else {
+          for (const field of fileds) {
+            if (dt[field] && !isNaN(dt[field]) && dt[field] > max) {
+              max = dt[field];
+            }
           }
         }
       }
@@ -156,6 +166,8 @@ export default {
           xPoint.push(xPosition);
         }
 
+        let lastYPosition = 0;
+
         for (const axis of yAxis) {
           const value = dt[axis];
           if (value === null || isNaN(value)) {
@@ -167,10 +179,16 @@ export default {
           }
 
           // y position
-          const yOffset =
+          let yOffset =
             (value / yMaxData) *
             (this.viewHeight - this.paddingTop - this.paddingBottom);
-          const yPosition = this.viewHeight - this.paddingBottom - yOffset;
+
+          if (this.solid) {
+            yOffset += lastYPosition;
+            lastYPosition = yOffset;
+          }
+
+          let yPosition = this.viewHeight - this.paddingBottom - yOffset;
 
           xPointMap[xPosition].dots.push({
             axis,
@@ -237,8 +255,11 @@ export default {
       } else {
         xPointData = xPointMap[after];
       }
-      this.dots = this.filterDot(xPointData.dots);
-      const trueOffsetX = this.dots.length ? this.dots[0].xPosition : offsetX;
+      const dots = this.filterDot(xPointData.dots);
+      if (!this.solid) {
+        this.dots = dots;
+      }
+      const trueOffsetX = dots.length ? dots[0].xPosition : offsetX;
 
       // set intersection offset x
       this.intersectionOffsetX = trueOffsetX;
@@ -249,8 +270,8 @@ export default {
       this.chartip.show(mouse, minLegalY, maxLegalX);
 
       // linkage
-      if (this.dots.length) {
-        this.$emit("linkage", { time: this.dots[0].time, mouse });
+      if (dots.length) {
+        this.$emit("linkage", { time: dots[0].time, mouse });
       }
 
       // status
@@ -267,14 +288,18 @@ export default {
     },
 
     showTip({ time, mouse }) {
-      const dots = this.xValueMap[time] && this.xValueMap[time].dots || [];
-      this.dots = this.filterDot(dots);
-      if (this.dots.length) {
-        this.intersectionOffsetX = this.dots[0].xPosition;
+      let dots = this.xValueMap[time] && this.xValueMap[time].dots || [];
+      dots = this.filterDot(dots);
+      if (dots.length) {
+        this.intersectionOffsetX = dots[0].xPosition;
         const maxLegalX = this.viewWidth - this.paddingRight;
         const minLegalY = this.paddingTop;
         this.chartipData = this.xValueMap[time].data;
         this.chartip.show({ offsetX: this.intersectionOffsetX, offsetY: mouse.offsetY }, minLegalY, maxLegalX);
+      }
+
+      if (!this.solid) {
+        this.dots = dots;
       }
 
       if (this.showStatus) {
@@ -378,30 +403,56 @@ export default {
 
       const group = this.getPoints(this.yAxis, this.data);
 
-      const results = Object.entries(group).map(([y, pointsList]) => {
-        return pointsList.map(points => {
+      const results = Object.entries(group).map(([y, pointsList], index, array) => {
+        return pointsList.map((points, index2) => {
           const data = {
             axis: y
           };
+
           // points
           data.points = points.join(" ");
+
           // path
-          const first = points.shift();
-          const last = points.pop();
-          let path = "";
-          if (first && last) {
-            points = points.map(p => `L${p}`);
-            path += `M${first} ` + points.join(" ") + ` L${last}`;
-            const buttom = this.viewHeight - this.paddingBottom;
-            path += ` L${last.split(",")[0]},${buttom}`;
-            path += ` L${first.split(",")[0]},${buttom} Z`;
+          if (!this.solid || index === 0) {
+            const first = points.shift();
+            const last = points.pop();
+            let path = "";
+            if (first && last) {
+              points = points.map(p => `L${p}`);
+              path += `M${first} ` + points.join(" ") + ` L${last}`;
+              const buttom = this.viewHeight - this.paddingBottom;
+              path += ` L${last.split(",")[0]},${buttom}`;
+              path += ` L${first.split(",")[0]},${buttom} Z`;
+            }
+            data.path = path;
+          } else {
+            const [, lastPointList] = array[index - 1];
+            const lastPoints = lastPointList[index2].reverse();
+            let path = points.map((point, index) => {
+              if (index) {
+                return `L${point}`;
+              } else {
+                return `M${point}`;
+              }
+            }).join(" ");
+            path += lastPoints.map(p => `L${p}`).join(" ");
+            path += " Z";
+            data.path = path;
           }
-          data.path = path;
-          // color
+
+          // fill color
           const color = this.getColor(y);
           data.color = color;
-          // data.bg = "rgba(36,185,13,0.4)";
+
+          // background colod
           data.bg = color;
+
+          // opacity
+          if (this.solid) {
+            data.opacity = 1;
+          } else {
+            data.opacity = 0.75;
+          }
           return data;
         });
       });
@@ -414,6 +465,13 @@ export default {
       if (chartipData.time) {
         return moment(chartipData.time).format("YYYY-MM-DD HH:mm:SS");
       }
+    },
+
+    colors() {
+      if (this.solid) {
+        return this.defaultAreaColor;
+      }
+      return this.defaultColors;
     }
   }
 };

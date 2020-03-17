@@ -46,6 +46,7 @@
               :ref="dt.value"
               :type="dt.value"
               :title="dt.label"
+              :solid="dt.solid"
               @linkage="linkage"
               @hidden="hidden"
             ></x-trend-data>
@@ -83,7 +84,7 @@ const trendData = Object.assign(
             { label: "堆内存趋势", value: "heapTrend" },
             { label: "CPU 趋势", value: "cpuTrend" }
           ],
-          [{ label: "堆空间组成", value: "heapSpaceTrend" }]
+          [{ label: "堆空间组成", value: "heapSpaceTrend", solid: true }]
         ]
       };
     }

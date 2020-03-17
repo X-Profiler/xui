@@ -110,8 +110,8 @@ export default {
       }
 
       if (type === "heapSpaceTrend") {
-        common.yAxis = ["new_space", "old_space", "code_space", "map_space",
-          "lo_space", "read_only_space", "new_lo_space", "code_lo_space"];
+        common.yAxis = ["old_space", "new_space", "map_space", "lo_space",
+          "code_space", "read_only_space", "new_lo_space", "code_lo_space"];
         common.yAxisUnit = "MB";
         common.noDataText = "暂无堆空间趋势数据";
         common.showStatus = false;
