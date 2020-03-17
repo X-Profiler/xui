@@ -17,10 +17,15 @@
 
       <x-error-message v-if="loadError" :message="loadError" top="100"></x-error-message>
 
-      <div v-if="!loading && !loadError">
+      <div v-if="!loading && !loadError" class="charts">
+        <!-- pie chart -->
+        <x-pie v-if="solid" class="pie"></x-pie>
+
+        <!-- main chart -->
         <x-area
           xAxis="time"
           ref="area"
+          class="main-chart"
           :data="chartData"
           :yAxis="commonData.yAxis"
           :yAxisUnit="commonData.yAxisUnit"
@@ -88,5 +93,18 @@ export default trendData;
   margin-left: 10px;
   font-size: 13px;
   color: #515a6e;
+}
+
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pie {
+  width: 300px;
+}
+
+.main-chart {
+  flex-grow: 1;
 }
 </style>
