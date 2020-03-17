@@ -101,10 +101,11 @@ export default trendData;
 }
 
 .pie {
-  width: 300px;
+  flex-basis: 300px;
 }
 
 .main-chart {
+  flex-basis: 500px;
   flex-grow: 1;
 }
 </style>

@@ -173,7 +173,7 @@
             :y2="viewHeight- paddingBottom"
             fill="none"
             stroke-width="1"
-            stroke="#adbcc9"
+            :stroke="solid ? '#e8eaec' : '#adbcc9'"
             class="intersection"
           />
 
@@ -247,14 +247,14 @@ const areaData = Object.assign(
         single: undefined,
         labelKey: "label-",
         defaultAreaColor: [
-          "#2471A3",
-          "#5499C7",
-          "#7D3C98",
-          "#AF7AC5",
-          "#138D75",
-          "#1ABC9C",
-          "#A93226",
-          "#CD6155"
+          "#2b85e4",
+          "#5cadff",
+          "#2196f3",
+          "#6a5acd",
+          "#9083e0",
+          "#673ab7",
+          "#19be6b",
+          "#1e9652"
         ],
         defaultColors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
       };
