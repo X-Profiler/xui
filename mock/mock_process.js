@@ -165,12 +165,12 @@ module.exports = app => {
         "lo_space", "read_only_space", "new_lo_space", "code_lo_space"], {
         old_space: () => (200 + parseInt(Math.random() * 50)) * 1024 * 1204,
         new_space: () => (25 + parseInt(Math.random() * 10)) * 1024 * 1204,
-        code_space: () => 8 * 1024 * 1204,
-        map_space: () => 8 * 1024 * 1204,
-        lo_space: () => 2 * 1024 * 1204,
-        read_only_space: () => 2 * 1024 * 1204,
-        new_lo_space: () => 1 * 1024 * 1204,
-        code_lo_space: () => 1 * 1024 * 1204
+        code_space: () => 10 * 1024 * 1204,
+        map_space: () => 10 * 1024 * 1204,
+        lo_space: () => 10 * 1024 * 1204,
+        read_only_space: () => 10 * 1024 * 1204,
+        new_lo_space: () => 10 * 1024 * 1204,
+        code_lo_space: () => 10 * 1024 * 1204
       });
     }
 

@@ -141,16 +141,18 @@
             </defs>
             <transition name="slide-noward">
               <path
+                v-if="!solid"
                 v-show="pathWidthMap[y.axis]"
                 :d="y.path"
                 :fill="'url(#' + 'color_bg_' + y.axis + ')'"
                 stroke="none"
               />
+              <path v-else v-show="pathWidthMap[y.axis]" :d="y.path" :fill="y.color" stroke="none" />
             </transition>
             <transition name="slide-noward">
               <polyline
                 v-show="pathWidthMap[y.axis]"
-                stroke-opacity="0.75"
+                :stroke-opacity="y.opacity"
                 :points="y.points"
                 :stroke="y.color"
                 fill="none"
@@ -221,7 +223,8 @@ const areaData = Object.assign(
       xAxisScaleCount: Number,
       yAxisScaleCount: Number,
       noDataText: String,
-      showStatus: Boolean
+      showStatus: Boolean,
+      solid: Boolean
     },
 
     data() {
@@ -243,7 +246,17 @@ const areaData = Object.assign(
         chartipData: {},
         single: undefined,
         labelKey: "label-",
-        colors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
+        defaultAreaColor: [
+          "#2471A3",
+          "#5499C7",
+          "#7D3C98",
+          "#AF7AC5",
+          "#138D75",
+          "#1ABC9C",
+          "#A93226",
+          "#CD6155"
+        ],
+        defaultColors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
       };
     }
   },
