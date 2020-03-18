@@ -20,8 +20,17 @@
   font-size: 13px;
 }
 
+.intersection-wrapper {
+  position: relative;
+}
+
 .intersection {
   pointer-events: none;
+  width: 1px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .axisUnit {

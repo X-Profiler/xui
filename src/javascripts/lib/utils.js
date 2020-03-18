@@ -376,5 +376,5 @@ export function createLaterFunction(name, callback, wait = 4) {
         callback.call(this, ...args);
       }, wait);
     }
-  }
+  };
 }
