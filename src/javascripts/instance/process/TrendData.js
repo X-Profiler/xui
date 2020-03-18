@@ -182,6 +182,20 @@ export default {
         common.showStatus = true;
       }
 
+      if (type === "qpsTrend") {
+        common.yAxis = ["qps"];
+        common.yAxisUnit = "";
+        common.noDataText = "暂无 QPS 趋势数据";
+        common.showStatus = true;
+      }
+
+      if (type === "timerTrend") {
+        common.yAxis = ["active_timers"];
+        common.yAxisUnit = "";
+        common.noDataText = "暂无 Timer 趋势数据";
+        common.showStatus = true;
+      }
+
       return common;
     },
 

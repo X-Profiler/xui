@@ -52,7 +52,7 @@
             ></x-trend-data>
           </div>
 
-          <!-- <div v-if="index !== chartGroup.length - 1" class="interval-section"></div> -->
+          <div v-if="index !== chartGroup.length - 1" class="interval-section"></div>
         </div>
       </div>
     </transition>
@@ -88,6 +88,10 @@ const trendData = Object.assign(
           [
             { label: "GC 趋势", value: "gcTrend" },
             { label: "Libuv Active Handles 趋势", value: "uvTrend" }
+          ],
+          [
+            { label: "QPS 趋势", value: "qpsTrend" },
+            { label: "Timer 趋势", value: "timerTrend" }
           ]
         ]
       };
@@ -154,7 +158,7 @@ export default trendData;
 }
 
 .interval-section {
-  margin: 15px 0;
+  margin: 20px 0;
   border-bottom: 1px dashed #e8eaec;
 }
 </style>
