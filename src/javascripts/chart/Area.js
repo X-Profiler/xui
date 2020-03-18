@@ -290,13 +290,20 @@ export default {
     showTip({ time, mouse }) {
       let dots = this.xValueMap[time] && this.xValueMap[time].dots || [];
       dots = this.filterDot(dots);
-      if (dots.length) {
-        this.intersectionOffsetX = dots[0].xPosition;
-        const maxLegalX = this.viewWidth - this.paddingRight;
-        const minLegalY = this.paddingTop;
-        this.chartipData = this.xValueMap[time].data;
-        this.chartip.show({ offsetX: this.intersectionOffsetX, offsetY: mouse.offsetY }, minLegalY, maxLegalX);
+      if (!dots.length) {
+        return;
       }
+
+      const offsetX = dots[0].xPosition;
+      if (offsetX === this.intersectionOffsetX) {
+        return;
+      }
+
+      this.intersectionOffsetX = offsetX;
+      const maxLegalX = this.viewWidth - this.paddingRight;
+      const minLegalY = this.paddingTop;
+      this.chartipData = this.xValueMap[time].data;
+      this.chartip.show({ offsetX, offsetY: mouse.offsetY }, minLegalY, maxLegalX);
 
       if (!this.solid) {
         this.dots = dots;
@@ -356,6 +363,25 @@ export default {
         this.restore(axis);
         this.single = undefined;
       }
+    },
+
+    getIntersectionStyle(intersection) {
+      let style = "";
+      // bg color
+      style += "background-color: " + (this.solid ? "#e8eaec" : "#adbcc9") + ";";
+
+      // height
+      const height = intersection ? intersection.height : this.viewHeight - this.paddingTop - this.paddingBottom;
+      style += "height: " + height + "px;";
+
+      // top
+      const top = intersection ? intersection.top : this.paddingTop;
+      style += "top: " + top + "px;";
+
+      // left
+      style += "left: " + this.intersectionOffsetX + "px;";
+
+      return style;
     }
   },
 
@@ -472,6 +498,40 @@ export default {
         return this.defaultAreaColor;
       }
       return this.defaultColors;
+    },
+
+    intersections() {
+      const dots = this.dots;
+      if (!dots.length) {
+        return;
+      }
+
+      const intersections = [];
+
+      const tmp = dots.map(dot => dot.yPosition);
+      tmp.sort((o, n) => o > n ? 1 : -1);
+      tmp.forEach((position, index, arr) => {
+        if (index === 0) {
+          let height = position - this.paddingTop - 5;
+          height = height < 0 ? 0 : height;
+          intersections.push({ top: this.paddingTop, height });
+        }
+
+        const next = arr[index + 1];
+        if (!next) {
+          let height = this.viewHeight - this.paddingBottom - position - 5;
+          height = height < 0 ? 0 : height;
+          const top = position > 5 ? position + 5 : this.viewHeight - this.paddingBottom;
+          intersections.push({ top, height });
+        } else {
+          let height = next - position - 10;
+          height = height < 0 ? 0 : height;
+          const top = position > 5 ? position + 5 : this.viewHeight - this.paddingBottom;
+          intersections.push({ top, height });
+        }
+      });
+
+      return intersections;
     }
   }
 };

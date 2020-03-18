@@ -24,6 +24,18 @@
       </div>
     </x-chartip>
 
+    <div class="intersection-wrapper" v-show="!noData && intersectionOffsetX">
+      <div
+        v-show="!solid"
+        v-for="(intersection, index) in intersections"
+        :key="index"
+        class="intersection"
+        :style="getIntersectionStyle(intersection)"
+      ></div>
+
+      <div v-show="solid" class="intersection" :style="getIntersectionStyle()"></div>
+    </div>
+
     <!-- chart -->
     <svg
       v-if="viewWidth"
@@ -162,32 +174,18 @@
         </g>
       </g>
 
-      <!-- intersection -->
-      <transition name="slide-noward">
-        <g v-show="!noData && intersectionOffsetX">
-          <line
-            :x1="intersectionOffsetX"
-            :y1="paddingTop"
-            :x2="intersectionOffsetX"
-            :y2="viewHeight- paddingBottom"
-            fill="none"
-            stroke-width="1"
-            :stroke="solid ? '#e8eaec' : '#adbcc9'"
-            class="intersection"
-          />
-
-          <circle
-            v-for="(dot, index) in dots"
-            :key="index"
-            :cx="dot.xPosition"
-            :cy="dot.yPosition"
-            :fill="dot.color"
-            stroke="#fff"
-            r="4"
-            stroke-width="2"
-          />
-        </g>
-      </transition>
+      <g v-show="!noData && intersectionOffsetX">
+        <circle
+          v-for="(dot, index) in dots"
+          :key="index"
+          :cx="dot.xPosition"
+          :cy="dot.yPosition"
+          :fill="dot.color"
+          stroke="#fff"
+          r="4"
+          stroke-width="2"
+        />
+      </g>
     </svg>
 
     <!-- chart label -->
