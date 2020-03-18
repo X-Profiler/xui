@@ -7,33 +7,16 @@
       :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
     >
       <circle
+        v-for="(data, index) in list"
+        :key="index"
         :r="radius"
         :cx="cx"
         :cy="cy"
         fill="none"
-        stroke="#f00"
+        :stroke="data.color"
         :stroke-width="pieStrokeWidth"
-        :stroke-dasharray="'50 ' + dashbase"
-      />
-      <circle
-        :r="radius"
-        :cx="cx"
-        :cy="cy"
-        fill="none"
-        stroke="#0f0"
-        :stroke-width="pieStrokeWidth"
-        :stroke-dasharray="'96 ' + dashbase"
-        stroke-dashoffset="-50"
-      />
-      <circle
-        :r="radius"
-        :cx="cx"
-        :cy="cy"
-        fill="none"
-        stroke="#00f"
-        :stroke-width="pieStrokeWidth"
-        :stroke-dasharray="'158 ' + dashbase"
-        stroke-dashoffset="-146"
+        :stroke-dasharray="`${data.occupy} ${dashbase}`"
+        :stroke-dashoffset="`${-data.offset}`"
       />
     </svg>
   </div>
@@ -41,6 +24,11 @@
 
 <script>
 export default {
+  props: {
+    yAxis: Array,
+    data: Object
+  },
+
   data() {
     return {
       viewWidth: 0,
@@ -50,7 +38,17 @@ export default {
       paddingTop: 10,
       paddingBottom: 0,
       pieStrokeWidth: 20,
-      radius: 70
+      radius: 70,
+      colors: [
+        "#2b85e4",
+        "#5cadff",
+        "#2196f3",
+        "#6a5acd",
+        "#9083e0",
+        "#673ab7",
+        "#19be6b",
+        "#1e9652"
+      ]
     };
   },
 
@@ -70,6 +68,11 @@ export default {
       this.viewWidth = width;
       const height = (width / 5) * 4;
       this.viewHeight = height + this.paddingTop;
+    },
+
+    getColor(axis) {
+      const index = this.yAxis.indexOf(axis);
+      return this.colors[index % this.colors.length];
     }
   },
 
@@ -86,6 +89,41 @@ export default {
 
     dashbase() {
       return 2 * Math.PI * this.radius;
+    },
+
+    list() {
+      const yAxis = this.yAxis;
+      const data = this.data;
+      const list = [];
+
+      let total = 0;
+      for (const axis of yAxis) {
+        const value = data[axis] || 0;
+        total += value;
+      }
+
+      if (!total) {
+        return list;
+      }
+
+      for (let i = 0; i < yAxis.length; i++) {
+        const axis = yAxis[i];
+        const tmp = {};
+        const value = data[axis] || 0;
+        tmp.value = value;
+        tmp.occupy = (value / total) * this.dashbase;
+
+        let offset = 0;
+        for (let index = 0; index < i; index++) {
+          offset += list[index].occupy;
+        }
+        tmp.offset = offset;
+        tmp.color = this.getColor(axis);
+
+        list.push(tmp);
+      }
+
+      return list;
     }
   }
 };

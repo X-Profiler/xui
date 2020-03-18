@@ -14,6 +14,12 @@ export default {
   methods: {
     ...mapActions(["getProcessTrend"]),
 
+    updateSelectedData(data) {
+      if (this.solid) {
+        this.selectedData = data;
+      }
+    },
+
     getTrendData() {
       this.loading = true;
       this
@@ -27,6 +33,7 @@ export default {
             this.limit = data.limit;
           }
           this.checkStatus(this.lastValidData);
+          this.updateSelectedData(this.lastValidData);
         })
         .catch(err => this.loadError = err.message)
         .then(() => this.loading = false);
@@ -72,6 +79,13 @@ export default {
       this.trendStatus = trendStatus;
     },
 
+    updateStatus(trend) {
+      if (this.type === 'heapSpaceTrend')
+        console.log(123333, this.type, trend)
+      this.checkStatus(trend);
+      this.updateSelectedData(trend);
+    },
+
     linkage(data) {
       this.$emit("linkage", data);
     },
@@ -114,7 +128,7 @@ export default {
           "code_space", "read_only_space", "new_lo_space", "code_lo_space"];
         common.yAxisUnit = "MB";
         common.noDataText = "暂无堆空间趋势数据";
-        common.showStatus = false;
+        common.showStatus = true;
       }
 
       return common;

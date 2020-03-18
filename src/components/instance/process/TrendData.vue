@@ -19,7 +19,7 @@
 
       <div v-if="!loading && !loadError" class="charts">
         <!-- pie chart -->
-        <x-pie v-if="solid" class="pie"></x-pie>
+        <x-pie v-if="solid" class="pie" :data="selectedData" :yAxis="commonData.yAxis"></x-pie>
 
         <!-- main chart -->
         <x-area
@@ -34,7 +34,7 @@
           :solid="solid"
           @linkage="linkage"
           @hidden="hidden"
-          @status="checkStatus"
+          @status="updateStatus"
         ></x-area>
       </div>
     </div>
@@ -58,7 +58,8 @@ const trendData = Object.assign(
         loadError: undefined,
         trendData: [],
         trendStatus: {},
-        limit: undefined
+        limit: undefined,
+        selectedData: {}
       };
     }
   },
