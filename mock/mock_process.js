@@ -187,6 +187,18 @@ module.exports = app => {
       });
     }
 
+    if (trendType === 'qpsTrend') {
+      list = utils.createAreaData(["qps"], {
+        qps: () => 1 + Number((Math.random() * 0.2).toFixed(1))
+      });
+    }
+
+    if (trendType === 'timerTrend') {
+      list = utils.createAreaData(["active_timers"], {
+        active_timers: () => 200 + parseInt(Math.random() * 100),
+      });
+    }
+
     // agentId.Number = c;
 
     setTimeout(() => res.send({ ok: true, data: { list, limit } }), 1000);
