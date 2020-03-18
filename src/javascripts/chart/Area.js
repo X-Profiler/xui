@@ -46,6 +46,10 @@ export default {
       // this.viewHeight = (width / 5) * 4;
     },
 
+    upperCaseLabel(label) {
+      return label.toUpperCase();
+    },
+
     getScale(count) {
       const fileds = this.yAxis;
       const data = this.data;
@@ -254,6 +258,9 @@ export default {
         xPointData = xPointMap[before];
       } else {
         xPointData = xPointMap[after];
+      }
+      if (!xPointData) {
+        return;
       }
       const dots = this.filterDot(xPointData.dots);
       if (!this.solid) {

@@ -21,10 +21,10 @@ exports.createAreaData = function (yaxis, fn) {
 
   for (let time = start; time < end; time += interval) {
     const item = { time };
-    if (time > noNeedStart && time < noNeedEnd) {
-      data.push(item);
-      continue;
-    }
+    // if (time > noNeedStart && time < noNeedEnd) {
+    //   data.push(item);
+    //   continue;
+    // }
 
     for (const y of yaxis) {
       item[y] = fn[y]();

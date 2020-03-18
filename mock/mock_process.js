@@ -73,7 +73,7 @@ module.exports = app => {
 
     let data;
 
-    if ([12623].includes(pid)) {
+    if ([6011].includes(pid)) {
       data = {
         installXprofiler: true,
         enableXprofiler: true,
@@ -90,18 +90,18 @@ module.exports = app => {
           log_level: 1,
         }
       }
-    } else if ([2986].includes(pid)) {
+    } else if ([6024].includes(pid)) {
       data = {
         installXprofiler: false,
         nodeVersion: "v12.16.1",
       }
-    } else if ([4908].includes(pid)) {
+    } else if ([6025].includes(pid)) {
       data = {
         installXprofiler: true,
         enableXprofiler: false,
         nodeVersion: "v12.16.1"
       }
-    } else if ([6578].includes(pid)) {
+    } else if ([6027].includes(pid)) {
       data = {
         installXprofiler: true,
         enableXprofiler: true,
@@ -157,7 +157,7 @@ module.exports = app => {
         cpu_15: () => 50 + parseInt(Math.random() * 30),
         cpu_30: () => 50 + parseInt(Math.random() * 20),
         cpu_60: () => 50 + parseInt(Math.random() * 10)
-      })
+      });
     }
 
     if (trendType === 'heapSpaceTrend') {
@@ -171,6 +171,19 @@ module.exports = app => {
         read_only_space: () => 30 * 1024 * 1204,
         new_lo_space: () => 30 * 1024 * 1204,
         code_lo_space: () => 30 * 1024 * 1204
+      });
+    }
+
+    if (trendType === 'gcTrend') {
+      list = utils.createAreaData(["scavenge_duration", "marksweep_duration"], {
+        scavenge_duration: () => parseInt(Math.random() * 20),
+        marksweep_duration: () => parseInt(Math.random() * 30)
+      });
+    }
+
+    if (trendType === 'uvTrend') {
+      list = utils.createAreaData(["active_handles"], {
+        active_handles: () => 2400 + parseInt(Math.random() * 600),
       });
     }
 
