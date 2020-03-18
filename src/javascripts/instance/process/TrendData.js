@@ -80,8 +80,6 @@ export default {
     },
 
     updateStatus(trend) {
-      if (this.type === 'heapSpaceTrend')
-        console.log(123333, this.type, trend)
       this.checkStatus(trend);
       this.updateSelectedData(trend);
     },

@@ -361,3 +361,20 @@ export function dichotomy(arr, val) {
 
   return [before, after];
 }
+
+export function createLaterFunction(name, callback, wait = 4) {
+  const timerKey = Symbol("TIMER_KEY");
+  return {
+    [name]: function (...args) {
+      if (this[timerKey]) {
+        clearTimeout(this[timerKey]);
+        this[timerKey] = null;
+      }
+
+      this[timerKey] = setTimeout(() => {
+        this[timerKey] = null;
+        callback.call(this, ...args);
+      }, wait);
+    }
+  }
+}

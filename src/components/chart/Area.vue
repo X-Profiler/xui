@@ -30,7 +30,6 @@
       width="100%"
       :height="viewHeight"
       :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
-      @mouseover="mouseover"
       @mousemove="mousemove"
       @mouseleave="mouseleave"
     >
@@ -307,18 +306,5 @@ export default areaData;
   cursor: pointer;
   user-select: none;
   transition: all 0.15s ease;
-}
-
-.label-icon {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background-color: black;
-}
-
-.label-value {
-  margin-left: 5px;
-  font-size: 13px;
-  color: #808695;
 }
 </style>

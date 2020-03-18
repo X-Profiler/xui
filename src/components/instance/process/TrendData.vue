@@ -19,7 +19,13 @@
 
       <div v-if="!loading && !loadError" class="charts">
         <!-- pie chart -->
-        <x-pie v-if="solid" class="pie" :data="selectedData" :yAxis="commonData.yAxis"></x-pie>
+        <x-pie
+          v-if="solid"
+          class="pie"
+          :data="selectedData"
+          :yAxis="commonData.yAxis"
+          :yAxisUnit="commonData.yAxisUnit"
+        ></x-pie>
 
         <!-- main chart -->
         <x-area
@@ -102,7 +108,7 @@ export default trendData;
 }
 
 .pie {
-  flex-basis: 300px;
+  flex-basis: 310px;
 }
 
 .main-chart {
