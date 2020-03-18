@@ -76,6 +76,21 @@ export default {
         trendStatus.statusTip = this.setStatus(cpuUsage, tips);
       }
 
+      if (type === "gcTrend") {
+        const scavengeDuration = trend.scavenge_duration * this.gcUnit.scale;
+        const marksweepDuration = trend.marksweep_duration * this.gcUnit.scale;
+        const tips = [
+          "一分钟内 GC 平均耗费在正常范围内 ( 0 - 5% )",
+          "一分钟内 GC 平均耗费偏高 ( 5% - 15% )",
+          "一分钟内 GC 平均耗费极高 ( 15%+ )"
+        ];
+
+        const gcUsage = (scavengeDuration + marksweepDuration) / (60 * 1000);
+        trendStatus.status = gcUsage;
+        trendStatus.statusLabel = this.setStatus(gcUsage, labels);
+        trendStatus.statusTip = this.setStatus(gcUsage, tips);
+      }
+
       this.trendStatus = trendStatus;
     },
 
@@ -100,10 +115,34 @@ export default {
     hiddenTip() {
       const area = this.$refs.area;
       area && area.hiddenTip();
-    }
+    },
   },
 
   computed: {
+    gcUnit() {
+      let maxDuration = 0;
+      for (const duration of this.trendData) {
+        if (duration.scavenge_duration > maxDuration) {
+          maxDuration = duration.scavenge_duration;
+        }
+        if (duration.marksweep_duration > maxDuration) {
+          maxDuration = duration.marksweep_duration;
+        }
+      }
+
+      const results = {};
+
+      if (maxDuration < 10e2) {
+        results.label = "ms";
+        results.scale = 1;
+      } else {
+        results.label = "s";
+        results.scale = 1000;
+      }
+
+      return results;
+    },
+
     commonData() {
       const type = this.type;
       const common = { yAxis: [], yAxisUnit: "", noDataText: "", showStatus: false };
@@ -129,6 +168,20 @@ export default {
         common.showStatus = true;
       }
 
+      if (type === "gcTrend") {
+        common.yAxis = ["scavenge_duration", "marksweep_duration"];
+        common.yAxisUnit = this.gcUnit.label;
+        common.noDataText = "暂无 GC 趋势数据";
+        common.showStatus = true;
+      }
+
+      if (type === "uvTrend") {
+        common.yAxis = ["active_handles"];
+        common.yAxisUnit = "";
+        common.noDataText = "暂无 Libuv 趋势数据";
+        common.showStatus = true;
+      }
+
       return common;
     },
 
@@ -143,6 +196,17 @@ export default {
             item[key] = Math.round(item[key] / 1024 / 1024);
           }
           return item;
+        });
+      }
+
+      if (["gcTrend"].includes(type)) {
+        const scale = this.gcUnit.scale;
+        return trendData.map(item => {
+          const tmp = Object.assign({}, item);
+          for (const key of commonData.yAxis) {
+            tmp[key] = item[key] / scale;
+          }
+          return tmp;
         });
       }
 

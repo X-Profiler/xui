@@ -38,7 +38,7 @@
         </div>
 
         <div v-for="(charts, index) in chartGroup" :key="index">
-          <div class="detail" :style="index === 0 ? 'margin-top: 20px;': 'margin-top: 15px;'">
+          <div class="detail" :style="index === 0 ? 'margin-top: 20px;': 'margin-top: 20px;'">
             <x-trend-data
               class="trend-data"
               v-for="(dt, index) in charts"
@@ -84,7 +84,11 @@ const trendData = Object.assign(
             { label: "堆内存趋势", value: "heapTrend" },
             { label: "CPU 趋势", value: "cpuTrend" }
           ],
-          [{ label: "堆空间组成", value: "heapSpaceTrend", solid: true }]
+          [{ label: "堆空间组成", value: "heapSpaceTrend", solid: true }],
+          [
+            { label: "GC 趋势", value: "gcTrend" },
+            { label: "Libuv Active Handles 趋势", value: "uvTrend" }
+          ]
         ]
       };
     }

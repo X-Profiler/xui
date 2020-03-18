@@ -118,7 +118,7 @@
       <!-- scale unit -->
       <g>
         <!-- y axis -->
-        <text :x="paddingLeft" :y="paddingTop" dy="-0.5em" class="axisUnit">{{ yAxisUnit }}</text>
+        <text :x="paddingLeft" :y="paddingTop" dy="-0.5em" class="axisUnit">{{ upperCaseLabel(yAxisUnit) }}</text>
       </g>
 
       <!-- no data text -->

@@ -79,7 +79,7 @@ export default {
   left: 0;
   top: 0;
   background-color: rgb(255, 255, 255);
-  max-width: 200px;
+  /* max-width: 300px; */
   border-radius: 3px;
   padding: 0 5px;
   transition: opacity 0.1s ease;
