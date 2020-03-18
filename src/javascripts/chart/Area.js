@@ -1,7 +1,7 @@
 "use strict";
 
 import * as moment from "moment";
-import { dichotomy } from "../lib/utils";
+import { dichotomy, createLaterFunction } from "../lib/utils";
 
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -223,11 +223,11 @@ export default {
       return dots.filter(dot => this.pathWidthMap[dot.axis]);
     },
 
-    mouseover(event) {
+    ...createLaterFunction("mouseover", function (event) {
       this.mousemove(event);
-    },
+    }),
 
-    mousemove(event) {
+    ...createLaterFunction("mousemove", function (event) {
       if (this.noData) {
         return;
       }
@@ -278,14 +278,14 @@ export default {
       if (this.showStatus) {
         this.$emit("status", xPointData.data);
       }
-    },
+    }),
 
-    mouseleave() {
+    ...createLaterFunction("mouseleave", function () {
       this.intersectionOffsetX = 0;
       this.dots = [];
       this.chartip.hidden();
       this.$emit("hidden");
-    },
+    }),
 
     showTip({ time, mouse }) {
       let dots = this.xValueMap[time] && this.xValueMap[time].dots || [];

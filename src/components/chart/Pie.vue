@@ -1,14 +1,28 @@
 <template>
-  <div ref="pie">
+  <div class="pie" ref="pie">
+    <!-- chartip -->
+    <x-chartip ref="chartip">
+      <div slot="content" class="chartip-content">
+        <div>
+          <div class="chartip-label" :style="'background-color: ' + selectedData.color"></div>
+          <div class="chartip-key">{{ selectedData.axis }}:</div>
+        </div>
+        <div style="margin-left: 10px;">
+          <div>{{ selectedData.value }}{{ yAxisUnit }}</div>
+        </div>
+      </div>
+    </x-chartip>
+
     <svg
       v-if="viewWidth"
-      width="100%"
+      :width="viewWidth"
       :height="viewHeight"
       :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
     >
       <circle
         v-for="(data, index) in list"
         :key="index"
+        :ref="data.axis"
         :r="radius"
         :cx="cx"
         :cy="cy"
@@ -17,15 +31,34 @@
         :stroke-width="pieStrokeWidth"
         :stroke-dasharray="`${data.occupy} ${dashbase}`"
         :stroke-dashoffset="`${-data.offset}`"
+        @mousemove="mousemove(data, $event)"
+        @mouseleave="mouseleave"
+        class="circle"
       />
     </svg>
+
+    <div class="label" :style="'padding-top: ' + paddingTop + 'px;'">
+      <div
+        v-for="(axis, index) in yAxis"
+        :key="index"
+        class="label-group"
+        @mousemove="mousemoveLabel(index)"
+        @mouseleave="mouseleaveLabel(index)"
+      >
+        <div class="label-icon" :style="'background-color: ' + getColor(axis)"></div>
+        <div class="label-value">{{ axis }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { createLaterFunction } from "../../javascripts/lib/utils";
+
 export default {
   props: {
     yAxis: Array,
+    yAxisUnit: String,
     data: Object
   },
 
@@ -35,10 +68,12 @@ export default {
       viewHeight: 0,
       paddingLeft: 0,
       paddingRight: 30,
-      paddingTop: 10,
+      paddingTop: 20,
       paddingBottom: 0,
-      pieStrokeWidth: 20,
-      radius: 70,
+      pieStrokeWidth: 23,
+      radius: 60,
+      pieWidth: 0,
+      selectedData: {},
       colors: [
         "#2b85e4",
         "#5cadff",
@@ -54,26 +89,54 @@ export default {
 
   mounted() {
     this.pie = this.$refs.pie;
+    this.chartip = this.$refs.chartip;
 
     this.setViewBox();
-    window.addEventListener("resize", this.setViewBox.bind(this));
+    this.setPieWidth();
+    window.addEventListener("resize", this.setPieWidth.bind(this));
   },
 
   methods: {
-    setViewBox() {
+    setPieWidth() {
       const width = parseInt(window.getComputedStyle(this.pie).width, 10);
       if (!width) {
         return;
       }
-      this.viewWidth = width;
-      const height = (width / 5) * 4;
-      this.viewHeight = height + this.paddingTop;
+      this.pieWidth = width;
+    },
+
+    setViewBox() {
+      this.viewWidth = 2 * this.cx;
+      this.viewHeight = this.viewWidth + this.paddingTop;
     },
 
     getColor(axis) {
       const index = this.yAxis.indexOf(axis);
       return this.colors[index % this.colors.length];
-    }
+    },
+
+    ...createLaterFunction("mousemove", function(data, event) {
+      this.selectedData = data;
+      const minLegalY = this.paddingTop;
+      const maxLegalX = this.pieWidth;
+      this.chartip.show(event, minLegalY, maxLegalX);
+    }),
+
+    ...createLaterFunction("mouseleave", function() {
+      this.chartip.hidden();
+    }),
+
+    ...createLaterFunction("mousemoveLabel", function(index) {
+      const data = this.list[index];
+      const style = this.$refs[data.axis][0].style;
+      style["opacity"] = 0.85;
+    }),
+
+    ...createLaterFunction("mouseleaveLabel", function(index) {
+      const data = this.list[index];
+      const style = this.$refs[data.axis][0].style;
+      style["opacity"] = 1;
+    })
   },
 
   computed: {
@@ -108,7 +171,7 @@ export default {
 
       for (let i = 0; i < yAxis.length; i++) {
         const axis = yAxis[i];
-        const tmp = {};
+        const tmp = { axis };
         const value = data[axis] || 0;
         tmp.value = value;
         tmp.occupy = (value / total) * this.dashbase;
@@ -123,6 +186,13 @@ export default {
         list.push(tmp);
       }
 
+      for (const item of list) {
+        item.occupy -= 1;
+        if (item.occupy < 0) {
+          item.occupy = 0;
+        }
+      }
+
       return list;
     }
   }
@@ -130,4 +200,39 @@ export default {
 </script>
 
 <style scoped>
+.pie {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.circle {
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.circle:hover {
+  opacity: 0.85;
+}
+
+.label {
+  margin-left: 30px;
+}
+
+.label-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+.label-group:hover .label-icon {
+  transform: scale(1.2);
+  transition: all 0.1s ease;
+}
+
+.chartip-content {
+  display: flex;
+  padding: 5px;
+}
 </style>
