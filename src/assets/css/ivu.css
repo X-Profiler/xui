@@ -48,3 +48,7 @@
   font-size: 15px;
   margin-right: 2px;
 }
+
+.x-modal .ivu-modal-body{
+  padding: 0;
+}

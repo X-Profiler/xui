@@ -2,7 +2,7 @@
   <div>
     <x-modal ref="checkAgent" title="查看实例" :width="560" @canceled="closeAgentCheck">
       <template slot="content">
-        <div style="text-align: center">
+        <div style="text-align: center; padding: 10px 0;">
           <x-loading :loading="agent_loading" type="dot" size="middle"></x-loading>
           <x-error-message v-show="agent_load_error" :message="agent_load_error"></x-error-message>
           <transition name="slide-noward">

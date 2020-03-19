@@ -83,7 +83,16 @@
     <x-check-xprofiler></x-check-xprofiler>
 
     <!-- save processes trend dara -->
-    <x-modal ref="saveTrend" title="保存进程数据趋势" @canceled="closeSaveTrendModal"></x-modal>
+    <x-modal
+      ref="saveTrend"
+      title="保存数据趋势"
+      :padding="0"
+      :width="500"
+      hide-footer
+      @canceled="closeSaveTrendModal"
+    >
+      <x-save-trend slot="content"></x-save-trend>
+    </x-modal>
 
     <!-- show process details -->
     <x-drawer ref="trend" @close="closeTrendDrawer()">
@@ -122,6 +131,7 @@ import { getTag } from "../../../javascripts/lib/utils";
 import xNode from "./Node";
 import xCheckXprofiler from "./CheckXprofiler";
 import xTrend from "./Trend";
+import xSaveTrend from "./SaveTrend";
 
 const panelData = Object.assign(
   {
@@ -132,7 +142,8 @@ const panelData = Object.assign(
     components: {
       "x-node": xNode,
       "x-check-xprofiler": xCheckXprofiler,
-      "x-trend": xTrend
+      "x-trend": xTrend,
+      "x-save-trend": xSaveTrend
     },
 
     data() {

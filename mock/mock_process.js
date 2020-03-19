@@ -215,4 +215,19 @@ module.exports = app => {
 
     setTimeout(() => res.send({ ok: true, data: { list, limit } }), 1000);
   });
+
+  app.post("/xapi/process_trend", function (req, res) {
+    utils.checkParam(req.body, ["appId", "agentId", "pid"]);
+
+    const appId = req.body.appId;
+    const agentId = req.body.agentId;
+    const pid = Number(req.body.pid);
+    console.log(`save app ${appId} agent ${agentId} pid ${pid} trend data`);
+
+    const data = {
+      file: "process-snapshot-78812-20200319-28874.trend"
+    };
+
+    setTimeout(() => res.send({ ok: true, data }), 500);
+  });
 };

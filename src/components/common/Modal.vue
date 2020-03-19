@@ -1,6 +1,12 @@
 <template>
   <div>
-    <Modal v-model="show" :mask-closable="false" :width="width">
+    <Modal
+      class="x-modal"
+      v-model="show"
+      :mask-closable="false"
+      :width="width"
+      :footer-hide="hideFooter"
+    >
       <!-- header -->
       <template slot="header">
         <div>
@@ -14,8 +20,12 @@
         <Icon class="modal-title-close" type="md-close" />
       </template>
 
-      <!-- content -->
-      <slot name="content"></slot>
+      <transition name="modal-content">
+        <div v-if="show" :style="contentStyle">
+          <!-- content -->
+          <slot name="content"></slot>
+        </div>
+      </transition>
 
       <!-- footer -->
       <template slot="footer">
@@ -43,7 +53,9 @@ export default {
     okLoadingText: String,
     cancelText: String,
     loading: Boolean,
-    width: Number
+    width: Number,
+    hideFooter: Boolean,
+    padding: Number
   },
 
   methods: {
@@ -87,6 +99,18 @@ export default {
 
     cancel() {
       return this.cancelText || "取消";
+    },
+
+    contentStyle() {
+      let style = "";
+
+      let padding = 16;
+      if (this.padding === 0 || !isNaN(this.padding)) {
+        padding = this.padding;
+      }
+      style += "padding: " + padding + "px;";
+
+      return style;
     }
   },
 
