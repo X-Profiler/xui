@@ -155,7 +155,7 @@ export default {
     ...mapWatch,
 
     $route(to) {
-      this.handleComponent(to.query);
+      // this.handleComponent(to.query);
     }
   }
 };

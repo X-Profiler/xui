@@ -17,11 +17,11 @@ export default {
   mounted() {
     const query = this.$route.query;
     this.handleDrawer(query, this.processesDrawerKey);
-    handleMounted.call(this, true, "processData");
+    handleMounted.call(this, "handleProcessDrawer", true, "processData");
   },
 
   methods: {
-    ...mapMethods,
+    ...mapMethods("handleProcessDrawer"),
 
     ...mapMutationsProcess(["setXprofilerStatusModal", "setProcessTrendDrawer"]),
 
@@ -123,7 +123,7 @@ export default {
 
     $route(to) {
       this.handleDrawer(to.query, this.processesDrawerKey);
-      this.handleComponent(to.query);
+      this.handleProcessDrawer(to.query);
     },
   }
 };
