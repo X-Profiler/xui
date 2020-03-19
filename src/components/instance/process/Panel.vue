@@ -82,6 +82,9 @@
     <!-- check xprofiler status -->
     <x-check-xprofiler></x-check-xprofiler>
 
+    <!-- save processes trend dara -->
+    <x-modal ref="saveTrend" title="保存进程数据趋势" @canceled="closeSaveTrendModal"></x-modal>
+
     <!-- show process details -->
     <x-drawer ref="trend" @close="closeTrendDrawer()">
       <template slot="header">
@@ -165,7 +168,8 @@ const panelData = Object.assign(
           { label: getTag(tags.diag), value: "diag" }
         ],
         drawerQueryKey: "process-trend",
-        drawerQueryKeyProcesses: "show-processes"
+        drawerQueryKeyProcesses: "show-processes",
+        modalQueryKeySaveTrend: "save-trend-data"
       };
     }
   },
