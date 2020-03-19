@@ -146,7 +146,7 @@ export default {
       const xMaxData = data[data.length - 1] && data[data.length - 1].time;
       const xMinData = data[0] && data[0].time;
       const yMaxData = yAxisScale[yAxisScale.length - 1] && yAxisScale[yAxisScale.length - 1].value;
-      if (!xMaxData || !xMinData || !yMaxData) {
+      if (!xMaxData || !xMinData || (!yMaxData && yMaxData !== 0)) {
         return [];
       }
 
@@ -172,7 +172,7 @@ export default {
         const timeKey = moment(time).format("YYYY-MM-DD HH:mm");
         xPointMap[xPosition] = { data: dt, dots: [] };
         xValueMap[timeKey] = { data: dt, dots: [] };
-        if (yAxis.some(y => dt[y])) {
+        if (yAxis.some(y => dt[y] || dt[y] === 0)) {
           xPoint.push(xPosition);
         }
 
@@ -189,9 +189,14 @@ export default {
           }
 
           // y position
-          let yOffset =
-            (value / yMaxData) *
-            (this.viewHeight - this.paddingTop - this.paddingBottom);
+          let yOffset;
+          if (yMaxData === 0) {
+            yOffset = 0;
+          } else {
+            yOffset =
+              (value / yMaxData) *
+              (this.viewHeight - this.paddingTop - this.paddingBottom)
+          }
 
           if (this.solid) {
             yOffset += lastYPosition;
@@ -248,6 +253,7 @@ export default {
       const maxLegalX = this.viewWidth - this.paddingRight;
       const minLegalY = this.paddingTop;
       const maxLegalY = this.viewHeight - this.paddingBottom;
+
       if (offsetX < minLegalX || offsetX > maxLegalX) {
         return;
       }
@@ -421,6 +427,9 @@ export default {
     yAxisScale() {
       const scales = this.getScale(this.yAxisScaleCountInner);
       scales.reverse();
+      if (!scales.length) {
+        scales.push({ label: 0, value: 0 });
+      }
       return scales;
     },
 

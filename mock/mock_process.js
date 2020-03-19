@@ -207,7 +207,7 @@ module.exports = app => {
 
     if (trendType === 'udpTrend') {
       list = utils.createAreaData(["active_udp_handles"], {
-        active_udp_handles: () => 0.1,
+        active_udp_handles: () => 0,
       });
     }
 
