@@ -3,8 +3,9 @@
 import * as utils from "../../lib/utils";
 
 const { mapState: mapStateProcess, mapMutations: mapMutationsProcess, mapActions: mapActionsProcess } = utils.createNamespace("dashboard/instance/process");
-const { mapMethods, mapWatch, handleMounted } = utils.modalRouteFactory("xprofilerStatusModal", "checkXprofiler", "setXprofilerStatusModal",
-  "getXprofilerStatus", "xprofiler_status_loading", ["pid"]);
+const { mapMethods, mapWatch, handleMounted } =
+  utils.modalRouteFactory("modalQueryKey", "xprofilerStatusModal", "checkXprofiler", "setXprofilerStatusModal",
+    "getXprofilerStatus", "xprofiler_status_loading", ["pid"]);
 
 export default {
   created() {

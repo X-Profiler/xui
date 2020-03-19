@@ -2,25 +2,10 @@
   <div>
     <!-- check running process -->
     <div style="text-align:right">
-      <Button class="check-button" type="info" size="small" @click="openDrawer(processesDrawerKey)">
+      <Button class="check-button" type="info" size="small" @click="openDrawer()">
         <Icon type="md-apps" class="check-button-icon" />
         {{ checkProcessesTag }}
       </Button>
-
-      <!-- processes drawer -->
-      <x-drawer :ref="processesDrawerKey" @close="closeDrawer(processesDrawerKey)">
-        <template slot="header">
-          <div
-            class="processes-header"
-          >实例 {{ agentId }} 存在以下 {{ processCount }} 个 Node.js 进程（不一定接入 Xprofiler 插件）</div>
-        </template>
-
-        <template slot="content">
-          <div class="process-content">
-            <x-node></x-node>
-          </div>
-        </template>
-      </x-drawer>
     </div>
 
     <!-- process panel -->
@@ -109,6 +94,21 @@
         </div>
       </template>
     </x-drawer>
+
+    <!-- show all processes -->
+    <x-drawer ref="processes" @close="closeDrawer()">
+      <template slot="header">
+        <div
+          class="processes-header"
+        >实例 {{ agentId }} 存在以下 {{ processCount }} 个 Node.js 进程（不一定接入 Xprofiler 插件）</div>
+      </template>
+
+      <template slot="content">
+        <div class="process-content">
+          <x-node></x-node>
+        </div>
+      </template>
+    </x-drawer>
   </div>
 </template>
 
@@ -164,8 +164,8 @@ const panelData = Object.assign(
           { label: getTag(tags.gcprofile), value: "gcprofile" },
           { label: getTag(tags.diag), value: "diag" }
         ],
-        processesDrawerKey: "process-drawer",
-        drawerQueryKey: "process-trend"
+        drawerQueryKey: "process-trend",
+        drawerQueryKeyProcesses: "show-processes"
       };
     }
   },

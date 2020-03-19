@@ -3,7 +3,8 @@
 import * as utils from "../lib/utils";
 
 const { mapState: mapStateInstance, mapMutations: mapMutationsInstance, mapActions: mapActionsInstance } = utils.createNamespace("dashboard/instance");
-const { mapMethods, mapWatch, handleMounted } = utils.modalRouteFactory("agentModal", "checkAgent", "setAgentModal", "getAgentInfo", "agent_loading");
+const { mapMethods, mapWatch, handleMounted } =
+  utils.modalRouteFactory("modalQueryKey", "agentModal", "checkAgent", "setAgentModal", "getAgentInfo", "agent_loading");
 
 export default {
   created() {
