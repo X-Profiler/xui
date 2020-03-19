@@ -112,3 +112,26 @@
   transform: translateX(calc(50vw - 70px));
 }
 /* drawer end */
+
+/* modal content */
+.modal-content-enter {
+  opacity: 0;
+}
+
+.modal-content-enter-active {
+  transition: all 0.3s ease;
+}
+
+.modal-content-leave {
+  opacity: 1;
+}
+
+.modal-content-leave-active {
+  transition: all 0.3s ease;
+}
+
+.modal-content-leave-to {
+  opacity: 0;
+}
+
+/* modal content end */

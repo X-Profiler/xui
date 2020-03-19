@@ -71,7 +71,7 @@ export default {
       }
 
       if (type === "saveProcessData") {
-        this.setSavetrendDrawer({ status: true });
+        this.setSavetrendDrawer({ status: true, processData: this.processData });
       }
     },
 

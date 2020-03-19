@@ -56,3 +56,9 @@
 .x-dropdown-li.selected {
   background-color: #eff1f4;
 }
+
+.modal-footer {
+  border-top: 1px solid #e8eaec;
+  padding: 12px 18px 12px 18px;
+  text-align: right;
+}

@@ -2,9 +2,12 @@
 
 import * as utils from "../javascripts/lib/utils";
 
-const { state: procState, mutations: procMutations, handle: handlePorc } = utils.storeFactory("processes", []);
-const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } = utils.storeFactory("xprofiler_processes", []);
-const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle: handleXprofilerStatus } = utils.storeFactory("xprofiler_status", undefined);
+const { state: procState, mutations: procMutations, handle: handlePorc } =
+  utils.storeFactory("processes", []);
+const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } =
+  utils.storeFactory("xprofiler_processes", []);
+const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle: handleXprofilerStatus } =
+  utils.storeFactory("xprofiler_status", undefined);
 
 export default {
   namespaced: true,
@@ -23,6 +26,7 @@ export default {
     processesDrawer: undefined,
 
     saveTrendModal: undefined,
+    saveTrendData: {},
 
     colors: [
       "rgb(42, 125, 194)",
@@ -68,9 +72,13 @@ export default {
       }
     },
 
-    setSavetrendDrawer(state, { status }) {
+    setSavetrendDrawer(state, { status, processData }) {
       if (status === false || status === true) {
         state.saveTrendModal = status;
+      }
+
+      if (processData) {
+        state.saveTrendData = processData;
       }
     }
   },
@@ -162,5 +170,24 @@ export default {
 
       return dispatch("request", options, { root: true });
     },
+
+    async saveProcessTrend(context, { cancelToken }) {
+      const { state, getters, dispatch, rootState } = context;
+
+      const options = {
+        cancelToken,
+        method: "POST",
+
+        // user data
+        url: rootState.url.processTrend,
+        data: {
+          appId: getters.appId,
+          agentId: getters.agentId,
+          pid: state.saveTrendData.pid
+        }
+      };
+
+      return dispatch("request", options, { root: true });
+    }
   },
 };
