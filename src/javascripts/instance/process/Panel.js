@@ -9,6 +9,8 @@ const { mapMethods, mapWatch, handleMounted } =
   utils.drawerRouteFactory("drawerQueryKey", "processTrendDrawer", "trend", "setProcessTrendDrawer");
 const { mapMethods: mapMethodsProcesses, mapWatch: mapWatchProcesses, handleMounted: handleMountedProcesses } =
   utils.drawerRouteFactory("drawerQueryKeyProcesses", "processesDrawer", "processes", "setProcessesDrawer");
+const { mapMethods: mapMethodsSaveTrend, mapWatch: mapWatchSaveTrend, handleMounted: handleMountedSaveTrend } =
+  utils.modalRouteFactory("modalQueryKeySaveTrend", "saveTrendModal", "saveTrend", "setSavetrendDrawer");
 
 export default {
   created() {
@@ -20,7 +22,10 @@ export default {
     handleMounted.call(this, "handleProcessTrendDrawer", true, "processData");
 
     // handle processes drawer
-    handleMountedProcesses.call(this, "handleProcessesDrawer", true)
+    handleMountedProcesses.call(this, "handleProcessesDrawer", true);
+
+    // handle save trend modal
+    handleMountedSaveTrend.call(this, "handleSaveTrendModal");
   },
 
   methods: {
@@ -28,7 +33,9 @@ export default {
 
     ...mapMethodsProcesses("handleProcessesDrawer"),
 
-    ...mapMutationsProcess(["setXprofilerStatusModal", "setProcessTrendDrawer", "setProcessesDrawer"]),
+    ...mapMethodsSaveTrend("handleSaveTrendModal"),
+
+    ...mapMutationsProcess(["setXprofilerStatusModal", "setProcessTrendDrawer", "setProcessesDrawer", "setSavetrendDrawer"]),
 
     updateSelectedProcess(data) {
       this.processData = data;
@@ -62,17 +69,25 @@ export default {
       if (type === "processTrend") {
         this.setProcessTrendDrawer({ status: true, processData: this.processData });
       }
+
+      if (type === "saveProcessData") {
+        this.setSavetrendDrawer({ status: true });
+      }
     },
 
     closeTrendDrawer() {
       this.setProcessTrendDrawer({ status: false });
-    }
+    },
+
+    closeSaveTrendModal() {
+      this.setSavetrendDrawer({ status: false });
+    },
   },
 
   computed: {
     ...mapState(["agentId"]),
 
-    ...mapStateProcess(["processTrendDrawer", "processTrendData", "processesDrawer"]),
+    ...mapStateProcess(["processTrendDrawer", "processTrendData", "processesDrawer", "saveTrendModal"]),
 
     ...mapGettersProcess(["processCount"]),
 
@@ -114,9 +129,12 @@ export default {
 
     ...mapWatchProcesses,
 
+    ...mapWatchSaveTrend,
+
     $route(to) {
       this.handleProcessTrendDrawer(to.query);
       this.handleProcessesDrawer(to.query);
+      this.handleSaveTrendModal(to.query);
     },
   }
 };
