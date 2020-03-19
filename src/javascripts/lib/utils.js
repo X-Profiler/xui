@@ -250,9 +250,9 @@ function routeFactory(queryKeyName, openName, closeName, ...args) {
   const [flag, refKey, setFlag, request, loading, extra = []] = args;
 
   return {
-    handleMounted(enable = false, dataKey = false) {
+    handleMounted(name, enable = false, dataKey = false) {
       if (enable) {
-        this.handleComponent(this.$route.query, dataKey);
+        this[name](this.$route.query, dataKey);
       } else {
         const route = this.$route;
         if (route.query[this[queryKeyName]] === tag) {
@@ -263,34 +263,36 @@ function routeFactory(queryKeyName, openName, closeName, ...args) {
       }
     },
 
-    mapMethods: {
-      handleComponent(query, dataKey) {
-        const element = this.$refs[refKey];
-        if (query[this[queryKeyName]] === tag) {
-          const data = { status: true };
-          if (dataKey) {
-            data[dataKey] = query;
-          }
-          this[setFlag](data);
-          element[openName]();
-          if (request) {
-            const extraData = {};
-            for (const keyId of extra) {
-              extraData[keyId] = this[keyId];
+    mapMethods(name) {
+      return {
+        [name](query, dataKey) {
+          const element = this.$refs[refKey];
+          if (query[this[queryKeyName]] === tag) {
+            const data = { status: true };
+            if (dataKey) {
+              data[dataKey] = query;
             }
-            this[request](Object.assign({
-              cancelToken: this.cancelToken.token
-            }, extraData));
-          }
-        } else {
-          this[setFlag]({ status: false });
-          element[closeName]();
-          if (loading && this[loading]) {
-            cancelRequest(this.cancelToken);
-            this.cancelToken = createCancelToken();
+            this[setFlag](data);
+            element[openName]();
+            if (request) {
+              const extraData = {};
+              for (const keyId of extra) {
+                extraData[keyId] = this[keyId];
+              }
+              this[request](Object.assign({
+                cancelToken: this.cancelToken.token
+              }, extraData));
+            }
+          } else {
+            this[setFlag]({ status: false });
+            element[closeName]();
+            if (loading && this[loading]) {
+              cancelRequest(this.cancelToken);
+              this.cancelToken = createCancelToken();
+            }
           }
         }
-      },
+      }
     },
 
     mapWatch: {
