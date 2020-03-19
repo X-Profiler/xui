@@ -92,6 +92,10 @@ const trendData = Object.assign(
           [
             { label: "QPS 趋势", value: "qpsTrend" },
             { label: "Timer 趋势", value: "timerTrend" }
+          ],
+          [
+            { label: "TCP 趋势", value: "tcpTrend" },
+            { label: "UDP 趋势", value: "udpTrend" }
           ]
         ]
       };
