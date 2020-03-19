@@ -29,6 +29,13 @@ export default {
       }
     },
 
+    handleBroadcase(refs, data) {
+      for (const ref of refs) {
+        const element = this.$refs[ref][0];
+        element && element.handleBroadcase(data);
+      }
+    },
+
     hiddenTip(refs) {
       for (const ref of refs) {
         this.$refs[ref][0].hiddenTip();
@@ -37,6 +44,10 @@ export default {
 
     linkage(data) {
       this.showTip(this.chartRefs, data);
+    },
+
+    broadcast(data) {
+      this.handleBroadcase(this.chartRefs, data);
     },
 
     hidden() {

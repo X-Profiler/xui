@@ -103,6 +103,10 @@ export default {
       this.$emit("linkage", data);
     },
 
+    broadcast(data) {
+      this.$emit("broadcast", data);
+    },
+
     hidden() {
       this.$emit("hidden");
     },
@@ -116,6 +120,11 @@ export default {
       const area = this.$refs.area;
       area && area.hiddenTip();
     },
+
+    handleBroadcase(data) {
+      const area = this.$refs.area;
+      area && area.handleBroadcase(data);
+    }
   },
 
   computed: {

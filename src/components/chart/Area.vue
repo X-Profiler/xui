@@ -44,6 +44,7 @@
       :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
       @mousemove="mousemove"
       @mouseleave="mouseleave"
+      @click="fixIntersection"
     >
       <!-- chart axis -->
       <g>
@@ -258,7 +259,8 @@ const areaData = Object.assign(
           "#19be6b",
           "#1e9652"
         ],
-        defaultColors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"]
+        defaultColors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"],
+        intersectionFixed: false
       };
     }
   },

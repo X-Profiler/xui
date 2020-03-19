@@ -49,6 +49,7 @@
               :solid="dt.solid"
               @linkage="linkage"
               @hidden="hidden"
+              @broadcast="broadcast"
             ></x-trend-data>
           </div>
 
