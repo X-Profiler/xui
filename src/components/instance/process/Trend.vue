@@ -153,7 +153,7 @@ export default trendData;
 
 .trend-data {
   min-width: 300px;
-  min-height: 300px;
+  min-height: 315px;
   flex: 1 0 300px;
 }
 

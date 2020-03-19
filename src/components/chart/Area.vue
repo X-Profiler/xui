@@ -87,7 +87,7 @@
             :y="getYAxisLabel(index)"
             dx="-0.5em"
             dy="0.32em"
-          >{{ yAxis }}</text>
+          >{{ yAxis.label }}</text>
           <line
             v-if="index !== yAxisScale.length -1"
             class="axis"
@@ -118,7 +118,12 @@
       <!-- scale unit -->
       <g>
         <!-- y axis -->
-        <text :x="paddingLeft" :y="paddingTop" dy="-0.5em" class="axisUnit">{{ upperCaseLabel(yAxisUnit) }}</text>
+        <text
+          :x="paddingLeft"
+          :y="paddingTop"
+          dy="-0.5em"
+          class="axisUnit"
+        >{{ upperCaseLabel(yAxisUnit) }}</text>
       </g>
 
       <!-- no data text -->

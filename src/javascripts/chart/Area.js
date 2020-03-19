@@ -79,7 +79,12 @@ export default {
       const interval = max / count;
       const scales = [];
       for (let i = 0; i <= count; i++) {
-        scales.push(Math.round(max - interval * i));
+        const scale = max - interval * i;
+
+        scales.push({
+          label: scale < 2.5 && scale > 0 ? scale.toFixed(2) : Math.round(scale),
+          value: scale
+        });
       }
       return scales;
     },
@@ -137,9 +142,10 @@ export default {
 
     getPoints(yAxis, list) {
       const data = this.data;
+      const yAxisScale = this.yAxisScale;
       const xMaxData = data[data.length - 1] && data[data.length - 1].time;
       const xMinData = data[0] && data[0].time;
-      const yMaxData = this.yAxisScale[this.yAxisScale.length - 1];
+      const yMaxData = yAxisScale[yAxisScale.length - 1] && yAxisScale[yAxisScale.length - 1].value;
       if (!xMaxData || !xMinData || !yMaxData) {
         return [];
       }

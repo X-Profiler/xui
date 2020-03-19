@@ -189,7 +189,7 @@ module.exports = app => {
 
     if (trendType === 'qpsTrend') {
       list = utils.createAreaData(["qps"], {
-        qps: () => 1 + Number((Math.random() * 0.2).toFixed(1))
+        qps: () => 1 + Number((Math.random() * 0.3).toFixed(2))
       });
     }
 
