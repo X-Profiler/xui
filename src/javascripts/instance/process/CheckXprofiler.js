@@ -12,7 +12,7 @@ export default {
   },
 
   mounted() {
-    handleMounted.call(this);
+    handleMounted.call(this, "handleXprofiler");
   },
 
   methods: {
@@ -20,7 +20,7 @@ export default {
 
     ...mapActionsProcess(["getXprofilerStatus"]),
 
-    ...mapMethods,
+    ...mapMethods("handleXprofiler"),
 
     closeXprofilerCheck() {
       this.setXprofilerStatusModal({ status: false });
@@ -155,7 +155,7 @@ export default {
     ...mapWatch,
 
     $route(to) {
-      // this.handleComponent(to.query);
+      this.handleXprofiler(to.query);
     }
   }
 };
