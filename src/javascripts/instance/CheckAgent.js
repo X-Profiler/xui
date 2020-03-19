@@ -11,11 +11,11 @@ export default {
   },
 
   mounted() {
-    handleMounted.call(this);
+    handleMounted.call(this, "handleAgent");
   },
 
   methods: {
-    ...mapMethods,
+    ...mapMethods("handleAgent"),
 
     ...mapMutationsInstance(["setAgentModal"]),
 
@@ -34,7 +34,7 @@ export default {
     ...mapWatch,
 
     $route(to) {
-      // this.handleComponent(to.query);
+      this.handleAgent(to.query);
     },
   }
 
