@@ -20,6 +20,8 @@ export default {
     processTrendDrawer: undefined,
     processTrendData: {},
 
+    processesDrawer: undefined,
+
     colors: [
       "rgb(42, 125, 194)",
       "rgb(106, 90, 205)",
@@ -55,6 +57,12 @@ export default {
 
       if (processData) {
         state.processTrendData = processData;
+      }
+    },
+
+    setProcessesDrawer(state, { status }) {
+      if (status === false || status === true) {
+        state.processesDrawer = status;
       }
     }
   },

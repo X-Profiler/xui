@@ -244,21 +244,16 @@ export function storeFactory(key, value) {
   };
 }
 
-function routeFactory(queryKeyName, openName, closeName, ...args) {
+function routeFactory(openName, closeName, ...args) {
   const tag = "YES";
 
-  const [flag, refKey, setFlag, request, loading, extra = []] = args;
+  const [queryKeyName, flag, refKey, setFlag, request, loading, extra = []] = args;
 
   return {
     handleMounted(name, enable = false, dataKey = false) {
       if (enable) {
         this[name](this.$route.query, dataKey);
       } else {
-        const route = this.$route;
-        if (route.query[this[queryKeyName]] === tag) {
-          const query = Object.assign({}, route.query, { [this[queryKeyName]]: undefined });
-          this.$router.push({ path: route.path, query });
-        }
         this[setFlag]({ status: false });
       }
     },
@@ -267,7 +262,9 @@ function routeFactory(queryKeyName, openName, closeName, ...args) {
       return {
         [name](query, dataKey) {
           const element = this.$refs[refKey];
-          if (query[this[queryKeyName]] === tag) {
+          const value = query[this[queryKeyName]];
+
+          if (value === tag) {
             const data = { status: true };
             if (dataKey) {
               data[dataKey] = query;
@@ -322,11 +319,11 @@ function routeFactory(queryKeyName, openName, closeName, ...args) {
 }
 
 export function drawerRouteFactory(...args) {
-  return routeFactory("drawerQueryKey", "open", "close", ...args);
+  return routeFactory("open", "close", ...args);
 }
 
 export function modalRouteFactory(...args) {
-  return routeFactory("modalQueryKey", "showModal", "cancelModal", ...args);
+  return routeFactory("showModal", "cancelModal", ...args);
 }
 
 function getIndexOrIndex(length) {
