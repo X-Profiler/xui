@@ -196,6 +196,20 @@ export default {
         common.showStatus = true;
       }
 
+      if (type === "tcpTrend") {
+        common.yAxis = ["active_tcp_handles"];
+        common.yAxisUnit = "";
+        common.noDataText = "暂无 TCP 趋势数据";
+        common.showStatus = true;
+      }
+
+      if (type === "udpTrend") {
+        common.yAxis = ["active_udp_handles"];
+        common.yAxisUnit = "";
+        common.noDataText = "暂无 UDP 趋势数据";
+        common.showStatus = true;
+      }
+
       return common;
     },
 

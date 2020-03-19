@@ -199,6 +199,18 @@ module.exports = app => {
       });
     }
 
+    if (trendType === 'tcpTrend') {
+      list = utils.createAreaData(["active_tcp_handles"], {
+        active_tcp_handles: () => 2000 + parseInt(Math.random() * 100),
+      });
+    }
+
+    if (trendType === 'udpTrend') {
+      list = utils.createAreaData(["active_udp_handles"], {
+        active_udp_handles: () => 0.1,
+      });
+    }
+
     // agentId.Number = c;
 
     setTimeout(() => res.send({ ok: true, data: { list, limit } }), 1000);
