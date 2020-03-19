@@ -292,7 +292,7 @@ function routeFactory(queryKeyName, openName, closeName, ...args) {
             }
           }
         }
-      }
+      };
     },
 
     mapWatch: {

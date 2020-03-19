@@ -195,7 +195,7 @@ export default {
           } else {
             yOffset =
               (value / yMaxData) *
-              (this.viewHeight - this.paddingTop - this.paddingBottom)
+              (this.viewHeight - this.paddingTop - this.paddingBottom);
           }
 
           if (this.solid) {
