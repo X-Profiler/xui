@@ -243,6 +243,9 @@ export default {
     }),
 
     ...createLaterFunction("mousemove", function (event) {
+      if (this.intersectionFixed) {
+        return;
+      }
       if (this.noData) {
         return;
       }
@@ -300,6 +303,9 @@ export default {
     }),
 
     ...createLaterFunction("mouseleave", function () {
+      if (this.intersectionFixed) {
+        return;
+      }
       this.intersectionOffsetX = 0;
       this.dots = [];
       this.chartip.hidden();
@@ -401,6 +407,16 @@ export default {
       style += "left: " + this.intersectionOffsetX + "px;";
 
       return style;
+    },
+
+    fixIntersection() {
+      this.intersectionFixed = !this.intersectionFixed;
+      this.$emit("broadcast", { intersectionFixed: this.intersectionFixed });
+    },
+
+    handleBroadcase(data) {
+      const { intersectionFixed } = data;
+      this.intersectionFixed = intersectionFixed;
     }
   },
 

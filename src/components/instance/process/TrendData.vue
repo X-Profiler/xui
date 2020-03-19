@@ -41,6 +41,7 @@
           @linkage="linkage"
           @hidden="hidden"
           @status="updateStatus"
+          @broadcast="broadcast"
         ></x-area>
       </div>
     </div>
