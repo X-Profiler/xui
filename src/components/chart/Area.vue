@@ -182,6 +182,7 @@
 
       <g v-show="!noData && intersectionOffsetX">
         <circle
+          v-show="pathWidthMap[dot.axis]"
           v-for="(dot, index) in dots"
           :key="index"
           :cx="dot.xPosition"
