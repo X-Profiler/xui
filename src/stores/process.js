@@ -31,6 +31,9 @@ export default {
     saveTrendModal: undefined,
     saveTrendData: {},
 
+    takeActionModal: undefined,
+    takeActionData: {},
+
     colors: [
       "rgb(42, 125, 194)",
       "rgb(106, 90, 205)",
@@ -60,6 +63,16 @@ export default {
       }
     },
 
+    setSaveTrendModal(state, { status, processData }) {
+      if (status === false || status === true) {
+        state.saveTrendModal = status;
+      }
+
+      if (processData) {
+        state.saveTrendData = processData;
+      }
+    },
+
     setProcessTrendDrawer(state, { status, processData }) {
       if (status === false || status === true) {
         state.processTrendDrawer = status;
@@ -73,16 +86,6 @@ export default {
     setProcessesDrawer(state, { status }) {
       if (status === false || status === true) {
         state.processesDrawer = status;
-      }
-    },
-
-    setSavetrendDrawer(state, { status, processData }) {
-      if (status === false || status === true) {
-        state.saveTrendModal = status;
-      }
-
-      if (processData) {
-        state.saveTrendData = processData;
       }
     }
   },

@@ -94,6 +94,9 @@
       <x-save-trend slot="content"></x-save-trend>
     </x-modal>
 
+    <!-- take actions -->
+    <x-modal ref="takeAction" title="抓取性能数据" :padding="0" hide-footer></x-modal>
+
     <!-- show process details -->
     <x-drawer ref="trend" @close="closeTrendDrawer()">
       <template slot="header">
