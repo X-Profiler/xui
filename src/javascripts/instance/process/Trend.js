@@ -2,10 +2,12 @@
 
 import * as utils from "../../lib/utils";
 
-const { mapState: mapStateProcess } = utils.createNamespace("dashboard/instance/process");
+const { mapState: mapStateProcess, mapMutations: mapMutationsProcess } = utils.createNamespace("dashboard/instance/process");
 
 export default {
   methods: {
+    ...mapMutationsProcess(["setTakeActionModal"]),
+
     mouseover(bt) {
       bt.ghost = false;
       const style = this.$refs[bt.value][0].style;
@@ -20,6 +22,10 @@ export default {
       style["font-weight"] = "normal";
       style["color"] = "#fff";
       style["font-style"] = "normal";
+    },
+
+    takeAction(bt) {
+      this.setTakeActionModal({ status: true, actionData: { pid: this.proc.pid, action: bt.value } });
     },
 
     showTip(refs, data) {

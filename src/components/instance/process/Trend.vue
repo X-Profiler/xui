@@ -26,6 +26,7 @@
                 :key="index"
                 @mouseover="mouseover(bt)"
                 @mouseout="mouseout(bt)"
+                @click="takeAction(bt)"
               >
                 <Button long :type="bt.ghost ? 'default' : 'text'" :ghost="bt.ghost">
                   <div :ref="bt.value">{{ bt.label }}</div>
