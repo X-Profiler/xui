@@ -8,6 +8,8 @@ const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: ha
   utils.storeFactory("xprofiler_processes", []);
 const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle: handleXprofilerStatus } =
   utils.storeFactory("xprofiler_status", undefined);
+const { state: saveTrendState, mutations: saveTrendMutations, handle: handleSaveTrend } =
+  utils.storeFactory("save_trend", undefined);
 
 export default {
   namespaced: true,
@@ -16,6 +18,7 @@ export default {
     ...procState,
     ...xprofilerProcState,
     ...xprofilerStatusState,
+    ...saveTrendState,
 
     xprofilerStatusModal: undefined,
     xprofilerCheckPid: undefined,
@@ -45,6 +48,7 @@ export default {
     ...procMutations,
     ...xprofilerProcMutations,
     ...xprofilerStatusMutations,
+    ...saveTrendMutations,
 
     setXprofilerStatusModal(state, { status, pid }) {
       if (status === false || status === true) {
@@ -172,7 +176,7 @@ export default {
     },
 
     async saveProcessTrend(context, { cancelToken }) {
-      const { state, getters, dispatch, rootState } = context;
+      const { state, getters, rootState } = context;
 
       const options = {
         cancelToken,
@@ -187,7 +191,7 @@ export default {
         }
       };
 
-      return dispatch("request", options, { root: true });
+      await handleSaveTrend(context, options, "file");
     }
   },
 };

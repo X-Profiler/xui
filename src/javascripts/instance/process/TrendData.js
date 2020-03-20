@@ -11,6 +11,10 @@ export default {
     this.getTrendData();
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
     ...mapActions(["getProcessTrend"]),
 
