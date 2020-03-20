@@ -44,6 +44,8 @@ export default {
       }
       this.viewWidth = width;
       // this.viewHeight = (width / 5) * 4;
+      this.mouseleave();
+      this.intersectionFixed = false;
     },
 
     upperCaseLabel(label) {
@@ -277,7 +279,7 @@ export default {
       if (!xPointData) {
         return;
       }
-      const dots = this.filterDot(xPointData.dots);
+      const dots = xPointData.dots;
       if (!this.solid) {
         this.dots = dots;
       }
@@ -313,8 +315,7 @@ export default {
     }),
 
     showTip({ time, mouse }) {
-      let dots = this.xValueMap[time] && this.xValueMap[time].dots || [];
-      dots = this.filterDot(dots);
+      const dots = this.xValueMap[time] && this.xValueMap[time].dots || [];
       if (!dots.length) {
         return;
       }
@@ -409,9 +410,12 @@ export default {
       return style;
     },
 
-    fixIntersection() {
+    fixIntersection(event) {
       this.intersectionFixed = !this.intersectionFixed;
       this.$emit("broadcast", { intersectionFixed: this.intersectionFixed });
+      if (!this.intersectionFixed) {
+        this.mousemove(event);
+      }
     },
 
     handleBroadcase(data) {
@@ -545,8 +549,8 @@ export default {
       }
 
       const intersections = [];
-
-      const tmp = dots.map(dot => dot.yPosition);
+      const tmpDots = this.filterDot(dots);
+      const tmp = tmpDots.map(dot => dot.yPosition);
       tmp.sort((o, n) => o > n ? 1 : -1);
       tmp.forEach((position, index, arr) => {
         if (index === 0) {
