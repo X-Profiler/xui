@@ -2,13 +2,17 @@
 
 import * as utils from "../../lib/utils";
 
-const { mapState } = utils.createNamespace("dashboard");
-const { mapMutations, mapActions } = utils.createNamespace("dashboard/instance/process");
+const { mapState: mapStateDashboard } = utils.createNamespace("dashboard");
+const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/instance/process");
 
 export default {
   created() {
     this.cancelToken = utils.createCancelToken();
-    this.saveTrend();
+    this.saveProcessTrend({ cancelToken: this.cancelToken.token });
+  },
+
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
   },
 
   methods: {
@@ -16,23 +20,14 @@ export default {
 
     ...mapActions(["saveProcessTrend"]),
 
-    saveTrend() {
-      this.loading = true;
-      this
-        .saveProcessTrend({ cancelToken: this.cancelToken.token })
-        .then(data => {
-          this.trendFile = data.file
-        })
-        .catch(err => this.loadError = err.message)
-        .then(() => this.loading = false);
-    },
-
     closeSaveTrendModal() {
       this.setSavetrendDrawer({ status: false });
     }
   },
 
   computed: {
-    ...mapState(["appId"])
+    ...mapStateDashboard(["appId"]),
+
+    ...mapState(["save_trend_loading", "save_trend_load_error", "save_trend_data"])
   }
 };
