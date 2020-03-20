@@ -230,4 +230,21 @@ module.exports = app => {
 
     setTimeout(() => res.send({ ok: true, data }), 500);
   });
+
+  app.post("/xapi/action", function (req, res) {
+    utils.checkParam(req.body, ["appId", "agentId", "pid", "action"]);
+
+    const appId = req.body.appId;
+    const agentId = req.body.agentId;
+    const pid = Number(req.body.pid);
+    const action = req.body.action;
+    console.log(`take app ${appId} agent ${agentId} pid ${pid} action type ${action}`);
+
+    const data = {
+      // file: `/var/folders/rw/g1t4bp_x2_n0dwk_82xx_0vh0000gn/T/x-diagreport-12729-20200320-430058.${action}`
+      file: `/tmp/x-diagreport-12729-20200320-430058.${action}`
+    };
+
+    setTimeout(() => res.send({ ok: true, data }), 600);
+  });
 };

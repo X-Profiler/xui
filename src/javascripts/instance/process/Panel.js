@@ -11,6 +11,8 @@ const { mapMethods: mapMethodsProcesses, mapWatch: mapWatchProcesses, handleMoun
   utils.drawerRouteFactory("drawerQueryKeyProcesses", "processesDrawer", "processes", "setProcessesDrawer");
 const { mapMethods: mapMethodsSaveTrend, mapWatch: mapWatchSaveTrend, handleMounted: handleMountedSaveTrend } =
   utils.modalRouteFactory("modalQueryKeySaveTrend", "saveTrendModal", "saveTrend", "setSaveTrendModal");
+const { mapMethods: mapMethodsActions, mapWatch: mapWatchActions, handleMounted: handleMountedActions } =
+  utils.modalRouteFactory("modalQueryKeyActions", "takeActionModal", "takeAction", "setTakeActionModal");
 
 export default {
   created() {
@@ -18,24 +20,19 @@ export default {
   },
 
   mounted() {
-    // handle process trend drawer
     handleMounted.call(this, "handleProcessTrendDrawer", true, "processData");
-
-    // handle processes drawer
     handleMountedProcesses.call(this, "handleProcessesDrawer", true);
-
-    // handle save trend modal
     handleMountedSaveTrend.call(this, "handleSaveTrendModal");
+    handleMountedActions.call(this, "handleActionModal");
   },
 
   methods: {
     ...mapMethods("handleProcessTrendDrawer"),
-
     ...mapMethodsProcesses("handleProcessesDrawer"),
-
     ...mapMethodsSaveTrend("handleSaveTrendModal"),
-
-    ...mapMutationsProcess(["setXprofilerStatusModal", "setProcessTrendDrawer", "setProcessesDrawer", "setSaveTrendModal"]),
+    ...mapMethodsActions("handleActionModal"),
+    ...mapMutationsProcess(["setXprofilerStatusModal", "setSaveTrendModal", "setTakeActionModal",
+      "setProcessTrendDrawer", "setProcessesDrawer"]),
 
     updateSelectedProcess(data) {
       this.processData = data;
@@ -75,6 +72,10 @@ export default {
       }
     },
 
+    takeAction(action) {
+      this.setTakeActionModal({ status: true, actionData: { pid: this.processData.pid, action } });
+    },
+
     closeTrendDrawer() {
       this.setProcessTrendDrawer({ status: false });
     },
@@ -82,13 +83,15 @@ export default {
     closeSaveTrendModal() {
       this.setSaveTrendModal({ status: false });
     },
+
+    closeTakeActionModal() {
+      this.setTakeActionModal({ status: false });
+    },
   },
 
   computed: {
     ...mapState(["agentId"]),
-
-    ...mapStateProcess(["processTrendDrawer", "processTrendData", "processesDrawer", "saveTrendModal"]),
-
+    ...mapStateProcess(["processTrendDrawer", "processTrendData", "processesDrawer", "saveTrendModal", "takeActionModal"]),
     ...mapGettersProcess(["processCount"]),
 
     panelStyle() {
@@ -126,15 +129,15 @@ export default {
 
   watch: {
     ...mapWatch,
-
     ...mapWatchProcesses,
-
     ...mapWatchSaveTrend,
+    ...mapWatchActions,
 
     $route(to) {
       this.handleProcessTrendDrawer(to.query);
       this.handleProcessesDrawer(to.query);
       this.handleSaveTrendModal(to.query);
+      this.handleActionModal(to.query);
     },
   }
 };

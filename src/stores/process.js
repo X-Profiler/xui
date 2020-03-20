@@ -10,6 +10,8 @@ const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle
   utils.storeFactory("xprofiler_status", undefined);
 const { state: saveTrendState, mutations: saveTrendMutations, handle: handleSaveTrend } =
   utils.storeFactory("save_trend", undefined);
+const { state: takeActionState, mutations: takeActionMutations, handle: handleTakeAction } =
+  utils.storeFactory("take_action", undefined);
 
 export default {
   namespaced: true,
@@ -19,6 +21,7 @@ export default {
     ...xprofilerProcState,
     ...xprofilerStatusState,
     ...saveTrendState,
+    ...takeActionState,
 
     xprofilerStatusModal: undefined,
     xprofilerCheckPid: undefined,
@@ -52,6 +55,7 @@ export default {
     ...xprofilerProcMutations,
     ...xprofilerStatusMutations,
     ...saveTrendMutations,
+    ...takeActionMutations,
 
     setXprofilerStatusModal(state, { status, pid }) {
       if (status === false || status === true) {
@@ -70,6 +74,16 @@ export default {
 
       if (processData) {
         state.saveTrendData = processData;
+      }
+    },
+
+    setTakeActionModal(state, { status, actionData }) {
+      if (status === false || status === true) {
+        state.takeActionModal = status;
+      }
+
+      if (actionData) {
+        state.takeActionData = actionData;
       }
     },
 
@@ -195,6 +209,26 @@ export default {
       };
 
       await handleSaveTrend(context, options, "file");
+    },
+
+    async takeAction(context, { cancelToken }) {
+      const { state, getters, rootState } = context;
+
+      const options = {
+        cancelToken,
+        method: "POST",
+
+        // user data
+        url: rootState.url.action,
+        data: {
+          appId: getters.appId,
+          agentId: getters.agentId,
+          pid: state.takeActionData.pid,
+          action: state.takeActionData.action
+        }
+      };
+
+      await handleTakeAction(context, options, "file");
     }
   },
 };
