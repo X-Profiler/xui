@@ -70,7 +70,7 @@
               :key="index"
               :style="index === actionButtons.length - 1 && index % 2 === 0 ? 'width: 100%':''"
             >
-              <Button size="small" type="info" long>
+              <Button size="small" type="info" long @click="takeAction(button.value)">
                 <div class="panel-button-value">{{ button.label }}</div>
               </Button>
             </div>
@@ -87,7 +87,6 @@
       ref="saveTrend"
       title="保存数据趋势"
       :padding="0"
-      :width="500"
       hide-footer
       @canceled="closeSaveTrendModal"
     >
@@ -95,7 +94,15 @@
     </x-modal>
 
     <!-- take actions -->
-    <x-modal ref="takeAction" title="抓取性能数据" :padding="0" hide-footer></x-modal>
+    <x-modal
+      ref="takeAction"
+      title="抓取性能数据"
+      :padding="0"
+      hide-footer
+      @canceled="closeTakeActionModal"
+    >
+      <x-take-action slot="content"></x-take-action>
+    </x-modal>
 
     <!-- show process details -->
     <x-drawer ref="trend" @close="closeTrendDrawer()">
@@ -135,6 +142,7 @@ import xNode from "./Node";
 import xCheckXprofiler from "./CheckXprofiler";
 import xTrend from "./Trend";
 import xSaveTrend from "./SaveTrend";
+import xTakeAction from "./TakeAction";
 
 const panelData = Object.assign(
   {
@@ -146,7 +154,8 @@ const panelData = Object.assign(
       "x-node": xNode,
       "x-check-xprofiler": xCheckXprofiler,
       "x-trend": xTrend,
-      "x-save-trend": xSaveTrend
+      "x-save-trend": xSaveTrend,
+      "x-take-action": xTakeAction
     },
 
     data() {
@@ -183,7 +192,8 @@ const panelData = Object.assign(
         ],
         drawerQueryKey: "process-trend",
         drawerQueryKeyProcesses: "show-processes",
-        modalQueryKeySaveTrend: "save-trend-data"
+        modalQueryKeySaveTrend: "save-trend-data",
+        modalQueryKeyActions: "take-actions"
       };
     }
   },

@@ -16,4 +16,5 @@ export default {};
 @import url(assets/css/bg-image.css);
 @import url(assets/css/transition.css);
 @import url(assets/css/chart.css);
+@import url(assets/css/modal.css);
 </style>
