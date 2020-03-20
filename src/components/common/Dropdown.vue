@@ -120,6 +120,8 @@ export default {
   transform: rotate(45deg);
   position: absolute;
   top: -5px;
+  border-top: 1px solid #e8eaec;
+  border-left: 1px solid #e8eaec;
 }
 
 .dropdown-content::after {
