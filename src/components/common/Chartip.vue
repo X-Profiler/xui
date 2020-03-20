@@ -28,7 +28,7 @@ export default {
   },
 
   methods: {
-    show(event, minLegalY, maxLegalX) {
+    show(event, minLegalY, maxLegalX, paddingRight = 0) {
       const style = this.chartip.style;
       style["opacity"] = 1;
       style["z-index"] = 1200;
@@ -43,9 +43,11 @@ export default {
 
       if (offsetX + tipWidth + intervalX < maxLegalX) {
         style["left"] = offsetX + intervalX + "px";
+        style["right"] = "unset";
         this.type = "left";
       } else {
-        style["left"] = offsetX - intervalX - tipWidth + "px";
+        style["left"] = "unset";
+        style["right"] = paddingRight + maxLegalX - offsetX + intervalX + "px";
         this.type = "right";
       }
 
@@ -76,7 +78,6 @@ export default {
   opacity: 0;
   z-index: -9999;
   position: absolute;
-  left: 0;
   top: 0;
   background-color: rgb(255, 255, 255);
   /* max-width: 300px; */

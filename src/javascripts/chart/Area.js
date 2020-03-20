@@ -291,7 +291,7 @@ export default {
       // show chartip
       this.chartipData = xPointData.data;
       const mouse = { offsetX: trueOffsetX, offsetY };
-      this.chartip.show(mouse, minLegalY, maxLegalX);
+      this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
 
       // linkage
       if (dots.length) {
@@ -329,7 +329,7 @@ export default {
       const maxLegalX = this.viewWidth - this.paddingRight;
       const minLegalY = this.paddingTop;
       this.chartipData = this.xValueMap[time].data;
-      this.chartip.show({ offsetX, offsetY: mouse.offsetY }, minLegalY, maxLegalX);
+      this.chartip.show({ offsetX, offsetY: mouse.offsetY }, minLegalY, maxLegalX, this.paddingRight);
 
       if (!this.solid) {
         this.dots = dots;
