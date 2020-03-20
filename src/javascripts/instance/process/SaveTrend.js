@@ -16,12 +16,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setSavetrendDrawer"]),
+    ...mapMutations(["setSaveTrendModal"]),
 
     ...mapActions(["saveProcessTrend"]),
 
     closeSaveTrendModal() {
-      this.setSavetrendDrawer({ status: false });
+      this.setSaveTrendModal({ status: false });
     }
   },
 

@@ -10,7 +10,7 @@ const { mapMethods, mapWatch, handleMounted } =
 const { mapMethods: mapMethodsProcesses, mapWatch: mapWatchProcesses, handleMounted: handleMountedProcesses } =
   utils.drawerRouteFactory("drawerQueryKeyProcesses", "processesDrawer", "processes", "setProcessesDrawer");
 const { mapMethods: mapMethodsSaveTrend, mapWatch: mapWatchSaveTrend, handleMounted: handleMountedSaveTrend } =
-  utils.modalRouteFactory("modalQueryKeySaveTrend", "saveTrendModal", "saveTrend", "setSavetrendDrawer");
+  utils.modalRouteFactory("modalQueryKeySaveTrend", "saveTrendModal", "saveTrend", "setSaveTrendModal");
 
 export default {
   created() {
@@ -35,7 +35,7 @@ export default {
 
     ...mapMethodsSaveTrend("handleSaveTrendModal"),
 
-    ...mapMutationsProcess(["setXprofilerStatusModal", "setProcessTrendDrawer", "setProcessesDrawer", "setSavetrendDrawer"]),
+    ...mapMutationsProcess(["setXprofilerStatusModal", "setProcessTrendDrawer", "setProcessesDrawer", "setSaveTrendModal"]),
 
     updateSelectedProcess(data) {
       this.processData = data;
@@ -71,7 +71,7 @@ export default {
       }
 
       if (type === "saveProcessData") {
-        this.setSavetrendDrawer({ status: true, processData: this.processData });
+        this.setSaveTrendModal({ status: true, processData: this.processData });
       }
     },
 
@@ -80,7 +80,7 @@ export default {
     },
 
     closeSaveTrendModal() {
-      this.setSavetrendDrawer({ status: false });
+      this.setSaveTrendModal({ status: false });
     },
   },
 
