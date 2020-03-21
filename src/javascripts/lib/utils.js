@@ -4,6 +4,7 @@ import { createNamespacedHelpers } from "vuex";
 import axios from "axios";
 import { tags } from "../config";
 
+const routeCanBackMap = {};
 const CancelToken = axios.CancelToken;
 
 let lang = "ch";
@@ -294,22 +295,25 @@ function routeFactory(openName, closeName, ...args) {
 
     mapWatch: {
       [flag]() {
+        const queryKey = this[queryKeyName];
         if (this[flag]) {
           const route = this.$route;
-          if (route.query[this[queryKeyName]] === tag) {
+          if (route.query[queryKey] === tag) {
             return;
           }
-          const query = Object.assign({}, route.query, { [this[queryKeyName]]: tag });
+          const query = Object.assign({}, route.query, { [queryKey]: tag });
           this.$router.push({ path: route.path, query });
+          routeCanBackMap[queryKey] = true;
         } else {
           const route = this.$route;
-          if (route.query[this[queryKeyName]] === tag) {
-            if (this.$store.state.first) {
+          if (route.query[queryKey] === tag) {
+            if (!routeCanBackMap[queryKey] && this.$store.state.first) {
               this.$store.commit("first", false);
-              const query = Object.assign({}, route.query, { [this[queryKeyName]]: undefined });
+              const query = Object.assign({}, route.query, { [queryKey]: undefined });
               this.$router.push({ path: route.path, query });
             } else {
               this.$router.go(-1);
+              routeCanBackMap[queryKey] = false;
             }
           }
         }
