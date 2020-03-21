@@ -71,8 +71,8 @@ import { tags } from "../../javascripts/config";
 import { getTag } from "../../javascripts/lib/utils";
 
 // instance component
-import xProcessData from "./process/Data";
-import xSystemData from "./SystemData";
+import xProcess from "./process/ProcessIndex";
+import xSystem from "./system/SystemIndex";
 import xErrorLog from "./ErrorLog";
 import xModuleRisk from "./ModuleRisk";
 import xCheckAgent from "./CheckAgent";
@@ -86,8 +86,8 @@ const indexData = Object.assign(
     },
 
     components: {
-      "x-process-data": xProcessData,
-      "x-system-data": xSystemData,
+      "x-process": xProcess,
+      "x-system": xSystem,
       "x-error-log": xErrorLog,
       "x-module-risk": xModuleRisk,
       "x-check-agent": xCheckAgent

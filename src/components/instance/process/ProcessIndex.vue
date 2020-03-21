@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import processModule from "../../../javascripts/instance/process/Data";
+import processModule from "../../../javascripts/instance/process/ProcessIndex";
 
 // module
 import xLine from "./Line";
