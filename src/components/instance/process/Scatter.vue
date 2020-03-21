@@ -43,35 +43,32 @@
 <script>
 import scatModule from "../../../javascripts/instance/process/Scatter";
 
-const scatData = Object.assign(
-  {
-    props: {
-      display: Boolean,
-      processes: Array
-    },
-
-    data() {
-      return {
-        scatters: [
-          {
-            fields: ["HEAP", "CPU"],
-            xAxisUnit: ["%", "-3.8em"],
-            yAxisUnit: ["%", "0"]
-          },
-          {
-            fields: ["RSS", "GC"],
-            xAxisUnit: ["MB", "-3.8em"],
-            yAxisUnit: ["%", "0"]
-          }
-        ],
-        scatterContent: [{ label: "命令", value: "cmd" }]
-      };
-    }
+export default {
+  props: {
+    display: Boolean,
+    processes: Array
   },
-  scatModule
-);
 
-export default scatData;
+  data() {
+    return {
+      scatters: [
+        {
+          fields: ["HEAP", "CPU"],
+          xAxisUnit: ["%", "-3.8em"],
+          yAxisUnit: ["%", "0"]
+        },
+        {
+          fields: ["RSS", "GC"],
+          xAxisUnit: ["MB", "-3.8em"],
+          yAxisUnit: ["%", "0"]
+        }
+      ],
+      scatterContent: [{ label: "命令", value: "cmd" }]
+    };
+  },
+
+  ...scatModule
+};
 </script>
 
 <style scoped>

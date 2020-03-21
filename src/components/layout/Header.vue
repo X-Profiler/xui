@@ -25,31 +25,28 @@ import headerModule from "../../javascripts/layout/Header";
 import { tags } from "../../javascripts/config";
 import { getTag } from "../../javascripts/lib/utils";
 
-const headerData = Object.assign(
-  {
-    props: {
-      active: String,
-      owner: Boolean
-    },
-
-    data() {
-      return {
-        user: {
-          name: ""
-        },
-        navActions: [
-          { active: false, label: getTag(tags.docs), value: "docs", href: "" },
-          { active: false, label: getTag(tags.console), value: "console" },
-          // { active: false, label: getTag(tags.lang), value: "lang" },
-          { active: false, label: "user", value: "user", href: "" }
-        ]
-      };
-    }
+export default {
+  props: {
+    active: String,
+    owner: Boolean
   },
-  headerModule
-);
 
-export default headerData;
+  data() {
+    return {
+      user: {
+        name: ""
+      },
+      navActions: [
+        { active: false, label: getTag(tags.docs), value: "docs", href: "" },
+        { active: false, label: getTag(tags.console), value: "console" },
+        // { active: false, label: getTag(tags.lang), value: "lang" },
+        { active: false, label: "user", value: "user", href: "" }
+      ]
+    };
+  },
+
+  ...headerModule
+};
 </script>
 
 <style scoped>

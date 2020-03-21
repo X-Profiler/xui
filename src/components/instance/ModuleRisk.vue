@@ -5,7 +5,7 @@
 <script>
 import riskModule from "../../javascripts/instance/ModuleRisk";
 
-const riskData = Object.assign({}, riskModule);
-
-export default riskData;
+export default {
+  ...riskModule
+};
 </script>

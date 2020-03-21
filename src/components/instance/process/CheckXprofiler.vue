@@ -73,20 +73,17 @@
 <script>
 import checkXprofilerModule from "../../../javascripts/instance/process/CheckXprofiler";
 
-const checkXprofilerData = Object.assign(
-  {
-    data() {
-      return {
-        modalQueryKey: "check-xprofiler",
-        healthyColor: "#2a9446",
-        wrongColor: "#e33900"
-      };
-    }
+export default {
+  data() {
+    return {
+      modalQueryKey: "check-xprofiler",
+      healthyColor: "#2a9446",
+      wrongColor: "#e33900"
+    };
   },
-  checkXprofilerModule
-);
 
-export default checkXprofilerData;
+  ...checkXprofilerModule
+};
 </script>
 
 <style scoped>

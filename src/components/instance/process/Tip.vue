@@ -27,23 +27,20 @@ import tipModule from "../../../javascripts/instance/process/Tip";
 import { tags } from "../../../javascripts/config";
 import { getTag } from "../../../javascripts/lib/utils";
 
-const tipData = Object.assign(
-  {
-    data() {
-      return {
-        processData: undefined,
-        tooltipContent: [
-          { key: getTag(tags.cmd), value: "cmd" },
-          { key: getTag(tags.startTime), value: "startTimeFmt" },
-          { key: getTag(tags.updateTime), value: "updateTimeFmt" }
-        ]
-      };
-    }
+export default {
+  data() {
+    return {
+      processData: undefined,
+      tooltipContent: [
+        { key: getTag(tags.cmd), value: "cmd" },
+        { key: getTag(tags.startTime), value: "startTimeFmt" },
+        { key: getTag(tags.updateTime), value: "updateTimeFmt" }
+      ]
+    };
   },
-  tipModule
-);
 
-export default tipData;
+  ...tipModule
+};
 </script>
 
 <style scoped>

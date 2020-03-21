@@ -25,54 +25,51 @@ import siderModule from "../../javascripts/layout/Sider";
 import { tags } from "../../javascripts/config";
 import { getTag } from "../../javascripts/lib/utils";
 
-const siderData = Object.assign(
-  {
-    props: {
-      active: String,
-      owner: Boolean
-    },
-
-    data() {
-      return {
-        menuGroup: [
-          {
-            label: getTag(tags.instance),
-            value: "instance",
-            icon: "md-cloud",
-            active: false
-          },
-          {
-            label: getTag(tags.file),
-            value: "file",
-            icon: "md-folder",
-            active: false
-          },
-          {
-            label: getTag(tags.team),
-            value: "team",
-            icon: "md-people",
-            active: false
-          },
-          {
-            label: getTag(tags.alarm),
-            value: "alarm",
-            icon: "ios-alarm",
-            active: false
-          },
-          {
-            label: getTag(tags.settings),
-            value: "setting",
-            icon: "md-settings",
-            active: false
-          }
-        ]
-      };
-    }
+export default {
+  props: {
+    active: String,
+    owner: Boolean
   },
-  siderModule
-);
 
-export default siderData;
+  data() {
+    return {
+      menuGroup: [
+        {
+          label: getTag(tags.instance),
+          value: "instance",
+          icon: "md-cloud",
+          active: false
+        },
+        {
+          label: getTag(tags.file),
+          value: "file",
+          icon: "md-folder",
+          active: false
+        },
+        {
+          label: getTag(tags.team),
+          value: "team",
+          icon: "md-people",
+          active: false
+        },
+        {
+          label: getTag(tags.alarm),
+          value: "alarm",
+          icon: "ios-alarm",
+          active: false
+        },
+        {
+          label: getTag(tags.settings),
+          value: "setting",
+          icon: "md-settings",
+          active: false
+        }
+      ]
+    };
+  },
+
+  ...siderModule
+};
 </script>
 
 <style scoped>

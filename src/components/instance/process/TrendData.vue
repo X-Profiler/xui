@@ -51,29 +51,26 @@
 <script>
 import trendModule from "../../../javascripts/instance/process/TrendData";
 
-const trendData = Object.assign(
-  {
-    props: {
-      type: String,
-      title: String,
-      solid: Boolean
-    },
-
-    data() {
-      return {
-        loading: false,
-        loadError: undefined,
-        trendData: [],
-        trendStatus: {},
-        limit: undefined,
-        selectedData: {}
-      };
-    }
+export default {
+  props: {
+    type: String,
+    title: String,
+    solid: Boolean
   },
-  trendModule
-);
 
-export default trendData;
+  data() {
+    return {
+      loading: false,
+      loadError: undefined,
+      trendData: [],
+      trendStatus: {},
+      limit: undefined,
+      selectedData: {}
+    };
+  },
+
+  ...trendModule
+};
 </script>
 
 <style scoped>

@@ -42,52 +42,49 @@ import xTeam from "./team/Index";
 import xAlarm from "./alarm/Index";
 import xSetting from "./setting/Index";
 
-const dashboardData = Object.assign(
-  {
-    components: {
-      "x-header": xHeader,
-      "x-sider": xSider,
-      "x-instance": xInstance,
-      "x-file": xFile,
-      "x-team": xTeam,
-      "x-alarm": xAlarm,
-      "x-setting": xSetting
-    },
-
-    data() {
-      return {
-        appName: getTag(tags.nameUnknown),
-        currentUserIsOwner: false,
-        menuTab: null,
-        activeContent: {},
-        contentGroup: [
-          {
-            component: "x-instance",
-            value: "instance",
-            title: getTag(tags.instanceTitle)
-          },
-          {
-            component: "x-file",
-            value: "file",
-            title: getTag(tags.fileTitle)
-          },
-          { component: "x-team", value: "team", title: getTag(tags.teamTitle) },
-          {
-            component: "x-alarm",
-            value: "alarm",
-            title: getTag(tags.alarmTitle)
-          },
-          {
-            component: "x-setting",
-            value: "setting",
-            title: getTag(tags.settingTitle)
-          }
-        ]
-      };
-    }
+export default {
+  components: {
+    "x-header": xHeader,
+    "x-sider": xSider,
+    "x-instance": xInstance,
+    "x-file": xFile,
+    "x-team": xTeam,
+    "x-alarm": xAlarm,
+    "x-setting": xSetting
   },
-  dashboardModule
-);
 
-export default dashboardData;
+  data() {
+    return {
+      appName: getTag(tags.nameUnknown),
+      currentUserIsOwner: false,
+      menuTab: null,
+      activeContent: {},
+      contentGroup: [
+        {
+          component: "x-instance",
+          value: "instance",
+          title: getTag(tags.instanceTitle)
+        },
+        {
+          component: "x-file",
+          value: "file",
+          title: getTag(tags.fileTitle)
+        },
+        { component: "x-team", value: "team", title: getTag(tags.teamTitle) },
+        {
+          component: "x-alarm",
+          value: "alarm",
+          title: getTag(tags.alarmTitle)
+        },
+        {
+          component: "x-setting",
+          value: "setting",
+          title: getTag(tags.settingTitle)
+        }
+      ]
+    };
+  },
+
+  ...dashboardModule
+};
 </script>

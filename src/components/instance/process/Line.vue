@@ -35,26 +35,23 @@
 import Tip from "./Tip";
 import lineModule from "../../../javascripts/instance/process/Line";
 
-const lineData = Object.assign(
-  {
-    props: {
-      processes: Array
-    },
-
-    components: {
-      "x-tip": Tip
-    },
-
-    data() {
-      return {
-        times: []
-      };
-    }
+export default {
+  props: {
+    processes: Array
   },
-  lineModule
-);
 
-export default lineData;
+  components: {
+    "x-tip": Tip
+  },
+
+  data() {
+    return {
+      times: []
+    };
+  },
+
+  ...lineModule
+};
 </script>
 
 <style scoped>

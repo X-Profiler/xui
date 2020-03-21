@@ -103,27 +103,24 @@ import xPanel from "./Panel";
 import xCatalogue from "./Catalogue";
 import xScatter from "./Scatter";
 
-const processData = Object.assign(
-  {
-    components: {
-      "x-line": xLine,
-      "x-panel": xPanel,
-      "x-catalogue": xCatalogue,
-      "x-scatter": xScatter
-    },
-
-    data() {
-      return {
-        selectedPid: undefined,
-        xProcesses: [],
-        nessaryQueryArgs: ["tab", "agentId"]
-      };
-    }
+export default {
+  components: {
+    "x-line": xLine,
+    "x-panel": xPanel,
+    "x-catalogue": xCatalogue,
+    "x-scatter": xScatter
   },
-  processModule
-);
 
-export default processData;
+  data() {
+    return {
+      selectedPid: undefined,
+      xProcesses: [],
+      nessaryQueryArgs: ["tab", "agentId"]
+    };
+  },
+
+  ...processModule
+};
 </script>
 
 <style scoped>

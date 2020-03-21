@@ -5,7 +5,7 @@
 <script>
 import errorLogModule from "../../javascripts/instance/ErrorLog";
 
-const errorLogData = Object.assign({}, errorLogModule);
-
-export default errorLogData;
+export default {
+  ...errorLogModule
+};
 </script>
