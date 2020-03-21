@@ -13,9 +13,9 @@
 <script>
 import systemModule from "../../../javascripts/instance/system/SystemIndex";
 
-const systemData = Object.assign({}, systemModule);
-
-export default systemData;
+export default {
+  ...systemModule
+};
 </script>
 
 <style scoped>

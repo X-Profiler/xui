@@ -28,20 +28,17 @@
 <script>
 import checkAgentModule from "../../javascripts/instance/CheckAgent";
 
-const checkAgentData = Object.assign(
-  {
-    data() {
-      return {
-        checkAgentColumns: [
-          { title: "类型", value: "type", width: "130" },
-          { title: "信息详情", value: "value" }
-        ],
-        modalQueryKey: "check-agent"
-      };
-    }
+export default {
+  data() {
+    return {
+      checkAgentColumns: [
+        { title: "类型", value: "type", width: "130" },
+        { title: "信息详情", value: "value" }
+      ],
+      modalQueryKey: "check-agent"
+    };
   },
-  checkAgentModule
-);
 
-export default checkAgentData;
+  ...checkAgentModule
+};
 </script>

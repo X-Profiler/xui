@@ -69,28 +69,25 @@ import xApps from "./Apps";
 import xEggLogo from "./logo/Egg";
 import consoleModule from "../javascripts/Console";
 
-const consoleData = Object.assign(
-  {
-    components: {
-      "x-header": xHeader,
-      "x-apps": xApps,
-      "x-egg-logo": xEggLogo
-    },
-
-    data() {
-      return {
-        selectedType: undefined,
-        newAppName: "",
-        newAppCreationLoading: false,
-        valueWhiteList: { selectedType: ["myApps", "joinedApps"] },
-        nessaryQueryArgs: ["type"]
-      };
-    }
+export default {
+  components: {
+    "x-header": xHeader,
+    "x-apps": xApps,
+    "x-egg-logo": xEggLogo
   },
-  consoleModule
-);
 
-export default consoleData;
+  data() {
+    return {
+      selectedType: undefined,
+      newAppName: "",
+      newAppCreationLoading: false,
+      valueWhiteList: { selectedType: ["myApps", "joinedApps"] },
+      nessaryQueryArgs: ["type"]
+    };
+  },
+
+  ...consoleModule
+};
 </script>
 
 <style scoped>

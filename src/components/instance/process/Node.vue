@@ -33,22 +33,19 @@
 <script>
 import NodeModule from "../../../javascripts/instance/process/Node";
 
-const NodeData = Object.assign(
-  {
-    data() {
-      return {
-        processColumns: [
-          { title: "PID", value: "pid", width: "90" },
-          { title: "进程启动命令", value: "command" },
-          { title: "操作", value: "options", width: "110", align: "center" }
-        ]
-      };
-    }
+export default {
+  data() {
+    return {
+      processColumns: [
+        { title: "PID", value: "pid", width: "90" },
+        { title: "进程启动命令", value: "command" },
+        { title: "操作", value: "options", width: "110", align: "center" }
+      ]
+    };
   },
-  NodeModule
-);
 
-export default NodeData;
+  ...NodeModule
+};
 </script>
 
 <style scoped>

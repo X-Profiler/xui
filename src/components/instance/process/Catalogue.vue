@@ -25,31 +25,28 @@
 <script>
 import catalogueModule from "../../../javascripts/instance/process/Catalogue";
 
-const catalogueData = Object.assign(
-  {
-    props: {
-      processes: Array
-    },
-
-    data() {
-      return {
-        processData: {},
-        catalogues: [
-          { label: "CPU", value: "cpu", fmt: "cpuUsageFmt" },
-          { label: "堆内存", value: "heapMemory", fmt: "heapUsageFmt" },
-          { label: "物理内存 (RSS)", value: "rss", fmt: "rssFmt" },
-          { label: "GC", value: "gc", fmt: "gcUsageFmt" },
-          { label: "定时器数量", value: "timer", fmt: "timers" },
-          { label: "TCP 连接数", value: "tcp", fmt: "tcpHandles" },
-          { label: "UDP 连接数", value: "udp", fmt: "udpHandles" }
-        ]
-      };
-    }
+export default {
+  props: {
+    processes: Array
   },
-  catalogueModule
-);
 
-export default catalogueData;
+  data() {
+    return {
+      processData: {},
+      catalogues: [
+        { label: "CPU", value: "cpu", fmt: "cpuUsageFmt" },
+        { label: "堆内存", value: "heapMemory", fmt: "heapUsageFmt" },
+        { label: "物理内存 (RSS)", value: "rss", fmt: "rssFmt" },
+        { label: "GC", value: "gc", fmt: "gcUsageFmt" },
+        { label: "定时器数量", value: "timer", fmt: "timers" },
+        { label: "TCP 连接数", value: "tcp", fmt: "tcpHandles" },
+        { label: "UDP 连接数", value: "udp", fmt: "udpHandles" }
+      ]
+    };
+  },
+
+  ...catalogueModule
+};
 </script>
 
 <style scoped>

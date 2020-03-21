@@ -77,62 +77,59 @@ import xErrorLog from "./ErrorLog";
 import xModuleRisk from "./ModuleRisk";
 import xCheckAgent from "./CheckAgent";
 
-const indexData = Object.assign(
-  {
-    props: {
-      appName: String,
-      title: String,
-      currentUserIsOwner: Boolean
-    },
-
-    components: {
-      "x-process": xProcess,
-      "x-system": xSystem,
-      "x-error-log": xErrorLog,
-      "x-module-risk": xModuleRisk,
-      "x-check-agent": xCheckAgent
-    },
-
-    data() {
-      return {
-        selectedAgentId: undefined,
-        selectedTab: undefined,
-        agents: [],
-        placeholder: getTag(tags.choseInstance),
-        notFoundText: getTag(tags.noAgent),
-        instanceTabs: [
-          {
-            label: getTag(tags.processTrend),
-            icon: "md-skip-forward",
-            value: "process"
-          },
-          {
-            label: getTag(tags.systemData),
-            icon: "md-desktop",
-            value: "system"
-          },
-          {
-            label: getTag(tags.errorLog),
-            icon: "md-warning",
-            value: "error_log"
-          },
-          {
-            label: getTag(tags.moduleRisk),
-            icon: "md-nuclear",
-            value: "module_risk"
-          }
-        ],
-        valueWhiteList: {
-          selectedTab: ["process", "system", "error_log", "module_risk"]
-        },
-        nessaryQueryArgs: ["tab", "agentId"]
-      };
-    }
+export default {
+  props: {
+    appName: String,
+    title: String,
+    currentUserIsOwner: Boolean
   },
-  indexModule
-);
 
-export default indexData;
+  components: {
+    "x-process": xProcess,
+    "x-system": xSystem,
+    "x-error-log": xErrorLog,
+    "x-module-risk": xModuleRisk,
+    "x-check-agent": xCheckAgent
+  },
+
+  data() {
+    return {
+      selectedAgentId: undefined,
+      selectedTab: undefined,
+      agents: [],
+      placeholder: getTag(tags.choseInstance),
+      notFoundText: getTag(tags.noAgent),
+      instanceTabs: [
+        {
+          label: getTag(tags.processTrend),
+          icon: "md-skip-forward",
+          value: "process"
+        },
+        {
+          label: getTag(tags.systemData),
+          icon: "md-desktop",
+          value: "system"
+        },
+        {
+          label: getTag(tags.errorLog),
+          icon: "md-warning",
+          value: "error_log"
+        },
+        {
+          label: getTag(tags.moduleRisk),
+          icon: "md-nuclear",
+          value: "module_risk"
+        }
+      ],
+      valueWhiteList: {
+        selectedTab: ["process", "system", "error_log", "module_risk"]
+      },
+      nessaryQueryArgs: ["tab", "agentId"]
+    };
+  },
+
+  ...indexModule
+};
 </script>
 
 <style scoped>

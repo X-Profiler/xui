@@ -119,64 +119,61 @@ import appsModule from "../javascripts/Apps";
 import { tags } from "../javascripts/config";
 import { getTag } from "../javascripts/lib/utils";
 
-const appsData = Object.assign(
-  {
-    props: {
-      type: String
-    },
-
-    data() {
-      return {
-        colors: [
-          "#2d8cf0",
-          "#2db7f5",
-          "#19be6b",
-          "#5cadff",
-          "#ff9900",
-          "#2b85e4",
-          "#ed4014",
-          "#c5c8ce"
-        ],
-        functions: [
-          {
-            label: getTag(tags.instance),
-            value: "instance",
-            icon: "md-cloud"
-          },
-          { label: getTag(tags.file), value: "file", icon: "md-folder" },
-          { label: getTag(tags.team), value: "team", icon: "md-people" },
-          { label: getTag(tags.alarm), value: "alarm", icon: "ios-alarm" },
-          {
-            label: getTag(tags.settings),
-            value: "setting",
-            icon: "md-settings",
-            disabled: "joinedApps"
-          }
-        ],
-        metrics: [
-          { label: getTag(tags.instanceCount), value: "instanceCount" },
-          { label: getTag(tags.rsikCount), value: "riskCount" },
-          { label: getTag(tags.alarmCount), value: "alarmCount" }
-        ],
-        mainMetrics: [
-          { label: getTag(tags.processCpuUsage), value: "processCpuUsage" },
-          {
-            label: getTag(tags.processMemoryUsage),
-            value: "processMemoryUsage"
-          },
-          { label: getTag(tags.systemCpuUsage), value: "systemCpuUsage" },
-          { label: getTag(tags.systemMemoryUsage), value: "systemMemoryUsage" },
-          { label: getTag(tags.diskUsage), value: "diskUsage" }
-        ],
-        appLoading: false,
-        apps: []
-      };
-    }
+export default {
+  props: {
+    type: String
   },
-  appsModule
-);
 
-export default appsData;
+  data() {
+    return {
+      colors: [
+        "#2d8cf0",
+        "#2db7f5",
+        "#19be6b",
+        "#5cadff",
+        "#ff9900",
+        "#2b85e4",
+        "#ed4014",
+        "#c5c8ce"
+      ],
+      functions: [
+        {
+          label: getTag(tags.instance),
+          value: "instance",
+          icon: "md-cloud"
+        },
+        { label: getTag(tags.file), value: "file", icon: "md-folder" },
+        { label: getTag(tags.team), value: "team", icon: "md-people" },
+        { label: getTag(tags.alarm), value: "alarm", icon: "ios-alarm" },
+        {
+          label: getTag(tags.settings),
+          value: "setting",
+          icon: "md-settings",
+          disabled: "joinedApps"
+        }
+      ],
+      metrics: [
+        { label: getTag(tags.instanceCount), value: "instanceCount" },
+        { label: getTag(tags.rsikCount), value: "riskCount" },
+        { label: getTag(tags.alarmCount), value: "alarmCount" }
+      ],
+      mainMetrics: [
+        { label: getTag(tags.processCpuUsage), value: "processCpuUsage" },
+        {
+          label: getTag(tags.processMemoryUsage),
+          value: "processMemoryUsage"
+        },
+        { label: getTag(tags.systemCpuUsage), value: "systemCpuUsage" },
+        { label: getTag(tags.systemMemoryUsage), value: "systemMemoryUsage" },
+        { label: getTag(tags.diskUsage), value: "diskUsage" }
+      ],
+      appLoading: false,
+      apps: []
+    };
+  },
+
+  ...appsModule
+};
 </script>
 
 <style scoped>

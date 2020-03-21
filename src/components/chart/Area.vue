@@ -217,58 +217,55 @@
 <script>
 import areaModule from "../../javascripts/chart/Area";
 
-const areaData = Object.assign(
-  {
-    props: {
-      xAxis: [String, Array],
-      yAxis: Array,
-      yAxisUnit: String,
-      data: Array,
-      xAxisScaleCount: Number,
-      yAxisScaleCount: Number,
-      noDataText: String,
-      showStatus: Boolean,
-      solid: Boolean
-    },
-
-    data() {
-      return {
-        defaultXAxisScaleCount: 8,
-        defaultYAxisScaleCount: 4,
-        viewWidth: 0,
-        viewHeight: 250,
-        paddingLeft: 40,
-        paddingRight: 35,
-        paddingTop: 20,
-        paddingBottom: 40,
-        intersectionOffsetX: 0,
-        pathWidthMap: {},
-        xPointMap: {},
-        xValueMap: {},
-        xPoint: [],
-        dots: [],
-        chartipData: {},
-        single: undefined,
-        labelKey: "label-",
-        defaultAreaColor: [
-          "#2b85e4",
-          "#5cadff",
-          "#2196f3",
-          "#6a5acd",
-          "#9083e0",
-          "#673ab7",
-          "#19be6b",
-          "#1e9652"
-        ],
-        defaultColors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"],
-        intersectionFixed: false
-      };
-    }
+export default {
+  props: {
+    xAxis: [String, Array],
+    yAxis: Array,
+    yAxisUnit: String,
+    data: Array,
+    xAxisScaleCount: Number,
+    yAxisScaleCount: Number,
+    noDataText: String,
+    showStatus: Boolean,
+    solid: Boolean
   },
-  areaModule
-);
 
-export default areaData;
+  data() {
+    return {
+      defaultXAxisScaleCount: 8,
+      defaultYAxisScaleCount: 4,
+      viewWidth: 0,
+      viewHeight: 250,
+      paddingLeft: 40,
+      paddingRight: 35,
+      paddingTop: 20,
+      paddingBottom: 40,
+      intersectionOffsetX: 0,
+      pathWidthMap: {},
+      xPointMap: {},
+      xValueMap: {},
+      xPoint: [],
+      dots: [],
+      chartipData: {},
+      single: undefined,
+      labelKey: "label-",
+      defaultAreaColor: [
+        "#2b85e4",
+        "#5cadff",
+        "#2196f3",
+        "#6a5acd",
+        "#9083e0",
+        "#673ab7",
+        "#19be6b",
+        "#1e9652"
+      ],
+      defaultColors: ["#2db7f5", "#5cadff", "#2b85e4", "#1e8449"],
+      intersectionFixed: false
+    };
+  },
+
+  ...areaModule
+};
 </script>
 
 <style scoped>

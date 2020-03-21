@@ -144,63 +144,60 @@ import xTrend from "./Trend";
 import xSaveTrend from "./SaveTrend";
 import xTakeAction from "./TakeAction";
 
-const panelData = Object.assign(
-  {
-    props: {
-      processes: Array
-    },
-
-    components: {
-      "x-node": xNode,
-      "x-check-xprofiler": xCheckXprofiler,
-      "x-trend": xTrend,
-      "x-save-trend": xSaveTrend,
-      "x-take-action": xTakeAction
-    },
-
-    data() {
-      return {
-        processData: {
-          pid: "未知"
-        },
-        metrics: [
-          { label: getTag(tags.startTime), value: "startTimeFmt", time: true },
-          {
-            label: getTag(tags.updateTime),
-            value: "updateTimeFmt",
-            time: true
-          },
-          { label: getTag(tags.cpuUsage), value: "cpuUsageFmt" },
-          { label: getTag(tags.heapMemory), value: "heapUsageFmt" },
-          { label: getTag(tags.gcUsage), value: "gcUsageFmt" },
-          { label: getTag(tags.rssUsage), value: "rssFmt" },
-          { label: getTag(tags.uvHandles), value: "uvHandles" },
-          { label: getTag(tags.timers), value: "timers" },
-          { label: getTag(tags.tcpHandles), value: "tcpHandles" },
-          { label: getTag(tags.udpHandles), value: "udpHandles" }
-        ],
-        detailButtons: [
-          { label: getTag(tags.processDataTrend), value: "processTrend" },
-          { label: getTag(tags.saveProcessData), value: "saveProcessData" }
-        ],
-        actionButtons: [
-          { label: getTag(tags.cpuprofile), value: "cpuprofile" },
-          { label: getTag(tags.heapsnapshot), value: "heapsnapshot" },
-          { label: getTag(tags.heapprofile), value: "heapprofile" },
-          { label: getTag(tags.gcprofile), value: "gcprofile" },
-          { label: getTag(tags.diag), value: "diag" }
-        ],
-        drawerQueryKey: "process-trend",
-        drawerQueryKeyProcesses: "show-processes",
-        modalQueryKeySaveTrend: "save-trend-data",
-        modalQueryKeyActions: "take-actions"
-      };
-    }
+export default {
+  props: {
+    processes: Array
   },
-  panelModule
-);
 
-export default panelData;
+  components: {
+    "x-node": xNode,
+    "x-check-xprofiler": xCheckXprofiler,
+    "x-trend": xTrend,
+    "x-save-trend": xSaveTrend,
+    "x-take-action": xTakeAction
+  },
+
+  data() {
+    return {
+      processData: {
+        pid: "未知"
+      },
+      metrics: [
+        { label: getTag(tags.startTime), value: "startTimeFmt", time: true },
+        {
+          label: getTag(tags.updateTime),
+          value: "updateTimeFmt",
+          time: true
+        },
+        { label: getTag(tags.cpuUsage), value: "cpuUsageFmt" },
+        { label: getTag(tags.heapMemory), value: "heapUsageFmt" },
+        { label: getTag(tags.gcUsage), value: "gcUsageFmt" },
+        { label: getTag(tags.rssUsage), value: "rssFmt" },
+        { label: getTag(tags.uvHandles), value: "uvHandles" },
+        { label: getTag(tags.timers), value: "timers" },
+        { label: getTag(tags.tcpHandles), value: "tcpHandles" },
+        { label: getTag(tags.udpHandles), value: "udpHandles" }
+      ],
+      detailButtons: [
+        { label: getTag(tags.processDataTrend), value: "processTrend" },
+        { label: getTag(tags.saveProcessData), value: "saveProcessData" }
+      ],
+      actionButtons: [
+        { label: getTag(tags.cpuprofile), value: "cpuprofile" },
+        { label: getTag(tags.heapsnapshot), value: "heapsnapshot" },
+        { label: getTag(tags.heapprofile), value: "heapprofile" },
+        { label: getTag(tags.gcprofile), value: "gcprofile" },
+        { label: getTag(tags.diag), value: "diag" }
+      ],
+      drawerQueryKey: "process-trend",
+      drawerQueryKeyProcesses: "show-processes",
+      modalQueryKeySaveTrend: "save-trend-data",
+      modalQueryKeyActions: "take-actions"
+    };
+  },
+
+  ...panelModule
+};
 </script>
 
 <style scoped>

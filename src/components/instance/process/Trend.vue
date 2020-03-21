@@ -65,48 +65,45 @@
 import trendModule from "../../../javascripts/instance/process/Trend";
 import xTrendData from "./TrendData";
 
-const trendData = Object.assign(
-  {
-    components: {
-      "x-trend-data": xTrendData
-    },
-
-    data() {
-      return {
-        bts: [
-          { label: "CPU Profile", value: "cpuprofile", ghost: true },
-          { label: "Heap Profile", value: "heapprofile", ghost: true },
-          { label: "GC 追踪", value: "gcprofile", ghost: true },
-          { label: "堆快照", value: "heapsnapshot", ghost: true },
-          { label: "Node.js 实时诊断", value: "diag", ghost: true }
-        ],
-
-        chartGroup: [
-          [
-            { label: "堆内存趋势", value: "heapTrend" },
-            { label: "CPU 趋势", value: "cpuTrend" }
-          ],
-          [{ label: "堆空间组成", value: "heapSpaceTrend", solid: true }],
-          [
-            { label: "GC 趋势", value: "gcTrend" },
-            { label: "Libuv Active Handles 趋势", value: "uvTrend" }
-          ],
-          [
-            { label: "QPS 趋势", value: "qpsTrend" },
-            { label: "Timer 趋势", value: "timerTrend" }
-          ],
-          [
-            { label: "TCP 趋势", value: "tcpTrend" },
-            { label: "UDP 趋势", value: "udpTrend" }
-          ]
-        ]
-      };
-    }
+export default {
+  components: {
+    "x-trend-data": xTrendData
   },
-  trendModule
-);
 
-export default trendData;
+  data() {
+    return {
+      bts: [
+        { label: "CPU Profile", value: "cpuprofile", ghost: true },
+        { label: "Heap Profile", value: "heapprofile", ghost: true },
+        { label: "GC 追踪", value: "gcprofile", ghost: true },
+        { label: "堆快照", value: "heapsnapshot", ghost: true },
+        { label: "Node.js 实时诊断", value: "diag", ghost: true }
+      ],
+
+      chartGroup: [
+        [
+          { label: "堆内存趋势", value: "heapTrend" },
+          { label: "CPU 趋势", value: "cpuTrend" }
+        ],
+        [{ label: "堆空间组成", value: "heapSpaceTrend", solid: true }],
+        [
+          { label: "GC 趋势", value: "gcTrend" },
+          { label: "Libuv Active Handles 趋势", value: "uvTrend" }
+        ],
+        [
+          { label: "QPS 趋势", value: "qpsTrend" },
+          { label: "Timer 趋势", value: "timerTrend" }
+        ],
+        [
+          { label: "TCP 趋势", value: "tcpTrend" },
+          { label: "UDP 趋势", value: "udpTrend" }
+        ]
+      ]
+    };
+  },
+
+  ...trendModule
+};
 </script>
 
 <style scoped>
