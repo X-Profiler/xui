@@ -14,6 +14,9 @@ export default {
     agentNodeProcesses: "/xapi/node_processes",
     xprofilerStatus: "/xapi/xprofiler_status",
     processTrend: "/xapi/process_trend",
-    action: "/xapi/action"
+    action: "/xapi/action",
+
+    // dashboard/instance/system
+    overview: "/xapi/system_overview"
   }
 };

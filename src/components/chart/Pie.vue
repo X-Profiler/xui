@@ -212,6 +212,7 @@ export default {
 
 .circle:hover {
   opacity: 0.85;
+  stroke-width: 22px;
 }
 
 .label {

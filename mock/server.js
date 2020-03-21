@@ -31,4 +31,7 @@ require("./mock_instance")(app);
 // dashboard/instance/process
 require("./mock_process")(app);
 
+// dashboard/instance/system
+require("./mock_system")(app);
+
 app.listen(7442);

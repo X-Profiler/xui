@@ -8,6 +8,7 @@ import i18n from "@/stores/i18n";
 import dashboard from "@/stores/dashboard";
 import instance from "@/stores/instance";
 import process from "@/stores/process";
+import system from "@/stores/system";
 
 export default {
   state: {
@@ -71,8 +72,12 @@ export default {
           ...instance,
 
           modules: {
-            "process": { // "dashboard/instance/instance"
+            "process": { // "dashboard/instance/process"
               ...process
+            },
+
+            "system": { // "dashboard/instance/system"
+              ...system
             }
           }
         }

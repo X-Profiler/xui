@@ -1,13 +1,9 @@
 <template>
   <div>
-    <div class="overview">
-      <div class="process-body-title">系统信息概览</div>
-      <x-overview class="overview-content"></x-overview>
-    </div>
+    <x-overview></x-overview>
 
     <div class="detail">
-      <div class="process-body-title">系统信息周期详情</div>
-      <x-detail-info class="detail-content"></x-detail-info>
+      <x-detail-info></x-detail-info>
     </div>
   </div>
 </template>
@@ -30,15 +26,5 @@ export default {
 <style scoped>
 .detail {
   margin-top: 15px;
-}
-
-.overview-content,
-.detail-content {
-  margin-top: 10px;
-}
-
-.process-body-title {
-  font-weight: bold;
-  text-align: left;
 }
 </style>
