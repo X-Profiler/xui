@@ -56,3 +56,8 @@
 .x-dropdown-li.selected {
   background-color: #eff1f4;
 }
+
+.section-title {
+  font-weight: bold;
+  text-align: left;
+}

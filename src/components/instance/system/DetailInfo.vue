@@ -1,5 +1,7 @@
 <template>
-  <div>system detail</div>
+  <div>
+    <div class="section-title">系统信息周期详情</div>
+  </div>
 </template>
 
 <script>

@@ -28,7 +28,7 @@
     <div class="data">
       <!-- process line -->
       <div class="process-line-body">
-        <div class="process-body-title">{{ lineTitle }}</div>
+        <div class="section-title">{{ lineTitle }}</div>
 
         <!-- loading -->
         <div style="text-align: center">
@@ -67,7 +67,7 @@
 
       <!-- show process scatter -->
       <div class="process-chart-body">
-        <div class="process-body-title">指标分布状况</div>
+        <div class="section-title">指标分布状况</div>
 
         <!-- loading -->
         <div style="text-align: center">
@@ -152,9 +152,5 @@ export default {
 
 .process-chart-body {
   margin-top: 15px;
-}
-
-.process-body-title {
-  font-weight: bold;
 }
 </style>
