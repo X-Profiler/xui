@@ -65,10 +65,10 @@ export default {
       let component = "";
       switch (this.selectedTab) {
         case "process":
-          component = "x-process-data";
+          component = "x-process";
           break;
         case "system":
-          component = "x-system-data";
+          component = "x-system";
           break;
         case "error_log":
           component = "x-error-log";
