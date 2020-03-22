@@ -69,7 +69,7 @@ export default {
       viewHeight: 0,
       paddingLeft: 0,
       paddingRight: 0,
-      paddingTop: 10,
+      paddingTop: 17,
       paddingBottom: 0,
       pieStrokeWidth: 11,
       radius: 91,
@@ -95,6 +95,19 @@ export default {
       if (descWidth) {
         this.descWidth = descWidth;
       }
+    },
+
+    getColor(percentage) {
+      let color = "";
+      if (percentage <= 60) {
+        color = "#2a9446";
+      } else if (percentage <= 85) {
+        color = "#db7c00";
+      } else {
+        color = "#e33900";
+      }
+
+      return color;
     }
   },
 
@@ -127,17 +140,7 @@ export default {
     },
 
     contentColor() {
-      const percentage = this.percentage;
-      let color = "";
-      if (percentage <= 60) {
-        color = "#2a9446";
-      } else if (percentage <= 85) {
-        color = "#db7c00";
-      } else {
-        color = "#e33900";
-      }
-
-      return color;
+      return this.getColor(this.percentage);
     },
 
     descStyle() {
@@ -147,7 +150,7 @@ export default {
 
       if (pieWidth && descWidth) {
         style += "left: " + (pieWidth - descWidth) / 2 + "px;";
-        style += "top: 135px";
+        style += "top: " + (this.cy + 30) + "px;";
       }
 
       return style;

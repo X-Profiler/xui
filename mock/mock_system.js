@@ -10,7 +10,16 @@ module.exports = app => {
     const agentId = req.query.agentId;
     console.log(`get app ${appId} agent ${agentId} system overview`);
 
-    const data = {};
+    const data = {
+      osCpu: 23,
+      osMem: 67,
+      maxDisk: 92,
+      disks: {
+        "/": 30,
+        "/opt": 92,
+        "/dev": 1
+      }
+    };
 
     setTimeout(() => res.send({ ok: true, data }), 600);
   });
