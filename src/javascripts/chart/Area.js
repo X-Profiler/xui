@@ -1,7 +1,7 @@
 "use strict";
 
 import * as moment from "moment";
-import { dichotomy, createLaterFunction } from "../lib/utils";
+import { dichotomy, createLaterFunction, isNumber } from "../lib/utils";
 
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -67,7 +67,7 @@ export default {
           }
         } else {
           for (const field of fileds) {
-            if (dt[field] && !isNaN(dt[field]) && dt[field] > max) {
+            if (isNumber(dt[field]) && dt[field] > max) {
               max = dt[field];
             }
           }
@@ -182,7 +182,7 @@ export default {
 
         for (const axis of yAxis) {
           const value = dt[axis];
-          if (value === null || isNaN(value)) {
+          if (!isNumber(value)) {
             if (group[axis].length) {
               results[axis].push(group[axis]);
             }

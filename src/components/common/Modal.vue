@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import { isNumber } from "../../javascripts/lib/utils";
+
 export default {
   data() {
     return {
@@ -105,7 +107,7 @@ export default {
       let style = "";
 
       let padding = 16;
-      if (this.padding === 0 || !isNaN(this.padding)) {
+      if (isNumber(this.padding)) {
         padding = this.padding;
       }
       style += "padding: " + padding + "px;";

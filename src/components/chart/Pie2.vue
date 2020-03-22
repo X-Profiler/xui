@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { isNumber } from "../../javascripts/lib/utils";
+
 export default {
   props: {
     title: String,
@@ -162,7 +164,7 @@ export default {
         (360 * (this.dashbase - this.bgOccupy)) / this.dashbase;
       const canRotate = 360 - cantRotate;
       let rotate = cantRotate / 2;
-      if (!percentage || isNaN(percentage)) {
+      if (!isNumber(percentage)) {
         return rotate;
       }
       rotate += (percentage / 100) * canRotate;
