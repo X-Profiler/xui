@@ -62,7 +62,7 @@ export default {
         state.xprofilerStatusModal = status;
       }
 
-      if (pid && !isNaN(pid)) {
+      if (utils.isNumber(pid)) {
         state.xprofilerCheckPid = pid;
       }
     },

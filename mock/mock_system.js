@@ -18,7 +18,18 @@ module.exports = app => {
         "/": 30,
         "/opt": 92,
         "/dev": 1
-      }
+      },
+      load1: 2.66,
+      load5: 2.86,
+      load15: 2.39,
+      nodeCount: 8,
+      scavengeMax: 105,
+      scavengeAverage: 5,
+      marksweepMax: 1001,
+      marksweepAverage: 36,
+      qps: 0.2,
+      rtMax: 11298,
+      rtAverage: 428
     };
 
     setTimeout(() => res.send({ ok: true, data }), 600);

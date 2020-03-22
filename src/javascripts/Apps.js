@@ -106,7 +106,7 @@ export default {
     setDataToApps(key, data) {
       for (const app of this.apps) {
         const value = data[app.appId];
-        if (value && !isNaN(value) || value === 0) {
+        if (utils.isNumber(value)) {
           app[key] = value;
         } else {
           app[key] = "-";

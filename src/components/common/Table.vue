@@ -17,7 +17,12 @@
 
       <!-- show data -->
       <tr v-for="(row, index) in data" :key="index" :class="getClasses(index)">
-        <td class="row-data" v-for="(col, index) in columns" :key="index" :style="getCellStyle(col)">
+        <td
+          class="row-data"
+          v-for="(col, index) in columns"
+          :key="index"
+          :style="getCellStyle(col)"
+        >
           <slot :name="col.value" :row="row">{{ row[col.value] }}</slot>
         </td>
       </tr>
@@ -26,6 +31,8 @@
 </template>
 
 <script>
+import { isNumber } from "../../javascripts/lib/utils";
+
 export default {
   props: {
     columns: Array,
@@ -69,7 +76,7 @@ export default {
     getTableStyle() {
       let style = "";
       if (this.fontSize) {
-        if (!isNaN(this.fontSize)) {
+        if (isNumber(this.fontSize)) {
           style += "font-size: " + this.fontSize + "px;";
         } else {
           style += "font-size: " + this.fontSize + ";";

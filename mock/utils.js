@@ -17,7 +17,7 @@ exports.createAreaData = function (yaxis, fn) {
   const noNeedStart = start + 3 * 60 * 60 * 1000;
   const noNeedEnd = noNeedStart + 3 * 60 * 60 * 1000;
 
-  console.log(new Date(noNeedStart).toLocaleString(), new Date(noNeedEnd).toLocaleString())
+  // console.log(new Date(noNeedStart).toLocaleString(), new Date(noNeedEnd).toLocaleString())
 
   for (let time = start; time < end; time += interval) {
     const item = { time };

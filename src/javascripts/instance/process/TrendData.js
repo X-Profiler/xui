@@ -33,7 +33,7 @@ export default {
           if (Array.isArray(list)) {
             this.trendData = list;
           }
-          if (data.limit && !isNaN(data.limit)) {
+          if (utils.isNumber(data.limit)) {
             this.limit = data.limit;
           }
           this.checkStatus(this.lastValidData);
@@ -261,7 +261,7 @@ export default {
       while (length) {
         length--;
         const data = chartData[length];
-        if (yAxis.every(axis => data[axis] === 0 || !isNaN(data[axis]))) {
+        if (yAxis.every(axis => utils.isNumber(data[axis]))) {
           return data;
         }
       }

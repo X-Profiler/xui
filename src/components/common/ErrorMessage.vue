@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { isNumber } from "../../javascripts/lib/utils";
+
 export default {
   props: {
     message: String,
@@ -18,7 +20,7 @@ export default {
     style() {
       let style = "";
       if (this.top) {
-        if (!isNaN(this.top)) {
+        if (isNumber(this.top)) {
           style += "margin-top: " + this.top + "px;";
         } else {
           style += "margin-top: " + this.top + ";";

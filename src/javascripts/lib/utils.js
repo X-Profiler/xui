@@ -381,3 +381,27 @@ export function createLaterFunction(name, callback, wait = 4) {
     }
   };
 }
+
+export function isNumber(num) {
+  return Boolean(num === 0 || (num && !isNaN(num)));
+}
+
+export function formatTime(ts, ch) {
+  ts = (isNumber(ts) && ts) || 0;
+  let str = '';
+  ts = Number(ts);
+  if (ts < 1e3) {
+    str = `${Number(ts.toFixed(2))}${ch ? '毫秒' : 'ms'}`;
+  } else if (ts < 1e3 * 60) {
+    str = `${Number((ts / 1e3).toFixed(2))}${ch ? '秒' : 's'}`;
+  } else if (ts < 1e3 * 60 * 60) {
+    str = `${Number((ts / (1e3 * 60)).toFixed(2))}${ch ? '分钟' : 'min'}`;
+  } else if (ts < 1e3 * 60 * 60 * 24) {
+    str = `${Number((ts / (1e3 * 60 * 60)).toFixed(2))}${ch ? '小时' : 'h'}`;
+  } else {
+    const day = parseInt(ts / (1e3 * 60 * 60 * 24));
+    const remain = ts - day * 1e3 * 60 * 60 * 24;
+    str = `${day}${ch ? '天' : 'd'}${remain ? ` ${formatTime(remain, ch)}` : ''}`;
+  }
+  return str;
+}

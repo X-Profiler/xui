@@ -3,54 +3,36 @@
     <div class="section-title">系统信息概览</div>
     <x-pie2 v-show="false" ref="pieCommon"></x-pie2>
 
-    <x-loading :loading="overview_loading" type="dot" size="middle" :top="90"></x-loading>
+    <x-loading :loading="overview_loading" type="dot" size="middle" :top="105"></x-loading>
 
-    <x-error-message v-show="overview_load_error" :message="overview_load_error" :top="65"></x-error-message>
+    <x-error-message v-show="overview_load_error" :message="overview_load_error" :top="80"></x-error-message>
 
     <div v-if="!overview_loading && !overview_load_error" class="content">
       <div class="pie metrics">
-        <div style="width: calc(100% - 10px);">
-          <div class="metric-content">
-            <div class="metric-group">
-              <div class="metric-key">load1 / 5 / 15</div>
-              <div class="metric-value">2 / 3 / 4</div>
-            </div>
-            <div class="metric-group">
-              <div class="metric-key">Node.js 进程数</div>
-              <div class="metric-value">8</div>
-            </div>
-          </div>
-          <div class="metric-content" style="margin-top: 25px">
-            <div class="metric-group">
-              <div class="metric-key">GC Max / Avg</div>
-              <div class="metric-value">55ms / 2ms</div>
-            </div>
-            <div class="metric-group">
-              <div class="metric-key">RT Max / Avg</div>
-              <div class="metric-value">3s / 20ms</div>
-            </div>
-          </div>
-          <div class="metric-content" style="margin-top: 25px">
-            <div class="metric-group">
-              <div class="metric-key">QPS</div>
-              <div class="metric-value">0.2</div>
-            </div>
-            <div class="metric-group">
-              <div class="metric-key">load1 / 5 / 15</div>
-              <div class="metric-value">2 / 3 / 4</div>
+        <x-error-message v-if="!currentMetrics.length" message="暂无当前系统指标数据"></x-error-message>
+        <div v-else style="width: 100%">
+          <div
+            v-for="(metrics, index) in currentMetrics"
+            :key="index"
+            class="metric-content"
+            :style="index !== 0 && metrics.length ? 'margin-top: 25px;' : ''"
+          >
+            <div v-for="(metric, index) in metrics" :key="index" class="metric-group">
+              <div class="metric-key">{{ metric.key }}</div>
+              <div class="metric-value">{{ metric.value }}</div>
             </div>
           </div>
         </div>
       </div>
 
       <div v-for="(pie, index) in pies" :key="index" class="pie">
-        <x-error-message v-if="pie.fake" v-show="pie.fake" :message="pie.message" :top="65"></x-error-message>
+        <x-error-message v-if="pie.fake" :message="pie.message"></x-error-message>
         <x-pie2 v-else :title="pie.title" :percentage="pie.percentage"></x-pie2>
       </div>
 
       <!-- disk usage -->
       <div class="pie">
-        <x-error-message v-if="disks.fake" v-show="disks.fake" :message="disks.message" :top="65"></x-error-message>
+        <x-error-message v-if="disks.fake" :message="disks.message"></x-error-message>
         <x-pie2 v-else :title="disks.title" :percentage="disks.percentage">
           <div v-if="disks.list.length" slot="title">
             <x-dropdown :transformY="8">
@@ -83,7 +65,7 @@ export default {
 
 <style scoped>
 .overview {
-  min-height: 200px;
+  min-height: 210px;
 }
 
 .content {
@@ -93,6 +75,8 @@ export default {
   align-items: center;
   background-color: #f8fafc;
   border-left: 10px solid #2376b7;
+  height: 100%;
+  min-height: 200px;
 }
 
 .pie {
@@ -132,6 +116,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   padding: 0 15px;
+  align-content: space-between;
 }
 
 .metric-group {
