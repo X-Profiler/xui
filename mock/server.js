@@ -22,6 +22,9 @@ app.get('/xapi/user', function (req, res) {
 // console
 require('./apps')(app);
 
+// consoler
+require('./mock_consoler')(app);
+
 // dashboard
 require("./mock_dashboard")(app);
 

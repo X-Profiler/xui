@@ -5,6 +5,8 @@ import axios from "axios";
 // store modules
 import url from "@/stores/url";
 import i18n from "@/stores/i18n";
+import user from "@/stores/user";
+import consoler from "@/stores/consoler";
 import dashboard from "@/stores/dashboard";
 import instance from "@/stores/instance";
 import process from "@/stores/process";
@@ -64,6 +66,14 @@ export default {
   },
 
   modules: {
+    "user": { // user
+      ...user
+    },
+
+    "consoler": { // consoler
+      ...consoler
+    },
+
     "dashboard": {  // "dashboard"
       ...dashboard,
 

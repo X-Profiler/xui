@@ -2,8 +2,11 @@
 
 export default {
   url: {
+    // user
+    user: "/xapi/user",
+
     // dashboard
-    appInfo: "/xapi/app",
+    app: "/xapi/app",
 
     // dashboard/instance
     agents: "/xapi/agents",

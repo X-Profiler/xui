@@ -36,29 +36,15 @@
       </Footer>
     </Layout>
 
-    <!-- modal -->
+    <!-- create new app -->
     <x-modal
-      ref="consoleModal"
+      ref="newApp"
       :title="newAppCreationTag"
-      :okText="submitTag"
-      :okLoadingText="submittingTag"
-      :cancelText="closeTag"
-      :loading="newAppCreationLoading"
-      @canceled="()=>newAppName = ''"
-      @submited="submitNewAppCreation"
+      :padding="0"
+      hide-footer
+      @canceled="closeNewAppModal"
     >
-      <!-- content -->
-      <template slot="content">
-        <div class="modal-content modal-self">
-          <Input v-model="newAppName" :placeholder="newAppNamePlaceholderTag">
-            <span slot="prepend">{{ applicationNameTag }}</span>
-          </Input>
-          <p class="modal-attention">
-            <strong>{{ newAppNameAttentionTag }}:</strong>
-            <span style="margin-left: 10px;">{{ newAppNameAttentionDetailTag }}</span>
-          </p>
-        </div>
-      </template>
+      <x-create-app slot="content"></x-create-app>
     </x-modal>
   </div>
 </template>
@@ -67,22 +53,23 @@
 import xHeader from "./layout/Header";
 import xApps from "./Apps";
 import xEggLogo from "./logo/Egg";
+import xCreateApp from "./CreateApp";
 import consoleModule from "../javascripts/Console";
 
 export default {
   components: {
     "x-header": xHeader,
     "x-apps": xApps,
-    "x-egg-logo": xEggLogo
+    "x-egg-logo": xEggLogo,
+    "x-create-app": xCreateApp
   },
 
   data() {
     return {
       selectedType: undefined,
-      newAppName: "",
-      newAppCreationLoading: false,
       valueWhiteList: { selectedType: ["myApps", "joinedApps"] },
-      nessaryQueryArgs: ["type"]
+      nessaryQueryArgs: ["type"],
+      modalQueryKey: "new-app"
     };
   },
 
@@ -116,16 +103,6 @@ export default {
   height: 69px;
   top: calc(100vh - 69px);
   width: 100%;
-}
-
-.modal-self {
-  padding-top: 8px;
-  user-select: none;
-}
-
-.modal-attention {
-  /* position: absolute; */
-  margin-top: -30px;
 }
 
 .egg-logo {

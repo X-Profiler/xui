@@ -2,7 +2,7 @@
 
 import * as utils from "../javascripts/lib/utils";
 
-const { state: appState, mutations: appMutations, handle: handleApp } = utils.storeFactory("app", []);
+const { state: appState, mutations: appMutations, handle: handleApp } = utils.storeFactory("app", {});
 
 export default {
   namespaced: true,
@@ -28,7 +28,7 @@ export default {
         cancelToken,
 
         // user data
-        url: rootState.url.appInfo,
+        url: rootState.url.app,
         data: {
           appId: state.appId
         }

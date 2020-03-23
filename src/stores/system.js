@@ -3,7 +3,7 @@
 import * as utils from "../javascripts/lib/utils";
 
 const { state: overviewState, mutations: overviewMutations, handle: handleOverview } =
-  utils.storeFactory("overview", []);
+  utils.storeFactory("overview", {});
 
 export default {
   namespaced: true,

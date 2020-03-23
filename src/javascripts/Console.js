@@ -1,9 +1,11 @@
 "use strict";
 
-import { tags, http } from "./config";
+import { tags } from "./config";
 import * as utils from "./lib/utils";
 
-const { app } = http;
+const { mapState, mapMutations, mapActions } = utils.createNamespace("consoler");
+const { mapMethods: mapMethodsNewApp, mapWatch: mapWatchNewApp, handleMounted: handleMountedNewApp } =
+  utils.modalRouteFactory("modalQueryKey", "newAppModal", "newApp", "setNewAppModal");
 
 export default {
   created() {
@@ -13,14 +15,13 @@ export default {
 
     // set common http methods
     this.cancelToken = utils.createCancelToken();
-    this.post = utils.post.bind(this);
   },
 
   mounted() {
-    // get modal
-    this.consoleModal = this.$refs.consoleModal;
     // get app list
     this.appList = this.$refs.appList;
+
+    handleMountedNewApp.call(this, "handleNewAppModal");
   },
 
   beforeDestroy() {
@@ -28,35 +29,24 @@ export default {
   },
 
   methods: {
+    ...mapActions(["createNewApp"]),
+
+    ...mapMutations(["setNewAppModal"]),
+
+    ...mapMethodsNewApp("handleNewAppModal"),
+
     showNewAppCreation() {
-      this.consoleModal.showModal();
+      this.setNewAppModal({ status: true });
     },
 
-    submitNewAppCreation() {
-      let newAppName = this.newAppName.trim();
-
-      // check app name
-      if (!newAppName) {
-        utils.error.call(this, "应用名称不能为空！");
-        return;
-      }
-      if (newAppName.length > 30) {
-        utils.error.call(this, "应用名称不能超过 30 个字符！");
-        return;
-      }
-
-      // submit
-      this.post(app.msg.post, app.url, { newAppName }, data => {
-        if (data === utils.failedCode) {
-          return;
-        }
-        this.consoleModal.cancelModal();
-        this.appList.refreshApps();
-      }, this.cancelToken.token, "newAppCreationLoading");
+    closeNewAppModal() {
+      this.setNewAppModal({ status: false });
     }
   },
 
   computed: {
+    ...mapState(["new_app_loading", "newAppModal"]),
+
     myApps() {
       return utils.getTag(tags.myApps);
     },
@@ -67,44 +57,26 @@ export default {
 
     newAppCreationTag() {
       return utils.getTag(tags.newAppCreation);
-    },
-
-    applicationNameTag() {
-      return utils.getTag(tags.newAppName);
-    },
-
-    newAppNamePlaceholderTag() {
-      return utils.getTag(tags.newAppNamePlaceholder);
-    },
-
-    newAppNameAttentionTag() {
-      return utils.getTag(tags.newAppNameAttention);
-    },
-
-    newAppNameAttentionDetailTag() {
-      return utils.getTag(tags.newAppNameAttentionDetail);
-    },
-
-    submitTag() {
-      return utils.getTag(tags.submit);
-    },
-
-    submittingTag() {
-      return utils.getTag(tags.submitting);
-    },
-
-    closeTag() {
-      return utils.getTag(tags.close);
     }
   },
 
   watch: {
+    ...mapWatchNewApp,
+
     $route(...args) {
       utils.watchRoute.call(this, args, "type", "selectedType");
+      this.handleNewAppModal(args[0].query);
     },
 
     selectedType(...args) {
       utils.watchQueryKey.call(this, "type", "selectedType", args);
+    },
+
+    new_app_loading() {
+      if (!this.new_app_loading && !this.new_app_load_error) {
+        this.setNewAppModal({ status: false });
+        this.appList.refreshApps();
+      }
     }
   }
 };

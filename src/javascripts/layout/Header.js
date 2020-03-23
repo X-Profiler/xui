@@ -1,7 +1,8 @@
 "use strict";
 
-import { http } from "../config";
 import * as utils from "../lib/utils";
+
+const { mapState, mapActions } = utils.createNamespace("user");
 
 const cache = { user: { name: "" } };
 const menuFlag = "MAIN_FLAG";
@@ -23,7 +24,7 @@ export default {
     if (cache.user.name) {
       this.user.name = cache.user.name;
     } else {
-      this.getUserInfo();
+      this.getUserInfo({ cancelToken: this.cancelToken.token });
     }
   },
 
@@ -32,11 +33,7 @@ export default {
   },
 
   methods: {
-    getUserInfo() {
-      this.get(http.user.msg, http.user.url, {}, data => {
-        this.user.name = data.name || "Unknown";
-      }, this.cancelToken.token);
-    },
+    ...mapActions(["getUserInfo"]),
 
     resetActiveNav() {
       for (const nav of this.navActions) {
@@ -84,9 +81,18 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState(["user_data"])
+  },
+
   watch: {
-    "user.name": function() {
+    "user.name": function () {
       cache.user.name = this.user.name;
+    },
+
+    user_data() {
+      const data = this.user_data || {};
+      this.user.name = data.name || "Unknown";
     }
   }
 };
