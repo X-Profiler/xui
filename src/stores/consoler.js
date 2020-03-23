@@ -60,6 +60,24 @@ export default {
       };
 
       await handAppList(context, options, "list", "array");
+    },
+
+    async getMainMetrics(context, { cancelToken, urlKey, appId }) {
+      const { rootState, dispatch } = context;
+
+      if (!appId) {
+        return;
+      }
+
+      const options = {
+        cancelToken,
+
+        // user data
+        url: rootState.url[urlKey],
+        data: { appId }
+      };
+
+      return dispatch("request", options, { root: true });
     }
   }
 };

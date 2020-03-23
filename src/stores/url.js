@@ -8,6 +8,11 @@ export default {
     // consoler
     app: "/xapi/app",
     apps: "/xapi/apps",
+    processCpuUsage: "/xapi/overview/process_cpu_usage",
+    processMemoryUsage: "/xapi/overview/process_memory_usage",
+    systemCpuUsage: "/xapi/overview/system_cpu_usage",
+    systemMemoryUsage: "/xapi/overview/system_memory_usage",
+    diskUsage: "/xapi/overview/disk_usage",
 
     // dashboard/instance
     agents: "/xapi/agents",
