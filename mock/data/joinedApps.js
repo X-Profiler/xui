@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "name": "EZM-01",
     "appId": 3
@@ -39,4 +39,4 @@
     "name": "EZM-10",
     "appId": 12
   }
-]
+];

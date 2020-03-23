@@ -51,15 +51,6 @@ function getInstances(appId) {
 }
 
 module.exports = app => {
-  // get apps
-  app.get('/xapi/apps', function (req, res) {
-    const type = req.query.type;
-    console.log(`get apps type ${type}`);
-    const data = require(`./${type}.json`);
-    setTimeout(() => res.send({ ok: true, data }), 300);
-    // res.send({ ok: true, data })
-  });
-
   // get instance count
   app.get('/xapi/instance_count', function (req, res) {
     const appIds = req.query.appIds || [];

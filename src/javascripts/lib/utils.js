@@ -4,6 +4,7 @@ import { createNamespacedHelpers } from "vuex";
 import axios from "axios";
 import { tags } from "../config";
 
+const requestQueue = {};
 const routeCanBackMap = {};
 const CancelToken = axios.CancelToken;
 
@@ -222,10 +223,15 @@ export function storeFactory(key, value) {
     },
 
     async handle({ dispatch, commit }, options, resKey, type) {
+      if (!requestQueue[loadingMutation]) {
+        requestQueue[loadingMutation] = 1;
+      } else {
+        requestQueue[loadingMutation]++;
+      }
+      commit(keyMutation, value);
       commit(loadingMutation, true);
       commit(errorMutation, undefined);
       try {
-        commit(keyMutation, value);
         let data = await dispatch("request", options, { root: true });
         if (resKey) {
           data = data[resKey];
@@ -240,7 +246,10 @@ export function storeFactory(key, value) {
       } catch (err) {
         commit(errorMutation, err.message);
       }
-      commit(loadingMutation, false);
+      requestQueue[loadingMutation]--;
+      if (!requestQueue[loadingMutation]) {
+        commit(loadingMutation, false);
+      }
     }
   };
 }

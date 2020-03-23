@@ -4,18 +4,22 @@ import * as utils from "../javascripts/lib/utils";
 
 const { state: consolerState, mutations: consolerMutations, handle: handConsoler } =
   utils.storeFactory("new_app", undefined);
+const { state: appListState, mutations: appListMutations, handle: handAppList } =
+  utils.storeFactory("app_list", []);
 
 export default {
   namespaced: true,
 
   state: {
     ...consolerState,
+    ...appListState,
 
     newAppModal: undefined
   },
 
   mutations: {
     ...consolerMutations,
+    ...appListMutations,
 
     setNewAppModal(state, { status }) {
       if (status === false || status === true) {
@@ -38,6 +42,24 @@ export default {
       };
 
       await handConsoler(context, options);
+    },
+
+    async getApps(context, { cancelToken, type }) {
+      const { rootState } = context;
+
+      if (!type) {
+        return;
+      }
+
+      const options = {
+        cancelToken,
+
+        // user data
+        url: rootState.url.apps,
+        data: { type }
+      };
+
+      await handAppList(context, options, "list", "array");
     }
   }
 };

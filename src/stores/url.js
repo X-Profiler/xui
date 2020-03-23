@@ -5,8 +5,9 @@ export default {
     // user
     user: "/xapi/user",
 
-    // dashboard
+    // consoler
     app: "/xapi/app",
+    apps: "/xapi/apps",
 
     // dashboard/instance
     agents: "/xapi/agents",
