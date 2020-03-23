@@ -56,6 +56,10 @@ export default {
         }
         return data.data;
       } catch (err) {
+        if (axios.isCancel(err)) {
+          return {};
+        }
+
         if (globalError) {
           commit("updateGlobalError", err);
         } else {

@@ -3,7 +3,7 @@
 import { http, tags } from "./config";
 import * as utils from "./lib/utils";
 
-const { apps } = http;
+const { mapState, mapActions } = utils.createNamespace("consoler");
 
 // title metric key
 const INSTANCE_COUNT = "instanceCount";
@@ -24,7 +24,7 @@ export default {
     this.get = utils.get.bind(this);
 
     // get apps
-    this.getApps();
+    this.getApps({ cancelToken: this.cancelToken.token, type: this.type });
   },
 
   beforeDestroy() {
@@ -32,9 +32,7 @@ export default {
   },
 
   methods: {
-    reset() {
-      this.apps = [];
-    },
+    ...mapActions(["getApps"]),
 
     formatCount(count) {
       let res = count;
@@ -66,7 +64,10 @@ export default {
 
     handleApps(apps) {
       const appIds = [];
-      for (const app of apps) {
+      const list = [];
+      for (const data of apps) {
+        const app = Object.assign({}, data);
+        list.push(app);
         appIds.push(app.appId);
         // title metric
         app[INSTANCE_COUNT] = 0;
@@ -100,7 +101,7 @@ export default {
       this.getTitleMetricData(INSTANCE_COUNT, appIds);
       this.getTitleMetricData(ALARM_COUNT, appIds);
       this.getTitleMetricData(RISK_COUNT, appIds);
-      return apps;
+      return list;
     },
 
     setDataToApps(key, data) {
@@ -122,18 +123,6 @@ export default {
           app[`${key}Loading`] = false;
         }
       }
-    },
-
-    getApps() {
-      this.reset();
-      if (!this.type) {
-        return;
-      }
-      this.get(apps.msg, apps.url, { type: this.type }, data => {
-        if (Array.isArray(data)) {
-          this.apps = this.handleApps(data);
-        }
-      }, this.cancelToken.token, "appLoading");
     },
 
     getTitleMetricData(key, appIds) {
@@ -183,11 +172,13 @@ export default {
     refreshApps() {
       utils.cancelRequest(this.cancelToken);
       this.cancelToken = utils.createCancelToken();
-      this.getApps();
+      this.getApps({ cancelToken: this.cancelToken.token, type: this.type });
     }
   },
 
   computed: {
+    ...mapState(["app_list_loading", "app_list_load_error", "app_list_data"]),
+
     noAppTip() {
       let tip = "";
       if (this.type === "myApps") {
@@ -202,6 +193,13 @@ export default {
   watch: {
     type() {
       this.refreshApps();
+    },
+
+    app_list_data() {
+      const list = this.app_list_data;
+      if (Array.isArray(list)) {
+        this.apps = this.handleApps(list);
+      }
     }
   }
 };

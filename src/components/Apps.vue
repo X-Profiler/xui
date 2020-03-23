@@ -1,11 +1,14 @@
 <template>
   <div>
     <!-- loading -->
-    <x-loading :top="250" :loading="appLoading" type="dot"></x-loading>
+    <x-loading :top="220" :loading="app_list_loading" type="dot"></x-loading>
+
+    <!-- error message -->
+    <x-error-message v-show="app_list_load_error" :message="app_list_load_error" :top="200"></x-error-message>
 
     <!-- app list -->
     <transition name="slide">
-      <div v-show="!appLoading">
+      <div v-show="!app_list_loading && !app_list_load_error">
         <!-- app overview -->
         <div v-if="apps.length === 0" class="no-apps">{{ noAppTip }}</div>
         <div
@@ -167,7 +170,6 @@ export default {
         { label: getTag(tags.systemMemoryUsage), value: "systemMemoryUsage" },
         { label: getTag(tags.diskUsage), value: "diskUsage" }
       ],
-      appLoading: false,
       apps: []
     };
   },

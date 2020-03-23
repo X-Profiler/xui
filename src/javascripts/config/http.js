@@ -1,12 +1,5 @@
 export default {
   // app overview
-  apps: {
-    url: "/xapi/apps",
-    msg: {
-      ch: "获取应用列表失败，请重试",
-      en: "Get applications failed, please retry."
-    }
-  },
   instanceCount: {
     url: "/xapi/instance_count",
     msg: {
