@@ -1,8 +1,8 @@
 'use strict';
 
 const path = require('path');
-const utils = require('./utils');
-const { randomInstance, getInstances } = require('./data/store');
+const utils = require('../lib/utils');
+const { randomInstance, getInstances } = require('../data/store');
 
 module.exports = app => {
   // get app info
@@ -27,7 +27,7 @@ module.exports = app => {
 
     const type = req.query.type;
     console.log(`get apps type ${type}`);
-    const list = require(path.join(__dirname, `./data/${type}.js`));
+    const list = require(path.join(__dirname, `../data/${type}.js`));
     setTimeout(() => res.send({ ok: true, data: { list } }), 500);
     // setTimeout(() => { res.send({ ok: false, message: "请求失败" }); }, 500);
   });
