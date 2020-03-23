@@ -17,33 +17,35 @@
 
       <x-error-message v-if="loadError" :message="loadError" top="100"></x-error-message>
 
-      <div v-if="!loading && !loadError" class="charts">
-        <!-- pie chart -->
-        <x-pie
-          v-if="solid"
-          class="pie"
-          :data="selectedData"
-          :yAxis="commonData.yAxis"
-          :yAxisUnit="commonData.yAxisUnit"
-        ></x-pie>
+      <transition name="slide-noward">
+        <div v-if="!loading && !loadError" class="charts">
+          <!-- pie chart -->
+          <x-pie
+            v-if="solid"
+            class="pie"
+            :data="selectedData"
+            :yAxis="commonData.yAxis"
+            :yAxisUnit="commonData.yAxisUnit"
+          ></x-pie>
 
-        <!-- main chart -->
-        <x-area
-          xAxis="time"
-          ref="area"
-          class="main-chart"
-          :data="chartData"
-          :yAxis="commonData.yAxis"
-          :yAxisUnit="commonData.yAxisUnit"
-          :noDataText="commonData.noDataText"
-          :showStatus="commonData.showStatus"
-          :solid="solid"
-          @linkage="linkage"
-          @hidden="hidden"
-          @status="updateStatus"
-          @broadcast="broadcast"
-        ></x-area>
-      </div>
+          <!-- main chart -->
+          <x-area
+            xAxis="time"
+            ref="area"
+            class="main-chart"
+            :data="chartData"
+            :yAxis="commonData.yAxis"
+            :yAxisUnit="commonData.yAxisUnit"
+            :noDataText="commonData.noDataText"
+            :showStatus="commonData.showStatus"
+            :solid="solid"
+            @linkage="linkage"
+            @hidden="hidden"
+            @status="updateStatus"
+            @broadcast="broadcast"
+          ></x-area>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
