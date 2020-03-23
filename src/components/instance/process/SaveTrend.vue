@@ -8,7 +8,7 @@
       <div v-if="!save_trend_loading && !save_trend_load_error" class="x-modal-results">
         <p>
           保存过去 24h 进程趋势数据成功，请访问
-          <router-link class="x-modal-link" :to="{path:`/app/${appId}/file`}" target="_blank">文件列表</router-link>查看详情。
+          <router-link class="x-modal-link" :to="{path:`/app/${appId}/file`}" target="_blank">文件列表</router-link>&nbsp;查看详情。
         </p>
         <p style="margin-top: 8px;">文件名: {{ save_trend_data }}</p>
       </div>

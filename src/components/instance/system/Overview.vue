@@ -7,51 +7,57 @@
 
     <x-error-message v-show="overview_load_error" :message="overview_load_error" :top="80"></x-error-message>
 
-    <div v-if="!overview_loading && !overview_load_error" class="content">
-      <div class="pie metrics">
-        <x-error-message v-if="!currentMetrics.length" message="暂无当前系统指标数据"></x-error-message>
-        <div v-else style="width: 100%">
-          <div
-            v-for="(metrics, index) in currentMetrics"
-            :key="index"
-            class="metric-content"
-            :style="index !== 0 && metrics.length ? 'margin-top: 25px;' : ''"
-          >
-            <div v-for="(metric, index) in metrics" :key="index" class="metric-group">
-              <div class="metric-key">{{ metric.key }}</div>
-              <div class="metric-value">{{ metric.value }}</div>
+    <transition name="slide-noward">
+      <div v-if="!overview_loading && !overview_load_error" class="content">
+        <div class="pie metrics">
+          <x-error-message v-if="!currentMetrics.length" message="暂无当前系统指标数据"></x-error-message>
+          <div v-else style="width: 100%">
+            <div
+              v-for="(metrics, index) in currentMetrics"
+              :key="index"
+              class="metric-content"
+              :style="index !== 0 && metrics.length ? 'margin-top: 25px;' : ''"
+            >
+              <div v-for="(metric, index) in metrics" :key="index" class="metric-group">
+                <div class="metric-key">{{ metric.key }}</div>
+                <div class="metric-value">{{ metric.value }}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div v-for="(pie, index) in pies" :key="index" class="pie">
-        <x-error-message v-if="pie.fake" :message="pie.message"></x-error-message>
-        <x-pie2 v-else :title="pie.title" :percentage="pie.percentage"></x-pie2>
-      </div>
+        <div v-for="(pie, index) in pies" :key="index" class="pie">
+          <x-error-message v-if="pie.fake" :message="pie.message"></x-error-message>
+          <x-pie2 v-else :title="pie.title" :percentage="pie.percentage"></x-pie2>
+        </div>
 
-      <!-- disk usage -->
-      <div class="pie">
-        <x-error-message v-if="disks.fake" :message="disks.message"></x-error-message>
-        <x-pie2 v-else :title="disks.title" :percentage="disks.percentage">
-          <div v-if="disks.list.length" slot="title">
-            <x-dropdown :transformY="8">
-              <div slot="title" class="title">{{ disks.title }}</div>
-              <div slot="content">
-                <div v-for="(li, index) in disks.list" :key="index" class="disk-list x-dropdown-li">
+        <!-- disk usage -->
+        <div class="pie">
+          <x-error-message v-if="disks.fake" :message="disks.message"></x-error-message>
+          <x-pie2 v-else :title="disks.title" :percentage="disks.percentage">
+            <div v-if="disks.list.length" slot="title">
+              <x-dropdown :transformY="8">
+                <div slot="title" class="title">{{ disks.title }}</div>
+                <div slot="content">
                   <div
-                    class="status-dot"
-                    :style="'background-color: ' + getColor(li.percentage) + ';'"
-                  ></div>
-                  <div>{{ li.disk }}</div>
-                  <div class="disk-percentage">{{ li.percentage }}%</div>
+                    v-for="(li, index) in disks.list"
+                    :key="index"
+                    class="disk-list x-dropdown-li"
+                  >
+                    <div
+                      class="status-dot"
+                      :style="'background-color: ' + getColor(li.percentage) + ';'"
+                    ></div>
+                    <div>{{ li.disk }}</div>
+                    <div class="disk-percentage">{{ li.percentage }}%</div>
+                  </div>
                 </div>
-              </div>
-            </x-dropdown>
-          </div>
-        </x-pie2>
+              </x-dropdown>
+            </div>
+          </x-pie2>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
