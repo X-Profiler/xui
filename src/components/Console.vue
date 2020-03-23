@@ -44,7 +44,7 @@
       hide-footer
       @canceled="closeNewAppModal"
     >
-      <x-create-app slot="content"></x-create-app>
+      <x-create-app slot="content" @refresh="refreshApps"></x-create-app>
     </x-modal>
   </div>
 </template>
@@ -108,6 +108,6 @@ export default {
 .egg-logo {
   position: absolute;
   top: 25px;
-  left: calc(50vw + 122px);
+  left: calc(50% + 122px);
 }
 </style>

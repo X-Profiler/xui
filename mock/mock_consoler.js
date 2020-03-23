@@ -9,6 +9,12 @@ module.exports = app => {
     const newAppName = req.body.newAppName;
     console.log(`create new app ${newAppName}`);
 
-    setTimeout(() => res.send({ ok: true }), 450);
+    const data = {
+      appName: newAppName,
+      appId: 1,
+      appSecret: "3b33391b83631e369c5dfc85e7641109"
+    }
+
+    setTimeout(() => res.send({ ok: true, data }), 450);
   });
 };
