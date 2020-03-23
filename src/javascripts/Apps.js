@@ -32,7 +32,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getApps"]),
+    ...mapActions(["getApps", "getMainMetrics"]),
 
     formatCount(count) {
       let res = count;
@@ -132,8 +132,8 @@ export default {
     },
 
     getMainMetricData(key, appId) {
-      this.get(http[key].msg, http[key].url, { appId },
-        data => this.setMainMetricDataToApp(appId, key, data.list), this.cancelToken.token)
+      this.getMainMetrics({ cancelToken: this.cancelToken.token, urlKey: key, appId })
+        .then(data => this.setMainMetricDataToApp(appId, key, data.list))
         .catch(() => this.setMainMetricDataToApp(appId, key, []));
     },
 
