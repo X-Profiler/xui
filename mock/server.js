@@ -20,18 +20,18 @@ app.get('/xapi/user', function (req, res) {
 });
 
 // consoler
-require('./mock_consoler')(app);
+require('./controller/mock_consoler')(app);
 
 // dashboard
-require("./mock_dashboard")(app);
+require("./controller/mock_dashboard")(app);
 
 // dashboard/instance
-require("./mock_instance")(app);
+require("./controller/mock_instance")(app);
 
 // dashboard/instance/process
-require("./mock_process")(app);
+require("./controller/mock_process")(app);
 
 // dashboard/instance/system
-require("./mock_system")(app);
+require("./controller/mock_system")(app);
 
 app.listen(7442);

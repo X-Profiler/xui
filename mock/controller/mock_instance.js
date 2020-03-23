@@ -1,6 +1,6 @@
 "use strict";
 
-const utils = require('./utils');
+const utils = require('../lib/utils');
 
 module.exports = app => {
   app.get('/xapi/agents', function (req, res) {
@@ -9,7 +9,7 @@ module.exports = app => {
     const appId = req.query.appId;
     console.log(`get app ${appId} agents`);
 
-    const list = require('./data/agents');
+    const list = require('../data/agents');
 
     // app.b = c;
     setTimeout(() => res.send({ ok: true, data: { list } }), 550);

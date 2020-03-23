@@ -1,0 +1,90 @@
+"use strict";
+
+import { createCancelToken, cancelRequest } from "./request";
+
+const routeCanBackMap = {};
+
+function routeFactory(openName, closeName, ...args) {
+  const tag = "YES";
+
+  const [queryKeyName, flag, refKey, setFlag, request, loading, extra = []] = args;
+
+  return {
+    handleMounted(name, enable = false, dataKey = false) {
+      if (enable) {
+        this[name](this.$route.query, dataKey);
+      } else {
+        this[setFlag]({ status: false });
+      }
+    },
+
+    mapMethods(name) {
+      return {
+        [name](query, dataKey) {
+          const element = this.$refs[refKey];
+          const value = query[this[queryKeyName]];
+
+          if (value === tag) {
+            const data = { status: true };
+            if (dataKey) {
+              data[dataKey] = query;
+            }
+            this[setFlag](data);
+            element[openName]();
+            if (request) {
+              const extraData = {};
+              for (const keyId of extra) {
+                extraData[keyId] = this[keyId];
+              }
+              this[request](Object.assign({
+                cancelToken: this.cancelToken.token
+              }, extraData));
+            }
+          } else {
+            this[setFlag]({ status: false });
+            element[closeName]();
+            if (loading && this[loading]) {
+              cancelRequest(this.cancelToken);
+              this.cancelToken = createCancelToken();
+            }
+          }
+        }
+      };
+    },
+
+    mapWatch: {
+      [flag]() {
+        const queryKey = this[queryKeyName];
+        if (this[flag]) {
+          const route = this.$route;
+          if (route.query[queryKey] === tag) {
+            return;
+          }
+          const query = Object.assign({}, route.query, { [queryKey]: tag });
+          this.$router.push({ path: route.path, query });
+          routeCanBackMap[queryKey] = true;
+        } else {
+          const route = this.$route;
+          if (route.query[queryKey] === tag) {
+            if (!routeCanBackMap[queryKey] && this.$store.state.first) {
+              this.$store.commit("first", false);
+              const query = Object.assign({}, route.query, { [queryKey]: undefined });
+              this.$router.push({ path: route.path, query });
+            } else {
+              this.$router.go(-1);
+              routeCanBackMap[queryKey] = false;
+            }
+          }
+        }
+      }
+    }
+  };
+}
+
+export function drawerRouteFactory(...args) {
+  return routeFactory("open", "close", ...args);
+}
+
+export function modalRouteFactory(...args) {
+  return routeFactory("showModal", "cancelModal", ...args);
+}
