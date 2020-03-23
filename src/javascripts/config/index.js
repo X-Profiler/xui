@@ -1,5 +1,5 @@
 "use strict";
 
-import { default as tags } from "./tags";
+import { default as tags } from "@/javascripts/config/tags";
 
 export { tags };

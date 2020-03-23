@@ -1,6 +1,6 @@
 "use strict";
 
-import { createCancelToken, cancelRequest } from "./request";
+import { createCancelToken, cancelRequest } from "@/javascripts/lib/request";
 
 const routeCanBackMap = {};
 

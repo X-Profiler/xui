@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import Tip from "./Tip";
-import lineModule from "../../../javascripts/instance/process/Line";
+import Tip from "@/components/instance/process/Tip";
+import lineModule from "@/javascripts/instance/process/Line";
 
 export default {
   props: {

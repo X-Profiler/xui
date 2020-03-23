@@ -29,18 +29,18 @@
 </template>
 
 <script>
-import xHeader from "./layout/Header";
-import xSider from "./layout/Sider";
-import dashboardModule from "../javascripts/Dashboard";
-import { tags } from "../javascripts/config";
-import { getTag } from "../javascripts/lib/utils";
+import dashboardModule from "@/javascripts/Dashboard";
+import { tags } from "@/javascripts/config";
+import { getTag } from "@/javascripts/lib/utils";
+import xHeader from "@/components/layout/Header";
+import xSider from "@/components/layout/Sider";
 
 // menu components
-import xInstance from "./instance/InstanceIndex";
-import xFile from "./file/Index";
-import xTeam from "./team/Index";
-import xAlarm from "./alarm/Index";
-import xSetting from "./setting/Index";
+import xInstance from "@/components/instance/InstanceIndex";
+import xFile from "@/components/file/Index";
+import xTeam from "@/components/team/Index";
+import xAlarm from "@/components/alarm/Index";
+import xSetting from "@/components/setting/Index";
 
 export default {
   components: {

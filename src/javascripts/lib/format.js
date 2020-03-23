@@ -1,6 +1,6 @@
 "use strict";
 
-import { isNumber } from "./common";
+import { isNumber } from "@/javascripts/lib/common";
 
 export function formatSize(size, fixed = 2, showPlus) {
   const symbol = size === Math.abs(size);

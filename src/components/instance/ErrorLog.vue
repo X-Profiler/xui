@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import errorLogModule from "../../javascripts/instance/ErrorLog";
+import errorLogModule from "@/javascripts/instance/ErrorLog";
 
 export default {
   ...errorLogModule

@@ -1,6 +1,6 @@
 "use strict";
 
-import * as utils from "../../lib/utils";
+import * as utils from "@/javascripts/lib/utils";
 
 const { mapActions } = utils.createNamespace("dashboard/instance/process");
 

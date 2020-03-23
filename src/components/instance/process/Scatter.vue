@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import scatModule from "../../../javascripts/instance/process/Scatter";
+import scatModule from "@/javascripts/instance/process/Scatter";
 
 export default {
   props: {

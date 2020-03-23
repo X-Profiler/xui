@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import riskModule from "../../javascripts/instance/ModuleRisk";
+import riskModule from "@/javascripts/instance/ModuleRisk";
 
 export default {
   ...riskModule

@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import headerModule from "../../javascripts/layout/Header";
-import { tags } from "../../javascripts/config";
-import { getTag } from "../../javascripts/lib/utils";
+import headerModule from "@/javascripts/layout/Header";
+import { tags } from "@/javascripts/config";
+import { getTag } from "@/javascripts/lib/utils";
 
 export default {
   props: {

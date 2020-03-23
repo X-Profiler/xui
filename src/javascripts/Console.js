@@ -1,7 +1,7 @@
 "use strict";
 
-import { tags } from "./config";
-import * as utils from "./lib/utils";
+import { tags } from "@/javascripts/config";
+import * as utils from "@/javascripts/lib/utils";
 
 const { mapState, mapMutations, mapActions } = utils.createNamespace("consoler");
 const { mapMethods: mapMethodsNewApp, mapWatch: mapWatchNewApp, handleMounted: handleMountedNewApp } =

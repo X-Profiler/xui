@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import tipModule from "../../../javascripts/instance/process/Tip";
-import { tags } from "../../../javascripts/config";
-import { getTag } from "../../../javascripts/lib/utils";
+import tipModule from "@/javascripts/instance/process/Tip";
+import { tags } from "@/javascripts/config";
+import { getTag } from "@/javascripts/lib/utils";
 
 export default {
   data() {

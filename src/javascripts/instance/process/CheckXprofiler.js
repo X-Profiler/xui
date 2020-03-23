@@ -1,6 +1,6 @@
 "use strict";
 
-import * as utils from "../../lib/utils";
+import * as utils from "@/javascripts/lib/utils";
 
 const { mapState: mapStateProcess, mapMutations: mapMutationsProcess, mapActions: mapActionsProcess } = utils.createNamespace("dashboard/instance/process");
 const { mapMethods, mapWatch, handleMounted } =

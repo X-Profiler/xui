@@ -1,7 +1,7 @@
 "use strict";
 
-import { tags } from "../../config";
-import * as utils from "../../lib/utils";
+import { tags } from "@/javascripts/config";
+import * as utils from "@/javascripts/lib/utils";
 
 const { mapState } = utils.createNamespace("dashboard/instance");
 const { mapState: mapStateProcess, mapGetters: mapGettersProcess, mapMutations: mapMutationsProcess } = utils.createNamespace("dashboard/instance/process");

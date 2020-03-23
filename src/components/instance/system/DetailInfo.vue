@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import detailInfoModule from "../../../javascripts/instance/system/DetailInfo";
+import detailInfoModule from "@/javascripts/instance/system/DetailInfo";
 
 export default {
   ...detailInfoModule

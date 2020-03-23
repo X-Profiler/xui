@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import NodeModule from "../../../javascripts/instance/process/Node";
+import NodeModule from "@/javascripts/instance/process/Node";
 
 export default {
   data() {

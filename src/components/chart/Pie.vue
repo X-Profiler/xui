@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { createLaterFunction } from "../../javascripts/lib/utils";
+import { createLaterFunction } from "@/javascripts/lib/utils";
 
 export default {
   props: {

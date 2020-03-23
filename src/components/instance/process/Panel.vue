@@ -135,14 +135,14 @@
 </template>
 
 <script>
-import panelModule from "../../../javascripts/instance/process/Panel";
-import { tags } from "../../../javascripts/config";
-import { getTag } from "../../../javascripts/lib/utils";
-import xNode from "./Node";
-import xCheckXprofiler from "./CheckXprofiler";
-import xTrend from "./Trend";
-import xSaveTrend from "./SaveTrend";
-import xTakeAction from "./TakeAction";
+import panelModule from "@/javascripts/instance/process/Panel";
+import { tags } from "@/javascripts/config";
+import { getTag } from "@/javascripts/lib/utils";
+import xNode from "@/components/instance/process/Node";
+import xCheckXprofiler from "@/components/instance/process/CheckXprofiler";
+import xTrend from "@/components/instance/process/Trend";
+import xSaveTrend from "@/components/instance/process/SaveTrend";
+import xTakeAction from "@/components/instance/process/TakeAction";
 
 export default {
   props: {

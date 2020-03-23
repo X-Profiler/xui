@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import checkXprofilerModule from "../../../javascripts/instance/process/CheckXprofiler";
+import checkXprofilerModule from "@/javascripts/instance/process/CheckXprofiler";
 
 export default {
   data() {

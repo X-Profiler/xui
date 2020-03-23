@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import overviewModule from "../../../javascripts/instance/system/Overview";
+import overviewModule from "@/javascripts/instance/system/Overview";
 
 export default {
   ...overviewModule

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import saveTrendModule from "../../../javascripts/instance/process/SaveTrend";
+import saveTrendModule from "@/javascripts/instance/process/SaveTrend";
 
 export default {
   ...saveTrendModule

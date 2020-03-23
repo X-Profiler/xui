@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import trendModule from "../../../javascripts/instance/process/Trend";
-import xTrendData from "./TrendData";
+import trendModule from "@/javascripts/instance/process/Trend";
+import xTrendData from "@/components/instance/process/TrendData";
 
 export default {
   components: {
