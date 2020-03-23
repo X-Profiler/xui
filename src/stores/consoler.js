@@ -62,6 +62,24 @@ export default {
       await handAppList(context, options, "list", "array");
     },
 
+    async getTitleMetrics(context, { cancelToken, urlKey, appIds }) {
+      const { rootState, dispatch } = context;
+
+      if (!appIds) {
+        return;
+      }
+
+      const options = {
+        cancelToken,
+
+        // user data
+        url: rootState.url[urlKey],
+        data: { appIds }
+      };
+
+      return dispatch("request", options, { root: true });
+    },
+
     async getMainMetrics(context, { cancelToken, urlKey, appId }) {
       const { rootState, dispatch } = context;
 
