@@ -11,7 +11,6 @@ export default {
   created() {
     // set common http methods
     this.cancelToken = utils.createCancelToken();
-    this.get = utils.get.bind(this);
 
     // init active nav
     for (const nav of this.navActions) {

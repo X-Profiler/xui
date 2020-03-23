@@ -20,82 +20,6 @@ export function getTag(tags) {
   return tags[lang];
 }
 
-// TODO: need remove
-export function error(content, code, duration) {
-  if (Number(code) === 401) {
-    location.reload();
-    return;
-  }
-  if (duration) {
-    this.$Message.error({ content, duration, closable: true });
-  } else {
-    this.$Message.error(content);
-  }
-}
-
-// TODO: need remove
-export function resolveData(message, loadingKey, data) {
-  data = data.data;
-  let res;
-  if (data.ok) {
-    res = data.data;
-  } else {
-    error.call(this, data.message || `${message}`, data.code);
-    res = failedCode;
-  }
-  if (loadingKey) {
-    this[loadingKey] = false;
-  }
-  return res;
-}
-
-// TODO: need remove
-export function handleError(message, loadingKey, err) {
-  if (axios.isCancel(err)) {
-    return;
-  }
-  error.call(this, `${message} ${err}`, err.code);
-  this[loadingKey] = false;
-  throw err;
-}
-
-// TODO: need remove
-export function request(method, message, url, data, callback, cancelToken, loadingKey = "") {
-  if (loadingKey) {
-    this[loadingKey] = true;
-  }
-  message = message[lang];
-
-  const obj = {};
-  if (method === "GET") {
-    obj.params = data;
-  } else {
-    obj.data = data;
-  }
-
-  return axios(Object.assign({
-    url,
-    method,
-    cancelToken
-  }, obj))
-    .then(resolveData.bind(this, message, loadingKey))
-    .then(callback)
-    .catch(handleError.bind(this, message, loadingKey));
-}
-
-// TODO: need remove
-export function get(...args) {
-  args.unshift("GET");
-  return request.call(this, ...args);
-}
-
-// TODO: need remove
-export function post(...args) {
-  args.unshift("POST");
-  return request.call(this, ...args);
-}
-
-// valid utils
 const checkType = {
   array: v => Array.isArray(v)
 };
@@ -113,7 +37,7 @@ function checkValueSetting(componentKey, setValue, notSetting = false) {
   const shouldDoNext = !setValue || !Array.isArray(whiteList) || whiteList.includes(setValue);
   if (!shouldDoNext) {
     if (!notSetting) {
-      error.call(this, getTag(tags.illegalType) + setValue);
+      this.$Message.error(getTag(tags.illegalType) + setValue);
     }
     if (Array.isArray(whiteList)) {
       this[componentKey] = whiteList[0];

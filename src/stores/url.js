@@ -8,6 +8,9 @@ export default {
     // consoler
     app: "/xapi/app",
     apps: "/xapi/apps",
+    instanceCount: "/xapi/instance_count",
+    alarmCount: "/xapi/alarm_count",
+    riskCount: "/xapi/risk_count",
     processCpuUsage: "/xapi/overview/process_cpu_usage",
     processMemoryUsage: "/xapi/overview/process_memory_usage",
     systemCpuUsage: "/xapi/overview/system_cpu_usage",

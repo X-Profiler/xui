@@ -1,6 +1,6 @@
 "use strict";
 
-import { http, tags } from "./config";
+import { tags } from "./config";
 import * as utils from "./lib/utils";
 
 const { mapState, mapActions } = utils.createNamespace("consoler");
@@ -21,7 +21,6 @@ export default {
   created() {
     // set common http methods
     this.cancelToken = utils.createCancelToken();
-    this.get = utils.get.bind(this);
 
     // get apps
     this.getApps({ cancelToken: this.cancelToken.token, type: this.type });
@@ -32,9 +31,12 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getApps", "getMainMetrics"]),
+    ...mapActions(["getApps", "getTitleMetrics", "getMainMetrics"]),
 
     formatCount(count) {
+      if (!utils.isNumber(count)) {
+        return count;
+      }
       let res = count;
       if (count > 9999) {
         res = (res / 1000).toFixed(1) + "K";
@@ -98,9 +100,11 @@ export default {
       }
 
       // get title metrics
-      this.getTitleMetricData(INSTANCE_COUNT, appIds);
-      this.getTitleMetricData(ALARM_COUNT, appIds);
-      this.getTitleMetricData(RISK_COUNT, appIds);
+      if (appIds.length) {
+        this.getTitleMetricData(INSTANCE_COUNT, appIds);
+        this.getTitleMetricData(ALARM_COUNT, appIds);
+        this.getTitleMetricData(RISK_COUNT, appIds);
+      }
       return list;
     },
 
@@ -126,8 +130,8 @@ export default {
     },
 
     getTitleMetricData(key, appIds) {
-      this.get(http[key].msg, http[key].url, { appIds },
-        data => this.setDataToApps(key, data), this.cancelToken.token)
+      this.getTitleMetrics({ cancelToken: this.cancelToken.token, urlKey: key, appIds })
+        .then(data => this.setDataToApps(key, data))
         .catch(() => this.setDataToApps(key, {}));
     },
 

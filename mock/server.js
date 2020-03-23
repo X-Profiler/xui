@@ -19,9 +19,6 @@ app.get('/xapi/user', function (req, res) {
   res.send({ ok: true, data });
 });
 
-// console
-require('./apps')(app);
-
 // consoler
 require('./mock_consoler')(app);
 
