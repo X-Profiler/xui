@@ -64,7 +64,10 @@
 .slide-rightward-leave,
 .slide-router-leave,
 .slide-leave {
-  display: none;
+  /* display: none; */
+  opacity: 0;
+  position: absolute;
+  z-index: -9999;
 }
 
 

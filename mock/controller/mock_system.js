@@ -19,17 +19,17 @@ module.exports = app => {
         "/opt": 92,
         "/dev": 1
       },
-      load1: 2.66,
-      load5: 2.86,
-      load15: 2.39,
+      load1: Number((Math.random() * 4).toFixed(2)),
+      load5: Number((Math.random() * 4).toFixed(2)),
+      load15: Number((Math.random() * 4).toFixed(2)),
       nodeCount: 8,
-      scavengeMax: 105,
-      scavengeAverage: 5,
-      marksweepMax: 1001,
-      marksweepAverage: 36,
-      qps: 0.2,
-      rtMax: 11298,
-      rtAverage: 428
+      scavengeMax: parseInt(Math.random() * 100) + 50,
+      scavengeAverage: Number((Math.random() * 10).toFixed(1)),
+      marksweepMax: parseInt(Math.random() * 1000) + 500,
+      marksweepAverage: parseInt(Math.random() * 50) + 10,
+      qps: Number((Math.random() * 200).toFixed(1)),
+      rtMax: parseInt((Math.random() * 600)) + 5000,
+      rtAverage: parseInt((Math.random() * 200)) + 200
     };
 
     setTimeout(() => res.send({ ok: true, data }), 600);

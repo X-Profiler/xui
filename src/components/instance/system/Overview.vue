@@ -71,7 +71,7 @@ export default {
 
 <style scoped>
 .overview {
-  min-height: 210px;
+  min-height: 250px;
 }
 
 .content {
