@@ -94,7 +94,7 @@ export default {
       } = overview_data;
 
       if (isNumber(load1) && isNumber(load5) && isNumber(load15)) {
-        metrics[0].push({ key: "load1 / 5 / 15", value: `${load1} / ${load5} / ${load15}` });
+        metrics[0].push({ key: "Load1 / 5 / 15", value: `${load1} / ${load5} / ${load15}` });
       }
 
       if (isNumber(nodeCount)) {
@@ -102,15 +102,15 @@ export default {
       }
 
       if (isNumber(scavengeMax) && isNumber(scavengeAverage)) {
-        metrics[1].push({ key: "Scavenge Max / Average", value: `${formatTime(scavengeMax)} / ${formatTime(scavengeAverage)}` });
+        metrics[1].push({ key: "Scavenge Max / Avg", value: `${formatTime(scavengeMax)} / ${formatTime(scavengeAverage)}` });
       }
 
       if (isNumber(marksweepMax) && isNumber(marksweepAverage)) {
-        metrics[1].push({ key: "Marksweep Max / Average", value: `${formatTime(marksweepMax)} / ${formatTime(marksweepAverage)}` });
+        metrics[1].push({ key: "Marksweep Max / Avg", value: `${formatTime(marksweepMax)} / ${formatTime(marksweepAverage)}` });
       }
 
       if (isNumber(rtMax) && isNumber(rtAverage)) {
-        metrics[2].push({ key: "RT Max / Average", value: `${formatTime(rtMax)} / ${formatTime(rtAverage)}` });
+        metrics[2].push({ key: "RT Max / Avg", value: `${formatTime(rtMax)} / ${formatTime(rtAverage)}` });
       }
 
       if (isNumber(qps)) {

@@ -41,11 +41,15 @@ export default {
 
     closeNewAppModal() {
       this.setNewAppModal({ status: false });
+    },
+
+    refreshApps() {
+      this.appList.refreshApps();
     }
   },
 
   computed: {
-    ...mapState(["new_app_loading", "newAppModal"]),
+    ...mapState(["newAppModal"]),
 
     myApps() {
       return utils.getTag(tags.myApps);
@@ -70,13 +74,6 @@ export default {
 
     selectedType(...args) {
       utils.watchQueryKey.call(this, "type", "selectedType", args);
-    },
-
-    new_app_loading() {
-      if (!this.new_app_loading && !this.new_app_load_error) {
-        this.setNewAppModal({ status: false });
-        this.appList.refreshApps();
-      }
     }
   }
 };

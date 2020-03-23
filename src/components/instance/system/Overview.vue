@@ -80,7 +80,6 @@ export default {
 }
 
 .pie {
-  min-width: 300px;
   flex: 1 0 300px;
 }
 
@@ -110,6 +109,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  padding: 20px 0;
 }
 
 .metric-content {
