@@ -54,9 +54,9 @@
 
       <!-- instance content -->
       <transition name="slide">
-        <keep-alive>
-          <component v-if="selectedAgentId" :is="activeComponent" :appId="appId"></component>
-        </keep-alive>
+        <!-- <keep-alive> -->
+        <component v-if="selectedAgentId" :is="activeComponent" :appId="appId"></component>
+        <!-- </keep-alive> -->
       </transition>
     </div>
 

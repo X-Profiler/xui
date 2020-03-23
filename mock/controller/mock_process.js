@@ -8,7 +8,7 @@ module.exports = app => {
 
     const appId = req.query.appId;
     const agentId = req.query.agentId;
-    console.log(`get app ${appId} agent ${agentId} pids`);
+    console.log(`get app ${appId} agent ${agentId} xprofiler processes`);
 
     const list = require('../data/xprocesses').map(proc => {
       proc.updateTime = Date.now() - 2 * 60 * 1000;

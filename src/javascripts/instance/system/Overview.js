@@ -3,7 +3,7 @@
 import * as utils from "@/javascripts/lib/utils";
 
 const { isNumber, formatTime } = utils;
-
+const { mapState: mapStateInstance } = utils.createNamespace("dashboard/instance");
 const { mapState, mapActions } = utils.createNamespace("dashboard/instance/system");
 
 export default {
@@ -30,6 +30,8 @@ export default {
 
   computed: {
     ...mapState(["overview_loading", "overview_load_error", "overview_data"]),
+
+    ...mapStateInstance(["agentId"]),
 
     pies() {
       const overview_data = this.overview_data;
@@ -118,6 +120,12 @@ export default {
       }
 
       return metrics;
+    }
+  },
+
+  watch: {
+    agentId() {
+      this.getSystemOverview({ cancelToken: this.cancelToken.token });
     }
   }
 };

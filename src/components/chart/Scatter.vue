@@ -274,7 +274,7 @@ export default {
 
 .circle:hover,
 .selected {
-  transition: all 0.1s ease-out;
+  transition: stroke-opacity 0.1s ease-out, stroke-width 0.1s ease-out;
   stroke-opacity: 0.4;
   stroke-width: 8px;
 }
