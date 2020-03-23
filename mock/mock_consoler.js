@@ -23,6 +23,8 @@ module.exports = app => {
 
   // get apps
   app.get('/xapi/apps', function (req, res) {
+    utils.checkParam(req.query, ["type"]);
+
     const type = req.query.type;
     console.log(`get apps type ${type}`);
     const list = require(path.join(__dirname, `./data/${type}.js`));
@@ -30,43 +32,25 @@ module.exports = app => {
     // setTimeout(() => { res.send({ ok: false, message: "请求失败" }); }, 500);
   });
 
-  // get instance count
-  app.get('/xapi/instance_count', function (req, res) {
-    const appIds = req.query.appIds || [];
-    console.log(`get instance count: ${JSON.stringify(appIds)}`);
-    const data = {};
-    for (const appId of appIds) {
-      data[appId] = getInstances(appId).count;
-    }
-    setTimeout(() => res.send({ ok: true, data }), 100);
-    // res.send({ ok: true, data });
-  });
+  // get overview metrics
+  app.get('/xapi/overview_metrics', function (req, res) {
+    utils.checkParam(req.query, ["appId"]);
 
-  // get alarm count
-  app.get('/xapi/alarm_count', function (req, res) {
-    const appIds = req.query.appIds || [];
-    console.log(`get alarm count: ${JSON.stringify(appIds)}`);
-    const data = {};
-    for (const appId of appIds) {
-      data[appId] = parseInt(Math.random() * 10e4)
-    }
-    setTimeout(() => res.send({ ok: true, data }), 500);
-    // res.send({ ok: true, data });
-  });
+    const appId = req.query.appId || [];
+    console.log(`get overview metrics: ${appId}`);
 
-  // get risk count
-  app.get('/xapi/risk_count', function (req, res) {
-    const appIds = req.query.appIds || [];
-    console.log(`get risk count: ${JSON.stringify(appIds)}`);
-    const data = {};
-    for (const appId of appIds) {
-      data[appId] = parseInt(Math.random() * 100)
-    }
-    setTimeout(() => res.send({ ok: true, data }), 300);
-    // res.send({ ok: true, data });
+    const data = {
+      instanceCount: getInstances(appId).count,
+      alarmCount: parseInt(Math.random() * 10e4),
+      riskCount: parseInt(Math.random() * 100)
+    };
+
+    setTimeout(() => res.send({ ok: true, data }), 550);
   });
 
   app.get('/xapi/overview/process_cpu_usage', function (req, res) {
+    utils.checkParam(req.query, ["appId"]);
+
     const appId = req.query.appId;
     console.log(`get app ${appId} process cpu usage overview`);
 
@@ -79,6 +63,8 @@ module.exports = app => {
   });
 
   app.get('/xapi/overview/process_memory_usage', function (req, res) {
+    utils.checkParam(req.query, ["appId"]);
+
     const appId = req.query.appId;
     console.log(`get app ${appId} process memory usage overview`);
 
@@ -91,6 +77,8 @@ module.exports = app => {
   });
 
   app.get('/xapi/overview/system_cpu_usage', function (req, res) {
+    utils.checkParam(req.query, ["appId"]);
+
     const appId = req.query.appId;
     console.log(`get app ${appId} system cpu usage overview`);
 
@@ -103,6 +91,8 @@ module.exports = app => {
   });
 
   app.get('/xapi/overview/system_memory_usage', function (req, res) {
+    utils.checkParam(req.query, ["appId"]);
+
     const appId = req.query.appId;
     console.log(`get app ${appId} system cpu usage overview`);
 
@@ -115,6 +105,8 @@ module.exports = app => {
   });
 
   app.get('/xapi/overview/disk_usage', function (req, res) {
+    utils.checkParam(req.query, ["appId"]);
+
     const appId = req.query.appId;
     console.log(`get app ${appId} disk usage overview`);
 

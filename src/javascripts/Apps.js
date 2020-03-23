@@ -31,7 +31,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getApps", "getTitleMetrics", "getMainMetrics"]),
+    ...mapActions(["getApps", "getOverviewMetrics", "getMainMetrics"]),
 
     formatCount(count) {
       if (!utils.isNumber(count)) {
@@ -91,6 +91,9 @@ export default {
         app[DISK_USAGE] = [];
         app[`${DISK_USAGE}Loading`] = true;
 
+        // get title metrics
+        this.getOverviewMetricData([INSTANCE_COUNT, ALARM_COUNT, RISK_COUNT], app.appId);
+
         // get main metrics
         this.getMainMetricData(PROCESS_CPU_USAGE, app.appId);
         this.getMainMetricData(PROCESS_MEMORY_USAGE, app.appId);
@@ -99,18 +102,21 @@ export default {
         this.getMainMetricData(DISK_USAGE, app.appId);
       }
 
-      // get title metrics
-      if (appIds.length) {
-        this.getTitleMetricData(INSTANCE_COUNT, appIds);
-        this.getTitleMetricData(ALARM_COUNT, appIds);
-        this.getTitleMetricData(RISK_COUNT, appIds);
-      }
       return list;
     },
 
-    setDataToApps(key, data) {
-      for (const app of this.apps) {
-        const value = data[app.appId];
+    getAppByAppId(appId) {
+      const app = this.apps.filter(app => app.appId === appId);
+      return app[0];
+    },
+
+    setDataToApps(appId, keys, data) {
+      const app = this.getAppByAppId(appId);
+      if (!app) {
+        return;
+      }
+      for (const key of keys) {
+        const value = data[key];
         if (utils.isNumber(value)) {
           app[key] = value;
         } else {
@@ -121,18 +127,18 @@ export default {
     },
 
     setMainMetricDataToApp(appId, key, list) {
-      for (const app of this.apps) {
-        if (Array.isArray(list) && appId === app.appId) {
-          app[key] = list;
-          app[`${key}Loading`] = false;
-        }
+      const app = this.getAppByAppId(appId);
+      if (!app) {
+        return;
       }
+      app[key] = list;
+      app[`${key}Loading`] = false;
     },
 
-    getTitleMetricData(key, appIds) {
-      this.getTitleMetrics({ cancelToken: this.cancelToken.token, urlKey: key, appIds })
-        .then(data => this.setDataToApps(key, data))
-        .catch(() => this.setDataToApps(key, {}));
+    getOverviewMetricData(keys, appId) {
+      this.getOverviewMetrics({ cancelToken: this.cancelToken.token, appId })
+        .then(data => this.setDataToApps(appId, keys, data))
+        .catch(() => this.setDataToApps(appId, keys, {}));
     },
 
     getMainMetricData(key, appId) {
