@@ -3,13 +3,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VueRouter from "vue-router";
-import App from "./App.vue";
-import Store from "./store";
-import Routers from "./router.js";
+import App from "@/App.vue";
+import Store from "@/store";
+import Routers from "@/router.js";
 import ViewUI from "view-design";
 import DomPortal from "vue-dom-portal";
 import "view-design/dist/styles/iview.css";
-import "./theme/index.less";
+import "@/theme/index.less";
 
 // global components
 import xChartip from "@/components/common/Chartip";

@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import siderModule from "../../javascripts/layout/Sider";
-import { tags } from "../../javascripts/config";
-import { getTag } from "../../javascripts/lib/utils";
+import siderModule from "@/javascripts/layout/Sider";
+import { tags } from "@/javascripts/config";
+import { getTag } from "@/javascripts/lib/utils";
 
 export default {
   props: {

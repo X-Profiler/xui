@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import systemModule from "../../../javascripts/instance/system/SystemIndex";
-import overview from "./Overview";
-import detailInfo from "./DetailInfo";
+import systemModule from "@/javascripts/instance/system/SystemIndex";
+import overview from "@/components/instance/system/Overview";
+import detailInfo from "@/components/instance/system/DetailInfo";
 
 export default {
   components: {

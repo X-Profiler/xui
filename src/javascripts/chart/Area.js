@@ -1,7 +1,7 @@
 "use strict";
 
 import * as moment from "moment";
-import { dichotomy, createLaterFunction, isNumber } from "../lib/utils";
+import { dichotomy, createLaterFunction, isNumber } from "@/javascripts/lib/utils";
 
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 

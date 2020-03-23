@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import trendModule from "../../../javascripts/instance/process/TrendData";
+import trendModule from "@/javascripts/instance/process/TrendData";
 
 export default {
   props: {

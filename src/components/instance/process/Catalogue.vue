@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import catalogueModule from "../../../javascripts/instance/process/Catalogue";
+import catalogueModule from "@/javascripts/instance/process/Catalogue";
 
 export default {
   props: {

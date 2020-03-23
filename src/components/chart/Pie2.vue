@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { isNumber } from "../../javascripts/lib/utils";
+import { isNumber } from "@/javascripts/lib/utils";
 
 export default {
   props: {

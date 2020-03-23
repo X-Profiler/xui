@@ -95,13 +95,13 @@
 </template>
 
 <script>
-import processModule from "../../../javascripts/instance/process/ProcessIndex";
+import processModule from "@/javascripts/instance/process/ProcessIndex";
 
 // module
-import xLine from "./Line";
-import xPanel from "./Panel";
-import xCatalogue from "./Catalogue";
-import xScatter from "./Scatter";
+import xLine from "@/components/instance/process/Line";
+import xPanel from "@/components/instance/process/Panel";
+import xCatalogue from "@/components/instance/process/Catalogue";
+import xScatter from "@/components/instance/process/Scatter";
 
 export default {
   components: {

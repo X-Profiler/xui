@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import takeActionModule from "../../../javascripts/instance/process/TakeAction";
+import takeActionModule from "@/javascripts/instance/process/TakeAction";
 
 export default {
   ...takeActionModule

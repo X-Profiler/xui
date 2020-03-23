@@ -66,16 +66,16 @@
 </template>
 
 <script>
-import indexModule from "../../javascripts/instance/InstanceIndex";
-import { tags } from "../../javascripts/config";
-import { getTag } from "../../javascripts/lib/utils";
+import indexModule from "@/javascripts/instance/InstanceIndex";
+import { tags } from "@/javascripts/config";
+import { getTag } from "@/javascripts/lib/utils";
 
 // instance component
-import xProcess from "./process/ProcessIndex";
-import xSystem from "./system/SystemIndex";
-import xErrorLog from "./ErrorLog";
-import xModuleRisk from "./ModuleRisk";
-import xCheckAgent from "./CheckAgent";
+import xProcess from "@/components/instance/process/ProcessIndex";
+import xSystem from "@/components/instance/system/SystemIndex";
+import xErrorLog from "@/components/instance/ErrorLog";
+import xModuleRisk from "@/components/instance/ModuleRisk";
+import xCheckAgent from "@/components/instance/CheckAgent";
 
 export default {
   props: {

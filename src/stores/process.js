@@ -1,6 +1,6 @@
 "use stritc";
 
-import * as utils from "../javascripts/lib/utils";
+import * as utils from "@/javascripts/lib/utils";
 
 const { state: procState, mutations: procMutations, handle: handlePorc } =
   utils.storeFactory("processes", []);

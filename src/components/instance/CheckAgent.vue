@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import checkAgentModule from "../../javascripts/instance/CheckAgent";
+import checkAgentModule from "@/javascripts/instance/CheckAgent";
 
 export default {
   data() {

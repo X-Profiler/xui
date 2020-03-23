@@ -50,11 +50,11 @@
 </template>
 
 <script>
-import xHeader from "./layout/Header";
-import xApps from "./Apps";
-import xEggLogo from "./logo/Egg";
-import xCreateApp from "./CreateApp";
-import consoleModule from "../javascripts/Console";
+import consoleModule from "@/javascripts/Console";
+import xHeader from "@/components/layout/Header";
+import xApps from "@/components/Apps";
+import xEggLogo from "@/components/logo/Egg";
+import xCreateApp from "@/components/CreateApp";
 
 export default {
   components: {

@@ -1,6 +1,6 @@
 "use strict";
 
-import * as utils from "../javascripts/lib/utils";
+import * as utils from "@/javascripts/lib/utils";
 
 const { state: overviewState, mutations: overviewMutations, handle: handleOverview } =
   utils.storeFactory("overview", {});

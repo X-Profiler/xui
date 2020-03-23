@@ -215,7 +215,7 @@
 </template>
 
 <script>
-import areaModule from "../../javascripts/chart/Area";
+import areaModule from "@/javascripts/chart/Area";
 
 export default {
   props: {

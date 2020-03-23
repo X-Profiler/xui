@@ -118,9 +118,9 @@
 </template>
 
 <script>
-import appsModule from "../javascripts/Apps";
-import { tags } from "../javascripts/config";
-import { getTag } from "../javascripts/lib/utils";
+import appsModule from "@/javascripts/Apps";
+import { tags } from "@/javascripts/config";
+import { getTag } from "@/javascripts/lib/utils";
 
 export default {
   props: {

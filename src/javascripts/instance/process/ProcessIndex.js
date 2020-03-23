@@ -1,8 +1,8 @@
 "use strict";
 
 import * as moment from "moment";
-import { tags } from "../../config";
-import * as utils from "../../lib/utils";
+import { tags } from "@/javascripts/config";
+import * as utils from "@/javascripts/lib/utils";
 
 const { mapState: mapStateDashboard } = utils.createNamespace("dashboard");
 const { mapState: mapStateInstance } = utils.createNamespace("dashboard/instance");
