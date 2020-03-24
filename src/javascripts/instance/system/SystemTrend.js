@@ -2,6 +2,7 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
+const { mapState: mapStateInstance } = utils.createNamespace("dashboard/instance");
 const { mapActions } = utils.createNamespace("dashboard/instance/system");
 
 export default {
@@ -23,9 +24,12 @@ export default {
       this
         .getSystemTrend({ cancelToken: this.cancelToken.token, trendType: this.type })
         .then(data => {
-          const { list, extra } = data;
+          const { list, extra, yAxis } = data;
           if (Array.isArray(list)) {
             this.trendData = list;
+          }
+          if (Array.isArray(yAxis) && yAxis.length) {
+            this.yAxis = yAxis;
           }
           this.extra = extra;
         })
@@ -62,6 +66,8 @@ export default {
   },
 
   computed: {
+    ...mapStateInstance(["agentId"]),
+
     commonData() {
       const type = this.type;
       const common = { yAxis: [], yAxisUnit: "", noDataText: "" };
@@ -78,6 +84,12 @@ export default {
         common.noDataText = "暂无系统内存趋势数据";
       }
 
+      if (type === "diskUsageTrend") {
+        common.yAxis = this.yAxis;
+        common.yAxisUnit = "%";
+        common.noDataText = "暂无磁盘使用趋势数据";
+      }
+
       return common;
     },
 
@@ -86,5 +98,11 @@ export default {
 
       return trendData;
     },
+  },
+
+  watch: {
+    agentId() {
+      this.getTrendData();
+    }
   }
 };
