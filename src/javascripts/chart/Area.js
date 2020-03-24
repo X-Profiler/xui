@@ -245,10 +245,7 @@ export default {
     }),
 
     ...createLaterFunction("mousemove", function (event) {
-      if (this.intersectionFixed) {
-        return;
-      }
-      if (this.noData) {
+      if (this.intersectionFixed || this.noData) {
         return;
       }
 
@@ -461,7 +458,7 @@ export default {
     },
 
     noData() {
-      return !this.xAxisScale.length && !this.yAxisScale.length;
+      return !this.xAxisScale.length || !this.yAxisScale.length;
     },
 
     yAxisData() {

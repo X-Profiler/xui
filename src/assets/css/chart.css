@@ -50,3 +50,33 @@
   border-radius: 50%;
   background-color: black;
 }
+
+/* trend start */
+
+.trend-title-group,
+.trend-status-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.trend-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.trend-status {
+  margin-left: 13px;
+  font-size: 12px;
+  color: #fff;
+  padding: 2px 5px;
+  transition: all 0.1s ease;
+}
+
+.trend-tip {
+  margin-left: 10px;
+  font-size: 13px;
+  color: #515a6e;
+}
+
+/* trend end */
