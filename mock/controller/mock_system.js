@@ -91,6 +91,18 @@ module.exports = app => {
       });
     }
 
+    if (trendType === "qpsTrend") {
+      list = utils.createAreaData(["qps"], {
+        qps: () => 200 + Number((Math.random() * 50).toFixed(1))
+      });
+    }
+
+    if (trendType === "httpResponseTrend") {
+      list = utils.createAreaData(["response_time"], {
+        response_time: () => parseInt((Math.random() * 100)) + 200
+      });
+    }
+
     setTimeout(() => res.send({ ok: true, data: { list, extra, yAxis } }), 500);
   });
 };
