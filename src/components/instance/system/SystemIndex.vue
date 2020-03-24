@@ -2,9 +2,7 @@
   <div>
     <x-overview></x-overview>
 
-    <div class="detail">
-      <x-detail-info></x-detail-info>
-    </div>
+    <x-detail-info class="detail"></x-detail-info>
   </div>
 </template>
 

@@ -34,4 +34,31 @@ module.exports = app => {
 
     setTimeout(() => res.send({ ok: true, data }), 600);
   });
+
+  app.get('/xapi/system_trend', function (req, res) {
+    utils.checkParam(req.query, ["appId", "agentId", "trendType"]);
+
+    const appId = req.query.appId;
+    const agentId = req.query.agentId;
+    const trendType = req.query.trendType;
+    console.log(`get app ${appId} agent ${agentId} system trend ${trendType} data`);
+
+    let list = [];
+    let extra = "";
+
+    if (trendType === 'osCpuTrend') {
+      list = utils.createAreaData(["os_cpu"], {
+        os_cpu: () => 40 + parseInt(Math.random() * 10)
+      });
+    }
+
+    if (trendType === 'osMemoryTrend') {
+      list = utils.createAreaData(["os_memory"], {
+        os_memory: () => 80 + parseInt(Math.random() * 10),
+      });
+      extra = `16 GB`;
+    }
+
+    setTimeout(() => res.send({ ok: true, data: { list, extra } }), 500);
+  });
 };

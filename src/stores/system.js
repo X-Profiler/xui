@@ -45,5 +45,23 @@ export default {
 
       await handleOverview(context, options);
     },
+
+    async getSystemTrend(context, { cancelToken, trendType }) {
+      const { state, getters, dispatch, rootState } = context;
+
+      const options = {
+        cancelToken,
+
+        // user data
+        url: rootState.url.systemTrend,
+        data: {
+          appId: getters.appId,
+          agentId: getters.agentId,
+          trendType
+        }
+      };
+
+      return dispatch("request", options, { root: true });
+    }
   }
 };

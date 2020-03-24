@@ -139,7 +139,7 @@ module.exports = app => {
     const agentId = req.query.agentId;
     const pid = Number(req.query.pid);
     const trendType = req.query.trendType;
-    console.log(`get app ${appId} agent ${agentId} pid ${pid} trend ${trendType} data`);
+    console.log(`get app ${appId} agent ${agentId} pid ${pid} process trend ${trendType} data`);
 
     let list = [];
     let limit = 0;

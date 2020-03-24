@@ -1,20 +1,14 @@
 <template>
   <div>
     <div class="trend-title-group">
-      <div class="trend-title">{{ title }}</div>
-      <transition name="slide-noward">
-        <div
-          v-if="commonData.showStatus && trendStatus.status !== undefined"
-          class="trend-status-group"
-        >
-          <div class="trend-status" :style="statusLabelStyle">{{ trendStatus.statusLabel }}</div>
-          <div class="trend-tip">{{ trendStatus.statusTip }}</div>
-        </div>
-      </transition>
+      <div class="trend-title system-title">
+        {{ title }}
+        <span class="extra" v-if="extra">({{ extra }})</span>
+      </div>
     </div>
 
     <div>
-      <div style="text-align: center;margin-top: 13px;">
+      <div style="text-align: center;">
         <x-loading :loading="loading" top="100" type="dot" size="middle"></x-loading>
       </div>
 
@@ -23,13 +17,13 @@
       <transition name="slide-noward">
         <div v-if="!loading && !loadError" class="charts">
           <!-- pie chart -->
-          <x-pie
+          <!-- <x-pie
             v-if="solid"
             class="pie"
             :data="selectedData"
             :yAxis="commonData.yAxis"
             :yAxisUnit="commonData.yAxisUnit"
-          ></x-pie>
+          ></x-pie>-->
 
           <!-- main chart -->
           <x-area
@@ -40,11 +34,9 @@
             :yAxis="commonData.yAxis"
             :yAxisUnit="commonData.yAxisUnit"
             :noDataText="commonData.noDataText"
-            :showStatus="commonData.showStatus"
             :solid="solid"
             @linkage="linkage"
             @hidden="hidden"
-            @status="updateStatus"
             @broadcast="broadcast"
           ></x-area>
         </div>
@@ -54,7 +46,7 @@
 </template>
 
 <script>
-import trendModule from "@/javascripts/instance/process/TrendData";
+import systemTrendModule from "@/javascripts/instance/system/SystemTrend";
 
 export default {
   props: {
@@ -68,28 +60,22 @@ export default {
       loading: false,
       loadError: undefined,
       trendData: [],
-      trendStatus: {},
-      limit: undefined,
-      selectedData: {}
+      extra: undefined
     };
   },
-
-  ...trendModule
+  ...systemTrendModule
 };
 </script>
 
 <style scoped>
-.charts {
-  display: flex;
-  flex-wrap: wrap;
+.system-title {
+  text-align: center;
+  font-size: 13px;
+  width: 100%;
 }
 
-.pie {
-  flex-basis: 315px;
-}
-
-.main-chart {
-  flex-basis: 500px;
-  flex-grow: 1;
+.extra {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 12px;
 }
 </style>

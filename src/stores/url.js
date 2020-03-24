@@ -27,6 +27,7 @@ export default {
     action: "/xapi/action",
 
     // dashboard/instance/system
-    overview: "/xapi/system_overview"
+    overview: "/xapi/system_overview",
+    systemTrend: "/xapi/system_trend"
   }
 };
