@@ -60,6 +60,20 @@ module.exports = app => {
       extra = `16 GB`;
     }
 
+    if (trendType === 'loadTrend') {
+      list = utils.createAreaData(["load1", "load5", "load15"], {
+        load1: () => 4 + Number((Math.random() * 4).toFixed(2)),
+        load5: () => 4 + Number((Math.random() * 2).toFixed(2)),
+        load15: () => 4 + Number((Math.random() * 1).toFixed(2))
+      });
+    }
+
+    if (trendType === "nodeCountTrend") {
+      list = utils.createAreaData(["node_count"], {
+        node_count: () => 8,
+      });
+    }
+
     if (trendType === "diskUsageTrend") {
       yAxis = ["/", "/opt", "/data"];
       list = utils.createAreaData(yAxis, {

@@ -84,6 +84,18 @@ export default {
         common.noDataText = "暂无系统内存趋势数据";
       }
 
+      if (type === "loadTrend") {
+        common.yAxis = ["load1", "load5", "load15"];
+        common.yAxisUnit = "";
+        common.noDataText = "暂无系统 Load 负载数据";
+      }
+
+      if (type === "nodeCountTrend") {
+        common.yAxis = ["node_count"];
+        common.yAxisUnit = "";
+        common.noDataText = "暂无系统 Node.js 进程数趋势数据";
+      }
+
       if (type === "diskUsageTrend") {
         common.yAxis = this.yAxis;
         common.yAxisUnit = "%";

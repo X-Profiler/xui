@@ -41,6 +41,10 @@ export default {
           { label: "系统 CPU 趋势", value: "osCpuTrend" },
           { label: "系统 Memory 趋势", value: "osMemoryTrend" }
         ],
+        [
+          { label: "系统 Load 负载", value: "loadTrend" },
+          { label: "系统 Node.js 进程数", value: "nodeCountTrend" }
+        ],
         [{ label: "磁盘使用趋势", value: "diskUsageTrend" }]
       ]
     };
