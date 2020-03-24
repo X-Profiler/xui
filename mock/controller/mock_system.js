@@ -62,9 +62,9 @@ module.exports = app => {
 
     if (trendType === 'loadTrend') {
       list = utils.createAreaData(["load1", "load5", "load15"], {
-        load1: () => 4 + Number((Math.random() * 4).toFixed(2)),
-        load5: () => 4 + Number((Math.random() * 2).toFixed(2)),
-        load15: () => 4 + Number((Math.random() * 1).toFixed(2))
+        load1: () => Number((4 + Math.random() * 4).toFixed(2)),
+        load5: () => Number((4 + Math.random() * 2).toFixed(2)),
+        load15: () => Number((4 + Math.random() * 1).toFixed(2))
       });
     }
 

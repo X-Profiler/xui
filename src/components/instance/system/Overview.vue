@@ -9,23 +9,6 @@
 
     <transition name="slide-noward">
       <div v-if="!overview_loading && !overview_load_error" class="content">
-        <div class="pie metrics">
-          <x-error-message v-if="!currentMetrics.length" message="暂无当前系统指标数据"></x-error-message>
-          <div v-else style="width: 100%">
-            <div
-              v-for="(metrics, index) in currentMetrics"
-              :key="index"
-              class="metric-content"
-              :style="index !== 0 && metrics.length ? 'margin-top: 25px;' : ''"
-            >
-              <div v-for="(metric, index) in metrics" :key="index" class="metric-group">
-                <div class="metric-key">{{ metric.key }}</div>
-                <div class="metric-value">{{ metric.value }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div v-for="(pie, index) in pies" :key="index" class="pie">
           <x-error-message v-if="pie.fake" :message="pie.message"></x-error-message>
           <x-pie2 v-else :title="pie.title" :percentage="pie.percentage"></x-pie2>
@@ -55,6 +38,23 @@
               </x-dropdown>
             </div>
           </x-pie2>
+        </div>
+
+        <div class="pie metrics">
+          <x-error-message v-if="!currentMetrics.length" message="暂无当前系统指标数据"></x-error-message>
+          <div v-else style="width: 100%">
+            <div
+              v-for="(metrics, index) in currentMetrics"
+              :key="index"
+              class="metric-content"
+              :style="index !== 0 && metrics.length ? 'margin-top: 25px;' : ''"
+            >
+              <div v-for="(metric, index) in metrics" :key="index" class="metric-group">
+                <div class="metric-key">{{ metric.key }}</div>
+                <div class="metric-value">{{ metric.value }}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </transition>
@@ -116,6 +116,7 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   padding: 20px 0;
+  border-left: 1px dashed #dcdee2;
 }
 
 .metric-content {
