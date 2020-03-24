@@ -84,7 +84,7 @@ export default {
         const scale = max - interval * i;
 
         scales.push({
-          label: scale < 2.5 && scale > 0 ? scale.toFixed(2) : Math.round(scale),
+          label: max < 2.5 && max > 0 ? scale.toFixed(2) : Math.round(scale),
           value: scale
         });
       }
