@@ -23,6 +23,6 @@ export default {
 
 <style scoped>
 .detail {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 </style>

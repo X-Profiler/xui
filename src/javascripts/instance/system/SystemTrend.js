@@ -63,19 +63,14 @@ export default {
     broadcast(data) {
       this.$emit("broadcast", data);
     },
-  },
 
-  computed: {
-    ...mapStateInstance(["agentId"]),
-
-    gcUnit() {
+    getTimeUnit(keys) {
       let maxDuration = 0;
       for (const duration of this.trendData) {
-        if (duration.scavenge_avg > maxDuration) {
-          maxDuration = duration.scavenge_avg;
-        }
-        if (duration.marksweep_avg > maxDuration) {
-          maxDuration = duration.marksweep_avg;
+        for (const key of keys) {
+          if (duration[key] > maxDuration) {
+            maxDuration = duration[key];
+          }
         }
       }
 
@@ -90,6 +85,31 @@ export default {
       }
 
       return results;
+    },
+
+    formatTimeData(key) {
+      const trendData = this.trendData;
+      const commonData = this.commonData;
+      const scale = this[key].scale;
+      return trendData.map(item => {
+        const tmp = Object.assign({}, item);
+        for (const key of commonData.yAxis) {
+          tmp[key] = item[key] / scale;
+        }
+        return tmp;
+      });
+    }
+  },
+
+  computed: {
+    ...mapStateInstance(["agentId"]),
+
+    gcUnit() {
+      return this.getTimeUnit(["scavenge_avg", "marksweep_avg"]);
+    },
+
+    rtUnit() {
+      return this.getTimeUnit(["response_time"]);
     },
 
     commonData() {
@@ -132,11 +152,32 @@ export default {
         common.noDataText = "暂无磁盘使用趋势数据";
       }
 
+      if (type === "qpsTrend") {
+        common.yAxis = ["qps"];
+        common.yAxisUnit = "";
+        common.noDataText = "暂无 QPS 趋势数据";
+      }
+
+      if (type === "httpResponseTrend") {
+        common.yAxis = ["response_time"];
+        common.yAxisUnit = this.rtUnit.label;
+        common.noDataText = "暂无 HTTP 响应数据";
+      }
+
       return common;
     },
 
     chartData() {
+      const type = this.type;
       const trendData = this.trendData;
+
+      if (["osGcTrend"].includes(type)) {
+        return this.formatTimeData("gcUnit");
+      }
+
+      if (["httpResponseTrend"].includes(type)) {
+        return this.formatTimeData("rtUnit");
+      }
 
       return trendData;
     },

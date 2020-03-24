@@ -48,6 +48,10 @@ export default {
         [
           { label: "整体 GC 状态", value: "osGcTrend" },
           { label: "磁盘使用率", value: "diskUsageTrend" }
+        ],
+        [
+          { label: "QPS 趋势", value: "qpsTrend" },
+          { label: "HTTP 响应时间", value: "httpResponseTrend" }
         ]
       ]
     };
@@ -59,7 +63,7 @@ export default {
 
 <style scoped>
 .charts {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .system-detail {

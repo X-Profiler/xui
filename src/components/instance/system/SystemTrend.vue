@@ -62,6 +62,10 @@ export default {
 </script>
 
 <style scoped>
+.charts {
+  margin-top: 5px;
+}
+
 .system-title {
   text-align: center;
   font-size: 13px;
