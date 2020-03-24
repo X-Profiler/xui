@@ -44,7 +44,8 @@ module.exports = app => {
     console.log(`get app ${appId} agent ${agentId} system trend ${trendType} data`);
 
     let list = [];
-    let extra = "";
+    let extra = undefined;
+    let yAxis = undefined;
 
     if (trendType === 'osCpuTrend') {
       list = utils.createAreaData(["os_cpu"], {
@@ -59,6 +60,16 @@ module.exports = app => {
       extra = `16 GB`;
     }
 
-    setTimeout(() => res.send({ ok: true, data: { list, extra } }), 500);
+    if (trendType === "diskUsageTrend") {
+      yAxis = ["/", "/opt", "/data"];
+      list = utils.createAreaData(yAxis, {
+        ...yAxis.reduce((res, axis, index) => {
+          res[axis] = () => 40 + index * 20 + parseInt(Math.random() * 5);
+          return res;
+        }, {})
+      });
+    }
+
+    setTimeout(() => res.send({ ok: true, data: { list, extra, yAxis } }), 500);
   });
 };

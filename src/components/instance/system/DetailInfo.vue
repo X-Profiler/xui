@@ -40,7 +40,8 @@ export default {
         [
           { label: "系统 CPU 趋势", value: "osCpuTrend" },
           { label: "系统 Memory 趋势", value: "osMemoryTrend" }
-        ]
+        ],
+        [{ label: "磁盘使用趋势", value: "diskUsageTrend" }]
       ]
     };
   },

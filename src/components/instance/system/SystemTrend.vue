@@ -17,13 +17,6 @@
       <transition name="slide-noward">
         <div v-if="!loading && !loadError" class="charts">
           <!-- pie chart -->
-          <!-- <x-pie
-            v-if="solid"
-            class="pie"
-            :data="selectedData"
-            :yAxis="commonData.yAxis"
-            :yAxisUnit="commonData.yAxisUnit"
-          ></x-pie>-->
 
           <!-- main chart -->
           <x-area
@@ -60,7 +53,8 @@ export default {
       loading: false,
       loadError: undefined,
       trendData: [],
-      extra: undefined
+      extra: undefined,
+      yAxis: []
     };
   },
   ...systemTrendModule
