@@ -43,9 +43,12 @@ export default {
         ],
         [
           { label: "系统 Load 负载", value: "loadTrend" },
-          { label: "系统 Node.js 进程数", value: "nodeCountTrend" }
+          { label: "Node.js 进程数", value: "nodeCountTrend" }
         ],
-        [{ label: "磁盘使用趋势", value: "diskUsageTrend" }]
+        [
+          { label: "整体 GC 状态", value: "osGcTrend" },
+          { label: "磁盘使用率", value: "diskUsageTrend" }
+        ]
       ]
     };
   },

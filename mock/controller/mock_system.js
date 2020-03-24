@@ -74,6 +74,13 @@ module.exports = app => {
       });
     }
 
+    if (trendType === "osGcTrend") {
+      list = utils.createAreaData(["scavenge_avg", "marksweep_avg"], {
+        scavenge_avg: () => parseInt(Math.random() * 20),
+        marksweep_avg: () => 30 + parseInt(Math.random() * 20)
+      });
+    }
+
     if (trendType === "diskUsageTrend") {
       yAxis = ["/", "/opt", "/data"];
       list = utils.createAreaData(yAxis, {
