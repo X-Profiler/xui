@@ -68,6 +68,30 @@ export default {
   computed: {
     ...mapStateInstance(["agentId"]),
 
+    gcUnit() {
+      let maxDuration = 0;
+      for (const duration of this.trendData) {
+        if (duration.scavenge_avg > maxDuration) {
+          maxDuration = duration.scavenge_avg;
+        }
+        if (duration.marksweep_avg > maxDuration) {
+          maxDuration = duration.marksweep_avg;
+        }
+      }
+
+      const results = {};
+
+      if (maxDuration < 10e2) {
+        results.label = "ms";
+        results.scale = 1;
+      } else {
+        results.label = "s";
+        results.scale = 1000;
+      }
+
+      return results;
+    },
+
     commonData() {
       const type = this.type;
       const common = { yAxis: [], yAxisUnit: "", noDataText: "" };
@@ -94,6 +118,12 @@ export default {
         common.yAxis = ["node_count"];
         common.yAxisUnit = "";
         common.noDataText = "暂无系统 Node.js 进程数趋势数据";
+      }
+
+      if (type === "osGcTrend") {
+        common.yAxis = ["scavenge_avg", "marksweep_avg"];
+        common.yAxisUnit = this.gcUnit.label;
+        common.noDataText = "暂无整体 Node.js 进程 GC 数趋势数据";
       }
 
       if (type === "diskUsageTrend") {
