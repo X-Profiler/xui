@@ -1,7 +1,7 @@
 <template>
   <table class="table" :style="getTableStyle">
     <thead class="table-background">
-      <tr v-if="data && data.length">
+      <tr v-if="data && (noDataHead || data.length)">
         <th
           v-for="(column, index) in columns"
           :key="index"
@@ -38,8 +38,11 @@ export default {
     columns: Array,
     data: Array,
     noDataText: String,
+    noDataHead: Boolean,
     hover: Boolean,
     stribe: Boolean,
+    stribe2: Boolean,
+    border: Boolean,
     fontSize: [Number, String]
   },
 
@@ -54,6 +57,10 @@ export default {
         style += "text-align: " + column.align + ";";
       }
 
+      if (this.border) {
+        style += "border: 1px solid #e7e7e8";
+      }
+
       return style;
     },
 
@@ -66,6 +73,10 @@ export default {
 
       if (this.stribe && index % 2 === 1) {
         classes += "table-background ";
+      }
+
+      if (this.stribe2 && index % 2 === 1) {
+        classes += "table-background2 ";
       }
 
       return classes;
@@ -101,7 +112,10 @@ export default {
 
 .table-background {
   background-color: #f0f1f4;
-  /* background-color: #f8f8f9; */
+}
+
+.table-background2 {
+  background-color: #f8f8f9;
 }
 
 .table thead {

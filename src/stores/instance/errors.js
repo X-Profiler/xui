@@ -12,12 +12,18 @@ export default {
 
   state: {
     ...fileState,
-    ...errorState
+    ...errorState,
+
+    errorFile: undefined
   },
 
   mutations: {
     ...fileMutations,
-    ...errorMutations
+    ...errorMutations,
+
+    setErrorFile(state, file) {
+      state.errorFile = file;
+    }
   },
 
   actions: {
@@ -38,8 +44,8 @@ export default {
       await handleFile(context, options, "list", "array");
     },
 
-    async getErrorLogs(context, { cancelToken, errorFile, currentPage, pageSize }) {
-      const { rootState, rootGetters } = context;
+    async getErrorLogs(context, { cancelToken, currentPage, pageSize }) {
+      const { state, rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -49,7 +55,7 @@ export default {
         data: {
           appId: rootGetters.appId,
           agentId: rootGetters.agentId,
-          errorFile,
+          errorFile: state.errorFile,
           currentPage,
           pageSize
         }

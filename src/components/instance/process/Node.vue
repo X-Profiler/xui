@@ -12,6 +12,7 @@
           :columns="processColumns"
           :data="processes_data"
           fontSize="14"
+          no-data-head
           noDataText="没有在该实例上查找到任何 Node.js 进程"
           stribe
         >
