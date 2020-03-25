@@ -73,7 +73,7 @@ import { getTag } from "@/javascripts/lib/utils";
 // instance component
 import xProcess from "@/components/instance/process/ProcessIndex";
 import xSystem from "@/components/instance/system/SystemIndex";
-import xErrorLog from "@/components/instance/ErrorLog";
+import xErrorLog from "@/components/instance/errors/ErrorLogIndex";
 import xModuleRisk from "@/components/instance/ModuleRisk";
 import xCheckAgent from "@/components/instance/CheckAgent";
 
