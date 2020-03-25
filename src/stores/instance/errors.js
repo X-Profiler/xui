@@ -3,9 +3,9 @@
 import * as utils from "@/javascripts/lib/utils";
 
 const { state: fileState, mutations: fileMutations, handle: handleFile } =
-  utils.storeFactory("user", {});
+  utils.storeFactory("files", []);
 const { state: errorState, mutations: errorMutations, handle: handleError } =
-  utils.storeFactory("user", {});
+  utils.storeFactory("logs", []);
 
 export default {
   namespaced: true,
