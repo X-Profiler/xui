@@ -16,21 +16,9 @@ export default {
     ...overviewMutations
   },
 
-  getters: {
-    appId(...args) {
-      const rootState = args[2];
-      return rootState.dashboard.appId;
-    },
-
-    agentId(...args) {
-      const rootState = args[2];
-      return rootState.dashboard.instance.agentId;
-    }
-  },
-
   actions: {
     async getSystemOverview(context, { cancelToken }) {
-      const { getters, rootState } = context;
+      const { rootGetters, rootState } = context;
 
       const options = {
         cancelToken,
@@ -38,8 +26,8 @@ export default {
         // user data
         url: rootState.url.overview,
         data: {
-          appId: getters.appId,
-          agentId: getters.agentId
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId
         }
       };
 
@@ -47,7 +35,7 @@ export default {
     },
 
     async getSystemTrend(context, { cancelToken, trendType }) {
-      const { getters, dispatch, rootState } = context;
+      const { dispatch, rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -55,8 +43,8 @@ export default {
         // user data
         url: rootState.url.systemTrend,
         data: {
-          appId: getters.appId,
-          agentId: getters.agentId,
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId,
           trendType
         }
       };

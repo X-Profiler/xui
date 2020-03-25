@@ -105,16 +105,6 @@ export default {
   },
 
   getters: {
-    appId(...args) {
-      const rootState = args[2];
-      return rootState.dashboard.appId;
-    },
-
-    agentId(...args) {
-      const rootState = args[2];
-      return rootState.dashboard.instance.agentId;
-    },
-
     processCount(state) {
       return state.processes_data.length;
     }
@@ -122,7 +112,7 @@ export default {
 
   actions: {
     async getNodeProcesses(context, cancelToken) {
-      const { getters, rootState } = context;
+      const { getters, rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -130,8 +120,8 @@ export default {
         // user data
         url: rootState.url.agentNodeProcesses,
         data: {
-          appId: getters.appId,
-          agentId: getters.agentId
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId
         }
       };
 
@@ -139,7 +129,7 @@ export default {
     },
 
     async getXprofilerProcesses(context, cancelToken) {
-      const { getters, rootState } = context;
+      const { rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -147,8 +137,8 @@ export default {
         // user data
         url: rootState.url.agentXprofilerProcesses,
         data: {
-          appId: getters.appId,
-          agentId: getters.agentId
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId
         }
       };
 
@@ -156,7 +146,7 @@ export default {
     },
 
     async getXprofilerStatus(context, { cancelToken, pid }) {
-      const { getters, rootState } = context;
+      const { rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -164,8 +154,8 @@ export default {
         // user data
         url: rootState.url.xprofilerStatus,
         data: {
-          appId: getters.appId,
-          agentId: getters.agentId,
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId,
           pid
         }
       };
@@ -174,7 +164,7 @@ export default {
     },
 
     async getProcessTrend(context, { cancelToken, trendType }) {
-      const { state, getters, dispatch, rootState } = context;
+      const { state, dispatch, rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -182,8 +172,8 @@ export default {
         // user data
         url: rootState.url.processTrend,
         data: {
-          appId: getters.appId,
-          agentId: getters.agentId,
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId,
           pid: state.processTrendData.pid,
           trendType
         }
@@ -193,7 +183,7 @@ export default {
     },
 
     async saveProcessTrend(context, { cancelToken }) {
-      const { state, getters, rootState } = context;
+      const { state, rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -202,8 +192,8 @@ export default {
         // user data
         url: rootState.url.processTrend,
         data: {
-          appId: getters.appId,
-          agentId: getters.agentId,
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId,
           pid: state.saveTrendData.pid
         }
       };
@@ -212,7 +202,7 @@ export default {
     },
 
     async takeAction(context, { cancelToken }) {
-      const { state, getters, rootState } = context;
+      const { state, rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -221,8 +211,8 @@ export default {
         // user data
         url: rootState.url.action,
         data: {
-          appId: getters.appId,
-          agentId: getters.agentId,
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId,
           pid: state.takeActionData.pid,
           action: state.takeActionData.action
         }

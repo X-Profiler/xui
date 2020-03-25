@@ -16,13 +16,6 @@ export default {
     agentModal: undefined,
   },
 
-  getters: {
-    appId(...args) {
-      const rootState = args[2];
-      return rootState.dashboard.appId;
-    }
-  },
-
   mutations: {
     ...agentsMutations,
     ...agentMutations,
@@ -40,14 +33,14 @@ export default {
 
   actions: {
     async getAgents(context, cancelToken) {
-      const { getters, rootState } = context;
+      const { rootState, rootGetters } = context;
       const options = {
         cancelToken,
 
         // user data
         url: rootState.url.agents,
         data: {
-          appId: getters.appId
+          appId: rootGetters.appId
         }
       };
 
@@ -55,7 +48,7 @@ export default {
     },
 
     async getAgentInfo(context, { cancelToken }) {
-      const { state, getters, rootState } = context;
+      const { state, rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -63,7 +56,7 @@ export default {
         // user data
         url: rootState.url.agentInfo,
         data: {
-          appId: getters.appId,
+          appId: rootGetters.appId,
           agentId: state.agentId
         }
       };
