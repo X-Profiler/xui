@@ -22,7 +22,7 @@ export default {
 
   actions: {
     async getErrorFiles(context, { cancelToken }) {
-      const { rootState } = context;
+      const { rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -30,8 +30,8 @@ export default {
         // user data
         url: rootState.url.errorFiles,
         data: {
-          appId: rootState.dashboard.appId,
-          agentId: rootState.dashboard.instance.agentId
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId
         }
       };
 
@@ -39,7 +39,7 @@ export default {
     },
 
     async getErrorLogs(context, { cancelToken, errorFile, currentPage, pageSize }) {
-      const { rootState } = context;
+      const { rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
@@ -47,8 +47,8 @@ export default {
         // user data
         url: rootState.url.errorLogs,
         data: {
-          appId: rootState.dashboard.appId,
-          agentId: rootState.dashboard.instance.agentId,
+          appId: rootGetters.appId,
+          agentId: rootGetters.agentId,
           errorFile,
           currentPage,
           pageSize

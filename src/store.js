@@ -21,6 +21,16 @@ export default {
     first: true
   },
 
+  getters: {
+    appId(state) {
+      return state.dashboard.appId;
+    },
+
+    agentId(state) {
+      return state.dashboard.instance.agentId;
+    }
+  },
+
   mutations: {
     updateGlobalError(state, err) {
       state.globalError = err;
