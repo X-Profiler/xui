@@ -22,7 +22,8 @@ import errorFilesModule from "@/javascripts/instance/errors/ErrorFiles";
 export default {
   data() {
     return {
-      selectedErrorFile: undefined
+      selectedErrorFile: undefined,
+      nessaryQueryArgs: ["tab", "agentId"]
     };
   },
   ...errorFilesModule
