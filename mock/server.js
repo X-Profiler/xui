@@ -26,12 +26,15 @@ require('./controller/mock_consoler')(app);
 require("./controller/mock_dashboard")(app);
 
 // dashboard/instance
-require("./controller/mock_instance")(app);
+require("./controller/instance/mock_instance")(app);
 
 // dashboard/instance/process
-require("./controller/mock_process")(app);
+require("./controller/instance/mock_process")(app);
 
 // dashboard/instance/system
-require("./controller/mock_system")(app);
+require("./controller/instance/mock_system")(app);
+
+// dashboard/instance/errors
+require("./controller/instance/mock_errors")(app);
 
 app.listen(7442);

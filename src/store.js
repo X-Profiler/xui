@@ -65,7 +65,7 @@ export default {
         if (!data.ok) {
           throw new Error(data.message || "unknown inner server error");
         }
-        return data.data;
+        return data.data || {};
       } catch (err) {
         if (axios.isCancel(err)) {
           return {};
