@@ -28,6 +28,10 @@ export default {
 
     // dashboard/instance/system
     overview: "/xapi/system_overview",
-    systemTrend: "/xapi/system_trend"
+    systemTrend: "/xapi/system_trend",
+
+    // dashboard/instance/errors
+    errorFiles: "/xapi/error_files",
+    errorLogs: "/xapi/error_logs"
   }
 };

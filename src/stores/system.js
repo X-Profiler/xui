@@ -47,7 +47,7 @@ export default {
     },
 
     async getSystemTrend(context, { cancelToken, trendType }) {
-      const { state, getters, dispatch, rootState } = context;
+      const { getters, dispatch, rootState } = context;
 
       const options = {
         cancelToken,

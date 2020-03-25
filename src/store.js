@@ -11,6 +11,7 @@ import dashboard from "@/stores/dashboard";
 import instance from "@/stores/instance";
 import process from "@/stores/process";
 import system from "@/stores/system";
+import errors from "@/stores/errors";
 
 export default {
   state: {
@@ -70,13 +71,9 @@ export default {
   },
 
   modules: {
-    "user": { // user
-      ...user
-    },
+    "user": { ...user }, // user
 
-    "consoler": { // consoler
-      ...consoler
-    },
+    "consoler": { ...consoler }, // consoler
 
     "dashboard": {  // "dashboard"
       ...dashboard,
@@ -86,13 +83,11 @@ export default {
           ...instance,
 
           modules: {
-            "process": { // "dashboard/instance/process"
-              ...process
-            },
+            "process": { ...process }, // "dashboard/instance/process",
 
-            "system": { // "dashboard/instance/system"
-              ...system
-            }
+            "system": { ...system }, // "dashboard/instance/system"
+
+            "errors": { ...errors } // "dashboard/instance/errors"
           }
         }
       }

@@ -94,7 +94,7 @@ export default {
 
     getLineWidth() {
       const width = window.getComputedStyle(this.$refs.line).width;
-      return parseInt(width, 10);
+      return parseInt(width, 10) + 80;
     },
 
     mouseover(data, event) {
