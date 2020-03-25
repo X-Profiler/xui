@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div class="wrapper">
     <transition name="slide">
       <Select
         v-show="files_data.length"
         v-model="selectedErrorFile"
-        class="agent-selector"
-        size="small"
+        class="agent-selector error-files-selector"
         filterable
       >
         <Option
@@ -29,3 +28,14 @@ export default {
   ...errorFilesModule
 };
 </script>
+
+<style scoped>
+.wrapper {
+  text-align: left;
+}
+
+.error-files-selector {
+  text-align: left;
+  width: 200px;
+}
+</style>

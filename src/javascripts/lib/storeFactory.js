@@ -42,9 +42,9 @@ export function storeFactory(key, value) {
       } else {
         requestQueue[loadingMutation]++;
       }
-      commit(keyMutation, value);
       commit(loadingMutation, true);
       commit(errorMutation, undefined);
+      commit(keyMutation, value);
       try {
         let data = await dispatch("request", options, { root: true });
         if (resKey) {

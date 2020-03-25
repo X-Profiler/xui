@@ -55,7 +55,7 @@ export default {
       const mo = function(e) {
         e.preventDefault();
       };
-      document.body.style.overflow = "";
+      document.body.style.overflow = "unset";
       document.removeEventListener("touchmove", mo, false);
 
       this.show = false;

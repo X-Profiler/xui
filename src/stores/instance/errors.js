@@ -35,7 +35,7 @@ export default {
         }
       };
 
-      await handleFile(context, options);
+      await handleFile(context, options, "list", "array");
     },
 
     async getErrorLogs(context, { cancelToken, errorFile, currentPage, pageSize }) {
@@ -55,7 +55,7 @@ export default {
         }
       };
 
-      await handleError(context, options);
+      await handleError(context, options, "list", "array");
     }
   }
 };

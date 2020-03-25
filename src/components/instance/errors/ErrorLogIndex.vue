@@ -1,13 +1,13 @@
 <template>
   <div>
     <!-- loading -->
-    <x-loading :loading="files_loading || logs_loading" type="dot" top="35vh"></x-loading>
+    <x-loading :loading="files_loading || logs_loading" type="dot" top="30vh"></x-loading>
 
     <!-- error message -->
     <x-error-message
-      v-show="files_load_error ||logs_load_error"
-      :message="files_load_error ||logs_load_error"
-      top="calc(35vh -  25px)"
+      v-show="(!files_loading && files_load_error) || (!logs_loading && logs_load_error)"
+      :message="files_load_error || logs_load_error"
+      top="calc(30vh -  25px)"
     ></x-error-message>
 
     <!-- show error files -->

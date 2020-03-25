@@ -1,6 +1,6 @@
 'use strict';
 
-const utils = require('../lib/utils');
+const utils = require('../../lib/utils');
 
 module.exports = app => {
   app.get('/xapi/xprofiler_processes', function (req, res) {
@@ -10,7 +10,7 @@ module.exports = app => {
     const agentId = req.query.agentId;
     console.log(`get app ${appId} agent ${agentId} xprofiler processes`);
 
-    const list = require('../data/xprocesses').map(proc => {
+    const list = require('../../data/xprocesses').map(proc => {
       proc.updateTime = Date.now() - 2 * 60 * 1000;
       if (proc.time === 'full') {
         proc.startTime = Date.now() - 24 * 60 * 60 * 1000;
@@ -60,7 +60,7 @@ module.exports = app => {
     const agentId = req.query.agentId;
     console.log(`get app ${appId} agent ${agentId} node processes.`);
 
-    const list = require("../data/nodeProcesses");
+    const list = require("../../data/nodeProcesses");
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 600);
   });

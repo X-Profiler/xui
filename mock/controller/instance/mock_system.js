@@ -1,6 +1,6 @@
 'use strict';
 
-const utils = require('../lib/utils');
+const utils = require('../../lib/utils');
 
 module.exports = app => {
   app.get('/xapi/system_overview', function (req, res) {
