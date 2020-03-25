@@ -60,7 +60,7 @@ module.exports = app => {
     const agentId = req.query.agentId;
     console.log(`get app ${appId} agent ${agentId} node processes.`);
 
-    const list = require("../data/node_processes");
+    const list = require("../data/nodeProcesses");
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 600);
   });
