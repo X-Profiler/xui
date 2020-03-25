@@ -3,15 +3,15 @@
 import axios from "axios";
 
 // store modules
-import url from "@/stores/url";
-import i18n from "@/stores/i18n";
+import url from "@/stores/common/url";
+import i18n from "@/stores/common/i18n";
 import user from "@/stores/user";
 import consoler from "@/stores/consoler";
 import dashboard from "@/stores/dashboard";
-import instance from "@/stores/instance";
-import process from "@/stores/process";
-import system from "@/stores/system";
-import errors from "@/stores/errors";
+import instance from "@/stores/instance/instance";
+import process from "@/stores/instance/process";
+import system from "@/stores/instance/system";
+import errors from "@/stores/instance/errors";
 
 export default {
   state: {

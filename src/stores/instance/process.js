@@ -112,7 +112,7 @@ export default {
 
   actions: {
     async getNodeProcesses(context, cancelToken) {
-      const { getters, rootState, rootGetters } = context;
+      const { rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
