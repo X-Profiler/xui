@@ -59,6 +59,10 @@ export default {
       }
       setTimeout(() => this.setErrorFile(this.selectedErrorFile), 0);
 
+      if (!this.selectedErrorFile) {
+        return;
+      }
+
       utils.watchQueryKey.call(this, "file", "selectedErrorFile", args);
     },
 
