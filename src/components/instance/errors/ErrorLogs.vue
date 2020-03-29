@@ -31,6 +31,17 @@
         </div>
       </template>
     </x-table>
+
+    <div v-if="totaLogCount" class="pagination">
+      <Page
+        :total="totaLogCount"
+        :page-size="pageSize"
+        :current="currentPage"
+        size="small"
+        show-elevator
+        @on-change="changeLogPage"
+      />
+    </div>
   </div>
 </template>
 
@@ -40,8 +51,9 @@ import errorLogsModule from "@/javascripts/instance/errors/ErrorLogs";
 export default {
   data() {
     return {
-      currentPage: 0,
-      pageSize: 10,
+      currentPage: 1,
+      pageSize: 20,
+      totaLogCount: 0,
       columns: [
         {
           title: "发生时间",
@@ -62,5 +74,10 @@ export default {
 <style scoped>
 .error-content {
   font-size: 12px;
+}
+
+.pagination {
+  margin-top: 15px;
+  text-align: right;
 }
 </style>

@@ -5,7 +5,7 @@ import * as utils from "@/javascripts/lib/utils";
 const { state: fileState, mutations: fileMutations, handle: handleFile } =
   utils.storeFactory("files", []);
 const { state: errorState, mutations: errorMutations, handle: handleError } =
-  utils.storeFactory("logs", []);
+  utils.storeFactory("logs", { list: [], count: 0 });
 
 export default {
   namespaced: true,
@@ -61,7 +61,7 @@ export default {
         }
       };
 
-      await handleError(context, options, "list", "array");
+      await handleError(context, options);
     }
   }
 };
