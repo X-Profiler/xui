@@ -52,3 +52,8 @@
 .x-modal .ivu-modal-body{
   padding: 0;
 }
+
+.pagination .ivu-page-item-active a,
+.pagination .ivu-page-item:hover a {
+  color: #2d8cf0;
+}

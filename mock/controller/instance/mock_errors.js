@@ -35,10 +35,13 @@ module.exports = app => {
     const errorFile = req.query.errorFile;
     const currentPage = req.query.currentPage;
     const pageSize = req.query.pageSize;
-    console.log(`get app ${appId} agent ${agentId}: ${errorFile} (${currentPage} ~ ${pageSize})`);
+    const start = (currentPage - 1) * pageSize;
+    const end = currentPage * pageSize;
+    console.log(`get app ${appId} agent ${agentId}: ${errorFile} (${start} ~ ${end}) <${pageSize}>`);
 
     const list = require('../../data/erros');
+    const logs = list.filter((...args) => args[1] >= start && args[1] < end);
 
-    setTimeout(() => res.send({ ok: true, data: { list } }), 550);
+    setTimeout(() => res.send({ ok: true, data: { list: logs, count: list.length } }), 550);
   });
 };

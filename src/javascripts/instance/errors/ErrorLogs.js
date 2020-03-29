@@ -24,14 +24,31 @@ export default {
     ...mapMutations(["set_logs_load_error"]),
 
     ...mapActions(["getErrorLogs"]),
+
+    changeLogPage(page) {
+      this.currentPage = page;
+      this.getErrorLogs({
+        cancelToken: this.cancelToken.token,
+        currentPage: this.currentPage,
+        pageSize: this.pageSize
+      });
+    }
   },
 
   computed: {
     ...mapState(["logs_loading", "logs_load_error", "logs_data"]),
 
     errors() {
-      const logs = this.logs_data;
-      return logs.map(log => {
+      const { list, count } = this.logs_data;
+      if (!Array.isArray(list)) {
+        return [];
+      }
+
+      if (utils.isNumber(count)) {
+        this.totaLogCount = count;
+      }
+
+      return list.map(log => {
         const occuredTime = moment(Number(log.timestamp)).format("YYYY-MM-DD HH:mm:SS").split(" ");
 
         return {
