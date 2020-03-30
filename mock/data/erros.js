@@ -2,7 +2,7 @@
 
 module.exports = [
   {
-    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ReferenceError",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577675708613"
@@ -14,7 +14,7 @@ module.exports = [
     "timestamp": "1577675708613"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -26,7 +26,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -38,7 +38,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -50,7 +50,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -62,7 +62,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -74,7 +74,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -86,7 +86,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -98,7 +98,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ReferenceError",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577675708613"
@@ -110,7 +110,7 @@ module.exports = [
     "timestamp": "1577675708613"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -122,7 +122,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -134,7 +134,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -146,7 +146,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -158,7 +158,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -170,7 +170,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -182,7 +182,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -194,7 +194,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ReferenceError",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577675708613"
@@ -206,7 +206,7 @@ module.exports = [
     "timestamp": "1577675708613"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -218,7 +218,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -230,7 +230,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -242,7 +242,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -254,7 +254,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -266,7 +266,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -278,7 +278,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -290,7 +290,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ReferenceError",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577675708613"
@@ -302,7 +302,7 @@ module.exports = [
     "timestamp": "1577675708613"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -314,7 +314,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -326,7 +326,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -338,7 +338,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -350,7 +350,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -362,7 +362,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -374,7 +374,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -386,7 +386,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ReferenceError",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577675708613"
@@ -398,7 +398,7 @@ module.exports = [
     "timestamp": "1577675708613"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -410,7 +410,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -422,7 +422,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -434,7 +434,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -446,7 +446,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -458,7 +458,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -470,7 +470,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -482,7 +482,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 11:14:09,480 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ReferenceError",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577675708613"
@@ -494,7 +494,7 @@ module.exports = [
     "timestamp": "1577675708613"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -506,7 +506,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -518,7 +518,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -530,7 +530,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -542,7 +542,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -554,7 +554,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -566,7 +566,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -584,7 +584,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
@@ -596,7 +596,7 @@ module.exports = [
     "timestamp": "1577674568538"
   },
   {
-    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/suning/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/suning/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/suning/x-agentmanager/node_modules/p-map/index.js:57:15\n",
+    "stack": "2019-12-30 10:55:09,450 ERROR 6413 nodejs.SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at PackageService.checkPackageSecurity (/Users/hyj1991/git/monitor/x-agentmanager/app/service/package.js:169:28)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async pMap.concurrency (/Users/hyj1991/git/monitor/x-agentmanager/app/service/logHandle/agentNotification.js:20:28)\n    at async /Users/hyj1991/git/monitor/x-agentmanager/node_modules/p-map/index.js:57:15\n",
     "type": "ERROR",
     "extra": "pid: 6413\nhostname: hyj1991-MacBook-Pro\n",
     "timestamp": "1577674568538"
