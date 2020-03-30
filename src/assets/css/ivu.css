@@ -34,9 +34,20 @@
 }
 
 .agent-selector
-  .ivu-select-dropdown
-  .ivu-select-dropdown-list
-  .ivu-select-item-selected:after {
+.ivu-select-dropdown
+.ivu-select-dropdown-list
+.ivu-select-item-selected:after {
+  font-family: "Ionicons";
+  content: "\F171";
+  margin-left: 10px;
+  width: 100%;
+  opacity: 0;
+}
+
+.agent-selector
+.ivu-select-dropdown
+.ivu-select-dropdown-list
+.ivu-select-item-selected::before {
   font-family: "Ionicons";
   font-size: 24px;
   content: "\F171";

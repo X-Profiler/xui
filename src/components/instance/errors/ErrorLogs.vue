@@ -62,7 +62,7 @@ export default {
           width: 120
         },
         { title: "错误类型", value: "errorType", align: "center", width: 150 },
-        { title: "详细错误信息", value: "errorDetail" }
+        { title: "详细错误堆栈", value: "errorDetail" }
       ],
       nessaryQueryArgs: ["tab", "agentId", "file"]
     };

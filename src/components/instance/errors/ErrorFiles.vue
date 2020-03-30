@@ -11,7 +11,7 @@
           v-for="(item, index) in files_data"
           :key="index"
           :value="item.value"
-        >{{ item.label }}</Option>
+        >{{ item.value }}</Option>
       </Select>
     </transition>
   </div>
