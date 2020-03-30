@@ -11,8 +11,11 @@ module.exports = app => {
     const agentId = req.query.agentId;
     console.log(`get app ${appId} agent ${agentId} error logs`);
 
-    const path1 = `/Users/hyj1991/git/suning/xui/logs/xui/common-${Math.random().toString(16).slice(2, 8)}-error.log`;
-    const path2 = `/Users/hyj1991/git/suning/xprofiler/logs/xprofiler/xprofiler-${Math.random().toString(16).slice(2, 8)}-error.log`;
+    // const path1 = `/Users/hyj1991/git/suning/xui/logs/xui/common-${Math.random().toString(16).slice(2, 8)}-error.log`;
+    // const path2 = `/Users/hyj1991/git/suning/xprofiler/logs/xprofiler/xprofiler-${Math.random().toString(16).slice(2, 8)}-error.log`;
+
+    const path1 = `/Users/hyj1991/git/suning/xui/logs/xui/common-error.log`;
+    const path2 = `/Users/hyj1991/git/suning/xprofiler/logs/xprofiler/xprofiler-error.log`;
 
     const list = [
       {
