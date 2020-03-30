@@ -34,9 +34,9 @@
 }
 
 .agent-selector
-.ivu-select-dropdown
-.ivu-select-dropdown-list
-.ivu-select-item-selected:after {
+  .ivu-select-dropdown
+  .ivu-select-dropdown-list
+  .ivu-select-item::after {
   font-family: "Ionicons";
   content: "\F171";
   margin-left: 10px;
@@ -45,9 +45,9 @@
 }
 
 .agent-selector
-.ivu-select-dropdown
-.ivu-select-dropdown-list
-.ivu-select-item-selected::before {
+  .ivu-select-dropdown
+  .ivu-select-dropdown-list
+  .ivu-select-item-selected::before {
   font-family: "Ionicons";
   font-size: 24px;
   content: "\F171";
@@ -67,4 +67,24 @@
 .pagination .ivu-page-item-active a,
 .pagination .ivu-page-item:hover a {
   color: #2d8cf0;
+}
+
+.x-alert.ivu-alert-info {
+  border: 1px solid rgb(33, 150, 243);
+  background-color: rgb(33, 150, 243, 0.1);
+}
+
+.x-alert.ivu-alert-error {
+  border: 1px solid rgb(199, 37, 65);
+  background-color: rgb(199, 37, 65, 0.1);
+}
+
+.x-alert.ivu-alert-warning {
+  border: 1px solid rgb(255, 186, 36);
+  background-color: rgb(255, 186, 36, 0.1);
+}
+
+.x-alert.ivu-alert-success {
+  border: 1px solid rgb(25, 190, 107);
+  background-color: rgb(25, 190, 107, 0.1);
 }

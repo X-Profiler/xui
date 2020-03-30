@@ -1,0 +1,11 @@
+.alert-group {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.alert-desc {
+  font-size: 13px;
+  margin-left: 5px;
+  color: #373d41;
+}

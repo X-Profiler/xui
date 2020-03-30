@@ -1,19 +1,46 @@
 <template>
   <div class="wrapper">
+    <!-- module risk tip -->
     <transition name="slide">
-      <Select
-        v-show="files_data.length"
-        v-model="selectedModuleFile"
-        class="agent-selector module-files-selector"
-        filterable
-      >
-        <Option
-          v-for="(item, index) in files_data"
-          :key="index"
-          :value="item.value"
-        >{{ item.value }}</Option>
-      </Select>
+      <Alert class="x-alert" v-show="files_data.length" :type="riskTip.alertType">
+        <div class="alert-group">
+          <Icon :style="`color: ${riskTip.color};`" :type="riskTip.iconType" />
+          <div class="alert-desc" v-html="riskTip.tip"></div>
+        </div>
+      </Alert>
     </transition>
+
+    <div class="tab">
+      <!-- module file selector -->
+      <transition name="slide-downward">
+        <Select
+          v-show="files_data.length"
+          v-model="selectedModuleFile"
+          class="agent-selector module-files-selector"
+          filterable
+        >
+          <Option
+            v-for="(item, index) in files_data"
+            :key="index"
+            :value="item.value"
+          >{{ item.value }}</Option>
+        </Select>
+      </transition>
+
+      <!-- dependencies type -->
+      <transition name="slide">
+        <div class="tag-group">
+          <div
+            :class="'tag' + (dependencies ? ' tag-selected' : '')"
+            @click="changeDevType(true)"
+          >dependencies</div>
+          <div
+            :class="'tag' + (dependencies ? '' : ' tag-selected')"
+            @click="changeDevType(false)"
+          >devDependencies</div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -24,6 +51,7 @@ export default {
   data() {
     return {
       selectedModuleFile: undefined,
+      dependencies: undefined,
       nessaryQueryArgs: ["tab", "agentId"],
       valueWhiteList: {
         selectedModuleFile: []
@@ -43,5 +71,36 @@ export default {
 .module-files-selector {
   text-align: left;
   width: 200px;
+}
+
+.x-alert {
+  margin-top: -5px;
+}
+
+.tab {
+  display: flex;
+  align-items: flex-end;
+  margin-top:11px;
+}
+
+.tag-group {
+  display: flex;
+  margin-left: 20px;
+  position: absolute;
+  right: 20px;
+}
+
+.tag {
+  padding: 3px 8px;
+  margin: 2px 4px 2px 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.tag.tag-selected {
+  transition: all 0.1s ease-in;
+  background-color: #2d8cf0;
+  color: #fff;
 }
 </style>

@@ -14,7 +14,8 @@ export default {
     ...fileState,
     ...moduleState,
 
-    moduleFile: undefined
+    moduleFile: undefined,
+    showDependencies: undefined
   },
 
   mutations: {
@@ -23,6 +24,12 @@ export default {
 
     setModuleFile(state, file) {
       state.moduleFile = file;
+    },
+
+    setShowDependencies(state, status) {
+      if (status === true || status === false) {
+        state.showDependencies = status;
+      }
     }
   },
 
