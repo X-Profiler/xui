@@ -160,7 +160,7 @@ export default {
         func = "alarm";
       } else if (metricType === "riskCount") {
         func = "instance";
-        query.tab = "package";
+        query.tab = "module_risk";
       }
       this.$router.push({ path: `/app/${appId}/${func}`, query });
     },

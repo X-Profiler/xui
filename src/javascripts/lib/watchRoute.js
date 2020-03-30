@@ -1,6 +1,6 @@
 "use strict";
 
-import { isNumber } from "@/javascripts/lib/common";
+import { isNumber, isBooleanString, stringToBoolean } from "@/javascripts/lib/common";
 
 function checkValueSetting(componentKey, setValue, notSetting = false) {
   const whiteList = this.valueWhiteList && this.valueWhiteList[componentKey];
@@ -14,7 +14,13 @@ function checkValueSetting(componentKey, setValue, notSetting = false) {
     }
   } else if (!notSetting) {
     if (setValue) {
-      this[componentKey] = isNumber(setValue) ? Number(setValue) : setValue;
+      if (isNumber(setValue)) {
+        this[componentKey] = Number(setValue);
+      } else if (isBooleanString(setValue)) {
+        this[componentKey] = stringToBoolean(setValue);
+      } else {
+        this[componentKey] = setValue;
+      }
     } else {
       if (Array.isArray(whiteList)) {
         this[componentKey] = whiteList[0];
@@ -38,7 +44,8 @@ export function watchQueryKey(queryKey, componentKey, args) {
 
   const nessaryQueryArgs = this.nessaryQueryArgs || [];
   const query = this.$route.query;
-  if (query[queryKey] == newVal) {
+  if ((query[queryKey] == newVal)
+    || isBooleanString(query[queryKey]) && stringToBoolean(query[queryKey]) === newVal) {
     return;
   }
 

@@ -28,7 +28,7 @@ export default {
     },
 
     formatRisk(count, color) {
-      return `<code style="color: ${color};">${count}</code>`
+      return `<code style="color: ${color};">${count}</code>`;
     },
 
     setRiskTip(risk, color) {
@@ -45,7 +45,7 @@ export default {
       if (risk.low) {
         list.push(`${this.formatRisk(risk.low, color)} 个低危漏洞`);
       }
-      return `发现 ${list.join('，')}`;
+      return `发现 ${list.join("，")}`;
     },
 
     changeDevType(dependencies) {
@@ -71,7 +71,7 @@ export default {
       const risk = data[0].risk;
       const vulnerabilities = risk.vulnerabilities || {};
       const tipPrefix = "当前项目引入的 Npm 模块";
-      const tipSuffix = `（扫描 <code>${risk.totalDependencies}</code> 个模块于 <code>${risk.scanTime}</code>）`
+      const tipSuffix = `（扫描 <code>${risk.totalDependencies}</code> 个模块于 <code>${risk.scanTime}</code>）`;
 
       // alert type
       if (vulnerabilities.critical || vulnerabilities.high) {
@@ -93,7 +93,7 @@ export default {
         riskTip.alertType = "success";
         riskTip.iconType = "ios-checkmark-circle-outline";
         riskTip.color = "rgb(25, 190, 107)";
-        riskTip.tip = `不存在安全风险`
+        riskTip.tip = "不存在安全风险";
       }
 
       riskTip.tip = `${tipPrefix}${riskTip.tip}${tipSuffix}`;
@@ -105,6 +105,7 @@ export default {
   watch: {
     $route(...args) {
       utils.watchRoute.call(this, args, "file", "selectedModuleFile");
+      utils.watchRoute.call(this, args, "dependencies", "dependencies");
     },
 
     files_data() {
@@ -133,18 +134,25 @@ export default {
       if (!this.selectedModuleFile) {
         return;
       }
-      this.dependencies = true;
 
       utils.watchQueryKey.call(this, "file", "selectedModuleFile", args);
+
+      const query = this.$route.query;
+      if (utils.isBooleanString(query.dependencies)) {
+        this.dependencies = utils.stringToBoolean(query.dependencies);
+      } else {
+        this.dependencies = true;
+      }
+    },
+
+    dependencies(...args) {
+      this.setShowDependencies(this.dependencies);
+      utils.watchQueryKey.call(this, "dependencies", "dependencies", args);
     },
 
     agentId() {
       this.reset();
       this.getModuleFiles({ cancelToken: this.cancelToken.token });
-    },
-
-    dependencies() {
-      this.setShowDependencies(this.dependencies);
     }
   }
 };
