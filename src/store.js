@@ -12,6 +12,7 @@ import instance from "@/stores/instance/instance";
 import process from "@/stores/instance/process";
 import system from "@/stores/instance/system";
 import errors from "@/stores/instance/errors";
+import modules from "@/stores/instance/modules";
 
 export default {
   state: {
@@ -85,19 +86,21 @@ export default {
 
     "consoler": { ...consoler }, // consoler
 
-    "dashboard": {  // "dashboard"
+    "dashboard": {  // dashboard
       ...dashboard,
 
       modules: {
-        "instance": { // "dashboard/instance"
+        "instance": { // dashboard/instance
           ...instance,
 
           modules: {
-            "process": { ...process }, // "dashboard/instance/process",
+            "process": { ...process }, // dashboard/instance/process
 
-            "system": { ...system }, // "dashboard/instance/system"
+            "system": { ...system }, // dashboard/instance/system
 
-            "errors": { ...errors } // "dashboard/instance/errors"
+            "errors": { ...errors }, // dashboard/instance/errors
+
+            "modules": { ...modules } // dashboard/instance/modules
           }
         }
       }

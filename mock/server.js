@@ -37,4 +37,7 @@ require("./controller/instance/mock_system")(app);
 // dashboard/instance/errors
 require("./controller/instance/mock_errors")(app);
 
+// dashboard/instance/modules
+require("./controller/instance/mock_modules")(app);
+
 app.listen(7442);
