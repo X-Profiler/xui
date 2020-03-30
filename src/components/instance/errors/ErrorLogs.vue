@@ -51,7 +51,7 @@ import errorLogsModule from "@/javascripts/instance/errors/ErrorLogs";
 export default {
   data() {
     return {
-      currentPage: 1,
+      currentPage: undefined,
       pageSize: 20,
       totaLogCount: 0,
       columns: [
@@ -63,7 +63,8 @@ export default {
         },
         { title: "错误类型", value: "errorType", align: "center", width: 150 },
         { title: "详细错误信息", value: "errorDetail" }
-      ]
+      ],
+      nessaryQueryArgs: ["tab", "agentId", "file"]
     };
   },
 

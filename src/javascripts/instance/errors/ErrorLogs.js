@@ -8,11 +8,12 @@ const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/
 export default {
   created() {
     this.cancelToken = utils.createCancelToken();
-    this.getErrorLogs({
-      cancelToken: this.cancelToken.token,
-      currentPage: this.currentPage,
-      pageSize: this.pageSize
-    });
+    const query = this.$route.query;
+    if (query.page) {
+      this.currentPage = Number(query.page);
+    } else {
+      this.currentPage = 1;
+    }
   },
 
   beforeDestroy() {
@@ -27,11 +28,6 @@ export default {
 
     changeLogPage(page) {
       this.currentPage = page;
-      this.getErrorLogs({
-        cancelToken: this.cancelToken.token,
-        currentPage: this.currentPage,
-        pageSize: this.pageSize
-      });
     }
   },
 
@@ -61,4 +57,24 @@ export default {
       });
     }
   },
+
+  watch: {
+    $route(...args) {
+      utils.watchRoute.call(this, args, "page", "currentPage");
+    },
+
+    currentPage(...args) {
+      if (!this.currentPage) {
+        return;
+      }
+
+      this.getErrorLogs({
+        cancelToken: this.cancelToken.token,
+        currentPage: this.currentPage,
+        pageSize: this.pageSize
+      });
+
+      utils.watchQueryKey.call(this, "page", "currentPage", args);
+    }
+  }
 };
