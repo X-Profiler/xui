@@ -17,4 +17,5 @@ export default {};
 @import url(assets/css/transition.css);
 @import url(assets/css/chart.css);
 @import url(assets/css/modal.css);
+@import url(assets/css/alert.css);
 </style>
