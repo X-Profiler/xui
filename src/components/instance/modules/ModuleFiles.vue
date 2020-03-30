@@ -52,7 +52,7 @@ export default {
     return {
       selectedModuleFile: undefined,
       dependencies: undefined,
-      nessaryQueryArgs: ["tab", "agentId"],
+      nessaryQueryArgs: ["tab", "agentId", "file"],
       valueWhiteList: {
         selectedModuleFile: []
       }
@@ -80,7 +80,7 @@ export default {
 .tab {
   display: flex;
   align-items: flex-end;
-  margin-top:11px;
+  margin-top: 11px;
 }
 
 .tag-group {

@@ -8,7 +8,10 @@ import { watchRoute, watchQueryKey } from "@/javascripts/lib/watchRoute";
 import { storeFactory } from "@/javascripts/lib/storeFactory";
 import { drawerRouteFactory, modalRouteFactory } from "@/javascripts/lib/routerFactory";
 import { dichotomy } from "@/javascripts/lib/dichotomy";
-import { hashCode, isNumber, createLaterFunction } from "@/javascripts/lib/common";
+import {
+  hashCode, isNumber, createLaterFunction,
+  isBooleanString, stringToBoolean
+} from "@/javascripts/lib/common";
 
 export {
   setLang, getTag,
@@ -19,5 +22,6 @@ export {
   storeFactory,
   drawerRouteFactory, modalRouteFactory,
   dichotomy,
-  hashCode, isNumber, createLaterFunction
+  hashCode, isNumber, createLaterFunction,
+  isBooleanString, stringToBoolean
 };

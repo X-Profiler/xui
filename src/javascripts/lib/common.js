@@ -8,10 +8,6 @@ export function hashCode(s) {
   return h;
 }
 
-export function isNumber(num) {
-  return Boolean(num === 0 || (num && !isNaN(num)));
-}
-
 export function createLaterFunction(name, callback, wait = 4) {
   const timerKey = Symbol("TIMER_KEY");
   return {
@@ -27,4 +23,16 @@ export function createLaterFunction(name, callback, wait = 4) {
       }, wait);
     }
   };
+}
+
+export function isNumber(num) {
+  return num !== true && num !== false && Boolean(num === 0 || (num && !isNaN(num)));
+}
+
+export function isBooleanString(bool) {
+  return bool === "true" || bool === "false";
+}
+
+export function stringToBoolean(bool) {
+  return bool === "true";
 }
