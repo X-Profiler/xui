@@ -1,5 +1,7 @@
 "use strict";
 
+import { isNumber } from "@/javascripts/lib/common";
+
 function checkValueSetting(componentKey, setValue, notSetting = false) {
   const whiteList = this.valueWhiteList && this.valueWhiteList[componentKey];
   const shouldDoNext = !setValue || !Array.isArray(whiteList) || whiteList.includes(setValue);
@@ -12,7 +14,7 @@ function checkValueSetting(componentKey, setValue, notSetting = false) {
     }
   } else if (!notSetting) {
     if (setValue) {
-      this[componentKey] = setValue;
+      this[componentKey] = isNumber(setValue) ? Number(setValue) : setValue;
     } else {
       if (Array.isArray(whiteList)) {
         this[componentKey] = whiteList[0];
