@@ -23,7 +23,10 @@ export default {
   data() {
     return {
       selectedErrorFile: undefined,
-      nessaryQueryArgs: ["tab", "agentId"]
+      nessaryQueryArgs: ["tab", "agentId"],
+      valueWhiteList: {
+        selectedErrorFile: []
+      }
     };
   },
   ...errorFilesModule
