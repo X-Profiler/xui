@@ -49,7 +49,12 @@ export default {
         return;
       }
       this.set_files_load_error(undefined);
-      this.selectedErrorFile = this.files_data[0].value;
+      const query = this.$route.query;
+      if (query.file) {
+        this.selectedErrorFile = decodeURIComponent(query.file);
+      } else {
+        this.selectedErrorFile = this.files_data[0].value;
+      }
     },
 
     selectedErrorFile(...args) {
