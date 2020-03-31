@@ -12,7 +12,7 @@ for (const { action, resolves, module: mod, depth, target } of actions) {
       cmd = `npm install ${mod}@${target}`;
       break;
     case 'update':
-      cmd = `npm update ${mod} --depth=${depth}`;
+      cmd = `npm update ${mod}@${target} --depth=${depth}`;
       break;
     case 'review':
       cmd = `涉及到的安全风险问题需要手动 review 处理`;
@@ -26,8 +26,11 @@ for (const { action, resolves, module: mod, depth, target } of actions) {
     if (cmd === 'install') {
       cmd = `${cmd} ${dev ? '--save-dev' : '--save'}`
     }
-    const { patched_versions, url, severity } = advisories[id];
-    const tmp = { path, dev, cmd, patched_versions, url, severity };
+    const { vulnerable_versions, url, severity, findings } = advisories[id];
+    const tmp = {
+      name: mod, path, dev, cmd, vulnerable_versions, url, severity,
+      currentVersions: findings.map(({ version }) => version).join(', ')
+    };
     if (riskModules[topMod]) {
       riskModules[topMod].push(tmp)
     } else {

@@ -77,7 +77,8 @@ export default {
       // alert type
       if (vulnerabilities.critical || vulnerabilities.high) {
         riskTip.alertType = "error";
-        riskTip.iconType = "ios-close-circle-outline";
+        // riskTip.iconType = "ios-close-circle-outline";
+        riskTip.iconType = "ios-alert-outline";
         riskTip.color = "rgb(199, 37, 65)";
         riskTip.tip = this.setRiskTip(risk.vulnerabilities, riskTip.color);
       } else if (vulnerabilities.moderate) {

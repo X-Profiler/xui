@@ -16,7 +16,10 @@ export default {
 
     moduleFile: undefined,
     riskModules: undefined,
-    showDependencies: undefined
+    showDependencies: undefined,
+
+    riskDetailModal: undefined,
+    riskModalData: {},
   },
 
   mutations: {
@@ -35,7 +38,17 @@ export default {
 
     setRiskModules(state, riskModules) {
       state.riskModules = riskModules || {};
-    }
+    },
+
+    setRiskDetailModal(state, { status, riskModalData }) {
+      if (status === false || status === true) {
+        state.riskDetailModal = status;
+      }
+
+      if (riskModalData) {
+        state.riskModalData = riskModalData;
+      }
+    },
   },
 
   actions: {
