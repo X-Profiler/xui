@@ -1,6 +1,40 @@
 'use strict';
 
 const path = require('path');
+const audit = require('./audit');
+
+const { actions, advisories } = audit;
+const riskModules = {};
+for (const { action, resolves, module: mod, depth, target } of actions) {
+  let cmd = '';
+  switch (action) {
+    case 'install':
+      cmd = `npm install ${mod}@${target}`;
+      break;
+    case 'update':
+      cmd = `npm update ${mod} --depth=${depth}`;
+      break;
+    case 'review':
+      cmd = `涉及到的安全风险问题需要手动 review 处理`;
+      break;
+    default:
+      break;
+  }
+
+  for (const { id, path, dev } of resolves) {
+    const topMod = path.split('>')[0];
+    if (cmd === 'install') {
+      cmd = `${cmd} ${dev ? '--save-dev' : '--save'}`
+    }
+    const { patched_versions, url, severity } = advisories[id];
+    const tmp = { path, dev, cmd, patched_versions, url, severity };
+    if (riskModules[topMod]) {
+      riskModules[topMod].push(tmp)
+    } else {
+      riskModules[topMod] = [tmp];
+    }
+  }
+}
 
 const path1 = `/Users/hyj1991/git/monitor/xui/package.json`;
 const path2 = `/Users/hyj1991/git/monitor/xprofiler/package.json`;
@@ -67,5 +101,7 @@ const data = [
     },
   }
 ];
+
+data.forEach(item => item.riskModules = riskModules);
 
 module.exports = data;

@@ -15,6 +15,7 @@ export default {
     ...moduleState,
 
     moduleFile: undefined,
+    riskModules: undefined,
     showDependencies: undefined
   },
 
@@ -30,6 +31,10 @@ export default {
       if (status === true || status === false) {
         state.showDependencies = status;
       }
+    },
+
+    setRiskModules(state, riskModules) {
+      state.riskModules = riskModules || {};
     }
   },
 

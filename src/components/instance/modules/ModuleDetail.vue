@@ -13,6 +13,29 @@
           <div v-else>{{ row.name }}</div>
         </div>
       </template>
+
+      <!-- package version -->
+      <template v-slot:packageVersion="{ row }">
+        <div class="font">{{ row.version }}</div>
+      </template>
+
+      <!-- package lock version -->
+      <template v-slot:packageLockVersion="{ row }">
+        <div class="font">{{ row.lockVersion }}</div>
+      </template>
+
+      <!-- security -->
+      <template v-slot:securityRisk="{ row }">
+        <div
+          class="font"
+          v-if="row.risk"
+          :style="`color: ${row.color};font-weight: bold`"
+        >{{ row.level }}</div>
+        <!-- no risk -->
+        <div v-else>
+          <Icon class="no-risk" type="md-checkmark" />
+        </div>
+      </template>
     </x-table>
   </div>
 </template>
@@ -29,19 +52,19 @@ export default {
           title: "设置版本规则",
           value: "packageVersion",
           align: "center",
-          width: "23%"
+          width: "25%"
         },
         {
           title: "版本锁定信息",
           value: "packageLockVersion",
           align: "center",
-          width: "23%"
+          width: "25%"
         },
         {
-          title: "安全风险",
+          title: "安全风险等级",
           value: "securityRisk",
           align: "center",
-          width: "23%"
+          width: "19%"
         }
       ]
     };
@@ -52,9 +75,20 @@ export default {
 </script>
 
 <style scoped>
+.content {
+  color: #373d41;
+}
+
 .font {
   /* font-family: "Avenir", Helvetica, Arial, sans-serif; */
-  font-family: PingFangSC-Regular,'Titillium Web','Helvetica Neue',Helvetica,Arial,'Hiragino Sans GB',STHeiti,'Microsoft YaHei','WenQuanYi Micro Hei',sans-serif;
+  font-family: PingFangSC-Regular, "Titillium Web", "Helvetica Neue", Helvetica,
+    Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei",
+    sans-serif;
+}
+
+.no-risk {
+  color: rgb(25, 190, 107);
+  transform: scale(1.5);
 }
 
 .name {
@@ -67,6 +101,7 @@ export default {
 }
 
 .name a:hover {
+  transition: all 0.1s ease-in;
   color: rgb(43, 133, 228, 0.75);
   font-style: italic;
   text-decoration: underline;
