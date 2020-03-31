@@ -27,9 +27,10 @@
       <!-- security -->
       <template v-slot:securityRisk="{ row }">
         <div
-          class="font"
           v-if="row.risk"
-          :style="`color: ${row.color};font-weight: bold`"
+          class="font risk-label"
+          :style="`color: ${row.color};`"
+          @click="openRiskModal(row)"
         >{{ row.level }}</div>
         <!-- no risk -->
         <div v-else>
@@ -37,13 +38,30 @@
         </div>
       </template>
     </x-table>
+
+    <!-- risk detail -->
+    <x-modal
+      ref="riskDetail"
+      title="安全风险详情"
+      :padding="0"
+      @canceled="closeRiskModal"
+      hide-footer
+      fullscreen
+    >
+      <x-risk-message slot="content"></x-risk-message>
+    </x-modal>
   </div>
 </template>
 
 <script>
 import moduleDetail from "@/javascripts/instance/modules/ModuleDetail";
+import xRiskMessage from "@/components/instance/modules/RiskMessage";
 
 export default {
+  components: {
+    "x-risk-message": xRiskMessage
+  },
+
   data() {
     return {
       columns: [
@@ -66,7 +84,8 @@ export default {
           align: "center",
           width: "19%"
         }
-      ]
+      ],
+      modalQueryKey: "risk-detail"
     };
   },
 
@@ -84,6 +103,18 @@ export default {
   font-family: PingFangSC-Regular, "Titillium Web", "Helvetica Neue", Helvetica,
     Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei",
     sans-serif;
+}
+
+.risk-label {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.risk-label:hover {
+  opacity: 0.75;
+  transition: all 0.1s ease-in;
+  transform: scale(1.1);
+  user-select: none;
 }
 
 .no-risk {

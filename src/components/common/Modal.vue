@@ -6,6 +6,7 @@
       :mask-closable="false"
       :width="width"
       :footer-hide="hideFooter"
+      :fullscreen="fullscreen"
     >
       <!-- header -->
       <template slot="header">
@@ -57,7 +58,8 @@ export default {
     loading: Boolean,
     width: Number,
     hideFooter: Boolean,
-    padding: Number
+    padding: Number,
+    fullscreen: Boolean
   },
 
   methods: {

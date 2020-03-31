@@ -140,6 +140,6 @@ export default {
   font-family: PingFangSC-Regular;
   font-weight: bold;
   margin-top: 2px;
-  color: #373d41;
+  /* color: #373d41; */
 }
 </style>
