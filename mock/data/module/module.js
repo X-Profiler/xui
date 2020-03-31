@@ -37,7 +37,8 @@ Object.keys(data.dependencies)
   .forEach(name => {
     const info = packageLock.dependencies[name] || {};
     lockModule[name] = {
-      version: info.version
+      version: info.version,
+      resolved: info.resolved
     }
   });
 data.lockModule = lockModule;

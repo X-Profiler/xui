@@ -36,9 +36,10 @@ export default {
 
       for (const [name, version] of Object.entries(data)) {
         modules.push({
-          moduleName: name,
+          name,
           packageVersion: version,
-          packageLockVersion: lock[name] && lock[name].version || '-'
+          packageLockVersion: lock[name] && lock[name].version || '-',
+          resolved: lock[name] && lock[name].resolved
         });
       }
 
