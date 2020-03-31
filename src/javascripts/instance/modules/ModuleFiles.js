@@ -19,11 +19,12 @@ export default {
   methods: {
     ...mapActions(["getModuleFiles"]),
 
-    ...mapMutations(["set_files_load_error", "setModuleFile", "setShowDependencies"]),
+    ...mapMutations(["set_files_load_error", "setModuleFile", "setShowDependencies", "setRiskModules"]),
 
     reset() {
       this.set_files_load_error(undefined);
       this.setModuleFile(undefined);
+      this.setRiskModules(undefined);
       this.selectedModuleFile = undefined;
     },
 
@@ -128,8 +129,16 @@ export default {
       const [newValue, oldValue] = args;
       if (oldValue && newValue && oldValue !== newValue) {
         this.setModuleFile(undefined);
+        this.setRiskModules(undefined);
       }
-      setTimeout(() => this.setModuleFile(this.selectedModuleFile), 0);
+      setTimeout(() => {
+        this.setModuleFile(this.selectedModuleFile);
+        for (const d of this.files_data) {
+          if (d.value === this.selectedModuleFile) {
+            this.setRiskModules(d.riskModules);
+          }
+        }
+      }, 0);
 
       if (!this.selectedModuleFile) {
         return;
