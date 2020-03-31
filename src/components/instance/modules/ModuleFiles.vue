@@ -12,7 +12,7 @@
 
     <div class="tab">
       <!-- module file selector -->
-      <transition name="slide-downward">
+      <transition name="slide">
         <Select
           v-show="files_data.length"
           v-model="selectedModuleFile"
@@ -29,7 +29,7 @@
 
       <!-- dependencies type -->
       <transition name="slide">
-        <div class="tag-group">
+        <div class="tag-group" v-show="files_data.length">
           <div
             :class="'tag' + (dependencies ? ' tag-selected' : '')"
             @click="changeDevType(true)"
@@ -96,6 +96,7 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   font-size: 13px;
   cursor: pointer;
+  user-select: none;
 }
 
 .tag.tag-selected {

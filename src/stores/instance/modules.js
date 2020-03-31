@@ -5,7 +5,7 @@ import * as utils from "@/javascripts/lib/utils";
 const { state: fileState, mutations: fileMutations, handle: handleFile } =
   utils.storeFactory("files", []);
 const { state: moduleState, mutations: moduleMutations, handle: handleModule } =
-  utils.storeFactory("modules", []);
+  utils.storeFactory("module", {});
 
 export default {
   namespaced: true,
@@ -51,14 +51,14 @@ export default {
       await handleFile(context, options, "list", "array");
     },
 
-    async getModules(context, { cancelToken }) {
+    async getModule(context, { cancelToken }) {
       const { state, rootState, rootGetters } = context;
 
       const options = {
         cancelToken,
 
         // user data
-        url: rootState.url.modules,
+        url: rootState.url.module,
         data: {
           appId: rootGetters.appId,
           agentId: rootGetters.agentId,
@@ -66,7 +66,7 @@ export default {
         }
       };
 
-      await handleModule(context, options, "list", "array");
+      await handleModule(context, options);
     }
   }
 };
