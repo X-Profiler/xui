@@ -36,6 +36,6 @@ export default {
 
     // dashboard/instance/modules
     moduleFiles: "/xapi/module_files",
-    modules: "/xapi/modules"
+    module: "/xapi/module"
   }
 };

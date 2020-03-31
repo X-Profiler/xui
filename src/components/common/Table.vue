@@ -49,8 +49,10 @@ export default {
   methods: {
     getCellStyle(column) {
       let style = "";
-      if (column.width) {
+      if (isNumber(column.width)) {
         style += "width: " + column.width + "px;";
+      } else if (column.width) {
+        style += "width: " + column.width + ";";
       }
 
       if (column.align) {

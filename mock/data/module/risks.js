@@ -7,7 +7,7 @@ const path2 = `/Users/hyj1991/git/monitor/xprofiler/package.json`;
 const path3 = `/Users/hyj1991/git/monitor/easy-monitor/package.json`;
 const path4 = `/Users/hyj1991/git/monitor/xtransit/package.json`;
 
-module.exports = [
+const data = [
   {
     value: path1,
     label: path.basename(path1),
@@ -67,3 +67,5 @@ module.exports = [
     },
   }
 ];
+
+module.exports = data;
