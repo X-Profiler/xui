@@ -211,6 +211,8 @@ export default {
 
 .panel {
   margin-top: 5px;
+  min-height: calc(100% - 29px);
+  background-color: #f9fafc;
 }
 
 .panel-title {
@@ -268,7 +270,6 @@ export default {
 
 .panel-content {
   padding: 10px 0;
-  background-color: #f9fafc;
 }
 
 .panel-chapter {
