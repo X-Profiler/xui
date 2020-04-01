@@ -1,0 +1,111 @@
+<template>
+  <div>
+    <div class="x-modal-content">
+      <!-- upload content -->
+      <div class="container">
+        <div class="wrapper">
+          <!-- file types -->
+          <div class="group">
+            <div>文件类型</div>
+            <Select
+              class="agent-selector upload-selector"
+              v-model="selectedFileType"
+              placeholder="请选择文件类型"
+            >
+              <Option
+                v-for="(item, index) in fileTypes"
+                :key="index"
+                :value="item.value"
+              >{{ item.label }}</Option>
+            </Select>
+          </div>
+
+          <!-- upload file -->
+          <div class="group item">
+            <div class="solid">选择文件</div>
+            <Upload class="upload-button solid" :before-upload="handleUpload" action>
+              <Button type="primary">
+                <Icon class="upload-icon" type="md-cloud-upload" />
+                <span class="upload-text">选择性能文件</span>
+              </Button>
+            </Upload>
+            <div class="filename" v-html="selectedFileName"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="x-modal-footer">
+      <Button type="primary" ghost @click="closeUploadModal">关闭</Button>
+      <Button type="primary" style="margin-left: 8px" @click="uploadFile">上传</Button>
+    </div>
+  </div>
+</template>
+
+<script>
+import uploadFileModule from "@/javascripts/file/UploadFile";
+
+export default {
+  data() {
+    return {
+      selectedFileType: undefined,
+      selectedFileName: "未选择任何性能文件"
+    };
+  },
+
+  ...uploadFileModule
+};
+</script>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  max-width: 350px;
+}
+
+.group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.item {
+  margin-top: 13px;
+}
+
+.upload-selector {
+  text-align: left;
+  width: 180px;
+  margin-left: 20px;
+}
+
+.upload-button {
+  margin-left: 20px;
+}
+
+.upload-icon {
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.upload-text {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.solid {
+  flex-shrink: 0;
+}
+
+.filename {
+  margin-left: 13px;
+  font-size: 13px;
+  text-align: left;
+}
+</style>
