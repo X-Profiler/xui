@@ -13,6 +13,7 @@ import process from "@/stores/instance/process";
 import system from "@/stores/instance/system";
 import errors from "@/stores/instance/errors";
 import modules from "@/stores/instance/modules";
+import file from "@/stores/file/file"
 
 export default {
   state: {
@@ -102,7 +103,9 @@ export default {
 
             "modules": { ...modules } // dashboard/instance/modules
           }
-        }
+        },
+
+        "file": { ...file }, // dashboard/file
       }
     }
   }

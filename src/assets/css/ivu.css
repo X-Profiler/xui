@@ -12,8 +12,14 @@
 }
 
 .agent-selector .ivu-select-selection .ivu-select-input,
+.agent-selector.ivu-select-single .ivu-select-selection .ivu-select-selected-value,
+.agent-selector.ivu-select-single .ivu-select-selection .ivu-select-placeholder,
 .agent-selector .ivu-select-dropdown .ivu-select-not-found {
   font-size: 12px;
+}
+
+.upload-button .ivu-upload-list {
+  margin-top: 0;
 }
 
 .agent-selector
