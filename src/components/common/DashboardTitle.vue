@@ -1,13 +1,18 @@
 <template>
-  <div class="detail-title">
-    <div class="detail-app-name">{{ appName }}</div>
-    <div class="detail-app-seg">
-      <Icon type="ios-arrow-forward" />
-    </div>
-    <div>{{ dashboardTitle }}</div>
+  <div>
+    <div class="detail-title">
+      <div class="detail-app-name">{{ appName }}</div>
+      <div class="detail-app-seg">
+        <Icon type="ios-arrow-forward" />
+      </div>
+      <div>{{ dashboardTitle }}</div>
 
-    <!-- extra slot -->
-    <slot name="extra"></slot>
+      <!-- extra slot -->
+      <slot name="extra"></slot>
+    </div>
+
+    <!-- line -->
+    <div v-if="line" class="line"></div>
   </div>
 </template>
 
@@ -15,7 +20,8 @@
 export default {
   props: {
     appName: String,
-    dashboardTitle: String
+    dashboardTitle: String,
+    line: Boolean
   }
 };
 </script>
@@ -38,5 +44,10 @@ export default {
 .detail-app-seg {
   font-size: 17px;
   color: #808695;
+}
+
+.line {
+  height: 15px;
+  border-bottom: 1px solid #dcdee2;
 }
 </style>
