@@ -16,6 +16,7 @@
       <!-- show process panel -->
       <transition name="slide">
         <x-panel
+          style="height: 100%"
           ref="panel"
           v-show="!xprofiler_processes_loading && !xprofiler_processes_load_error"
           :processes="xProcesses"
