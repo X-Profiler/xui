@@ -1,7 +1,7 @@
 <template>
   <div class="detail-content">
     <!-- title -->
-    <x-dashboard-title :appName="appName" :dashboardTitle="title"></x-dashboard-title>
+    <x-dashboard-title :appName="appName" :dashboardTitle="title" line></x-dashboard-title>
   </div>
 </template>
 
