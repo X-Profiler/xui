@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import uploadModule from "@/javascripts/file/Upload";
-import xUploadFile from "@/components/file/UploadFile";
+import uploaderModule from "@/javascripts/file/upload/Uploader";
+import xUploadFile from "@/components/file/upload/UploadFile";
 
 export default {
   components: {
@@ -30,7 +30,7 @@ export default {
     };
   },
 
-  ...uploadModule
+  ...uploaderModule
 };
 </script>
 

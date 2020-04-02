@@ -2,14 +2,14 @@
   <div class="detail-content">
     <!-- title -->
     <x-dashboard-title :appName="appName" :dashboardTitle="title" line>
-      <x-upload slot="extra"></x-upload>
+      <x-uploader slot="extra"></x-uploader>
     </x-dashboard-title>
   </div>
 </template>
 
 <script>
 import fileModule from "@/javascripts/file/FileIndex";
-import xUpload from "@/components/file/Upload";
+import xUploader from "@/components/file/upload/Uploader";
 
 export default {
   props: {
@@ -19,7 +19,7 @@ export default {
   },
 
   components: {
-    "x-upload": xUpload
+    "x-uploader": xUploader
   },
 
   ...fileModule

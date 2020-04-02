@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import uploadFileModule from "@/javascripts/file/UploadFile";
+import uploadFileModule from "@/javascripts/file/upload/UploadFile";
 
 export default {
   data() {
