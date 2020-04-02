@@ -20,13 +20,21 @@ export default {
       { label: "核心转储", value: "core" },
       { label: "进程趋势", value: "trend" }
     ],
-
-    uploadModal: undefined
+    nessaryQueryArgs: ["filterType", "page"],
+    uploadModal: undefined,
+    filterType: undefined
   },
 
   getters: {
     normalValidTypes(state) {
       return state.fileTypes.map(fileType => fileType.value).filter(type => type !== "core");
+    },
+
+    filterTypes(state) {
+      const filterTypes = state.fileTypes.map(fileType => fileType);
+      filterTypes.unshift({ label: "全部", value: "all" });
+      filterTypes.push({ label: "收藏", value: "favor" });
+      return filterTypes;
     }
   },
 
@@ -37,6 +45,10 @@ export default {
       if (status === false || status === true) {
         state.uploadModal = status;
       }
+    },
+
+    setFilterType(state, filterType) {
+      state.fileType = filterType;
     }
   },
 
