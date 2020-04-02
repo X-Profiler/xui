@@ -36,6 +36,9 @@ export default {
 
     // dashboard/instance/modules
     moduleFiles: "/xapi/module_files",
-    module: "/xapi/module"
+    module: "/xapi/module",
+
+    // file
+    uploadFile: "/xapi/upload_file"
   }
 };

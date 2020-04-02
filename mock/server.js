@@ -40,4 +40,7 @@ require("./controller/instance/mock_errors")(app);
 // dashboard/instance/modules
 require("./controller/instance/mock_modules")(app);
 
+// dashboard/file
+require("./controller/file/mock_file")(app);
+
 app.listen(7442);

@@ -3,7 +3,13 @@
     <div class="x-modal-content">
       <!-- upload content -->
       <div class="container">
-        <div class="wrapper">
+        <x-loading :loading="upload_loading" type="dot" size="middle"></x-loading>
+
+        <x-error-message v-if="upload_load_error" :message="upload_load_error"></x-error-message>
+
+        <div v-if="upload_data">性能文件上传成功</div>
+
+        <div v-if="!upload_loading && !upload_load_error && !upload_data" class="wrapper">
           <!-- file types -->
           <div class="group">
             <div>文件类型</div>
@@ -42,8 +48,15 @@
 
     <!-- footer -->
     <div class="x-modal-footer">
-      <Button type="primary" ghost @click="closeUploadModal">关闭</Button>
-      <Button type="primary" style="margin-left: 8px" @click="uploadFile">上传</Button>
+      <div v-if="!upload_loading">
+        <Button type="primary" ghost @click="closeUploadModal">关闭</Button>
+        <Button
+          v-if="!upload_load_error && !upload_data"
+          type="primary"
+          style="margin-left: 8px"
+          @click="upload"
+        >上传</Button>
+      </div>
     </div>
   </div>
 </template>

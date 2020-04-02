@@ -1,15 +1,20 @@
 "use strict";
 
 import * as utils from "@/javascripts/lib/utils";
-const { mapState, mapGetters, mapMutations } = utils.createNamespace("dashboard/file");
+const { mapState, mapGetters, mapMutations, mapActions } = utils.createNamespace("dashboard/file");
 
 export default {
   created() {
+    this.cancelToken = utils.createCancelToken();
     this.uploads = this.getUploads("normalUploads");
+    this.set_upload_load_error(undefined);
+    this.set_upload(undefined);
   },
 
   methods: {
-    ...mapMutations(["setUploadModal"]),
+    ...mapMutations(["setUploadModal", "set_upload_load_error", "set_upload"]),
+
+    ...mapActions(["uploadFile"]),
 
     reset() {
       this.uploads.forEach(upload => upload.tip = this.defaultFileTip);
@@ -60,7 +65,7 @@ export default {
       return false;
     },
 
-    uploadFile() {
+    upload() {
       const uploads = this.uploads;
       let canUpload = true;
       for (const upload of uploads) {
@@ -78,11 +83,13 @@ export default {
       for (const upload of uploads) {
         formData.append("file", upload.file);
       }
+
+      this.uploadFile({ cancelToken: this.cancelToken.token, fileType: this.selectedFileType, formData });
     }
   },
 
   computed: {
-    ...mapState(["fileTypes"]),
+    ...mapState(["fileTypes", "upload_loading", "upload_load_error", "upload_data"]),
 
     ...mapGetters(["normalValidTypes"]),
 

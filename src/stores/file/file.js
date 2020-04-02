@@ -1,9 +1,16 @@
 "use strict";
 
+import * as utils from "@/javascripts/lib/utils";
+
+const { state: uploadState, mutations: uploadMutations, handle: handleUpload } =
+  utils.storeFactory("upload", undefined);
+
 export default {
   namespaced: true,
 
   state: {
+    ...uploadState,
+
     fileTypes: [
       { label: "CPU Profile", value: "cpuprofile" },
       { label: "Heap Profile", value: "heapprofile" },
@@ -24,10 +31,29 @@ export default {
   },
 
   mutations: {
+    ...uploadMutations,
+
     setUploadModal(state, { status }) {
       if (status === false || status === true) {
         state.uploadModal = status;
       }
     }
+  },
+
+  actions: {
+    async uploadFile(context, { cancelToken, formData, fileType }) {
+      const { rootState, rootGetters } = context;
+
+      const options = {
+        cancelToken,
+        method: "POST",
+
+        // user data
+        url: `${rootState.url.uploadFile}?appId=${rootGetters.appId}&fileType=${fileType}`,
+        data: formData
+      };
+
+      await handleUpload(context, options, "file");
+    },
   }
 };
