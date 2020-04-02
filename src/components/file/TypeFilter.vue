@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import typeFilterModule from "../../javascripts/file/TypeFilter";
+import typeFilterModule from "@/javascripts/file/TypeFilter";
 
 export default {
   data() {

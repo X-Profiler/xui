@@ -14,6 +14,10 @@ export default {
     }
   },
 
+  beforeDestroy() {
+    this.setFilterType(undefined);
+  },
+
   methods: {
     ...mapMutations(["setFilterType"])
   },

@@ -5,11 +5,16 @@ import * as utils from "@/javascripts/lib/utils";
 const { state: uploadState, mutations: uploadMutations, handle: handleUpload } =
   utils.storeFactory("upload", undefined);
 
+const { state: fileListState, mutations: fileListMutations, handle: handleFileList } =
+  utils.storeFactory("files", undefined);
+
 export default {
   namespaced: true,
 
   state: {
     ...uploadState,
+
+    ...fileListState,
 
     fileTypes: [
       { label: "CPU Profile", value: "cpuprofile" },
@@ -41,6 +46,8 @@ export default {
   mutations: {
     ...uploadMutations,
 
+    ...fileListMutations,
+
     setUploadModal(state, { status }) {
       if (status === false || status === true) {
         state.uploadModal = status;
@@ -48,7 +55,7 @@ export default {
     },
 
     setFilterType(state, filterType) {
-      state.fileType = filterType;
+      state.filterType = filterType;
     }
   },
 
@@ -67,5 +74,24 @@ export default {
 
       await handleUpload(context, options, "file");
     },
+
+    async getFiles(context, { cancelToken, filterType, currentPage, pageSize }) {
+      const { rootState, rootGetters } = context;
+
+      const options = {
+        cancelToken,
+
+        // user data
+        url: rootState.url.fileList,
+        data: {
+          appId: rootGetters.appId,
+          filterType,
+          currentPage,
+          pageSize
+        }
+      };
+
+      await handleFileList(context, options, "list", "array");
+    }
   }
 };

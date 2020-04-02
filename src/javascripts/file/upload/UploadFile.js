@@ -11,6 +11,10 @@ export default {
     this.set_upload(undefined);
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
     ...mapMutations(["setUploadModal", "set_upload_load_error", "set_upload"]),
 
