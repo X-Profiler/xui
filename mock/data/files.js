@@ -1,0 +1,102 @@
+"use strict";
+
+// status
+// 0: 生成中
+// 1: 已生成
+// 2: 转储中
+// 3: 已转储
+
+module.exports = [
+  {
+    fileType: 'trend',
+    file: 'x-process-snapshot-21182-20190930-75431.trend',
+    name: 'hyj1991',
+    time: '2019-07-12 11:19:32',
+    agent: '186590dd08d3.local',
+    status: 2,
+    favor: 0,
+    fileId: 3,
+  },
+  {
+    fileType: 'cpuprofile',
+    file: '/tmp/heapdump-84735-20190712-111932.cpuprofile',
+    name: 'hyj1991',
+    time: '2019-07-12 11:19:32',
+    agent: '186590dd08d3.local',
+    status: 1,
+    favor: 0,
+    fileId: 3,
+  },
+  {
+    fileType: 'cpuprofile',
+    file: '/tmp/heapdump-84735-20190712-111933.cpuprofile',
+    name: 'hyj1991',
+    time: '2019-07-12 11:19:32',
+    agent: '186590dd08d3.local',
+    status: 1,
+    favor: 0,
+    fileId: 99
+  },
+  {
+    fileType: 'heapprofile',
+    file: '/tmp/heapdump-84735-20190712-111932.heapprofile',
+    name: 'TZ | 天猪',
+    time: '2019-07-12 11:19:32',
+    agent: '186590dd08d3.local',
+    status: 0,
+    favor: 0,
+    fileId: 3
+  },
+  {
+    fileType: 'gclog',
+    file: '/tmp/heapdump-84735-20190712-111932.gclog',
+    name: 'TZ | 天猪',
+    time: '2019-07-12 11:19:32',
+    agent: 'upload',
+    status: 2,
+    favor: 1,
+    fileId: 3
+  },
+  {
+    fileType: 'heapsnapshot',
+    file: '/tmp/heapdump-84735-20190712-111932.heapsnapshot',
+    name: 'TZ | 天猪',
+    time: '2019-07-12 11:19:32',
+    agent: '186590dd08d3.local',
+    status: 2,
+    favor: 1,
+    fileId: 3
+  },
+  {
+    fileType: 'diag',
+    file: '/tmp/heapdump-84735-20190712-111932.diag',
+    name: 'TZ | 天猪',
+    time: '2019-07-12 11:19:32',
+    agent: '186590dd08d3.local',
+    status: 2,
+    favor: 0,
+    fileId: 3
+  },
+  {
+    fileType: 'core',
+    coreFile: '/tmp/heapdump-84735-20190712-111932.core',
+    executableFile: 'linux-v10.13.0.node',
+    executableStatus: 0,
+    name: 'TZ | 天猪',
+    time: '2019-07-12 11:19:32',
+    agent: 'upload',
+    status: 2,
+    fileId: 3
+  },
+  {
+    fileType: 'core',
+    coreFile: '/tmp/heapdump-84735-20190712-111932.core',
+    executableFile: 'node-v10.13.0',
+    executableStatus: 1,
+    name: 'TZ | 天猪',
+    time: '2019-07-12 11:19:32',
+    agent: '186590dd08d3.local',
+    status: 2,
+    fileId: 4
+  }
+];

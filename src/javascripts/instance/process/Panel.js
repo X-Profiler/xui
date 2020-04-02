@@ -15,10 +15,6 @@ const { mapMethods: mapMethodsActions, mapWatch: mapWatchActions, handleMounted:
   utils.modalRouteFactory("modalQueryKeyActions", "takeActionModal", "takeAction", "setTakeActionModal");
 
 export default {
-  created() {
-    this.cancelToken = utils.createCancelToken();
-  },
-
   mounted() {
     handleMounted.call(this, "handleProcessTrendDrawer", true, "processData");
     handleMountedProcesses.call(this, "handleProcessesDrawer", true);

@@ -39,6 +39,7 @@ export default {
     module: "/xapi/module",
 
     // file
-    uploadFile: "/xapi/upload_file"
+    uploadFile: "/xapi/upload_file",
+    fileList: "/xapi/files"
   }
 };

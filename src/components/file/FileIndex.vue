@@ -7,6 +7,9 @@
 
     <!-- file type filter -->
     <x-type-filter class="type-filter"></x-type-filter>
+
+    <!-- file list -->
+    <x-file-list></x-file-list>
   </div>
 </template>
 
@@ -14,6 +17,7 @@
 import fileModule from "@/javascripts/file/FileIndex";
 import xUploader from "@/components/file/upload/Uploader";
 import xTypeFilter from "@/components/file/TypeFilter";
+import xFileList from "@/components/file/list/FileList";
 
 export default {
   props: {
@@ -24,7 +28,8 @@ export default {
 
   components: {
     "x-uploader": xUploader,
-    "x-type-filter": xTypeFilter
+    "x-type-filter": xTypeFilter,
+    "x-file-list": xFileList
   },
 
   ...fileModule
