@@ -7,18 +7,36 @@ export default {
   methods: {
     ...mapMutations(["setUploadModal"]),
 
+    reset() {
+      this.uploads.forEach(upload => upload.tip = this.defaultFileTip);
+    },
+
     closeUploadModal() {
       this.setUploadModal({ status: false });
     },
 
-    handleUpload(file) {
-      const tmp = file.name.split('.');
+    getExt(filename) {
+      const tmp = filename.split('.');
       const ext = tmp[tmp.length - 1];
+      return ext;
+    },
+
+    formatFileName(name, limit = 31) {
+      let str = name;
+      if (name.length > limit) {
+        str = `${name.slice(0, 13)}...${name.slice(name.length - 15, name.length)}`;
+      }
+      str = `<span style="font-size: 12px">${str}</span>`;
+      return str;
+    },
+
+    handleUpload(file, upload) {
+      const ext = this.getExt(file.name);
       if (!this.validTypes.includes(ext)) {
-        this.selectedFileName = `<span style="color: rgb(199, 37, 65)">文件类型 .${ext} 错误!</span>`;
+        upload.tip = `<span style="color: rgb(199, 37, 65)">文件类型 .${ext} 错误!</span>`;
       } else {
-        this.selectedFileName = file.name;
         this.selectedFileType = ext;
+        upload.tip = this.formatFileName(file.name);
       }
       return false;
     },
@@ -31,6 +49,19 @@ export default {
   computed: {
     ...mapState(["fileTypes"]),
 
-    ...mapGetters(["validTypes"])
+    ...mapGetters(["validTypes"]),
+
+    uploads() {
+      return this.normalUploads
+    }
+  },
+
+  watch: {
+    selectedFileType() {
+      if (this.uploads.some(upload => this.getExt(upload.tip).includes(this.selectedFileType))) {
+        return;
+      }
+      this.reset();
+    }
   }
 };
