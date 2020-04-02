@@ -21,15 +21,20 @@
           </div>
 
           <!-- upload file -->
-          <div class="group item">
-            <div class="solid">选择文件</div>
-            <Upload class="upload-button solid" :before-upload="handleUpload" action>
+          <div v-for="(upload, index) in uploads" :key="index" class="group item">
+            <div class="solid">{{ upload.title }}</div>
+            <Upload
+              class="upload-button solid"
+              :before-upload="file=> handleUpload(file, upload)"
+              action
+            >
               <Button type="primary">
                 <Icon class="upload-icon" type="md-cloud-upload" />
-                <span class="upload-text">选择性能文件</span>
+                <span class="upload-text">{{ upload.button }}</span>
               </Button>
             </Upload>
-            <div class="filename" v-html="selectedFileName"></div>
+            <div class="placeholder"></div>
+            <div class="filename" v-html="upload.tip"></div>
           </div>
         </div>
       </div>
@@ -49,8 +54,11 @@ import uploadFileModule from "@/javascripts/file/UploadFile";
 export default {
   data() {
     return {
+      defaultFileTip: "未选择任何文件",
       selectedFileType: undefined,
-      selectedFileName: "未选择任何性能文件"
+      normalUploads: [
+        { title: "性能文件", button: "选择性能文件", tip: this.defaultFileTip }
+      ]
     };
   },
 
@@ -60,6 +68,7 @@ export default {
 
 <style scoped>
 .container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,9 +112,16 @@ export default {
   flex-shrink: 0;
 }
 
-.filename {
+.placeholder {
   margin-left: 13px;
+  width: 120px;
+}
+
+.filename {
+  position: absolute;
   font-size: 13px;
   text-align: left;
+  left: 293px;
+  word-break: break-all;
 }
 </style>
