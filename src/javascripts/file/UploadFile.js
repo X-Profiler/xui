@@ -4,6 +4,10 @@ import * as utils from "@/javascripts/lib/utils";
 const { mapState, mapGetters, mapMutations } = utils.createNamespace("dashboard/file");
 
 export default {
+  created() {
+    this.uploads = this.getUploads("normalUploads");
+  },
+
   methods: {
     ...mapMutations(["setUploadModal"]),
 
@@ -16,9 +20,19 @@ export default {
     },
 
     getExt(filename) {
-      const tmp = filename.split('.');
+      const tmp = filename.split(".");
       const ext = tmp[tmp.length - 1];
       return ext;
+    },
+
+    getUploads(key, type = "normal") {
+      return this[key].map(upload => {
+        upload.tip = this.defaultFileTip;
+        if (type === "normal") {
+          upload.valid = this.normalValidTypes;
+        }
+        return upload;
+      });
     },
 
     formatFileName(name, limit = 31) {
@@ -32,36 +46,72 @@ export default {
 
     handleUpload(file, upload) {
       const ext = this.getExt(file.name);
-      if (!this.validTypes.includes(ext)) {
+      if (!upload.valid.includes(ext)) {
         upload.tip = `<span style="color: rgb(199, 37, 65)">文件类型 .${ext} 错误!</span>`;
       } else {
-        this.selectedFileType = ext;
+        if (this.validCoredumpTypes.includes(this.selectedFileType)) {
+          this.selectedFileType = "core";
+        } else {
+          this.selectedFileType = ext;
+        }
         upload.tip = this.formatFileName(file.name);
+        upload.file = file;
       }
       return false;
     },
 
     uploadFile() {
+      const uploads = this.uploads;
+      let canUpload = true;
+      for (const upload of uploads) {
+        if (!upload.file) {
+          upload.tip = `<span style="color: rgb(199, 37, 65)">${upload.title}不能为空！</span>`;
+          canUpload = false;
+        }
+      }
 
+      if (!canUpload) {
+        return;
+      }
+
+      const formData = new FormData();
+      for (const upload of uploads) {
+        formData.append("file", upload.file);
+      }
     }
   },
 
   computed: {
     ...mapState(["fileTypes"]),
 
-    ...mapGetters(["validTypes"]),
+    ...mapGetters(["normalValidTypes"]),
 
-    uploads() {
-      return this.normalUploads
+    validCoredumpTypes() {
+      let types = [];
+      for (const upload of this.coredumpUploads) {
+        types = types.concat(upload.valid);
+      }
+      return types;
     }
   },
 
   watch: {
-    selectedFileType() {
-      if (this.uploads.some(upload => this.getExt(upload.tip).includes(this.selectedFileType))) {
+    selectedFileType(newVal, oldVal) {
+      if (this.uploads.every(upload => !this.getExt(upload.tip).includes(newVal))) {
+        this.reset();
+      }
+
+      if (newVal !== "core" && oldVal !== "core") {
         return;
       }
-      this.reset();
+
+      let uploads;
+      if (newVal === "core") {
+        uploads = this.getUploads("coredumpUploads", "core");
+      } else {
+        uploads = this.getUploads("normalUploads");
+      }
+      this.uploads = uploads;
     }
   }
 };

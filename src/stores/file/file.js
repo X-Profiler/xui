@@ -18,8 +18,8 @@ export default {
   },
 
   getters: {
-    validTypes(state) {
-      return state.fileTypes.map(fileType => fileType.value);
+    normalValidTypes(state) {
+      return state.fileTypes.map(fileType => fileType.value).filter(type => type !== "core");
     }
   },
 
@@ -30,4 +30,4 @@ export default {
       }
     }
   }
-}
+};

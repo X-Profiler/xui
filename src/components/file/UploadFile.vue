@@ -54,10 +54,33 @@ import uploadFileModule from "@/javascripts/file/UploadFile";
 export default {
   data() {
     return {
-      defaultFileTip: "未选择任何文件",
       selectedFileType: undefined,
+      uploads: [],
+      defaultFileTip: "未选择任何文件",
       normalUploads: [
-        { title: "性能文件", button: "选择性能文件", tip: this.defaultFileTip }
+        {
+          title: "性能文件",
+          button: "选择性能文件",
+          tip: undefined,
+          valid: [],
+          file: undefined
+        }
+      ],
+      coredumpUploads: [
+        {
+          title: "核心转储",
+          button: "选择核心转储",
+          tip: undefined,
+          valid: ["core"],
+          file: undefined
+        },
+        {
+          title: "执行文件",
+          button: "选择执行文件",
+          tip: undefined,
+          valid: ["node"],
+          file: undefined
+        }
       ]
     };
   },
