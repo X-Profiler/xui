@@ -17,13 +17,13 @@ export default {
     ...fileListState,
 
     fileTypes: [
-      { label: "CPU Profile", value: "cpuprofile" },
-      { label: "Heap Profile", value: "heapprofile" },
-      { label: "GC 追踪", value: "gclog" },
-      { label: "堆快照", value: "heapsnapshot" },
-      { label: "诊断报告", value: "diag" },
-      { label: "核心转储", value: "core" },
-      { label: "进程趋势", value: "trend" }
+      { label: "CPU Profile", value: "cpuprofile", icon: "ios-stopwatch" },
+      { label: "Heap Profile", value: "heapprofile", icon: "ios-timer" },
+      { label: "GC 追踪", value: "gclog", icon: "ios-locate" },
+      { label: "堆快照", value: "heapsnapshot", icon: "md-camera" },
+      { label: "诊断报告", value: "diag", icon: "md-medkit" },
+      { label: "核心转储", value: "core", icon: "md-list-box" },
+      { label: "进程趋势", value: "trend", icon: "ios-podium" }
     ],
     nessaryQueryArgs: ["filterType", "page"],
     uploadModal: undefined,
@@ -40,6 +40,18 @@ export default {
       filterTypes.unshift({ label: "全部", value: "all" });
       filterTypes.push({ label: "收藏", value: "favor" });
       return filterTypes;
+    },
+
+    getIconByType: state => type => {
+      const types = state.fileTypes;
+      // let icon = "logo-freebsd-devil";
+      let icon = "";
+      for (const t of types) {
+        if (t.value === type && t.icon) {
+          icon = t.icon;
+        }
+      }
+      return icon;
     },
 
     getLabelByType: state => type => {
