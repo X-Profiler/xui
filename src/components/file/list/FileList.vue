@@ -7,7 +7,7 @@
     <x-error-message v-show="files_load_error" :message="files_load_error" top="calc(30vh -  25px)"></x-error-message>
 
     <!-- file list -->
-    <x-content v-show="!files_loading && !files_load_error"></x-content>
+    <x-content v-if="filterType"></x-content>
   </div>
 </template>
 

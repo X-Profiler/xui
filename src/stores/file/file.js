@@ -6,7 +6,7 @@ const { state: uploadState, mutations: uploadMutations, handle: handleUpload } =
   utils.storeFactory("upload", undefined);
 
 const { state: fileListState, mutations: fileListMutations, handle: handleFileList } =
-  utils.storeFactory("files", undefined);
+  utils.storeFactory("files", { list: [], count: 0 });
 
 export default {
   namespaced: true,
@@ -25,7 +25,7 @@ export default {
       { label: "核心转储", value: "core", icon: "md-list-box" },
       { label: "进程趋势", value: "trend", icon: "ios-podium" }
     ],
-    nessaryQueryArgs: ["filterType", "page"],
+    nessaryQueryArgs: ["filterType"],
     uploadModal: undefined,
     filterType: undefined
   },
@@ -114,7 +114,7 @@ export default {
         }
       };
 
-      await handleFileList(context, options, "list", "array");
+      await handleFileList(context, options);
     }
   }
 };

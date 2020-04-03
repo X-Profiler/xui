@@ -25,7 +25,21 @@ module.exports = app => {
     console.log(`get app ${appId} files: ${filterType} (${start} ~ ${end}) <${pageSize}>`);
 
     const list = require('../../data/files');
+    let files = list
+      .filter(file => {
+        if (filterType === "all") {
+          return true;
+        }
 
-    setTimeout(() => res.send({ ok: true, data: { list } }), 550);
+        if (filterType === "favor") {
+          return file.favor;
+        }
+
+        return file.fileType === filterType;
+      });
+    const count = files.length;
+    files = files.filter((...args) => args[1] >= start && args[1] < end);
+
+    setTimeout(() => res.send({ ok: true, data: { list: files, count } }), 550);
   });
 };

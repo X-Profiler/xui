@@ -7,6 +7,12 @@ const { mapState, mapGetters, mapActions } = utils.createNamespace("dashboard/fi
 export default {
   created() {
     this.cancelToken = utils.createCancelToken();
+    const query = this.$route.query;
+    if (query.page) {
+      this.currentPage = Number(query.page);
+    } else {
+      this.currentPage = 1;
+    }
   },
 
   beforeDestroy() {
@@ -14,25 +20,34 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getFiles"])
+    ...mapActions(["getFiles"]),
+
+    changeFilePage(page) {
+      this.currentPage = page;
+    }
   },
 
   computed: {
-    ...mapState(["filterType", "files_data"]),
+    ...mapState(["nessaryQueryArgs", "filterType",
+      "files_loading", "files_load_error", "files_data"]),
 
     ...mapGetters(["getIconByType", "getLabelByType"]),
 
     files() {
       const files = [];
-      const data = this.files_data;
-      if (!Array.isArray(data)) {
+      const { list, count } = this.files_data;
+      if (!Array.isArray(list)) {
         return files;
       }
 
-      for (const d of data) {
+      if (utils.isNumber(count)) {
+        this.totaFileCount = count;
+      }
+
+      for (const file of list) {
         files.push({
-          typeIcon: this.getIconByType(d.fileType),
-          typeLabel: this.getLabelByType(d.fileType)
+          typeIcon: this.getIconByType(file.fileType),
+          typeLabel: this.getLabelByType(file.fileType)
         });
       }
 
@@ -41,13 +56,23 @@ export default {
   },
 
   watch: {
-    filterType() {
+    $route(...args) {
+      utils.watchRoute.call(this, args, "page", "currentPage");
+    },
+
+    currentPage(...args) {
+      if (!this.currentPage) {
+        return;
+      }
+
       this.getFiles({
         cancelToken: this.cancelToken.token,
         filterType: this.filterType,
         currentPage: this.currentPage,
         pageSize: this.pageSize
       });
+
+      utils.watchQueryKey.call(this, "page", "currentPage", args);
     }
   }
 }
