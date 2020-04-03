@@ -7,8 +7,8 @@
     <x-module-detail class="module-detail" v-if="moduleFile"></x-module-detail>
 
     <!-- loading -->
-    <x-loading :loading="files_loading" type="dot" size="small" top="30vh"></x-loading>
-    <x-loading :loading="module_loading" type="dot" size="small" top="calc(30vh - 32px)"></x-loading>
+    <x-loading :loading="files_loading" type="dot" size="middle" top="30vh"></x-loading>
+    <x-loading :loading="module_loading" type="dot" size="middle" top="calc(30vh - 72px)"></x-loading>
 
     <!-- error message -->
     <x-error-message
