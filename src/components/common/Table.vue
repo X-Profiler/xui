@@ -55,6 +55,10 @@ export default {
         style += "width: " + column.width + ";";
       }
 
+      if (isNumber(column.left)) {
+        style += "padding-left: " + column.left + "px;";
+      }
+
       if (column.align) {
         style += "text-align: " + column.align + ";";
       }
