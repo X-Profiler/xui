@@ -4,7 +4,7 @@
     <div class="panel">
       <!-- loading -->
       <div style="text-align: center">
-        <x-loading :loading="xprofiler_processes_loading" :top="300" size="small" type="dot"></x-loading>
+        <x-loading :loading="xprofiler_processes_loading" :top="300" size="middle" type="dot"></x-loading>
       </div>
 
       <x-error-message
@@ -33,7 +33,7 @@
 
         <!-- loading -->
         <div style="text-align: center">
-          <x-loading :loading="xprofiler_processes_loading" :top="45" size="small" type="dot"></x-loading>
+          <x-loading :loading="xprofiler_processes_loading" :top="55" size="middle" type="dot"></x-loading>
         </div>
 
         <x-error-message
@@ -72,7 +72,7 @@
 
         <!-- loading -->
         <div style="text-align: center">
-          <x-loading :loading="xprofiler_processes_loading" :top="150" size="small" type="dot"></x-loading>
+          <x-loading :loading="xprofiler_processes_loading" :top="160" size="middle" type="dot"></x-loading>
         </div>
 
         <x-error-message

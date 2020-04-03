@@ -7,8 +7,8 @@
     <x-error-logs class="error-logs" v-if="errorFile"></x-error-logs>
 
     <!-- loading -->
-    <x-loading :loading="files_loading" type="dot" size="small" top="30vh"></x-loading>
-    <x-loading :loading="logs_loading" type="dot" size="small" top="calc(30vh - 32px)"></x-loading>
+    <x-loading :loading="files_loading" type="dot" size="middle" top="30vh"></x-loading>
+    <x-loading :loading="logs_loading" type="dot" size="middle" top="calc(30vh - 32px)"></x-loading>
 
     <!-- error message -->
     <x-error-message
