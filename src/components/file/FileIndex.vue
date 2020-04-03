@@ -9,7 +9,7 @@
     <x-type-filter class="type-filter"></x-type-filter>
 
     <!-- file list -->
-    <x-file-list></x-file-list>
+    <x-file-list class="file-list"></x-file-list>
   </div>
 </template>
 
@@ -40,5 +40,9 @@ export default {
 .type-filter {
   margin-top: 15px;
   text-align: left;
+}
+
+.file-list {
+  margin-top: 10px;
 }
 </style>
