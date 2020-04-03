@@ -20,7 +20,7 @@ export default {
   computed: {
     ...mapState(["filterType", "files_data"]),
 
-    ...mapGetters(["getLabelByType"]),
+    ...mapGetters(["getIconByType", "getLabelByType"]),
 
     files() {
       const files = [];
@@ -31,6 +31,7 @@ export default {
 
       for (const d of data) {
         files.push({
+          typeIcon: this.getIconByType(d.fileType),
           typeLabel: this.getLabelByType(d.fileType)
         });
       }
