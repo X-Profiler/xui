@@ -52,7 +52,10 @@ export default {
           executable: file.executableFile,
           fileCreator: file.creator,
           createTime: file.time,
-          createAgent: file.agent
+          createAgent: file.agent,
+          fileStatus: file.status,
+          fileFavor: file.favor,
+          fileType: file.fileType
         });
       }
 
@@ -80,4 +83,4 @@ export default {
       utils.watchQueryKey.call(this, "page", "currentPage", args);
     }
   }
-}
+};

@@ -19,7 +19,7 @@ export default {
     fileTypes: [
       { label: "CPU Profile", value: "cpuprofile", icon: "ios-stopwatch" },
       { label: "Heap Profile", value: "heapprofile", icon: "ios-timer" },
-      { label: "GC 追踪", value: "gclog", icon: "ios-locate" },
+      { label: "GC 追踪", value: "gcprofile", icon: "ios-locate" },
       { label: "堆快照", value: "heapsnapshot", icon: "md-camera" },
       { label: "诊断报告", value: "diag", icon: "md-medkit" },
       { label: "核心转储", value: "core", icon: "md-list-box" },

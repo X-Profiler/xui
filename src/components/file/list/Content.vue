@@ -10,6 +10,11 @@
       <template v-slot:fileInfo="{ row }">
         <x-info :row="row"></x-info>
       </template>
+
+      <!-- operation -->
+      <template v-slot:operation="{ row }">
+        <x-operation :row="row"></x-operation>
+      </template>
     </x-table>
 
     <div v-if="totaFileCount" class="pagination">
@@ -29,11 +34,13 @@
 import xContent from "@/javascripts/file/list/Content";
 import xType from "@/components/file/list/Type";
 import xInfo from "@/components/file/list/Info";
+import xOperation from "@/components/file/list/Operation";
 
 export default {
   components: {
     "x-type": xType,
-    "x-info": xInfo
+    "x-info": xInfo,
+    "x-operation": xOperation
   },
 
   data() {
@@ -48,7 +55,7 @@ export default {
           width: 125
         },
         { title: "文件信息", value: "fileInfo", left: "20", width: 450 },
-        { title: "可执行操作", value: "operation" },
+        { title: "操作", value: "operation" },
         { title: "删除", value: "delete" }
       ],
       totaFileCount: 0
