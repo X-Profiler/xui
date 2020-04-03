@@ -34,7 +34,16 @@ export default {
     },
 
     selectedFilterType(...args) {
-      this.setFilterType(this.selectedFilterType);
+      const [newValue, oldValue] = args;
+      if (oldValue && newValue && oldValue !== newValue) {
+        this.setFilterType(undefined);
+      }
+      setTimeout(() => this.setFilterType(this.selectedFilterType), 0);
+
+      if (!this.selectedFilterType) {
+        return;
+      }
+
       utils.watchQueryKey.call(this, "filterType", "selectedFilterType", args);
     }
   }
