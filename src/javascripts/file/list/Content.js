@@ -2,7 +2,7 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState, mapActions } = utils.createNamespace("dashboard/file");
+const { mapState, mapGetters, mapActions } = utils.createNamespace("dashboard/file");
 
 export default {
   created() {
@@ -18,7 +18,25 @@ export default {
   },
 
   computed: {
-    ...mapState(["filterType", "files_data"])
+    ...mapState(["filterType", "files_data"]),
+
+    ...mapGetters(["getLabelByType"]),
+
+    files() {
+      const files = [];
+      const data = this.files_data;
+      if (!Array.isArray(data)) {
+        return files;
+      }
+
+      for (const d of data) {
+        files.push({
+          typeLabel: this.getLabelByType(d.fileType)
+        });
+      }
+
+      return files;
+    }
   },
 
   watch: {

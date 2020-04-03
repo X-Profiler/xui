@@ -40,7 +40,18 @@ export default {
       filterTypes.unshift({ label: "全部", value: "all" });
       filterTypes.push({ label: "收藏", value: "favor" });
       return filterTypes;
-    }
+    },
+
+    getLabelByType: state => type => {
+      const types = state.fileTypes;
+      let str = "Unknown";
+      for (const t of types) {
+        if (t.value === type) {
+          str = t.label;
+        }
+      }
+      return str;
+    },
   },
 
   mutations: {
