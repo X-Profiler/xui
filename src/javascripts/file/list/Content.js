@@ -47,7 +47,12 @@ export default {
       for (const file of list) {
         files.push({
           typeIcon: this.getIconByType(file.fileType),
-          typeLabel: this.getLabelByType(file.fileType)
+          typeLabel: this.getLabelByType(file.fileType),
+          filePath: file.file || file.coreFile,
+          executable: file.executableFile,
+          fileCreator: file.creator,
+          createTime: file.time,
+          createAgent: file.agent
         });
       }
 
