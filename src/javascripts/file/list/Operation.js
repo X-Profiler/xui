@@ -16,6 +16,10 @@ export default {
       };
     },
 
+    createLine(color) {
+      return { type: "line", color };
+    },
+
     loadingButton(label, bt) {
       return this.createButton(label, bt, undefined, true, false);
     },
@@ -28,8 +32,18 @@ export default {
       return this.createButton(label, bt, icon, false, false);
     },
 
-    createLine(color) {
-      return { type: "line", color };
+    createDisableGroup(label, icon) {
+      return [
+        this.createLine(this.disableColor),
+        this.createButton(label, undefined, icon, false, true, this.disableColor)
+      ]
+    },
+
+    createDoneGroup(label, icon, bt) {
+      return [
+        this.createLine(this.successColor),
+        this.doneButton(label, icon, bt)
+      ]
     },
 
     updateOperation() {
@@ -40,52 +54,32 @@ export default {
       // file creating
       if (status === 0) {
         operations.push(this.loadingButton("生成中"));
-        operations.push(this.disableLine);
-        operations.push(this.disableButton("转储", "md-cloud-upload"));
+        operations.push(...this.createDisableGroup("转储", "md-cloud-upload"));
         if (this.devtools.includes(data.fileType)) {
-          operations.push(this.disableLine);
-          operations.push(this.disableButton("devtools", "md-search"));
+          operations.push(...this.createDisableGroup("devtools", "md-search"));
         }
         if (this.xprofiler.includes(data.fileType)) {
-          operations.push(this.disableLine);
-          operations.push(this.disableButton("xprofiler", "md-search"));
+          operations.push(...this.createDisableGroup("xprofiler", "md-search"));
         }
-        operations.push(this.disableLine);
-        operations.push(this.disableButton("下载", "md-cloud-download"));
-        operations.push(this.disableLine);
-        operations.push(this.disableButton("收藏", "md-star"));
+        operations.push(...this.createDisableGroup("下载", "md-cloud-download"));
+        operations.push(...this.createDisableGroup("收藏", "md-star"));
       }
 
       // file created
       if (status === 1) {
         operations.push(this.doneButton("已生成", "md-brush", "success"));
-        operations.push(this.successLine);
-        operations.push(this.doneButton("转储", "md-cloud-upload", "success"));
+        operations.push(...this.createDoneGroup("转储", "md-cloud-upload", "success"));
         if (this.devtools.includes(data.fileType)) {
-          operations.push(this.disableLine);
-          operations.push(this.disableButton("devtools", "md-search"));
+          operations.push(...this.createDisableGroup("devtools", "md-search"));
         }
         if (this.xprofiler.includes(data.fileType)) {
-          operations.push(this.disableLine);
-          operations.push(this.disableButton("xprofiler", "md-search"));
+          operations.push(...this.createDisableGroup("xprofiler", "md-search"));
         }
-        operations.push(this.disableLine);
-        operations.push(this.disableButton("下载", "md-cloud-download"));
-        operations.push(this.disableLine);
-        operations.push(this.disableButton("收藏", "md-star"));
+        operations.push(...this.createDisableGroup("下载", "md-cloud-download"));
+        operations.push(...this.createDisableGroup("收藏", "md-star"));
       }
 
       this.operations = operations;
-    }
-  },
-
-  computed: {
-    disableLine() {
-      return this.createLine(this.disableColor);
-    },
-
-    successLine() {
-      return this.createLine(this.successColor);
     }
   },
 
