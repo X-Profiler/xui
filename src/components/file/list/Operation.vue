@@ -31,7 +31,9 @@ export default {
       devtools: ["cpuprofile", "heapprofile", "heapsnapshot"],
       xprofiler: ["gcprofile", "diag"],
       disableColor: "#c5c8ce",
-      successColor: "#2a9446"
+      successColor: "#2a9446",
+      infoColor: "#2376b7",
+      warningColor: "#db7c00"
     };
   },
 
