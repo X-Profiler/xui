@@ -2,7 +2,7 @@
 
 exports.checkParam = function (obj, keys) {
   for (const key of keys) {
-    if (!obj[key]) {
+    if (obj[key] !== 0 && !obj[key]) {
       throw new Error(`${key} should be passed in!`);
     }
   }

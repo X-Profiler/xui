@@ -1,11 +1,24 @@
 "use strict";
 
+import * as utils from "@/javascripts/lib/utils";
+
+const { mapMutations, mapActions } = utils.createNamespace("dashboard/file");
+
 export default {
   created() {
+    this.cancelToken = utils.createCancelToken();
     this.updateOperation();
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
+    ...mapMutations(["setErrorModal"]),
+
+    ...mapActions(["doTransfer", "doFavor"]),
+
     getColor(bt) {
       let color = this.disableColor;
       if (bt === "success") {
@@ -130,14 +143,43 @@ export default {
       this.operations = operations;
     },
 
-    takeAction({ raw, label }) {
+    doFileFavor(opt) {
+      const { fileId, fileType, fileFavor } = opt.raw;
+      const favor = fileFavor === undefined || fileFavor === 0 ? 1 : 0;
+      opt.loading = true;
+      this.doFavor({ cancelToken: this.cancelToken.token, fileId, fileType, favor })
+        .then(() => {
+          opt.raw.fileFavor = favor;
+          this.updateOperation();
+        })
+        .catch(err => this.setErrorModal({ status: true, error: { title: "收藏失败", message: err.message } }))
+        .then(() => opt.loading = false);
+    },
+
+    doFileTransfer(opt) {
+      const { fileId, fileType } = opt.raw;
+      opt.loading = true;
+      this.doTransfer({ cancelToken: this.cancelToken.token, fileId, fileType })
+        .then(() => {
+          opt.raw.fileStatus = 3;
+          this.updateOperation();
+        })
+        .catch(err => this.setErrorModal({ status: true, error: { title: "转储失败", message: err.message } }))
+        .then(() => opt.loading = false);
+    },
+
+    takeAction(opt) {
+      const { raw, label } = opt;
       if (!raw) {
         return;
       }
-      const { fileId } = raw;
+
       if (label === "收藏") {
-        const { fileFavor } = raw;
-        console.log(fileId, fileFavor);
+        this.doFileFavor(opt);
+      }
+
+      if (label === "转储" || label === "再转储") {
+        this.doFileTransfer(opt);
       }
     }
   },

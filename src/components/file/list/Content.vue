@@ -13,7 +13,7 @@
 
       <!-- operation -->
       <template v-slot:operation="{ row }">
-        <x-operation :row="row"></x-operation>
+        <x-operation :row="row" @refresh="refreshFiles"></x-operation>
       </template>
 
       <!-- deletion -->
