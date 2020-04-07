@@ -16,7 +16,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setUploadModal", "set_upload_load_error", "set_upload"]),
+    ...mapMutations(["setUploadModal", "setFilterType", "set_upload_load_error", "set_upload"]),
 
     ...mapActions(["uploadFile"]),
 
@@ -26,6 +26,12 @@ export default {
 
     closeUploadModal() {
       this.setUploadModal({ status: false });
+      if (this.upload_data && !this.upload_load_error) {
+        setTimeout(() => {
+          this.setFilterType(undefined);
+          setTimeout(() => this.setFilterType("all"), 0);
+        }, 0);
+      }
     },
 
     getExt(filename) {
