@@ -3,11 +3,13 @@
     <div v-for="(opt, index) in operations" :key="index" class="container">
       <div v-if="opt.type === 'button'" class="opt-group">
         <Button
+          :class="'opt-button' + (opt.fixed ? '' : ' button-hover')"
           shape="circle"
           :loading="opt.loading"
           :type="opt.bt"
           :disabled="opt.disabled"
           :icon="opt.icon"
+          @click="takeAction(opt)"
         ></Button>
         <div class="opt-label" :style="`color: ${opt.color};`">{{ opt.label }}</div>
       </div>
@@ -31,6 +33,7 @@ export default {
       devtools: ["cpuprofile", "heapprofile", "heapsnapshot"],
       devtools2: ["cpuprofile", "heapprofile", "heapsnapshot"],
       xprofiler: ["gcprofile", "diag", "cpuprofile", "heapsnapshot"],
+      normalColor: "#515a6e",
       disableColor: "#c5c8ce",
       successColor: "#2a9446",
       infoColor: "#2376b7",
@@ -68,5 +71,13 @@ export default {
   width: 25px;
   border-bottom: 1px solid;
   margin-bottom: 23px;
+}
+
+.opt-button {
+  transition: all 0.15s cubic-bezier(0.29, 1.94, 0.54, 1.98);
+}
+
+.button-hover:hover {
+  transform: scale(1.1);
 }
 </style>

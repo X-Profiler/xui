@@ -8,13 +8,16 @@ const { state: uploadState, mutations: uploadMutations, handle: handleUpload } =
 const { state: fileListState, mutations: fileListMutations, handle: handleFileList } =
   utils.storeFactory("files", { list: [], count: 0 });
 
+const { state: favorState, mutations: favorMutations, handle: handleFavor } =
+  utils.storeFactory("file_favor", undefined);
+
 export default {
   namespaced: true,
 
   state: {
     ...uploadState,
-
     ...fileListState,
+    ...favorState,
 
     fileTypes: [
       { label: "CPU Profile", value: "cpuprofile", icon: "ios-stopwatch" },
@@ -68,8 +71,8 @@ export default {
 
   mutations: {
     ...uploadMutations,
-
     ...fileListMutations,
+    ...favorMutations,
 
     setUploadModal(state, { status }) {
       if (status === false || status === true) {
@@ -115,6 +118,10 @@ export default {
       };
 
       await handleFileList(context, options);
+    },
+
+    async doFavor(context, { cancelToken, fileId, favor }) {
+
     }
   }
 };

@@ -99,7 +99,19 @@
   min-height: 283px;
 }
 
-.opt-group .ivu-btn-info{
+.opt-group .ivu-btn-default,
+.opt-group .ivu-btn-default:hover,
+.opt-group .ivu-btn-default:active {
+  border-color: #f89501;
+  color: #f89501;
+}
+
+.opt-group .ivu-btn-default:focus{
+  -webkit-box-shadow: 0 0 0 2px rgba(248, 149, 1, 0.2);
+  box-shadow: 0 0 0 2px rgba(248, 149, 1, 0.2);
+}
+
+.opt-group .ivu-btn-info {
   background-color: #2689d6;
   border-color: #2689d6;
 }

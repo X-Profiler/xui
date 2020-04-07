@@ -55,7 +55,8 @@ export default {
           createAgent: file.agent,
           fileStatus: file.status,
           fileFavor: file.favor,
-          fileType: file.fileType
+          fileType: file.fileType,
+          fileId: file.fileId
         });
       }
 
