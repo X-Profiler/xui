@@ -45,7 +45,7 @@ export default {
 }
 
 .file-desc a {
-  color: rgb(43, 133, 228);
+  color: #2689d6;
   user-select: none;
 }
 

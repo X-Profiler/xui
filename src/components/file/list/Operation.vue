@@ -29,11 +29,12 @@ export default {
     return {
       operations: [],
       devtools: ["cpuprofile", "heapprofile", "heapsnapshot"],
-      xprofiler: ["gcprofile", "diag"],
+      devtools2: ["cpuprofile", "heapprofile", "heapsnapshot"],
+      xprofiler: ["gcprofile", "diag", "cpuprofile", "heapsnapshot"],
       disableColor: "#c5c8ce",
       successColor: "#2a9446",
       infoColor: "#2376b7",
-      warningColor: "#db7c00"
+      warningColor: "#f89501"
     };
   },
 

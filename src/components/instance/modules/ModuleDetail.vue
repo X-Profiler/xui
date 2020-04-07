@@ -118,7 +118,7 @@ export default {
 }
 
 .no-risk {
-  color: rgb(25, 190, 107);
+  color: #2a9446;
   transform: scale(1.5);
 }
 
@@ -128,7 +128,7 @@ export default {
 }
 
 .name a {
-  color: rgb(43, 133, 228);
+  color: #2689d6;
 }
 
 .name a:hover {

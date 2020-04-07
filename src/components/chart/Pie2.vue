@@ -104,7 +104,7 @@ export default {
       if (percentage <= 60) {
         color = "#2a9446";
       } else if (percentage <= 85) {
-        color = "#db7c00";
+        color = "#f89501";
       } else {
         color = "#e33900";
       }

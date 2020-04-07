@@ -57,7 +57,7 @@ export default {
       } else if (instance.status === 1) {
         style += "#2a9446";
       } else if (instance.status == 2) {
-        style += "#db7c00";
+        style += "#f89501";
       } else {
         style += "#e33900";
       }

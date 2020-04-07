@@ -65,19 +65,19 @@ export default {
         if (this.checkSeverity(name, "critical")) {
           riskData.risk = true;
           riskData.level = "极危";
-          riskData.color = "rgb(199, 37, 65)";
+          riskData.color = "#e33900";
         } else if (this.checkSeverity(name, "high")) {
           riskData.risk = true;
           riskData.level = "高危";
-          riskData.color = "rgb(199, 37, 65)";
+          riskData.color = "#e33900";
         } else if (this.checkSeverity(name, "moderate")) {
           riskData.risk = true;
           riskData.level = "中危";
-          riskData.color = "rgb(255, 186, 36)";
+          riskData.color = "#f89501";
         } else if (this.checkSeverity(name, "low")) {
           riskData.risk = true;
           riskData.level = "低危";
-          riskData.color = "rgb(33, 150, 243)";
+          riskData.color = "#2376b7";
         } else {
           riskData.risk = false;
         }

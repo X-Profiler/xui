@@ -56,7 +56,7 @@ export default {
     handleUpload(file, upload) {
       const ext = this.getExt(file.name);
       if (!upload.valid.includes(ext)) {
-        upload.tip = `<span style="color: rgb(199, 37, 65)">文件类型 .${ext} 错误!</span>`;
+        upload.tip = `<span style="color: #e33900">文件类型 .${ext} 错误!</span>`;
       } else {
         if (this.validCoredumpTypes.includes(this.selectedFileType)) {
           this.selectedFileType = "core";
@@ -74,7 +74,7 @@ export default {
       let canUpload = true;
       for (const upload of uploads) {
         if (!upload.file) {
-          upload.tip = `<span style="color: rgb(199, 37, 65)">${upload.title}不能为空！</span>`;
+          upload.tip = `<span style="color: #e33900">${upload.title}不能为空！</span>`;
           canUpload = false;
         }
       }
