@@ -63,7 +63,7 @@ module.exports = [
     creator: 'TZ | 天猪',
     time: '2019-07-12 11:19:32',
     agent: '186590dd08d3.local',
-    status: 2,
+    status: 3,
     favor: 1,
     fileId: 3
   },
@@ -73,7 +73,7 @@ module.exports = [
     creator: 'TZ | 天猪',
     time: '2019-07-12 11:19:32',
     agent: '186590dd08d3.local',
-    status: 3,
+    status: 2,
     favor: 0,
     fileId: 3
   },
