@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="opt-group">
-      <Button shape="circle" type="error" icon="md-trash"></Button>
+      <Button class="opt-button" shape="circle" type="error" icon="md-trash"></Button>
       <div class="opt-label">删除</div>
     </div>
   </div>
@@ -36,5 +36,10 @@ export default {
   font-size: 12px;
   user-select: none;
   color: #e33900;
+}
+
+.opt-button:hover {
+  transform: scale(1.1);
+  transition: all 0.15s cubic-bezier(0.29, 1.94, 0.54, 1.98);
 }
 </style>
