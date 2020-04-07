@@ -62,6 +62,9 @@ export default {
       if (this.devtools.includes(fileType)) {
         operations.push(...this.createDisableGroup("devtools", "md-search"));
       }
+      if (this.devtools2.includes(fileType)) {
+        operations.push(...this.createDisableGroup("devtools", "md-search"));
+      }
       if (this.xprofiler.includes(fileType)) {
         operations.push(...this.createDisableGroup("xprofiler", "md-search"));
       }
@@ -101,6 +104,9 @@ export default {
         operations.push(this.doneButton("已生成", "md-brush", "success"));
         operations.push(...this.createDoneGroup("再转储", "md-cloud-upload", "success"));
         if (this.devtools.includes(data.fileType)) {
+          operations.push(...this.createDoneGroup("devtools", "md-search", "info"));
+        }
+        if (this.devtools2.includes(data.fileType)) {
           operations.push(...this.createDoneGroup("devtools", "md-search", "info"));
         }
         if (this.xprofiler.includes(data.fileType)) {

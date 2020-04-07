@@ -79,22 +79,22 @@ export default {
         riskTip.alertType = "error";
         // riskTip.iconType = "ios-close-circle-outline";
         riskTip.iconType = "ios-alert-outline";
-        riskTip.color = "rgb(199, 37, 65)";
+        riskTip.color = "#e33900";
         riskTip.tip = this.setRiskTip(risk.vulnerabilities, riskTip.color);
       } else if (vulnerabilities.moderate) {
         riskTip.alertType = "warning";
         riskTip.iconType = "ios-alert-outline";
-        riskTip.color = "rgb(255, 186, 36)";
+        riskTip.color = "#f89501";
         riskTip.tip = this.setRiskTip(risk.vulnerabilities, riskTip.color);
       } else if (vulnerabilities.low) {
         riskTip.alertType = "info";
         riskTip.iconType = "ios-alert-outline";
-        riskTip.color = "rgb(33, 150, 243)";
+        riskTip.color = "#2376b7";
         riskTip.tip = this.setRiskTip(risk.vulnerabilities, riskTip.color);
       } else {
         riskTip.alertType = "success";
         riskTip.iconType = "ios-checkmark-circle-outline";
-        riskTip.color = "rgb(25, 190, 107)";
+        riskTip.color = "#2a9446";
         riskTip.tip = "不存在安全风险";
       }
 

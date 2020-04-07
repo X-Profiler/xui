@@ -21,7 +21,7 @@ export default {
 }
 
 .type-icon {
-  color: rgb(33, 150, 243);
+  color: #2689d6;
   font-size: 14px;
   transform: scale(2.2);
   margin: 9px 0 12px 0;

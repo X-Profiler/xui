@@ -101,7 +101,7 @@ export default {
 
 .tag.tag-selected {
   transition: all 0.1s ease-in;
-  background-color: #2d8cf0;
+  background-color: #2376b7;
   color: #fff;
 }
 </style>

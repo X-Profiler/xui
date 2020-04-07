@@ -81,13 +81,13 @@
 }
 
 .x-alert.ivu-alert-error {
-  border: 1px solid rgb(199, 37, 65);
-  background-color: rgb(199, 37, 65, 0.1);
+  border: 1px solid rgb(227, 57, 0);
+  background-color: rgb(227, 57, 0, 0.1);
 }
 
 .x-alert.ivu-alert-warning {
-  border: 1px solid rgb(255, 186, 36);
-  background-color: rgb(255, 186, 36, 0.1);
+  border: 1px solid #f89501;
+  background-color: rgb(219, 124, 0, 0.1);
 }
 
 .x-alert.ivu-alert-success {
@@ -97,4 +97,14 @@
 
 .type-filter .ivu-select-dropdown, .file-filter .ivu-select-dropdown {
   min-height: 283px;
+}
+
+.opt-group .ivu-btn-info{
+  background-color: #2689d6;
+  border-color: #2689d6;
+}
+
+.opt-group .ivu-btn-success{
+  background-color: #38a956;
+  border-color: #38a956;
 }

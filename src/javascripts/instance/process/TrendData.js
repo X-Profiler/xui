@@ -269,7 +269,7 @@ export default {
 
     statusLabelStyle() {
       let style = "";
-      const colors = ["#19be6b", "#ff9900", "#ed4014"];
+      const colors = ["#19be6b", "#f89501", "#ed4014"];
       style += "background-color: " + this.setStatus(this.trendStatus.status, colors) + ";";
       return style;
     }
