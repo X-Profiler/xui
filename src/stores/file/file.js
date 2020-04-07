@@ -8,16 +8,13 @@ const { state: uploadState, mutations: uploadMutations, handle: handleUpload } =
 const { state: fileListState, mutations: fileListMutations, handle: handleFileList } =
   utils.storeFactory("files", { list: [], count: 0 });
 
-const { state: favorState, mutations: favorMutations, handle: handleFavor } =
-  utils.storeFactory("file_favor", undefined);
-
 export default {
   namespaced: true,
 
   state: {
     ...uploadState,
+
     ...fileListState,
-    ...favorState,
 
     fileTypes: [
       { label: "CPU Profile", value: "cpuprofile", icon: "ios-stopwatch" },
@@ -30,7 +27,9 @@ export default {
     ],
     nessaryQueryArgs: ["filterType"],
     uploadModal: undefined,
-    filterType: undefined
+    filterType: undefined,
+    errorModal: undefined,
+    errorModalData: {}
   },
 
   getters: {
@@ -71,12 +70,26 @@ export default {
 
   mutations: {
     ...uploadMutations,
+
     ...fileListMutations,
-    ...favorMutations,
 
     setUploadModal(state, { status }) {
       if (status === false || status === true) {
         state.uploadModal = status;
+      }
+    },
+
+    setErrorModal(state, { status, error }) {
+      if (status === false || status === true) {
+        state.errorModal = status;
+      }
+
+      if (status === false && !error) {
+        state.errorModalData = {};
+      }
+
+      if (error) {
+        state.errorModalData = error;
       }
     },
 
@@ -120,8 +133,41 @@ export default {
       await handleFileList(context, options);
     },
 
-    async doFavor(context, { cancelToken, fileId, favor }) {
+    async doFavor(context, { cancelToken, fileId, fileType, favor }) {
+      const { dispatch, rootState } = context;
 
+      const options = {
+        cancelToken,
+        method: "POST",
+
+        // user data
+        url: rootState.url.fileFavor,
+        data: {
+          fileId,
+          fileType,
+          favor
+        }
+      };
+
+      return dispatch("request", options, { root: true });
+    },
+
+    async doTransfer(context, { cancelToken, fileId, fileType }) {
+      const { dispatch, rootState } = context;
+
+      const options = {
+        cancelToken,
+        method: "POST",
+
+        // user data
+        url: rootState.url.fileTransfer,
+        data: {
+          fileId,
+          fileType
+        }
+      };
+
+      return dispatch("request", options, { root: true });
     }
   }
 };

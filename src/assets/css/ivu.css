@@ -99,6 +99,10 @@
   min-height: 283px;
 }
 
+.upload-selector .ivu-select-dropdown, .file-filter .ivu-select-dropdown {
+  min-height: 221px;
+}
+
 .opt-group .ivu-btn-default,
 .opt-group .ivu-btn-default:hover,
 .opt-group .ivu-btn-default:active {

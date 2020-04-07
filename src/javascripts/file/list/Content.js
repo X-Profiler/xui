@@ -24,6 +24,15 @@ export default {
 
     changeFilePage(page) {
       this.currentPage = page;
+    },
+
+    refreshFiles(filterType, currentPage) {
+      this.getFiles({
+        cancelToken: this.cancelToken.token,
+        filterType: filterType || this.filterType,
+        currentPage: currentPage || this.currentPage,
+        pageSize: this.pageSize
+      });
     }
   },
 
@@ -74,12 +83,7 @@ export default {
         return;
       }
 
-      this.getFiles({
-        cancelToken: this.cancelToken.token,
-        filterType: this.filterType,
-        currentPage: this.currentPage,
-        pageSize: this.pageSize
-      });
+      this.refreshFiles();
 
       utils.watchQueryKey.call(this, "page", "currentPage", args);
     }
