@@ -10,7 +10,8 @@ module.exports = app => {
     const fileType = req.query.fileType;
     console.log('upload file appId:', appId, ', type:', fileType);
 
-    setTimeout(() => res.send({ ok: true, data: { file: "u-abc" } }), 1000);
+    req.on('data', () => { });
+    req.on('end', () => setTimeout(() => res.send({ ok: true, data: { file: "u-abc" } }), 1000));
   });
 
   app.get('/xapi/files', function (req, res) {

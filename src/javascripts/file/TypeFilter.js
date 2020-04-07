@@ -23,12 +23,18 @@ export default {
   },
 
   computed: {
-    ...mapState(["nessaryQueryArgs"]),
+    ...mapState(["nessaryQueryArgs", "filterType"]),
 
     ...mapGetters(["filterTypes"])
   },
 
   watch: {
+    filterType() {
+      if (this.filterType) {
+        this.selectedFilterType = this.filterType;
+      }
+    },
+
     $route(...args) {
       utils.watchRoute.call(this, args, "filterType", "selectedFilterType");
     },
