@@ -59,14 +59,32 @@ export default {
       const list = files.map(file => {
         return {
           fileId: file.fileId,
-          fileType: file.fileType
-        }
+          fileType: file.fileType,
+          status: file.fileStatus,
+          index: file.index
+        };
       });
       this.checkFileStatus({ cancelToken: this.cancelToken.token, files: list })
-        .then(data => console.log(data))
+        .then(data => {
+          if (!Array.isArray(data)) {
+            return;
+          }
+          for (const res of data) {
+            let file = files.filter(file => file.index === res.index);
+            if (!file.length) {
+              continue;
+            }
+            file = file[0];
+            file.fileStatus = res.status;
+            const element = this.$refs[`operation::${res.index}`];
+            element && element.updateOperation();
+            const loadingIndex = files.indexOf(file);
+            files.splice(loadingIndex, 1);
+          }
+        })
         .catch(err => {
           this.checkingStatusError = err.message;
-          this.setErrorModal({ status: true, error: { title: "检索状态失败", message: this.checkingStatusError } });
+          this.setErrorModal({ status: true, error: { title: "状态检索失败", message: this.checkingStatusError } });
           files.forEach(file => {
             let status = file.fileStatus;
             if (status === 0) {

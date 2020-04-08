@@ -2,6 +2,8 @@
 
 const utils = require('../../lib/utils');
 
+const fileLoadingMap = {};
+
 module.exports = app => {
   app.post('/xapi/upload_file', function (req, res) {
     utils.checkParam(req.query, ["appId", "fileType"]);
@@ -73,5 +75,29 @@ module.exports = app => {
     console.log(`delete file ${fileId} type ${fileType}`);
 
     setTimeout(() => res.send({ ok: true }), 500);
+  });
+
+  app.post('/xapi/file_status', function (req, res) {
+    utils.checkParam(req.body, ["files"]);
+
+    const files = req.body.files;
+    console.log(`check ${JSON.stringify(files)} status`);
+
+    const data = [];
+
+    for (const { fileId, fileType, status, index } of files) {
+      const key = `${fileId}::${fileType}`;
+      if (!fileLoadingMap[key]) {
+        fileLoadingMap[key] = { start: Date.now(), duration: 500 + Math.random() * 2000 };
+      }
+
+      if (Date.now() - fileLoadingMap[key].start > fileLoadingMap[key].duration) {
+        data.push({ fileId, fileType, status: status + 1, index });
+      } else {
+        data.push({ fileId, fileType, status, index });
+      }
+    }
+
+    setTimeout(() => res.send({ ok: true, data }), 500);
   });
 };

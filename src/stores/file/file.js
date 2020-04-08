@@ -209,6 +209,7 @@ export default {
 
       const options = {
         cancelToken,
+        method: "POST",
 
         // user data
         url: rootState.url.fileStatus,
