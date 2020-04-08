@@ -113,7 +113,7 @@ export default {
 .risk-label:hover {
   opacity: 0.75;
   transition: all 0.1s ease-in;
-  transform: scale(1.1);
+  transform: scale(1.2);
   user-select: none;
 }
 

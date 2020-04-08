@@ -2,7 +2,7 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState, mapGetters, mapActions } = utils.createNamespace("dashboard/file");
+const { mapState, mapGetters, mapMutations, mapActions } = utils.createNamespace("dashboard/file");
 
 export default {
   created() {
@@ -17,10 +17,13 @@ export default {
 
   beforeDestroy() {
     utils.cancelRequest(this.cancelToken);
+    this.set_files({ list: [], count: 0 });
   },
 
   methods: {
     ...mapActions(["getFiles"]),
+
+    ...mapMutations(["set_files"]),
 
     changeFilePage(page) {
       this.currentPage = page;
@@ -74,6 +77,16 @@ export default {
   },
 
   watch: {
+    totaFileCount() {
+      if (!this.totaFileCount) {
+        return;
+      }
+      const maxPage = Math.ceil(this.totaFileCount / this.pageSize);
+      if (this.currentPage > maxPage) {
+        this.currentPage = maxPage;
+      }
+    },
+
     $route(...args) {
       utils.watchRoute.call(this, args, "page", "currentPage");
     },
