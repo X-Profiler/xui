@@ -12,8 +12,8 @@
       </template>
 
       <!-- operation -->
-      <template v-slot:operation="{ row }">
-        <x-operation :row="row"></x-operation>
+      <template v-slot:operation="{ row, index }">
+        <x-operation :ref="'operation::' + index" :row="row"></x-operation>
       </template>
 
       <!-- deletion -->
@@ -65,7 +65,10 @@ export default {
         { title: "操作", value: "operation" },
         { title: "删除", value: "deletion", align: "center", width: 200 }
       ],
-      totaFileCount: 0
+      totaFileCount: 0,
+      loadingFiles: [],
+      checkingStatus: false,
+      checkingStatusError: undefined
     };
   },
   ...xContent

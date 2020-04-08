@@ -15,15 +15,21 @@ export default {
     }
   },
 
+  mounted() {
+    // check file status
+    this.checkInterval = setInterval(() => this.handleLoadingFiles(), 1000);
+  },
+
   beforeDestroy() {
     utils.cancelRequest(this.cancelToken);
     this.set_files({ list: [], count: 0 });
+    clearInterval(this.checkInterval);
   },
 
   methods: {
-    ...mapActions(["getFiles"]),
+    ...mapActions(["getFiles", "checkFileStatus"]),
 
-    ...mapMutations(["set_files"]),
+    ...mapMutations(["set_files", "setErrorModal"]),
 
     changeFilePage(page) {
       this.currentPage = page;
@@ -36,6 +42,38 @@ export default {
         currentPage: currentPage || this.currentPage,
         pageSize: this.pageSize
       });
+    },
+
+    handleLoadingFiles() {
+      const files = this.loadingFiles;
+      if (files.length === 0 || this.checkingStatus || this.checkingStatusError) {
+        return;
+      }
+
+      this.checkingStatus = true;
+      const list = files.map(file => {
+        return {
+          fileId: file.fileId,
+          fileType: file.fileType
+        }
+      });
+      this.checkFileStatus({ cancelToken: this.cancelToken.token, files: list })
+        .then(data => console.log(data))
+        .catch(err => {
+          this.checkingStatusError = err.message;
+          this.setErrorModal({ status: true, error: { title: "检索状态失败", message: this.checkingStatusError } });
+        })
+        .then(() => this.checkingStatus = false);
+
+      // test
+      // setTimeout(() => {
+      //   files.forEach(file => {
+      //     file.fileStatus = 3;
+      //     const element = this.$refs[`operation::${file.index}`];
+      //     element && element.updateOperation();
+      //   });
+      //   console.log("done");
+      // }, 5000);
     }
   },
 
@@ -56,8 +94,9 @@ export default {
         this.totaFileCount = count;
       }
 
-      for (const file of list) {
-        files.push({
+      for (let index = 0; index < list.length; index++) {
+        const file = list[index];
+        const tmp = {
           typeIcon: this.getIconByType(file.fileType),
           typeLabel: this.getLabelByType(file.fileType),
           filePath: file.file || file.coreFile,
@@ -68,8 +107,16 @@ export default {
           fileStatus: file.status,
           fileFavor: file.favor,
           fileType: file.fileType,
-          fileId: file.fileId
-        });
+          fileId: file.fileId,
+          index
+        };
+
+        files.push(tmp);
+
+        // file loading
+        if (file.status === 0 || file.status === 2) {
+          this.loadingFiles.push(tmp);
+        }
       }
 
       return files;
