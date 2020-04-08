@@ -44,6 +44,11 @@ export default {
       });
     },
 
+    addLoadingFile(file) {
+      this.loadingFiles.push(file);
+      this.checkingStatusError = undefined;
+    },
+
     handleLoadingFiles() {
       const files = this.loadingFiles;
       if (files.length === 0 || this.checkingStatus || this.checkingStatusError) {
@@ -62,6 +67,19 @@ export default {
         .catch(err => {
           this.checkingStatusError = err.message;
           this.setErrorModal({ status: true, error: { title: "检索状态失败", message: this.checkingStatusError } });
+          files.forEach(file => {
+            let status = file.fileStatus;
+            if (status === 0) {
+              status = 998;
+            }
+            if (status === 2) {
+              status = 999;
+            }
+            file.fileStatus = status;
+            const element = this.$refs[`operation::${file.index}`];
+            element && element.updateOperation();
+          });
+          this.loadingFiles = [];
         })
         .then(() => this.checkingStatus = false);
 
@@ -112,11 +130,6 @@ export default {
         };
 
         files.push(tmp);
-
-        // file loading
-        if (file.status === 0 || file.status === 2) {
-          this.loadingFiles.push(tmp);
-        }
       }
 
       return files;

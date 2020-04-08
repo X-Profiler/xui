@@ -30,6 +30,9 @@ export default {
       if (bt === "warning") {
         color = this.warningColor;
       }
+      if (bt === "error") {
+        color = this.errorColor;
+      }
       if (bt === "normal") {
         color = this.warningColor;
       }
@@ -103,6 +106,7 @@ export default {
         operations.push(this.createButton("生成中", undefined, undefined, true, true, true));
         operations.push(...this.createDisableGroup("转储", "md-cloud-upload"));
         operations.push(...this.createLeftGroup(data.fileType));
+        this.$emit("loading-file", data);
       }
 
       // file created
@@ -117,6 +121,7 @@ export default {
         operations.push(this.doneButton("已生成", "md-brush", "success", true));
         operations.push(...this.createLoadingGroup("转储中", "success"));
         operations.push(...this.createLeftGroup(data.fileType));
+        this.$emit("loading-file", data);
       }
 
       // file transferred
@@ -140,6 +145,20 @@ export default {
         }
       }
 
+      // creating error
+      if (status === 998) {
+        operations.push(this.createButton("未知状态", "warning", "md-brush", false, false, true));
+        operations.push(...this.createDisableGroup("转储", "md-cloud-upload"));
+        operations.push(...this.createLeftGroup(data.fileType));
+      }
+
+      // transferring error
+      if (status === 999) {
+        operations.push(this.doneButton("已生成", "md-brush", "success", true));
+        operations.push(...this.createDoneGroup("转储失败", "md-close", "error"));
+        operations.push(...this.createLeftGroup(data.fileType));
+      }
+
       this.operations = operations;
     },
 
@@ -159,13 +178,10 @@ export default {
     doFileTransfer(opt) {
       const { fileId, fileType } = opt.raw;
       opt.loading = true;
+      opt.raw.fileStatus = 2;
+      this.updateOperation();
       this.doTransfer({ cancelToken: this.cancelToken.token, fileId, fileType })
-        .then(() => {
-          opt.raw.fileStatus = 3;
-          this.updateOperation();
-        })
         .catch(err => this.setErrorModal({ status: true, error: { title: "转储失败", message: err.message } }))
-        .then(() => opt.loading = false);
     },
 
     takeAction(opt) {
@@ -178,7 +194,7 @@ export default {
         this.doFileFavor(opt);
       }
 
-      if (label === "转储" || label === "再转储") {
+      if (label === "转储" || label === "再转储" || label === "转储失败") {
         this.doFileTransfer(opt);
       }
     }
