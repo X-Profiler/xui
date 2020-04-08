@@ -13,7 +13,7 @@
 
       <!-- operation -->
       <template v-slot:operation="{ row, index }">
-        <x-operation :ref="'operation::' + index" :row="row"></x-operation>
+        <x-operation :ref="'operation::' + index" :row="row" @loading-file="addLoadingFile"></x-operation>
       </template>
 
       <!-- deletion -->

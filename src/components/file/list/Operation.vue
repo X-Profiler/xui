@@ -37,7 +37,8 @@ export default {
       disableColor: "#c5c8ce",
       successColor: "#2a9446",
       infoColor: "#2376b7",
-      warningColor: "#f89501"
+      warningColor: "#f89501",
+      errorColor: "#e33900"
     };
   },
 
