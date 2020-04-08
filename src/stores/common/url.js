@@ -42,6 +42,7 @@ export default {
     uploadFile: "/xapi/upload_file",
     fileList: "/xapi/files",
     fileFavor: "/xapi/file_favor",
-    fileTransfer: "/xapi/file_transfer"
+    fileTransfer: "/xapi/file_transfer",
+    fileDeletion: "/xapi/file_deletion"
   }
 };

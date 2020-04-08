@@ -64,4 +64,14 @@ module.exports = app => {
 
     setTimeout(() => res.send({ ok: true }), 500);
   });
+
+  app.delete('/xapi/file_deletion', function (req, res) {
+    utils.checkParam(req.body, ["fileId", "fileType"]);
+
+    const fileId = req.body.fileId;
+    const fileType = req.body.fileType;
+    console.log(`delete file ${fileId} type ${fileType}`);
+
+    setTimeout(() => res.send({ ok: true }), 500);
+  });
 };

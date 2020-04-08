@@ -29,7 +29,9 @@ export default {
     uploadModal: undefined,
     filterType: undefined,
     errorModal: undefined,
-    errorModalData: {}
+    errorModalData: {},
+    fileDeletionModal: undefined,
+    deletionData: {}
   },
 
   getters: {
@@ -85,11 +87,25 @@ export default {
       }
 
       if (status === false && !error) {
-        state.errorModalData = {};
+        setTimeout(() => state.errorModalData = {}, 10);
       }
 
       if (error) {
         state.errorModalData = error;
+      }
+    },
+
+    setDeletionModal(state, { status, data }) {
+      if (status === false || status === true) {
+        state.fileDeletionModal = status;
+      }
+
+      if (status === false && !data) {
+        setTimeout(() => state.deletionData = {}, 10);
+      }
+
+      if (data) {
+        state.deletionData = data;
       }
     },
 
@@ -161,6 +177,24 @@ export default {
 
         // user data
         url: rootState.url.fileTransfer,
+        data: {
+          fileId,
+          fileType
+        }
+      };
+
+      return dispatch("request", options, { root: true });
+    },
+
+    async deleteFile(context, { cancelToken, fileId, fileType }) {
+      const { dispatch, rootState } = context;
+
+      const options = {
+        cancelToken,
+        method: "DELETE",
+
+        // user data
+        url: rootState.url.fileDeletion,
         data: {
           fileId,
           fileType

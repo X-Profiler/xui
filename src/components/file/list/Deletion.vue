@@ -1,7 +1,13 @@
 <template>
   <div class="wrapper">
     <div class="opt-group">
-      <Button class="opt-button" shape="circle" type="error" icon="md-trash"></Button>
+      <Button
+        class="opt-button"
+        shape="circle"
+        type="error"
+        icon="md-trash"
+        @click="openDeletionModal"
+      ></Button>
       <div class="opt-label">删除</div>
     </div>
   </div>
