@@ -202,6 +202,22 @@ export default {
       };
 
       return dispatch("request", options, { root: true });
+    },
+
+    async checkFileStatus(context, { cancelToken, files }) {
+      const { dispatch, rootState } = context;
+
+      const options = {
+        cancelToken,
+
+        // user data
+        url: rootState.url.fileStatus,
+        data: {
+          files
+        }
+      };
+
+      return dispatch("request", options, { root: true });
     }
   }
 };

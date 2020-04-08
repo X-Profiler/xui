@@ -16,14 +16,14 @@
       </tr>
 
       <!-- show data -->
-      <tr v-for="(row, index) in data" :key="index" :class="getClasses(index)">
+      <tr v-for="(row, rowIndex) in data" :key="rowIndex" :class="getClasses(rowIndex)">
         <td
           class="row-data"
           v-for="(col, index) in columns"
           :key="index"
           :style="getCellStyle(col)"
         >
-          <slot :name="col.value" :row="row">{{ row[col.value] }}</slot>
+          <slot :name="col.value" :row="row" :index="rowIndex">{{ row[col.value] }}</slot>
         </td>
       </tr>
     </tbody>
