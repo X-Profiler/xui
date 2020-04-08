@@ -180,8 +180,9 @@ export default {
       opt.loading = true;
       opt.raw.fileStatus = 2;
       this.updateOperation();
-      this.doTransfer({ cancelToken: this.cancelToken.token, fileId, fileType })
-        .catch(err => this.setErrorModal({ status: true, error: { title: "转储失败", message: err.message } }))
+      this
+        .doTransfer({ cancelToken: this.cancelToken.token, fileId, fileType })
+        .catch(err => this.setErrorModal({ status: true, error: { title: "转储失败", message: err.message } }));
     },
 
     takeAction(opt) {
