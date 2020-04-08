@@ -19,6 +19,17 @@
     >
       <x-operation-error slot="content"></x-operation-error>
     </x-modal>
+
+    <!-- show file deletion confirm -->
+    <x-modal
+      ref="fileDeletion"
+      title="删除文件"
+      :padding="0"
+      @canceled="closeDeletionModal"
+      hide-footer
+    >
+      <x-deletion-confirm slot="content"></x-deletion-confirm>
+    </x-modal>
   </div>
 </template>
 
@@ -26,16 +37,19 @@
 import fileListModule from "@/javascripts/file/list/FileList";
 import xContent from "@/components/file/list/Content";
 import xOperationError from "@/components/file/list/OperationError";
+import xDeletionConfirm from "@/components/file/list/DeletionConfirm";
 
 export default {
   components: {
     "x-content": xContent,
-    "x-operation-error": xOperationError
+    "x-operation-error": xOperationError,
+    "x-deletion-confirm": xDeletionConfirm
   },
 
   data() {
     return {
-      modalQueryKey: "operation-error"
+      modalQueryKey: "operation-error",
+      modalQueryKeyDeletion: "deletion-confirm"
     };
   },
 
