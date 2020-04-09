@@ -1,0 +1,166 @@
+
+{
+  "pid": 74286,
+  "nodeVersion": "v12.13.0",
+  "loadTime": "2019-12-05 16:29:20",
+  "dumpTime": "2019-12-05 16:31:13",
+  "vmState": "EXTERNAL",
+  "jsStacks": [
+  ],
+  "nativeStacks": [
+    {
+      "pcAddress": "0x102c33227",
+      "symbolName": "xprofiler::HandleAction(void*, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)",
+      "sharedObjectName": "/Users/hyj1991/git/example/x-node-test/node_modules/@suning/x-node/build/v1.0.0/node-v72-darwin-x64/xprofiler.node"
+    },
+    {
+      "pcAddress": "0x102c33d34",
+      "symbolName": "xprofiler::AsyncSendCallback(uv_async_s*)",
+      "sharedObjectName": "/Users/hyj1991/git/example/x-node-test/node_modules/@suning/x-node/build/v1.0.0/node-v72-darwin-x64/xprofiler.node"
+    },
+    {
+      "pcAddress": "0x100894dea",
+      "symbolName": "uv__async_io",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+    },
+    {
+      "pcAddress": "0x1008a57a7",
+      "symbolName": "uv__io_poll",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+    },
+    {
+      "pcAddress": "0x100895276",
+      "symbolName": "uv_run",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+    },
+    {
+      "pcAddress": "0x1000b48cc",
+      "symbolName": "node::NodeMainInstance::Run()",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+    },
+    {
+      "pcAddress": "0x10005b750",
+      "symbolName": "node::Start(int, char**)",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+    },
+    {
+      "pcAddress": "0x7fff5cc353d5",
+      "symbolName": "start",
+      "sharedObjectName": "/usr/lib/system/libdyld.dylib"
+    }
+  ],
+  "heapStatistics": {
+    "heapTotal": 108601344,
+    "heapTotalCommitted": 95658488,
+    "heapTotalUsed": 86585880,
+    "heapTotalAvailable": 2108890984,
+    "heapLimit": 2197815296
+  },
+  "gcStatistics": [
+    {
+      "name": "read_only_space",
+      "size": 262144,
+      "committed": 32568,
+      "capacity": 261872,
+      "used": 32296,
+      "available": 229576
+    },
+    {
+      "name": "new_space",
+      "size": 20971520,
+      "committed": 9996272,
+      "capacity": 10474880,
+      "used": 1587864,
+      "available": 8887016
+    },
+    {
+      "name": "old_space",
+      "size": 85831680,
+      "committed": 84346720,
+      "capacity": 84046648,
+      "used": 83961088,
+      "available": 85560
+    },
+    {
+      "name": "code_space",
+      "size": 425984,
+      "committed": 202720,
+      "capacity": 168096,
+      "used": 168096,
+      "available": 0
+    },
+    {
+      "name": "map_space",
+      "size": 528384,
+      "committed": 498576,
+      "capacity": 308640,
+      "used": 308640,
+      "available": 0
+    },
+    {
+      "name": "large_object_space",
+      "size": 532480,
+      "committed": 532480,
+      "capacity": 524344,
+      "used": 524344,
+      "available": 0
+    },
+    {
+      "name": "code_large_object_space",
+      "size": 49152,
+      "committed": 49152,
+      "capacity": 3552,
+      "used": 3552,
+      "available": 0
+    },
+    {
+      "name": "new_large_object_space",
+      "size": 0,
+      "committed": 0,
+      "capacity": 10474880,
+      "used": 0,
+      "available": 10474880
+    }
+  ],
+  "libuvHandles": [
+    {
+      "type": "async",
+      "address": "0x102a03470",
+      "hasRed": 0,
+      "isActive": 1,
+      "detail": ""
+    },
+    {
+      "type": "timer",
+      "address": "0x103841128",
+      "hasRed": 1,
+      "isActive": 1,
+      "detail": "repeat: 0, timeout in: 1 ms"
+    },
+    {
+      "type": "check",
+      "address": "0x1038411c0",
+      "hasRed": 0,
+      "isActive": 1,
+      "detail": ""
+    },
+    {
+      "type": "idle",
+      "address": "0x103841238",
+      "hasRed": 1,
+      "isActive": 0,
+      "detail": ""
+    },
+    {
+      "type": "prepare",
+      "address": "0x1038412b0",
+      "hasRed": 0,
+      "isActive": 0,
+      "detail": ""
+    },
+    {
+      "type": "check",
+      "address": "0x103841328",
+      "hasRed": 0,
+      "isActive": 0,
+      "detail"
