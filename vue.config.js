@@ -10,7 +10,7 @@ module.exports = {
   },
   devServer: {
     proxy: {
-      "/xapi": {
+      "/": {
         target: "http://localhost:7442",
         changeOrigin: true
       },

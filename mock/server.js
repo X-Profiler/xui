@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require('path');
+
 const xprofiler = require('xprofiler');
 xprofiler.start({
   patch_http: true
@@ -8,6 +10,8 @@ xprofiler.start({
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser());
 
