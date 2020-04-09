@@ -11,7 +11,7 @@
           :icon="opt.icon"
           @click="takeAction(opt)"
         ></Button>
-        <div class="opt-label" :style="`color: ${opt.color};`">{{ opt.label }}</div>
+        <div class="opt-label" :style="`color: ${opt.color};`">{{ formatLabel(opt.label) }}</div>
       </div>
 
       <div v-else class="line" :style="`color: ${opt.color};`"></div>

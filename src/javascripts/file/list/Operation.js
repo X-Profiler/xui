@@ -19,6 +19,13 @@ export default {
 
     ...mapActions(["doTransfer", "doFavor"]),
 
+    formatLabel(label) {
+      if (typeof label === "string") {
+        return label;
+      }
+      return label.label;
+    },
+
     getColor(bt) {
       let color = this.disableColor;
       if (bt === "success") {
@@ -131,10 +138,10 @@ export default {
           operations.push(...this.createDoneGroup("再转储", "md-cloud-upload", "success"));
         }
         if (this.devtools.includes(data.fileType)) {
-          operations.push(...this.createDoneGroup("devtools", "md-search", "info"));
+          operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools1" }, "md-search", "info"));
         }
         if (this.devtools2.includes(data.fileType)) {
-          operations.push(...this.createDoneGroup("devtools", "md-search", "info"));
+          operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools2" }, "md-search", "info"));
         }
         if (this.xprofiler.includes(data.fileType)) {
           operations.push(...this.createDoneGroup("xprofiler", "md-search", "info"));
@@ -187,6 +194,19 @@ export default {
         .catch(err => this.setErrorModal({ status: true, error: { title: "转储失败", message: err.message } }));
     },
 
+    handleDevtools(label, { fileId, fileType }) {
+      let selectedTab = "";
+      if (["cpuprofile"].includes(fileType)) {
+        selectedTab = "js_profiler";
+      }
+      if (["heapsnapshot", "heapprofile"].includes(fileType)) {
+        selectedTab = "heap_profiler";
+      }
+      const query = `fileType=${fileType}&fileId=${fileId}&selectedTab=${selectedTab}`;
+      const href = `/dashboard/${label}?${query}`;
+      window.open(href, "_blank");
+    },
+
     takeAction(opt) {
       const { raw, label } = opt;
       if (!raw) {
@@ -204,6 +224,10 @@ export default {
       if (label === "未知状态") {
         opt.raw.fileStatus = 0;
         this.updateOperation();
+      }
+
+      if (["devtools1", "devtools2"].includes(label.value)) {
+        this.handleDevtools(label.value, raw);
       }
     }
   },
