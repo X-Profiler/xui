@@ -23,6 +23,9 @@ app.get('/xapi/user', function (req, res) {
   res.send({ ok: true, data });
 });
 
+// devtools
+require('./controller/mock_devtools')(app);
+
 // consoler
 require('./controller/mock_consoler')(app);
 

@@ -126,10 +126,10 @@ export default {
           operations.push(...this.createDoneGroup("再转储", "md-cloud-upload", "success"));
         }
         if (this.devtools.includes(data.fileType)) {
-          operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools1" }, "md-search", "info"));
+          operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools-new" }, "md-search", "info"));
         }
         if (this.devtools2.includes(data.fileType)) {
-          operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools2" }, "md-search", "info"));
+          operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools-old" }, "md-search", "info"));
         }
         if (this.xprofiler.includes(data.fileType)) {
           operations.push(...this.createDoneGroup("xprofiler", "md-search", "info"));
@@ -213,7 +213,7 @@ export default {
         this.updateOperation();
       }
 
-      if (["devtools1", "devtools2"].includes(label.value)) {
+      if (["devtools-new", "devtools-old"].includes(label.value)) {
         this.handleDevtools(label.value, raw);
       }
     }
