@@ -20,27 +20,15 @@ export default {
     ...mapActions(["doTransfer", "doFavor"]),
 
     formatLabel(label) {
-      if (typeof label === "string") {
-        return label;
-      }
-      return label.label;
+      return typeof label === "string" ? label : label.label;
     },
 
     getColor(bt) {
       let color = this.disableColor;
-      if (bt === "success") {
-        color = this.successColor;
+      if (["success", "info", "error"].includes(bt)) {
+        color = this[`${bt}Color`];
       }
-      if (bt === "info") {
-        color = this.infoColor;
-      }
-      if (bt === "warning") {
-        color = this.warningColor;
-      }
-      if (bt === "error") {
-        color = this.errorColor;
-      }
-      if (bt === "normal") {
+      if (["normal", "warning"].includes(bt)) {
         color = this.warningColor;
       }
       return color;
@@ -186,7 +174,6 @@ export default {
 
     doFileTransfer(opt) {
       const { fileId, fileType } = opt.raw;
-      opt.loading = true;
       opt.raw.fileStatus = 2;
       this.updateOperation();
       this
