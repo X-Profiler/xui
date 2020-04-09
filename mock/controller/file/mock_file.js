@@ -83,21 +83,21 @@ module.exports = app => {
     const files = req.body.files;
     console.log(`check ${JSON.stringify(files)} status`);
 
-    const data = [];
+    const list = [];
 
     for (const { fileId, fileType, status, index } of files) {
       const key = `${fileId}::${fileType}`;
       if (!fileLoadingMap[key]) {
-        fileLoadingMap[key] = { start: Date.now(), duration: 500 + Math.random() * 2000 };
+        fileLoadingMap[key] = { start: Date.now(), duration: 500 + Math.random() * 3000 };
       }
 
       if (Date.now() - fileLoadingMap[key].start > fileLoadingMap[key].duration) {
-        data.push({ fileId, fileType, status: status + 1, index });
+        list.push({ fileId, fileType, status: status + 1, index });
       } else {
-        data.push({ fileId, fileType, status, index });
+        list.push({ fileId, fileType, status, index });
       }
     }
 
-    setTimeout(() => res.send({ ok: true, data }), 500);
+    setTimeout(() => res.send({ ok: true, data: { list } }), 500);
   });
 };

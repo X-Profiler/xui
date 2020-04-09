@@ -127,7 +127,9 @@ export default {
       // file transferred
       if (status === 3) {
         operations.push(this.doneButton("已生成", "md-brush", "success", true));
-        operations.push(...this.createDoneGroup("再转储", "md-cloud-upload", "success"));
+        if (data.createAgent !== "upload" && data.fileType !== "trend") {
+          operations.push(...this.createDoneGroup("再转储", "md-cloud-upload", "success"));
+        }
         if (this.devtools.includes(data.fileType)) {
           operations.push(...this.createDoneGroup("devtools", "md-search", "info"));
         }
@@ -147,7 +149,7 @@ export default {
 
       // creating error
       if (status === 998) {
-        operations.push(this.createButton("未知状态", "warning", "md-brush", false, false, true));
+        operations.push(this.createButton("未知状态", "warning", "md-brush"));
         operations.push(...this.createDisableGroup("转储", "md-cloud-upload"));
         operations.push(...this.createLeftGroup(data.fileType));
       }
@@ -197,6 +199,11 @@ export default {
 
       if (label === "转储" || label === "再转储" || label === "转储失败") {
         this.doFileTransfer(opt);
+      }
+
+      if (label === "未知状态") {
+        opt.raw.fileStatus = 0;
+        this.updateOperation();
       }
     }
   },
