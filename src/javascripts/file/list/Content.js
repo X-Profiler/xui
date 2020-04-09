@@ -7,6 +7,7 @@ const { mapState, mapGetters, mapMutations, mapActions } = utils.createNamespace
 export default {
   created() {
     this.cancelToken = utils.createCancelToken();
+    this.cancelToken2 = utils.createCancelToken();
     const query = this.$route.query;
     if (query.page) {
       this.currentPage = Number(query.page);
@@ -22,6 +23,7 @@ export default {
 
   beforeDestroy() {
     utils.cancelRequest(this.cancelToken);
+    utils.cancelRequest(this.cancelToken2);
     this.set_files({ list: [], count: 0 });
     clearInterval(this.checkInterval);
   },
@@ -30,6 +32,15 @@ export default {
     ...mapActions(["getFiles", "checkFileStatus"]),
 
     ...mapMutations(["set_files", "setErrorModal"]),
+
+    resetFileStatusCheck() {
+      utils.cancelRequest(this.cancelToken2);
+      clearInterval(this.checkInterval);
+      this.loadingFiles = [];
+      this.checkingStatus = false;
+      this.cancelToken2 = utils.createCancelToken();
+      this.checkInterval = setInterval(() => this.handleLoadingFiles(), 1000);
+    },
 
     changeFilePage(page) {
       this.currentPage = page;
@@ -64,7 +75,7 @@ export default {
           index: file.index
         };
       });
-      this.checkFileStatus({ cancelToken: this.cancelToken.token, files: list })
+      this.checkFileStatus({ cancelToken: this.cancelToken2.token, files: list })
         .then(({ list }) => {
           if (!Array.isArray(list)) {
             return;
@@ -100,16 +111,6 @@ export default {
           this.loadingFiles = [];
         })
         .then(() => this.checkingStatus = false);
-
-      // test
-      // setTimeout(() => {
-      //   files.forEach(file => {
-      //     file.fileStatus = 3;
-      //     const element = this.$refs[`operation::${file.index}`];
-      //     element && element.updateOperation();
-      //   });
-      //   console.log("done");
-      // }, 5000);
     }
   },
 
@@ -122,7 +123,7 @@ export default {
     files() {
       const files = [];
       const { list, count } = this.files_data;
-      if (!Array.isArray(list)) {
+      if (!Array.isArray(list) || !list.length) {
         return files;
       }
 
@@ -175,6 +176,7 @@ export default {
       }
 
       this.refreshFiles();
+      this.resetFileStatusCheck();
 
       utils.watchQueryKey.call(this, "page", "currentPage", args);
     }
