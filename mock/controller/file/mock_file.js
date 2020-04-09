@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
 const utils = require('../../lib/utils');
 
 const fileLoadingMap = {};
@@ -99,5 +101,22 @@ module.exports = app => {
     }
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 500);
+  });
+
+  app.get('/file/download', function (req, res) {
+    utils.checkParam(req.query, ["fileId", "fileType"]);
+
+    const fileId = req.query.fileId;
+    const fileType = req.query.fileType;
+    console.log(`download fileType ${fileType} fileId ${fileId}`);
+
+    res.setHeader('Content-Type', 'application/octet-stream');
+    res.setHeader('Content-Disposition', `attachment;filename=x-test-profiler-21182-20190930-75431.${fileType}`);
+    const tmp = path.join(__dirname, `../../data/profiler/mock.${fileType}`);
+    if (fs.existsSync(tmp)) {
+      fs.createReadStream(tmp).pipe(res);
+    } else {
+      fs.createReadStream(__filename).pipe(res);
+    }
   });
 };

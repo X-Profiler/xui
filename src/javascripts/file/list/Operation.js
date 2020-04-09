@@ -200,6 +200,10 @@ export default {
         return;
       }
 
+      if (label === "下载") {
+        window.location = `/file/download?fileType=${raw.fileType}&fileId=${raw.fileId}`;
+      }
+
       if (label === "收藏") {
         this.doFileFavor(opt);
       }

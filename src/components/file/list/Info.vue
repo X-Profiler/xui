@@ -2,7 +2,10 @@
   <div class="file-info">
     <div class="file-path">{{ row.filePath }}</div>
     <div class="file-desc">
-      <a v-if="row.executable">可执行文件</a>
+      <a
+        v-if="row.executable"
+        :href="`/file/download?fileType=executable&fileId=${row.fileId}`"
+      >可执行文件</a>
       由
       <strong class="file-desc-heilight">{{ row.fileCreator }}</strong>
     </div>

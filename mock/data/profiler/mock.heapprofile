@@ -1,0 +1,16 @@
+{"head":{"callFrame":{"functionName":"(root)","scriptId":0,"url":"","lineNumber":4294967295,"columnNumber":4294967295},
+"selfSize":0,
+"children":[
+{"callFrame":{"functionName":"processTimers","scriptId":35,"url":"internal/timers.js","lineNumber":459,"columnNumber":24},
+"selfSize":0,
+"children":[
+{"callFrame":{"functionName":"listOnTimeout","scriptId":35,"url":"internal/timers.js","lineNumber":479,"columnNumber":24},
+"selfSize":0,
+"children":[
+{"callFrame":{"functionName":"","scriptId":52,"url":"/home/admin/test.js","lineNumber":4,"columnNumber":12},
+"selfSize":14731776,
+"children":[]
+}]
+}]
+}]
+}}
