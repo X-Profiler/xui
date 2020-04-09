@@ -65,11 +65,11 @@ export default {
         };
       });
       this.checkFileStatus({ cancelToken: this.cancelToken.token, files: list })
-        .then(data => {
-          if (!Array.isArray(data)) {
+        .then(({ list }) => {
+          if (!Array.isArray(list)) {
             return;
           }
-          for (const res of data) {
+          for (const res of list) {
             let file = files.filter(file => file.index === res.index);
             if (!file.length) {
               continue;
