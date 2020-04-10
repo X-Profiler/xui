@@ -84,7 +84,7 @@ export default {
         operations.push(...this.createDisableGroup("devtools", "md-search"));
       }
       if (this.xprofiler.includes(fileType)) {
-        operations.push(...this.createDisableGroup("xprofiler", "md-search"));
+        operations.push(...this.createDisableGroup("分析", "md-locate"));
       }
       operations.push(...this.createDisableGroup("下载", "md-cloud-download"));
       operations.push(...this.createDisableGroup("收藏", "md-star"));
@@ -132,7 +132,7 @@ export default {
           operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools-old" }, "md-search", "info"));
         }
         if (this.xprofiler.includes(data.fileType)) {
-          operations.push(...this.createDoneGroup("xprofiler", "md-search", "info"));
+          operations.push(...this.createDoneGroup("分析", "md-locate", "info"));
         }
         operations.push(...this.createDoneGroup("下载", "md-cloud-download", "info"));
         if (data.fileFavor) {

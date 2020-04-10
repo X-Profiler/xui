@@ -61,9 +61,9 @@ export default {
           align: "center",
           width: 125
         },
-        { title: "文件信息", value: "fileInfo", left: "20", width: 450 },
-        { title: "操作", value: "operation" },
-        { title: "删除", value: "deletion", align: "center", width: 200 }
+        { title: "文件信息", value: "fileInfo", left: 20, width: 450 },
+        { title: "操作", value: "operation", titleLeft: 23 },
+        { title: "删除", value: "deletion", align: "center", width: 125 }
       ],
       totaFileCount: 0,
       loadingFiles: [],
