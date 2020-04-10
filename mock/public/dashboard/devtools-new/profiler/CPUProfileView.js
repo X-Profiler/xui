@@ -48,9 +48,22 @@ export class CPUProfileView extends ProfileView {
     this._profileHeader = profileHeader;
     this.initialize(new NodeFormatter(this));
     const profile = profileHeader.profileModel();
+    if(profile) {
+      this.adjustedTotal = profile.profileHead.total;
+      this.adjustedTotal -= profile.idleNode ? profile.idleNode.total : 0;
+      this.setProfile(profile);
+      this.viewStatus = true;
+    } else {
+      this.viewStatus = false;
+    }
+  }
+
+  loadView() {
+    const profile = this._profileHeader.profileModel();
     this.adjustedTotal = profile.profileHead.total;
     this.adjustedTotal -= profile.idleNode ? profile.idleNode.total : 0;
     this.setProfile(profile);
+    this.viewStatus = true;
   }
 
   /**
@@ -60,7 +73,8 @@ export class CPUProfileView extends ProfileView {
     super.wasShown();
     const lineLevelProfile = self.runtime.sharedInstance(PerfUI.LineLevelProfile.Performance);
     lineLevelProfile.reset();
-    lineLevelProfile.appendCPUProfile(this._profileHeader.profileModel());
+    if(this._profileHeader.profileModel())
+      lineLevelProfile.appendCPUProfile(this._profileHeader.profileModel());
   }
 
   /**

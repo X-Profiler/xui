@@ -288,6 +288,17 @@ export class ProfileType extends Common.ObjectWrapper.ObjectWrapper {
     return profile.loadFromFile(file);
   }
 
+  CreateDownloadProfile(name) {
+    const fileExtension = this.fileExtension();
+    if (fileExtension && name.endsWith(fileExtension)) {
+      name = name.substr(0, name.length - fileExtension.length);
+    }
+    const profile = this.createProfileLoadedFromFile(name);
+    this.setProfileBeingRecorded(profile);
+    this.addProfile(profile);
+    return profile;
+  }
+
   /**
    * @param {string} title
    * @return {!ProfileHeader}

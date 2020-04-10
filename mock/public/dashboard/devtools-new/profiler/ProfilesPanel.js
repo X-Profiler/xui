@@ -33,6 +33,9 @@ import {DataDisplayDelegate,            // eslint-disable-line no-unused-vars
 import {Events as ProfileLauncherEvents, ProfileLauncherView} from './ProfileLauncherView.js';
 import {ProfileSidebarTreeElement} from './ProfileSidebarTreeElement.js';  // eslint-disable-line no-unused-vars
 import {instance} from './ProfileTypeRegistry.js';
+import { Runtime } from '../root/root.js';
+
+const { Runtime: { queryParam } } = Runtime;
 
 /**
  * @implements {DataDisplayDelegate}
@@ -115,6 +118,42 @@ export class ProfilesPanel extends UI.Panel.PanelWithSidebar {
         SDK.CPUProfilerModel.CPUProfilerModel, this._updateProfileTypeSpecificUI, this);
     self.UI.context.addFlavorChangeListener(
         SDK.HeapProfilerModel.HeapProfilerModel, this._updateProfileTypeSpecificUI, this);
+
+    // auto load file from remote
+    const fileId = Number(queryParam('fileId'));
+    const fileType = queryParam('fileType');
+    const fileName = queryParam('fileName');
+
+    // check params
+    if(!fileType || !fileId || !fileName) {
+      const error = 'fileId, fileType and fileName must passed in';
+      UI.UIUtils.MessageDialog.show(Common.UIString.UIString('Profile loading failed: %s.', error));
+      return;
+    }
+
+    this._loadFromRemote(fileId, fileType, fileName);
+  }
+
+  /**
+   * @param {number} size
+   * @param {number} fixed
+   * @param {boolean} showPlus
+   */
+  _formatSize(size, fixed = 2, showPlus = false) {
+    const symbol = size === Math.abs(size);
+    size = Math.abs(size);
+    let str = "";
+    size = +size;
+    if (size / 1024 < 1) {
+      str = `${(size).toFixed(fixed)} Bytes`;
+    } else if (size / 1024 / 1024 < 1) {
+      str = `${(size / 1024).toFixed(fixed)} KB`;
+    } else if (size / 1024 / 1024 / 1024 < 1) {
+      str = `${(size / 1024 / 1024).toFixed(fixed)} MB`;
+    } else {
+      str = `${(size / 1024 / 1024 / 1024).toFixed(fixed)} GB`;
+    }
+    return size ? `${symbol ? `${showPlus ? `+${str}` : str}` : `-${str}`}` : str;
   }
 
   /**
@@ -156,6 +195,75 @@ export class ProfilesPanel extends UI.Panel.PanelWithSidebar {
   _findProfileTypeByExtension(fileName) {
     return this._profileTypes.find(type => !!type.fileExtension() && fileName.endsWith(type.fileExtension() || '')) ||
         null;
+  }
+
+  /**
+   * @param {number} fileId
+   * @param {number} fileType
+   * @param {string} fileName
+   */
+  _loadFromRemote(fileId, fileType, fileName) {
+    // create profile
+    const profile = this._CreateDownloadProfile(fileName);
+    if(!profile) {
+      return;
+    }
+    this.showProfile(profile);
+    profile.updateStatus(Common.UIString.UIString('Downloading\u20260 Bytes'), true);
+
+    // download file from remote
+    const xhr = new XMLHttpRequest();
+    const url = `/file/download?fileId=${fileId}&fileType=${fileType}`;
+    xhr.open('GET', url, true);
+    xhr.responseType = 'blob';
+    xhr.addEventListener("progress", progress);
+    xhr.onload = onload;
+    xhr.send(null);
+
+    const that = this;
+
+    function progress(e) {
+      profile.updateStatus(Common.UIString.UIString('Downloading\u2026%s', that._formatSize(e.loaded)), true);
+    }
+
+    async function onload() {
+      const status = xhr.status;
+      if ([0, 200, 304].indexOf(status) === -1) {
+        const error = 'While loading from url ' + url + ' server responded with a status of ' + status;
+        UI.MessageDialog.show(Common.UIString.UIString('Profile loading failed: %s.', error));
+      } else {
+        const tempFile = new File([this.response], fileName);
+        const error = await profile.loadFromFile(tempFile);
+        if(error) {
+          UI.MessageDialog.show(Common.UIString.UIString('Profile loading failed: %s.', error));
+        } else {
+          const view = that.viewForProfile(profile);
+          if(view.viewStatus === false) {
+            view.loadView();
+          }
+          that.showProfile(profile);
+        }
+      }
+    }
+  }
+
+  _CreateDownloadProfile(fileName) {
+    const profileType = this._findProfileTypeByExtension(fileName);
+    if (!profileType) {
+      const extensions = new Set(this._profileTypes.map(type => type.fileExtension()).filter(ext => ext));
+      UI.UIUtils.MessageDialog.show(Common.UIString.UIString(
+          'Can’t load file. Onley supported file extensions: `%s`.', Array.from(extensions).join("', '")));
+      return;
+    }
+
+    if (!!profileType.profileBeingRecorded()) {
+      UI.UIUtils.MessageDialog.show(
+          Common.UIString.UIString('Can’t load profile while another profile is being recorded.'));
+      return;
+    }
+
+    const profile = profileType.CreateDownloadProfile(fileName);
+    return profile
   }
 
   /**
@@ -382,10 +490,10 @@ export class ProfilesPanel extends UI.Panel.PanelWithSidebar {
    * @return {?UI.Widget.Widget}
    */
   showProfile(profile) {
-    if (!profile ||
-        (profile.profileType().profileBeingRecorded() === profile) && !profile.profileType().hasTemporaryView()) {
-      return null;
-    }
+    // if (!profile ||
+    //     (profile.profileType().profileBeingRecorded() === profile) && !profile.profileType().hasTemporaryView()) {
+    //   return null;
+    // }
 
     const view = this.viewForProfile(profile);
     if (view === this.visibleView) {
@@ -434,11 +542,12 @@ export class ProfilesPanel extends UI.Panel.PanelWithSidebar {
    */
   viewForProfile(profile) {
     const index = this._indexOfViewForProfile(profile);
-    if (index !== -1) {
-      return this._profileToView[index].view;
-    }
+    // if (index !== -1) {
+    //   return this._profileToView[index].view;
+    // }
     const view = profile.createView(this);
     view.element.classList.add('profile-view');
+    this._profileToView.splice(index, 1, {profile: profile, view: view});
     this._profileToView.push({profile: profile, view: view});
     return view;
   }
