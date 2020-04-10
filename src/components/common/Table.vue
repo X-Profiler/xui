@@ -5,7 +5,7 @@
         <th
           v-for="(column, index) in columns"
           :key="index"
-          :style="getCellStyle(column)"
+          :style="getCellStyle(column, true)"
         >{{ column.title }}</th>
       </tr>
     </thead>
@@ -47,7 +47,7 @@ export default {
   },
 
   methods: {
-    getCellStyle(column) {
+    getCellStyle(column, title) {
       let style = "";
       if (isNumber(column.width)) {
         style += "width: " + column.width + "px;";
@@ -57,6 +57,10 @@ export default {
 
       if (isNumber(column.left)) {
         style += "padding-left: " + column.left + "px;";
+      }
+
+      if (isNumber(column.titleLeft) && title) {
+        style += "padding-left: " + column.titleLeft + "px;";
       }
 
       if (column.align) {
