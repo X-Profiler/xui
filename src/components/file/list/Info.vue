@@ -37,6 +37,7 @@ export default {
   word-break: break-all;
   font-weight: bold;
   margin-bottom: 4px;
+  font-size: 14px;
 }
 
 .file-desc {

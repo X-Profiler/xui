@@ -181,7 +181,7 @@ export default {
         .catch(err => this.setErrorModal({ status: true, error: { title: "转储失败", message: err.message } }));
     },
 
-    handleDevtools(label, { fileId, fileType }) {
+    handleDevtools(label, { fileId, fileType, filePath }) {
       let selectedTab = "";
       if (["cpuprofile"].includes(fileType)) {
         selectedTab = "js_profiler";
@@ -189,7 +189,7 @@ export default {
       if (["heapsnapshot", "heapprofile"].includes(fileType)) {
         selectedTab = "heap_profiler";
       }
-      const query = `fileType=${fileType}&fileId=${fileId}&selectedTab=${selectedTab}`;
+      const query = `fileId=${fileId}&fileType=${fileType}&fileName=${filePath}&selectedTab=${selectedTab}`;
       const href = `/dashboard/${label}?${query}`;
       window.open(href, "_blank");
     },

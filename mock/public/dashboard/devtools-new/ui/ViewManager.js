@@ -11,6 +11,9 @@ import {Events as TabbedPaneEvents, TabbedPane} from './TabbedPane.js';
 import {Toolbar, ToolbarItem, ToolbarMenuButton} from './Toolbar.js';  // eslint-disable-line no-unused-vars
 import {ProvidedView, TabbedViewLocation, View, ViewLocation, ViewLocationResolver, widgetSymbol,} from './View.js';  // eslint-disable-line no-unused-vars
 import {VBox, Widget} from './Widget.js';  // eslint-disable-line no-unused-vars
+import { Runtime } from '../root/root.js';
+
+const { Runtime: { queryParam } } = Runtime;
 
 /**
  * @type {!ViewManager}
@@ -501,7 +504,11 @@ export class _TabbedLocation extends _Location {
         this._appendTab(view);
       }
     }
-    if (this._defaultTab && this._tabbedPane.hasTab(this._defaultTab)) {
+
+    const tabNow = queryParam('selectedTab');
+    if(tabNow && this._tabbedPane.hasTab(tabNow)){
+      this._tabbedPane.selectTab(tabNow);
+    } else if (this._defaultTab && this._tabbedPane.hasTab(this._defaultTab)) {
       this._tabbedPane.selectTab(this._defaultTab);
     } else if (this._lastSelectedTabSetting && this._tabbedPane.hasTab(this._lastSelectedTabSetting.get())) {
       this._tabbedPane.selectTab(this._lastSelectedTabSetting.get());
