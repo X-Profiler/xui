@@ -3,7 +3,7 @@
     <x-table :columns="columns" :data="modules" noDataText="当前应用暂无模块依赖信息" no-data-head>
       <!-- module name -->
       <template v-slot:moduleName="{ row }">
-        <div class="name font">
+        <div class="padding name font">
           <a
             v-if="row.resolved"
             :href="row.resolved"
@@ -16,24 +16,25 @@
 
       <!-- package version -->
       <template v-slot:packageVersion="{ row }">
-        <div class="font">{{ row.version }}</div>
+        <div class="padding font">{{ row.version }}</div>
       </template>
 
       <!-- package lock version -->
       <template v-slot:packageLockVersion="{ row }">
-        <div class="font">{{ row.lockVersion }}</div>
+        <div class="padding font">{{ row.lockVersion }}</div>
       </template>
 
       <!-- security -->
       <template v-slot:securityRisk="{ row }">
-        <div
-          v-if="row.risk"
-          class="font risk-label"
-          :style="`color: ${row.color};`"
-          @click="openRiskModal(row)"
-        >{{ row.level }}</div>
+        <div v-if="row.risk" class="padding">
+          <div
+            class="risk-label font"
+            :style="`color: ${row.color};`"
+            @click="openRiskModal(row)"
+          >{{ row.level }}</div>
+        </div>
         <!-- no risk -->
-        <div v-else>
+        <div v-else class="padding">
           <Icon class="no-risk" type="md-checkmark" />
         </div>
       </template>
@@ -105,16 +106,21 @@ export default {
     sans-serif;
 }
 
+.padding {
+  padding: 3px 0;
+}
+
 .risk-label {
   font-weight: bold;
   cursor: pointer;
+  display: inline-block;
+  user-select: none;
 }
 
 .risk-label:hover {
   opacity: 0.75;
   transition: all 0.1s ease-in;
   transform: scale(1.2);
-  user-select: none;
 }
 
 .no-risk {
