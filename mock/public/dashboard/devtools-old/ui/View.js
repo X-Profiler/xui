@@ -703,7 +703,11 @@ UI.ViewManager._TabbedLocation = class extends UI.ViewManager._Location {
       else if (this._closeableTabSetting.get()[id])
         this._appendTab(view);
     }
-    if (this._defaultTab && this._tabbedPane.hasTab(this._defaultTab))
+
+    const tabNow = Runtime.queryParam('selectedTab');
+    if(tabNow && this._tabbedPane.hasTab(tabNow)) {
+      this._tabbedPane.selectTab(tabNow);
+    } else if (this._defaultTab && this._tabbedPane.hasTab(this._defaultTab))
       this._tabbedPane.selectTab(this._defaultTab);
     else if (this._lastSelectedTabSetting && this._tabbedPane.hasTab(this._lastSelectedTabSetting.get()))
       this._tabbedPane.selectTab(this._lastSelectedTabSetting.get());

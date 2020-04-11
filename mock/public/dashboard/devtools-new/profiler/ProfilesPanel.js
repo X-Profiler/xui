@@ -252,7 +252,7 @@ export class ProfilesPanel extends UI.Panel.PanelWithSidebar {
     if (!profileType) {
       const extensions = new Set(this._profileTypes.map(type => type.fileExtension()).filter(ext => ext));
       UI.UIUtils.MessageDialog.show(Common.UIString.UIString(
-          'Can’t load file. Onley supported file extensions: `%s`.', Array.from(extensions).join("', '")));
+          'Can’t load file. Only supported file extensions: `%s`.', Array.from(extensions).join("', '")));
       return;
     }
 
