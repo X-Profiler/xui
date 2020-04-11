@@ -66,24 +66,24 @@ export default {
   data() {
     return {
       columns: [
-        { title: "模块名称", value: "moduleName", width: "31%" },
+        { title: "模块名称", value: "moduleName", width: "28%", left: 19 },
         {
           title: "设置版本规则",
           value: "packageVersion",
           align: "center",
-          width: "25%"
+          width: "calc(36% - 83px)"
         },
         {
           title: "版本锁定信息",
           value: "packageLockVersion",
           align: "center",
-          width: "25%"
+          width: "calc(36% - 83px)"
         },
         {
           title: "安全风险等级",
           value: "securityRisk",
           align: "center",
-          width: "19%"
+          width: 166
         }
       ],
       modalQueryKey: "risk-detail"
