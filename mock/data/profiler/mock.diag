@@ -1,166 +1,374 @@
 
 {
-  "pid": 74286,
-  "nodeVersion": "v12.13.0",
-  "loadTime": "2019-12-05 16:29:20",
-  "dumpTime": "2019-12-05 16:31:13",
-  "vmState": "EXTERNAL",
+  "dumpTime": "2019-09-17 17:59:53",
+  "loadTime": "2019-09-17 17:15:08",
+  "pid": 12223,
+  "commandLine": "node test.js",
+  "nodeVersion": "v12.9.1",
+  "osVersion": "Darwin 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019; root:xnu-4903.271.2~2/RELEASE_X86_64",
+  "machine": "hyj1991deMacBook-Pro.local x86_64",
+  "vmState": "unknown",
   "jsStacks": [
+    {
+      "index": 0,
+      "pcAddress": "0x3dc91bf4606d",
+      "frameType": "normal",
+      "functionName": "processTimers",
+      "scriptName": "internal/timers.js",
+      "lineNumber": 460,
+      "column": 25
+    }
   ],
   "nativeStacks": [
     {
-      "pcAddress": "0x102c33227",
-      "symbolName": "xprofiler::HandleAction(void*, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)",
-      "sharedObjectName": "/Users/hyj1991/git/example/x-node-test/node_modules/@suning/x-node/build/v1.0.0/node-v72-darwin-x64/xprofiler.node"
+      "index": 0,
+      "pcAddress": "0x1028c74ff",
+      "symbolName": "xnode::ReportProfiler::GetNodeReport(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >)",
+      "sharedObjectName": "/Users/hyj1991/git/suning/x-node/build/x/v0.2.4/node-v72-darwin-x64/x.node"
     },
     {
-      "pcAddress": "0x102c33d34",
-      "symbolName": "xprofiler::AsyncSendCallback(uv_async_s*)",
-      "sharedObjectName": "/Users/hyj1991/git/example/x-node-test/node_modules/@suning/x-node/build/v1.0.0/node-v72-darwin-x64/xprofiler.node"
+      "index": 1,
+      "pcAddress": "0x1028c0767",
+      "symbolName": "xnode::HanldeDump(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, xnode::ActionData*)",
+      "sharedObjectName": "/Users/hyj1991/git/suning/x-node/build/x/v0.2.4/node-v72-darwin-x64/x.node"
     },
     {
-      "pcAddress": "0x100894dea",
-      "symbolName": "uv__async_io",
-      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+      "index": 2,
+      "pcAddress": "0x1028c0fdd",
+      "symbolName": "xnode::DumpInterruptCallback(v8::Isolate*, void*)",
+      "sharedObjectName": "/Users/hyj1991/git/suning/x-node/build/x/v0.2.4/node-v72-darwin-x64/x.node"
     },
     {
-      "pcAddress": "0x1008a57a7",
-      "symbolName": "uv__io_poll",
-      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+      "index": 3,
+      "pcAddress": "0x1002a00bf",
+      "symbolName": "v8::internal::Isolate::InvokeApiInterruptCallbacks()",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.9.1/bin/node"
     },
     {
-      "pcAddress": "0x100895276",
-      "symbolName": "uv_run",
-      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+      "index": 4,
+      "pcAddress": "0x100291ff2",
+      "symbolName": "v8::internal::StackGuard::HandleInterrupts()",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.9.1/bin/node"
     },
     {
-      "pcAddress": "0x1000b48cc",
-      "symbolName": "node::NodeMainInstance::Run()",
-      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
+      "index": 5,
+      "pcAddress": "0x1005e79cc",
+      "symbolName": "v8::internal::Runtime_StackGuard(int, unsigned long*, v8::internal::Isolate*)",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.9.1/bin/node"
     },
     {
-      "pcAddress": "0x10005b750",
-      "symbolName": "node::Start(int, char**)",
-      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.13.0/bin/node"
-    },
-    {
-      "pcAddress": "0x7fff5cc353d5",
-      "symbolName": "start",
-      "sharedObjectName": "/usr/lib/system/libdyld.dylib"
+      "index": 6,
+      "pcAddress": "0x100927b99",
+      "symbolName": "Builtins_CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.9.1/bin/node"
     }
   ],
-  "heapStatistics": {
-    "heapTotal": 108601344,
-    "heapTotalCommitted": 95658488,
-    "heapTotalUsed": 86585880,
-    "heapTotalAvailable": 2108890984,
-    "heapLimit": 2197815296
-  },
   "gcStatistics": [
     {
       "name": "read_only_space",
       "size": 262144,
-      "committed": 32568,
-      "capacity": 261872,
-      "used": 32296,
-      "available": 229576
+      "committed": 31744,
+      "capacity": 261832,
+      "used": 31432,
+      "available": 230400
     },
     {
       "name": "new_space",
-      "size": 20971520,
-      "committed": 9996272,
-      "capacity": 10474880,
-      "used": 1587864,
-      "available": 8887016
+      "size": 1048576,
+      "committed": 389296,
+      "capacity": 1047328,
+      "used": 391384,
+      "available": 655944
     },
     {
       "name": "old_space",
-      "size": 85831680,
-      "committed": 84346720,
-      "capacity": 84046648,
-      "used": 83961088,
-      "available": 85560
+      "size": 312586240,
+      "committed": 306366104,
+      "capacity": 312213216,
+      "used": 305759056,
+      "available": 6454160
     },
     {
       "name": "code_space",
       "size": 425984,
-      "committed": 202720,
-      "capacity": 168096,
-      "used": 168096,
-      "available": 0
+      "committed": 198912,
+      "capacity": 401408,
+      "used": 167584,
+      "available": 233824
     },
     {
       "name": "map_space",
       "size": 528384,
-      "committed": 498576,
-      "capacity": 308640,
-      "used": 308640,
-      "available": 0
+      "committed": 276536,
+      "capacity": 527448,
+      "used": 194640,
+      "available": 332808
     },
     {
       "name": "large_object_space",
-      "size": 532480,
-      "committed": 532480,
-      "capacity": 524344,
-      "used": 524344,
+      "size": 409600,
+      "committed": 409600,
+      "capacity": 406856,
+      "used": 406856,
       "available": 0
     },
     {
       "name": "code_large_object_space",
-      "size": 49152,
-      "committed": 49152,
-      "capacity": 3552,
-      "used": 3552,
+      "size": 16384,
+      "committed": 16384,
+      "capacity": 1152,
+      "used": 1152,
       "available": 0
     },
     {
       "name": "new_large_object_space",
       "size": 0,
       "committed": 0,
-      "capacity": 10474880,
+      "capacity": 1047328,
       "used": 0,
-      "available": 10474880
+      "available": 1047328
     }
   ],
+  "heapStatistics": {
+    "heapTotal": 315277312,
+    "heapTotalCommitted": 307688576,
+    "heapTotalUsed": 306952104,
+    "heapTotalAvailable": 1891492448,
+    "heapLimit": 2197815296
+  },
+  "resourceUsage": {
+    "processUsage": {
+      "userModeCpu": "30.395620",
+      "kernalModeCpu": "8.192753",
+      "averageCpuConsumption": 1.43718,
+      "maximumRss": 999506837504,
+      "pageFaults": {
+        "ioRequired": 1,
+        "noIoRequired": 842799
+      },
+      "fsActivity": {
+        "reads": 0,
+        "writes": 0
+      }
+    },
+    "eventLoopUsage": {
+      "userModeCpu": "14.661819",
+      "kernalModeCpu": "5.438429",
+      "averageCpuConsumption": 0.748613
+    }
+  },
   "libuvHandles": [
     {
+      "hasRef": 0,
+      "isActive": 1,
       "type": "async",
-      "address": "0x102a03470",
-      "hasRed": 0,
-      "isActive": 1,
+      "address": "0x102c02f90",
       "detail": ""
     },
     {
+      "hasRef": 1,
+      "isActive": 0,
       "type": "timer",
-      "address": "0x103841128",
-      "hasRed": 1,
-      "isActive": 1,
-      "detail": "repeat: 0, timeout in: 1 ms"
+      "address": "0x103041b28",
+      "detail": "repeat: 0, timeout expired: 1 ms ago"
     },
     {
-      "type": "check",
-      "address": "0x1038411c0",
-      "hasRed": 0,
+      "hasRef": 0,
       "isActive": 1,
+      "type": "check",
+      "address": "0x103041bc0",
       "detail": ""
     },
     {
+      "hasRef": 1,
+      "isActive": 0,
       "type": "idle",
-      "address": "0x103841238",
-      "hasRed": 1,
-      "isActive": 0,
+      "address": "0x103041c38",
       "detail": ""
     },
     {
+      "hasRef": 0,
+      "isActive": 0,
       "type": "prepare",
-      "address": "0x1038412b0",
-      "hasRed": 0,
-      "isActive": 0,
+      "address": "0x103041cb0",
       "detail": ""
     },
     {
-      "type": "check",
-      "address": "0x103841328",
-      "hasRed": 0,
+      "hasRef": 0,
       "isActive": 0,
-      "detail"
+      "type": "check",
+      "address": "0x103041d28",
+      "detail": ""
+    },
+    {
+      "hasRef": 0,
+      "isActive": 1,
+      "type": "async",
+      "address": "0x102944830",
+      "detail": ""
+    },
+    {
+      "hasRef": 0,
+      "isActive": 1,
+      "type": "async",
+      "address": "0x1018bdc48",
+      "detail": ""
+    },
+    {
+      "hasRef": 0,
+      "isActive": 1,
+      "type": "async",
+      "address": "0x1028cec68",
+      "detail": ""
+    },
+    {
+      "hasRef": 0,
+      "isActive": 1,
+      "type": "async",
+      "address": "0x1028cecf0",
+      "detail": ""
+    },
+    {
+      "hasRef": 1,
+      "isActive": 0,
+      "type": "tty",
+      "address": "0x102c19b78",
+      "detail": "width: 204, height: 48, file descriptor: 20, write queue size: 0, readable, writable"
+    },
+    {
+      "hasRef": 0,
+      "isActive": 1,
+      "type": "signal",
+      "address": "0x102c19d20",
+      "detail": "signum: 28 (SIGWINCH)"
+    }
+  ],
+  "system": {
+    "env": [
+      "MANPATH=/Users/hyj1991/.tnvm/versions/node/v12.9.1/share/man:/usr/local/share/man:/usr/share/man:/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/share/man:/Library/Developer/CommandLineTools/usr/share/man",
+      "TERM_PROGRAM=Apple_Terminal",
+      "TERM=xterm-256color",
+      "SHELL=/bin/bash",
+      "TMPDIR=/var/folders/rw/g1t4bp_x2_n0dwk_82xx_0vh0000gn/T/",
+      "NVM_PATH=/Users/hyj1991/.tnvm/versions/node/v12.9.1/lib/node",
+      "Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.mzj6wYnkq4/Render",
+      "TERM_PROGRAM_VERSION=421.2",
+      "TERM_SESSION_ID=E7183699-C311-4134-A2B5-71BEEBD6D13A",
+      "USER=hyj1991",
+      "SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.iNmOdlf6q3/Listeners",
+      "TNVM_RC_VERSION=node-v12.9.1",
+      "PATH=/Users/hyj1991/.tnvm/versions/node/v12.9.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+      "PWD=/Users/hyj1991/git/example/x-node-test",
+      "LANG=zh_CN.UTF-8",
+      "XPC_FLAGS=0x0",
+      "XPC_SERVICE_NAME=0",
+      "HOME=/Users/hyj1991",
+      "SHLVL=1",
+      "LOGNAME=hyj1991",
+      "TNVM_DIR=/Users/hyj1991/.tnvm",
+      "NVM_BIN=/Users/hyj1991/.tnvm/versions/node/v12.9.1/bin",
+      "SECURITYSESSIONID=186a8",
+      "OLDPWD=/Users/hyj1991/git/example/x-node-test/node_modules",
+      "_=/Users/hyj1991/.tnvm/versions/node/v12.9.1/bin/node",
+      "__CF_USER_TEXT_ENCODING=0x1F5:0x19:0x34"
+    ],
+    "resourceLimits": [
+      {
+        "type": "core file size (blocks)",
+        "softLimit": "0",
+        "hardLimit": "unlimited"
+      },
+      {
+        "type": "data seg size (kbytes)",
+        "softLimit": "unlimited",
+        "hardLimit": "unlimited"
+      },
+      {
+        "type": "file size (blocks)",
+        "softLimit": "unlimited",
+        "hardLimit": "unlimited"
+      },
+      {
+        "type": "max locked memory (bytes)",
+        "softLimit": "unlimited",
+        "hardLimit": "unlimited"
+      },
+      {
+        "type": "max memory size (kbytes)",
+        "softLimit": "unlimited",
+        "hardLimit": "unlimited"
+      },
+      {
+        "type": "open files",
+        "softLimit": "24576",
+        "hardLimit": "unlimited"
+      },
+      {
+        "type": "stack size (bytes)",
+        "softLimit": "8388608",
+        "hardLimit": "67104768\n"
+      },
+      {
+        "type": "cpu time (seconds)",
+        "softLimit": "unlimited",
+        "hardLimit": "unlimited"
+      },
+      {
+        "type": "max user processes",
+        "softLimit": "1418",
+        "hardLimit": "2128\n"
+      },
+      {
+        "type": "virtual memory (kbytes)",
+        "softLimit": "unlimited",
+        "hardLimit": "unlimited"
+      }
+    ],
+    "loadedLibraries": [
+      "/Users/hyj1991/.tnvm/versions/node/v12.9.1/bin/node",
+      "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+      "/usr/lib/libSystem.B.dylib",
+      "/usr/lib/libc++.1.dylib",
+      "/usr/lib/libobjc.A.dylib",
+      "/usr/lib/libDiagnosticMessagesClient.dylib",
+      "/usr/lib/libicucore.A.dylib",
+      "/usr/lib/libz.1.dylib",
+      "/usr/lib/libc++abi.dylib",
+      "/usr/lib/system/libcache.dylib",
+      "/usr/lib/system/libcommonCrypto.dylib",
+      "/usr/lib/system/libcompiler_rt.dylib",
+      "/usr/lib/system/libcopyfile.dylib",
+      "/usr/lib/system/libcorecrypto.dylib",
+      "/usr/lib/system/libdispatch.dylib",
+      "/usr/lib/system/libdyld.dylib",
+      "/usr/lib/system/libkeymgr.dylib",
+      "/usr/lib/system/liblaunch.dylib",
+      "/usr/lib/system/libmacho.dylib",
+      "/usr/lib/system/libquarantine.dylib",
+      "/usr/lib/system/libremovefile.dylib",
+      "/usr/lib/system/libsystem_asl.dylib",
+      "/usr/lib/system/libsystem_blocks.dylib",
+      "/usr/lib/system/libsystem_c.dylib",
+      "/usr/lib/system/libsystem_configuration.dylib",
+      "/usr/lib/system/libsystem_coreservices.dylib",
+      "/usr/lib/system/libsystem_darwin.dylib",
+      "/usr/lib/system/libsystem_dnssd.dylib",
+      "/usr/lib/system/libsystem_info.dylib",
+      "/usr/lib/system/libsystem_m.dylib",
+      "/usr/lib/system/libsystem_malloc.dylib",
+      "/usr/lib/system/libsystem_networkextension.dylib",
+      "/usr/lib/system/libsystem_notify.dylib",
+      "/usr/lib/system/libsystem_sandbox.dylib",
+      "/usr/lib/system/libsystem_secinit.dylib",
+      "/usr/lib/system/libsystem_kernel.dylib",
+      "/usr/lib/system/libsystem_platform.dylib",
+      "/usr/lib/system/libsystem_pthread.dylib",
+      "/usr/lib/system/libsystem_symptoms.dylib",
+      "/usr/lib/system/libsystem_trace.dylib",
+      "/usr/lib/system/libunwind.dylib",
+      "/usr/lib/system/libxpc.dylib",
+      "/System/Library/CoreServices/Encodings/libSimplifiedChineseConverter.dylib",
+      "/Users/hyj1991/git/suning/x-node/build/x/v0.2.4/node-v72-darwin-x64/x.node"
+    ]
+  }
+}

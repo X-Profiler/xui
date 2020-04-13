@@ -9,9 +9,9 @@
 
       <Content>
         <!-- loading -->
-        <x-loading :loading="app_loading" :top="300" type="dot"></x-loading>
+        <x-loading :loading="app_loading" top="40vh" type="dot"></x-loading>
 
-        <x-error-message v-if="app_load_error" :message="app_load_error" top="calc(35vh - 50px)"></x-error-message>
+        <x-error-message v-if="app_load_error" :message="app_load_error" top="calc(40vh - 20px)"></x-error-message>
 
         <transition name="slide">
           <!-- dashboard component -->
