@@ -7,7 +7,7 @@ const routeCanBackMap = {};
 function routeFactory(openName, closeName, ...args) {
   const tag = "YES";
 
-  const [queryKeyName, flag, refKey, setFlag, request, loading, extra = []] = args;
+  const [queryKeyName, flag, refKey, setFlag, routeData, request, loading, extra = []] = args;
 
   return {
     handleMounted(name, enable = false, dataKey = false) {
@@ -26,6 +26,11 @@ function routeFactory(openName, closeName, ...args) {
 
           if (value === tag) {
             const data = { status: true };
+            if (routeData) {
+              try {
+                data[routeData] = JSON.parse(query[routeData]);
+              } catch (e) { e; }
+            }
             if (dataKey) {
               data[dataKey] = query;
             }
@@ -60,7 +65,10 @@ function routeFactory(openName, closeName, ...args) {
           if (route.query[queryKey] === tag) {
             return;
           }
-          const query = Object.assign({}, route.query, { [queryKey]: tag });
+          const query = Object.assign({}, route.query, {
+            [queryKey]: tag,
+            [routeData]: JSON.stringify(this[routeData])
+          });
           this.$router.push({ path: route.path, query });
           routeCanBackMap[queryKey] = true;
         } else {
@@ -68,7 +76,10 @@ function routeFactory(openName, closeName, ...args) {
           if (route.query[queryKey] === tag) {
             if (!routeCanBackMap[queryKey] && this.$store.state.first) {
               this.$store.commit("first", false);
-              const query = Object.assign({}, route.query, { [queryKey]: undefined });
+              const query = Object.assign({}, route.query, {
+                [queryKey]: undefined,
+                [routeData]: undefined
+              });
               this.$router.push({ path: route.path, query });
             } else {
               this.$router.go(-1);
