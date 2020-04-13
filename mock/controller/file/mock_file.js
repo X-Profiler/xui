@@ -30,6 +30,7 @@ module.exports = app => {
     console.log(`get app ${appId} files: ${filterType} (${start} ~ ${end}) <${pageSize}>`);
 
     const list = require('../../data/files');
+    list.forEach(file => file.basename = path.basename(file.file || file.coreFile));
     let files = list
       .filter(file => {
         if (filterType === "all") {

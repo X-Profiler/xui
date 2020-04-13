@@ -137,6 +137,7 @@ export default {
           typeIcon: this.getIconByType(file.fileType),
           typeLabel: this.getLabelByType(file.fileType),
           filePath: file.file || file.coreFile,
+          fileBasename: file.basename,
           executable: file.executableFile,
           fileCreator: file.creator,
           createTime: file.time,

@@ -162,13 +162,15 @@ export default {
       this.operations = operations;
     },
 
-    doAnalytics({ fileType, fileId }) {
+    doAnalytics({ fileType, fileId, fileBasename }) {
+      const data = { fileType, fileId, fileBasename };
+
       if (fileType === "diag") {
-        this.setDiagDrawer({ status: true, diagData: { fileType, fileId } });
+        this.setDiagDrawer({ status: true, diagData: data });
       }
 
       if (fileType === "gcprofile") {
-        this.setGcDrawer({ status: true, gcData: { fileType, fileId } });
+        this.setGcDrawer({ status: true, gcData: data });
       }
     },
 
