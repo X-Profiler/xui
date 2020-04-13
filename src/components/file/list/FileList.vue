@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- loading -->
-    <x-loading :loading="files_loading" type="dot" size="middle" top="30vh"></x-loading>
+    <x-loading :loading="files_loading" type="dot" size="middle" top="calc(40vh - 105px)"></x-loading>
 
     <!-- error -->
-    <x-error-message v-show="files_load_error" :message="files_load_error" top="calc(30vh -  25px)"></x-error-message>
+    <x-error-message v-show="files_load_error" :message="files_load_error" top="calc(40vh -  115px)"></x-error-message>
 
     <!-- file list -->
     <x-content v-if="filterType"></x-content>

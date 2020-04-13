@@ -220,7 +220,8 @@ export default {
       }
 
       if (label === "下载") {
-        window.location = `/file/download?fileType=${raw.fileType}&fileId=${raw.fileId}`;
+        const { downloadFile: downloadUrl } = this.$store.state.url;
+        window.location = `${downloadUrl}?fileType=${raw.fileType}&fileId=${raw.fileId}`;
       }
 
       if (label === "收藏") {

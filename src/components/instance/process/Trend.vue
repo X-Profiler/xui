@@ -2,14 +2,14 @@
   <div>
     <!-- loading -->
     <div style="text-align: center">
-      <x-loading :loading="xprofiler_processes_loading" :top="300" size="small" type="dot"></x-loading>
+      <x-loading :loading="xprofiler_processes_loading" top="40vh" size="small" type="dot"></x-loading>
     </div>
 
     <!-- error -->
     <x-error-message
       v-show="xprofiler_processes_load_error"
       :message="xprofiler_processes_load_error"
-      top="calc(35vh - 50px)"
+      top="calc(40vh - 25px)"
     ></x-error-message>
 
     <!-- show trend -->

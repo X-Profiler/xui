@@ -36,7 +36,7 @@
       </template>
     </x-dashboard-title>
 
-    <x-error-message v-if="agents_load_error" :message="agents_load_error" top="calc(35vh - 50px)"></x-error-message>
+    <x-error-message v-if="agents_load_error" :message="agents_load_error" top="calc(40vh - 50px)"></x-error-message>
 
     <div v-if="!agents_loading && !agents_load_error">
       <!-- instance tab -->

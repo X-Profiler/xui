@@ -4,7 +4,6 @@ import * as utils from "@/javascripts/lib/utils";
 
 const { state: uploadState, mutations: uploadMutations, handle: handleUpload } =
   utils.storeFactory("upload", undefined);
-
 const { state: fileListState, mutations: fileListMutations, handle: handleFileList } =
   utils.storeFactory("files", { list: [], count: 0 });
 

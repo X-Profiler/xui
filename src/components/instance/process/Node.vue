@@ -6,7 +6,7 @@
     <!-- show data -->
     <transition name="slide-noward">
       <div v-show="!processes_loading">
-        <x-error-message v-show="processes_load_error" :message="processes_load_error" top="35vh"></x-error-message>
+        <x-error-message v-show="processes_load_error" :message="processes_load_error" top="40vh"></x-error-message>
         <x-table
           v-show="!processes_load_error"
           :columns="processColumns"

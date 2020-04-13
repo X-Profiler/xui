@@ -15,6 +15,7 @@ import errors from "@/stores/instance/errors";
 import modules from "@/stores/instance/modules";
 import file from "@/stores/file/file";
 import wrapper from "@/stores/file/wrapper";
+import analytics from "@/stores/analytics/analytics";
 
 export default {
   state: {
@@ -45,7 +46,7 @@ export default {
   },
 
   actions: {
-    async request({ commit }, { url, method = "GET", cancelToken, data = {}, globalError = false }) {
+    async request({ commit }, { url, method = "GET", cancelToken, data = {}, globalError = false, rawData = false }) {
       if (!cancelToken) {
         throw new Error("cancel token should be passed in!");
       }
@@ -65,6 +66,10 @@ export default {
         }, obj));
 
         const data = res.data;
+        if (rawData) {
+          return data;
+        }
+
         if (!data.ok) {
           throw new Error(data.message || "unknown inner server error");
         }
@@ -113,6 +118,10 @@ export default {
             wrapper: { ...wrapper }  // dashboard/file/wrapper
           }
         },
+
+        "analytics": { // dashboard/analytics
+          ...analytics
+        }
       }
     }
   }

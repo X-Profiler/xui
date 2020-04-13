@@ -114,10 +114,13 @@ module.exports = app => {
     res.setHeader('Content-Type', 'application/octet-stream');
     res.setHeader('Content-Disposition', `attachment;filename=x-test-profiler-21182-20190930-75431.${fileType}`);
     const tmp = path.join(__dirname, `../../data/profiler/mock.${fileType}`);
-    if (fs.existsSync(tmp)) {
-      fs.createReadStream(tmp).pipe(res);
-    } else {
-      fs.createReadStream(__filename).pipe(res);
-    }
+
+    setTimeout(() => {
+      if (fs.existsSync(tmp)) {
+        fs.createReadStream(tmp).pipe(res);
+      } else {
+        fs.createReadStream(__filename).pipe(res);
+      }
+    }, 1000);
   });
 };

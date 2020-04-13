@@ -4,13 +4,13 @@
     <div class="panel">
       <!-- loading -->
       <div style="text-align: center">
-        <x-loading :loading="xprofiler_processes_loading" :top="300" size="middle" type="dot"></x-loading>
+        <x-loading :loading="xprofiler_processes_loading" top="40vh" size="middle" type="dot"></x-loading>
       </div>
 
       <x-error-message
         v-if="xprofiler_processes_load_error"
         :message="xprofiler_processes_load_error"
-        top="calc(35vh - 50px)"
+        top="calc(40vh - 22px)"
       ></x-error-message>
 
       <!-- show process panel -->
@@ -39,7 +39,7 @@
         <x-error-message
           v-if="xprofiler_processes_load_error"
           :message="xprofiler_processes_load_error"
-          top="25"
+          top="30"
         ></x-error-message>
 
         <!-- show process line -->
@@ -72,13 +72,13 @@
 
         <!-- loading -->
         <div style="text-align: center">
-          <x-loading :loading="xprofiler_processes_loading" :top="160" size="middle" type="dot"></x-loading>
+          <x-loading :loading="xprofiler_processes_loading" top="calc(50vh - 175px)" size="middle" type="dot"></x-loading>
         </div>
 
         <x-error-message
           v-if="xprofiler_processes_load_error"
           :message="xprofiler_processes_load_error"
-          top="200"
+          top="calc(50vh - 197px)"
         ></x-error-message>
 
         <!-- show chart -->
