@@ -14,6 +14,7 @@ import system from "@/stores/instance/system";
 import errors from "@/stores/instance/errors";
 import modules from "@/stores/instance/modules";
 import file from "@/stores/file/file";
+import wrapper from "@/stores/file/wrapper";
 
 export default {
   state: {
@@ -105,7 +106,13 @@ export default {
           }
         },
 
-        "file": { ...file }, // dashboard/file
+        "file": { // dashboard/file
+          ...file,
+
+          modules: {
+            wrapper: { ...wrapper }  // dashboard/file/wrapper
+          }
+        },
       }
     }
   }

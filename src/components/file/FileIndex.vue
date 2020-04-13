@@ -10,6 +10,9 @@
 
     <!-- file list -->
     <x-file-list class="file-list"></x-file-list>
+
+    <!-- analytics page wrapper -->
+    <x-analytics></x-analytics>
   </div>
 </template>
 
@@ -18,6 +21,7 @@ import fileModule from "@/javascripts/file/FileIndex";
 import xUploader from "@/components/file/upload/Uploader";
 import xTypeFilter from "@/components/file/TypeFilter";
 import xFileList from "@/components/file/list/FileList";
+import xAnalytics from "@/components/file/Analytics";
 
 export default {
   props: {
@@ -29,7 +33,8 @@ export default {
   components: {
     "x-uploader": xUploader,
     "x-type-filter": xTypeFilter,
-    "x-file-list": xFileList
+    "x-file-list": xFileList,
+    "x-analytics": xAnalytics
   },
 
   ...fileModule

@@ -3,6 +3,7 @@
 import * as utils from "@/javascripts/lib/utils";
 
 const { mapMutations, mapActions } = utils.createNamespace("dashboard/file");
+const { mapMutations: mapMutationsWrapper } = utils.createNamespace("dashboard/file/wrapper");
 
 export default {
   created() {
@@ -16,6 +17,8 @@ export default {
 
   methods: {
     ...mapMutations(["setErrorModal"]),
+
+    ...mapMutationsWrapper(["setDiagDrawer", "setGcDrawer"]),
 
     ...mapActions(["doTransfer", "doFavor"]),
 
@@ -159,6 +162,16 @@ export default {
       this.operations = operations;
     },
 
+    doAnalytics({ fileType, fileId }) {
+      if (fileType === "diag") {
+        this.setDiagDrawer({ status: true, diagData: { fileType, fileId } });
+      }
+
+      if (fileType === "gcprofile") {
+        this.setGcDrawer({ status: true, gcData: { fileType, fileId } });
+      }
+    },
+
     doFileFavor(opt) {
       const { fileId, fileType, fileFavor } = opt.raw;
       const favor = fileFavor === undefined || fileFavor === 0 ? 1 : 0;
@@ -198,6 +211,10 @@ export default {
       const { raw, label } = opt;
       if (!raw) {
         return;
+      }
+
+      if (label === "分析") {
+        this.doAnalytics(raw);
       }
 
       if (label === "下载") {
