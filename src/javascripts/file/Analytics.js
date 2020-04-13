@@ -6,7 +6,7 @@ const { mapState, mapMutations } = utils.createNamespace("dashboard/file/wrapper
 const { mapMethods: mapMethodsDiag, mapWatch: mapWatchDiag, handleMounted: handleMountedDiag } =
   utils.drawerRouteFactory("diagDrawerKey", "diagDrawer", "diag", "setDiagDrawer", "diagData");
 const { mapMethods: mapMethodsGc, mapWatch: mapWatchGc, handleMounted: handleMountedGc } =
-  utils.drawerRouteFactory("gcDrawerKey", "gcDrawer", "gc", "setGcDrawer");
+  utils.drawerRouteFactory("gcDrawerKey", "gcDrawer", "gc", "setGcDrawer", "gcData");
 
 export default {
   mounted() {
@@ -31,7 +31,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["diagDrawer", "diagData", "gcDrawer"])
+    ...mapState(["diagDrawer", "diagData", "gcDrawer", "gcData"])
   },
 
   watch: {

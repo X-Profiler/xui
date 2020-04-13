@@ -1,5 +1,7 @@
 <template>
-  <div>{{ diagData }}</div>
+  <div>
+    <x-dashboard-title appName="诊断报告分析" :dashboardTitle="diagData.fileBasename" line></x-dashboard-title>
+  </div>
 </template>
 
 <script>
