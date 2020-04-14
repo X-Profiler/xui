@@ -22,6 +22,14 @@ export default {
   computed: {
     ...mapState(["diagData"]),
 
-    ...mapStateAnalytics(["file_loading", "file_load_error", "file_data"])
+    ...mapStateAnalytics(["file_loading", "file_load_error", "file_data"]),
+
+    overviewData() {
+      return [
+        { lable: "文件大小", value: "12.3MB" },
+        { lable: "文件大小", value: "12.3MB" },
+        { lable: "文件大小", value: "12.3MB" },
+        { lable: "文件大小", value: "12.3MB" }];
+    }
   }
 };
