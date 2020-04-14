@@ -4,10 +4,10 @@
 
     <div class="diag-content">
       <div class="diag-loading">
-        <x-loading :loading="file_loading" top="40vh" type="dot" size="large"></x-loading>
+        <x-loading :loading="file_loading" top="calc(40vh - 50px)" type="dot" size="large"></x-loading>
       </div>
 
-      <x-error-message v-show="file_load_error" :message="file_load_error" top="40vh"></x-error-message>
+      <x-error-message v-show="file_load_error" :message="file_load_error" top="calc(40vh - 57px)"></x-error-message>
 
       <div v-if="!file_loading && !file_load_error">{{ file_data }}</div>
     </div>
