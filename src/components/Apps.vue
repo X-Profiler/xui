@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- loading -->
-    <x-loading :top="220" :loading="app_list_loading" type="dot"></x-loading>
+    <x-loading top="35vh" :loading="app_list_loading" type="dot"></x-loading>
 
     <!-- error message -->
-    <x-error-message v-show="app_list_load_error" :message="app_list_load_error" :top="200"></x-error-message>
+    <x-error-message v-show="app_list_load_error" :message="app_list_load_error" top="calc(35vh - 20px)"></x-error-message>
 
     <!-- app list -->
     <transition name="slide">
