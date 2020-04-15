@@ -61,5 +61,6 @@ export function watchQueryKey(queryKey, componentKey, args) {
     this.$router.replace({ path: this.$route.path, query: $query });
   } else {
     this.$router.push({ path: this.$route.path, query: $query });
+    return true;
   }
 }

@@ -22,8 +22,19 @@ export default {
 }
 
 .group {
-  flex-basis: 500px;
   flex-grow: 1;
+  flex-shrink: 0;
   text-align: center;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.value {
+  margin-top: 5px;
+  font-family: Avenir,Helvetica,Arial,sans-serif;
+  font-size: 16px;
 }
 </style>
