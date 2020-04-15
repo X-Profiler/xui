@@ -1,5 +1,5 @@
 <template>
-  <div ref="tooltip" class="tooltip box-shadow">
+  <div ref="tooltip" class="tooltip box-shadow" :style="getTooltipStyle">
     <!-- title -->
     <slot name="header"></slot>
 
@@ -12,7 +12,13 @@
 </template>
 
 <script>
+import { isNumber } from "../../javascripts/lib/utils";
+
 export default {
+  props: {
+    minWidth: Number
+  },
+
   mounted() {
     this.tooltip = this.$refs.tooltip;
   },
@@ -22,7 +28,7 @@ export default {
       return window.getComputedStyle(this.tooltip);
     },
 
-    showToolTip(maxWidth, event) {
+    showToolTip(maxWidth, event, offsetX = 0) {
       const style = this.tooltip.style;
       // enable tooltip
       style.zIndex = 9999;
@@ -33,7 +39,7 @@ export default {
       const tooltipHeight = parseInt(computedStyle.height, 10);
       const tooltipWidth = parseInt(computedStyle.width, 10);
 
-      const pageX = event.pageX;
+      const pageX = event.pageX - offsetX;
       const pageY = event.pageY;
 
       const x =
@@ -52,6 +58,17 @@ export default {
       style.display = "none";
       style.left = "0";
       style.top = "0";
+    }
+  },
+
+  computed: {
+    getTooltipStyle() {
+      let style = "";
+      if (isNumber(this.minWidth)) {
+        style += `min-width: ${this.minWidth}px;`;
+      }
+
+      return style;
     }
   }
 };
