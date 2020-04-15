@@ -15,6 +15,9 @@
 
         <!-- diag tab -->
         <x-diag-tab class="diag-tab"></x-diag-tab>
+
+        <!-- diag tab content -->
+        <x-diag-content></x-diag-content>
       </div>
     </div>
   </div>
@@ -24,11 +27,13 @@
 import diagModule from "@/javascripts/analytics/diag/DiagIndex";
 import xOverview from "@/components/analytics/Overview";
 import xDiagTab from "@/components/analytics/diag/DiagTab";
+import xDiagContent from "@/components/analytics/diag/DiagContent";
 
 export default {
   components: {
     "x-overview": xOverview,
-    "x-diag-tab": xDiagTab
+    "x-diag-tab": xDiagTab,
+    "x-diag-content": xDiagContent
   },
 
   ...diagModule
@@ -45,10 +50,10 @@ export default {
 }
 
 .diag-detail {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .diag-tab {
-  margin-top: 17px;
+  margin-top: 23px;
 }
 </style>

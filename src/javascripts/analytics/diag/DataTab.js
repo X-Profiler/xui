@@ -3,6 +3,7 @@
 import * as utils from "@/javascripts/lib/utils";
 
 const { mapMutations } = utils.createNamespace("dashboard/analytics");
+const { mapMutations: mapMutationsDiag } = utils.createNamespace("dashboard/analytics/diag");
 
 export default {
   created() {
@@ -14,7 +15,9 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["incrementGoBack", "rsetGoBack"])
+    ...mapMutations(["incrementGoBack", "rsetGoBack"]),
+
+    ...mapMutationsDiag(["setDiagTab"])
   },
 
   watch: {
@@ -27,6 +30,8 @@ export default {
       if (goForward) {
         this.incrementGoBack();
       }
+
+      this.setDiagTab(this.selectedTab);
     },
   }
 };

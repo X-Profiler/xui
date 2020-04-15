@@ -29,12 +29,12 @@ export default {
 
 .label {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .value {
   margin-top: 5px;
   font-family: Avenir,Helvetica,Arial,sans-serif;
-  font-size: 16px;
+  font-size: 15px;
 }
 </style>
