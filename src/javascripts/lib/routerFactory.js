@@ -88,7 +88,7 @@ function routeFactory(openName, closeName, ...args) {
                 Object.assign($query, route.query, {
                   [queryKey]: undefined,
                   [routeData]: undefined
-                })
+                });
               }
               this.$router.push({ path: route.path, query: $query });
             } else {
