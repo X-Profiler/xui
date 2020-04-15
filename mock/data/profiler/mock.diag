@@ -1,14 +1,62 @@
 
 {
-  "pid": 93106,
+  "pid": 14886,
   "location": "Active Dump",
   "message": "Active Dump",
   "nodeVersion": "v12.16.1",
   "osVersion": "Darwin / 18.7.0 / Darwin Kernel Version 18.7.0: Sun Dec  1 18:59:03 PST 2019; root:xnu-4903.278.19~1/RELEASE_X86_64 / hyj1991-MacBook-Pro x86_64",
-  "loadTime": "2020-04-14 11:01:48",
-  "dumpTime": "2020-04-14 11:01:56",
+  "loadTime": "2020-04-15 09:37:17",
+  "dumpTime": "2020-04-15 09:37:48",
   "vmState": "EXTERNAL",
   "jsStacks": [
+    {
+      "pcAddress": "0x102969288",
+      "functionName": "regexp",
+      "scriptName": "/Users/hyj1991/git/monitor/xprofiler/demo.js",
+      "lineNumber": 30,
+      "column": 17,
+      "frameType": "userjs"
+    },
+    {
+      "pcAddress": "0x100950919",
+      "functionName": "anonymous",
+      "scriptName": "/Users/hyj1991/git/monitor/xprofiler/demo.js",
+      "lineNumber": 37,
+      "column": 3,
+      "frameType": "userjs"
+    },
+    {
+      "pcAddress": "0x10093d4e7",
+      "functionName": "anonymous",
+      "scriptName": "/Users/hyj1991/git/monitor/xprofiler/patch/http.js",
+      "lineNumber": 33,
+      "column": 31,
+      "frameType": "userjs"
+    },
+    {
+      "pcAddress": "0x20ab1c0483ed",
+      "functionName": "emit",
+      "scriptName": "events.js",
+      "lineNumber": 311,
+      "column": 20,
+      "frameType": "userjs"
+    },
+    {
+      "pcAddress": "0x20ab89a3e384",
+      "functionName": "parserOnIncoming",
+      "scriptName": "_http_server.js",
+      "lineNumber": 784,
+      "column": 12,
+      "frameType": "userjs"
+    },
+    {
+      "pcAddress": "0x20ab89a3e0cd",
+      "functionName": "parserOnHeadersComplete",
+      "scriptName": "_http_common.js",
+      "lineNumber": 119,
+      "column": 17,
+      "frameType": "userjs"
+    }
   ],
   "nativeStacks": [
     {
@@ -17,49 +65,74 @@
       "sharedObjectName": "/Users/hyj1991/git/monitor/xprofiler/build/Release/xprofiler.node"
     },
     {
-      "pcAddress": "0x102e18a55",
-      "symbolName": "xprofiler::AsyncSendCallback(uv_async_s*)",
+      "pcAddress": "0x102e207a4",
+      "symbolName": "xprofiler::RequestInterruptCallback(v8::Isolate*, void*)",
       "sharedObjectName": "/Users/hyj1991/git/monitor/xprofiler/build/Release/xprofiler.node"
     },
     {
-      "pcAddress": "0x1008ba8a9",
-      "symbolName": "uv__async_io",
+      "pcAddress": "0x1002b711f",
+      "symbolName": "v8::internal::Isolate::InvokeApiInterruptCallbacks()",
       "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
     },
     {
-      "pcAddress": "0x1008cb77f",
-      "symbolName": "uv__io_poll",
+      "pcAddress": "0x1002cc579",
+      "symbolName": "v8::internal::StackGuard::HandleInterrupts()",
       "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
     },
     {
-      "pcAddress": "0x1008bad36",
-      "symbolName": "uv_run",
+      "pcAddress": "0x1005e41e5",
+      "symbolName": "v8::internal::NativeRegExpMacroAssembler::CheckStackGuardState(v8::internal::Isolate*, int, v8::internal::RegExp::CallOrigin, unsigned long*, v8::internal::Code, unsigned long*, unsigned char const**, unsigned char const**)",
       "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
     },
     {
-      "pcAddress": "0x1000b66fa",
-      "symbolName": "node::NodeMainInstance::Run()",
+      "pcAddress": "0x10085b537",
+      "symbolName": "v8::internal::RegExpMacroAssemblerX64::CheckStackGuardState(unsigned long*, unsigned long, unsigned long)",
       "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
     },
     {
-      "pcAddress": "0x10005dc1f",
-      "symbolName": "node::Start(int, char**)",
+      "pcAddress": "0x1140595049c5"
+    },
+    {
+      "pcAddress": "0x1005e4461",
+      "symbolName": "v8::internal::NativeRegExpMacroAssembler::Execute(v8::internal::String, int, unsigned char const*, unsigned char const*, int*, int, v8::internal::Isolate*, v8::internal::JSRegExp)",
       "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
     },
     {
-      "pcAddress": "0x7fff762063d5",
-      "symbolName": "start",
-      "sharedObjectName": "/usr/lib/system/libdyld.dylib"
+      "pcAddress": "0x1005e4395",
+      "symbolName": "v8::internal::NativeRegExpMacroAssembler::Match(v8::internal::Handle<v8::internal::JSRegExp>, v8::internal::Handle<v8::internal::String>, int*, int, int, v8::internal::Isolate*)",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
     },
     {
-      "pcAddress": "0x2"
+      "pcAddress": "0x1005f0290",
+      "symbolName": "v8::internal::RegExpImpl::IrregexpExecRaw(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSRegExp>, v8::internal::Handle<v8::internal::String>, int, int*, int)",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
+    },
+    {
+      "pcAddress": "0x1005ee86a",
+      "symbolName": "v8::internal::RegExpImpl::IrregexpExec(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSRegExp>, v8::internal::Handle<v8::internal::String>, int, v8::internal::Handle<v8::internal::RegExpMatchInfo>)",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
+    },
+    {
+      "pcAddress": "0x10063ead4",
+      "symbolName": "v8::internal::Runtime_RegExpExec(int, unsigned long*, v8::internal::Isolate*)",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
+    },
+    {
+      "pcAddress": "0x100950919",
+      "symbolName": "Builtins_CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
+    },
+    {
+      "pcAddress": "0x10098dad9",
+      "symbolName": "Builtins_RegExpReplace",
+      "sharedObjectName": "/Users/hyj1991/.tnvm/versions/node/v12.16.1/bin/node"
     }
   ],
   "heapStatistics": {
-    "heapTotal": 5697536,
-    "heapTotalCommitted": 4959704,
-    "heapTotalUsed": 3469952,
-    "heapTotalAvailable": 2193612480,
+    "heapTotal": 5959680,
+    "heapTotalCommitted": 5071712,
+    "heapTotalUsed": 3635240,
+    "heapTotalAvailable": 2193293832,
     "heapLimit": 2197815296
   },
   "heapSpaceStatistics": [
@@ -74,33 +147,33 @@
     {
       "name": "new_space",
       "size": 2097152,
-      "committed": 2068088,
+      "committed": 2069296,
       "capacity": 1047456,
-      "used": 602416,
-      "available": 445040
+      "used": 657184,
+      "available": 390272
     },
     {
       "name": "old_space",
-      "size": 2244608,
-      "committed": 2190648,
-      "capacity": 2190352,
-      "used": 2188128,
-      "available": 2224
+      "size": 2506752,
+      "committed": 2274536,
+      "capacity": 2272224,
+      "used": 2271736,
+      "available": 488
     },
     {
       "name": "code_space",
       "size": 430080,
-      "committed": 175392,
-      "capacity": 159008,
-      "used": 159008,
+      "committed": 179744,
+      "capacity": 163360,
+      "used": 163360,
       "available": 0
     },
     {
       "name": "map_space",
       "size": 528384,
-      "committed": 357320,
-      "capacity": 356480,
-      "used": 356480,
+      "committed": 379880,
+      "capacity": 379040,
+      "used": 379040,
       "available": 0
     },
     {
@@ -131,56 +204,56 @@
   "libuvHandles": [
     {
       "type": "async",
-      "address": "0x102d07400",
+      "address": "0x102d030f0",
       "hasRef": 0,
       "isActive": 1,
       "detail": ""
     },
     {
       "type": "timer",
-      "address": "0x10380ad28",
+      "address": "0x103046328",
       "hasRef": 0,
       "isActive": 1,
-      "detail": "repeat: 0, timeout in: 57050 ms"
+      "detail": "repeat: 0, timeout in: 565 ms"
     },
     {
       "type": "check",
-      "address": "0x10380adc0",
+      "address": "0x1030463c0",
       "hasRef": 0,
       "isActive": 1,
       "detail": ""
     },
     {
       "type": "idle",
-      "address": "0x10380ae38",
+      "address": "0x103046438",
       "hasRef": 1,
       "isActive": 0,
       "detail": ""
     },
     {
       "type": "prepare",
-      "address": "0x10380aeb0",
+      "address": "0x1030464b0",
       "hasRef": 0,
       "isActive": 0,
       "detail": ""
     },
     {
       "type": "check",
-      "address": "0x10380af28",
+      "address": "0x103046528",
       "hasRef": 0,
       "isActive": 0,
       "detail": ""
     },
     {
       "type": "async",
-      "address": "0x10380afa0",
+      "address": "0x1030465a0",
       "hasRef": 0,
       "isActive": 1,
       "detail": ""
     },
     {
       "type": "async",
-      "address": "0x102b1aa80",
+      "address": "0x102b1e440",
       "hasRef": 0,
       "isActive": 1,
       "detail": ""
@@ -215,17 +288,45 @@
     },
     {
       "type": "tcp",
-      "address": "0x102c07c18",
+      "address": "0x102a41938",
       "hasRef": 1,
       "isActive": 1,
       "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
     },
     {
       "type": "timer",
-      "address": "0x102b329c8",
+      "address": "0x102c04e38",
       "hasRef": 0,
       "isActive": 1,
-      "detail": "repeat: 0, timeout in: 212 ms"
+      "detail": "repeat: 0, timeout in: 249 ms"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102b1ab08",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": "::1:9999 connected to ::1:50527, send buffer size: 146808, recv buffer size: 407266, file descriptor: 23, write queue size: 0, readable, writable"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102b503e8",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": "::1:9999 connected to ::1:50528, send buffer size: 146808, recv buffer size: 407800, file descriptor: 24, write queue size: 0, readable, writable"
+    },
+    {
+      "type": "tty",
+      "address": "0x102d04a78",
+      "hasRef": 1,
+      "isActive": 0,
+      "detail": "width: 362, height: 82, file descriptor: 25, write queue size: 0, readable, writable"
+    },
+    {
+      "type": "signal",
+      "address": "0x102d04c20",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": "signum: 28 (SIGWINCH)"
     }
   ],
   "system": {

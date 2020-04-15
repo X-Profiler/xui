@@ -9,11 +9,21 @@ export default {
   namespaced: true,
 
   state: {
-    ...fileState
+    ...fileState,
+
+    goBack: 1
   },
 
   mutations: {
-    ...fileMutations
+    ...fileMutations,
+
+    incrementGoBack(state) {
+      state.goBack++;
+    },
+
+    rsetGoBack(state) {
+      state.goBack = 1;
+    }
   },
 
   actions: {

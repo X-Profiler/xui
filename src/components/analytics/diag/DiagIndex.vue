@@ -9,8 +9,12 @@
 
       <x-error-message v-show="file_load_error" :message="file_load_error" top="calc(40vh - 57px)"></x-error-message>
 
-      <div v-if="!file_loading && !file_load_error">
+      <div v-if="!file_loading && !file_load_error" class="diag-detail">
+        <!-- diag overview -->
         <x-overview :data="overviewData"></x-overview>
+
+        <!-- diag tab -->
+        <x-diag-tab class="diag-tab"></x-diag-tab>
       </div>
     </div>
   </div>
@@ -19,10 +23,12 @@
 <script>
 import diagModule from "@/javascripts/analytics/diag/DiagIndex";
 import xOverview from "@/components/analytics/Overview";
+import xDiagTab from "@/components/analytics/diag/DiagTab";
 
 export default {
   components: {
-    "x-overview": xOverview
+    "x-overview": xOverview,
+    "x-diag-tab": xDiagTab
   },
 
   ...diagModule
@@ -36,5 +42,13 @@ export default {
 
 .diag-loading {
   text-align: center;
+}
+
+.diag-detail {
+  margin-top: 20px;
+}
+
+.diag-tab {
+  margin-top: 17px;
 }
 </style>

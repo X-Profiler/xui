@@ -1,6 +1,7 @@
 "use strict";
 
 import { createCancelToken, cancelRequest } from "@/javascripts/lib/request";
+import { isNumber } from "@/javascripts/lib/common";
 
 const routeCanBackMap = {};
 
@@ -76,13 +77,22 @@ function routeFactory(openName, closeName, ...args) {
           if (route.query[queryKey] === tag) {
             if (!routeCanBackMap[queryKey] && this.$store.state.first) {
               this.$store.commit("first", false);
-              const query = Object.assign({}, route.query, {
-                [queryKey]: undefined,
-                [routeData]: undefined
-              });
-              this.$router.push({ path: route.path, query });
+              const $query = {};
+              if (Array.isArray(this.whiteQueryKeys)) {
+                for (const key of this.whiteQueryKeys) {
+                  $query[key] = route.query[key];
+                }
+                $query[queryKey] = undefined;
+                $query[routeData] = undefined;
+              } else {
+                Object.assign($query, route.query, {
+                  [queryKey]: undefined,
+                  [routeData]: undefined
+                })
+              }
+              this.$router.push({ path: route.path, query: $query });
             } else {
-              this.$router.go(-1);
+              this.$router.go(isNumber(this.goBack) ? -(this.goBack) : -1);
               routeCanBackMap[queryKey] = false;
             }
           }

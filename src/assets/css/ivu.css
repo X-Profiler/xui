@@ -124,3 +124,19 @@
   background-color: #38a956;
   border-color: #38a956;
 }
+
+.diag-tab > .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
+  border-radius: 0;
+  background: #fff;
+  font-family: Avenir,Helvetica,Arial,sans-serif;
+}
+.diag-tab > .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active {
+  border-top: 1px solid #c45a65;
+  border-left: 1px solid #c45a65;
+  border-right: 1px solid #c45a65;
+  color: #c45a65;
+}
+
+.diag-tab > .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
+  margin-right: 7px;
+}

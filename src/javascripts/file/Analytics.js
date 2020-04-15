@@ -3,6 +3,7 @@
 import * as utils from "@/javascripts/lib/utils";
 
 const { mapState, mapMutations } = utils.createNamespace("dashboard/file/wrapper");
+const { mapState: mapStateAnalytics } = utils.createNamespace("dashboard/analytics");
 const { mapMethods: mapMethodsDiag, mapWatch: mapWatchDiag, handleMounted: handleMountedDiag } =
   utils.drawerRouteFactory("diagDrawerKey", "diagDrawer", "diag", "setDiagDrawer", "diagData");
 const { mapMethods: mapMethodsGc, mapWatch: mapWatchGc, handleMounted: handleMountedGc } =
@@ -31,7 +32,9 @@ export default {
   },
 
   computed: {
-    ...mapState(["diagDrawer", "diagData", "gcDrawer", "gcData"])
+    ...mapState(["diagDrawer", "diagData", "gcDrawer", "gcData"]),
+
+    ...mapStateAnalytics(["goBack"])
   },
 
   watch: {

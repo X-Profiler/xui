@@ -30,7 +30,8 @@ export default {
   data() {
     return {
       diagDrawerKey: "diag-analytics",
-      gcDrawerKey: "gc-analytics"
+      gcDrawerKey: "gc-analytics",
+      whiteQueryKeys: ["filterType", "page"]
     };
   },
 
