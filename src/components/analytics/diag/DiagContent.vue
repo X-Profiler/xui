@@ -9,10 +9,12 @@
 <script>
 import diagContentModule from "@/javascripts/analytics/diag/DiagContent";
 import xJavaScript from "@/components/analytics/diag/display/JavaScript";
+import xNative from "@/components/analytics/diag/display/Native";
 
 export default {
   components: {
-    "x-javascript": xJavaScript
+    "x-javascript": xJavaScript,
+    "x-native": xNative
   },
 
   ...diagContentModule

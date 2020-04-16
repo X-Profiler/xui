@@ -2,14 +2,11 @@
   <div>
     <!-- heap statistics -->
     <div class="section-title">进程堆信息</div>
-
     <x-heap></x-heap>
 
     <!-- javascripts stacks -->
     <div class="section-title" style="margin-top: 25px;">函数调用栈</div>
-
     <x-table
-      class="js-stack"
       style="margin-top: 15px;"
       :columns="columns"
       :data="jsStacks"
@@ -33,7 +30,7 @@
 
       <!-- frame detail -->
       <template v-slot:frameDetail="{ row }">
-        <div class="padding">
+        <div class="padding frame-detail">
           <code>{{ row.frameDetail }}</code>
         </div>
       </template>
@@ -78,6 +75,11 @@ export default {
 
 <style scoped>
 .padding {
-  padding: 5px 0;
+  padding: 4px 0;
+}
+
+.frame-detail {
+  word-wrap: break-word;
+  word-break: break-all;
 }
 </style>
