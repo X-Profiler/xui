@@ -2,13 +2,11 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState, mapMutations } = utils.createNamespace("dashboard/analytics");
+const { mapState } = utils.createNamespace("dashboard/analytics");
 const { mapMutations: mapMutationsDiag } = utils.createNamespace("dashboard/analytics/diag");
 
 export default {
   methods: {
-    ...mapMutations(["incrementGoBack", "rsetGoBack"]),
-
     ...mapMutationsDiag(["setUvType"]),
 
     getStatistics(type) {
@@ -76,10 +74,6 @@ export default {
 
   watch: {
     $route(...args) {
-      const [newValue, oldRoute] = args;
-      if (oldRoute.query.uvType === this.selectedUvType && newValue.query.uvType !== this.selectedUvType) {
-        this.incrementGoBack();
-      }
       utils.watchRoute.call(this, args, "uvType", "selectedUvType");
     },
 
@@ -94,10 +88,7 @@ export default {
         return;
       }
 
-      const goForward = utils.watchQueryKey.call(this, "uvType", "selectedUvType", args);
-      if (goForward) {
-        this.incrementGoBack();
-      }
+      utils.watchQueryKey.call(this, "uvType", "selectedUvType", args);
     }
   }
 };
