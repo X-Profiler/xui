@@ -80,7 +80,7 @@ export default {
 
 .heap-item {
   text-align: center;
-  flex: 1 0 500px;
+  flex: 1 0 300px;
 }
 
 .sub-title {

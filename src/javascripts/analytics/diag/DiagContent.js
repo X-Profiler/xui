@@ -17,6 +17,9 @@ export default {
         case "jsStacks":
           component = "x-javascript";
           break;
+        case "nativeStacks":
+          component = "x-native";
+          break;
         default:
           break;
       }
