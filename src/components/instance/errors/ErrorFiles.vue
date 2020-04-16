@@ -5,7 +5,6 @@
         v-show="files_data.length"
         v-model="selectedErrorFile"
         class="agent-selector error-files-selector"
-        filterable
       >
         <Option
           v-for="(item, index) in files_data"

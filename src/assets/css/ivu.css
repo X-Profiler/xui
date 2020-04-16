@@ -95,12 +95,8 @@
   background-color: rgb(25, 190, 107, 0.1);
 }
 
-.type-filter .ivu-select-dropdown, .file-filter .ivu-select-dropdown {
-  min-height: 283px;
-}
-
-.upload-selector .ivu-select-dropdown, .file-filter .ivu-select-dropdown {
-  min-height: 221px;
+.agent-selector .ivu-select-dropdown, .file-filter .ivu-select-dropdown {
+  max-height: 500px;
 }
 
 .opt-group .ivu-btn-default,

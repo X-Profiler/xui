@@ -20,11 +20,11 @@ export default {
         { label: "系统信息", value: "system" }
       ],
       nessaryQueryArgs: [
+        "filterType",
+        "page",
         "diag-analytics",
         "diagTab",
-        "diagData",
-        "filterType",
-        "page"
+        "diagData"
       ]
     };
   },

@@ -13,17 +13,17 @@ export default {
 
       return nativeStacks.map(frame => {
         const { pcAddress, symbolName, sharedObjectName } = frame;
-        let frameDetail = '';
+        let frameDetail = "";
         if (!symbolName && !sharedObjectName) {
-          frameDetail = '<unknown frame>'
+          frameDetail = "<unknown frame>";
         } else {
-          frameDetail = `${symbolName || ""}${sharedObjectName ? ` [${sharedObjectName}]` : ''}`;
+          frameDetail = `${symbolName || ""}${sharedObjectName ? ` [${sharedObjectName}]` : ""}`;
         }
 
         return {
           pcAddress,
           frameDetail
-        }
+        };
       });
     }
   }

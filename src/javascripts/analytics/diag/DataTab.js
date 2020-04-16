@@ -14,6 +14,10 @@ export default {
     this.rsetGoBack();
   },
 
+  beforeDestroy() {
+    this.rsetGoBack();
+  },
+
   methods: {
     ...mapMutations(["incrementGoBack", "rsetGoBack"]),
 

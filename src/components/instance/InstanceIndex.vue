@@ -15,7 +15,6 @@
               v-model="selectedAgentId"
               class="agent-selector"
               size="small"
-              filterable
               :placeholder="placeholder"
               :not-found-text="notFoundText"
             >
