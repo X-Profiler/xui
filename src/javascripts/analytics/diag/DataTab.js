@@ -22,6 +22,10 @@ export default {
 
   watch: {
     $route(...args) {
+      const [newValue, oldRoute] = args;
+      if (oldRoute.query.diagTab === this.selectedTab && newValue.query.diagTab !== this.selectedTab) {
+        this.incrementGoBack();
+      }
       utils.watchRoute.call(this, args, "diagTab", "selectedTab");
     },
 

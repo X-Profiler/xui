@@ -15,7 +15,7 @@ export default {
       let component = "";
       switch (this.diagTab) {
         case "jsStacks":
-          component = "x-javascript"
+          component = "x-javascript";
           break;
         default:
           break;

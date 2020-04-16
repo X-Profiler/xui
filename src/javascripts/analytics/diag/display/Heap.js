@@ -54,7 +54,7 @@ export default {
         heapTotal, heapTotalUsed, heapLimit,
         usedTotalStyle, usedTotalPect: `${usedTotalPect.toFixed(2)}%`,
         usedLimitStyle, usedLimtPect: `${usedLimtPect.toFixed(2)}%`,
-      }
+      };
     },
 
     heapSpaces() {
@@ -73,7 +73,7 @@ export default {
           width, color,
           name: space.name,
           size: space.size
-        }
+        };
       });
     }
   }
