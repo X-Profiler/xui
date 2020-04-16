@@ -9,16 +9,18 @@
 
       <x-error-message v-show="file_load_error" :message="file_load_error" top="calc(40vh - 57px)"></x-error-message>
 
-      <div v-if="!file_loading && !file_load_error" class="diag-detail">
-        <!-- diag overview -->
-        <x-overview :data="overviewData"></x-overview>
+      <transition name="slide-noward">
+        <div v-if="!file_loading && !file_load_error" class="diag-detail">
+          <!-- diag overview -->
+          <x-overview :data="overviewData"></x-overview>
 
-        <!-- diag tab -->
-        <x-diag-tab class="diag-tab"></x-diag-tab>
+          <!-- diag tab -->
+          <x-diag-tab class="diag-tab"></x-diag-tab>
 
-        <!-- diag tab content -->
-        <x-diag-content></x-diag-content>
-      </div>
+          <!-- diag tab content -->
+          <x-diag-content></x-diag-content>
+        </div>
+      </transition>
     </div>
   </div>
 </template>

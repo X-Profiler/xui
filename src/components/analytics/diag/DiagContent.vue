@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition name="slide">
+    <transition name="slide-noward">
       <component v-if="diagTab" :is="activeComponent" :data="file_data"></component>
     </transition>
   </div>
