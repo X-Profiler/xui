@@ -17,7 +17,6 @@
           v-show="files_data.length"
           v-model="selectedModuleFile"
           class="agent-selector module-files-selector"
-          filterable
         >
           <Option
             v-for="(item, index) in files_data"

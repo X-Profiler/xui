@@ -20,6 +20,9 @@ export default {
         case "nativeStacks":
           component = "x-native";
           break;
+        case "libuvHandles":
+          component = "x-libuv";
+          break;
         default:
           break;
       }
