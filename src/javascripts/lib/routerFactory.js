@@ -75,7 +75,7 @@ function routeFactory(openName, closeName, ...args) {
         } else {
           const route = this.$route;
           if (route.query[queryKey] === tag) {
-            if (!routeCanBackMap[queryKey] && this.$store.state.first) {
+            if (!routeCanBackMap[queryKey] && this.$store.state.first || this.forceGoBack) {
               this.$store.commit("first", false);
               const $query = {};
               if (Array.isArray(this.whiteQueryKeys)) {
@@ -92,7 +92,7 @@ function routeFactory(openName, closeName, ...args) {
               }
               this.$router.push({ path: route.path, query: $query });
             } else {
-              this.$router.go(isNumber(this.goBack) ? -(this.goBack) : -1);
+              this.$router.go(-1);
               routeCanBackMap[queryKey] = false;
             }
           }
