@@ -1,8 +1,8 @@
 "use strict";
 
 import * as utils from "@/javascripts/lib/utils";
-import { createLaterFunction } from "@/javascripts/lib/utils";
 
+import { createLaterFunction } from "@/javascripts/lib/utils";
 const { mapState } = utils.createNamespace("dashboard/instance/process");
 const { mapState: mapStateAnalytics } = utils.createNamespace("dashboard/analytics");
 
