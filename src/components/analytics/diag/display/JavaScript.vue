@@ -40,7 +40,7 @@
 
 <script>
 import javascriptModule from "@/javascripts/analytics/diag/display/JavaScript";
-import xHeap from "./Heap";
+import xHeap from "@/components/analytics/diag/display/Heap";
 
 export default {
   components: {

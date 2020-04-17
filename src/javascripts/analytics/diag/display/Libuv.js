@@ -3,7 +3,7 @@
 import * as utils from "@/javascripts/lib/utils";
 
 const { mapState } = utils.createNamespace("dashboard/analytics");
-const { mapMutations: mapMutationsDiag } = utils.createNamespace("dashboard/analytics/diag");
+const { mapState: mapStateDiag, mapMutations: mapMutationsDiag } = utils.createNamespace("dashboard/analytics/diag");
 
 export default {
   methods: {
@@ -36,6 +36,8 @@ export default {
 
   computed: {
     ...mapState(["file_data"]),
+
+    ...mapStateDiag(["uvType"]),
 
     uvTypes() {
       const { libuvHandles } = this.file_data;

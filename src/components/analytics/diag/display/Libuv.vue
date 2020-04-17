@@ -35,6 +35,10 @@
           </Tag>
         </div>
       </div>
+
+      <transition name="slide-noward">
+        <x-handle style="margin-top: 15px;" v-if="uvType"></x-handle>
+      </transition>
     </div>
 
     <div v-else>
@@ -44,9 +48,14 @@
 </template>
 
 <script>
-import libuvModule from "../../../../javascripts/analytics/diag/display/Libuv";
+import libuvModule from "@/javascripts/analytics/diag/display/Libuv";
+import xHandles from "@/components/analytics/diag/display/Handles";
 
 export default {
+  components: {
+    "x-handle": xHandles
+  },
+
   data() {
     return {
       selectedUvType: undefined,

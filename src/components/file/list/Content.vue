@@ -74,10 +74,3 @@ export default {
   ...xContent
 };
 </script>
-
-<style scoped>
-.pagination {
-  margin-top: 15px;
-  text-align: right;
-}
-</style>
