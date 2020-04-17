@@ -66,11 +66,12 @@ export default {
       }
 
       return heapSpaceStatistics.map((space, index) => {
-        const width = `width: ${space.size / totapSpaceSize * 100}%;`;
+        const width = space.size / totapSpaceSize * 100;
         const color = `background-color: ${this.colors[index % this.colors.length]};`;
 
         return {
-          width, color,
+          width: `width: ${width}%;`, color,
+          rawWidth: width,
           name: space.name,
           size: space.size
         };
