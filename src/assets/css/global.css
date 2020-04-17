@@ -71,3 +71,8 @@ body::-webkit-scrollbar{
   font-weight: bold;
   text-align: left;
 }
+
+.pagination {
+  margin-top: 15px;
+  text-align: right;
+}

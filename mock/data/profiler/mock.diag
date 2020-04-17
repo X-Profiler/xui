@@ -289,7 +289,252 @@
     {
       "type": "tcp",
       "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
       "hasRef": 1,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 0,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 1,
+      "isActive": 1,
+      "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
+    },
+    {
+      "type": "tcp",
+      "address": "0x102a41938",
+      "hasRef": 0,
       "isActive": 1,
       "detail": ":::9999 (not connected), send buffer size: 131072, recv buffer size: 131072, file descriptor: 22, write queue size: 0"
     },

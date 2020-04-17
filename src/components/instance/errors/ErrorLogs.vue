@@ -76,9 +76,4 @@ export default {
 .error-content {
   font-size: 12px;
 }
-
-.pagination {
-  margin-top: 15px;
-  text-align: right;
-}
 </style>

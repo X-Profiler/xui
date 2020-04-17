@@ -1,7 +1,6 @@
 "use strict";
 
 import { createCancelToken, cancelRequest } from "@/javascripts/lib/request";
-import { isNumber } from "@/javascripts/lib/common";
 
 const routeCanBackMap = {};
 
