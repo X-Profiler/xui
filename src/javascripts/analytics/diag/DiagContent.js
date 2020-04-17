@@ -23,6 +23,9 @@ export default {
         case "libuvHandles":
           component = "x-libuv";
           break;
+        case "system":
+          component = "x-system-view";
+          break;
         default:
           break;
       }
