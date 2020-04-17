@@ -43,7 +43,7 @@
             <div
               v-for="(space, index) in heapSpaces"
               :key="index"
-              :style="space.width + 'height: 100%;' + (index !== 0 ? 'padding-left: 1px;': '')"
+              :style="space.width + 'height: 100%;' + (index !== 0 && space.rawWidth !== 0 ? 'padding-left: 1px;': '')"
               @mousemove.stop="mousemove(space.name, space.size, $event)"
               @mouseleave="mouseleave"
             >
@@ -94,17 +94,19 @@ export default {
   display: inline-block;
   margin-top: 10px;
   cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(132, 132, 132, 0.25) inset;
+}
+
+.heap-used {
+  height: 100%;
+  background-color: #884ea0;
+  transition: all 0.5s ease-out;
 }
 
 .heap-spaces {
   display: flex;
   justify-content: center;
   height: 100%;
-}
-
-.heap-used {
-  height: 100%;
-  background-color: #884ea0;
 }
 
 .heap-used:hover {

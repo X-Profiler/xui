@@ -15,6 +15,10 @@ export default {
     });
   },
 
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
     ...mapActionsAnalytics(["downloadFile"])
   },
@@ -25,19 +29,18 @@ export default {
     ...mapStateAnalytics(["file_loading", "file_load_error", "file_data"]),
 
     overviewData() {
-      const overview = [];
       const data = this.file_data;
       if (!data) {
-        return overview;
+        return [];
       }
 
-      const { pid, nodeVersion, loadTime, heapStatistics: { heapTotalUsed, heapLimit } } = data;
+      const { pid, nodeVersion, loadTime, heapStatistics: { heapTotalCommitted, heapTotalAvailable } } = data;
 
       return [
-        { lable: "ProcessID", value: pid },
-        { lable: "Node.js 版本", value: nodeVersion },
-        { lable: "堆内存状态", value: `${utils.formatSize(heapTotalUsed)} / ${utils.formatSize(heapLimit)}` },
-        { lable: "启动时间", value: loadTime }
+        { label: "ProcessID", value: pid },
+        { label: "Node.js 版本", value: nodeVersion },
+        { label: "堆内存状态", value: `${utils.formatSize(heapTotalCommitted)} / ${utils.formatSize(heapTotalAvailable)}` },
+        { label: "启动时间", value: loadTime }
       ];
     }
   }

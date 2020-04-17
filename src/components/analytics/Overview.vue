@@ -1,7 +1,7 @@
 <template>
   <div class="overview">
     <div v-for="(tab, index) in data" :key="index" class="group">
-      <div class="label">{{ tab.lable }}</div>
+      <div class="label">{{ tab.label }}</div>
       <div class="value">{{ tab.value }}</div>
     </div>
   </div>

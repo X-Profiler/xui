@@ -24,7 +24,7 @@ export default {
         return {
           key: tmp[0],
           value: tmp[1]
-        }
+        };
       });
     },
 

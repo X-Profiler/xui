@@ -13,7 +13,7 @@
     <div class="content">
       <!-- env -->
       <div class="system-section">Process Env</div>
-      <div v-for="(env, index) in systemEnv" :key="index" class="section-detail env-group">
+      <div v-for="(env, index) in systemEnv" :key="`env_${index}`" class="section-detail env-group">
         <Icon type="ios-arrow-forward" />
         <span class="env-key">&nbsp;{{ env.key }}</span>
         <span class="env-semi">:&nbsp;</span>
@@ -22,7 +22,7 @@
 
       <!-- resource limit -->
       <div class="system-section" style="margin-top: 15px;">Resource Limit</div>
-      <div v-for="(limit, index) in resourceLimits" :key="index" class="section-detail">
+      <div v-for="(limit, index) in resourceLimits" :key="`limit_${index}`" class="section-detail">
         <Icon type="ios-arrow-forward" />
         <span class="respurce-key">&nbsp;{{ limit.type }}</span>
         <span class="env-semi">:&nbsp;</span>
@@ -34,7 +34,7 @@
 
       <!--  -->
       <div class="system-section" style="margin-top: 15px;">Loaded Libraries</div>
-      <div v-for="(library, index) in loadedLibraries" :key="index" class="section-detail">
+      <div v-for="(library, index) in loadedLibraries" :key="`lib_${index}`" class="section-detail">
         <Icon type="ios-arrow-forward" />
         {{ library }}
       </div>
@@ -69,7 +69,8 @@ export default {
 }
 
 .section-detail {
-  margin-left: 6px;
+  /* margin-left: -3px; */
+  margin-left: 1px;
 }
 
 .env-group {
