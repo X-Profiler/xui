@@ -39,7 +39,7 @@ export default {
       return [
         { label: "ProcessID", value: pid },
         { label: "Node.js 版本", value: nodeVersion },
-        { label: "堆内存状态", value: `${utils.formatSize(heapTotalCommitted)} / ${utils.formatSize(heapTotalAvailable)}` },
+        { label: "堆内存状态 (Committed / HeapAvailable)", value: `${utils.formatSize(heapTotalCommitted)} / ${utils.formatSize(heapTotalAvailable)}` },
         { label: "启动时间", value: loadTime }
       ];
     }
