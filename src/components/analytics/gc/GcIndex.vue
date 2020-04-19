@@ -13,6 +13,9 @@
         <div v-if="!file_loading && !file_load_error">
           <!-- gc overview -->
           <x-overview :data="overviewData"></x-overview>
+
+          <!-- trace statistics -->
+          <x-trace-statistics></x-trace-statistics>
         </div>
       </transition>
     </div>
@@ -22,10 +25,12 @@
 <script>
 import gcModule from "@/javascripts/analytics/gc/GcIndex";
 import xOverview from "@/components/analytics/Overview";
+import xTraceStatistics from "@/components/analytics/gc/statistics/TraceStatistics";
 
 export default {
   components: {
-    "x-overview": xOverview
+    "x-overview": xOverview,
+    "x-trace-statistics": xTraceStatistics
   },
 
   ...gcModule

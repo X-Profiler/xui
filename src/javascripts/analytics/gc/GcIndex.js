@@ -56,13 +56,13 @@ export default {
       for (const gc of gcList) {
         totalPauseTime += +(gc.end - gc.start);
         totalGcCount++;
-        if (gc.type === 'scavenge') {
+        if (gc.type === "scavenge") {
           scavengeCount++;
         }
-        if (gc.type === 'marksweep') {
+        if (gc.type === "marksweep") {
           marksweepCount++;
         }
-        if (gc.type === 'marking') {
+        if (gc.type === "marking") {
           incrementalMarkingCont++;
         }
       }
