@@ -7,6 +7,14 @@ export default {
   methods: {
     formatPercentage(pect) {
       return pect.toFixed(2);
+    },
+
+    calculateSize(spaces) {
+      let total = 0;
+      for (const space of spaces) {
+        total += space.space_used_size;
+      }
+      return total;
     }
   },
 
@@ -23,13 +31,29 @@ export default {
       return stopTime * 1000;
     },
 
-    totalPauseTime() {
+    pauseTime() {
       const { gc: gcList } = this.file_data;
-      let total = 0;
+      const data = [];
       for (const gc of gcList) {
-        total += +(gc.end - gc.start);
+        data.push(+(gc.end - gc.start));
+      }
+      return data;
+    },
+
+    totalPauseTime() {
+      let total = 0;
+      for (const time of this.pauseTime) {
+        total += time;
       }
       return total;
+    },
+
+    memoryChange() {
+      const { gc: gcList } = this.file_data;
+      return gcList.map(gc => {
+        const change = this.calculateSize(gc.after) - this.calculateSize(gc.before);
+        return change / 1024 / 1024;
+      });
     },
 
     gcOccupy() {

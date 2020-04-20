@@ -25,7 +25,7 @@
 <script>
 import gcModule from "@/javascripts/analytics/gc/GcIndex";
 import xOverview from "@/components/analytics/Overview";
-import xTraceStatistics from "@/components/analytics/gc/statistics/TraceStatistics";
+import xTraceStatistics from "@/components/analytics/gc/TraceStatistics";
 
 export default {
   components: {
@@ -47,6 +47,6 @@ export default {
 }
 
 .trace-statistics {
-  margin-top: 16px;
+  margin-top: 19px;
 }
 </style>
