@@ -70,6 +70,7 @@ body::-webkit-scrollbar{
 .section-title {
   font-weight: bold;
   text-align: left;
+  font-family: Avenir,Helvetica,Arial,sans-serif;
 }
 
 .pagination {
