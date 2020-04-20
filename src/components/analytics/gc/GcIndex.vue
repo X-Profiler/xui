@@ -16,6 +16,9 @@
 
           <!-- trace statistics -->
           <x-trace-statistics class="trace-statistics"></x-trace-statistics>
+
+          <!-- trace detail -->
+          <x-trace-detail class="trace-detail"></x-trace-detail>
         </div>
       </transition>
     </div>
@@ -26,11 +29,13 @@
 import gcModule from "@/javascripts/analytics/gc/GcIndex";
 import xOverview from "@/components/analytics/Overview";
 import xTraceStatistics from "@/components/analytics/gc/TraceStatistics";
+import xTraceDetail from "@/components/analytics/gc/TraceDetail";
 
 export default {
   components: {
     "x-overview": xOverview,
-    "x-trace-statistics": xTraceStatistics
+    "x-trace-statistics": xTraceStatistics,
+    "x-trace-detail": xTraceDetail
   },
 
   ...gcModule
@@ -48,5 +53,9 @@ export default {
 
 .trace-statistics {
   margin-top: 19px;
+}
+
+.trace-detail {
+  margin-top: 25px;
 }
 </style>

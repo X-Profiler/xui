@@ -3,6 +3,7 @@
 import * as utils from "@/javascripts/lib/utils";
 
 const { mapState } = utils.createNamespace("dashboard/file/wrapper");
+const { mapMutations: mapMutationsGc, mapGetters: mapGettersGc } = utils.createNamespace("dashboard/analytics/gc");
 const { mapState: mapStateAnalytics, mapActions: mapActionsAnalytics } = utils.createNamespace("dashboard/analytics");
 
 const { formatTime, formatSize } = utils;
@@ -24,27 +25,18 @@ export default {
   methods: {
     ...mapActionsAnalytics(["downloadFile"]),
 
-    calculateSize(spaces) {
-      let total = 0;
-      for (const space of spaces) {
-        total += space.space_used_size;
-      }
-      return total;
-    }
+    ...mapMutationsGc(["setGcFileData"])
   },
 
   computed: {
     ...mapState(["gcData"]),
 
+    ...mapGettersGc(["startTime", "stopTime", "gcList", "calculateSize"]),
+
     ...mapStateAnalytics(["file_loading", "file_load_error", "file_data"]),
 
     overviewData() {
-      const data = this.file_data;
-      if (!data) {
-        return [];
-      }
-
-      const { startTime, stopTime, gc: gcList } = this.file_data;
+      const gcList = this.gcList;
 
       let totalPauseTime = 0;
       let totalGcCount = 0;
@@ -52,7 +44,7 @@ export default {
       let marksweepCount = 0;
       let incrementalMarkingCont = 0;
 
-      const totalGcTime = (stopTime - startTime) * 1000;
+      const totalGcTime = this.stopTime - this.startTime;
       for (const gc of gcList) {
         totalPauseTime += +(gc.end - gc.start);
         totalGcCount++;
@@ -85,6 +77,14 @@ export default {
         { label: "第一次 GC 前堆大小", value: memoryBeforeFirstGc },
         { label: "最后一次 GC 后堆大小", value: memoryAfterLastGc }
       ];
+    }
+  },
+
+  watch: {
+    file_data() {
+      if (this.file_data) {
+        this.setGcFileData(this.file_data);
+      }
     }
   }
 };

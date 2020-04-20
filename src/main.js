@@ -24,6 +24,7 @@ import xTooltip from "@/components/common/Tooltip";
 
 // charts
 import xArea from "@/components/chart/Area";
+import xHistogram from "@/components/chart/Histogram";
 import xPie from "@/components/chart/Pie";
 import xPie2 from "@/components/chart/Pie2";
 import xScatter from "@/components/chart/Scatter";
@@ -44,6 +45,7 @@ Vue.component("x-modal", xModal);
 Vue.component("x-table", xTable);
 Vue.component("x-tooltip", xTooltip);
 Vue.component("x-area", xArea);
+Vue.component("x-histogram", xHistogram);
 Vue.component("x-pie", xPie);
 Vue.component("x-pie2", xPie2);
 Vue.component("x-scatter", xScatter);

@@ -17,6 +17,7 @@ import file from "@/stores/file/file";
 import wrapper from "@/stores/file/wrapper";
 import analytics from "@/stores/analytics/analytics";
 import diag from "@/stores/analytics/diag";
+import gc from "@/stores/analytics/gc";
 
 export default {
   state: {
@@ -124,7 +125,8 @@ export default {
           ...analytics,
 
           modules: {
-            "diag": { ...diag } // dashboard/analytics/diag
+            "diag": { ...diag }, // dashboard/analytics/diag
+            "gc": { ...gc } // dashboard/analytics/gc
           }
         }
       }

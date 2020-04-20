@@ -99,7 +99,7 @@ export default {
 
 .heap-used {
   height: 100%;
-  background-color: #884ea0;
+  background-color: #6a5acd;
   transition: all 0.5s ease-out;
 }
 
