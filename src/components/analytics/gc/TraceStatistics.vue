@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!-- gc status overview -->
-    <div class="section-title">GC 追踪结果概览</div>
+    <div class="section-title">GC 追踪全貌概览</div>
 
     <div class="trace-group">
       <div class="trace-item">
@@ -59,7 +58,7 @@ export default {
 
 .gc-occupy {
   height: 100%;
-  background-color: #884ea0;
+  background-color: #6a5acd;
   transition: all 0.5s ease-out;
 }
 

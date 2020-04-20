@@ -90,8 +90,8 @@ export default {
     },
 
     getScale(count) {
-      let min = 0;
-      let max = 0;
+      let min = this.data[0];
+      let max = this.data[0];
       for (const dt of this.data) {
         if (dt > max) {
           max = dt;
@@ -103,8 +103,7 @@ export default {
       const interval = (max - min) / count;
       const scales = [];
       for (let i = 0; i <= count; i++) {
-        const scale = min + max - interval * i;
-
+        const scale = max - interval * i;
         scales.push({
           label: interval <= 0.5 ? Number(scale.toFixed(2)) : Math.round(scale),
           value: scale
@@ -124,8 +123,9 @@ export default {
 
     getCx(data) {
       const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
+      const xMinData = this.xAxisScale[0].value;
       const offset = xMaxData
-        ? (data / xMaxData) *
+        ? ((data - xMinData) / (xMaxData - xMinData)) *
           (this.viewWidth - this.paddingLeft - this.paddingRight)
         : 0;
       const xPosition = this.paddingLeft + offset;
