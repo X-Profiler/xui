@@ -108,7 +108,7 @@
           class="axisScale"
           text-anchor="middle"
           :x="getXAxisLabel(index)"
-          :y="viewHeight-paddingBottom"
+          :y="viewHeight - paddingBottom"
           dy="1.4em"
         >
           <tspan>{{ xAxis.value }}</tspan>

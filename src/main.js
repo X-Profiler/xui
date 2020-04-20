@@ -27,6 +27,7 @@ import xArea from "@/components/chart/Area";
 import xPie from "@/components/chart/Pie";
 import xPie2 from "@/components/chart/Pie2";
 import xScatter from "@/components/chart/Scatter";
+import xMiniScatter from "@/components/chart/MiniScatter";
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -46,6 +47,7 @@ Vue.component("x-area", xArea);
 Vue.component("x-pie", xPie);
 Vue.component("x-pie2", xPie2);
 Vue.component("x-scatter", xScatter);
+Vue.component("x-mini-scatter", xMiniScatter);
 
 
 // add vuex store

@@ -12,18 +12,20 @@
       </div>
 
       <div class="trace-item">
-        <div class="sub-title">GC 暂停时间分布</div>
+        <div class="sub-title">GC 暂停时间分布 (ms)</div>
+        <x-mini-scatter class="mini-scatter" :data="pauseTime" dot-color="#3B93D8"></x-mini-scatter>
       </div>
 
       <div class="trace-item">
-        <div class="sub-title">GC 内存变化分布</div>
+        <div class="sub-title">GC 内存变化分布 (MB)</div>
+        <x-mini-scatter class="mini-scatter" :data="memoryChange" dot-color="#ff9900"></x-mini-scatter>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import traceStatisticsModule from "@/javascripts/analytics/gc/statistics/TraceStatistics";
+import traceStatisticsModule from "@/javascripts/analytics/gc/TraceStatistics";
 
 export default {
   ...traceStatisticsModule
@@ -51,7 +53,7 @@ export default {
   background-color: #eff1f4;
   width: 60%;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 23px;
   box-shadow: 2px 2px 6px rgba(132, 132, 132, 0.25) inset;
 }
 
@@ -59,5 +61,11 @@ export default {
   height: 100%;
   background-color: #884ea0;
   transition: all 0.5s ease-out;
+}
+
+.mini-scatter {
+  margin-top: 10px;
+  width: calc(60% + 32px);
+  display: inline-block;
 }
 </style>
