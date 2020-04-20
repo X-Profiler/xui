@@ -15,7 +15,7 @@
           <x-overview :data="overviewData"></x-overview>
 
           <!-- trace statistics -->
-          <x-trace-statistics></x-trace-statistics>
+          <x-trace-statistics class="trace-statistics"></x-trace-statistics>
         </div>
       </transition>
     </div>
@@ -44,5 +44,9 @@ export default {
 
 .gc-loading {
   text-align: center;
+}
+
+.trace-statistics {
+  margin-top: 16px;
 }
 </style>

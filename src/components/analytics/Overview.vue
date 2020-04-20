@@ -25,6 +25,7 @@ export default {
   flex-grow: 1;
   flex-shrink: 0;
   text-align: center;
+  font-family: Avenir,Helvetica,Arial,sans-serif;
 }
 
 .label {
@@ -34,7 +35,6 @@ export default {
 
 .value {
   margin-top: 5px;
-  font-family: Avenir,Helvetica,Arial,sans-serif;
   font-size: 15px;
 }
 </style>
