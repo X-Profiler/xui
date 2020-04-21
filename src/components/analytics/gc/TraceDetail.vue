@@ -18,7 +18,7 @@
             yAxisZero
           ></x-histogram>
 
-          <x-histogram class="trace-item" yAxisUnit="MB"></x-histogram>
+          <div class="trace-item"></div>
         </div>
       </div>
     </div>

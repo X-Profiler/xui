@@ -293,21 +293,4 @@ export default {
 .chartip-key {
   margin-left: 5px;
 }
-
-.chart-label {
-  margin-top: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.chart-label-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.15s ease;
-}
 </style>
