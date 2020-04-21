@@ -41,7 +41,7 @@ export default {
 
 .trace-panel {
   flex-shrink: 0;
-  width: 350px;
+  width: 300px;
 }
 
 .trace-charts {
