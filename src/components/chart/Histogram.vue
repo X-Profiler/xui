@@ -85,14 +85,32 @@
         <rect
           v-for="(dt, index) in data"
           :key="index"
+          class="histogram"
           width="2"
           :fill="getFill(dt)"
+          :stroke="getFill(dt)"
+          :stroke-opacity="0.7"
+          :stroke-width="0"
           :height="getRectHeight(dt)"
           :x="getXPosition(dt)"
           :y="viewHeight - paddingBottom - getRectHeight(dt)"
         />
       </g>
     </svg>
+
+    <!-- chart label -->
+    <div v-if="data.length" class="chart-label">
+      <div
+        class="chart-label-group"
+        v-for="(dt, index) in types"
+        :key="index"
+        :ref="labelKey + dt.type"
+        :style="index !== 0 ? 'margin-left: 25px;' : ''"
+      >
+        <div class="label-icon" :style="'background-color: ' + getFill(dt)"></div>
+        <div class="label-value">{{ dt.type }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -119,7 +137,8 @@ export default {
       paddingLeft: 40,
       paddingRight: 41,
       paddingTop: 20,
-      paddingBottom: 40
+      paddingBottom: 27,
+      labelKey: "label-"
     };
   },
 
@@ -203,12 +222,12 @@ export default {
       return scales;
     },
 
-    getRectHeight({ pause }) {
+    getRectHeight({ [this.yAxis]: value }) {
       const yMaxData = this.yAxisScale[this.yAxisScale.length - 1].value;
       const yMinData = this.yAxisScale[0].value;
       const height =
         yMaxData - yMinData
-          ? ((pause - yMinData) / (yMaxData - yMinData)) *
+          ? ((value - yMinData) / (yMaxData - yMinData)) *
             (this.viewHeight - this.paddingTop - this.paddingBottom)
           : 0;
       return height;
@@ -272,7 +291,42 @@ export default {
       const scales = this.getScale(this.yAxisScaleCountInner, this.yAxis);
       scales.reverse();
       return scales;
+    },
+
+    types() {
+      const count = {};
+
+      const types = Array.from(
+        new Set(
+          this.data.map(({ type }) => {
+            if (count[type]) {
+              count[type]++;
+            } else {
+              count[type] = 1;
+            }
+            return type;
+          })
+        )
+      ).map(type => ({
+        type
+      }));
+
+      types.sort((o, n) => (count[o.type] < count[n.type] ? 1 : -1));
+
+      return types;
     }
   }
 };
 </script>
+
+<style scoped>
+.histogram {
+  cursor: pointer;
+}
+
+.histogram:hover {
+  transition: stroke-opacity 0.1s ease-out, stroke-width 0.1s ease-out;
+  stroke-opacity: 0.5;
+  stroke-width: 5px;
+}
+</style>
