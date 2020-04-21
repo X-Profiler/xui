@@ -39,8 +39,8 @@ export default {
       const tooltipHeight = parseInt(computedStyle.height, 10);
       const tooltipWidth = parseInt(computedStyle.width, 10);
 
-      const pageX = event.pageX - offsetX;
-      const pageY = event.pageY;
+      const pageX = event.clientX - offsetX;
+      const pageY = event.clientY;
 
       const x =
         pageX + 10 + tooltipWidth < maxWidth
