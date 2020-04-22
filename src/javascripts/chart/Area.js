@@ -1,7 +1,7 @@
 "use strict";
 
 import * as moment from "moment";
-import { dichotomy, createLaterFunction, isNumber } from "@/javascripts/lib/utils";
+import { dichotomy, createLaterFunction, isNumber, formatTime } from "@/javascripts/lib/utils";
 
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -52,23 +52,35 @@ export default {
       return label.toUpperCase();
     },
 
-    getScale(count) {
-      const fileds = this.yAxis;
+    formatStartTime(value) {
+      return formatTime(value, false, true, 0);
+    },
+
+    getScale(count, fileds) {
+      const needZero = fileds === this.yAxis && this.yAxisZero;
+      const showTimeSpan = false;
       const data = this.data;
-      let max = 0;
+      let min = needZero ? 0 : data[0][fileds[0]];
+      let max = data[0][fileds[0]];
       for (const dt of data) {
         if (this.solid) {
-          let tmpMax = 0;
+          let tmpData = 0;
           for (const field of fileds) {
-            tmpMax += dt[field];
+            tmpData += dt[field];
           }
-          if (tmpMax > max) {
-            max = tmpMax;
+          if (tmpData > max) {
+            max = tmpData;
+          }
+          if (tmpData < min) {
+            min = tmpData;
           }
         } else {
           for (const field of fileds) {
             if (isNumber(dt[field]) && dt[field] > max) {
               max = dt[field];
+            }
+            if (isNumber(dt[field]) && dt[field] < min) {
+              min = dt[field];
             }
           }
         }
@@ -78,14 +90,15 @@ export default {
         return [];
       }
 
-      const interval = max / count;
+      const interval = (max - min) / count;
       const scales = [];
       for (let i = 0; i <= count; i++) {
         const scale = max - interval * i;
 
         scales.push({
-          label: max < 2.5 && max > 0 ? scale.toFixed(2) : Math.round(scale),
-          value: scale
+          label: max < 2.5 && max > 0 ? Number(scale.toFixed(2)) : Math.round(scale),
+          value: scale,
+          showTimeSpan
         });
       }
       return scales;
@@ -107,9 +120,9 @@ export default {
         const hour = time.hours();
         if (time.day() !== lastday) {
           lastday = time.day();
-          scales.push({ label: time.format("MM.DD"), value: week[time.day()] });
+          scales.push({ label: time.format("MM.DD"), value: week[time.day()], showTimeSpan: true });
         } else {
-          scales.push({ label: hour < 12 ? "AM" : "PM", value: hour });
+          scales.push({ label: hour < 12 ? "AM" : "PM", value: hour, showTimeSpan: true });
         }
       }
 
@@ -145,8 +158,9 @@ export default {
     getPoints(yAxis, list) {
       const data = this.data;
       const yAxisScale = this.yAxisScale;
-      const xMaxData = data[data.length - 1] && data[data.length - 1].time;
-      const xMinData = data[0] && data[0].time;
+      const xAxis = this.xAxis;
+      const xMaxData = data[data.length - 1] && data[data.length - 1][xAxis];
+      const xMinData = data[0] && data[0][xAxis];
       const yMaxData = yAxisScale[yAxisScale.length - 1] && yAxisScale[yAxisScale.length - 1].value;
       if (!xMaxData || !xMinData || (!yMaxData && yMaxData !== 0)) {
         return [];
@@ -164,14 +178,15 @@ export default {
       }
 
       for (const dt of list) {
-        const time = dt.time;
+        const time = dt[xAxis];
         // x position
         const xOffset =
           ((time - xMinData) / (xMaxData - xMinData)) *
           (this.viewWidth - this.paddingLeft - this.paddingRight);
         const xPosition = this.paddingLeft + xOffset;
 
-        const timeKey = moment(time).format("YYYY-MM-DD HH:mm");
+        const timeKey = this.xAxis === "time" ?
+          moment(time).format("YYYY-MM-DD HH:mm") : time;
         xPointMap[xPosition] = { data: dt, dots: [] };
         xValueMap[timeKey] = { data: dt, dots: [] };
         if (yAxis.some(y => dt[y] || dt[y] === 0)) {
@@ -436,13 +451,17 @@ export default {
       if (this.xAxis === "time") {
         scales = this.getTimeScale(this.xAxisScaleCountInner);
         scales.reverse();
+      } else {
+        scales = this.getScale(this.xAxisScaleCountInner, [this.xAxis]);
+        scales.reverse();
+        scales.forEach(item => item.value = this.formatStartTime(item.value))
       }
 
       return scales;
     },
 
     yAxisScale() {
-      const scales = this.getScale(this.yAxisScaleCountInner);
+      const scales = this.getScale(this.yAxisScaleCountInner, this.yAxis);
       scales.reverse();
       if (!scales.length) {
         scales.push({ label: 0, value: 0 });
@@ -571,6 +590,22 @@ export default {
       });
 
       return intersections;
-    }
+    },
+
+    viewHeight() {
+      return this.height || 250;
+    },
+
+    paddingLeft() {
+      return this.left || 40;
+    },
+
+    paddingRight() {
+      return this.right || 35;
+    },
+
+    paddingBottom() {
+      return this.bottom || 40;
+    },
   }
 };

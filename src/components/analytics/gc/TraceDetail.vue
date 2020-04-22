@@ -18,7 +18,17 @@
             yAxisZero
           ></x-histogram>
 
-          <div class="trace-item"></div>
+          <x-area
+            class="trace-item"
+            :height="400"
+            :right="41"
+            :bottom="27"
+            :data="memoryChangeWithStart"
+            xAxis="timeFromStart"
+            :yAxis="['heap']"
+            :xAxisScaleCount="5"
+            yAxisUnit="MB"
+          ></x-area>
         </div>
       </div>
     </div>

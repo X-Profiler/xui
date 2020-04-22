@@ -64,6 +64,16 @@ export default {
       });
     },
 
+    memoryChangeWithStart(state, getters) {
+      const { gc: gcList } = state.gcFile;
+      return gcList.map(gc => {
+        return {
+          timeFromStart: gc.timeFromStart * 1000,
+          heap: Number((getters.calculateSize(gc.after) / 1024 / 1024).toFixed(2))
+        };
+      });
+    },
+
     calculateSize: () => spaces => {
       let total = 0;
       for (const space of spaces) {
