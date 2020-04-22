@@ -1,6 +1,6 @@
 <template>
   <div style="position: relative;">
-    <div ref="chartip" class="chartip box-shadow">
+    <div ref="chartip" class="chartip box-shadow" :style="chartipStyle">
       <div :class="type">
         <!-- title -->
         <slot name="header"></slot>
@@ -17,6 +17,10 @@
 
 <script>
 export default {
+  props: {
+    noArrow: Boolean
+  },
+
   data() {
     return {
       type: ""
@@ -44,11 +48,15 @@ export default {
       if (offsetX + tipWidth + intervalX < maxLegalX) {
         style["left"] = offsetX + intervalX + "px";
         style["right"] = "unset";
-        this.type = "left";
+        if (!this.noArrow) {
+          this.type = "left";
+        }
       } else {
         style["left"] = "unset";
         style["right"] = paddingRight + maxLegalX - offsetX + intervalX + "px";
-        this.type = "right";
+        if (!this.noArrow) {
+          this.type = "right";
+        }
       }
 
       if (offsetY - tipHeight / 2 > minLegalY) {
@@ -68,6 +76,15 @@ export default {
   computed: {
     tipComputedStyle() {
       return window.getComputedStyle(this.chartip);
+    },
+
+    chartipStyle() {
+      let style = "";
+      if (!this.noArrow) {
+        style += "padding: 0 5px;";
+        style += "border-radius: 3px;";
+      }
+      return style;
     }
   }
 };
@@ -81,8 +98,8 @@ export default {
   top: 0;
   background-color: rgb(255, 255, 255);
   /* max-width: 300px; */
-  border-radius: 3px;
-  padding: 0 5px;
+  /* border-radius: 3px; */
+  /* padding: 0 5px; */
   transition: opacity 0.1s ease;
   pointer-events: none;
   font-family: "Titillium Web", "Helvetica Neue", Helvetica, Arial,

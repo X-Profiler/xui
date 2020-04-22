@@ -1,10 +1,11 @@
 "use strict";
 
-import { formatTime } from "@/javascripts/lib/utils";
+import { formatTime, createLaterFunction } from "@/javascripts/lib/utils";
 
 export default {
   mounted() {
     this.histogram = this.$refs.histogram;
+    this.chartip = this.$refs.chartip;
 
     this.setViewBox();
     window.addEventListener("resize", this.setViewBox.bind(this));
@@ -18,6 +19,10 @@ export default {
       }
       this.viewWidth = width;
       // this.viewHeight = (width / 5) * 3;
+    },
+
+    formatChartipTime(value) {
+      return formatTime(value, false, true, 0);
     },
 
     formatStartTime(value) {
@@ -165,7 +170,36 @@ export default {
         this.restore({ type });
         this.single = undefined;
       }
-    }
+    },
+
+    ...createLaterFunction("mousemove", function (dt, index, event) {
+      const offsetX = event.offsetX;
+      const offsetY = event.offsetY;
+      const minLegalX = this.paddingLeft;
+      const maxLegalX = this.viewWidth - this.paddingRight;
+      const minLegalY = this.paddingTop;
+      const maxLegalY = this.viewHeight - this.paddingBottom;
+
+      if (offsetX < minLegalX || offsetX > maxLegalX) {
+        return;
+      }
+      if (offsetY < minLegalY || offsetY > maxLegalY) {
+        this.mouseleave();
+        return;
+      }
+
+      // show chartip
+      this.chartipData = Object.assign({
+        index,
+        color: this.getFill(dt)
+      }, dt);
+      const mouse = { offsetX, offsetY };
+      this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
+    }),
+
+    ...createLaterFunction("mouseleave", function () {
+      this.chartip.hidden();
+    }),
   },
 
   computed: {
@@ -217,6 +251,11 @@ export default {
       types.sort((o, n) => (count[o.type] < count[n.type] ? 1 : -1));
 
       return types;
-    }
+    },
+
+    chartipTitle() {
+      const { index, type } = this.chartipData;
+      return `追踪周期内第 ${index} 次 GC ( ${type} )`;
+    },
   }
 };

@@ -41,14 +41,16 @@ export default {
       return data;
     },
 
-    pauseTimeWithStart(state) {
+    pauseTimeWithStart(state, getters) {
       const { gc: gcList } = state.gcFile;
       const data = [];
       for (const gc of gcList) {
+        const change = getters.calculateSize(gc.after) - getters.calculateSize(gc.before);
         data.push({
           pause: +(gc.end - gc.start),
           timeFromStart: gc.timeFromStart * 1000,
-          type: gc.type
+          type: gc.type,
+          change: Number((change / 1024 / 1024).toFixed(2))
         });
       }
       return data;

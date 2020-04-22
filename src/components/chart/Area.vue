@@ -269,16 +269,6 @@ export default {
 </script>
 
 <style scoped>
-.chartip-header {
-  font-weight: bold;
-  padding: 5px;
-}
-
-.chartip-content {
-  display: flex;
-  padding: 0px 5px 5px 5px;
-}
-
 .chartip-content-group {
   display: flex;
   align-items: center;
