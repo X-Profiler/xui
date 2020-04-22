@@ -109,7 +109,47 @@ export default {
           value: scale
         });
       }
-      return scales;
+
+      if (max <= 0 || min >= 0) {
+        return scales;
+      }
+
+      let abs = undefined;
+      let index = undefined;
+      for (let idx = 0; idx < scales.length; idx++) {
+        const item = scales[idx].value;
+        const tmp = Math.abs(item);
+        if (abs === undefined || tmp < abs) {
+          abs = item;
+          index = idx;
+        }
+      }
+
+      let results = [];
+      if (index !== undefined && abs !== 0) {
+        if (index === 0) {
+          index++;
+        }
+        if (index === scales.length - 1) {
+          index--;
+        }
+        const tmp1 = Math.ceil(max / index);
+        const tmp2 = Math.ceil(min / (index - (scales.length - 1)));
+        const newInterval = Math.max(tmp1, tmp2);
+        results[index] = { label: 0, value: 0 };
+        for (let idx = index - 1; idx >= 0; idx--) {
+          const scale = 0 + newInterval * (index - idx);
+          results[idx] = { label: scale, value: scale };
+        }
+        for (let idx = index + 1; idx < scales.length; idx++) {
+          const scale = 0 - newInterval * (idx - index);
+          results[idx] = { label: scale, value: scale };
+        }
+      } else {
+        results = scales;
+      }
+
+      return results;
     },
 
     getXAxisLabel(index) {
