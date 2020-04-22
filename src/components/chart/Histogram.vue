@@ -82,19 +82,20 @@
 
       <!-- histogram -->
       <g>
-        <rect
-          v-for="(dt, index) in data"
-          :key="index"
-          class="histogram"
-          width="2"
-          :fill="getFill(dt)"
-          :stroke="getFill(dt)"
-          :stroke-opacity="0.7"
-          :stroke-width="0"
-          :height="getRectHeight(dt)"
-          :x="getXPosition(dt)"
-          :y="viewHeight - paddingBottom - getRectHeight(dt)"
-        />
+        <transition name="slide-noward" v-for="(dt, index) in data" :key="index">
+          <rect
+            v-show="filterType ? filterType === dt.type : true"
+            class="histogram"
+            width="2"
+            :fill="getFill(dt)"
+            :stroke="getFill(dt)"
+            :stroke-opacity="0.7"
+            :stroke-width="0"
+            :height="getRectHeight(dt)"
+            :x="getXPosition(dt)"
+            :y="viewHeight - paddingBottom - getRectHeight(dt)"
+          />
+        </transition>
       </g>
     </svg>
 
@@ -106,6 +107,9 @@
         :key="index"
         :ref="labelKey + dt.type"
         :style="index !== 0 ? 'margin-left: 25px;' : ''"
+        @mouseover="mouseoverLabel(dt)"
+        @mouseleave="mouseleaveLabel(dt)"
+        @click="choseLabel(dt)"
       >
         <div class="label-icon" :style="'background-color: ' + getFill(dt)"></div>
         <div class="label-value">{{ dt.type }}</div>
@@ -115,7 +119,7 @@
 </template>
 
 <script>
-import { formatTime } from "@/javascripts/lib/utils";
+import histogramModule from "../../javascripts/chart/Histogram";
 
 export default {
   props: {
@@ -138,184 +142,13 @@ export default {
       paddingRight: 41,
       paddingTop: 20,
       paddingBottom: 27,
-      labelKey: "label-"
+      labelKey: "label-",
+      single: undefined,
+      filterType: undefined
     };
   },
 
-  mounted() {
-    this.histogram = this.$refs.histogram;
-
-    this.setViewBox();
-    window.addEventListener("resize", this.setViewBox.bind(this));
-  },
-
-  methods: {
-    setViewBox() {
-      const width = parseInt(window.getComputedStyle(this.histogram).width, 10);
-      if (!width) {
-        return;
-      }
-      this.viewWidth = width;
-      // this.viewHeight = (width / 5) * 3;
-    },
-
-    formatStartTime(value) {
-      return formatTime(value, false, true, 0);
-    },
-
-    upperCaseLabel(label) {
-      return label.toUpperCase();
-    },
-
-    getXGridBgInterval(index) {
-      return (
-        this.paddingLeft -
-        this.xGridFullWidth * 0.75 +
-        this.xGridFullWidth * index
-      );
-    },
-
-    getXAxisLabel(index) {
-      return (
-        this.paddingLeft +
-        ((this.viewWidth - this.paddingLeft - this.paddingRight) /
-          this.xAxisScaleCountInner) *
-          index
-      );
-    },
-
-    getYAxisLabel(index) {
-      return (
-        this.paddingTop +
-        ((this.viewHeight - this.paddingTop - this.paddingBottom) /
-          this.yAxisScaleCountInner) *
-          (this.yAxisScaleCountInner - index)
-      );
-    },
-
-    getScale(count, axis) {
-      if (!Array.isArray(this.data)) {
-        return [];
-      }
-      const needZero = axis === this.yAxis && this.yAxisZero;
-      const data = this.data.map(dt => dt[axis]);
-      let min = needZero ? 0 : data[0];
-      let max = data[0];
-      for (const dt of data) {
-        if (dt > max) {
-          max = dt;
-        }
-        if (dt < min && !needZero) {
-          min = dt;
-        }
-      }
-      const interval = (max - min) / count;
-      const scales = [];
-      for (let i = 0; i <= count; i++) {
-        const scale = max - interval * i;
-
-        scales.push({
-          label: interval <= 0.5 ? Number(scale.toFixed(2)) : Math.round(scale),
-          value: scale
-        });
-      }
-      return scales;
-    },
-
-    getRectHeight({ [this.yAxis]: value }) {
-      const yMaxData = this.yAxisScale[this.yAxisScale.length - 1].value;
-      const yMinData = this.yAxisScale[0].value;
-      const height =
-        yMaxData - yMinData
-          ? ((value - yMinData) / (yMaxData - yMinData)) *
-            (this.viewHeight - this.paddingTop - this.paddingBottom)
-          : 0;
-      return height;
-    },
-
-    getXPosition({ timeFromStart }) {
-      const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
-      const xMinData = this.xAxisScale[0].value;
-      const offset =
-        xMaxData - xMinData
-          ? ((timeFromStart - xMinData) / (xMaxData - xMinData)) *
-            (this.viewWidth - this.paddingLeft - this.paddingRight)
-          : 0;
-      const xPosition = this.paddingLeft + offset;
-
-      return xPosition;
-    },
-
-    getFill({ type }) {
-      let color = "";
-      switch (type) {
-        case "scavenge":
-          color = "#3498db";
-          break;
-        case "marksweep":
-          color = "#ff9900";
-          break;
-        case "marking":
-          color = "#6a5acd";
-          break;
-        default:
-          break;
-      }
-      return color;
-    }
-  },
-
-  computed: {
-    xAxisScaleCountInner() {
-      return this.xAxisScaleCount || this.defaultXAxisScaleCount;
-    },
-
-    yAxisScaleCountInner() {
-      return this.yAxisScaleCount || this.defaultYAxisScaleCount;
-    },
-
-    xGridFullWidth() {
-      return (
-        (this.viewWidth - this.paddingLeft - this.paddingRight) /
-        this.xAxisScaleCountInner
-      );
-    },
-
-    xAxisScale() {
-      const scales = this.getScale(this.xAxisScaleCountInner, this.xAxis);
-      scales.reverse();
-      return scales;
-    },
-
-    yAxisScale() {
-      const scales = this.getScale(this.yAxisScaleCountInner, this.yAxis);
-      scales.reverse();
-      return scales;
-    },
-
-    types() {
-      const count = {};
-
-      const types = Array.from(
-        new Set(
-          this.data.map(({ type }) => {
-            if (count[type]) {
-              count[type]++;
-            } else {
-              count[type] = 1;
-            }
-            return type;
-          })
-        )
-      ).map(type => ({
-        type
-      }));
-
-      types.sort((o, n) => (count[o.type] < count[n.type] ? 1 : -1));
-
-      return types;
-    }
-  }
+  ...histogramModule
 };
 </script>
 
