@@ -1,5 +1,28 @@
 <template>
   <div ref="histogram">
+    <!-- chartip -->
+    <x-chartip ref="chartip" no-arrow>
+      <div
+        slot="header"
+        class="chartip-header"
+        :style="`background-color: ${chartipData.color};color: white`"
+      >
+        <div>{{ chartipTitle }}</div>
+      </div>
+      <div slot="content" class="chartip-content">
+        <div style="margin-top:2px;">
+          <div class="chartip-key">距离进程启动时间:</div>
+          <div class="chartip-key">本次 GC 暂停时间:</div>
+          <div class="chartip-key">堆内存大小变化:</div>
+        </div>
+        <div style="margin: 2px 0 0 23px;">
+          <div class="chartip-value">{{ formatChartipTime(chartipData.timeFromStart) }}</div>
+          <div class="chartip-value">{{ chartipData.pause }}ms</div>
+          <div class="chartip-value">{{ chartipData.change }}MB</div>
+        </div>
+      </div>
+    </x-chartip>
+
     <svg
       v-if="viewWidth"
       width="100%"
@@ -94,6 +117,8 @@
             :height="getRectHeight(dt)"
             :x="getXPosition(dt)"
             :y="viewHeight - paddingBottom - getRectHeight(dt)"
+            @mousemove="mousemove(dt, index, $event)"
+            @mouseleave="mouseleave"
           />
         </transition>
       </g>
@@ -144,7 +169,8 @@ export default {
       paddingBottom: 27,
       labelKey: "label-",
       single: undefined,
-      filterType: undefined
+      filterType: undefined,
+      chartipData: {}
     };
   },
 
@@ -161,5 +187,15 @@ export default {
   transition: stroke-opacity 0.1s ease-out, stroke-width 0.1s ease-out;
   stroke-opacity: 0.5;
   stroke-width: 5px;
+}
+
+.chartip-key {
+  margin-top: 2px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* color: #373d41; */
+}
+
+.chartip-value {
+  margin-top: 2px;
 }
 </style>
