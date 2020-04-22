@@ -112,7 +112,12 @@
           dy="1.4em"
         >
           <tspan>{{ xAxis.value }}</tspan>
-          <tspan class="time-label" :x="getXAxisLabel(index)" dy="1.3em">{{ xAxis.label }}</tspan>
+          <tspan
+            v-if="xAxis.showTimeSpan"
+            class="time-label"
+            :x="getXAxisLabel(index)"
+            dy="1.3em"
+          >{{ xAxis.label }}</tspan>
         </text>
       </g>
 
@@ -157,14 +162,22 @@
               </linearGradient>
             </defs>
             <transition name="slide-noward">
-              <path
-                v-if="!solid"
-                v-show="pathWidthMap[y.axis]"
-                :d="y.path"
-                :fill="'url(#' + 'color_bg_' + y.axis + ')'"
-                stroke="none"
-              />
-              <path v-else v-show="pathWidthMap[y.axis]" :d="y.path" :fill="y.color" stroke="none" />
+              <g v-if="!noFill">
+                <path
+                  v-if="!solid"
+                  v-show="pathWidthMap[y.axis]"
+                  :d="y.path"
+                  :fill="'url(#' + 'color_bg_' + y.axis + ')'"
+                  stroke="none"
+                />
+                <path
+                  v-else
+                  v-show="pathWidthMap[y.axis]"
+                  :d="y.path"
+                  :fill="y.color"
+                  stroke="none"
+                />
+              </g>
             </transition>
             <transition name="slide-noward">
               <polyline
@@ -227,7 +240,16 @@ export default {
     yAxisScaleCount: Number,
     noDataText: String,
     showStatus: Boolean,
-    solid: Boolean
+    solid: Boolean,
+    height: Number,
+    left: Number,
+    right: Number,
+    bottom: Number,
+    yAxisZero: {
+      type: Boolean,
+      default: true
+    },
+    noFill: Boolean
   },
 
   data() {
@@ -235,11 +257,7 @@ export default {
       defaultXAxisScaleCount: 8,
       defaultYAxisScaleCount: 4,
       viewWidth: 0,
-      viewHeight: 250,
-      paddingLeft: 40,
-      paddingRight: 35,
       paddingTop: 20,
-      paddingBottom: 40,
       intersectionOffsetX: 0,
       pathWidthMap: {},
       xPointMap: {},

@@ -6,6 +6,6 @@ const { mapGetters } = utils.createNamespace("dashboard/analytics/gc");
 
 export default {
   computed: {
-    ...mapGetters(["pauseTimeWithStart"]),
+    ...mapGetters(["pauseTimeWithStart", "memoryChangeWithStart"]),
   }
 };
