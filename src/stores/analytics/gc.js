@@ -44,13 +44,17 @@ export default {
     pauseTimeWithStart(state, getters) {
       const { gc: gcList } = state.gcFile;
       const data = [];
-      for (const gc of gcList) {
-        const change = getters.calculateSize(gc.after) - getters.calculateSize(gc.before);
+      for (let idx = 0; idx < gcList.length; idx++) {
+        const gc = gcList[idx];
+        const change =
+          Number(((getters.calculateSize(gc.after) - getters.calculateSize(gc.before)) / 1024 / 1024).toFixed(2));
         data.push({
           pause: +(gc.end - gc.start),
           timeFromStart: gc.timeFromStart * 1000,
           type: gc.type,
-          change: Number((change / 1024 / 1024).toFixed(2))
+          change,
+          changeLabel: change >= 0 ? `+${change}` : `-${Math.abs(change)}`,
+          index: idx + 1
         });
       }
       return data;
@@ -66,10 +70,12 @@ export default {
 
     memoryChangeWithStart(state, getters) {
       const { gc: gcList } = state.gcFile;
-      return gcList.map(gc => {
+      return gcList.map((gc, idx) => {
         return {
           timeFromStart: gc.timeFromStart * 1000,
-          heap: Number((getters.calculateSize(gc.after) / 1024 / 1024).toFixed(2))
+          heap_size: Number((getters.calculateSize(gc.after) / 1024 / 1024).toFixed(2)),
+          type: gc.type,
+          index: idx + 1
         };
       });
     },

@@ -10,24 +10,28 @@
       <div class="trace-charts">
         <div class="trace-group">
           <x-histogram
+            ref="histogram"
             class="trace-item"
             :data="pauseTimeWithStart"
-            xAxis="timeFromStart"
+            xAxis="index"
             yAxis="pause"
             yAxisUnit="ms"
             yAxisZero
           ></x-histogram>
 
           <x-area
+            ref="area"
             class="trace-item"
             :height="400"
             :right="41"
             :bottom="27"
             :data="memoryChangeWithStart"
-            xAxis="timeFromStart"
-            :yAxis="['heap']"
+            xAxis="index"
+            :yAxis="['heap_size']"
             :xAxisScaleCount="5"
             yAxisUnit="MB"
+            @linkage="linkage('area', arguments)"
+            @hidden="hidden('area')"
           ></x-area>
         </div>
       </div>

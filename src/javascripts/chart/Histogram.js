@@ -3,6 +3,16 @@
 import { formatTime, createLaterFunction } from "@/javascripts/lib/utils";
 
 export default {
+  created() {
+    for (let idx = 0; idx < this.data.length; idx++) {
+      const dt = this.data[idx];
+      this.xValueMap[dt[this.xAxis]] = Object.assign({
+        index: idx,
+        color: this.getFill(dt)
+      }, dt)
+    }
+  },
+
   mounted() {
     this.histogram = this.$refs.histogram;
     this.chartip = this.$refs.chartip;
@@ -25,8 +35,8 @@ export default {
       return formatTime(value, false, true, 0);
     },
 
-    formatStartTime(value) {
-      return formatTime(value, false, true, 0);
+    formatXLabel(value) {
+      return Math.round(value);
     },
 
     upperCaseLabel(label) {
@@ -99,12 +109,12 @@ export default {
       return height;
     },
 
-    getXPosition({ timeFromStart }) {
+    getXPosition({ [this.xAxis]: value }) {
       const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
       const xMinData = this.xAxisScale[0].value;
       const offset =
         xMaxData - xMinData
-          ? ((timeFromStart - xMinData) / (xMaxData - xMinData)) *
+          ? ((value - xMinData) / (xMaxData - xMinData)) *
           (this.viewWidth - this.paddingLeft - this.paddingRight)
           : 0;
       const xPosition = this.paddingLeft + offset;
@@ -200,6 +210,17 @@ export default {
     ...createLaterFunction("mouseleave", function () {
       this.chartip.hidden();
     }),
+
+    showTip({ time, mouse }) {
+      const maxLegalX = this.viewWidth - this.paddingRight;
+      const minLegalY = this.paddingTop;
+      this.chartipData = this.xValueMap[time];
+      this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
+    },
+
+    hiddenTip() {
+      this.chartip.hidden();
+    }
   },
 
   computed: {
