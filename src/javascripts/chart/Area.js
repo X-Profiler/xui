@@ -1,7 +1,7 @@
 "use strict";
 
 import * as moment from "moment";
-import { dichotomy, createLaterFunction, isNumber, formatTime } from "@/javascripts/lib/utils";
+import { dichotomy, createLaterFunction, isNumber } from "@/javascripts/lib/utils";
 
 const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -52,8 +52,8 @@ export default {
       return label.toUpperCase();
     },
 
-    formatStartTime(value) {
-      return formatTime(value, false, true, 0);
+    formatXLabel(value) {
+      return Math.round(value);
     },
 
     getScale(count, fileds) {
@@ -454,7 +454,7 @@ export default {
       } else {
         scales = this.getScale(this.xAxisScaleCountInner, [this.xAxis]);
         scales.reverse();
-        scales.forEach(item => item.value = this.formatStartTime(item.value))
+        scales.forEach(item => item.value = this.formatXLabel(item.value))
       }
 
       return scales;
@@ -548,6 +548,10 @@ export default {
       const chartipData = this.chartipData;
       if (chartipData.time) {
         return moment(chartipData.time).format("YYYY-MM-DD HH:mm:SS");
+      }
+
+      if (chartipData.index) {
+        return `追踪周期内第 ${chartipData.index} 次 GC ( ${chartipData.type} )`;
       }
     },
 

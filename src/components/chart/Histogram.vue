@@ -18,7 +18,7 @@
         <div style="margin: 2px 0 0 23px;">
           <div class="chartip-value">{{ formatChartipTime(chartipData.timeFromStart) }}</div>
           <div class="chartip-value">{{ chartipData.pause }}ms</div>
-          <div class="chartip-value">{{ chartipData.change }}MB</div>
+          <div class="chartip-value">{{ chartipData.changeLabel }}MB</div>
         </div>
       </div>
     </x-chartip>
@@ -65,7 +65,7 @@
               :x="getXAxisLabel(index)"
               :y="viewHeight - paddingBottom"
               dy="1.5em"
-            >{{ formatStartTime(xAxis.value) }}</text>
+            >{{ formatXLabel(xAxis.value) }}</text>
           </g>
         </g>
 
@@ -170,7 +170,8 @@ export default {
       labelKey: "label-",
       single: undefined,
       filterType: undefined,
-      chartipData: {}
+      chartipData: {},
+      xValueMap: {}
     };
   },
 
