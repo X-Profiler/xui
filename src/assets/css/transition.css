@@ -138,3 +138,23 @@
 }
 
 /* modal content end */
+
+/* histogram start */
+
+.slide-histogram-enter {
+  opacity: 0;
+}
+
+.slide-histogram-enter-active {
+  transition: opacity 0.3s ease;
+}
+
+.slide-histogram-leave {
+  opacity: 0;
+}
+
+.slide-histogram-leave-to {
+  opacity: 0;
+}
+
+/* histogram end */

@@ -9,6 +9,7 @@
       <!-- trace charts -->
       <div class="trace-charts">
         <div class="trace-group">
+          <!-- pause time -->
           <x-histogram
             ref="histogram"
             class="trace-item"
@@ -21,19 +22,51 @@
             @hidden="hidden('histogram')"
           ></x-histogram>
 
+          <!-- heap memory -->
           <x-area
             ref="area"
             class="trace-item"
             :height="400"
             :right="41"
             :bottom="27"
-            :data="memoryChangeWithStart"
+            :data="heapTrendWithStart"
             xAxis="index"
             :yAxis="['heap_size']"
             :xAxisScaleCount="5"
             yAxisUnit="MB"
             @linkage="linkage('area', arguments)"
             @hidden="hidden('area')"
+          ></x-area>
+        </div>
+
+        <div class="trace-group">
+          <!-- memory change -->
+          <x-histogram
+            ref="histogram2"
+            class="trace-item"
+            :data="pauseTimeWithStart"
+            xAxis="index"
+            yAxis="changeAbs"
+            yAxisUnit="MB"
+            yAxisZero
+            @linkage="linkage('histogram2', arguments)"
+            @hidden="hidden('histogram2')"
+          ></x-histogram>
+
+          <!-- spaces status -->
+          <x-area
+            ref="scatter"
+            class="trace-item"
+            :height="400"
+            :right="41"
+            :bottom="27"
+            :data="heapTrendWithStart"
+            xAxis="index"
+            :yAxis="['heap_size']"
+            :xAxisScaleCount="5"
+            yAxisUnit="MB"
+            @linkage="linkage('scatter', arguments)"
+            @hidden="hidden('scatter')"
           ></x-area>
         </div>
       </div>
