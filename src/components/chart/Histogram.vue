@@ -12,13 +12,13 @@
       <div slot="content" class="chartip-content">
         <div style="margin-top:2px;">
           <div class="chartip-key">距离进程启动时间:</div>
-          <div class="chartip-key">本次 GC 暂停时间:</div>
-          <div class="chartip-key">堆内存大小变化:</div>
+          <div v-if="yAxis === 'pause'" class="chartip-key">本次 GC 暂停时间:</div>
+          <div v-if="yAxis === 'changeAbs'" class="chartip-key">堆内存大小变化:</div>
         </div>
         <div style="margin: 2px 0 0 23px;">
           <div class="chartip-value">{{ formatChartipTime(chartipData.timeFromStart) }}</div>
-          <div class="chartip-value">{{ chartipData.pause }}ms</div>
-          <div class="chartip-value">{{ chartipData.changeLabel }}MB</div>
+          <div v-if="yAxis === 'pause'" class="chartip-value">{{ chartipData.pause }}ms</div>
+          <div v-if="yAxis === 'changeAbs'" class="chartip-value">{{ chartipData.changeLabel }}MB</div>
         </div>
       </div>
     </x-chartip>
@@ -105,9 +105,9 @@
 
       <!-- histogram -->
       <g>
-        <transition name="slide-noward" v-for="(dt, index) in data" :key="index">
+        <transition name="slide-histogram" v-for="(dt, index) in data" :key="index">
           <rect
-            v-show="filterType ? filterType === dt.type : true"
+            v-show="needShow(dt)"
             :ref="`${histogramLabel}-${dt.index}`"
             class="histogram"
             width="2"

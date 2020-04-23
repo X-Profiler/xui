@@ -24,12 +24,14 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["pauseTimeWithStart", "memoryChangeWithStart"]),
+    ...mapGetters(["pauseTimeWithStart", "heapTrendWithStart"]),
 
     charts() {
       return [
         { name: "histogram" },
         { name: "area" },
+        { name: "histogram2" },
+        { name: "scatter" },
       ];
     }
   }

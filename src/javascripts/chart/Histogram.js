@@ -69,12 +69,16 @@ export default {
       );
     },
 
-    getScale(count, axis) {
-      if (!Array.isArray(this.data)) {
+    getScale(count, axis, filterType) {
+      let data = this.data;
+      if (!Array.isArray(data)) {
         return [];
       }
+      if (filterType) {
+        data = data.filter(dt => this.needShow(dt, filterType));
+      }
       const needZero = axis === this.yAxis && this.yAxisZero;
-      const data = this.data.map(dt => dt[axis]);
+      data = data.map(dt => dt[axis]);
       let min = needZero ? 0 : data[0];
       let max = data[0];
       for (const dt of data) {
@@ -122,21 +126,33 @@ export default {
       return xPosition;
     },
 
-    getFill({ type }) {
+    getFill({ type, positive }) {
       let color = "";
-      switch (type) {
-        case "scavenge":
-          color = "#3498db";
-          break;
-        case "marksweep":
-          color = "#ff9900";
-          break;
-        case "marking":
-          color = "#6a5acd";
-          break;
-        default:
-          break;
+
+      if (this.yAxis === "pause") {
+        switch (type) {
+          case "scavenge":
+            color = "#3498db";
+            break;
+          case "marksweep":
+            color = "#ff9900";
+            break;
+          case "marking":
+            color = "#6a5acd";
+            break;
+          default:
+            break;
+        }
       }
+
+      if (this.yAxis === "changeAbs") {
+        if (positive || type === "increment") {
+          color = "#c45a65";
+        } else {
+          color = "#2a9446";
+        }
+      }
+
       return color;
     },
 
@@ -231,8 +247,7 @@ export default {
       const maxLegalX = this.viewWidth - this.paddingRight;
       const minLegalY = this.paddingTop;
       const dt = this.xValueMap[time];
-      const needShow = this.filterType ? this.filterType === dt.type : true;
-      if (!needShow) {
+      if (!this.needShow(dt)) {
         this.chartip.hidden();
         return;
       }
@@ -245,6 +260,22 @@ export default {
     hiddenTip() {
       this.chartip.hidden();
       this.setRectStyle(this.chartipData, 1, 0);
+    },
+
+    needShow(dt, filter) {
+      const filterType = filter || this.filterType;
+
+      if (!filterType) {
+        return true;
+      }
+
+      if (this.yAxis === "pause") {
+        return filterType === dt.type;
+      }
+
+      if (this.yAxis === "changeAbs") {
+        return dt.positive === (filterType === "increment");
+      }
     }
   },
 
@@ -271,30 +302,47 @@ export default {
     },
 
     yAxisScale() {
-      const scales = this.getScale(this.yAxisScaleCountInner, this.yAxis);
+      const scales = this.getScale(this.yAxisScaleCountInner, this.yAxis, this.filterType);
       scales.reverse();
       return scales;
     },
 
     types() {
       const count = {};
+      let types = [];
 
-      const types = Array.from(
-        new Set(
-          this.data.map(({ type }) => {
-            if (count[type]) {
-              count[type]++;
-            } else {
-              count[type] = 1;
-            }
-            return type;
-          })
-        )
-      ).map(type => ({
-        type
-      }));
+      if (this.yAxis === "pause") {
+        types = Array.from(
+          new Set(
+            this.data.map(({ type }) => {
+              if (count[type]) {
+                count[type]++;
+              } else {
+                count[type] = 1;
+              }
+              return type;
+            })
+          )
+        ).map(type => ({
+          type
+        }));
 
-      types.sort((o, n) => (count[o.type] < count[n.type] ? 1 : -1));
+        types.sort((o, n) => (count[o.type] < count[n.type] ? 1 : -1));
+      }
+
+      if (this.yAxis === "changeAbs") {
+        count.positive = 0;
+        count.negative = 0;
+        for (const dt of this.data) {
+          if (dt.positive) {
+            count.positive++;
+          } else {
+            count.negative++;
+          }
+        }
+
+        types = [{ type: "reduce" }, { type: "increment" }];
+      }
 
       return types;
     },

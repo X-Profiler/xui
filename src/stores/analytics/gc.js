@@ -54,6 +54,8 @@ export default {
           type: gc.type,
           change,
           changeLabel: change >= 0 ? `+${change}` : `-${Math.abs(change)}`,
+          changeAbs: Math.abs(change),
+          positive: change >= 0,
           index: idx + 1
         });
       }
@@ -68,7 +70,7 @@ export default {
       });
     },
 
-    memoryChangeWithStart(state, getters) {
+    heapTrendWithStart(state, getters) {
       const { gc: gcList } = state.gcFile;
       return gcList.map((gc, idx) => {
         return {
