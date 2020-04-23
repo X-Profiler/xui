@@ -18,6 +18,7 @@
             yAxis="pause"
             yAxisUnit="ms"
             yAxisZero
+            @broadcast="broadcast('histogram', arguments)"
             @linkage="linkage('histogram', arguments)"
             @hidden="hidden('histogram')"
           ></x-histogram>
@@ -26,7 +27,7 @@
           <x-area
             ref="area"
             class="trace-item"
-            :height="400"
+            :height="330"
             :right="41"
             :bottom="27"
             :data="heapTrendWithStart"
@@ -34,6 +35,7 @@
             :yAxis="['heap_size']"
             :xAxisScaleCount="5"
             yAxisUnit="MB"
+            @broadcast="broadcast('area', arguments)"
             @linkage="linkage('area', arguments)"
             @hidden="hidden('area')"
           ></x-area>
@@ -49,25 +51,24 @@
             yAxis="changeAbs"
             yAxisUnit="MB"
             yAxisZero
+            @broadcast="broadcast('histogram2', arguments)"
             @linkage="linkage('histogram2', arguments)"
             @hidden="hidden('histogram2')"
           ></x-histogram>
 
           <!-- spaces status -->
-          <x-area
+          <x-space-scatter
             ref="scatter"
             class="trace-item"
-            :height="400"
-            :right="41"
-            :bottom="27"
-            :data="heapTrendWithStart"
+            :data="spaceTrendWithStart.list"
             xAxis="index"
-            :yAxis="['heap_size']"
-            :xAxisScaleCount="5"
+            :yAxis="spaceTrendWithStart.spaces"
             yAxisUnit="MB"
-            @linkage="linkage('scatter', arguments)"
+            yAxisZero
+            @broadcast="broadcast('histogram2', arguments)"
+            @linkage="linkage('histogram2', arguments)"
             @hidden="hidden('scatter')"
-          ></x-area>
+          ></x-space-scatter>
         </div>
       </div>
     </div>

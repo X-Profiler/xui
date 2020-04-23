@@ -29,6 +29,7 @@ import xPie from "@/components/chart/Pie";
 import xPie2 from "@/components/chart/Pie2";
 import xScatter from "@/components/chart/Scatter";
 import xMiniScatter from "@/components/chart/MiniScatter";
+import xSpaceScatter from "@/components/chart/SpaceScatter";
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -50,6 +51,7 @@ Vue.component("x-pie", xPie);
 Vue.component("x-pie2", xPie2);
 Vue.component("x-scatter", xScatter);
 Vue.component("x-mini-scatter", xMiniScatter);
+Vue.component("x-space-scatter", xSpaceScatter);
 
 
 // add vuex store

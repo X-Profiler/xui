@@ -55,7 +55,7 @@ export default {
           change,
           changeLabel: change >= 0 ? `+${change}` : `-${Math.abs(change)}`,
           changeAbs: Math.abs(change),
-          positive: change >= 0,
+          positive: change > 0,
           index: idx + 1
         });
       }
@@ -82,12 +82,54 @@ export default {
       });
     },
 
+    spaceTrendWithStart(state, getters) {
+      const { gc: gcList } = state.gcFile;
+      let spaces;
+
+      const list = gcList.map(({ before, after }, idx) => {
+        const beforeSpaces = getters.getSpacesMap(before);
+        const afterSpaces = getters.getSpacesMap(after);
+        if (!spaces) {
+          spaces = Object.keys(beforeSpaces);
+        }
+
+        const res = {
+          index: idx + 1
+        };
+
+        let total = 0;
+        for (const space of spaces) {
+          const tmp = (afterSpaces[space] - beforeSpaces[space]) / 1024 / 1024;
+          total += tmp;
+          res[space] = Math.abs(tmp);
+          res[`${space}_positive`] = tmp > 0;
+        }
+
+        res["all_spaces"] = total;
+        res["all_spaces_positive"] = total > 0;
+
+        return res;
+      });
+
+      spaces.push("all_spaces");
+
+      return { spaces, list };
+    },
+
     calculateSize: () => spaces => {
       let total = 0;
       for (const space of spaces) {
         total += space.space_used_size;
       }
       return total;
+    },
+
+    getSpacesMap: () => spaces => {
+      const map = {};
+      for (const { name, space_used_size } of spaces) {
+        map[name] = space_used_size;
+      }
+      return map;
     }
   }
 };

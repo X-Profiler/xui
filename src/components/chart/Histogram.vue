@@ -120,6 +120,7 @@
             :y="viewHeight - paddingBottom - getRectHeight(dt)"
             @mousemove="mousemove(dt, index, $event)"
             @mouseleave="mouseleave"
+            @click="fixIntersection(dt, index, $event)"
           />
         </transition>
       </g>
@@ -163,7 +164,7 @@ export default {
       defaultXAxisScaleCount: 5,
       defaultYAxisScaleCount: 4,
       viewWidth: 0,
-      viewHeight: 400,
+      viewHeight: 330,
       paddingLeft: 40,
       paddingRight: 41,
       paddingTop: 20,
@@ -173,7 +174,8 @@ export default {
       filterType: undefined,
       chartipData: {},
       xValueMap: {},
-      histogramLabel: "histogram-label"
+      histogramLabel: "histogram-label",
+      intersectionFixed: false
     };
   },
 
