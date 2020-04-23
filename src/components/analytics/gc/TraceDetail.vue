@@ -17,6 +17,8 @@
             yAxis="pause"
             yAxisUnit="ms"
             yAxisZero
+            @linkage="linkage('histogram', arguments)"
+            @hidden="hidden('histogram')"
           ></x-histogram>
 
           <x-area

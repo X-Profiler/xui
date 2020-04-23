@@ -30,7 +30,7 @@ export default {
       return [
         { name: "histogram" },
         { name: "area" },
-      ]
+      ];
     }
   }
 };

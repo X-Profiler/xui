@@ -9,7 +9,7 @@ export default {
       this.xValueMap[dt[this.xAxis]] = Object.assign({
         index: idx,
         color: this.getFill(dt)
-      }, dt)
+      }, dt);
     }
   },
 
@@ -198,6 +198,8 @@ export default {
         return;
       }
 
+      this.setRectStyle(this.chartipData, 1, 0);
+      this.setRectStyle(dt, 0.5, "5px");
       // show chartip
       this.chartipData = Object.assign({
         index,
@@ -205,21 +207,44 @@ export default {
       }, dt);
       const mouse = { offsetX, offsetY };
       this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
+
+      this.$emit("linkage", { time: dt[this.xAxis], mouse });
     }),
 
     ...createLaterFunction("mouseleave", function () {
       this.chartip.hidden();
+      this.$emit("hidden");
+      this.setRectStyle(this.chartipData, 1, 0);
     }),
+
+    setRectStyle(dt, opacity, width) {
+      const element = this.$refs[`${this.histogramLabel}-${dt.index}`];
+      if (!element || !element[0]) {
+        return;
+      }
+      const style = element[0].style;
+      style["stroke-opacity"] = opacity;
+      style["stroke-width"] = width;
+    },
 
     showTip({ time, mouse }) {
       const maxLegalX = this.viewWidth - this.paddingRight;
       const minLegalY = this.paddingTop;
-      this.chartipData = this.xValueMap[time];
+      const dt = this.xValueMap[time];
+      const needShow = this.filterType ? this.filterType === dt.type : true;
+      if (!needShow) {
+        this.chartip.hidden();
+        return;
+      }
+      this.setRectStyle(this.chartipData, 1, 0);
+      this.setRectStyle(dt, 0.5, "5px");
+      this.chartipData = dt;
       this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
     },
 
     hiddenTip() {
       this.chartip.hidden();
+      this.setRectStyle(this.chartipData, 1, 0);
     }
   },
 
