@@ -454,7 +454,7 @@ export default {
       } else {
         scales = this.getScale(this.xAxisScaleCountInner, [this.xAxis]);
         scales.reverse();
-        scales.forEach(item => item.value = this.formatXLabel(item.value))
+        scales.forEach(item => item.value = this.formatXLabel(item.value));
       }
 
       return scales;

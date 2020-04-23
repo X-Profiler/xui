@@ -108,6 +108,7 @@
         <transition name="slide-noward" v-for="(dt, index) in data" :key="index">
           <rect
             v-show="filterType ? filterType === dt.type : true"
+            :ref="`${histogramLabel}-${dt.index}`"
             class="histogram"
             width="2"
             :fill="getFill(dt)"
@@ -171,7 +172,8 @@ export default {
       single: undefined,
       filterType: undefined,
       chartipData: {},
-      xValueMap: {}
+      xValueMap: {},
+      histogramLabel: "histogram-label"
     };
   },
 
@@ -182,12 +184,7 @@ export default {
 <style scoped>
 .histogram {
   cursor: pointer;
-}
-
-.histogram:hover {
   transition: stroke-opacity 0.1s ease-out, stroke-width 0.1s ease-out;
-  stroke-opacity: 0.5;
-  stroke-width: 5px;
 }
 
 .chartip-key {
