@@ -6,6 +6,14 @@ const { mapGetters } = utils.createNamespace("dashboard/analytics/gc");
 
 export default {
   methods: {
+    broadcast(name, [data]) {
+      for (const chart of this.charts) {
+        if (chart.name !== name) {
+          this.$refs[chart.name].handleBroadcase(data);
+        }
+      }
+    },
+
     linkage(name, [data]) {
       for (const chart of this.charts) {
         if (chart.name !== name) {
@@ -24,7 +32,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["pauseTimeWithStart", "heapTrendWithStart"]),
+    ...mapGetters(["pauseTimeWithStart", "heapTrendWithStart", "spaceTrendWithStart"]),
 
     charts() {
       return [

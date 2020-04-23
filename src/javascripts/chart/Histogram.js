@@ -29,6 +29,7 @@ export default {
       }
       this.viewWidth = width;
       // this.viewHeight = (width / 5) * 3;
+      this.intersectionFixed = false;
     },
 
     formatChartipTime(value) {
@@ -199,6 +200,10 @@ export default {
     },
 
     ...createLaterFunction("mousemove", function (dt, index, event) {
+      if (this.intersectionFixed) {
+        return;
+      }
+
       const offsetX = event.offsetX;
       const offsetY = event.offsetY;
       const minLegalX = this.paddingLeft;
@@ -228,6 +233,9 @@ export default {
     }),
 
     ...createLaterFunction("mouseleave", function () {
+      if (this.intersectionFixed) {
+        return;
+      }
       this.chartip.hidden();
       this.$emit("hidden");
       this.setRectStyle(this.chartipData, 1, 0);
@@ -247,11 +255,11 @@ export default {
       const maxLegalX = this.viewWidth - this.paddingRight;
       const minLegalY = this.paddingTop;
       const dt = this.xValueMap[time];
+      this.setRectStyle(this.chartipData, 1, 0);
       if (!this.needShow(dt)) {
         this.chartip.hidden();
         return;
       }
-      this.setRectStyle(this.chartipData, 1, 0);
       this.setRectStyle(dt, 0.5, "5px");
       this.chartipData = dt;
       this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
@@ -276,6 +284,19 @@ export default {
       if (this.yAxis === "changeAbs") {
         return dt.positive === (filterType === "increment");
       }
+    },
+
+    fixIntersection(dt, index, event) {
+      this.intersectionFixed = !this.intersectionFixed;
+      this.$emit("broadcast", { intersectionFixed: this.intersectionFixed });
+      if (!this.intersectionFixed) {
+        this.mousemove(dt, index, event);
+      }
+    },
+
+    handleBroadcase(data) {
+      const { intersectionFixed } = data;
+      this.intersectionFixed = intersectionFixed;
     }
   },
 
