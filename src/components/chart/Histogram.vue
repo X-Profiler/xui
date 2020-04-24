@@ -146,7 +146,7 @@
 </template>
 
 <script>
-import histogramModule from "../../javascripts/chart/Histogram";
+import histogramModule from "@/javascripts/chart/Histogram";
 
 export default {
   props: {
