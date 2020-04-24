@@ -105,24 +105,24 @@
 
       <!-- histogram -->
       <g>
-        <transition name="slide-histogram" v-for="(dt, index) in data" :key="index">
-          <rect
-            v-show="needShow(dt)"
-            :ref="`${histogramLabel}-${dt.index}`"
-            class="histogram"
-            width="2"
-            :fill="getFill(dt)"
-            :stroke="getFill(dt)"
-            :stroke-opacity="0.7"
-            :stroke-width="0"
-            :height="getRectHeight(dt)"
-            :x="getXPosition(dt)"
-            :y="viewHeight - paddingBottom - getRectHeight(dt)"
-            @mousemove="mousemove(dt, index, $event)"
-            @mouseleave="mouseleave"
-            @click="fixIntersection(dt, index, $event)"
-          />
-        </transition>
+        <rect
+          v-for="(dt, index) in data"
+          :key="index"
+          :ref="`${histogramLabel}-${dt.index}`"
+          class="histogram"
+          width="2"
+          :opacity="needShow(dt) ? 1 : 0"
+          :fill="getFill(dt)"
+          :stroke="getFill(dt)"
+          :stroke-opacity="0.7"
+          :stroke-width="0"
+          :height="getRectHeight(dt)"
+          :x="getXPosition(dt)"
+          :y="viewHeight - paddingBottom - getRectHeight(dt)"
+          @mousemove="mousemove(dt, index, $event)"
+          @mouseleave="mouseleave"
+          @click="fixIntersection(dt, index, $event)"
+        />
       </g>
     </svg>
 
@@ -134,12 +134,12 @@
         :key="index"
         :ref="labelKey + dt.type"
         :style="index !== 0 ? 'margin-left: 25px;' : ''"
-        @mouseover="mouseoverLabel(dt)"
+        @mouseenter="mouseoverLabel(dt)"
         @mouseleave="mouseleaveLabel(dt)"
         @click="choseLabel(dt)"
       >
         <div class="label-icon" :style="'background-color: ' + getFill(dt)"></div>
-        <div class="label-value">{{ dt.type }}</div>
+        <div class="label-value">{{ dt.label }}</div>
       </div>
     </div>
   </div>
@@ -186,7 +186,8 @@ export default {
 <style scoped>
 .histogram {
   cursor: pointer;
-  transition: stroke-opacity 0.1s ease-out, stroke-width 0.1s ease-out;
+  transition: stroke-opacity 0.1s ease-out, stroke-width 0.1s ease-out,
+    opacity 0.1s ease-out;
 }
 
 .chartip-key {

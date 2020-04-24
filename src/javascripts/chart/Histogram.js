@@ -103,7 +103,11 @@ export default {
       return scales;
     },
 
-    getRectHeight({ [this.yAxis]: value }) {
+    getRectHeight({ [this.yAxis]: value, type, positive }) {
+      if (!this.needShow({ type, positive })) {
+        return 0;
+      }
+
       const yMaxData = this.yAxisScale[this.yAxisScale.length - 1].value;
       const yMinData = this.yAxisScale[0].value;
       const height =
@@ -171,17 +175,17 @@ export default {
       style["transform"] = "scale(1)";
     },
 
-    mouseoverLabel(dt) {
+    ...createLaterFunction("mouseoverLabel", function (dt) {
       if (!this.single) {
         this.singleton(dt);
       }
-    },
+    }),
 
-    mouseleaveLabel(dt) {
+    ...createLaterFunction("mouseleaveLabel", function (dt) {
       if (!this.single) {
         this.restore(dt);
       }
-    },
+    }),
 
     choseLabel({ type }) {
       for (const dt of this.types) {
@@ -349,20 +353,15 @@ export default {
         }));
 
         types.sort((o, n) => (count[o.type] < count[n.type] ? 1 : -1));
+
+        types = types.map(({ type }) => ({ type, label: type }));
       }
 
       if (this.yAxis === "changeAbs") {
-        count.positive = 0;
-        count.negative = 0;
-        for (const dt of this.data) {
-          if (dt.positive) {
-            count.positive++;
-          } else {
-            count.negative++;
-          }
-        }
-
-        types = [{ type: "reduce" }, { type: "increment" }];
+        types = [
+          { type: "reduce", label: "GC 后堆内存大小减少" },
+          { type: "increment", label: "GC 后堆内存大小增加" }
+        ];
       }
 
       return types;
