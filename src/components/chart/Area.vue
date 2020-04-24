@@ -287,17 +287,6 @@ export default {
 </script>
 
 <style scoped>
-.chartip-content-group {
-  display: flex;
-  align-items: center;
-}
-
-.chartip-label {
-  width: 8px;
-  height: 8px;
-  border-radius: 2px;
-}
-
 .chartip-key {
   margin-left: 5px;
 }

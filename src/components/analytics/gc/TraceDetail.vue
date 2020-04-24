@@ -28,7 +28,7 @@
             ref="area"
             class="trace-item"
             :height="330"
-            :right="41"
+            :right="30"
             :bottom="27"
             :data="heapTrendWithStart"
             xAxis="index"
@@ -65,8 +65,8 @@
             :yAxis="spaceTrendWithStart.spaces"
             yAxisUnit="MB"
             yAxisZero
-            @broadcast="broadcast('histogram2', arguments)"
-            @linkage="linkage('histogram2', arguments)"
+            @broadcast="broadcast('scatter', arguments)"
+            @linkage="linkage('scatter', arguments)"
             @hidden="hidden('scatter')"
           ></x-space-scatter>
         </div>
@@ -91,7 +91,7 @@ export default {
 
 .trace-panel {
   flex-shrink: 0;
-  width: 300px;
+  width: 260px;
 }
 
 .trace-charts {

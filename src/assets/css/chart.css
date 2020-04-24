@@ -73,9 +73,20 @@
   padding: 5px;
 }
 
+.chartip-content-group {
+  display: flex;
+  align-items: center;
+}
+
 .chartip-content {
   display: flex;
   padding: 0px 5px 5px 5px;
+}
+
+.chartip-label {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
 }
 
 /* trend start */
