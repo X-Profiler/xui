@@ -4,17 +4,30 @@ import { formatTime, createLaterFunction } from "@/javascripts/lib/utils";
 
 export default {
   created() {
+    const spaces = this.yAxis
+        .map(item => item.value !== "all_spaces" && item.value)
+        .filter(item => item);
     for (let idx = 0; idx < this.data.length; idx++) {
       const dt = this.data[idx];
+      spaces.sort((o, n) => dt[o] < dt[n] ? 1 : -1);
+      const sizes =
+        spaces.map(space => `${dt[`${space}_positive`] || dt[space] === 0 ? "+" : "-"}${Number(dt[space].toFixed(2))}`);
+      const colors =
+        spaces.map(space => dt[`${space}_positive`] ? "#c45a65" : "#2a9446");
+
       this.xValueMap[dt[this.xAxis]] = Object.assign({
         index: idx,
-        color: this.getFill(dt)
+        showAll: true,
+        spaces,
+        sizes,
+        colors,
+        color: this.getColor(dt, { value: "all_spaces" })
       }, dt);
     }
   },
 
   mounted() {
-    this.histogram = this.$refs.histogram;
+    this.scatter = this.$refs["space-scatter"];
     this.chartip = this.$refs.chartip;
 
     this.setViewBox();
@@ -23,13 +36,11 @@ export default {
 
   methods: {
     setViewBox() {
-      const width = parseInt(window.getComputedStyle(this.histogram).width, 10);
+      const width = parseInt(window.getComputedStyle(this.scatter).width, 10);
       if (!width) {
         return;
       }
       this.viewWidth = width;
-      // this.viewHeight = (width / 5) * 3;
-      this.intersectionFixed = false;
     },
 
     formatChartipTime(value) {
@@ -52,21 +63,21 @@ export default {
       );
     },
 
+    getYAxisLabel(index) {
+      return (
+        this.paddingTop +
+        ((this.viewHeight - this.paddingTop - this.paddingBottom) /
+          this.yAxisScaleCountInner) *
+        (this.yAxisScaleCountInner - index - 0.5)
+      );
+    },
+
     getXAxisLabel(index) {
       return (
         this.paddingLeft +
         ((this.viewWidth - this.paddingLeft - this.paddingRight) /
           this.xAxisScaleCountInner) *
         index
-      );
-    },
-
-    getYAxisLabel(index) {
-      return (
-        this.paddingTop +
-        ((this.viewHeight - this.paddingTop - this.paddingBottom) /
-          this.yAxisScaleCountInner) *
-        (this.yAxisScaleCountInner - index)
       );
     },
 
@@ -79,7 +90,15 @@ export default {
         data = data.filter(dt => this.needShow(dt, filterType));
       }
       const needZero = axis === this.yAxis && this.yAxisZero;
-      data = data.map(dt => dt[axis]);
+      if (Array.isArray(axis)) {
+        let tmp = [];
+        for (const axi of axis) {
+          tmp = tmp.concat(data.map(dt => dt[axi]));
+        }
+        data = tmp;
+      } else {
+        data = data.map(dt => dt[axis]);
+      }
       let min = needZero ? 0 : data[0];
       let max = data[0];
       for (const dt of data) {
@@ -96,69 +115,62 @@ export default {
         const scale = max - interval * i;
 
         scales.push({
-          label: interval <= 1 ? Number(scale.toFixed(2)) : Math.round(scale),
+          label: interval <= 0.5 ? Number(scale.toFixed(2)) : Math.round(scale),
           value: scale
         });
       }
       return scales;
     },
 
-    getRectHeight({ [this.yAxis]: value, type, positive }) {
-      if (!this.needShow({ type, positive })) {
-        return 0;
-      }
-
-      const yMaxData = this.yAxisScale[this.yAxisScale.length - 1].value;
-      const yMinData = this.yAxisScale[0].value;
-      const height =
-        yMaxData - yMinData
-          ? ((value - yMinData) / (yMaxData - yMinData)) *
-          (this.viewHeight - this.paddingTop - this.paddingBottom)
-          : 0;
-      return height;
-    },
-
-    getXPosition({ [this.xAxis]: value }) {
+    getCx({ index }) {
       const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
       const xMinData = this.xAxisScale[0].value;
-      const offset =
-        xMaxData - xMinData
-          ? ((value - xMinData) / (xMaxData - xMinData)) *
-          (this.viewWidth - this.paddingLeft - this.paddingRight)
-          : 0;
+      const offset = xMaxData
+        ? ((index - xMinData) / (xMaxData - xMinData)) *
+        (this.viewWidth - this.paddingLeft - this.paddingRight)
+        : 0;
       const xPosition = this.paddingLeft + offset;
 
       return xPosition;
     },
 
-    getFill({ type, positive }) {
-      let color = "";
-
-      if (this.yAxis === "pause") {
-        switch (type) {
-          case "scavenge":
-            color = "#3498db";
-            break;
-          case "marksweep":
-            color = "#ff9900";
-            break;
-          case "marking":
-            color = "#6a5acd";
-            break;
-          default:
-            break;
-        }
+    needShow(info, value) {
+      if (!this.filterType) {
+        return true;
       }
-
-      if (this.yAxis === "changeAbs") {
-        if (positive || type === "increment") {
-          color = "#c45a65";
-        } else {
-          color = "#2a9446";
-        }
+      const positive = info[`${value}_positive`];
+      if (this.filterType === "increment" && positive) {
+        return true;
       }
+      if (this.filterType === "reduce" && !positive) {
+        return true;
+      }
+      return false;
+    },
 
-      return color;
+    getRadius(info, { value }) {
+      const size = info[value];
+      if (!size || !this.needShow(info, value)) {
+        return 0;
+      }
+      const maxSize = 16;
+      const minSize = 4;
+      const spaceInfo = this.spacesInfo[value];
+      // const spaceInfo = this.spacesInfo["total"];
+      let radius = (size / spaceInfo) * maxSize;
+      radius = radius > maxSize ? maxSize : radius;
+      radius = radius < minSize ? minSize : radius;
+
+      return radius;
+    },
+
+    getColor(info, { value } = {}) {
+      const positive = info[`${value}_positive`];
+      if (positive || info.type === "increment") {
+        return "#c45a65";
+      } else {
+        return "#adbcc9";
+      }
     },
 
     singleton({ type }) {
@@ -203,7 +215,31 @@ export default {
       }
     },
 
-    ...createLaterFunction("mousemove", function (dt, index, event) {
+    setCircleStyle(dt, opacity, width, opacity2, axis) {
+      axis = axis || dt.axis;
+      if (!axis) {
+        return;
+      }
+      let axises;
+      if (Array.isArray(axis)) {
+        axises = axis;
+      } else {
+        axises = [axis];
+      }
+
+      for (const axis of axises) {
+        const element = this.$refs[`${this.circleLabel}-${dt.index}-${axis}`];
+        if (!element || !element[0]) {
+          continue;
+        }
+        const style = element[0].style;
+        style["stroke-opacity"] = opacity;
+        style["stroke-width"] = width;
+        style["opacity"] = opacity2;
+      }
+    },
+
+    ...createLaterFunction("mousemove", function (dt, axis, index, event) {
       if (this.intersectionFixed) {
         return;
       }
@@ -223,13 +259,19 @@ export default {
         return;
       }
 
-      this.setRectStyle(this.chartipData, 1, 0);
-      this.setRectStyle(dt, 0.5, "5px");
+      this.setCircleStyle(this.chartipData, 1, 0, 0.4);
+      this.setCircleStyle(dt, 0.5, "13px", 1, axis.value);
       // show chartip
-      this.chartipData = Object.assign({
-        index,
-        color: this.getFill(dt)
-      }, dt);
+      this.chartipData = Object.assign(
+        {
+          index,
+          axis: axis.value,
+          change: Number(dt[axis.value].toFixed(2)),
+          positive: dt[`${axis.value}_positive`] ? "+" : "-",
+          color: this.getColor(dt, axis)
+        },
+        dt
+      );
       const mouse = { offsetX, offsetY };
       this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
 
@@ -242,66 +284,42 @@ export default {
       }
       this.chartip.hidden();
       this.$emit("hidden");
-      this.setRectStyle(this.chartipData, 1, 0);
+      this.setCircleStyle(this.chartipData, 1, 0, 0.4);
     }),
 
-    setRectStyle(dt, opacity, width) {
-      const element = this.$refs[`${this.histogramLabel}-${dt.index}`];
-      if (!element || !element[0]) {
-        return;
-      }
-      const style = element[0].style;
-      style["stroke-opacity"] = opacity;
-      style["stroke-width"] = width;
-    },
-
-    showTip({ time, mouse }) {
-      const maxLegalX = this.viewWidth - this.paddingRight;
-      const minLegalY = this.paddingTop;
-      const dt = this.xValueMap[time];
-      this.setRectStyle(this.chartipData, 1, 0);
-      if (!this.needShow(dt)) {
-        this.chartip.hidden();
-        return;
-      }
-      this.setRectStyle(dt, 0.5, "5px");
-      this.chartipData = dt;
-      this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
-    },
-
-    hiddenTip() {
-      this.chartip.hidden();
-      this.setRectStyle(this.chartipData, 1, 0);
-    },
-
-    needShow(dt, filter) {
-      const filterType = filter || this.filterType;
-
-      if (!filterType) {
-        return true;
-      }
-
-      if (this.yAxis === "pause") {
-        return filterType === dt.type;
-      }
-
-      if (this.yAxis === "changeAbs") {
-        return dt.positive === (filterType === "increment");
-      }
-    },
-
-    fixIntersection(dt, index, event) {
+    fixIntersection(dt, axis, index, event) {
       this.intersectionFixed = !this.intersectionFixed;
       this.$emit("broadcast", { intersectionFixed: this.intersectionFixed });
       if (!this.intersectionFixed) {
-        this.mousemove(dt, index, event);
+        this.mousemove(dt, axis, index, event);
       }
     },
 
     handleBroadcase(data) {
       const { intersectionFixed } = data;
       this.intersectionFixed = intersectionFixed;
-    }
+    },
+
+    ...createLaterFunction("showTip", function ({ time, mouse }) {
+      const maxLegalX = this.viewWidth - this.paddingRight;
+      const minLegalY = this.paddingTop;
+      const dt = this.xValueMap[time];
+      const spaces = this.yAxis.map(item => item.value);
+      this.setCircleStyle(this.chartipData, 1, 0, 0.4, spaces);
+      if (!this.needShow(dt)) {
+        this.chartip.hidden();
+        return;
+      }
+      this.setCircleStyle(dt, 0.5, "13px", 1, spaces);
+      this.chartipData = dt;
+      this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
+    }),
+
+    ...createLaterFunction("hiddenTip", function () {
+      this.chartip.hidden();
+      const spaces = this.yAxis.map(item => item.value);
+      this.setCircleStyle(this.chartipData, 1, 0, 0.4, spaces);
+    })
   },
 
   computed: {
@@ -310,7 +328,7 @@ export default {
     },
 
     yAxisScaleCountInner() {
-      return this.yAxisScaleCount || this.defaultYAxisScaleCount;
+      return this.yAxis.length;
     },
 
     xGridFullWidth() {
@@ -326,50 +344,36 @@ export default {
       return scales;
     },
 
-    yAxisScale() {
-      const scales = this.getScale(this.yAxisScaleCountInner, this.yAxis, this.filterType);
-      scales.reverse();
-      return scales;
+    spacesInfo() {
+      const map = { total: 0 };
+      for (const dt of this.data) {
+        for (const { value } of this.yAxis) {
+          if (map[value] !== undefined) {
+            if (map[value] < dt[value]) {
+              map[value] = dt[value];
+            }
+          } else {
+            map[value] = dt[value];
+          }
+
+          if (map.total < dt[value]) {
+            map.total = dt[value];
+          }
+        }
+      }
+      return map;
     },
 
     types() {
-      const count = {};
-      let types = [];
-
-      if (this.yAxis === "pause") {
-        types = Array.from(
-          new Set(
-            this.data.map(({ type }) => {
-              if (count[type]) {
-                count[type]++;
-              } else {
-                count[type] = 1;
-              }
-              return type;
-            })
-          )
-        ).map(type => ({
-          type
-        }));
-
-        types.sort((o, n) => (count[o.type] < count[n.type] ? 1 : -1));
-
-        types = types.map(({ type }) => ({ type, label: type }));
-      }
-
-      if (this.yAxis === "changeAbs") {
-        types = [
-          { type: "reduce", label: "GC 后堆内存大小减少" },
-          { type: "increment", label: "GC 后堆内存大小增加" }
-        ];
-      }
-
-      return types;
+      return [
+        { type: "reduce", label: "GC 后空间大小减少" },
+        { type: "increment", label: "GC 后空间大小增加" }
+      ];
     },
 
     chartipTitle() {
       const { index, type } = this.chartipData;
       return `追踪周期内第 ${index} 次 GC ( ${type} )`;
-    },
+    }
   }
 };

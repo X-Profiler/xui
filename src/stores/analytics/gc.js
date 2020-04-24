@@ -86,7 +86,7 @@ export default {
       const { gc: gcList } = state.gcFile;
       let spaces;
 
-      const list = gcList.map(({ before, after }, idx) => {
+      const list = gcList.map(({ type, before, after, timeFromStart }, idx) => {
         const beforeSpaces = getters.getSpacesMap(before);
         const afterSpaces = getters.getSpacesMap(after);
         if (!spaces) {
@@ -94,7 +94,9 @@ export default {
         }
 
         const res = {
-          index: idx + 1
+          type,
+          index: idx + 1,
+          timeFromStart: timeFromStart * 1000
         };
 
         let total = 0;

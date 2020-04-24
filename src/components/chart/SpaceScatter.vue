@@ -1,5 +1,47 @@
 <template>
   <div ref="space-scatter">
+    <!-- chartip -->
+    <x-chartip ref="chartip" no-arrow>
+      <div
+        slot="header"
+        class="chartip-header"
+        :style="`background-color: ${chartipData.color};color: white`"
+      >
+        <div>{{ chartipTitle }}</div>
+      </div>
+      <div slot="content" class="chartip-content">
+        <div style="margin-top:2px;">
+          <div v-if="chartipData.showAll">
+            <div
+              v-for="(space, index) in chartipData.spaces"
+              :key="index"
+              class="chartip-content-group"
+            >
+              <div class="chartip-label" :style="'margin-top: 2px;background-color: ' + chartipData.colors[index]"></div>
+              <div class="chartip-key">{{ space }}:</div>
+            </div>
+          </div>
+          <div v-else>
+            <div class="chartip-key">堆内存空间名称:</div>
+            <div class="chartip-key">堆内存大小变化:</div>
+          </div>
+        </div>
+        <div style="margin: 2px 0 0 23px;">
+          <div v-if="chartipData.showAll">
+            <div
+              class="chartip-value"
+              v-for="(size, index) in chartipData.sizes"
+              :key="index"
+            >{{ size }}MB</div>
+          </div>
+          <div v-else>
+            <div class="chartip-value">@{{ chartipData.axis }}</div>
+            <div class="chartip-value">{{ chartipData.positive }}{{ chartipData.change }}MB</div>
+          </div>
+        </div>
+      </div>
+    </x-chartip>
+
     <svg
       v-if="viewWidth"
       width="100%"
@@ -81,16 +123,20 @@
       </g>
 
       <!-- scatter -->
-      <g v-for="(info, index) in data" :key="index">
-        <g v-for="(axis, index) in yAxis" :key="index">
+      <g v-for="(info, index1) in data" :key="index1">
+        <g v-for="(axis, index2) in yAxis" :key="index2">
           <circle
             class="circle"
+            :ref="`${circleLabel}-${info.index}-${axis.value}`"
             :cx="getCx(info)"
-            :cy="getYAxisLabel(index)"
+            :cy="getYAxisLabel(index2)"
             :r="getRadius(info, axis)"
             :opacity="0.4"
             :fill="getColor(info, axis)"
             :stroke="getColor(info, axis)"
+            @mousemove.stop="mousemove(info, axis,index1, $event)"
+            @mouseleave="mouseleave"
+            @click="fixIntersection(info, axis, index1, $event)"
           />
         </g>
       </g>
@@ -116,7 +162,7 @@
 </template>>
 
 <script>
-import { createLaterFunction } from "../../javascripts/lib/utils";
+import spaceScatterModule from "@/javascripts/chart/SpaceScatter";
 
 export default {
   props: {
@@ -136,249 +182,19 @@ export default {
       viewWidth: 0,
       viewHeight: 330,
       paddingLeft: 116,
-      paddingRight: 41,
+      paddingRight: 30,
       paddingTop: 20,
       paddingBottom: 27,
       labelKey: "label-",
-      filterType: undefined
+      filterType: undefined,
+      chartipData: {},
+      xValueMap: {},
+      circleLabel: "scatter-label",
+      intersectionFixed: false
     };
   },
 
-  mounted() {
-    this.scatter = this.$refs["space-scatter"];
-
-    this.setViewBox();
-    window.addEventListener("resize", this.setViewBox.bind(this));
-  },
-
-  methods: {
-    setViewBox() {
-      const width = parseInt(window.getComputedStyle(this.scatter).width, 10);
-      if (!width) {
-        return;
-      }
-      this.viewWidth = width;
-    },
-
-    formatXLabel(value) {
-      return Math.round(value);
-    },
-
-    upperCaseLabel(label) {
-      return label.toUpperCase();
-    },
-
-    getXGridBgInterval(index) {
-      return (
-        this.paddingLeft -
-        this.xGridFullWidth * 0.75 +
-        this.xGridFullWidth * index
-      );
-    },
-
-    getYAxisLabel(index) {
-      return (
-        this.paddingTop +
-        ((this.viewHeight - this.paddingTop - this.paddingBottom) /
-          this.yAxisScaleCountInner) *
-          (this.yAxisScaleCountInner - index - 0.5)
-      );
-    },
-
-    getXAxisLabel(index) {
-      return (
-        this.paddingLeft +
-        ((this.viewWidth - this.paddingLeft - this.paddingRight) /
-          this.xAxisScaleCountInner) *
-          index
-      );
-    },
-
-    getScale(count, axis, filterType) {
-      let data = this.data;
-      if (!Array.isArray(data)) {
-        return [];
-      }
-      if (filterType) {
-        data = data.filter(dt => this.needShow(dt, filterType));
-      }
-      const needZero = axis === this.yAxis && this.yAxisZero;
-      if (Array.isArray(axis)) {
-        let tmp = [];
-        for (const axi of axis) {
-          tmp = tmp.concat(data.map(dt => dt[axi]));
-        }
-        data = tmp;
-      } else {
-        data = data.map(dt => dt[axis]);
-      }
-      let min = needZero ? 0 : data[0];
-      let max = data[0];
-      for (const dt of data) {
-        if (dt > max) {
-          max = dt;
-        }
-        if (dt < min && !needZero) {
-          min = dt;
-        }
-      }
-      const interval = (max - min) / count;
-      const scales = [];
-      for (let i = 0; i <= count; i++) {
-        const scale = max - interval * i;
-
-        scales.push({
-          label: interval <= 0.5 ? Number(scale.toFixed(2)) : Math.round(scale),
-          value: scale
-        });
-      }
-      return scales;
-    },
-
-    getCx({ index }) {
-      const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
-      const xMinData = this.xAxisScale[0].value;
-      const offset = xMaxData
-        ? ((index - xMinData) / (xMaxData - xMinData)) *
-          (this.viewWidth - this.paddingLeft - this.paddingRight)
-        : 0;
-      const xPosition = this.paddingLeft + offset;
-
-      return xPosition;
-    },
-
-    needShow(info, value) {
-      if (!this.filterType) {
-        return true;
-      }
-      const positive = info[`${value}_positive`];
-      if (this.filterType === "increment" && positive) {
-        return true;
-      }
-      if (this.filterType === "reduce" && !positive) {
-        return true;
-      }
-      return false;
-    },
-
-    getRadius(info, { value }) {
-      const size = info[value];
-      if (!size || !this.needShow(info, value)) {
-        return 0;
-      }
-      const maxSize = 16;
-      const minSize = 4;
-      const spaceInfo = this.spacesInfo[value];
-      let radius = (size / spaceInfo) * maxSize;
-      radius = radius > maxSize ? maxSize : radius;
-      radius = radius < minSize ? minSize : radius;
-
-      return radius;
-    },
-
-    getColor(info, { value } = {}) {
-      const positive = info[`${value}_positive`];
-      if (positive || info.type === "increment") {
-        return "#c45a65";
-      } else {
-        return "#adbcc9";
-      }
-    },
-
-    singleton({ type }) {
-      this.filterType = type;
-
-      const style = this.$refs[this.labelKey + type][0].style;
-      style["transform"] = "scale(1.2)";
-    },
-
-    restore({ type }) {
-      this.filterType = undefined;
-
-      const style = this.$refs[this.labelKey + type][0].style;
-      style["transform"] = "scale(1)";
-    },
-
-    ...createLaterFunction("mouseoverLabel", function(dt) {
-      if (!this.single) {
-        this.singleton(dt);
-      }
-    }),
-
-    ...createLaterFunction("mouseleaveLabel", function(dt) {
-      if (!this.single) {
-        this.restore(dt);
-      }
-    }),
-
-    choseLabel({ type }) {
-      for (const dt of this.types) {
-        this.restore(dt);
-      }
-      if (type !== this.single) {
-        this.single = undefined;
-      }
-      if (!this.single) {
-        this.singleton({ type });
-        this.single = type;
-      } else {
-        this.restore({ type });
-        this.single = undefined;
-      }
-    },
-
-    handleBroadcase() {},
-
-    showTip() {},
-
-    hiddenTip() {}
-  },
-
-  computed: {
-    xAxisScaleCountInner() {
-      return this.xAxisScaleCount || this.defaultXAxisScaleCount;
-    },
-
-    yAxisScaleCountInner() {
-      return this.yAxis.length;
-    },
-
-    xGridFullWidth() {
-      return (
-        (this.viewWidth - this.paddingLeft - this.paddingRight) /
-        this.xAxisScaleCountInner
-      );
-    },
-
-    xAxisScale() {
-      const scales = this.getScale(this.xAxisScaleCountInner, this.xAxis);
-      scales.reverse();
-      return scales;
-    },
-
-    spacesInfo() {
-      const map = {};
-      for (const dt of this.data) {
-        for (const { value } of this.yAxis) {
-          if (map[value] !== undefined) {
-            if (map[value] < dt[value]) {
-              map[value] = dt[value];
-            }
-          } else {
-            map[value] = dt[value];
-          }
-        }
-      }
-      return map;
-    },
-
-    types() {
-      return [
-        { type: "reduce", label: "GC 后空间大小减少" },
-        { type: "increment", label: "GC 后空间大小增加" }
-      ];
-    }
-  }
+  ...spaceScatterModule
 };
 </script>
 
@@ -388,9 +204,14 @@ export default {
   transition: stroke-opacity 0.1s ease-out, stroke-width 0.1s ease-out;
 }
 
-.circle:hover {
-  opacity: 1;
-  stroke-opacity: 0.4;
-  stroke-width: 10px;
+.chartip-key {
+  margin-top: 2px;
+  margin-left: 5px;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+  /* color: #373d41; */
+}
+
+.chartip-value {
+  margin-top: 2px;
 }
 </style>

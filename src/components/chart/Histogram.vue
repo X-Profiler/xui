@@ -166,7 +166,7 @@ export default {
       viewWidth: 0,
       viewHeight: 330,
       paddingLeft: 40,
-      paddingRight: 41,
+      paddingRight: 30,
       paddingTop: 20,
       paddingBottom: 27,
       labelKey: "label-",
@@ -192,7 +192,7 @@ export default {
 
 .chartip-key {
   margin-top: 2px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   /* color: #373d41; */
 }
 
