@@ -48,7 +48,7 @@
 
         <!-- y grid -->
         <g>
-          <g v-for="(yAxis, index) in yAxisScale" :key="index">
+          <g v-for="(axis, index) in yAxis" :key="index">
             <text
               class="axisScale"
               style="text-anchor: end;"
@@ -56,9 +56,9 @@
               :y="getYAxisLabel(index)"
               dx="-0.5em"
               dy="0.32em"
-            >{{ yAxis.label }}</text>
+            >{{ axis.label }}</text>
             <line
-              v-if="index !== yAxisScale.length -1"
+              v-if="index !== yAxis.length -1"
               class="axis"
               :x1="paddingLeft"
               :y1="getYAxisLabel(index)"
@@ -77,6 +77,19 @@
             dy="-0.5em"
             class="axisUnit"
           >{{ upperCaseLabel(yAxisUnit) }}</text>
+        </g>
+      </g>
+
+      <!-- scatter -->
+      <g v-for="(info, index) in data" :key="index">
+        <g v-for="(axis, index) in yAxis" :key="index">
+          <circle
+            :cx="getCx(info)"
+            :cy="getYAxisLabel(index)"
+            :r="getRadius(info, axis)"
+            :opacity="0.4"
+            :fill="getColor(info, axis)"
+          />
         </g>
       </g>
     </svg>
@@ -101,7 +114,7 @@ export default {
       defaultYAxisScaleCount: 4,
       viewWidth: 0,
       viewHeight: 330,
-      paddingLeft: 40,
+      paddingLeft: 116,
       paddingRight: 41,
       paddingTop: 20,
       paddingBottom: 27,
@@ -146,7 +159,7 @@ export default {
         this.paddingTop +
         ((this.viewHeight - this.paddingTop - this.paddingBottom) /
           this.yAxisScaleCountInner) *
-          (this.yAxisScaleCountInner - index)
+          (this.yAxisScaleCountInner - index - 0.5)
       );
     },
 
@@ -200,6 +213,42 @@ export default {
       return scales;
     },
 
+    getCx({ index }) {
+      const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
+      const xMinData = this.xAxisScale[0].value;
+      const offset = xMaxData
+        ? ((index - xMinData) / (xMaxData - xMinData)) *
+          (this.viewWidth - this.paddingLeft - this.paddingRight)
+        : 0;
+      const xPosition = this.paddingLeft + offset;
+
+      return xPosition;
+    },
+
+    getRadius(info, { value }) {
+      const size = info[value];
+      if (!size) {
+        return 0;
+      }
+      const maxSize = 16;
+      const minSize = 4;
+      const spaceInfo = this.spacesInfo[value];
+      let radius = (size / spaceInfo) * maxSize;
+      radius = radius > maxSize ? maxSize : radius;
+      radius = radius < minSize ? minSize : radius;
+
+      return radius;
+    },
+
+    getColor(info, { value }) {
+      const positive = info[`${value}_positive`];
+      if (positive) {
+        return "#c45a65";
+      } else {
+        return "#adbcc9";
+      }
+    },
+
     handleBroadcase() {},
 
     showTip() {},
@@ -213,7 +262,7 @@ export default {
     },
 
     yAxisScaleCountInner() {
-      return this.yAxisScaleCount || this.defaultYAxisScaleCount;
+      return this.yAxis.length;
     },
 
     xGridFullWidth() {
@@ -229,14 +278,20 @@ export default {
       return scales;
     },
 
-    yAxisScale() {
-      const scales = this.getScale(
-        this.yAxisScaleCountInner,
-        this.yAxis,
-        this.filterType
-      );
-      scales.reverse();
-      return scales;
+    spacesInfo() {
+      const map = {};
+      for (const dt of this.data) {
+        for (const { value } of this.yAxis) {
+          if (map[value] !== undefined) {
+            if (map[value] < dt[value]) {
+              map[value] = dt[value];
+            }
+          } else {
+            map[value] = dt[value];
+          }
+        }
+      }
+      return map;
     }
   }
 };

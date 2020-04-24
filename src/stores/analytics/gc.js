@@ -98,20 +98,40 @@ export default {
         };
 
         let total = 0;
+        let totalAbs = 0;
         for (const space of spaces) {
           const tmp = (afterSpaces[space] - beforeSpaces[space]) / 1024 / 1024;
           total += tmp;
+          totalAbs += Math.abs(tmp);
           res[space] = Math.abs(tmp);
           res[`${space}_positive`] = tmp > 0;
         }
 
-        res["all_spaces"] = total;
+        res["all_spaces"] = Math.abs(total);
         res["all_spaces_positive"] = total > 0;
+        res["all_size_abs"] = totalAbs;
 
         return res;
       });
 
       spaces.push("all_spaces");
+
+      spaces = spaces.filter(space => !list.every(item => item[space] === 0));
+
+      spaces = spaces.map(space => {
+        let label = space;
+        if (label === "new_large_object_space") {
+          label = "new_lo_space";
+        }
+        if (label === "large_object_space") {
+          label = "lo_space";
+        }
+        if (label === "code_large_object_space") {
+          label = "code_lo_space";
+        }
+
+        return { label, value: space };
+      });
 
       return { spaces, list };
     },
