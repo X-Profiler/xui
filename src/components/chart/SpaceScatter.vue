@@ -84,15 +84,31 @@
       <g v-for="(info, index) in data" :key="index">
         <g v-for="(axis, index) in yAxis" :key="index">
           <circle
+            class="circle"
             :cx="getCx(info)"
             :cy="getYAxisLabel(index)"
             :r="getRadius(info, axis)"
             :opacity="0.4"
             :fill="getColor(info, axis)"
+            :stroke="getColor(info, axis)"
           />
         </g>
       </g>
     </svg>
+
+    <!-- chart label -->
+    <div v-if="data.length" class="chart-label">
+      <div
+        class="chart-label-group"
+        v-for="(dt, index) in types"
+        :key="index"
+        :ref="labelKey + dt.type"
+        :style="index !== 0 ? 'margin-left: 25px;' : ''"
+      >
+        <div class="label-icon" :style="'background-color: ' + getColor(dt)"></div>
+        <div class="label-value">{{ dt.label }}</div>
+      </div>
+    </div>
   </div>
 </template>>
 
@@ -118,6 +134,7 @@ export default {
       paddingRight: 41,
       paddingTop: 20,
       paddingBottom: 27,
+      labelKey: "label-",
       filterType: undefined
     };
   },
@@ -240,9 +257,9 @@ export default {
       return radius;
     },
 
-    getColor(info, { value }) {
+    getColor(info, { value } = {}) {
       const positive = info[`${value}_positive`];
-      if (positive) {
+      if (positive || info.type === "increment") {
         return "#c45a65";
       } else {
         return "#adbcc9";
@@ -292,7 +309,27 @@ export default {
         }
       }
       return map;
+    },
+
+    types() {
+      return [
+        { type: "reduce", label: "GC 后空间大小减少" },
+        { type: "increment", label: "GC 后空间大小增加" }
+      ];
     }
   }
 };
 </script>
+
+<style scoped>
+.circle {
+  cursor: pointer;
+  transition: stroke-opacity 0.1s ease-out, stroke-width 0.1s ease-out;
+}
+
+.circle:hover {
+  opacity: 1;
+  stroke-opacity: 0.4;
+  stroke-width: 10px;
+}
+</style>
