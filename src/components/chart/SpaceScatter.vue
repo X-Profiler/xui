@@ -104,6 +104,9 @@
         :key="index"
         :ref="labelKey + dt.type"
         :style="index !== 0 ? 'margin-left: 25px;' : ''"
+        @mouseenter="mouseoverLabel(dt)"
+        @mouseleave="mouseleaveLabel(dt)"
+        @click="choseLabel(dt)"
       >
         <div class="label-icon" :style="'background-color: ' + getColor(dt)"></div>
         <div class="label-value">{{ dt.label }}</div>
@@ -113,6 +116,8 @@
 </template>>
 
 <script>
+import { createLaterFunction } from "../../javascripts/lib/utils";
+
 export default {
   props: {
     data: Array,
@@ -242,9 +247,23 @@ export default {
       return xPosition;
     },
 
+    needShow(info, value) {
+      if (!this.filterType) {
+        return true;
+      }
+      const positive = info[`${value}_positive`];
+      if (this.filterType === "increment" && positive) {
+        return true;
+      }
+      if (this.filterType === "reduce" && !positive) {
+        return true;
+      }
+      return false;
+    },
+
     getRadius(info, { value }) {
       const size = info[value];
-      if (!size) {
+      if (!size || !this.needShow(info, value)) {
         return 0;
       }
       const maxSize = 16;
@@ -263,6 +282,48 @@ export default {
         return "#c45a65";
       } else {
         return "#adbcc9";
+      }
+    },
+
+    singleton({ type }) {
+      this.filterType = type;
+
+      const style = this.$refs[this.labelKey + type][0].style;
+      style["transform"] = "scale(1.2)";
+    },
+
+    restore({ type }) {
+      this.filterType = undefined;
+
+      const style = this.$refs[this.labelKey + type][0].style;
+      style["transform"] = "scale(1)";
+    },
+
+    ...createLaterFunction("mouseoverLabel", function(dt) {
+      if (!this.single) {
+        this.singleton(dt);
+      }
+    }),
+
+    ...createLaterFunction("mouseleaveLabel", function(dt) {
+      if (!this.single) {
+        this.restore(dt);
+      }
+    }),
+
+    choseLabel({ type }) {
+      for (const dt of this.types) {
+        this.restore(dt);
+      }
+      if (type !== this.single) {
+        this.single = undefined;
+      }
+      if (!this.single) {
+        this.singleton({ type });
+        this.single = type;
+      } else {
+        this.restore({ type });
+        this.single = undefined;
       }
     },
 
