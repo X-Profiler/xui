@@ -164,7 +164,7 @@ export default {
       defaultXAxisScaleCount: 5,
       defaultYAxisScaleCount: 4,
       viewWidth: 0,
-      viewHeight: 330,
+      viewHeight: 250,
       paddingLeft: 40,
       paddingRight: 30,
       paddingTop: 20,

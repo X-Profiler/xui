@@ -17,7 +17,10 @@
               :key="index"
               class="chartip-content-group"
             >
-              <div class="chartip-label" :style="'margin-top: 2px;background-color: ' + chartipData.colors[index]"></div>
+              <div
+                class="chartip-label"
+                :style="'margin-top: 2px;background-color: ' + chartipData.colors[index]"
+              ></div>
               <div class="chartip-key">{{ space }}:</div>
             </div>
           </div>
@@ -131,7 +134,7 @@
             :cx="getCx(info)"
             :cy="getYAxisLabel(index2)"
             :r="getRadius(info, axis)"
-            :opacity="0.4"
+            :opacity="circleOpacity"
             :fill="getColor(info, axis)"
             :stroke="getColor(info, axis)"
             @mousemove.stop="mousemove(info, axis,index1, $event)"
@@ -180,7 +183,7 @@ export default {
       defaultXAxisScaleCount: 5,
       defaultYAxisScaleCount: 4,
       viewWidth: 0,
-      viewHeight: 330,
+      viewHeight: 250,
       paddingLeft: 116,
       paddingRight: 30,
       paddingTop: 20,
@@ -190,7 +193,9 @@ export default {
       chartipData: {},
       xValueMap: {},
       circleLabel: "scatter-label",
-      intersectionFixed: false
+      intersectionFixed: false,
+      validDataMap: {},
+      circleOpacity: 0.5
     };
   },
 

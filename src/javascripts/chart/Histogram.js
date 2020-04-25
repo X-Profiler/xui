@@ -255,7 +255,7 @@ export default {
       style["stroke-width"] = width;
     },
 
-    showTip({ time, mouse }) {
+    ...createLaterFunction("showTip", function ({ time, mouse }) {
       const maxLegalX = this.viewWidth - this.paddingRight;
       const minLegalY = this.paddingTop;
       const dt = this.xValueMap[time];
@@ -267,12 +267,12 @@ export default {
       this.setRectStyle(dt, 0.5, "5px");
       this.chartipData = dt;
       this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
-    },
+    }),
 
-    hiddenTip() {
+    ...createLaterFunction("hiddenTip", function () {
       this.chartip.hidden();
       this.setRectStyle(this.chartipData, 1, 0);
-    },
+    }),
 
     needShow(dt, filter) {
       const filterType = filter || this.filterType;

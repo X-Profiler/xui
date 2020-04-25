@@ -4,7 +4,7 @@
 
     <div class="trace-content">
       <!-- trace panel -->
-      <div class="trace-panel"></div>
+      <x-trace-panel class="trace-panel"></x-trace-panel>
 
       <!-- trace charts -->
       <div class="trace-charts">
@@ -27,7 +27,6 @@
           <x-area
             ref="area"
             class="trace-item"
-            :height="330"
             :right="30"
             :bottom="27"
             :data="heapTrendWithStart"
@@ -77,8 +76,13 @@
 
 <script>
 import traceDetailModule from "@/javascripts/analytics/gc/TraceDetail";
+import xTracePanel from "@/components/analytics/gc/TracePanel";
 
 export default {
+  components: {
+    "x-trace-panel": xTracePanel
+  },
+
   ...traceDetailModule
 };
 </script>
