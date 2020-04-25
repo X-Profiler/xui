@@ -52,10 +52,10 @@ export default {
 }
 
 .trace-statistics {
-  margin-top: 19px;
+  margin-top: 15px;
 }
 
 .trace-detail {
-  margin-top: 25px;
+  margin-top: 15px;
 }
 </style>

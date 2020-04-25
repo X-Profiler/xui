@@ -5,8 +5,8 @@ import { formatTime, createLaterFunction } from "@/javascripts/lib/utils";
 export default {
   created() {
     const spaces = this.yAxis
-        .map(item => item.value !== "all_spaces" && item.value)
-        .filter(item => item);
+      .map(item => item.value !== "all_spaces" && item.value)
+      .filter(item => item);
     for (let idx = 0; idx < this.data.length; idx++) {
       const dt = this.data[idx];
       spaces.sort((o, n) => dt[o] < dt[n] ? 1 : -1);
@@ -23,6 +23,20 @@ export default {
         colors,
         color: this.getColor(dt, { value: "all_spaces" })
       }, dt);
+    }
+
+    const validDataMap = this.validDataMap;
+    for (const dt of this.data) {
+      for (const { value: space } of this.yAxis) {
+        if (!dt[space]) {
+          continue;
+        }
+        if (!validDataMap[space]) {
+          validDataMap[space] = 1;
+        } else {
+          validDataMap[space]++;
+        }
+      }
     }
   },
 
@@ -148,6 +162,17 @@ export default {
       return false;
     },
 
+    needShowRadius(index, space) {
+      const maxRadius = 100;
+      const count = this.validDataMap[space];
+      if (count > maxRadius) {
+        const interval = Math.round(count / maxRadius);
+        return index % interval === 1;
+      } else {
+        return true;
+      }
+    },
+
     getRadius(info, { value }) {
       const size = info[value];
       if (!size || !this.needShow(info, value)) {
@@ -155,11 +180,11 @@ export default {
       }
       const maxSize = 16;
       const minSize = 4;
-      const spaceInfo = this.spacesInfo[value];
-      // const spaceInfo = this.spacesInfo["total"];
+      // const spaceInfo = this.spacesInfo[value];
+      const spaceInfo = this.spacesInfo["total"];
       let radius = (size / spaceInfo) * maxSize;
       radius = radius > maxSize ? maxSize : radius;
-      radius = radius < minSize ? minSize : radius;
+      radius = radius < minSize ? this.needShowRadius(info.index, value) ? minSize : 0 : radius;
 
       return radius;
     },
@@ -259,7 +284,7 @@ export default {
         return;
       }
 
-      this.setCircleStyle(this.chartipData, 1, 0, 0.4);
+      this.setCircleStyle(this.chartipData, 1, 0, this.circleOpacity);
       this.setCircleStyle(dt, 0.5, "13px", 1, axis.value);
       // show chartip
       this.chartipData = Object.assign(
@@ -284,7 +309,7 @@ export default {
       }
       this.chartip.hidden();
       this.$emit("hidden");
-      this.setCircleStyle(this.chartipData, 1, 0, 0.4);
+      this.setCircleStyle(this.chartipData, 1, 0, this.circleOpacity);
     }),
 
     fixIntersection(dt, axis, index, event) {
@@ -305,20 +330,21 @@ export default {
       const minLegalY = this.paddingTop;
       const dt = this.xValueMap[time];
       const spaces = this.yAxis.map(item => item.value);
-      this.setCircleStyle(this.chartipData, 1, 0, 0.4, spaces);
-      if (!this.needShow(dt)) {
-        this.chartip.hidden();
-        return;
-      }
+      this.setCircleStyle(this.chartipData, 1, 0, this.circleOpacity, spaces);
+      // if (!this.needShow(dt, "all_spaces")) {
+      //   this.chartip.hidden();
+      //   return;
+      // }
       this.setCircleStyle(dt, 0.5, "13px", 1, spaces);
       this.chartipData = dt;
-      this.chartip.show(mouse, minLegalY, maxLegalX, this.paddingRight);
+      const { offsetX, offsetY } = mouse;
+      this.chartip.show({ offsetX: offsetX + 45, offsetY }, minLegalY, maxLegalX, this.paddingRight);
     }),
 
     ...createLaterFunction("hiddenTip", function () {
       this.chartip.hidden();
       const spaces = this.yAxis.map(item => item.value);
-      this.setCircleStyle(this.chartipData, 1, 0, 0.4, spaces);
+      this.setCircleStyle(this.chartipData, 1, 0, this.circleOpacity, spaces);
     })
   },
 

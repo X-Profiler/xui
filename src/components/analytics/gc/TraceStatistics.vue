@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
 .trace-group {
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   flex-wrap: wrap;
 }
