@@ -15,6 +15,7 @@ export default {
     },
 
     linkage(name, [data]) {
+      this.selectGc = data.time;
       for (const chart of this.charts) {
         if (chart.name !== name) {
           this.$refs[chart.name].showTip(data);

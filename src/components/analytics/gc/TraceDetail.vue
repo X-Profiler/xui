@@ -4,7 +4,7 @@
 
     <div class="trace-content">
       <!-- trace panel -->
-      <x-trace-panel class="trace-panel"></x-trace-panel>
+      <x-trace-panel class="trace-panel" :select-gc="selectGc"></x-trace-panel>
 
       <!-- trace charts -->
       <div class="trace-charts">
@@ -81,6 +81,12 @@ import xTracePanel from "@/components/analytics/gc/TracePanel";
 export default {
   components: {
     "x-trace-panel": xTracePanel
+  },
+
+  data() {
+    return {
+      selectGc: 1
+    };
   },
 
   ...traceDetailModule
