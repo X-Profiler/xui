@@ -5,7 +5,24 @@ import * as utils from "@/javascripts/lib/utils";
 const { mapState, mapGetters } = utils.createNamespace("dashboard/analytics/gc");
 
 export default {
+  mounted() {
+    this.spaces = this.$refs.spaces;
+
+    this.setSpaceWidth();
+  },
+
   methods: {
+    setSpaceWidth() {
+      if (!this.spaces) {
+        return;
+      }
+      const width = parseInt(window.getComputedStyle(this.spaces).width, 10);
+      if (!width) {
+        return;
+      }
+      this.spacesWidth = width;
+    },
+
     formatChartipTime(value) {
       return utils.formatTime(value, false, true, 1);
     },

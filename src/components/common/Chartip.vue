@@ -16,9 +16,13 @@
 </template>
 
 <script>
+import { isNumber } from "@/javascripts/lib/utils";
+
 export default {
   props: {
-    noArrow: Boolean
+    noArrow: Boolean,
+    maxWidth: Number,
+    minWidth: Number
   },
 
   data() {
@@ -84,6 +88,15 @@ export default {
         style += "padding: 0 5px;";
         style += "border-radius: 3px;";
       }
+
+      if (isNumber(this.maxWidth)) {
+        style += "max-width: " + this.maxWidth + "px;";
+      }
+
+      if (isNumber(this.minWidth)) {
+        style += "min-width: " + this.minWidth + "px;";
+      }
+
       return style;
     }
   }
