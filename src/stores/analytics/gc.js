@@ -138,10 +138,10 @@ export default {
       return { spaces, list };
     },
 
-    calculateSize: () => spaces => {
+    calculateSize: () => (spaces, type = "space_used_size") => {
       let total = 0;
       for (const space of spaces) {
-        total += space.space_used_size;
+        total += space[type];
       }
       return total;
     },

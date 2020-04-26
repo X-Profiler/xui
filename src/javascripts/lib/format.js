@@ -7,14 +7,15 @@ export function formatSize(size, fixed = 2, showPlus) {
   size = Math.abs(size);
   let str = "";
   size = +size;
+
   if (size / 1024 < 1) {
-    str = `${(size).toFixed(fixed)}Bytes`;
+    str = `${Number((size).toFixed(fixed))}Bytes`;
   } else if (size / 1024 / 1024 < 1) {
-    str = `${(size / 1024).toFixed(fixed)}KB`;
+    str = `${Number((size / 1024).toFixed(fixed))}KB`;
   } else if (size / 1024 / 1024 / 1024 < 1) {
-    str = `${(size / 1024 / 1024).toFixed(fixed)}MB`;
+    str = `${Number((size / 1024 / 1024).toFixed(fixed))}MB`;
   } else {
-    str = `${(size / 1024 / 1024 / 1024).toFixed(fixed)}GB`;
+    str = `${(Number(size / 1024 / 1024 / 1024).toFixed(fixed))}GB`;
   }
   return size ? `${symbol ? `${showPlus ? `+${str}` : str}` : `-${str}`}` : str;
 }

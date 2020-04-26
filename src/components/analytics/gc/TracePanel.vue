@@ -28,17 +28,15 @@
 
     <!-- statistics -->
     <div class="statistics">
-      <div>
-        <div
-          v-for="(details, index) in statistics"
-          :key="index"
-          class="statistics-group"
-          :style="index !== 0 ? 'margin-top: 10px;' : ''"
-        >
-          <div v-for="(detail, index) in details" :key="index" class="metric-group">
-            <div class="metric-key">{{ detail.title }}</div>
-            <div class="metric-value">{{ detail.value }}</div>
-          </div>
+      <div
+        v-for="(details, index) in statistics"
+        :key="index"
+        class="statistics-group"
+        :style="index !== 0 ? 'margin-top: 10px;' : ''"
+      >
+        <div v-for="(detail, index) in details" :key="index" class="metric-group">
+          <div class="metric-key">{{ detail.title }}</div>
+          <div class="metric-value">{{ detail.value }}</div>
         </div>
       </div>
     </div>
@@ -54,6 +52,21 @@
     <!-- space status -->
     <div class="spaces" ref="spaces" :style="`height: ${spacesWidth}px;`">
       <x-space-status :data="gcData[showSpaceStatus]" :before="gcData.before" :height="spacesWidth"></x-space-status>
+    </div>
+
+    <!-- gc status -->
+    <div class="gc-status">
+      <div
+        v-for="(details, index) in gcStstus"
+        :key="index"
+        class="statistics-group"
+        :style="index !== 0 ? 'margin-top: 10px;' : ''"
+      >
+        <div v-for="(detail, index) in details" :key="index" class="metric-group">
+          <div class="metric-key">{{ detail.title }}</div>
+          <div class="metric-value">{{ detail.value }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -166,6 +179,9 @@ export default {
 
 .spaces {
   margin: 15px;
-  /* background-color: blue; */
+}
+
+.gc-status {
+  padding: 3px 0;
 }
 </style>

@@ -129,7 +129,9 @@ export default {
       }
 
       const largerSize = spaceMap[name].space_size;
-      return largerSize / (largerSize + smallerSize) * 100;
+      let height = largerSize / (largerSize + smallerSize) * 100;
+      height = height > 80 ? 80 : height;
+      return height;
     },
 
     largerUsedHeight() {
