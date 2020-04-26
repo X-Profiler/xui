@@ -136,3 +136,38 @@
 .diag-tab > .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
   margin-right: 7px;
 }
+
+.ivu-radio > .ivu-radio-inner {
+  width: 14px;
+  height: 14px;
+}
+
+.ivu-radio.ivu-radio-checked:hover > .ivu-radio-inner,
+.ivu-radio.ivu-radio-checked > .ivu-radio-inner {
+border-color: #2d8cf0;
+}
+
+.ivu-radio > .ivu-radio-focus {
+  box-shadow: unset;
+}
+
+.ivu-radio.ivu-radio-checked > .ivu-radio-focus {
+  box-shadow: 0 0 0 2px rgba(45,140,240,.2);
+}
+
+.ivu-radio > .ivu-radio-inner:after {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.ivu-radio-checked > .ivu-radio-inner:after {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2d8cf0;
+}
+
+.ivu-radio-group > .ivu-radio-wrapper {
+  margin-right: 9px;
+}

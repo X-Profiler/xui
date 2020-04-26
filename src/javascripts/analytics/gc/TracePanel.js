@@ -48,9 +48,9 @@ export default {
       let changeSize = this.calculateSize(data.after) - this.calculateSize(data.before);
       changeSize = Number((changeSize / 1024 / 1024).toFixed(2));
       if (changeSize >= 0) {
-        changeSize = `+${changeSize}MB`
+        changeSize = `+${changeSize}MB`;
       } else {
-        changeSize = `${changeSize}MB`
+        changeSize = `${changeSize}MB`;
       }
       const pause = `${+(data.end - data.start)}ms`;
 
@@ -72,6 +72,10 @@ export default {
       if (utils.isNumber(this.selectGc)) {
         this.gcTime = this.selectGc;
       }
+    },
+
+    gcTime() {
+      this.showSpaceStatus = "before";
     }
   }
 };
