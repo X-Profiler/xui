@@ -25,6 +25,23 @@
         </transition>
       </div>
     </div>
+
+    <!-- statistics -->
+    <div class="statistics">
+      <div>
+        <div
+          v-for="(details, index) in statistics"
+          :key="index"
+          class="statistics-group"
+          :style="index !== 0 ? 'margin-top: 10px;' : ''"
+        >
+          <div v-for="(detail, index) in details" :key="index" class="metric-group">
+            <div class="metric-key">{{ detail.title }}</div>
+            <div class="metric-value">{{ detail.value }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -87,5 +104,31 @@ export default {
 
 .sub-title {
   font-size: 12px;
+}
+
+.statistics {
+  padding: 10px 0;
+}
+
+.statistics-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.metric-group {
+  flex: 1 0 50%;
+}
+
+.metric-key {
+  font-size: 12px;
+  color: #919597;
+}
+
+.metric-value {
+  font-family: PingFangSC-Regular;
+  font-weight: bold;
+  margin-top: 2px;
 }
 </style>

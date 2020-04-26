@@ -6,6 +6,10 @@ const { mapState, mapGetters } = utils.createNamespace("dashboard/analytics/gc")
 
 export default {
   methods: {
+    formatChartipTime(value) {
+      return utils.formatTime(value, false, true, 1);
+    },
+
     getTitleColor(type) {
       let color = "";
       switch (type) {
@@ -36,6 +40,30 @@ export default {
 
     maxDataLength() {
       return this.gcFile.gc.length;
+    },
+
+    statistics() {
+      const data = this.gcData;
+      const totalGcTime = this.formatChartipTime(data.totalSpentfromStart);
+      let changeSize = this.calculateSize(data.after) - this.calculateSize(data.before);
+      changeSize = Number((changeSize / 1024 / 1024).toFixed(2));
+      if (changeSize >= 0) {
+        changeSize = `+${changeSize}MB`
+      } else {
+        changeSize = `${changeSize}MB`
+      }
+      const pause = `${+(data.end - data.start)}ms`;
+
+      return [
+        [
+          { title: "累计 GC 暂停时间", value: totalGcTime },
+          { title: "累计 GC 总次数", value: data.totalTimesfromStart },
+        ],
+        [
+          { title: "GC 堆大小变化", value: changeSize },
+          { title: "GC 暂停时间", value: pause },
+        ]
+      ];
     }
   },
 
