@@ -42,6 +42,14 @@
         </div>
       </div>
     </div>
+
+    <!-- space status -->
+    <div class="gc-radio">
+      <RadioGroup v-model="showSpaceStatus">
+        <Radio label="before" class="radio-label">GC 前</Radio>
+        <Radio label="after" class="radio-label">GC 后</Radio>
+      </RadioGroup>
+    </div>
   </div>
 </template>
 
@@ -55,7 +63,8 @@ export default {
 
   data() {
     return {
-      gcTime: 1
+      gcTime: 1,
+      showSpaceStatus: "before"
     };
   },
 
@@ -130,5 +139,17 @@ export default {
   font-family: PingFangSC-Regular;
   font-weight: bold;
   margin-top: 2px;
+}
+
+.gc-radio {
+  display: flex;
+  justify-content: center;
+  background-color: #e8eaec;
+  padding: 5px 0;
+}
+
+.radio-label {
+  font-size: 12px;
+  font-family: Avenir,Helvetica,Arial,sans-serif;
 }
 </style>
