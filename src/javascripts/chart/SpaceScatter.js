@@ -4,10 +4,10 @@ import { formatTime, createLaterFunction } from "@/javascripts/lib/utils";
 
 export default {
   created() {
-    const spaces = this.yAxis
-      .map(item => item.value !== "all_spaces" && item.value)
-      .filter(item => item);
     for (let idx = 0; idx < this.data.length; idx++) {
+      const spaces = this.yAxis
+        .map(item => item.value !== "all_spaces" && item.value)
+        .filter(item => item);
       const dt = this.data[idx];
       spaces.sort((o, n) => dt[o] < dt[n] ? 1 : -1);
       const sizes =

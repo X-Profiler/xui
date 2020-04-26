@@ -43,32 +43,43 @@
       </div>
     </div>
 
-    <!-- space status -->
+    <!-- space status radio -->
     <div class="gc-radio">
       <RadioGroup v-model="showSpaceStatus">
         <Radio label="before" class="radio-label">GC 前</Radio>
         <Radio label="after" class="radio-label">GC 后</Radio>
       </RadioGroup>
     </div>
+
+    <!-- space status -->
+    <div class="spaces" ref="spaces" :style="`height: ${spacesWidth}px;`">
+      <x-space-status :data="gcData[showSpaceStatus]" :before="gcData.before" :height="spacesWidth"></x-space-status>
+    </div>
   </div>
 </template>
 
 <script>
-import xTracePanelModule from "@/javascripts/analytics/gc/TracePanel";
+import tracePanelModule from "@/javascripts/analytics/gc/TracePanel";
+import xSpaceStatus from "@/components/analytics/gc/SpaceStatus";
 
 export default {
   props: {
     selectGc: Number
   },
 
+  components: {
+    "x-space-status": xSpaceStatus
+  },
+
   data() {
     return {
       gcTime: 1,
-      showSpaceStatus: "before"
+      showSpaceStatus: "before",
+      spacesWidth: 0
     };
   },
 
-  ...xTracePanelModule
+  ...tracePanelModule
 };
 </script>
 
@@ -144,12 +155,17 @@ export default {
 .gc-radio {
   display: flex;
   justify-content: center;
-  background-color: #e8eaec;
+  background-color: #ebedf1;
   padding: 5px 0;
 }
 
 .radio-label {
   font-size: 12px;
-  font-family: Avenir,Helvetica,Arial,sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+.spaces {
+  margin: 15px;
+  /* background-color: blue; */
 }
 </style>
