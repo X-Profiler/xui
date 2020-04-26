@@ -95,6 +95,7 @@ export default {
 <style scoped>
 .space-status {
   height: 100%;
+  overflow: hidden;
 }
 
 .smaller-spaces {

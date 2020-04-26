@@ -81,6 +81,30 @@ export default {
           { title: "GC 暂停时间", value: pause },
         ]
       ];
+    },
+
+    gcStstus() {
+      const data = this.gcData;
+      const type = this.showSpaceStatus;
+
+      let total = 0;
+      const needSumSpaces = ['read_only_space', 'old_space', 'code_space', 'map_space'];
+      for (const space of data[type]) {
+        if (needSumSpaces.includes(space.name)) {
+          total += space.space_available_size;
+        }
+      }
+
+      return [
+        [
+          { title: "所有空间已使用", value: utils.formatSize(this.calculateSize(data[type])) },
+          { title: "所有空间占用", value: utils.formatSize(this.calculateSize(data[type], "space_size")) }
+        ],
+        [
+          { title: "Page 空洞大小", value: utils.formatSize(total) },
+          { title: "物理内存占用", value: utils.formatSize(this.calculateSize(data[type], "physical_space_size")) }
+        ]
+      ];
     }
   },
 
