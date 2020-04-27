@@ -17,7 +17,7 @@
     <div class="addition-wrapper">
       <div class="addition">
         <Input class="add-team-member" v-model="userId" placeholder="请输入需要邀请的用户 ID">
-          <span slot="prepend">邀请新成员</span>
+          <span slot="prepend" class="addition-tip">邀请新成员</span>
         </Input>
 
         <Button long type="info" class="addition-confirm">确认邀请</Button>
@@ -25,17 +25,36 @@
     </div>
 
     <!-- show team members -->
+    <div>
+      <!-- loading -->
+      <x-loading :loading="members_loading" type="dot" size="middle" top="calc(40vh - 105px)"></x-loading>
+
+      <!-- error -->
+      <x-error-message
+        v-show="members_load_error"
+        :message="members_load_error"
+        top="calc(40vh -  115px)"
+      ></x-error-message>
+
+      <!-- members -->
+      <x-members class="members" v-if="!members_loading && !members_load_error"></x-members>
+    </div>
   </div>
 </template>
 
 <script>
 import teamModule from "@/javascripts/team/TeamIndex";
+import xMembers from "@/components/team/Members";
 
 export default {
   props: {
     appName: String,
     title: String,
     currentUserIsOwner: Boolean
+  },
+
+  components: {
+    "x-members": xMembers
   },
 
   data() {
@@ -54,7 +73,9 @@ export default {
 }
 
 .addition-wrapper {
+  margin-top: 15px;
   position: relative;
+  height: 33px;
 }
 
 .addition {
@@ -68,8 +89,16 @@ export default {
   flex-shrink: 0;
 }
 
+.addition-tip {
+  font-size: 13px;
+}
+
 .addition-confirm {
   margin: 1px 0 0 15px;
-  width: 95px;
+  font-size: 13px;
+}
+
+.members {
+  margin-top: 16px;
 }
 </style>
