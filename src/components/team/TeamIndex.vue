@@ -16,11 +16,11 @@
     <!-- add new team member -->
     <div class="addition-wrapper">
       <div class="addition">
-        <Input class="add-team-member" v-model="userId" placeholder="请输入需要邀请的用户 ID">
+        <Input class="add-team-member" v-model="invitedUserId" placeholder="请输入需要邀请的用户 ID">
           <span slot="prepend" class="addition-tip">邀请新成员</span>
         </Input>
 
-        <Button long type="info" class="addition-confirm">确认邀请</Button>
+        <Button long type="info" class="addition-confirm" @click="inviteMember">确认邀请</Button>
       </div>
     </div>
 
@@ -39,12 +39,16 @@
       <!-- members -->
       <x-members class="members" v-if="!members_loading && !members_load_error"></x-members>
     </div>
+
+    <!-- confirm modal -->
+    <x-team-confirm></x-team-confirm>
   </div>
 </template>
 
 <script>
 import teamModule from "@/javascripts/team/TeamIndex";
 import xMembers from "@/components/team/Members";
+import xTeamConfirm from "@/components/team/TeamConfirm";
 
 export default {
   props: {
@@ -54,12 +58,13 @@ export default {
   },
 
   components: {
-    "x-members": xMembers
+    "x-members": xMembers,
+    "x-team-confirm": xTeamConfirm
   },
 
   data() {
     return {
-      userId: undefined
+      invitedUserId: undefined
     };
   },
 

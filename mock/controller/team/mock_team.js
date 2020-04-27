@@ -53,4 +53,25 @@ module.exports = app => {
 
     setTimeout(() => res.send({ ok: true, data: { list, currentUserId } }), 450);
   });
+
+  app.post('/xapi/team_member', function (req, res) {
+    utils.checkParam(req.body, ["appId", "userId", "status"]);
+
+    const appId = req.body.appId;
+    const userId = req.body.userId;
+    const status = req.body.status;
+    console.log(`update app ${appId} member ${userId} status ${status}`);
+
+    setTimeout(() => res.send({ ok: true }), 450);
+  });
+
+  app.delete('/xapi/team_member', function (req, res) {
+    utils.checkParam(req.body, ["appId", "userId"]);
+
+    const appId = req.body.appId;
+    const userId = req.body.userId;
+    console.log(`delete app ${appId} member ${userId}`);
+
+    setTimeout(() => res.send({ ok: true }), 450);
+  });
 };

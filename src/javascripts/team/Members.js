@@ -3,10 +3,12 @@
 import moment from "moment";
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState } = utils.createNamespace("dashboard/team");
+const { mapState, mapGetters, mapMutations } = utils.createNamespace("dashboard/team");
 
 export default {
   methods: {
+    ...mapMutations(["setConfirmModal"]),
+
     formatStatus(status) {
       let label = "未知";
       switch (status) {
@@ -27,11 +29,22 @@ export default {
 
     formatTime(timestamp) {
       return moment(timestamp).format("YYYY-MM-DD HH:mm:SS");
+    },
+
+    cancelInvitation({ userId, userInfo }) {
+      const data = this.createConfirmData(
+        "cancelInvitation",
+        "取消邀请",
+        `撤销对用户 <strong>${userInfo}</strong> 的邀请，后续您仍然可以邀请此用户加入本应用`,
+        { userId });
+      this.setConfirmModal({ status: true, data });
     }
   },
 
   computed: {
     ...mapState(["members_data"]),
+
+    ...mapGetters(["createConfirmData"]),
 
     members() {
       const { list } = this.members_data;
