@@ -9,6 +9,7 @@ const { mapMethods, mapWatch, handleMounted } =
 export default {
   created() {
     this.cancelToken = utils.createCancelToken();
+
     this.getModule({ cancelToken: this.cancelToken.token });
   },
 

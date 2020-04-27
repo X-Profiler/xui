@@ -45,6 +45,9 @@ export default {
     fileTransfer: "/xapi/file_transfer",
     fileDeletion: "/xapi/file_deletion",
     fileStatus: "/xapi/file_status",
-    downloadFile: "/file/download"
+    downloadFile: "/file/download",
+
+    // team
+    members: "/xapi/team_members"
   }
 };
