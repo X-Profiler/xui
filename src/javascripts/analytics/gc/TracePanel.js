@@ -88,7 +88,7 @@ export default {
       const type = this.showSpaceStatus;
 
       let total = 0;
-      const needSumSpaces = ['read_only_space', 'old_space', 'code_space', 'map_space'];
+      const needSumSpaces = ["read_only_space", "old_space", "code_space", "map_space"];
       for (const space of data[type]) {
         if (needSumSpaces.includes(space.name)) {
           total += space.space_available_size;

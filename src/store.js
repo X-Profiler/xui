@@ -18,6 +18,7 @@ import wrapper from "@/stores/file/wrapper";
 import analytics from "@/stores/analytics/analytics";
 import diag from "@/stores/analytics/diag";
 import gc from "@/stores/analytics/gc";
+import team from "@/stores/team/team";
 
 export default {
   state: {
@@ -119,6 +120,10 @@ export default {
           modules: {
             "wrapper": { ...wrapper }  // dashboard/file/wrapper
           }
+        },
+
+        "team": { // dashboard/team
+          ...team
         },
 
         "analytics": { // dashboard/analytics
