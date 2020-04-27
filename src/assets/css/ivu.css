@@ -171,3 +171,7 @@ border-color: #2d8cf0;
 .ivu-radio-group > .ivu-radio-wrapper {
   margin-right: 9px;
 }
+
+.add-team-member input {
+  font-size: 13px;
+}

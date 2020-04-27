@@ -20,6 +20,6 @@ export default {
   },
 
   computed: {
-    ...mapState(["members_loading", "members_load_error", "members_data"])
+    ...mapState(["members_loading", "members_load_error"])
   }
 };

@@ -18,7 +18,8 @@ app.use(bodyParser());
 app.get('/xapi/user', function (req, res) {
   console.log('get user info');
   const data = {
-    name: 'hyj1991'
+    name: 'hyj1991',
+    userId: 1
   };
   res.send({ ok: true, data });
 });
@@ -49,5 +50,8 @@ require("./controller/instance/mock_modules")(app);
 
 // dashboard/file
 require("./controller/file/mock_file")(app);
+
+// dashboard/team
+require("./controller/team/mock_team")(app);
 
 app.listen(7442);
