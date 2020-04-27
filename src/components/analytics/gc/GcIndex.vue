@@ -11,14 +11,23 @@
 
       <transition name="slide-noward">
         <div v-if="!file_loading && !file_load_error">
-          <!-- gc overview -->
-          <x-overview :data="overviewData"></x-overview>
+          <!-- no data -->
+          <x-error-message
+            v-if="!file_data.gc.length"
+            message="当前进程追踪采样期间暂无 GC 行为发生"
+            top="calc(40vh - 57px)"
+          ></x-error-message>
 
-          <!-- trace statistics -->
-          <x-trace-statistics class="trace-statistics"></x-trace-statistics>
+          <div v-else>
+            <!-- gc overview -->
+            <x-overview :data="overviewData"></x-overview>
 
-          <!-- trace detail -->
-          <x-trace-detail class="trace-detail"></x-trace-detail>
+            <!-- trace statistics -->
+            <x-trace-statistics class="trace-statistics"></x-trace-statistics>
+
+            <!-- trace detail -->
+            <x-trace-detail class="trace-detail"></x-trace-detail>
+          </div>
         </div>
       </transition>
     </div>
