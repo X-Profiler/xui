@@ -48,6 +48,7 @@ export default {
     downloadFile: "/file/download",
 
     // team
-    members: "/xapi/team_members"
+    members: "/xapi/team_members",
+    member: "/xapi/team_member"
   }
 };
