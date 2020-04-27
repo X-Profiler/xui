@@ -79,7 +79,7 @@ export default {
         map_space: "#646faa",
         large_object_space: "#8995d9",
         code_space: "#d4668c",
-        read_only_space: "#ffc900",
+        read_only_space: "#2e86c1",
         new_large_object_space: "#9b59b6",
         code_large_object_space: "#2ecc71"
       },

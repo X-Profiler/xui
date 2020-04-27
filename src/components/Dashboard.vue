@@ -38,9 +38,9 @@ import xSider from "@/components/layout/Sider";
 // menu components
 import xInstance from "@/components/instance/InstanceIndex";
 import xFile from "@/components/file/FileIndex";
-import xTeam from "@/components/team/Index";
-import xAlarm from "@/components/alarm/Index";
-import xSetting from "@/components/setting/Index";
+import xTeam from "@/components/team/TeamIndex";
+import xAlarm from "@/components/alarm/AlarmIndex";
+import xSetting from "@/components/setting/SettingsIndex";
 
 export default {
   components: {
