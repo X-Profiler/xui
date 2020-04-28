@@ -16,7 +16,7 @@ export default {
   methods: {
     ...mapMutations(["setConfirmModal"]),
 
-    ...mapActions(["inviteMember", "deleteMember", "transferOwnership"]),
+    ...mapActions(["inviteMember", "deleteMember", "transferOwnership", "leaveTeam"]),
 
     closeConfirmModal() {
       this.setConfirmModal({ status: false });
@@ -42,6 +42,10 @@ export default {
       if (type === "transferOwnership") {
         const { userId } = data;
         this.transferOwnership({ cancelToken: this.cancelToken.token, userId });
+      }
+
+      if (type === "leaveTeam") {
+        this.leaveTeam({ cancelToken: this.cancelToken.token });
       }
     }
   },

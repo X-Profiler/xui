@@ -62,7 +62,7 @@ export default {
       const data = this.createConfirmData(
         "leaveTeam",
         "离开团队",
-        `将离开本应用团队，离开团队后您无法继续查看应用的监控数据`);
+        "将离开本应用团队，离开团队后您无法继续查看应用的监控数据");
       this.setConfirmModal({ status: true, data });
     }
   },
