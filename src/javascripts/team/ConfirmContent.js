@@ -26,7 +26,7 @@ export default {
       const { type, data } = this.confirmData;
       if (type === "invitation") {
         const { userId } = data;
-        this.inviteMember({ cancelToken: this.cancelToken.token, userId, status: 1 });
+        this.inviteMember({ cancelToken: this.cancelToken.token, userId });
       }
 
       if (type === "cancelInvitation") {

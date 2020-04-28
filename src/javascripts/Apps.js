@@ -105,6 +105,16 @@ export default {
       return list;
     },
 
+    handleInvitations(invitations) {
+      return invitations.map(invitation => {
+        const data = Object.assign({}, invitation, {
+          rejectLoading: false,
+          confirmLoading: false
+        });
+        return data;
+      });
+    },
+
     getAppByAppId(appId) {
       const app = this.apps.filter(app => app.appId === appId);
       return app[0];
@@ -206,9 +216,13 @@ export default {
     },
 
     app_list_data() {
-      const list = this.app_list_data;
+      const { list, invitations } = this.app_list_data;
       if (Array.isArray(list)) {
         this.apps = this.handleApps(list);
+      }
+
+      if (Array.isArray(invitations)) {
+        this.invitations = this.handleInvitations(invitations);
       }
     }
   }
