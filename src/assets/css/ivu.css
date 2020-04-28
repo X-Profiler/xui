@@ -11,21 +11,23 @@
   color: #808695;
 }
 
-.agent-selector .ivu-select-selection .ivu-select-input,
-.agent-selector.ivu-select-single .ivu-select-selection .ivu-select-selected-value,
-.agent-selector.ivu-select-single .ivu-select-selection .ivu-select-placeholder,
-.agent-selector .ivu-select-dropdown .ivu-select-not-found {
-  font-size: 12px;
-}
-
 .upload-button .ivu-upload-list {
   margin-top: 0;
 }
 
-.agent-selector
-  .ivu-select-dropdown
-  .ivu-select-dropdown-list
-  .ivu-select-item {
+.context-selector .ivu-select-selection .ivu-select-input,
+.context-selector.ivu-select-single .ivu-select-selection .ivu-select-selected-value,
+.context-selector.ivu-select-single .ivu-select-selection .ivu-select-placeholder,
+.context-selector .ivu-select-dropdown .ivu-select-not-found,
+.context-selector .ivu-select-dropdown .ivu-select-dropdown-list .ivu-select-item {
+  font-family: Avenir,Helvetica,Arial,sans-serif;
+}
+
+.agent-selector .ivu-select-selection .ivu-select-input,
+.agent-selector.ivu-select-single .ivu-select-selection .ivu-select-selected-value,
+.agent-selector.ivu-select-single .ivu-select-selection .ivu-select-placeholder,
+.agent-selector .ivu-select-dropdown .ivu-select-not-found,
+.agent-selector .ivu-select-dropdown .ivu-select-dropdown-list .ivu-select-item {
   font-size: 12px !important;
 }
 
@@ -61,6 +63,10 @@
   right: 6px;
 }
 
+.agent-selector .ivu-select-dropdown, .file-filter .ivu-select-dropdown {
+  max-height: 500px;
+}
+
 .instance-tab .ivu-tabs-nav .ivu-tabs-tab .ivu-icon {
   font-size: 15px;
   margin-right: 2px;
@@ -93,10 +99,6 @@
 .x-alert.ivu-alert-success {
   border: 1px solid rgb(25, 190, 107);
   background-color: rgb(25, 190, 107, 0.1);
-}
-
-.agent-selector .ivu-select-dropdown, .file-filter .ivu-select-dropdown {
-  max-height: 500px;
 }
 
 .opt-group .ivu-btn-default,
@@ -174,4 +176,18 @@ border-color: #2d8cf0;
 
 .add-team-member input {
   font-size: 13px;
+}
+
+
+.webhook .ivu-checkbox-checked:hover .ivu-checkbox-inner {
+  border-color: #2d8cf0;
+}
+
+.webhook .ivu-checkbox .ivu-checkbox-focus {
+  box-shadow: 0 0 0 2px rgba(45,140,240,.2);
+}
+
+.webhook .ivu-checkbox-checked .ivu-checkbox-inner {
+  border-color: #2d8cf0;
+  background-color: #2d8cf0;
 }

@@ -16,11 +16,15 @@
         </div>
       </div>
     </Alert>
+
+    <!-- alarm configure -->
+    <x-alarm-configure></x-alarm-configure>
   </div>
 </template>
 
 <script>
 import alarmModule from "@/javascripts/alarm/AlarmIndex";
+import xAlarmConfigure from "./AlarmConfigure";
 
 export default {
   props: {
@@ -29,12 +33,16 @@ export default {
     currentUserIsOwner: Boolean
   },
 
+  components: {
+    "x-alarm-configure": xAlarmConfigure
+  },
+
   ...alarmModule
 };
 </script>
 
 <style scoped>
 .tip {
-  margin-top: 15px;
+  margin: 15px 0;
 }
 </style>
