@@ -49,6 +49,7 @@ export default {
 
     // team
     members: "/xapi/team_members",
-    member: "/xapi/team_member"
+    member: "/xapi/team_member",
+    ownership: "/xapi/team_ownership"
   }
 };

@@ -3,6 +3,7 @@
 const utils = require('../../lib/utils');
 
 module.exports = app => {
+  // check is app member
   app.get('/xapi/team_members', function (req, res) {
     utils.checkParam(req.query, ["appId"]);
 
@@ -49,11 +50,12 @@ module.exports = app => {
       },
     ];
 
-    const currentUserId = 1;
+    const currentUserId = 2;
 
     setTimeout(() => res.send({ ok: true, data: { list, currentUserId } }), 450);
   });
 
+  // check is app member
   app.post('/xapi/team_member', function (req, res) {
     utils.checkParam(req.body, ["appId", "userId", "status"]);
 
@@ -65,12 +67,24 @@ module.exports = app => {
     setTimeout(() => res.send({ ok: true }), 450);
   });
 
+  // check is app owner
   app.delete('/xapi/team_member', function (req, res) {
     utils.checkParam(req.body, ["appId", "userId"]);
 
     const appId = req.body.appId;
     const userId = req.body.userId;
     console.log(`delete app ${appId} member ${userId}`);
+
+    setTimeout(() => res.send({ ok: true }), 450);
+  });
+
+  // chec is app owner
+  app.post('/xapi/team_ownership', function (req, res) {
+    utils.checkParam(req.body, ["appId", "userId"]);
+
+    const appId = req.body.appId;
+    const userId = req.body.userId;
+    console.log(`transfer app ${appId} ownership to ${userId}`);
 
     setTimeout(() => res.send({ ok: true }), 450);
   });
