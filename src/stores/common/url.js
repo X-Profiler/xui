@@ -50,6 +50,7 @@ export default {
     // team
     members: "/xapi/team_members",
     member: "/xapi/team_member",
-    ownership: "/xapi/team_ownership"
+    ownership: "/xapi/team_ownership",
+    leaveTeam: "/xapi/leave_team"
   }
 };

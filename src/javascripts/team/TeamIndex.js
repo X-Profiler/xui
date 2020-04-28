@@ -51,7 +51,11 @@ export default {
         this.invitedUserId = undefined;
       }
       if (success) {
-        this.getTeamMembers({ cancelToken: this.cancelToken.token });
+        if (type === "leaveTeam") {
+          this.$router.push({ path: "/console", query: { type: "joinedApps" } });
+        } else {
+          this.getTeamMembers({ cancelToken: this.cancelToken.token });
+        }
       }
     }
   }

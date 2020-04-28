@@ -67,6 +67,16 @@ module.exports = app => {
     setTimeout(() => res.send({ ok: true }), 450);
   });
 
+  // check is app member
+  app.delete('/xapi/leave_team', function (req, res) {
+    utils.checkParam(req.body, ["appId"]);
+
+    const appId = req.body.appId;
+    console.log(`leave app ${appId} team`);
+
+    setTimeout(() => res.send({ ok: true }), 450);
+  });
+
   // check is app owner
   app.delete('/xapi/team_member', function (req, res) {
     utils.checkParam(req.body, ["appId", "userId"]);

@@ -125,6 +125,23 @@ export default {
       };
 
       await dispatch("commonAction", options);
+    },
+
+    async leaveTeam(context, { cancelToken }) {
+      const { rootState, rootGetters, dispatch } = context;
+
+      const options = {
+        cancelToken,
+        method: "DELETE",
+
+        // user data
+        url: rootState.url.leaveTeam,
+        data: {
+          appId: rootGetters.appId
+        }
+      };
+
+      await dispatch("commonAction", options);
     }
   }
 };
