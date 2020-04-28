@@ -59,7 +59,7 @@ export default {
         data: { type }
       };
 
-      await handAppList(context, options, "list", "array");
+      await handAppList(context, options);
     },
 
     async getOverviewMetrics(context, { cancelToken, appId }) {

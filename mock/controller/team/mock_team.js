@@ -50,19 +50,18 @@ module.exports = app => {
       },
     ];
 
-    const currentUserId = 2;
+    const currentUserId = 1;
 
     setTimeout(() => res.send({ ok: true, data: { list, currentUserId } }), 450);
   });
 
   // check is app member
   app.post('/xapi/team_member', function (req, res) {
-    utils.checkParam(req.body, ["appId", "userId", "status"]);
+    utils.checkParam(req.body, ["appId", "userId"]);
 
     const appId = req.body.appId;
     const userId = req.body.userId;
-    const status = req.body.status;
-    console.log(`update app ${appId} member ${userId} status ${status}`);
+    console.log(`invite app ${appId} member ${userId}`);
 
     setTimeout(() => res.send({ ok: true }), 450);
   });
@@ -73,6 +72,17 @@ module.exports = app => {
 
     const appId = req.body.appId;
     console.log(`leave app ${appId} team`);
+
+    setTimeout(() => res.send({ ok: true }), 450);
+  });
+
+  // check is app member
+  app.put('/xapi/invitation', function (req, res) {
+    utils.checkParam(req.body, ["appId", "status"]);
+
+    const appId = req.body.appId;
+    const status = req.body.status;
+    console.log(`${status ? 'confirm' : 'reject'} join app ${appId}`);
 
     setTimeout(() => res.send({ ok: true }), 450);
   });

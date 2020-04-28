@@ -28,7 +28,19 @@ module.exports = app => {
     const type = req.query.type;
     console.log(`get apps type ${type}`);
     const list = require(path.join(__dirname, `../data/${type}.js`));
-    setTimeout(() => res.send({ ok: true, data: { list } }), 500);
+    const invitations = [
+      {
+        appId: 100,
+        appName: "EZM-100",
+        ownerInfo: "TZ | 天猪"
+      },
+      {
+        appId: 101,
+        appName: "EZM-101",
+        ownerInfo: "穆客"
+      }
+    ];
+    setTimeout(() => res.send({ ok: true, data: { list, invitations } }), 500);
     // setTimeout(() => { res.send({ ok: false, message: "请求失败" }); }, 500);
   });
 

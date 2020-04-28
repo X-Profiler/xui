@@ -58,6 +58,21 @@ export default {
       await handleMembers(context, options);
     },
 
+    async updateInviationStatus(context, { cancelToken, appId, status }) {
+      const { rootState, dispatch } = context;
+
+      const options = {
+        cancelToken,
+        method: "PUT",
+
+        // user data
+        url: rootState.url.invitation,
+        data: { appId, status }
+      };
+
+      await dispatch("request", options, { root: true });
+    },
+
     async commonAction(context, options) {
       const { dispatch, commit, state } = context;
 
@@ -72,7 +87,7 @@ export default {
       state.confirmData.loading = false;
     },
 
-    async inviteMember(context, { cancelToken, userId, status }) {
+    async inviteMember(context, { cancelToken, userId }) {
       const { rootState, rootGetters, dispatch } = context;
 
       const options = {
@@ -83,8 +98,7 @@ export default {
         url: rootState.url.member,
         data: {
           appId: rootGetters.appId,
-          userId,
-          status
+          userId
         }
       };
 

@@ -4,13 +4,27 @@
     <x-loading top="35vh" :loading="app_list_loading" type="dot"></x-loading>
 
     <!-- error message -->
-    <x-error-message v-show="app_list_load_error" :message="app_list_load_error" top="calc(35vh - 20px)"></x-error-message>
+    <x-error-message
+      v-show="app_list_load_error"
+      :message="app_list_load_error"
+      top="calc(35vh - 20px)"
+    ></x-error-message>
 
     <!-- app list -->
     <transition name="slide">
       <div v-show="!app_list_loading && !app_list_load_error">
+        <!-- no apps -->
+        <x-error-message v-show="apps.length === 0" :message="noAppTip" top="calc(35vh - 20px)"></x-error-message>
+
+        <!-- invitations -->
+        <x-invitations
+          v-if="type === 'myApps'"
+          class="invitations"
+          :invitations="invitations"
+          @refreshApps="refreshApps"
+        ></x-invitations>
+
         <!-- app overview -->
-        <div v-if="apps.length === 0" class="no-apps">{{ noAppTip }}</div>
         <div
           v-for="(app, index) in apps"
           :key="index"
@@ -86,14 +100,16 @@
                   <!-- no data -->
                   <transition name="slide-noward">
                     <div
-                      v-show="!app[`${metric.value}Loading`] && app[metric.value].length === 0"
+                      v-show="!app[`${metric.value}Loading`] && app[metric.value] && app[metric.value].length === 0"
                       class="no-data"
                     >-</div>
                   </transition>
 
                   <!-- show data -->
                   <transition name="slide-noward">
-                    <div v-show="!app[`${metric.value}Loading`] && app[metric.value].length !== 0">
+                    <div
+                      v-show="!app[`${metric.value}Loading`] && app[metric.value] && app[metric.value].length !== 0"
+                    >
                       <div class="instances">
                         <Icon
                           v-for="(instance, index) in app[metric.value]"
@@ -121,10 +137,15 @@
 import appsModule from "@/javascripts/Apps";
 import { tags } from "@/javascripts/config";
 import { getTag } from "@/javascripts/lib/utils";
+import xInvitations from "@/components/Invitations";
 
 export default {
   props: {
     type: String
+  },
+
+  components: {
+    "x-invitations": xInvitations
   },
 
   data() {
@@ -170,7 +191,8 @@ export default {
         { label: getTag(tags.systemMemoryUsage), value: "systemMemoryUsage" },
         { label: getTag(tags.diskUsage), value: "diskUsage" }
       ],
-      apps: []
+      apps: [],
+      invitations: []
     };
   },
 
@@ -187,8 +209,8 @@ export default {
   flex-basis: 7px;
 }
 
-.no-apps {
-  margin-top: 200px;
+.invitations {
+  margin-bottom: 16px;
 }
 
 .app-border {
