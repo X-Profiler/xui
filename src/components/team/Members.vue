@@ -41,6 +41,7 @@
             type="error"
             size="small"
             class="button-label second-button"
+            @click="deleteMember(row)"
           >移除成员</Button>
         </div>
 
@@ -79,7 +80,7 @@ export default {
 <style scoped>
 .padding {
   padding: 4px 0;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   font-size: 14px;
   color: #4d575f;
 }

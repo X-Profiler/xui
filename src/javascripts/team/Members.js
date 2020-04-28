@@ -34,8 +34,17 @@ export default {
     cancelInvitation({ userId, userInfo }) {
       const data = this.createConfirmData(
         "cancelInvitation",
-        "取消邀请",
+        "撤销邀请",
         `撤销对用户 <strong>${userInfo}</strong> 的邀请，后续您仍然可以邀请此用户加入本应用`,
+        { userId });
+      this.setConfirmModal({ status: true, data });
+    },
+
+    deleteMember({ userId, userInfo }) {
+      const data = this.createConfirmData(
+        "deleteMember",
+        "移除成员",
+        `将用户 <strong>${userInfo}</strong> 移出本应用，后续您仍然可以邀请此用户加入本应用`,
         { userId });
       this.setConfirmModal({ status: true, data });
     }
