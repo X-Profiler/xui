@@ -35,7 +35,13 @@
           >撤回邀请</Button>
 
           <!-- joined member -->
-          <Button v-if="row.status === 2" type="info" size="small" class="button-label">转交应用</Button>
+          <Button
+            v-if="row.status === 2"
+            type="info"
+            size="small"
+            class="button-label"
+            @click="transferOwnership(row)"
+          >转交应用</Button>
           <Button
             v-if="row.status === 2"
             type="error"
@@ -51,6 +57,7 @@
             type="warning"
             size="small"
             class="button-label"
+            @click="leaveTeam()"
           >离开团队</Button>
         </div>
       </template>

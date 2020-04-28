@@ -107,6 +107,24 @@ export default {
       };
 
       await dispatch("commonAction", options);
+    },
+
+    async transferOwnership(context, { cancelToken, userId }) {
+      const { rootState, rootGetters, dispatch } = context;
+
+      const options = {
+        cancelToken,
+        method: "POST",
+
+        // user data
+        url: rootState.url.ownership,
+        data: {
+          appId: rootGetters.appId,
+          userId
+        }
+      };
+
+      await dispatch("commonAction", options);
     }
   }
 };
