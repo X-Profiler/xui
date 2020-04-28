@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-table :columns="columns" :data="members" noDataText="应用下暂无团队成员" no-data-head>
+    <x-table :columns="columns" :data="members" noDataText="应用下暂无团队成员" stribe2 no-data-head>
       <!-- user info -->
       <template v-slot:userInfo="{ row }">
         <div class="padding">{{ row.userInfo }}</div>
