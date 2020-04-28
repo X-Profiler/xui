@@ -33,6 +33,11 @@ export default {
         const { userId } = data;
         this.deleteMember({ cancelToken: this.cancelToken.token, userId });
       }
+
+      if (type === "deleteMember") {
+        const { userId } = data;
+        this.deleteMember({ cancelToken: this.cancelToken.token, userId });
+      }
     }
   },
 

@@ -13,7 +13,7 @@ module.exports = app => {
     const list = [
       {
         userId: 1,
-        userInfo: 'hyj1991',
+        userInfo: '奕钧',
         status: 0,
         timestamp: Date.now() - 1000 * 60 * 60 * 24 * 33
       },
