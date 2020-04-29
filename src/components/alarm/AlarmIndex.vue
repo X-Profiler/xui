@@ -19,6 +19,8 @@
 
     <!-- alarm configure -->
     <x-alarm-configure></x-alarm-configure>
+
+    <div class="divide-line"></div>
   </div>
 </template>
 
@@ -44,5 +46,12 @@ export default {
 <style scoped>
 .tip {
   margin: 15px 0;
+}
+
+.divide-line {
+  margin-top: 40px;
+  height: 25px;
+  width: 100%;
+  border-top: 1px solid #dcdee2;
 }
 </style>
