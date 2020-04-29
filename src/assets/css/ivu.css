@@ -187,7 +187,15 @@ border-color: #2d8cf0;
   box-shadow: 0 0 0 2px rgba(45,140,240,.2);
 }
 
+.webhook .ivu-checkbox .ivu-checkbox-inner {
+  border-radius: 0;
+}
+
 .webhook .ivu-checkbox-checked .ivu-checkbox-inner {
   border-color: #2d8cf0;
   background-color: #2d8cf0;
+}
+
+.input-group .ivu-input {
+  font-size: 12px;
 }
