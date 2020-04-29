@@ -56,7 +56,7 @@ export default {
 
 .divide-line {
   margin-top: 40px;
-  height: 25px;
+  height: 15px;
   width: 100%;
   border-top: 1px solid #dcdee2;
 }

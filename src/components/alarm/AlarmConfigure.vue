@@ -146,7 +146,7 @@ export default {
       },
       modelMap: {
         contextType: "xprofiler_log",
-        pushType: "p2",
+        pushType: "p3",
         webhookType: "dingtalk",
         webhookAddress: "",
         customRuleExpr: "",
@@ -160,7 +160,7 @@ export default {
           { value: "error_log", label: "Node.js 应用错误日志" }
         ],
         pushType: [
-          { value: "p1", label: "P1 (致电)", disabled: true },
+          { value: "p1", label: "P1 (致电)" },
           { value: "p2", label: "P2 (短信)" },
           { value: "p3", label: "P3 (邮件通知)" },
           { value: "p4", label: "P4 (数据记录)" }

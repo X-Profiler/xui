@@ -24,13 +24,13 @@ export default {
         cancelToken,
 
         // user data
-        url: rootState.url.rules,
+        url: rootState.url.strategies,
         data: {
           appId: rootGetters.appId
         }
       };
 
-      await handleRules(context, options);
+      await handleRules(context, options, "list", "array");
     }
   }
 };
