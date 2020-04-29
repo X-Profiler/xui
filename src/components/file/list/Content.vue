@@ -1,6 +1,6 @@
 <template>
   <div v-show="!files_loading && !files_load_error">
-    <x-table :columns="columns" :data="files" noDataText="项目下暂无性能文件" stribe2 no-data-head>
+    <x-table :columns="columns" :data="files" noDataText="项目下暂无性能文件" no-data-head>
       <!-- file type -->
       <template v-slot:fileType="{ row }">
         <x-type :row="row"></x-type>

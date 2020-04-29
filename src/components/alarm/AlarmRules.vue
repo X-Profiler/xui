@@ -7,37 +7,28 @@
 
     <div>
       <!-- loading -->
-      <x-loading :loading="rules_loading" type="dot" size="middle" top="calc(40vh - 105px)"></x-loading>
+      <x-loading :loading="rules_loading" type="dot" size="middle" :top="35"></x-loading>
 
       <!-- error -->
       <x-error-message
         v-show="rules_load_error"
         :message="rules_load_error"
-        top="calc(50vh - 360px)"
+        :top="20"
       ></x-error-message>
 
       <!-- show rules -->
-      <!-- <x-members class="members" v-if="!rules_loading && !rules_load_error"></x-members> -->
-      <!-- <x-table :columns="columns" :data="[]" noDataText="应用下暂无已配置告警规则" stribe2 no-data-head></x-table> -->
+      <x-setted-rules v-if="!rules_loading && !rules_load_error"></x-setted-rules>
     </div>
   </div>
 </template>
 
 <script>
 import alarmRuleModule from "@/javascripts/alarm/AlarmRules";
+import xSettedRules from "@/components/alarm/SettedRules";
 
 export default {
-  data() {
-    return {
-      columns: [
-        { title: "推送级别", value: "pushType", width: 130 },
-        { title: "上下文类型", value: "contextType", width: 150 },
-        { title: "阈值表达式", value: "expression", width: 260 },
-        { title: "告警推送内容", value: "alarmContent" },
-        { title: "已有告警", value: "alarms", width: 100 },
-        { title: "操作", value: "action", width: 175, align: "center" }
-      ]
-    };
+  components: {
+    "x-setted-rules": xSettedRules
   },
 
   ...alarmRuleModule
@@ -55,6 +46,6 @@ export default {
   text-align: center;
   padding: 4px 0 2px 0;
   font-size: 13px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 </style>

@@ -54,4 +54,7 @@ require("./controller/file/mock_file")(app);
 // dashboard/team
 require("./controller/team/mock_team")(app);
 
+// dashboard/alarm
+require("./controller/alarm/mock_alarm")(app);
+
 app.listen(7442);
