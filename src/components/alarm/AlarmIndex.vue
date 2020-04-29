@@ -20,13 +20,18 @@
     <!-- alarm configure -->
     <x-alarm-configure></x-alarm-configure>
 
+    <!-- divide line -->
     <div class="divide-line"></div>
+
+    <!-- alarm rules -->
+    <x-alarm-rules></x-alarm-rules>
   </div>
 </template>
 
 <script>
 import alarmModule from "@/javascripts/alarm/AlarmIndex";
-import xAlarmConfigure from "./AlarmConfigure";
+import xAlarmConfigure from "@/components/alarm/AlarmConfigure";
+import xAlarmRules from "@/components/alarm/AlarmRules";
 
 export default {
   props: {
@@ -36,7 +41,8 @@ export default {
   },
 
   components: {
-    "x-alarm-configure": xAlarmConfigure
+    "x-alarm-configure": xAlarmConfigure,
+    "x-alarm-rules": xAlarmRules
   },
 
   ...alarmModule

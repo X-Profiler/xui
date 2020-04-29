@@ -2,7 +2,7 @@
   <div>
     <!-- sub title -->
     <div class="alarm-wrapper">
-      <div class="section-title alarm">配置告警项</div>
+      <div class="section-title alarm">配置告警规则</div>
     </div>
 
     <!-- configure content -->
@@ -211,7 +211,7 @@ export default {
 .alarm-wrapper {
   background: #3392dc;
   color: white;
-  width: 85px;
+  width: 90px;
 }
 
 .alarm {
