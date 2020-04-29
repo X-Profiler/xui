@@ -52,6 +52,9 @@ export default {
     member: "/xapi/team_member",
     ownership: "/xapi/team_ownership",
     leaveTeam: "/xapi/leave_team",
-    invitation: "/xapi/invitation"
+    invitation: "/xapi/invitation",
+
+    // alarm
+    rules: "/xapi/alarm_rules"
   }
 };

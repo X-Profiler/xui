@@ -19,6 +19,7 @@ import analytics from "@/stores/analytics/analytics";
 import diag from "@/stores/analytics/diag";
 import gc from "@/stores/analytics/gc";
 import team from "@/stores/team/team";
+import alarm from "@/stores/alarm/alarm";
 
 export default {
   state: {
@@ -124,6 +125,10 @@ export default {
 
         "team": { // dashboard/team
           ...team
+        },
+
+        "alarm": { // dashboard/alarm
+          ...alarm
         },
 
         "analytics": { // dashboard/analytics
