@@ -1,5 +1,11 @@
 <template>
-  <div class="dropdown" @mouseover="mouseover()" @mousemove="mousemove()" @mouseout="mouseout()">
+  <div
+    class="dropdown"
+    @mouseover="mouseover()"
+    @mousemove="mousemove()"
+    @mouseout="mouseout()"
+    :style="dropdownStyle"
+  >
     <div class="dropdown-list">
       <slot name="title">
         <div style="padding-bottom: 6px;font-size: 12px;">{{ title }}</div>
@@ -20,7 +26,8 @@ export default {
   props: {
     title: String,
     position: String,
-    transformY: Number
+    transformY: Number,
+    color: String
   },
 
   mounted() {
@@ -57,6 +64,16 @@ export default {
 
     ty() {
       return (this.transformY || 6) + "px";
+    },
+
+    dropdownStyle() {
+      let style = "";
+
+      if (this.color) {
+        style += `color: ${this.color};`;
+      }
+
+      return style;
     }
   }
 };

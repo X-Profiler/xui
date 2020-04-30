@@ -25,7 +25,7 @@ export default {
           break;
       }
 
-      return label
+      return label;
     },
 
     formatContextType(contextType) {
@@ -47,7 +47,7 @@ export default {
           break;
       }
 
-      return label
+      return label;
     },
 
     showAlarmList() {
