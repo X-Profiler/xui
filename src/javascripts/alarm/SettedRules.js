@@ -2,10 +2,12 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState } = utils.createNamespace("dashboard/alarm");
+const { mapState, mapMutations } = utils.createNamespace("dashboard/alarm");
 
 export default {
   methods: {
+    ...mapMutations(["setEditModel"]),
+
     formatPushType(pushType) {
       let label = "";
       switch (pushType) {
@@ -52,6 +54,14 @@ export default {
 
     showAlarmList() {
 
+    },
+
+    operateRule(operation, row) {
+      if (operation === "edit") {
+        this.setEditModel({ status: true, data: row });
+      }
+
+      this.$refs[`dropdown-${row.index}`].mouseout();
     }
   },
 
@@ -61,9 +71,10 @@ export default {
     rules() {
       const data = this.rules_data;
       if (Array.isArray(data)) {
-        return data.map(item => {
+        return data.map((item, index) => {
           const tmp = Object.assign({
-            disabled: false
+            disabled: false,
+            index
           }, item);
           return tmp;
         });

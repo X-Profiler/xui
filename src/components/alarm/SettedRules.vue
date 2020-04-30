@@ -31,7 +31,13 @@
         <div class="operations">
           <Button type="info" ghost size="small" class="button" @click="showAlarmList(row)">配置联系人</Button>
 
-          <x-dropdown v-if="!row.disabled" :transformY="8" color="#2376b7" :minWidth="85">
+          <x-dropdown
+            :ref="`dropdown-${row.index}`"
+            v-if="!row.disabled"
+            :transformY="8"
+            color="#2376b7"
+            :minWidth="85"
+          >
             <div slot="title" class="dropdown-title rule-label">更多</div>
 
             <div slot="content">
@@ -39,6 +45,7 @@
                 v-for="(li, index) in operations"
                 :key="index"
                 class="x-dropdown-li operation-wrapper"
+                @click="operateRule(li.value, row)"
               >
                 <div class="operation">{{ li.label }}</div>
               </div>
@@ -94,6 +101,7 @@ export default {
 
 .operation-wrapper {
   justify-content: center;
+  user-select: none;
 }
 
 .operation {
