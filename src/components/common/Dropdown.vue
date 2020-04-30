@@ -89,7 +89,7 @@ export default {
       if (isNumber(this.minWidth)) {
         style += `min-width: ${this.minWidth}px;`;
       } else {
-        style += `min-width: 100px;`;
+        style += "min-width: 100px;";
       }
 
       return style;

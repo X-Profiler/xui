@@ -61,7 +61,7 @@ export default {
         }
       };
 
-      await dispatch(context, options, { root: true });
+      await dispatch("request", options, { root: true });
     }
   }
 };
