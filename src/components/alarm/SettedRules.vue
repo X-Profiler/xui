@@ -31,18 +31,17 @@
         <div class="operations">
           <Button type="info" ghost size="small" class="button" @click="showAlarmList(row)">设置联系人</Button>
 
-          <x-dropdown v-if="!row.disabled" :transformY="8" color="#2376b7">
-            <div slot="title" class="dropdown-title xprofiler-status-label">更多</div>
+          <x-dropdown v-if="!row.disabled" :transformY="8" color="#2376b7" :minWidth="85">
+            <div slot="title" class="dropdown-title rule-label">更多</div>
 
             <div slot="content">
-              <!-- <div
-                v-for="(li, index) in child.children"
+              <div
+                v-for="(li, index) in operations"
                 :key="index"
-                class="xprofiler-logdir-group x-dropdown-li"
+                class="x-dropdown-li operation-wrapper"
               >
-                <div class="dropdown-dot" :style="'background-color: ' + li.color + ';'"></div>
-                <div v-html="li.label"></div>
-              </div>-->
+                <div class="operation">{{ li.label }}</div>
+              </div>
             </div>
           </x-dropdown>
         </div>
@@ -64,6 +63,11 @@ export default {
         { title: "告警推送内容", value: "alarmContent" },
         { title: "已触发告警", value: "alarms", width: 105, align: "center" },
         { title: "操作", value: "operations", width: 185, align: "center" }
+      ],
+      operations: [
+        { label: "编辑", value: "edit" },
+        { label: "删除", value: "delete" },
+        { label: "禁用", value: "disable" }
       ]
     };
   },
@@ -88,7 +92,15 @@ export default {
   justify-content: space-around;
 }
 
-.xprofiler-status-label {
+.operation-wrapper {
+  justify-content: center;
+}
+
+.operation {
+  flex-shrink: 0;
+}
+
+.rule-label {
   color: #2376b7;
 }
 </style>

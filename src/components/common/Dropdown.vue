@@ -15,19 +15,26 @@
       </div>
     </div>
 
-    <div ref="dropdown-content" :class="'dropdown-content box-shadow ' + posit">
+    <div
+      ref="dropdown-content"
+      :class="'dropdown-content box-shadow ' + posit"
+      :style="contentStyle"
+    >
       <slot name="content"></slot>
     </div>
   </div>
 </template>
 
 <script>
+import { isNumber } from "@/javascripts/lib/utils";
+
 export default {
   props: {
     title: String,
     position: String,
     transformY: Number,
-    color: String
+    color: String,
+    minWidth: Number
   },
 
   mounted() {
@@ -74,6 +81,18 @@ export default {
       }
 
       return style;
+    },
+
+    contentStyle() {
+      let style = "";
+
+      if (isNumber(this.minWidth)) {
+        style += `min-width: ${this.minWidth}px;`;
+      } else {
+        style += `min-width: 100px;`;
+      }
+
+      return style;
     }
   }
 };
@@ -116,7 +135,6 @@ export default {
   border-radius: 4px;
   padding: 15px 0;
   transition: all 0.2s ease;
-  min-width: 100px;
   z-index: 1000;
 }
 
@@ -147,7 +165,7 @@ export default {
   display: block;
   content: " ";
   position: absolute;
-  top: -5px;
+  top: -10px;
 }
 
 .dropdown-content.right::before {
