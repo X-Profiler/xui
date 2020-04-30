@@ -2,7 +2,7 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
+const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
 
 export default {
   created() {
@@ -14,7 +14,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setTipModal"]),
+    ...mapMutations(["setTipModal", "setEditModel"]),
 
     ...mapActions(["postRule", "getRules"]),
 
@@ -34,6 +34,10 @@ export default {
         return false;
       }
       return true;
+    },
+
+    cancelEdit() {
+      this.setEditModel({ status: false, data: {} });
     },
 
     addRule() {
@@ -82,6 +86,10 @@ export default {
         })
         .then(() => this.addRuleLoading = false);
     }
+  },
+
+  computed: {
+    ...mapState(["editModel", "editData"])
   },
 
   watch: {
@@ -156,6 +164,31 @@ export default {
           modelMap.customRuleDesc = undefined;
           break;
       }
+    },
+
+    editData() {
+      const modelMap = this.modelMap;
+      const checkboxMap = this.checkboxMap;
+
+      const {
+        contextType,
+        pushType,
+        webhookPush,
+        webhookType,
+        webhookAddress,
+        webhookSign,
+        expression: customRuleExpr,
+        alarmContent: customRuleDesc
+      } = this.editData;
+
+      modelMap.contextType = contextType || "xprofiler_log";
+      modelMap.pushType = pushType || "p3";
+      checkboxMap.webhookPush = webhookPush || false;
+      modelMap.webhookType = webhookType || "dingtalk";
+      modelMap.webhookAddress = webhookAddress;
+      modelMap.webhookSign = webhookSign;
+      modelMap.customRuleExpr = customRuleExpr;
+      modelMap.customRuleDesc = customRuleDesc;
     }
   }
 };

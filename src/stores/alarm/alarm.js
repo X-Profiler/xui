@@ -12,7 +12,10 @@ export default {
     ...ruleState,
 
     tipModal: undefined,
-    tipData: {}
+    tipData: {},
+
+    editModel: false,
+    editData: {}
   },
 
   mutations: {
@@ -25,6 +28,16 @@ export default {
 
       if (data) {
         state.tipData = data;
+      }
+    },
+
+    setEditModel(state, { status, data }) {
+      if (status === false || status === true) {
+        state.editModel = status;
+      }
+
+      if (data) {
+        state.editData = data;
       }
     }
   },

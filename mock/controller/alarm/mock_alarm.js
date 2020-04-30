@@ -59,5 +59,6 @@ module.exports = app => {
       + `(webhookType ${webhookType} webhookAddress ${webhookAddress} webhookSign ${webhookSign})`);
 
     setTimeout(() => res.send({ ok: true }), 550);
+    // res.send({ ok: true })
   });
 };

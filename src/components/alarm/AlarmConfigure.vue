@@ -64,7 +64,10 @@
 
       <!-- opreations -->
       <div v-if="cfg.type === 'button'" class="button-group">
-        <div v-if="editRule"></div>
+        <div v-if="editModel">
+          <Button class="button" type="info" ghost @click="cancelEdit">取消</Button>
+          <Button class="button" type="info">更新规则</Button>
+        </div>
         <div v-else>
           <Button class="button" type="info" @click="addRule" :loading="addRuleLoading">添加规则</Button>
         </div>
@@ -203,8 +206,7 @@ export default {
       },
       placeholderMap: {
         dingtalk: "https://oapi.dingtalk.com/robot/send?access_token=xxxxxx"
-      },
-      editRule: false
+      }
     };
   },
 
