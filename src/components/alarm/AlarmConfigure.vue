@@ -28,6 +28,7 @@
               :placeholder="cfg.placeholder"
               class="agent-selector context-selector"
               :style="cfg.width ? `width: ${cfg.width}px;` : ''"
+              clearable
             >
               <Option
                 v-for="option in optionMap[cfg.value]"
@@ -47,6 +48,7 @@
             v-model="modelMap[cfg.value]"
             :placeholder="cfg.placeholder || placeholderMap[modelMap[cfg.placeholderValue]]"
             class="input"
+            clearable
           />
         </div>
       </transition>
@@ -64,7 +66,7 @@
       <div v-if="cfg.type === 'button'" class="button-group">
         <div v-if="editRule"></div>
         <div v-else>
-          <Button class="button" type="info">添加规则</Button>
+          <Button class="button" type="info" @click="addRule">添加规则</Button>
         </div>
       </div>
     </div>
@@ -148,9 +150,11 @@ export default {
         contextType: "xprofiler_log",
         pushType: "p3",
         webhookType: "dingtalk",
-        webhookAddress: "",
-        customRuleExpr: "",
-        customRuleDesc: ""
+        webhookAddress: undefined,
+        webhookSign: undefined,
+        fastRules: undefined,
+        customRuleExpr: undefined,
+        customRuleDesc: undefined
       },
       optionMap: {
         contextType: [

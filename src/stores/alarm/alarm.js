@@ -9,11 +9,24 @@ export default {
   namespaced: true,
 
   state: {
-    ...ruleState
+    ...ruleState,
+
+    tipModal: undefined,
+    tipData: {}
   },
 
   mutations: {
-    ...ruleMutations
+    ...ruleMutations,
+
+    setTipModal(state, { status, data }) {
+      if (status === false || status === true) {
+        state.tipModal = status;
+      }
+
+      if (data) {
+        state.tipData = data;
+      }
+    }
   },
 
   actions: {
@@ -31,6 +44,24 @@ export default {
       };
 
       await handleRules(context, options, "list", "array");
+    },
+
+    async postRule(context, { cancelToken, data }) {
+      const { rootState, rootGetters, dispatch } = context;
+
+      const options = {
+        cancelToken,
+        method: "POST",
+
+        // user data
+        url: rootState.url.strategy,
+        data: {
+          appId: rootGetters.appId,
+          ...data
+        }
+      };
+
+      await dispatch(context, options, { root: true });
     }
   }
 };
