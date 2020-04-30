@@ -23,15 +23,15 @@
 
       <!-- alarm list -->
       <template v-slot:alarms="{ row }">
-        <Button type="info" ghost size="small" class="button" long @click="showAlarmList(row)">告警历史</Button>
+        <Button type="info" ghost size="small" class="button" @click="showAlarmList(row)">告警历史</Button>
       </template>
 
       <!-- operations -->
       <template v-slot:operations="{ row }">
         <div class="operations">
-          <Button type="info" ghost size="small" class="button" @click="showAlarmList(row)">联系人设置</Button>
+          <Button type="info" ghost size="small" class="button" @click="showAlarmList(row)">设置联系人</Button>
 
-          <x-dropdown v-if="!row.disabled" :transformY="8">
+          <x-dropdown v-if="!row.disabled" :transformY="8" color="#2376b7">
             <div slot="title" class="dropdown-title xprofiler-status-label">更多</div>
 
             <div slot="content">
@@ -62,8 +62,8 @@ export default {
         { title: "上下文类型", value: "contextType", width: 154 },
         { title: "阈值表达式", value: "expression", width: 300 },
         { title: "告警推送内容", value: "alarmContent" },
-        { title: "已触发告警", value: "alarms", width: 110, align: "center" },
-        { title: "操作", value: "operations", width: 190, align: "center" }
+        { title: "已触发告警", value: "alarms", width: 105, align: "center" },
+        { title: "操作", value: "operations", width: 185, align: "center" }
       ]
     };
   },
@@ -86,5 +86,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.xprofiler-status-label {
+  color: #2376b7;
 }
 </style>
