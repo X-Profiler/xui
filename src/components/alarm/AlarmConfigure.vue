@@ -66,7 +66,7 @@
       <div v-if="cfg.type === 'button'" class="button-group">
         <div v-if="editRule"></div>
         <div v-else>
-          <Button class="button" type="info" @click="addRule">添加规则</Button>
+          <Button class="button" type="info" @click="addRule" :loading="addRuleLoading">添加规则</Button>
         </div>
       </div>
     </div>
@@ -79,6 +79,7 @@ import alarmConfigureModule from "@/javascripts/alarm/AlarmConfigure";
 export default {
   data() {
     return {
+      addRuleLoading: false,
       configures: [
         {
           label: "判定上下文类型",

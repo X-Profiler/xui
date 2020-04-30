@@ -2,7 +2,7 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapActions } = utils.createNamespace("dashboard/alarm");
+const { mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
 
 export default {
   created() {
@@ -14,7 +14,9 @@ export default {
   },
 
   methods: {
-    ...mapActions(["postRule"]),
+    ...mapMutations(["setTipModal"]),
+
+    ...mapActions(["postRule", "getRules"]),
 
     checkNeedShow({ type, dependent, dependentValue }, showType) {
       const needShow = showType === "label" || type === showType;
@@ -55,6 +57,7 @@ export default {
         }
       }
 
+      this.addRuleLoading = true;
       this
         .postRule({
           cancelToken: this.cancelToken.token,
@@ -63,14 +66,21 @@ export default {
             pushType: map.pushType,
             customRuleExpr: map.customRuleExpr,
             customRuleDesc: map.customRuleDesc,
-            webhookPush: map.webhookPush,
+            webhookPush: this.checkboxMap.webhookPush,
             webhookType: map.webhookType,
             webhookAddress: map.webhookAddress,
             webhookSign: map.webhookSign
           }
         })
-        .then(() => { })
-        .catch(err => { });
+        .then(() => {
+          this.getRules({ cancelToken: this.cancelToken.token });
+          this.addRuleLoading = false;
+        })
+        .catch(err => {
+          const data = { title: "添加规则失败", error: err.message, loading: false };
+          this.setTipModal({ status: true, data });
+        })
+        .then(() => this.addRuleLoading = false);
     }
   },
 
