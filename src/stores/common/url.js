@@ -55,6 +55,7 @@ export default {
     invitation: "/xapi/invitation",
 
     // alarm
-    strategies: "/xapi/alarm_strategies"
+    strategies: "/xapi/alarm_strategies",
+    strategy: "/xapi/alarm_strategy"
   }
 };

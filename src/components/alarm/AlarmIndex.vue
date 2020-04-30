@@ -25,6 +25,11 @@
 
     <!-- alarm rules -->
     <x-alarm-rules></x-alarm-rules>
+
+    <!-- tip modal -->
+    <x-modal ref="tip" :title="tipData.title" :padding="0" @canceled="closeTipModal" hide-footer>
+      <x-tip-content slot="content"></x-tip-content>
+    </x-modal>
   </div>
 </template>
 
@@ -32,6 +37,7 @@
 import alarmModule from "@/javascripts/alarm/AlarmIndex";
 import xAlarmConfigure from "@/components/alarm/AlarmConfigure";
 import xAlarmRules from "@/components/alarm/AlarmRules";
+import xTipContent from "@/components/alarm/TipContent";
 
 export default {
   props: {
@@ -42,7 +48,14 @@ export default {
 
   components: {
     "x-alarm-configure": xAlarmConfigure,
-    "x-alarm-rules": xAlarmRules
+    "x-alarm-rules": xAlarmRules,
+    "x-tip-content": xTipContent
+  },
+
+  data() {
+    return {
+      modalQueryKey: "alarm-tip"
+    };
   },
 
   ...alarmModule
