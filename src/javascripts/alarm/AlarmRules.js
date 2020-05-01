@@ -16,7 +16,11 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getRules"])
+    ...mapActions(["getRules"]),
+
+    refreshRules() {
+      this.getRules({ cancelToken: this.cancelToken.token });
+    }
   },
 
   computed: {
