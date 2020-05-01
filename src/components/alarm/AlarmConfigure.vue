@@ -66,10 +66,20 @@
       <div v-if="cfg.type === 'button'" class="button-group">
         <div v-if="editModel">
           <Button class="button" type="info" ghost @click="cancelEdit">取消</Button>
-          <Button class="button" type="info">更新规则</Button>
+          <Button
+            class="button"
+            type="info"
+            @click="operateRule('update')"
+            :loading="updateRuleLoading"
+          >更新规则</Button>
         </div>
         <div v-else>
-          <Button class="button" type="info" @click="addRule" :loading="addRuleLoading">添加规则</Button>
+          <Button
+            class="button"
+            type="info"
+            @click="operateRule('add')"
+            :loading="addRuleLoading"
+          >添加规则</Button>
         </div>
       </div>
     </div>
@@ -83,6 +93,7 @@ export default {
   data() {
     return {
       addRuleLoading: false,
+      updateRuleLoading: false,
       configures: [
         {
           label: "判定上下文类型",
