@@ -3,33 +3,58 @@
     <x-table :columns="columns" :data="rules" noDataText="应用下暂无已配置告警规则" no-data-head>
       <!-- push type -->
       <template v-slot:pushType="{ row }">
-        <div class="rule-content">{{ formatPushType(row.pushType) }}</div>
+        <div
+          :class="'rule-content' + (row.disabled ? ' rule-disabled' : '')"
+        >{{ formatPushType(row.pushType) }}</div>
       </template>
 
       <!-- context type -->
       <template v-slot:contextType="{ row }">
-        <div class="rule-content">{{ formatContextType(row.contextType) }}</div>
+        <div
+          :class="'rule-content' + (row.disabled ? ' rule-disabled' : '')"
+        >{{ formatContextType(row.contextType) }}</div>
       </template>
 
       <!-- expression -->
       <template v-slot:expression="{ row }">
-        <code>{{ row.expression }}</code>
+        <code :class="row.disabled ? ' rule-disabled' : ''">{{ row.expression }}</code>
       </template>
 
       <!-- alarm content -->
       <template v-slot:alarmContent="{ row }">
-        <div class="rule-content">{{ row.alarmContent }}</div>
+        <div :class="'rule-content' + (row.disabled ? ' rule-disabled' : '')">{{ row.alarmContent }}</div>
       </template>
 
       <!-- alarm list -->
       <template v-slot:alarms="{ row }">
-        <Button type="info" ghost size="small" class="button" @click="showAlarmList(row)">告警历史</Button>
+        <Badge
+          class="setted-rule"
+          :count="row.alarmCount"
+          overflow-count="999"
+          :type="row.disabled ? 'normal' : 'error'"
+        >
+          <Button
+            type="info"
+            ghost
+            size="small"
+            class="button"
+            :disabled="row.disabled"
+            @click="showAlarmList(row)"
+          >告警历史</Button>
+        </Badge>
       </template>
 
       <!-- operations -->
       <template v-slot:operations="{ row }">
         <div class="operations">
-          <Button type="info" ghost size="small" class="button" @click="showAlarmList(row)">配置联系人</Button>
+          <Button
+            type="info"
+            ghost
+            size="small"
+            class="button"
+            :disabled="row.disabled"
+            @click="showAlarmList(row)"
+          >配置联系人</Button>
 
           <x-dropdown
             :ref="`dropdown-${row.index}`"
@@ -51,6 +76,15 @@
               </div>
             </div>
           </x-dropdown>
+
+          <Button
+            v-else
+            class="button"
+            size="small"
+            type="success"
+            style="width:42px"
+            @click="operateRule('enable', row)"
+          >启用</Button>
         </div>
       </template>
     </x-table>
@@ -75,7 +109,8 @@ export default {
         { label: "编辑", value: "edit" },
         { label: "删除", value: "delete" },
         { label: "禁用", value: "disable" }
-      ]
+      ],
+      rules: []
     };
   },
 
@@ -110,5 +145,9 @@ export default {
 
 .rule-label {
   color: #2376b7;
+}
+
+.rule-disabled {
+  color: #c5c8ce;
 }
 </style>

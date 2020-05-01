@@ -14,7 +14,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["resetState", "setTipModal", "setEditModel"]),
+    ...mapMutations(["resetState", "setTipModal"]),
 
     ...mapActions(["getRules", "postRule", "putRule"]),
 
@@ -51,7 +51,7 @@ export default {
     },
 
     cancelEdit() {
-      this.setEditModel({ status: false, data: {} });
+      this.reset();
     },
 
     operateRule(operation) {

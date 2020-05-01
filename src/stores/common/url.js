@@ -56,6 +56,7 @@ export default {
 
     // alarm
     strategies: "/xapi/alarm_strategies",
-    strategy: "/xapi/alarm_strategy"
+    strategy: "/xapi/alarm_strategy",
+    strategyStatus: "/xapi/alarm_strategy_status"
   }
 };

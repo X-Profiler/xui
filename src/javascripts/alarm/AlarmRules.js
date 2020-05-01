@@ -2,7 +2,7 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState, mapActions } = utils.createNamespace("dashboard/alarm");
+const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
 
 export default {
   created() {
@@ -16,10 +16,13 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["resetState"]),
+
     ...mapActions(["getRules"]),
 
     refreshRules() {
       this.getRules({ cancelToken: this.cancelToken.token });
+      this.resetState();
     }
   },
 

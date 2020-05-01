@@ -35,7 +35,7 @@ module.exports = app => {
         expression: '@disk_usage > 85',
         alarmContent: '磁盘 (${@mounted_on}) 占比超过 85%：为 ${@disk_usage}%',
         status: 1,
-        alarmCount: 888
+        alarmCount: 520
       }
     ];
 
@@ -87,6 +87,16 @@ module.exports = app => {
 
     const strategyId = req.body.strategyId;
     console.log(`delete stratrgy ${strategyId}`);
+
+    setTimeout(() => res.send({ ok: true }), 550);
+  });
+
+  app.put("/xapi/alarm_strategy_status", function (req, res) {
+    utils.checkParam(req.body, ["strategyId", "status"]);
+
+    const strategyId = req.body.strategyId;
+    const status = req.body.status;
+    console.log(`update stratrgy ${strategyId} status ${status}`);
 
     setTimeout(() => res.send({ ok: true }), 550);
   });
