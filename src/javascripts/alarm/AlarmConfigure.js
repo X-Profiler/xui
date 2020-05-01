@@ -14,9 +14,23 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setTipModal", "setEditModel"]),
+    ...mapMutations(["resetState", "setTipModal", "setEditModel"]),
 
     ...mapActions(["getRules", "postRule", "putRule"]),
+
+    reset() {
+      const modelMap = this.modelMap;
+      modelMap.contextType = "xprofiler_log";
+      modelMap.pushType = "p3";
+      modelMap.webhookType = "dingtalk";
+      modelMap.webhookAddress = undefined;
+      modelMap.webhookSign = undefined;
+      modelMap.fastRules = undefined;
+      modelMap.customRuleExpr = undefined;
+      modelMap.customRuleDesc = undefined;
+      this.checkboxMap.webhookPush = false;
+      this.resetState();
+    },
 
     checkNeedShow({ type, dependent, dependentValue }, showType) {
       const needShow = showType === "label" || type === showType;
@@ -96,6 +110,7 @@ export default {
         .then(() => {
           this.getRules({ cancelToken: this.cancelToken.token });
           this[loading] = false;
+          this.reset();
         })
         .catch(err => {
           const data = { title, error: err.message, loading: false };
