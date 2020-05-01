@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-content">
+  <div class="detail-content alarm-content">
     <!-- title -->
     <x-dashboard-title :appName="appName" :dashboardTitle="title" line></x-dashboard-title>
 
@@ -37,6 +37,18 @@
     >
       <x-tip-content slot="content"></x-tip-content>
     </x-modal>
+
+    <!-- contacts modal -->
+    <x-modal
+      ref="contacts"
+      title="配置告警联系人"
+      :padding="0"
+      :width="600"
+      @canceled="closeContactsModal"
+      hide-footer
+    >
+      <x-contacts slot="content"></x-contacts>
+    </x-modal>
   </div>
 </template>
 
@@ -45,6 +57,7 @@ import alarmModule from "@/javascripts/alarm/AlarmIndex";
 import xAlarmConfigure from "@/components/alarm/AlarmConfigure";
 import xAlarmRules from "@/components/alarm/AlarmRules";
 import xTipContent from "@/components/alarm/TipContent";
+import xContacts from "@/components/alarm/contacts/ContactsIndex";
 
 export default {
   props: {
@@ -56,12 +69,14 @@ export default {
   components: {
     "x-alarm-configure": xAlarmConfigure,
     "x-alarm-rules": xAlarmRules,
-    "x-tip-content": xTipContent
+    "x-tip-content": xTipContent,
+    "x-contacts": xContacts
   },
 
   data() {
     return {
-      modalQueryKey: "alarm-tip"
+      modalTip: "alarm-tip",
+      modalContacts: "alarm-contacts"
     };
   },
 
@@ -79,5 +94,9 @@ export default {
   height: 15px;
   width: 100%;
   border-top: 1px solid #dcdee2;
+}
+
+.alarm-content {
+  margin-bottom: 115px;
 }
 </style>
