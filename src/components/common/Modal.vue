@@ -1,8 +1,9 @@
 <template>
   <div>
     <Modal
-      class="x-modal"
       v-model="show"
+      class="x-modal"
+      :styles="modalStyle"
       :mask-closable="false"
       :width="width"
       :footer-hide="hideFooter"
@@ -43,12 +44,6 @@
 import { isNumber } from "@/javascripts/lib/utils";
 
 export default {
-  data() {
-    return {
-      show: false
-    };
-  },
-
   props: {
     type: String,
     title: String,
@@ -59,7 +54,14 @@ export default {
     width: Number,
     hideFooter: Boolean,
     padding: Number,
-    fullscreen: Boolean
+    fullscreen: Boolean,
+    top: [Number, String]
+  },
+
+  data() {
+    return {
+      show: false
+    };
   },
 
   methods: {
@@ -113,6 +115,20 @@ export default {
         padding = this.padding;
       }
       style += "padding: " + padding + "px;";
+
+      return style;
+    },
+
+    modalStyle() {
+      let style = {};
+
+      if (this.top) {
+        if (isNumber(this.top)) {
+          style.top = this.top + "px";
+        } else {
+          style.top = this.top;
+        }
+      }
 
       return style;
     }
