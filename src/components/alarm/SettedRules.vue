@@ -53,7 +53,7 @@
             size="small"
             class="button"
             :disabled="row.disabled"
-            @click="showAlarmList(row)"
+            @click="openContactsModal(row)"
           >配置联系人</Button>
 
           <x-dropdown

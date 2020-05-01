@@ -15,7 +15,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setTipModal", "setEditModel"]),
+    ...mapMutations(["setTipModal", "setContactsModal", "setEditModel"]),
 
     ...mapActions(["deleteRule", "putRuleStatus"]),
 
@@ -78,6 +78,10 @@ export default {
 
     showAlarmList() {
 
+    },
+
+    openContactsModal(data) {
+      this.setContactsModal({ status: true, data });
     },
 
     doAction(title, func, requestData, needRefresh = true, cb) {

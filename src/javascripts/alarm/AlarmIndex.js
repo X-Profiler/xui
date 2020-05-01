@@ -4,11 +4,14 @@ import * as utils from "@/javascripts/lib/utils";
 
 const { mapState, mapMutations } = utils.createNamespace("dashboard/alarm");
 const { mapMethods, mapWatch, handleMounted } =
-  utils.modalRouteFactory("modalQueryKey", "tipModal", "tip", "setTipModal");
+  utils.modalRouteFactory("modalTip", "tipModal", "tip", "setTipModal");
+const { mapMethods: mapMethodsContacts, mapWatch: mapWatchContacts, handleMounted: handleMountedContacts } =
+  utils.modalRouteFactory("modalContacts", "contactsModal", "contacts", "setContactsModal");
 
 export default {
   mounted() {
     handleMounted.call(this, "handleTipModal");
+    handleMountedContacts.call(this, "handleContactsModal");
   },
 
   beforeDestroy() {
@@ -16,24 +19,33 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["resetState", "setTipModal"]),
+    ...mapMutations(["resetState", "setTipModal", "setContactsModal"]),
 
     ...mapMethods("handleTipModal"),
 
+    ...mapMethodsContacts("handleContactsModal"),
+
     closeTipModal() {
       this.setTipModal({ status: false });
+    },
+
+    closeContactsModal() {
+      this.setContactsModal({ status: false });
     }
   },
 
   computed: {
-    ...mapState(["tipModal", "tipData"])
+    ...mapState(["tipModal", "tipData", "contactsModal"])
   },
 
   watch: {
     ...mapWatch,
 
+    ...mapWatchContacts,
+
     $route(to) {
       this.handleTipModal(to.query);
+      this.handleContactsModal(to.query);
     }
   }
 };
