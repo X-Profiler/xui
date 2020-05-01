@@ -10,14 +10,10 @@
       <x-loading :loading="rules_loading" type="dot" size="middle" :top="35"></x-loading>
 
       <!-- error -->
-      <x-error-message
-        v-show="rules_load_error"
-        :message="rules_load_error"
-        :top="20"
-      ></x-error-message>
+      <x-error-message v-show="rules_load_error" :message="rules_load_error" :top="20"></x-error-message>
 
       <!-- show rules -->
-      <x-setted-rules v-if="!rules_loading && !rules_load_error"></x-setted-rules>
+      <x-setted-rules v-if="!rules_loading && !rules_load_error" @refreshRules="refreshRules"></x-setted-rules>
     </div>
   </div>
 </template>

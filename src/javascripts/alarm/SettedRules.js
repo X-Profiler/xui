@@ -2,11 +2,21 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState, mapMutations } = utils.createNamespace("dashboard/alarm");
+const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
 
 export default {
+  created() {
+    this.cancelToken = utils.createCancelToken();
+  },
+
+  beforeDestroy() {
+    utils.cancelRequest(this.cancelToken);
+  },
+
   methods: {
-    ...mapMutations(["setEditModel"]),
+    ...mapMutations(["setTipModal", "setEditModel"]),
+
+    ...mapActions(["deleteRule"]),
 
     formatPushType(pushType) {
       let label = "";
@@ -56,9 +66,29 @@ export default {
 
     },
 
+    delete({ strategyId }) {
+      const data = { title: "删除规则", error: undefined, loading: false };
+      this.setTipModal({ status: true, data });
+      data.loading = true;
+      this
+        .deleteRule({ cancelToken: this.cancelToken.token, data: { strategyId } })
+        .then(() => {
+          this.setTipModal({ status: false });
+          this.$emit("refreshRules");
+        })
+        .catch(err => {
+          data.loading = false;
+          data.error = err.message;
+        });
+    },
+
     operateRule(operation, row) {
       if (operation === "edit") {
         this.setEditModel({ status: true, data: row });
+      }
+
+      if (operation === "delete") {
+        this.delete(row);
       }
 
       this.$refs[`dropdown-${row.index}`].mouseout();

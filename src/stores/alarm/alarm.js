@@ -85,7 +85,7 @@ export default {
     },
 
     async putRule(context, { cancelToken, data }) {
-      const { rootState, rootGetters, dispatch } = context;
+      const { rootState, dispatch } = context;
 
       const options = {
         cancelToken,
@@ -93,10 +93,22 @@ export default {
 
         // user data
         url: rootState.url.strategy,
-        data: {
-          appId: rootGetters.appId,
-          ...data
-        }
+        data
+      };
+
+      await dispatch("request", options, { root: true });
+    },
+
+    async deleteRule(context, { cancelToken, data }) {
+      const { rootState, dispatch } = context;
+
+      const options = {
+        cancelToken,
+        method: "DELETE",
+
+        // user data
+        url: rootState.url.strategy,
+        data
       };
 
       await dispatch("request", options, { root: true });
