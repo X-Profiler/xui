@@ -11,8 +11,12 @@ export default {
     handleMounted.call(this, "handleTipModal");
   },
 
+  beforeDestroy() {
+    this.resetState();
+  },
+
   methods: {
-    ...mapMutations(["setTipModal"]),
+    ...mapMutations(["resetState", "setTipModal"]),
 
     ...mapMethods("handleTipModal"),
 

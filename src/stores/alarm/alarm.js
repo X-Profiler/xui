@@ -21,6 +21,13 @@ export default {
   mutations: {
     ...ruleMutations,
 
+    resetState(state) {
+      state.tipModal = undefined;
+      state.tipData = {};
+      state.editModel = false;
+      state.editData = {};
+    },
+
     setTipModal(state, { status, data }) {
       if (status === false || status === true) {
         state.tipModal = status;
@@ -65,6 +72,24 @@ export default {
       const options = {
         cancelToken,
         method: "POST",
+
+        // user data
+        url: rootState.url.strategy,
+        data: {
+          appId: rootGetters.appId,
+          ...data
+        }
+      };
+
+      await dispatch("request", options, { root: true });
+    },
+
+    async putRule(context, { cancelToken, data }) {
+      const { rootState, rootGetters, dispatch } = context;
+
+      const options = {
+        cancelToken,
+        method: "PUT",
 
         // user data
         url: rootState.url.strategy,

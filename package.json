@@ -13,7 +13,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.4.4",
     "moment": "^2.24.0",
-    "view-design": "^4.1.2",
+    "view-design": "^4.2.0",
     "vue": "^2.6.10",
     "vue-dom-portal": "^0.1.6",
     "vue-router": "^3.1.5",

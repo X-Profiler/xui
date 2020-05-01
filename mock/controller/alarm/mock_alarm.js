@@ -61,4 +61,25 @@ module.exports = app => {
     setTimeout(() => res.send({ ok: true }), 550);
     // res.send({ ok: true })
   });
+
+  app.put("/xapi/alarm_strategy", function (req, res) {
+    utils.checkParam(req.body, ["appId", "strategyId", "contextType", "pushType",
+      "customRuleExpr", "customRuleDesc", "webhookPush"]);
+
+    const appId = req.body.appId;
+    const strategyId = req.body.strategyId;
+    const contextType = req.body.contextType;
+    const customRuleExpr = req.body.customRuleExpr;
+    const customRuleDesc = req.body.customRuleDesc;
+    const webhookPush = req.body.webhookPush;
+    const webhookType = req.body.webhookType;
+    const webhookAddress = req.body.webhookAddress;
+    const webhookSign = req.body.webhookSign;
+    console.log(`update app ${appId} strategy [${strategyId}] [${contextType}] [${customRuleExpr}] `
+      + `[${customRuleDesc}] [${webhookPush}] `
+      + `(webhookType ${webhookType} webhookAddress ${webhookAddress} webhookSign ${webhookSign})`);
+
+    setTimeout(() => res.send({ ok: true }), 550);
+    // res.send({ ok: true })
+  });
 };

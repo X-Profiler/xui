@@ -16,7 +16,7 @@ export default {
   methods: {
     ...mapMutations(["setTipModal", "setEditModel"]),
 
-    ...mapActions(["postRule", "getRules"]),
+    ...mapActions(["getRules", "postRule", "putRule"]),
 
     checkNeedShow({ type, dependent, dependentValue }, showType) {
       const needShow = showType === "label" || type === showType;
@@ -40,7 +40,7 @@ export default {
       this.setEditModel({ status: false, data: {} });
     },
 
-    addRule() {
+    operateRule(operation) {
       const map = this.modelMap;
       const required =
         this.checkRequired(map, "contextType", "判定上下文类型不能为空") &&
@@ -61,11 +61,28 @@ export default {
         }
       }
 
-      this.addRuleLoading = true;
-      this
-        .postRule({
+      let func = "";
+      let loading = "";
+      let title = "";
+      if (operation === "add") {
+        loading = "addRuleLoading";
+        func = "postRule";
+        title = "添加规则失败";
+      }
+
+      if (operation === "update") {
+        loading = "updateRuleLoading";
+        func = "putRule";
+        title = "更新规则失败";
+      }
+
+      this[loading] = true;
+
+      this[func](
+        {
           cancelToken: this.cancelToken.token,
           data: {
+            strategyId: this.editData.strategyId,
             contextType: map.contextType,
             pushType: map.pushType,
             customRuleExpr: map.customRuleExpr,
@@ -78,13 +95,13 @@ export default {
         })
         .then(() => {
           this.getRules({ cancelToken: this.cancelToken.token });
-          this.addRuleLoading = false;
+          this[loading] = false;
         })
         .catch(err => {
-          const data = { title: "添加规则失败", error: err.message, loading: false };
+          const data = { title, error: err.message, loading: false };
           this.setTipModal({ status: true, data });
         })
-        .then(() => this.addRuleLoading = false);
+        .then(() => this[loading] = false);
     }
   },
 
