@@ -27,7 +27,14 @@
     <x-alarm-rules></x-alarm-rules>
 
     <!-- tip modal -->
-    <x-modal ref="tip" :title="tipData.title" :padding="0" @canceled="closeTipModal" hide-footer>
+    <x-modal
+      ref="tip"
+      :title="tipData.title"
+      :padding="0"
+      @canceled="closeTipModal"
+      hide-footer
+      top="calc(50vh - 120px)"
+    >
       <x-tip-content slot="content"></x-tip-content>
     </x-modal>
   </div>
