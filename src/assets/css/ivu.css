@@ -199,3 +199,8 @@ border-color: #2d8cf0;
 .input-group .ivu-input {
   font-size: 12px;
 }
+
+.setted-rule .ivu-badge-count-normal {
+  color:  white;
+  background-color: #c5c8ce;
+}

@@ -112,6 +112,21 @@ export default {
       };
 
       await dispatch("request", options, { root: true });
+    },
+
+    async putRuleStatus(context, { cancelToken, data }) {
+      const { rootState, dispatch } = context;
+
+      const options = {
+        cancelToken,
+        method: "PUT",
+
+        // user data
+        url: rootState.url.strategyStatus,
+        data
+      };
+
+      await dispatch("request", options, { root: true });
     }
   }
 };

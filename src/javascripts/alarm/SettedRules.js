@@ -7,6 +7,7 @@ const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/
 export default {
   created() {
     this.cancelToken = utils.createCancelToken();
+    this.updateRules();
   },
 
   beforeDestroy() {
@@ -16,7 +17,7 @@ export default {
   methods: {
     ...mapMutations(["setTipModal", "setEditModel"]),
 
-    ...mapActions(["deleteRule"]),
+    ...mapActions(["deleteRule", "putRuleStatus"]),
 
     formatPushType(pushType) {
       let label = "";
@@ -62,24 +63,56 @@ export default {
       return label;
     },
 
+    updateRules() {
+      const data = this.rules_data;
+      if (Array.isArray(data)) {
+        this.rules = data.map((item, index) => {
+          const tmp = Object.assign({
+            disabled: false,
+            index
+          }, item);
+          return tmp;
+        });
+      }
+    },
+
     showAlarmList() {
 
     },
 
-    delete({ strategyId }) {
-      const data = { title: "删除规则", error: undefined, loading: false };
+    doAction(title, func, requestData, needRefresh = true, cb) {
+      const data = { title, error: undefined, loading: false };
       this.setTipModal({ status: true, data });
       data.loading = true;
-      this
-        .deleteRule({ cancelToken: this.cancelToken.token, data: { strategyId } })
+      this[func](
+        {
+          cancelToken: this.cancelToken.token,
+          data: { ...requestData }
+        })
         .then(() => {
           this.setTipModal({ status: false });
-          this.$emit("refreshRules");
+          if (needRefresh) {
+            this.$emit("refreshRules");
+          }
+          if (typeof cb === "function") {
+            cb();
+          }
         })
         .catch(err => {
           data.loading = false;
           data.error = err.message;
         });
+    },
+
+    delete({ strategyId }) {
+      this.doAction("删除规则", "deleteRule", { strategyId });
+    },
+
+    updateStatus(row, status) {
+      const { strategyId } = row;
+      const title = status === 0 ? "禁用规则" : "启用规则";
+      this.doAction(title, "putRuleStatus", { strategyId, status },
+        false, () => row.disabled = !status);
     },
 
     operateRule(operation, row) {
@@ -91,25 +124,28 @@ export default {
         this.delete(row);
       }
 
-      this.$refs[`dropdown-${row.index}`].mouseout();
+      if (operation === "disable") {
+        this.updateStatus(row, 0);
+      }
+
+      if (operation === "enable") {
+        this.updateStatus(row, 1);
+      }
+
+      const element = this.$refs[`dropdown-${row.index}`];
+      if (element) {
+        element.mouseout();
+      }
     }
   },
 
   computed: {
     ...mapState(["rules_data"]),
+  },
 
-    rules() {
-      const data = this.rules_data;
-      if (Array.isArray(data)) {
-        return data.map((item, index) => {
-          const tmp = Object.assign({
-            disabled: false,
-            index
-          }, item);
-          return tmp;
-        });
-      }
-      return [];
+  watch: {
+    rules_data() {
+      this.updateRules();
     }
   }
 };
