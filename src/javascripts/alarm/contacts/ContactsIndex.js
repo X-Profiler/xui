@@ -2,7 +2,8 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
+const { mapState, mapMutations } = utils.createNamespace("dashboard/alarm");
+const { mapState: mapStateContact, mapActions: mapActionsContact } = utils.createNamespace("dashboard/alarm/contact");
 
 export default {
   created() {
@@ -19,7 +20,7 @@ export default {
   methods: {
     ...mapMutations(["setContactsModal"]),
 
-    ...mapActions(["getContacts"]),
+    ...mapActionsContact(["getContacts"]),
 
     closeContactsModal() {
       this.setContactsModal({ status: false });
@@ -27,6 +28,8 @@ export default {
   },
 
   computed: {
-    ...mapState(["contacts_loading", "contacts_load_error", "contactsData"]),
+    ...mapState(["contactsData"]),
+
+    ...mapStateContact(["contacts_loading", "contacts_load_error"])
   }
 };

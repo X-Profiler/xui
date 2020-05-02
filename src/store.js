@@ -20,6 +20,8 @@ import diag from "@/stores/analytics/diag";
 import gc from "@/stores/analytics/gc";
 import team from "@/stores/team/team";
 import alarm from "@/stores/alarm/alarm";
+import contact from "@/stores/alarm/contact";
+import history from "@/stores/alarm/history";
 
 export default {
   state: {
@@ -128,7 +130,12 @@ export default {
         },
 
         "alarm": { // dashboard/alarm
-          ...alarm
+          ...alarm,
+
+          modules: {
+            "contact": { ...contact }, // dashboard/alarm/contact
+            "history": { ...history }, // dashboard/alarm/history
+          }
         },
 
         "analytics": { // dashboard/analytics

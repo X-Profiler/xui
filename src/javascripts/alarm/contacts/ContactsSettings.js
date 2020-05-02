@@ -2,7 +2,8 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
+const { mapState, mapMutations } = utils.createNamespace("dashboard/alarm");
+const { mapState: mapStateContact, mapActions: mapActionsContact } = utils.createNamespace("dashboard/alarm/contact");
 
 export default {
   created() {
@@ -17,7 +18,7 @@ export default {
   methods: {
     ...mapMutations(["setTipModal"]),
 
-    ...mapActions(["removeContact", "addContact"]),
+    ...mapActionsContact(["removeContact", "addContact"]),
 
     formatList(array) {
       const list = array.map((item, index) => {
@@ -78,7 +79,9 @@ export default {
   },
 
   computed: {
-    ...mapState(["contactsData", "contacts_data"])
+    ...mapState(["contactsData"]),
+
+    ...mapStateContact(["contacts_data"])
   },
 
   watch: {
