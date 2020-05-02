@@ -4,7 +4,7 @@ const utils = require('../../lib/utils');
 
 module.exports = app => {
   app.get('/xapi/alarm_strategy_history', function (req, res) {
-    utils.checkParam(req.query, ["strategyId", "currentPage", "pageSize"]);
+    utils.checkParam(req.query, ['strategyId', 'currentPage', 'pageSize']);
 
     const strategyId = req.query.strategyId
     const currentPage = req.query.currentPage;
@@ -13,8 +13,11 @@ module.exports = app => {
     const end = currentPage * pageSize;
     console.log(`get startegy ${strategyId} history (${start} ~ ${end}) <${pageSize}>`);
 
-    const history = [];
+    const history = require('../../data/history');
 
-    setTimeout(() => res.send({ ok: true, data: { list: history, count: history.length } }), 650);
+    const list = history.filter((...args) => args[1] >= start && args[1] < end);
+    const count = history.length;
+
+    setTimeout(() => res.send({ ok: true, data: { list, count } }), 650);
   });
 };
