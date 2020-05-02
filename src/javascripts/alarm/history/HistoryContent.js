@@ -1,8 +1,9 @@
 "use strict";
 
+import moment from "moment";
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState } = utils.createNamespace("dashboard/alarm");
+const { mapState, mapGetters } = utils.createNamespace("dashboard/alarm");
 const { mapState: mapStateHistory, mapActions: mapActionsHistory } = utils.createNamespace("dashboard/alarm/history");
 
 export default {
@@ -24,6 +25,10 @@ export default {
   methods: {
     ...mapActionsHistory(["getAlarmHistory"]),
 
+    formatTime(time) {
+      return moment(time).format("YYYY-MM-DD HH:mm:SS");
+    },
+
     refreshAlarmHistory() {
       const { strategyId } = this.historyData;
       this.getAlarmHistory({
@@ -34,16 +39,37 @@ export default {
           pageSize: this.pageSize
         }
       });
+    },
+
+    changeHistoryPage(page) {
+      this.currentPage = page;
     }
   },
 
   computed: {
     ...mapState(["historyData"]),
 
+    ...mapGetters(["formatContextType"]),
+
     ...mapStateHistory(["history_data"])
   },
 
   watch: {
+    history_data() {
+      const { list, count } = this.history_data;
+      if (!Array.isArray(list)) {
+        return;
+      }
+      if (utils.isNumber(count)) {
+        this.totaHistoryCount = count;
+        this.$emit("historyCount", count);
+      }
+      this.history = list.map(item => {
+        const data = Object.assign({}, item);
+        return data;
+      });
+    },
+
     totaHistoryCount() {
       if (!this.totaHistoryCount) {
         return;

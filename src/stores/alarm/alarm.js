@@ -24,6 +24,30 @@ export default {
     editData: {},
   },
 
+  getters: {
+    formatContextType: () => contextType => {
+      let label = "";
+      switch (contextType) {
+        case "xprofiler_log":
+          label = "X-Profiler 插件日志";
+          break;
+        case "xtransit_notification":
+          label = "X-Transit 通知信息";
+          break;
+        case "system_log":
+          label = "操作系统指标日志";
+          break;
+        case "error_log":
+          label = "Node.js 应用错误日志";
+          break;
+        default:
+          break;
+      }
+
+      return label;
+    },
+  },
+
   mutations: {
     ...ruleMutations,
 

@@ -2,7 +2,7 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
-const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
+const { mapState, mapGetters, mapMutations, mapActions } = utils.createNamespace("dashboard/alarm");
 
 export default {
   created() {
@@ -33,28 +33,6 @@ export default {
           break;
         case "p4":
           label = "P4 (数据记录)";
-          break;
-        default:
-          break;
-      }
-
-      return label;
-    },
-
-    formatContextType(contextType) {
-      let label = "";
-      switch (contextType) {
-        case "xprofiler_log":
-          label = "X-Profiler 插件日志";
-          break;
-        case "xtransit_notification":
-          label = "X-Transit 通知信息";
-          break;
-        case "system_log":
-          label = "操作系统指标日志";
-          break;
-        case "error_log":
-          label = "Node.js 应用错误日志";
           break;
         default:
           break;
@@ -145,6 +123,8 @@ export default {
 
   computed: {
     ...mapState(["rules_data"]),
+
+    ...mapGetters(["formatContextType"])
   },
 
   watch: {

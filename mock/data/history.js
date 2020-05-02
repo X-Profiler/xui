@@ -25,7 +25,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -57,7 +57,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -89,7 +89,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -121,7 +121,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -153,7 +153,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -185,7 +185,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -217,7 +217,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -249,7 +249,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -281,7 +281,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -313,7 +313,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -345,7 +345,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -377,7 +377,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -409,7 +409,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -441,7 +441,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -473,7 +473,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -505,7 +505,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -537,7 +537,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -569,7 +569,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -601,7 +601,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -633,7 +633,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -665,7 +665,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -697,7 +697,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -729,7 +729,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -761,7 +761,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -793,7 +793,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -825,7 +825,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -857,7 +857,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -889,7 +889,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -921,7 +921,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -953,7 +953,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -985,7 +985,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1017,7 +1017,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1049,7 +1049,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1081,7 +1081,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1113,7 +1113,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1145,7 +1145,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1177,7 +1177,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1209,7 +1209,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1241,7 +1241,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1273,7 +1273,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1305,7 +1305,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1337,7 +1337,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1369,7 +1369,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1401,7 +1401,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1433,7 +1433,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1465,7 +1465,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1497,7 +1497,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1529,7 +1529,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1561,7 +1561,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1593,7 +1593,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1625,7 +1625,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1657,7 +1657,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1689,7 +1689,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1721,7 +1721,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1753,7 +1753,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1785,7 +1785,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1817,7 +1817,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1849,7 +1849,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1881,7 +1881,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1913,7 +1913,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1945,7 +1945,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -1977,7 +1977,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2009,7 +2009,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2041,7 +2041,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2073,7 +2073,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2105,7 +2105,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2137,7 +2137,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2169,7 +2169,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2201,7 +2201,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2233,7 +2233,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2265,7 +2265,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2297,7 +2297,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2329,7 +2329,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2361,7 +2361,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2393,7 +2393,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2425,7 +2425,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2457,7 +2457,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2489,7 +2489,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2521,7 +2521,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2553,7 +2553,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2585,7 +2585,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2617,7 +2617,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2649,7 +2649,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2681,7 +2681,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2713,7 +2713,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2745,7 +2745,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2777,7 +2777,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2809,7 +2809,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2841,7 +2841,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2873,7 +2873,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2905,7 +2905,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2937,7 +2937,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -2969,7 +2969,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3001,7 +3001,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3033,7 +3033,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3065,7 +3065,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3097,7 +3097,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3129,7 +3129,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3161,7 +3161,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3193,7 +3193,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3225,7 +3225,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3257,7 +3257,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3289,7 +3289,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3321,7 +3321,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3353,7 +3353,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3385,7 +3385,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3417,7 +3417,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3449,7 +3449,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3481,7 +3481,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3513,7 +3513,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3545,7 +3545,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3577,7 +3577,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3609,7 +3609,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3641,7 +3641,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3673,7 +3673,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3705,7 +3705,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3737,7 +3737,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3769,7 +3769,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3801,7 +3801,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3833,7 +3833,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3865,7 +3865,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3897,7 +3897,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3929,7 +3929,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3961,7 +3961,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -3993,7 +3993,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4025,7 +4025,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4057,7 +4057,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4089,7 +4089,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4121,7 +4121,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4153,7 +4153,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4185,7 +4185,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4217,7 +4217,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4249,7 +4249,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4281,7 +4281,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4313,7 +4313,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4345,7 +4345,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4377,7 +4377,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4409,7 +4409,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4441,7 +4441,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4473,7 +4473,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4505,7 +4505,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4537,7 +4537,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4569,7 +4569,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4601,7 +4601,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4633,7 +4633,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4665,7 +4665,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4697,7 +4697,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4729,7 +4729,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4761,7 +4761,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4793,7 +4793,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4825,7 +4825,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4857,7 +4857,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4889,7 +4889,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4921,7 +4921,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4953,7 +4953,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -4985,7 +4985,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5017,7 +5017,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5049,7 +5049,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5081,7 +5081,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5113,7 +5113,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5145,7 +5145,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5177,7 +5177,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5209,7 +5209,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5241,7 +5241,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5273,7 +5273,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5305,7 +5305,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5337,7 +5337,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5369,7 +5369,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5401,7 +5401,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5433,7 +5433,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5465,7 +5465,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5497,7 +5497,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5529,7 +5529,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5561,7 +5561,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5593,7 +5593,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5625,7 +5625,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5657,7 +5657,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5689,7 +5689,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5721,7 +5721,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5753,7 +5753,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5785,7 +5785,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5817,7 +5817,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5849,7 +5849,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5881,7 +5881,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5913,7 +5913,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5945,7 +5945,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -5977,7 +5977,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6009,7 +6009,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6041,7 +6041,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6073,7 +6073,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6105,7 +6105,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6137,7 +6137,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6169,7 +6169,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6201,7 +6201,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6233,7 +6233,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6265,7 +6265,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6297,7 +6297,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6329,7 +6329,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6361,7 +6361,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6393,7 +6393,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6425,7 +6425,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6457,7 +6457,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6489,7 +6489,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6521,7 +6521,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6553,7 +6553,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6585,7 +6585,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6617,7 +6617,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6649,7 +6649,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6681,7 +6681,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6713,7 +6713,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6745,7 +6745,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6777,7 +6777,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6809,7 +6809,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6841,7 +6841,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6873,7 +6873,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6905,7 +6905,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6937,7 +6937,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -6969,7 +6969,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7001,7 +7001,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7033,7 +7033,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7065,7 +7065,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7097,7 +7097,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7129,7 +7129,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7161,7 +7161,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7193,7 +7193,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7225,7 +7225,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7257,7 +7257,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7289,7 +7289,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7321,7 +7321,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7353,7 +7353,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7385,7 +7385,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7417,7 +7417,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7449,7 +7449,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7481,7 +7481,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7513,7 +7513,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7545,7 +7545,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7577,7 +7577,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7609,7 +7609,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7641,7 +7641,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7673,7 +7673,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7705,7 +7705,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7737,7 +7737,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7769,7 +7769,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7801,7 +7801,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7833,7 +7833,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7865,7 +7865,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7897,7 +7897,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7929,7 +7929,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7961,7 +7961,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -7993,7 +7993,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8025,7 +8025,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8057,7 +8057,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8089,7 +8089,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8121,7 +8121,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8153,7 +8153,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8185,7 +8185,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8217,7 +8217,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8249,7 +8249,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8281,7 +8281,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8313,7 +8313,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8345,7 +8345,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8377,7 +8377,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8409,7 +8409,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8441,7 +8441,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8473,7 +8473,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8505,7 +8505,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8537,7 +8537,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8569,7 +8569,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8601,7 +8601,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8633,7 +8633,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8665,7 +8665,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8697,7 +8697,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8729,7 +8729,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8761,7 +8761,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8793,7 +8793,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8825,7 +8825,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8857,7 +8857,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8889,7 +8889,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8921,7 +8921,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
@@ -8953,7 +8953,7 @@ module.exports = [
     appInfo,
     agentId: os.hostname(),
     time: Date.now(),
-    contextType: 'xagent_notification',
+    contextType: 'xtransit_notification',
     alarmContent: '项目依赖发现极危漏洞 5 个，高危漏洞 66 个，请尽快升级修复',
     detailPath: '/app/6/instance?dependencies=false&tab=module_risk&agentId=iZ99e0fb39b0128b9e4a6fZ&file=%2FUsers%2Fhyj1991%2Fgit%2Fmonitor%2Fxui%2Fpackage.json'
   },
