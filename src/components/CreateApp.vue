@@ -77,6 +77,7 @@ export default {
 
 .modal-attention {
   margin-top: 10px;
+  font-size: 13px;
 }
 
 .new-app-group {
