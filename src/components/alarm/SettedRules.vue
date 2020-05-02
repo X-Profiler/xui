@@ -39,7 +39,7 @@
             size="small"
             class="button"
             :disabled="row.disabled"
-            @click="showAlarmList(row)"
+            @click="openHistoryDrawer(row)"
           >告警历史</Button>
         </Badge>
       </template>

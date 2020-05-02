@@ -83,7 +83,8 @@ export default {
   data() {
     return {
       modalTip: "alarm-tip",
-      modalContacts: "alarm-contacts"
+      modalContacts: "alarm-contacts",
+      drawerHistory: "alarm-history"
     };
   },
 
