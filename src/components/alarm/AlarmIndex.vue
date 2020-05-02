@@ -49,6 +49,11 @@
     >
       <x-contacts slot="content"></x-contacts>
     </x-modal>
+
+    <!-- alarm history drawer -->
+    <x-drawer ref="history" @close="closeHistoryDrawer()">
+      <x-history slot="content"></x-history>
+    </x-drawer>
   </div>
 </template>
 
@@ -58,6 +63,7 @@ import xAlarmConfigure from "@/components/alarm/AlarmConfigure";
 import xAlarmRules from "@/components/alarm/AlarmRules";
 import xTipContent from "@/components/alarm/TipContent";
 import xContacts from "@/components/alarm/contacts/ContactsIndex";
+import xHistory from "@/components/alarm/history/HistoryIndex";
 
 export default {
   props: {
@@ -70,7 +76,8 @@ export default {
     "x-alarm-configure": xAlarmConfigure,
     "x-alarm-rules": xAlarmRules,
     "x-tip-content": xTipContent,
-    "x-contacts": xContacts
+    "x-contacts": xContacts,
+    "x-history": xHistory
   },
 
   data() {
