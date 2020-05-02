@@ -1,7 +1,9 @@
 <template>
   <div class="content">
+    <x-error-message v-show="globalProcessTip" :message="globalProcessTip" top="calc(30vh -  32px)"></x-error-message>
+
     <!-- process panel -->
-    <div class="panel">
+    <div class="panel" v-show="!globalProcessTip">
       <!-- loading -->
       <div style="text-align: center">
         <x-loading :loading="xprofiler_processes_loading" top="40vh" size="middle" type="dot"></x-loading>
@@ -26,7 +28,7 @@
     </div>
 
     <!-- process data -->
-    <div class="data">
+    <div class="data" v-show="!globalProcessTip">
       <!-- process line -->
       <div class="process-line-body">
         <div class="section-title">{{ lineTitle }}</div>
@@ -72,7 +74,12 @@
 
         <!-- loading -->
         <div style="text-align: center">
-          <x-loading :loading="xprofiler_processes_loading" top="calc(50vh - 175px)" size="middle" type="dot"></x-loading>
+          <x-loading
+            :loading="xprofiler_processes_loading"
+            top="calc(50vh - 175px)"
+            size="middle"
+            type="dot"
+          ></x-loading>
         </div>
 
         <x-error-message
@@ -116,7 +123,8 @@ export default {
     return {
       selectedPid: undefined,
       xProcesses: [],
-      nessaryQueryArgs: ["tab", "agentId"]
+      nessaryQueryArgs: ["tab", "agentId"],
+      globalProcessTip: undefined
     };
   },
 

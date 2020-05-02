@@ -31,6 +31,7 @@ export default {
     ...mapActionsProcess(["getXprofilerProcesses"]),
 
     resetXprocesses() {
+      this.globalProcessTip = undefined;
       this.selectedPid = undefined;
       this.xProcesses = [];
     },
@@ -70,8 +71,8 @@ export default {
     setDefaultPid() {
       // set pid from query
       const query = this.$route.query;
-      if (query.pid) {
-        this.selectedPid = query.pid;
+      if (utils.isNumber(query.pid)) {
+        this.selectedPid = Number(query.pid);
         return;
       }
       // set pid from data
@@ -142,11 +143,18 @@ export default {
     xprofiler_processes_data() {
       const list = this.xprofiler_processes_data;
 
-      if (Array.isArray(list)) {
-        this.xProcesses = this.formatXprocesses(list);
-        this.setDefaultPid();
-        this.dispatchProc();
+      if (list === false) {
+        return;
       }
+
+      if (!Array.isArray(list) || list.length === 0) {
+        this.globalProcessTip = "无法连接到此实例，请确认此实例上的应用已安装并启动了 xtransit，且已正确配置 appid 和 secret";
+        return;
+      }
+
+      this.xProcesses = this.formatXprocesses(list);
+      this.setDefaultPid();
+      // this.dispatchProc();
     }
   }
 };
