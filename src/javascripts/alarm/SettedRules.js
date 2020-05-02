@@ -15,7 +15,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setTipModal", "setContactsModal", "setEditModel"]),
+    ...mapMutations(["setTipModal", "setContactsModal", "setEditModel", "setHistoryDrawer"]),
 
     ...mapActions(["deleteRule", "putRuleStatus"]),
 
@@ -76,8 +76,8 @@ export default {
       }
     },
 
-    showAlarmList() {
-
+    openHistoryDrawer({ strategyId, expression }) {
+      this.setHistoryDrawer({ status: true, historyData: { strategyId, expression } });
     },
 
     openContactsModal(data) {

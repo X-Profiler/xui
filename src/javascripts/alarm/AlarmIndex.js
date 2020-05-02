@@ -7,11 +7,14 @@ const { mapMethods, mapWatch, handleMounted } =
   utils.modalRouteFactory("modalTip", "tipModal", "tip", "setTipModal");
 const { mapMethods: mapMethodsContacts, mapWatch: mapWatchContacts, handleMounted: handleMountedContacts } =
   utils.modalRouteFactory("modalContacts", "contactsModal", "contacts", "setContactsModal");
+const { mapMethods: mapMethodsHistory, mapWatch: mapWatchHistory, handleMounted: handleMountedHistory } =
+  utils.drawerRouteFactory("drawerHistory", "historyDrawer", "history", "setHistoryDrawer", "historyData");
 
 export default {
   mounted() {
     handleMounted.call(this, "handleTipModal");
     handleMountedContacts.call(this, "handleContactsModal");
+    handleMountedHistory.call(this, "handleHistoryDrawer", true);
   },
 
   beforeDestroy() {
@@ -19,11 +22,13 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["resetState", "setTipModal", "setContactsModal"]),
+    ...mapMutations(["resetState", "setTipModal", "setContactsModal", "setHistoryDrawer"]),
 
     ...mapMethods("handleTipModal"),
 
     ...mapMethodsContacts("handleContactsModal"),
+
+    ...mapMethodsHistory("handleHistoryDrawer"),
 
     closeTipModal() {
       this.setTipModal({ status: false });
@@ -34,12 +39,12 @@ export default {
     },
 
     closeHistoryDrawer() {
-
+      this.setHistoryDrawer({ status: false });
     }
   },
 
   computed: {
-    ...mapState(["tipModal", "tipData", "contactsModal"])
+    ...mapState(["tipModal", "tipData", "contactsModal", "historyDrawer", "historyData"])
   },
 
   watch: {
@@ -47,9 +52,12 @@ export default {
 
     ...mapWatchContacts,
 
+    ...mapWatchHistory,
+
     $route(to) {
       this.handleTipModal(to.query);
       this.handleContactsModal(to.query);
+      this.handleHistoryDrawer(to.query);
     }
   }
 };

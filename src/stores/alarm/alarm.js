@@ -21,8 +21,11 @@ export default {
     contactsModal: undefined,
     contactsData: {},
 
+    historyDrawer: undefined,
+    historyData: {},
+
     editModel: false,
-    editData: {}
+    editData: {},
   },
 
   mutations: {
@@ -54,6 +57,16 @@ export default {
 
       if (data) {
         state.contactsData = data;
+      }
+    },
+
+    setHistoryDrawer(state, { status, historyData }) {
+      if (status === false || status === true) {
+        state.historyDrawer = status;
+      }
+
+      if (historyData) {
+        state.historyData = historyData;
       }
     },
 
