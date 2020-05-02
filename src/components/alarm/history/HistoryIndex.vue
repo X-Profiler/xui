@@ -4,7 +4,7 @@
     <div class="header">
       <span>规则</span>
       <code>&nbsp;{{ historyData.expression }}&nbsp;</code>
-      <span>存在以下</span>
+      <span>在 24h 内存在以下</span>
       <code>&nbsp;{{ totalCount }}&nbsp;</code>
       <span>条告警历史记录</span>
     </div>
@@ -19,7 +19,10 @@
         top="calc(40vh - 22px)"
       ></x-error-message>
 
-      <x-history-content v-show="!history_loading && !history_load_error"></x-history-content>
+      <x-history-content
+        v-show="!history_loading && !history_load_error"
+        @historyCount="updateCount"
+      ></x-history-content>
     </div>
   </div>
 </template>

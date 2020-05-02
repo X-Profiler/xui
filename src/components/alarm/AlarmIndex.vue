@@ -85,7 +85,8 @@ export default {
       modalTip: "alarm-tip",
       modalContacts: "alarm-contacts",
       drawerHistory: "alarm-history",
-      blackQueryKeys: ["page"]
+      blackQueryKeys: ["page"],
+      forceGoBack: true
     };
   },
 
