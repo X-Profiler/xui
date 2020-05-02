@@ -83,6 +83,12 @@ function routeFactory(openName, closeName, ...args) {
                 }
                 $query[queryKey] = undefined;
                 $query[routeData] = undefined;
+              } else if (Array.isArray(this.blackQueryKeys)) {
+                for (const key of this.blackQueryKeys) {
+                  $query[key] = undefined;
+                }
+                $query[queryKey] = undefined;
+                $query[routeData] = undefined;
               } else {
                 Object.assign($query, route.query, {
                   [queryKey]: undefined,
