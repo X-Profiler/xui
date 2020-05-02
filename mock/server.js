@@ -31,36 +31,39 @@ require('./controller/mock_devtools')(app);
 require('./controller/mock_consoler')(app);
 
 // dashboard
-require("./controller/mock_dashboard")(app);
+require('./controller/mock_dashboard')(app);
 
 // dashboard/instance
-require("./controller/instance/mock_instance")(app);
+require('./controller/instance/mock_instance')(app);
 
 // dashboard/instance/process
-require("./controller/instance/mock_process")(app);
+require('./controller/instance/mock_process')(app);
 
 // dashboard/instance/system
-require("./controller/instance/mock_system")(app);
+require('./controller/instance/mock_system')(app);
 
 // dashboard/instance/errors
-require("./controller/instance/mock_errors")(app);
+require('./controller/instance/mock_errors')(app);
 
 // dashboard/instance/modules
-require("./controller/instance/mock_modules")(app);
+require('./controller/instance/mock_modules')(app);
 
 // dashboard/file
-require("./controller/file/mock_file")(app);
+require('./controller/file/mock_file')(app);
 
 // dashboard/team
-require("./controller/team/mock_team")(app);
+require('./controller/team/mock_team')(app);
 
 // dashboard/alarm
-require("./controller/alarm/mock_alarm")(app);
+require('./controller/alarm/mock_alarm')(app);
 
 // dashboard/alarm/contact
-require("./controller/alarm/mock_contact")(app);
+require('./controller/alarm/mock_contact')(app);
 
 // dashboard/alarm/history
-require("./controller/alarm/mock_history")(app);
+require('./controller/alarm/mock_history')(app);
+
+// dashboard/settings
+require('./controller/setting/mock_settings')(app);
 
 app.listen(7442);

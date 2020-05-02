@@ -60,6 +60,10 @@ export default {
     strategyStatus: "/xapi/alarm_strategy_status",
     strategyContacts: "/xapi/alarm_strategy_contacts",
     strategyContact: "/xapi/alarm_strategy_contact",
-    strategyHistory: "/xapi/alarm_strategy_history"
+    strategyHistory: "/xapi/alarm_strategy_history",
+
+    // settings
+    settings: "/xapi/settings",
+    settingsAppName: "/xapi/settings_app_name"
   }
 };

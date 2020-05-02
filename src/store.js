@@ -22,6 +22,7 @@ import team from "@/stores/team/team";
 import alarm from "@/stores/alarm/alarm";
 import contact from "@/stores/alarm/contact";
 import history from "@/stores/alarm/history";
+import settings from "@/stores/setting/settings";
 
 export default {
   state: {
@@ -136,6 +137,10 @@ export default {
             "contact": { ...contact }, // dashboard/alarm/contact
             "history": { ...history }, // dashboard/alarm/history
           }
+        },
+
+        "settings": { // dashboard/settings
+          ...settings
         },
 
         "analytics": { // dashboard/analytics

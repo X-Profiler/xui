@@ -204,3 +204,8 @@ border-color: #2d8cf0;
   color:  white;
   background-color: #c5c8ce;
 }
+
+.x-modal-results .ivu-input-group-prepend,
+.x-modal-results .ivu-input {
+  font-size: 13px;
+}
