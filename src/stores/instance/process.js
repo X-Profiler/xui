@@ -5,7 +5,7 @@ import * as utils from "@/javascripts/lib/utils";
 const { state: procState, mutations: procMutations, handle: handlePorc } =
   utils.storeFactory("processes", []);
 const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } =
-  utils.storeFactory("xprofiler_processes", []);
+  utils.storeFactory("xprofiler_processes", false);
 const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle: handleXprofilerStatus } =
   utils.storeFactory("xprofiler_status", undefined);
 const { state: saveTrendState, mutations: saveTrendMutations, handle: handleSaveTrend } =

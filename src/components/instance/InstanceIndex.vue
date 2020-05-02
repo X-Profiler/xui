@@ -35,28 +35,38 @@
       </template>
     </x-dashboard-title>
 
-    <x-error-message v-if="agents_load_error" :message="agents_load_error" top="calc(40vh - 50px)"></x-error-message>
+    <x-error-message v-if="agents_load_error" :message="agents_load_error" top="calc(40vh - 55px)"></x-error-message>
 
     <div v-if="!agents_loading && !agents_load_error">
-      <!-- instance tab -->
-      <transition name="slide-downward">
-        <Tabs class="instance-tab" v-model="selectedTab">
-          <TabPane
-            v-for="(tab, index) in instanceTabs"
-            :key="index"
-            :label="tab.label"
-            :icon="tab.icon"
-            :name="tab.value"
-          ></TabPane>
-        </Tabs>
-      </transition>
+      <!-- no agents -->
+      <x-error-message
+        v-if="!agents.length"
+        message="您的应用下尚未连接任何实例，请参照文档进行部署"
+        top="calc(40vh - 55px)"
+      ></x-error-message>
 
-      <!-- instance content -->
-      <transition name="slide">
-        <!-- <keep-alive> -->
-        <component v-if="selectedAgentId" :is="activeComponent" :appId="appId"></component>
-        <!-- </keep-alive> -->
-      </transition>
+      <!-- has agents -->
+      <div v-else>
+        <!-- instance tab -->
+        <transition name="slide-downward">
+          <Tabs class="instance-tab" v-model="selectedTab">
+            <TabPane
+              v-for="(tab, index) in instanceTabs"
+              :key="index"
+              :label="tab.label"
+              :icon="tab.icon"
+              :name="tab.value"
+            ></TabPane>
+          </Tabs>
+        </transition>
+
+        <!-- instance content -->
+        <transition name="slide">
+          <!-- <keep-alive> -->
+          <component v-if="selectedAgentId" :is="activeComponent" :appId="appId"></component>
+          <!-- </keep-alive> -->
+        </transition>
+      </div>
     </div>
 
     <!-- modal for check instance -->
