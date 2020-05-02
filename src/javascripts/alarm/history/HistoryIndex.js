@@ -3,13 +3,9 @@
 import * as utils from "@/javascripts/lib/utils";
 
 const { mapState } = utils.createNamespace("dashboard/alarm");
-const { mapState: mapStateHistory, mapActions: mapActionsHistory } = utils.createNamespace("dashboard/alarm/history");
+const { mapState: mapStateHistory } = utils.createNamespace("dashboard/alarm/history");
 
 export default {
-  methods: {
-    ...mapActionsHistory(["getAlarmHistory"])
-  },
-
   computed: {
     ...mapState(["historyData"]),
 
