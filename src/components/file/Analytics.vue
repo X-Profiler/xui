@@ -2,16 +2,12 @@
   <div>
     <!-- show diag analytics -->
     <x-drawer ref="diag" @close="closeDiagDrawer()">
-      <template slot="content">
-        <x-diag class="analytics"></x-diag>
-      </template>
+      <x-diag slot="content" class="analytics"></x-diag>
     </x-drawer>
 
     <!-- show gc analytics -->
     <x-drawer ref="gc" @close="closeGcDrawer()">
-      <template slot="content">
-        <x-gc class="analytics"></x-gc>
-      </template>
+      <x-gc slot="content" class="analytics"></x-gc>
     </x-drawer>
   </div>
 </template>

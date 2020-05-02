@@ -31,6 +31,10 @@ export default {
 
     closeContactsModal() {
       this.setContactsModal({ status: false });
+    },
+
+    closeHistoryDrawer() {
+
     }
   },
 
