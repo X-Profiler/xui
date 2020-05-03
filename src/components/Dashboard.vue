@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="this.appName === '19yjh91' ? 'mirror' : ''">
     <!-- header -->
     <x-header active="console" :owner="currentUserIsOwner"></x-header>
 
@@ -88,3 +88,10 @@ export default {
   ...dashboardModule
 };
 </script>
+
+<style scoped>
+.mirror {
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+</style>
