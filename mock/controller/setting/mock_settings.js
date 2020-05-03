@@ -32,4 +32,13 @@ module.exports = app => {
 
     setTimeout(() => res.send({ ok: true }), 550);
   });
+
+  app.delete('/xapi/settings_app', function (req, res) {
+    utils.checkParam(req.body, ['appId']);
+
+    const appId = req.body.appId;
+    console.log(`delete app ${appId}`);
+
+    setTimeout(() => res.send({ ok: true }), 550);
+  });
 };

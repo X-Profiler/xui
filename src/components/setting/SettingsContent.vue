@@ -16,7 +16,13 @@
       <div class="item-label"></div>
       <div class="item-value">
         <Button type="info" size="small" class="button" @click="openNameModifyModal">修改名称</Button>
-        <Button type="error" size="small" class="button" style="margin-left: 8px">删除应用</Button>
+        <Button
+          type="error"
+          size="small"
+          class="button"
+          style="margin-left: 11px"
+          @click="openDeleteAppModal"
+        >删除应用</Button>
       </div>
     </div>
   </div>

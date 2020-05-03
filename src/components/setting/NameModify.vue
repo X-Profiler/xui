@@ -18,12 +18,7 @@
 
     <div class="x-modal-footer">
       <Button v-if="error" type="primary" ghost @click="closeModifyModal">关闭</Button>
-      <Button
-        v-if="!loading && !error"
-        type="primary"
-        ghost
-        @click="closeModifyModal"
-      >取消</Button>
+      <Button v-if="!loading && !error" type="primary" ghost @click="closeModifyModal">取消</Button>
       <Button
         v-if="!loading && !error"
         type="primary"

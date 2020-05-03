@@ -64,6 +64,7 @@ export default {
 
     // settings
     settings: "/xapi/settings",
-    settingsAppName: "/xapi/settings_app_name"
+    settingsAppName: "/xapi/settings_app_name",
+    settingsApp: "/xapi/settings_app"
   }
 };
