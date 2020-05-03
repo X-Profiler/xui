@@ -11,7 +11,9 @@ export default {
   state: {
     ...settingState,
 
-    modifyModal: undefined
+    modifyModal: undefined,
+
+    deleteModal: undefined
   },
 
   mutations: {
@@ -20,6 +22,12 @@ export default {
     setModifyModal(state, { status }) {
       if (status === false || status === true) {
         state.modifyModal = status;
+      }
+    },
+
+    setDeleteModal(state, { status }) {
+      if (status === false || status === true) {
+        state.deleteModal = status;
       }
     },
 
@@ -57,6 +65,23 @@ export default {
         data: {
           appId: rootGetters.appId,
           newAppName
+        }
+      };
+
+      await dispatch("request", options, { root: true });
+    },
+
+    async deleteApp(context, { cancelToken }) {
+      const { rootState, rootGetters, dispatch } = context;
+
+      const options = {
+        cancelToken,
+        method: "DELETE",
+
+        // user data
+        url: rootState.url.settingsApp,
+        data: {
+          appId: rootGetters.appId
         }
       };
 

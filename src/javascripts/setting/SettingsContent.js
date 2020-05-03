@@ -6,10 +6,14 @@ const { mapState, mapMutations } = utils.createNamespace("dashboard/settings");
 
 export default {
   methods: {
-    ...mapMutations(["setModifyModal"]),
+    ...mapMutations(["setModifyModal", "setDeleteModal"]),
 
     openNameModifyModal() {
       this.setModifyModal({ status: true });
+    },
+
+    openDeleteAppModal() {
+      this.setDeleteModal({ status: true });
     }
   },
 
