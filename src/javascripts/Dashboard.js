@@ -11,9 +11,6 @@ export default {
 
     this.setAppId(Number(this.$route.params.appId));
     this.menuTab = this.$route.params.menuTab;
-
-    // get app info
-    this.getAppInfo(this.cancelToken.token);
   },
 
   beforeDestroy() {
@@ -40,6 +37,12 @@ export default {
   watch: {
     $route(to) {
       this.menuTab = to.params.menuTab;
+      this.setAppId(Number(to.params.appId));
+    },
+
+    appId() {
+      // get app info
+      this.getAppInfo(this.cancelToken.token);
     },
 
     menuTab() {
