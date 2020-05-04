@@ -15,6 +15,7 @@ export default {
 
   beforeDestroy() {
     utils.cancelRequest(this.cancelToken);
+    this.setAppId(Number(undefined));
   },
 
   methods: {
