@@ -56,7 +56,7 @@ export default {
 }
 
 .item-label {
-  width: calc(50% - 50px);
+  width: calc(50% - 80px);
   flex-shrink: 0;
   text-align: right;
   padding-right: 6px;
@@ -64,7 +64,7 @@ export default {
 }
 
 .item-value {
-  width: calc(50% + 50px);
+  width: calc(50% + 80px);
   flex-shrink: 0;
   text-align: left;
   padding-left: 6px;
