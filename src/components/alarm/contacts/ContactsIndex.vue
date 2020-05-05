@@ -5,7 +5,9 @@
 
       <x-error-message v-show="contacts_load_error" :message="contacts_load_error"></x-error-message>
 
-      <x-contacts-settings v-if="!contacts_loading && !contacts_load_error"></x-contacts-settings>
+      <transition name="slide-noward">
+        <x-contacts-settings v-if="!contacts_loading && !contacts_load_error"></x-contacts-settings>
+      </transition>
     </div>
 
     <div class="x-modal-footer">
