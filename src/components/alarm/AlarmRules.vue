@@ -13,7 +13,9 @@
       <x-error-message v-show="rules_load_error" :message="rules_load_error" :top="20"></x-error-message>
 
       <!-- show rules -->
-      <x-setted-rules v-if="!rules_loading && !rules_load_error" @refreshRules="refreshRules"></x-setted-rules>
+      <transition name="slide-noward">
+        <x-setted-rules v-if="!rules_loading && !rules_load_error" @refreshRules="refreshRules"></x-setted-rules>
+      </transition>
     </div>
   </div>
 </template>
