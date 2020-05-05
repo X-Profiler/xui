@@ -1,57 +1,59 @@
 <template>
-  <div v-show="!module_loading && !module_load_error">
-    <x-table :columns="columns" :data="modules" noDataText="当前应用暂无模块依赖信息" no-data-head>
-      <!-- module name -->
-      <template v-slot:moduleName="{ row }">
-        <div class="padding name font">
-          <a
-            v-if="row.resolved"
-            :href="row.resolved"
-            :download="row.name"
-            target="_blank"
-          >{{ row.name }}</a>
-          <div v-else>{{ row.name }}</div>
-        </div>
-      </template>
+  <transition name="slide-noward">
+    <div v-show="!module_loading && !module_load_error">
+      <x-table :columns="columns" :data="modules" noDataText="当前应用暂无模块依赖信息" no-data-head>
+        <!-- module name -->
+        <template v-slot:moduleName="{ row }">
+          <div class="padding name font">
+            <a
+              v-if="row.resolved"
+              :href="row.resolved"
+              :download="row.name"
+              target="_blank"
+            >{{ row.name }}</a>
+            <div v-else>{{ row.name }}</div>
+          </div>
+        </template>
 
-      <!-- package version -->
-      <template v-slot:packageVersion="{ row }">
-        <div class="padding font">{{ row.version }}</div>
-      </template>
+        <!-- package version -->
+        <template v-slot:packageVersion="{ row }">
+          <div class="padding font">{{ row.version }}</div>
+        </template>
 
-      <!-- package lock version -->
-      <template v-slot:packageLockVersion="{ row }">
-        <div class="padding font">{{ row.lockVersion }}</div>
-      </template>
+        <!-- package lock version -->
+        <template v-slot:packageLockVersion="{ row }">
+          <div class="padding font">{{ row.lockVersion }}</div>
+        </template>
 
-      <!-- security -->
-      <template v-slot:securityRisk="{ row }">
-        <div v-if="row.risk" class="padding">
-          <div
-            class="risk-label font"
-            :style="`color: ${row.color};`"
-            @click="openRiskModal(row)"
-          >{{ row.level }}</div>
-        </div>
-        <!-- no risk -->
-        <div v-else class="padding">
-          <Icon class="no-risk" type="md-checkmark" />
-        </div>
-      </template>
-    </x-table>
+        <!-- security -->
+        <template v-slot:securityRisk="{ row }">
+          <div v-if="row.risk" class="padding">
+            <div
+              class="risk-label font"
+              :style="`color: ${row.color};`"
+              @click="openRiskModal(row)"
+            >{{ row.level }}</div>
+          </div>
+          <!-- no risk -->
+          <div v-else class="padding">
+            <Icon class="no-risk" type="md-checkmark" />
+          </div>
+        </template>
+      </x-table>
 
-    <!-- risk detail -->
-    <x-modal
-      ref="riskDetail"
-      title="安全风险详情"
-      :padding="0"
-      @canceled="closeRiskModal"
-      hide-footer
-      fullscreen
-    >
-      <x-risk-message slot="content"></x-risk-message>
-    </x-modal>
-  </div>
+      <!-- risk detail -->
+      <x-modal
+        ref="riskDetail"
+        title="安全风险详情"
+        :padding="0"
+        @canceled="closeRiskModal"
+        hide-footer
+        fullscreen
+      >
+        <x-risk-message slot="content"></x-risk-message>
+      </x-modal>
+    </div>
+  </transition>
 </template>
 
 <script>
