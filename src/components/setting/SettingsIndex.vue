@@ -14,7 +14,9 @@
     ></x-error-message>
 
     <!-- show settings -->
-    <x-settings-content v-if="!settings_loading && !settings_load_error"></x-settings-content>
+    <transition name="slide-noward">
+      <x-settings-content v-if="!settings_loading && !settings_load_error"></x-settings-content>
+    </transition>
 
     <!-- modify app name -->
     <x-modal ref="modify" title="修改应用名称" :padding="0" @canceled="closeModifyModal" hide-footer>
@@ -22,7 +24,14 @@
     </x-modal>
 
     <!-- delete app -->
-    <x-modal ref="delete" title="删除应用" :padding="0" @canceled="closeDeleteModal" :width="650" hide-footer>
+    <x-modal
+      ref="delete"
+      title="删除应用"
+      :padding="0"
+      @canceled="closeDeleteModal"
+      :width="650"
+      hide-footer
+    >
       <x-app-delete slot="content"></x-app-delete>
     </x-modal>
   </div>
