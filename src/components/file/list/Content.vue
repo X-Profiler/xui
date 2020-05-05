@@ -1,38 +1,40 @@
 <template>
-  <div v-show="!files_loading && !files_load_error">
-    <x-table :columns="columns" :data="files" noDataText="项目下暂无性能文件" no-data-head>
-      <!-- file type -->
-      <template v-slot:fileType="{ row }">
-        <x-type :row="row"></x-type>
-      </template>
+  <transition name="slide-noward">
+    <div v-show="!files_loading && !files_load_error">
+      <x-table :columns="columns" :data="files" noDataText="项目下暂无性能文件" no-data-head>
+        <!-- file type -->
+        <template v-slot:fileType="{ row }">
+          <x-type :row="row"></x-type>
+        </template>
 
-      <!-- file info -->
-      <template v-slot:fileInfo="{ row }">
-        <x-info :row="row"></x-info>
-      </template>
+        <!-- file info -->
+        <template v-slot:fileInfo="{ row }">
+          <x-info :row="row"></x-info>
+        </template>
 
-      <!-- operation -->
-      <template v-slot:operation="{ row, index }">
-        <x-operation :ref="'operation::' + index" :row="row" @loading-file="addLoadingFile"></x-operation>
-      </template>
+        <!-- operation -->
+        <template v-slot:operation="{ row, index }">
+          <x-operation :ref="'operation::' + index" :row="row" @loading-file="addLoadingFile"></x-operation>
+        </template>
 
-      <!-- deletion -->
-      <template v-slot:deletion="{ row }">
-        <x-deletion :row="row"></x-deletion>
-      </template>
-    </x-table>
+        <!-- deletion -->
+        <template v-slot:deletion="{ row }">
+          <x-deletion :row="row"></x-deletion>
+        </template>
+      </x-table>
 
-    <div v-if="totaFileCount" class="pagination">
-      <Page
-        :total="totaFileCount"
-        :page-size="pageSize"
-        :current="currentPage"
-        size="small"
-        show-elevator
-        @on-change="changeFilePage"
-      />
+      <div v-if="totaFileCount" class="pagination">
+        <Page
+          :total="totaFileCount"
+          :page-size="pageSize"
+          :current="currentPage"
+          size="small"
+          show-elevator
+          @on-change="changeFilePage"
+        />
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
