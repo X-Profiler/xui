@@ -1,6 +1,6 @@
 <template>
   <div class="history-content">
-    <x-table :columns="columns" :data="history" noDataText="规则下暂无告警历史记录" no-data-head>
+    <x-table :columns="columns" :data="history" noDataText="规则下暂无告警历史记录" no-data-head stribe>
       <!-- alarm time -->
       <template v-slot:time="{ row }">
         <div class="alarm-content">{{ formatTime(row.time) }}</div>
