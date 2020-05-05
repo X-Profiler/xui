@@ -37,7 +37,9 @@
       ></x-error-message>
 
       <!-- members -->
-      <x-members class="members" v-if="!members_loading && !members_load_error"></x-members>
+      <transition name="slide-noward">
+        <x-members class="members" v-if="!members_loading && !members_load_error"></x-members>
+      </transition>
     </div>
 
     <!-- confirm modal -->
