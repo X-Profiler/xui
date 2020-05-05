@@ -19,10 +19,12 @@
         top="calc(40vh - 22px)"
       ></x-error-message>
 
-      <x-history-content
-        v-show="!history_loading && !history_load_error"
-        @historyCount="updateCount"
-      ></x-history-content>
+      <transition name="slide-noward">
+        <x-history-content
+          v-show="!history_loading && !history_load_error"
+          @historyCount="updateCount"
+        ></x-history-content>
+      </transition>
     </div>
   </div>
 </template>
