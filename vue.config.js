@@ -1,6 +1,7 @@
 "use strict";
 
 module.exports = {
+  publicPath: "/public",
   css: {
     loaderOptions: {
       less: {
