@@ -81,7 +81,15 @@ export default {
   },
 
   computed: {
-    ...mapState(["user_data"])
+    ...mapState(["user_data"]),
+
+    headerStyle() {
+      let style = "";
+      if (this.color) {
+        style += `background-color: ${this.color};`;
+      }
+      return style;
+    }
   },
 
   watch: {
