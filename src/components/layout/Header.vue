@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header class="header">
+    <Header class="header" :style="headerStyle">
       <a href="https://github.com/hyj1991/easy-monitor" target="_blank" class="logo">
         <Icon class="icon" type="md-desktop" />EZM 3.0
       </a>
@@ -28,7 +28,8 @@ import { getTag } from "@/javascripts/lib/utils";
 export default {
   props: {
     active: String,
-    owner: Boolean
+    owner: Boolean,
+    color: String
   },
 
   data() {
