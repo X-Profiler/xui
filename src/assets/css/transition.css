@@ -14,7 +14,7 @@
   /* transform: skewX(-1deg); */
   /* transform: perspective(600px) rotateX(-1deg); */
   /* transform: translateY(-50%); */
-  opacity: 1;
+  opacity: 0;
 }
 
 .slide-router-enter-active {
