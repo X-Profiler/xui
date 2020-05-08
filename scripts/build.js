@@ -3,6 +3,8 @@
 const cp = require("child_process");
 const path = require("path");
 
+process.env.NODE_ENV = "production";
+
 function exec(cmd) {
   console.log(cmd);
   const options = {
