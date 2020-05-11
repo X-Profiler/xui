@@ -139,7 +139,8 @@ module.exports = app => {
     const agentId = req.query.agentId;
     const pid = Number(req.query.pid);
     const trendType = req.query.trendType;
-    console.log(`get app ${appId} agent ${agentId} pid ${pid} process trend ${trendType} data`);
+    const duration = req.query.duration;
+    console.log(`get app ${appId} agent ${agentId} pid ${pid} process trend ${trendType} data: ${duration}h`);
 
     let list = [];
     let limit = 0;
@@ -149,7 +150,7 @@ module.exports = app => {
         rss: () => (300 + parseInt(Math.random() * 50)) * 1024 * 1204,
         heap_total: () => (200 + parseInt(Math.random() * 50)) * 1024 * 1204,
         heap_used: () => (150 + parseInt(Math.random() * 50)) * 1024 * 1204
-      });
+      }, duration);
       limit = 2 * 1024 * 1024 * 1024;
     }
 
@@ -159,7 +160,7 @@ module.exports = app => {
         cpu_15: () => 50 + parseInt(Math.random() * 30),
         cpu_30: () => 50 + parseInt(Math.random() * 20),
         cpu_60: () => 50 + parseInt(Math.random() * 10)
-      });
+      }, duration);
     }
 
     if (trendType === 'heapSpaceTrend') {
@@ -173,44 +174,44 @@ module.exports = app => {
         read_only_space: () => 30 * 1024 * 1204,
         new_lo_space: () => 30 * 1024 * 1204,
         code_lo_space: () => 30 * 1024 * 1204
-      });
+      }, duration);
     }
 
     if (trendType === 'gcTrend') {
       list = utils.createAreaData(["scavenge_duration", "marksweep_duration"], {
         scavenge_duration: () => parseInt(Math.random() * 20),
         marksweep_duration: () => parseInt(Math.random() * 30)
-      });
+      }, duration);
     }
 
     if (trendType === 'uvTrend') {
       list = utils.createAreaData(["active_handles"], {
         active_handles: () => 2400 + parseInt(Math.random() * 600),
-      });
+      }, duration);
     }
 
     if (trendType === 'qpsTrend') {
       list = utils.createAreaData(["qps"], {
         qps: () => 1 + Number((Math.random() * 0.3).toFixed(2))
-      });
+      }, duration);
     }
 
     if (trendType === 'timerTrend') {
       list = utils.createAreaData(["active_timers"], {
         active_timers: () => 200 + parseInt(Math.random() * 100),
-      });
+      }, duration);
     }
 
     if (trendType === 'tcpTrend') {
       list = utils.createAreaData(["active_tcp_handles"], {
         active_tcp_handles: () => 2000 + parseInt(Math.random() * 100),
-      });
+      }, duration);
     }
 
     if (trendType === 'udpTrend') {
       list = utils.createAreaData(["active_udp_handles"], {
         active_udp_handles: () => 0,
-      });
+      }, duration);
     }
 
     // agentId.Number = c;

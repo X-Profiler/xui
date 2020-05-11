@@ -45,6 +45,7 @@
               v-for="(du, index) in durationGroup"
               :key="index"
               :class="'tag trend-duration-tag' + (duration === du.value ? ' tag-selected' : '')"
+              @click="duration = du.value"
             >{{ du.label }}</div>
           </div>
         </div>
@@ -59,6 +60,7 @@
               :type="dt.value"
               :title="dt.label"
               :solid="dt.solid"
+              :duration="duration"
               @linkage="linkage"
               @hidden="hidden"
               @broadcast="broadcast"
@@ -109,11 +111,11 @@ export default {
           { label: "UDP 趋势", value: "udpTrend" }
         ]
       ],
-      duration: 12,
+      duration: 24,
       durationGroup: [
-        { label: "12H", value: 12 },
-        { label: "1D", value: 24 },
-        { label: "3D", value: 72 }
+        { label: "24H", value: 24 },
+        { label: "3D", value: 72 },
+        { label: "1W", value: 168 }
       ]
     };
   },

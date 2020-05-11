@@ -8,11 +8,11 @@ exports.checkParam = function (obj, keys) {
   }
 };
 
-exports.createAreaData = function (yaxis, fn) {
+exports.createAreaData = function (yaxis, fn, duration = 24) {
   const data = [];
-  const interval = 2 * 60 * 1000;
+  const interval = duration * 60 / 720 * 60 * 1000;
   const end = Date.now();
-  const start = end - 24 * 60 * 60 * 1000;
+  const start = end - duration * 60 * 60 * 1000;
 
   const noNeedStart = start + 3 * 60 * 60 * 1000;
   const noNeedEnd = noNeedStart + 3 * 60 * 60 * 1000;

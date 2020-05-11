@@ -60,7 +60,8 @@ export default {
   props: {
     type: String,
     title: String,
-    solid: Boolean
+    solid: Boolean,
+    duration: Number
   },
 
   data() {
