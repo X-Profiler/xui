@@ -167,20 +167,9 @@ export default {
   word-break: break-all;
 }
 
-.trend-duration-wrapper {
-  position: relative;
-}
-
 .trend-duration {
   top: 16px;
   right: 0;
-}
-
-.trend-duration-tag {
-  padding: 4px 8px 4px 7px;
-  font-family: "Titillium Web", "Helvetica Neue", Helvetica, Arial,
-    "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei",
-    sans-serif;
 }
 
 .detail {

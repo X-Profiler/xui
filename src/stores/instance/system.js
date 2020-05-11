@@ -34,7 +34,7 @@ export default {
       await handleOverview(context, options);
     },
 
-    async getSystemTrend(context, { cancelToken, trendType }) {
+    async getSystemTrend(context, { cancelToken, trendType, duration }) {
       const { dispatch, rootState, rootGetters } = context;
 
       const options = {
@@ -45,7 +45,8 @@ export default {
         data: {
           appId: rootGetters.appId,
           agentId: rootGetters.agentId,
-          trendType
+          trendType,
+          duration
         }
       };
 
