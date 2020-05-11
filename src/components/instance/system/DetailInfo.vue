@@ -67,12 +67,13 @@ export default {
           { label: "HTTP 响应时间", value: "httpResponseTrend" }
         ]
       ],
-      duration: 24,
+      duration: undefined,
       durationGroup: [
         { label: "24H", value: 24 },
         { label: "3D", value: 72 },
         { label: "1W", value: 168 }
-      ]
+      ],
+      nessaryQueryArgs: ["tab", "agentId"]
     };
   },
 

@@ -20,6 +20,10 @@ export default {
     ...mapActions(["getSystemTrend"]),
 
     getTrendData() {
+      if (!this.duration) {
+        return;
+      }
+
       this.loading = true;
       this
         .getSystemTrend({ cancelToken: this.cancelToken.token, trendType: this.type, duration: this.duration })
