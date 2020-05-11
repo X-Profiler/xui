@@ -2,6 +2,7 @@
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/public" : "/",
+  productionSourceMap: false,
   css: {
     loaderOptions: {
       less: {
