@@ -81,26 +81,4 @@ export default {
   align-items: flex-end;
   margin-top: 11px;
 }
-
-.tag-group {
-  display: flex;
-  margin-left: 20px;
-  position: absolute;
-  right: 20px;
-}
-
-.tag {
-  padding: 3px 8px;
-  margin: 2px 4px 2px 0;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.tag.tag-selected {
-  transition: all 0.1s ease-in;
-  background-color: #2376b7;
-  color: #fff;
-}
 </style>

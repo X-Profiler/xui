@@ -38,6 +38,17 @@
           <div class="cmd">{{ proc.cmd }}</div>
         </div>
 
+        <!-- trend duration -->
+        <div class="trend-duration-wrapper">
+          <div class="tag-group trend-duration">
+            <div
+              v-for="(du, index) in durationGroup"
+              :key="index"
+              :class="'tag trend-duration-tag' + (duration === du.value ? ' tag-selected' : '')"
+            >{{ du.label }}</div>
+          </div>
+        </div>
+
         <div v-for="(charts, index) in chartGroup" :key="index">
           <div class="detail" :style="index === 0 ? 'margin-top: 20px;': 'margin-top: 20px;'">
             <x-trend-data
@@ -79,7 +90,6 @@ export default {
         { label: "堆快照", value: "heapsnapshot", ghost: true },
         { label: "Node.js 实时诊断", value: "diag", ghost: true }
       ],
-
       chartGroup: [
         [
           { label: "堆内存趋势", value: "heapTrend" },
@@ -98,6 +108,12 @@ export default {
           { label: "TCP 趋势", value: "tcpTrend" },
           { label: "UDP 趋势", value: "udpTrend" }
         ]
+      ],
+      duration: 12,
+      durationGroup: [
+        { label: "12H", value: 12 },
+        { label: "1D", value: 24 },
+        { label: "3D", value: 72 }
       ]
     };
   },
@@ -147,6 +163,22 @@ export default {
   padding: 5px 15px 10px 15px;
   word-wrap: break-word;
   word-break: break-all;
+}
+
+.trend-duration-wrapper {
+  position: relative;
+}
+
+.trend-duration {
+  top: 16px;
+  right: 0;
+}
+
+.trend-duration-tag {
+  padding: 4px 8px 4px 7px;
+  font-family: "Titillium Web", "Helvetica Neue", Helvetica, Arial,
+    "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei",
+    sans-serif;
 }
 
 .detail {
