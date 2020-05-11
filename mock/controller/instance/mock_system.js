@@ -41,7 +41,8 @@ module.exports = app => {
     const appId = req.query.appId;
     const agentId = req.query.agentId;
     const trendType = req.query.trendType;
-    console.log(`get app ${appId} agent ${agentId} system trend ${trendType} data`);
+    const duration = req.query.duration;
+    console.log(`get app ${appId} agent ${agentId} system trend ${trendType} data: ${duration}h`);
 
     let list = [];
     let extra = undefined;
@@ -50,13 +51,13 @@ module.exports = app => {
     if (trendType === 'osCpuTrend') {
       list = utils.createAreaData(["os_cpu"], {
         os_cpu: () => 40 + parseInt(Math.random() * 10)
-      });
+      }, duration);
     }
 
     if (trendType === 'osMemoryTrend') {
       list = utils.createAreaData(["os_memory"], {
         os_memory: () => 80 + parseInt(Math.random() * 10),
-      });
+      }, duration);
       extra = `16 GB`;
     }
 
@@ -65,20 +66,20 @@ module.exports = app => {
         load1: () => Number((4 + Math.random() * 4).toFixed(2)),
         load5: () => Number((4 + Math.random() * 2).toFixed(2)),
         load15: () => Number((4 + Math.random() * 1).toFixed(2))
-      });
+      }, duration);
     }
 
     if (trendType === "nodeCountTrend") {
       list = utils.createAreaData(["node_count"], {
         node_count: () => 8,
-      });
+      }, duration);
     }
 
     if (trendType === "osGcTrend") {
       list = utils.createAreaData(["scavenge_avg", "marksweep_avg"], {
         scavenge_avg: () => parseInt(Math.random() * 20),
         marksweep_avg: () => 30 + parseInt(Math.random() * 20)
-      });
+      }, duration);
     }
 
     if (trendType === "diskUsageTrend") {
@@ -88,19 +89,19 @@ module.exports = app => {
           res[axis] = () => 40 + index * 20 + parseInt(Math.random() * 5);
           return res;
         }, {})
-      });
+      }, duration);
     }
 
     if (trendType === "qpsTrend") {
       list = utils.createAreaData(["qps"], {
         qps: () => 200 + Number((Math.random() * 50).toFixed(1))
-      });
+      }, duration);
     }
 
     if (trendType === "httpResponseTrend") {
       list = utils.createAreaData(["response_time"], {
         response_time: () => parseInt((Math.random() * 100)) + 200
-      });
+      }, duration);
     }
 
     setTimeout(() => res.send({ ok: true, data: { list, extra, yAxis } }), 500);

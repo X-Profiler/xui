@@ -22,8 +22,12 @@ export default {
     getTrendData() {
       this.loading = true;
       this
-        .getSystemTrend({ cancelToken: this.cancelToken.token, trendType: this.type })
+        .getSystemTrend({ cancelToken: this.cancelToken.token, trendType: this.type, duration: this.duration })
         .then(data => {
+          if (Object.keys(data).length === 0) {
+            return;
+          }
+
           const { list, extra, yAxis } = data;
           if (Array.isArray(list)) {
             this.trendData = list;
@@ -32,9 +36,12 @@ export default {
             this.yAxis = yAxis;
           }
           this.extra = extra;
+          this.loading = false;
         })
-        .catch(err => this.loadError = err.message)
-        .then(() => this.loading = false);
+        .catch(err => {
+          this.loadError = err.message;
+          this.loading = false;
+        });
     },
 
     showTip(data) {
@@ -185,6 +192,12 @@ export default {
 
   watch: {
     agentId() {
+      this.getTrendData();
+    },
+
+    duration() {
+      utils.cancelRequest(this.cancelToken);
+      this.cancelToken = utils.createCancelToken();
       this.getTrendData();
     }
   }

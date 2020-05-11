@@ -1,5 +1,17 @@
 <template>
   <div>
+    <!-- system duration -->
+    <div class="trend-duration-wrapper">
+      <div class="tag-group trend-duration">
+        <div
+          v-for="(du, index) in durationGroup"
+          :key="index"
+          :class="'tag trend-duration-tag' + (duration === du.value ? ' tag-selected' : '')"
+          @click="duration = du.value"
+        >{{ du.label }}</div>
+      </div>
+    </div>
+
     <div class="section-title">系统信息周期详情</div>
 
     <div class="charts">
@@ -13,6 +25,7 @@
             :type="dt.value"
             :title="dt.label"
             :solid="dt.solid"
+            :duration="duration"
             @linkage="linkage"
             @hidden="hidden"
             @broadcast="broadcast"
@@ -53,6 +66,12 @@ export default {
           { label: "QPS 趋势", value: "qpsTrend" },
           { label: "HTTP 响应时间", value: "httpResponseTrend" }
         ]
+      ],
+      duration: 24,
+      durationGroup: [
+        { label: "24H", value: 24 },
+        { label: "3D", value: 72 },
+        { label: "1W", value: 168 }
       ]
     };
   },
@@ -80,5 +99,10 @@ export default {
 .interval-section {
   margin: 20px 0;
   border-bottom: 1px dashed #e8eaec;
+}
+
+.trend-duration {
+  top: 0;
+  right: 0;
 }
 </style>
