@@ -163,7 +163,7 @@ export default {
       await handleXprofilerStatus(context, options);
     },
 
-    async getProcessTrend(context, { cancelToken, trendType }) {
+    async getProcessTrend(context, { cancelToken, trendType, duration }) {
       const { state, dispatch, rootState, rootGetters } = context;
 
       const options = {
@@ -175,7 +175,8 @@ export default {
           appId: rootGetters.appId,
           agentId: rootGetters.agentId,
           pid: state.processTrendData.pid,
-          trendType
+          trendType,
+          duration
         }
       };
 

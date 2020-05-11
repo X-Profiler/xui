@@ -27,8 +27,12 @@ export default {
     getTrendData() {
       this.loading = true;
       this
-        .getProcessTrend({ cancelToken: this.cancelToken.token, trendType: this.type })
+        .getProcessTrend({ cancelToken: this.cancelToken.token, trendType: this.type, duration: this.duration })
         .then(data => {
+          if (Object.keys(data).length === 0) {
+            return;
+          }
+
           const { list } = data;
           if (Array.isArray(list)) {
             this.trendData = list;
@@ -38,9 +42,12 @@ export default {
           }
           this.checkStatus(this.lastValidData);
           this.updateSelectedData(this.lastValidData);
+          this.loading = false;
         })
-        .catch(err => this.loadError = err.message)
-        .then(() => this.loading = false);
+        .catch(err => {
+          this.loadError = err.message;
+          this.loading = false;
+        });
     },
 
     setStatus(usage, values) {
@@ -272,6 +279,14 @@ export default {
       const colors = ["#19be6b", "#f89501", "#ed4014"];
       style += "background-color: " + this.setStatus(this.trendStatus.status, colors) + ";";
       return style;
+    }
+  },
+
+  watch: {
+    duration() {
+      utils.cancelRequest(this.cancelToken);
+      this.cancelToken = utils.createCancelToken();
+      this.getTrendData();
     }
   }
 };
