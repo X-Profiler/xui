@@ -1,6 +1,17 @@
 "use strict";
 
+import * as utils from "@/javascripts/lib/utils";
+
 export default {
+  created() {
+    const query = this.$route.query;
+    if (utils.isNumber(query.duration)) {
+      this.duration = Number(query.duration);
+    } else {
+      this.duration = 24;
+    }
+  },
+
   methods: {
     showTip(refs, data) {
       for (const ref of refs) {
@@ -45,5 +56,15 @@ export default {
       }
       return refs;
     }
+  },
+
+  watch: {
+    $route(...args) {
+      utils.watchRoute.call(this, args, "duration", "duration");
+    },
+
+    duration(...args) {
+      utils.watchQueryKey.call(this, "duration", "duration", args);
+    },
   }
 };
