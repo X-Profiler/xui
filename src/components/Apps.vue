@@ -18,7 +18,7 @@
 
         <!-- invitations -->
         <x-invitations
-          v-if="type === 'myApps'"
+          v-if="type === 'myApps' && invitations.length"
           class="invitations"
           :invitations="invitations"
           @refreshApps="refreshApps"

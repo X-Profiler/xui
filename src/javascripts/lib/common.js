@@ -36,3 +36,16 @@ export function isBooleanString(bool) {
 export function stringToBoolean(bool) {
   return bool === "true";
 }
+
+export function getCsrfToken() {
+  const cookies = document.cookie.split(";")
+    .map(c => c.split("=")
+      .map(item => item.trim()));
+  const length = cookies.length;
+  for (let i = 0; i < length; i++) {
+    const [key, value] = cookies[i];
+    if (key === "csrfToken") {
+      return value;
+    }
+  }
+}
