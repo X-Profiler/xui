@@ -1,6 +1,7 @@
 "use strict";
 
 import axios from "axios";
+import { getCsrfToken } from "@/javascripts/lib/utils";
 
 // store modules
 import url from "@/stores/common/url";
@@ -63,6 +64,12 @@ export default {
         obj.params = data;
       } else {
         obj.data = data;
+      }
+
+      if (method !== "GET") {
+        obj.headers = {
+          "x-csrf-token": getCsrfToken()
+        };
       }
 
       try {
