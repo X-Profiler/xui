@@ -27,12 +27,12 @@
             class="button-label"
             @click="cancelInvitation(row)"
           >撤回邀请</Button>
-          <Button
+          <!-- <Button
             v-if="row.status === 1"
             type="warning"
             size="small"
             class="button-label second-button invisiable"
-          >撤回邀请</Button>
+          >撤回邀请</Button> -->
 
           <!-- joined member -->
           <Button
