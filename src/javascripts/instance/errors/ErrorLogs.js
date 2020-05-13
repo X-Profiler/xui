@@ -45,7 +45,7 @@ export default {
       }
 
       return list.map(log => {
-        const occuredTime = moment(Number(log.timestamp)).format("YYYY-MM-DD HH:mm:SS").split(" ");
+        const occuredTime = moment(Number(log.timestamp)).format("YYYY-MM-DD HH:mm:ss").split(" ");
 
         return {
           date: occuredTime[0],

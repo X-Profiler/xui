@@ -28,7 +28,7 @@ export default {
     },
 
     formatTime(timestamp) {
-      return moment(timestamp).format("YYYY-MM-DD HH:mm:SS");
+      return moment(timestamp).format("YYYY-MM-DD HH:mm:ss");
     },
 
     cancelInvitation({ userId, userInfo }) {
