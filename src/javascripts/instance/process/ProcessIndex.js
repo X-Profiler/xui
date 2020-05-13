@@ -49,8 +49,8 @@ export default {
         proc.selected = false;
 
         // format time
-        proc.startTimeFmt = moment(proc.startTime).format("YYYY-MM-DD HH:mm:SS");
-        proc.updateTimeFmt = moment(proc.updateTime).format("YYYY-MM-DD HH:mm:SS");
+        proc.startTimeFmt = moment(proc.startTime).format("YYYY-MM-DD HH:mm:ss");
+        proc.updateTimeFmt = moment(proc.updateTime).format("YYYY-MM-DD HH:mm:ss");
 
         // format cpu, gc & memory usage
         proc.cpuUsageFmt = proc.cpuUsage + "%";

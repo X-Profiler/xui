@@ -547,7 +547,7 @@ export default {
     chartipTitle() {
       const chartipData = this.chartipData;
       if (chartipData.time) {
-        return moment(chartipData.time).format("YYYY-MM-DD HH:mm:SS");
+        return moment(chartipData.time).format("YYYY-MM-DD HH:mm:ss");
       }
 
       if (chartipData.index) {

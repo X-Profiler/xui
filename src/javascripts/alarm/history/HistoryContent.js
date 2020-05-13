@@ -26,7 +26,7 @@ export default {
     ...mapActionsHistory(["getAlarmHistory"]),
 
     formatTime(time) {
-      return moment(time).format("YYYY-MM-DD HH:mm:SS");
+      return moment(time).format("YYYY-MM-DD HH:mm:ss");
     },
 
     refreshAlarmHistory() {
