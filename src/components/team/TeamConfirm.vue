@@ -4,6 +4,7 @@
       ref="confirm"
       :title="confirmData.title"
       :padding="0"
+      :width="600"
       @canceled="closeConfirmModal"
       hide-footer
     >
