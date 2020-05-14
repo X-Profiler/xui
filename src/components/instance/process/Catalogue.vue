@@ -77,7 +77,7 @@ export default {
   content: "";
   position: absolute;
   top: 16px;
-  left: 7px;
+  left: 12px;
   width: 6px;
   height: 6px;
   background-color: #fff;
