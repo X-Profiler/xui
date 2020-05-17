@@ -1,8 +1,10 @@
 <template>
   <div class="error" :style="style">
     <div class="container">
-      <Icon class="icon" type="ios-alert-outline" />
-      <div>{{ message }}</div>
+      <div class="icon-wrapper">
+        <Icon class="icon" type="ios-alert-outline" />
+      </div>
+      <span>{{ message }}</span>
     </div>
   </div>
 </template>
@@ -33,8 +35,13 @@ export default {
 </script>
 
 <style scoped>
+.icon-wrapper {
+  display: inline-block;
+  line-height: 16px;
+}
+
 .icon {
-  font-size: 17px;
+  font-size: 16px;
   margin-right: 4px;
 }
 
@@ -45,11 +52,5 @@ export default {
   align-items: center;
   min-height: 50px;
   width: 100%;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>

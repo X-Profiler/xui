@@ -5,7 +5,7 @@ import * as utils from "@/javascripts/lib/utils";
 const { state: procState, mutations: procMutations, handle: handlePorc } =
   utils.storeFactory("processes", []);
 const { state: xprofilerProcState, mutations: xprofilerProcMutations, handle: handleXprofilerProc } =
-  utils.storeFactory("xprofiler_processes", false);
+  utils.storeFactory("xprofiler_processes", {});
 const { state: xprofilerStatusState, mutations: xprofilerStatusMutations, handle: handleXprofilerStatus } =
   utils.storeFactory("xprofiler_status", undefined);
 const { state: saveTrendState, mutations: saveTrendMutations, handle: handleSaveTrend } =
@@ -142,7 +142,7 @@ export default {
         }
       };
 
-      await handleXprofilerProc(context, options, "list", "array");
+      await handleXprofilerProc(context, options);
     },
 
     async getXprofilerStatus(context, { cancelToken, pid }) {

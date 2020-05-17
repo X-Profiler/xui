@@ -10,7 +10,7 @@
         <x-table
           v-show="!processes_load_error"
           :columns="processColumns"
-          :data="processes_data"
+          :data="processList"
           fontSize="14"
           no-data-head
           noDataText="没有在该实例上查找到任何 Node.js 进程"
@@ -35,6 +35,13 @@
 import NodeModule from "@/javascripts/instance/process/Node";
 
 export default {
+  props: {
+    processes: {
+      required: false,
+      type: Array
+    }
+  },
+
   data() {
     return {
       processColumns: [
