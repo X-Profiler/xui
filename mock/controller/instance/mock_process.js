@@ -49,8 +49,13 @@ module.exports = app => {
 
       return proc;
     });
+
+    let nodes = [];
+    if (!list.length) {
+      nodes = require("../../data/nodeProcesses");
+    }
     // agentId.Number = c
-    setTimeout(() => res.send({ ok: true, data: { list } }), 450);
+    setTimeout(() => res.send({ ok: true, data: { list, nodes } }), 450);
   });
 
   app.get("/xapi/node_processes", function (req, res) {

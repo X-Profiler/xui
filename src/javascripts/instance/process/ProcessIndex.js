@@ -116,6 +116,22 @@ export default {
 
     lineTitle() {
       return utils.getTag(tags.lineTitle);
+    },
+
+    globalProcessTip() {
+      if (this.xprofiler_processes_loading || this.xprofiler_processes_load_error) {
+        return;
+      }
+
+      const xProcesses = this.xProcesses;
+      const nodeProcesses = this.nodeProcesses;
+      if (xProcesses.length === 0 && nodeProcesses.length === 0) {
+        return "无法连接到此实例，请确认此实例上的应用已安装并启动了 xtransit，且已正确配置 appid 和 secret";
+      }
+    },
+
+    display() {
+      return !this.xprofiler_processes_loading && !this.xprofiler_processes_load_error && !this.globalProcessTip;
     }
   },
 
@@ -141,14 +157,14 @@ export default {
     },
 
     xprofiler_processes_data() {
-      const list = this.xprofiler_processes_data;
+      const { list, nodes } = this.xprofiler_processes_data;
 
-      if (list === false) {
+      if (Array.isArray(nodes) && nodes.length) {
+        this.nodeProcesses = nodes;
         return;
       }
 
-      if (!Array.isArray(list) || list.length === 0) {
-        this.globalProcessTip = "无法连接到此实例，请确认此实例上的应用已安装并启动了 xtransit，且已正确配置 appid 和 secret";
+      if (!Array.isArray(list) || !list.length) {
         return;
       }
 

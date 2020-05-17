@@ -263,6 +263,12 @@ export default {
         this.xAxisScaleCountInner
       );
     }
+  },
+
+  watch: {
+    data() {
+      this.setViewBox();
+    }
   }
 };
 </script>

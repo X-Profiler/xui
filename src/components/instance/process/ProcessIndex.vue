@@ -1,101 +1,68 @@
 <template>
-  <div class="content">
-    <x-error-message v-show="globalProcessTip" :message="globalProcessTip" top="calc(30vh -  32px)"></x-error-message>
+  <div>
+    <x-loading :loading="xprofiler_processes_loading" top="30vh" size="middle" type="dot"></x-loading>
 
-    <!-- process panel -->
-    <div class="panel" v-show="!globalProcessTip">
-      <!-- loading -->
-      <div style="text-align: center">
-        <x-loading :loading="xprofiler_processes_loading" top="40vh" size="middle" type="dot"></x-loading>
-      </div>
+    <x-error-message
+      v-show="globalProcessTip || xprofiler_processes_load_error"
+      :message="globalProcessTip || xprofiler_processes_load_error"
+      top="calc(30vh -  21px)"
+    ></x-error-message>
 
-      <x-error-message
-        v-if="xprofiler_processes_load_error"
-        :message="xprofiler_processes_load_error"
-        top="calc(40vh - 22px)"
-      ></x-error-message>
+    <x-node v-if="display && nodeProcesses.length" :processes="nodeProcesses"></x-node>
 
-      <!-- show process panel -->
-      <transition name="slide">
-        <x-panel
-          style="height: 100%"
-          ref="panel"
-          v-show="!xprofiler_processes_loading && !xprofiler_processes_load_error"
-          :processes="xProcesses"
-          @selectPid="selectPid"
-        ></x-panel>
-      </transition>
-    </div>
-
-    <!-- process data -->
-    <div class="data" v-show="!globalProcessTip">
-      <!-- process line -->
-      <div class="process-line-body">
-        <div class="section-title">{{ lineTitle }}</div>
-
-        <!-- loading -->
-        <div style="text-align: center">
-          <x-loading :loading="xprofiler_processes_loading" :top="55" size="middle" type="dot"></x-loading>
-        </div>
-
-        <x-error-message
-          v-if="xprofiler_processes_load_error"
-          :message="xprofiler_processes_load_error"
-          top="30"
-        ></x-error-message>
-
-        <!-- show process line -->
-        <transition name="slide-rightward">
-          <x-line
-            ref="line"
-            v-show="!xprofiler_processes_loading && !xprofiler_processes_load_error"
+    <div v-show="display && !nodeProcesses.length" class="content">
+      <!-- process panel -->
+      <div class="panel">
+        <!-- show process panel -->
+        <transition name="slide">
+          <x-panel
+            style="height: 100%"
+            ref="panel"
+            v-show="display"
             :processes="xProcesses"
             @selectPid="selectPid"
-          ></x-line>
+          ></x-panel>
         </transition>
       </div>
 
-      <!-- show process sorted catalogue-->
-      <div class="process-catalogue-body">
-        <!-- show sorted catalogue -->
-        <transition name="slide-rightward">
-          <x-catalogue
-            ref="catalogue"
-            v-show="!xprofiler_processes_loading && !xprofiler_processes_load_error"
-            :processes="xProcesses"
-            @selectPid="selectPid"
-          ></x-catalogue>
-        </transition>
-      </div>
+      <!-- process data -->
+      <div class="data">
+        <!-- process line -->
+        <div class="process-line-body">
+          <div class="section-title">{{ lineTitle }}</div>
 
-      <!-- show process scatter -->
-      <div class="process-chart-body">
-        <div class="section-title">指标分布状况</div>
-
-        <!-- loading -->
-        <div style="text-align: center">
-          <x-loading
-            :loading="xprofiler_processes_loading"
-            top="calc(50vh - 175px)"
-            size="middle"
-            type="dot"
-          ></x-loading>
+          <!-- show process line -->
+          <transition name="slide-rightward">
+            <x-line ref="line" v-show="display" :processes="xProcesses" @selectPid="selectPid"></x-line>
+          </transition>
         </div>
 
-        <x-error-message
-          v-if="xprofiler_processes_load_error"
-          :message="xprofiler_processes_load_error"
-          top="calc(50vh - 197px)"
-        ></x-error-message>
+        <!-- show process sorted catalogue-->
+        <div class="process-catalogue-body">
+          <!-- show sorted catalogue -->
+          <transition name="slide-rightward">
+            <x-catalogue
+              ref="catalogue"
+              v-show="display"
+              :processes="xProcesses"
+              @selectPid="selectPid"
+            ></x-catalogue>
+          </transition>
+        </div>
 
-        <!-- show chart -->
-        <div style="margin-top: 10px;">
-          <x-scatter
-            ref="scatter"
-            :display="!xprofiler_processes_loading && !xprofiler_processes_load_error"
-            :processes="xProcesses"
-            @selectPid="selectPid"
-          ></x-scatter>
+        <!-- show process scatter -->
+        <div class="process-chart-body">
+          <div class="section-title">指标分布状况</div>
+
+          <!-- show chart -->
+          <div style="margin-top: 10px;">
+            <x-scatter
+              ref="scatter"
+              :display="display"
+              :processes="xProcesses"
+              @selectPid="selectPid"
+            ></x-scatter>
+          </div>
         </div>
       </div>
     </div>
@@ -110,21 +77,23 @@ import xLine from "@/components/instance/process/Line";
 import xPanel from "@/components/instance/process/Panel";
 import xCatalogue from "@/components/instance/process/Catalogue";
 import xScatter from "@/components/instance/process/Scatter";
+import xNode from "@/components/instance/process/Node";
 
 export default {
   components: {
     "x-line": xLine,
     "x-panel": xPanel,
     "x-catalogue": xCatalogue,
-    "x-scatter": xScatter
+    "x-scatter": xScatter,
+    "x-node": xNode
   },
 
   data() {
     return {
       selectedPid: undefined,
       xProcesses: [],
-      nessaryQueryArgs: ["tab", "agentId"],
-      globalProcessTip: undefined
+      nodeProcesses: [],
+      nessaryQueryArgs: ["tab", "agentId"]
     };
   },
 
