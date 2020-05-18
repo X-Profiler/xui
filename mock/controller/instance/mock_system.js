@@ -52,6 +52,7 @@ module.exports = app => {
       list = utils.createAreaData(["os_cpu"], {
         os_cpu: () => 40 + parseInt(Math.random() * 10)
       }, duration);
+      extra = '4 Cores';
     }
 
     if (trendType === 'osMemoryTrend') {

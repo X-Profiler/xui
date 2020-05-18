@@ -8,7 +8,19 @@
       top="calc(30vh -  21px)"
     ></x-error-message>
 
-    <x-node v-if="display && nodeProcesses.length" :processes="nodeProcesses"></x-node>
+    <div v-if="display && nodeProcesses.length">
+      <Alert class="x-alert tip" type="info">
+        <div class="alert-group">
+          <Icon style="color: #2376b7;`" type="ios-alert-outline" />
+          <div class="alert-desc">
+            <span>暂无监控数据，可以点击</span>
+            <span class="tip-status">&nbsp;插件状态&nbsp;</span>
+            <span>查看对应进程插件日志目录是否和 xtransit 配置采集目录一致，如提示日志目录已正确配置请等待约 1 ~ 2min 以处理第一次上报进程数据</span>
+          </div>
+        </div>
+      </Alert>
+      <x-node :processes="nodeProcesses"></x-node>
+    </div>
 
     <div v-show="display && !nodeProcesses.length" class="content">
       <!-- process panel -->
@@ -105,6 +117,15 @@ export default {
 .content {
   display: flex;
   flex-direction: row-reverse;
+}
+
+.tip {
+  margin-bottom: 16px;
+}
+
+.tip-status {
+  font-weight: bold;
+  color: #c45a65;
 }
 
 .panel {
