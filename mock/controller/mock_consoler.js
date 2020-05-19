@@ -60,11 +60,12 @@ module.exports = app => {
     setTimeout(() => res.send({ ok: true, data }), 550);
   });
 
-  app.get('/xapi/overview/process_cpu_usage', function (req, res) {
-    utils.checkParam(req.query, ["appId"]);
+  app.get('/xapi/main_metrics', function (req, res) {
+    utils.checkParam(req.query, ["appId", "type"]);
 
     const appId = req.query.appId;
-    console.log(`get app ${appId} process cpu usage overview`);
+    const type = req.query.type;
+    console.log(`get app ${appId} ${type} overview`);
 
     // set data
     const instanceCount = getInstances(appId).count;
@@ -72,61 +73,5 @@ module.exports = app => {
     const list = randomInstance(instanceCount);
 
     setTimeout(() => res.send({ ok: true, data: { list } }), 500);
-  });
-
-  app.get('/xapi/overview/process_memory_usage', function (req, res) {
-    utils.checkParam(req.query, ["appId"]);
-
-    const appId = req.query.appId;
-    console.log(`get app ${appId} process memory usage overview`);
-
-    // set data
-    const instanceCount = getInstances(appId).count;
-    // const instanceCount = 200;
-    const list = randomInstance(instanceCount);
-
-    setTimeout(() => res.send({ ok: true, data: { list } }), 550);
-  });
-
-  app.get('/xapi/overview/system_cpu_usage', function (req, res) {
-    utils.checkParam(req.query, ["appId"]);
-
-    const appId = req.query.appId;
-    console.log(`get app ${appId} system cpu usage overview`);
-
-    // set data
-    const instanceCount = getInstances(appId).count;
-    // const instanceCount = 200;
-    const list = randomInstance(instanceCount);
-
-    setTimeout(() => res.send({ ok: true, data: { list } }), 450);
-  });
-
-  app.get('/xapi/overview/system_memory_usage', function (req, res) {
-    utils.checkParam(req.query, ["appId"]);
-
-    const appId = req.query.appId;
-    console.log(`get app ${appId} system cpu usage overview`);
-
-    // set data
-    const instanceCount = getInstances(appId).count;
-    // const instanceCount = 200;
-    const list = randomInstance(instanceCount);
-
-    setTimeout(() => res.send({ ok: true, data: { list } }), 450);
-  });
-
-  app.get('/xapi/overview/disk_usage', function (req, res) {
-    utils.checkParam(req.query, ["appId"]);
-
-    const appId = req.query.appId;
-    console.log(`get app ${appId} disk usage overview`);
-
-    // set data
-    const instanceCount = getInstances(appId).count;
-    // const instanceCount = 200;
-    const list = randomInstance(instanceCount);
-
-    setTimeout(() => res.send({ ok: true, data: { list } }), 450);
   });
 };
