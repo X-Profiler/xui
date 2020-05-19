@@ -9,11 +9,7 @@ export default {
     app: "/xapi/app",
     apps: "/xapi/apps",
     overviewMetrics: "/xapi/overview_metrics",
-    processCpuUsage: "/xapi/overview/process_cpu_usage",
-    processMemoryUsage: "/xapi/overview/process_memory_usage",
-    systemCpuUsage: "/xapi/overview/system_cpu_usage",
-    systemMemoryUsage: "/xapi/overview/system_memory_usage",
-    diskUsage: "/xapi/overview/disk_usage",
+    mainMetrics: "/xapi/main_metrics",
 
     // dashboard/instance
     agents: "/xapi/agents",

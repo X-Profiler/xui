@@ -91,8 +91,8 @@ export default {
         cancelToken,
 
         // user data
-        url: rootState.url[urlKey],
-        data: { appId }
+        url: rootState.url.mainMetrics,
+        data: { appId, type: urlKey }
       };
 
       return dispatch("request", options, { root: true });
