@@ -30,6 +30,16 @@ export default {
     ...mapMutationsProcess(["setXprofilerStatusModal", "setSaveTrendModal", "setTakeActionModal",
       "setProcessTrendDrawer", "setProcessesDrawer"]),
 
+    showMetricValue(val) {
+      if (val) {
+        return val;
+      }
+      if (utils.isNumber(val)) {
+        return val;
+      }
+      return "-";
+    },
+
     updateSelectedProcess(data) {
       this.processData = data;
     },

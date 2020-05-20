@@ -39,7 +39,7 @@
             <div
               v-if="!metric.time"
               class="panel-content-metric-value"
-            >{{ processData[metric.value] || '-' }}</div>
+            >{{ showMetricValue(processData[metric.value]) }}</div>
             <div v-else class="panel-content-metric-value">
               <p>{{ splitTime(processData[metric.value])[1] || '-' }}</p>
               <p>{{ splitTime(processData[metric.value])[0] }}</p>
