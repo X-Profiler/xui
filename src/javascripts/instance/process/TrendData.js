@@ -169,12 +169,13 @@ export default {
 
     commonData() {
       const type = this.type;
-      const common = { yAxis: [], yAxisUnit: "", noDataText: "", showStatus: false };
+      const common = { yAxis: [], yAxisUnit: "", noDataText: "", showStatus: false, fixedTip: false };
       if (type === "heapTrend") {
         common.yAxis = ["rss", "heap_total", "heap_used"];
         common.yAxisUnit = "MB";
         common.noDataText = "暂无内存趋势数据";
         common.showStatus = true;
+        common.fixedTip = true;
       }
 
       if (type === "cpuTrend") {
@@ -182,6 +183,7 @@ export default {
         common.yAxisUnit = "%";
         common.noDataText = "暂无 CPU 趋势数据";
         common.showStatus = true;
+        common.fixedTip = true;
       }
 
       if (type === "heapSpaceTrend") {
@@ -190,6 +192,7 @@ export default {
         common.yAxisUnit = "MB";
         common.noDataText = "暂无堆空间趋势数据";
         common.showStatus = true;
+        common.fixedTip = true;
       }
 
       if (type === "gcTrend") {
@@ -245,7 +248,8 @@ export default {
       if (["heapTrend", "heapSpaceTrend"].includes(type)) {
         return trendData.map(item => {
           for (const key of commonData.yAxis) {
-            item[key] = Math.round(item[key] / 1024 / 1024);
+            // item[key] = Math.round(item[key] / 1024 / 1024);
+            item[key] = item[key] / 1024 / 1024;
           }
           return item;
         });

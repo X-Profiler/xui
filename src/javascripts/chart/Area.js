@@ -48,6 +48,13 @@ export default {
       }
     },
 
+    formatValue(value) {
+      if (isNumber(value) && this.fixedTip) {
+        return value.toFixed(2)
+      }
+      return value;
+    },
+
     setWidthMap(axis, width, other) {
       if (axis) {
         this.pathWidthMap[axis] = width;
