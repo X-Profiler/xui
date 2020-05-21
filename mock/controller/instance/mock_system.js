@@ -23,12 +23,12 @@ module.exports = app => {
       load5: Number((Math.random() * 4).toFixed(2)),
       load15: Number((Math.random() * 4).toFixed(2)),
       nodeCount: 8,
-      scavengeMax: parseInt(Math.random() * 100) + 50,
+      scavengeTotal: parseInt(Math.random() * 100) + 50,
       scavengeAverage: Number((Math.random() * 10).toFixed(1)),
-      marksweepMax: parseInt(Math.random() * 1000) + 500,
+      marksweepTotal: parseInt(Math.random() * 1000) + 500,
       marksweepAverage: parseInt(Math.random() * 50) + 10,
       qps: Number((Math.random() * 200).toFixed(1)),
-      rtMax: parseInt((Math.random() * 600)) + 5000,
+      rtExpired: parseInt((Math.random() * 10)),
       rtAverage: parseInt((Math.random() * 200)) + 200
     };
 
