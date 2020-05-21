@@ -89,9 +89,9 @@ export default {
       const {
         load1, load5, load15,
         nodeCount,
-        scavengeMax, scavengeAverage,
-        marksweepMax, marksweepAverage,
-        rtMax, rtAverage,
+        scavengeTotal, scavengeAverage,
+        marksweepTotal, marksweepAverage,
+        rtAverage, rtExpired,
         qps
       } = overview_data;
 
@@ -103,16 +103,16 @@ export default {
         metrics[0].push({ key: "Node.js 进程数", value: nodeCount });
       }
 
-      if (isNumber(scavengeMax) && isNumber(scavengeAverage)) {
-        metrics[1].push({ key: "Scavenge Max / Avg", value: `${formatTime(scavengeMax)} / ${formatTime(scavengeAverage)}` });
+      if (isNumber(scavengeTotal) && isNumber(scavengeAverage)) {
+        metrics[1].push({ key: "Scavenge Total / Avg", value: `${formatTime(scavengeTotal)} / ${formatTime(scavengeAverage)}` });
       }
 
-      if (isNumber(marksweepMax) && isNumber(marksweepAverage)) {
-        metrics[1].push({ key: "Marksweep Max / Avg", value: `${formatTime(marksweepMax)} / ${formatTime(marksweepAverage)}` });
+      if (isNumber(marksweepTotal) && isNumber(marksweepAverage)) {
+        metrics[1].push({ key: "Marksweep Total / Avg", value: `${formatTime(marksweepTotal)} / ${formatTime(marksweepAverage)}` });
       }
 
-      if (isNumber(rtMax) && isNumber(rtAverage)) {
-        metrics[2].push({ key: "RT Max / Avg", value: `${formatTime(rtMax)} / ${formatTime(rtAverage)}` });
+      if (isNumber(rtAverage) && isNumber(rtExpired)) {
+        metrics[2].push({ key: "RT Expired / Avg", value: `${formatTime(rtAverage)} / ${rtExpired}` });
       }
 
       if (isNumber(qps)) {

@@ -50,7 +50,7 @@ export default {
 
     formatValue(value) {
       if (isNumber(value) && this.fixedTip) {
-        return value.toFixed(2)
+        return value.toFixed(2);
       }
       return value;
     },
