@@ -41,6 +41,7 @@
             :yAxisUnit="commonData.yAxisUnit"
             :noDataText="commonData.noDataText"
             :showStatus="commonData.showStatus"
+            :fixedTip="commonData.fixedTip"
             :solid="solid"
             @linkage="linkage"
             @hidden="hidden"

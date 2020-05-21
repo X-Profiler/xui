@@ -17,7 +17,7 @@
         <div style="margin-left: 23px;">
           <div v-for="(y, index) in yAxis" :key="index">
             <div v-if="pathWidthMap[y]" class="chartip-content-group">
-              <div>{{ chartipData[y] }}{{ yAxisUnit }}</div>
+              <div>{{ formatValue(chartipData[y]) }}{{ yAxisUnit }}</div>
             </div>
           </div>
         </div>
@@ -240,6 +240,7 @@ export default {
     yAxisScaleCount: Number,
     noDataText: String,
     showStatus: Boolean,
+    fixedTip: Boolean,
     solid: Boolean,
     height: Number,
     left: Number,
