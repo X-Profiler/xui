@@ -14,14 +14,14 @@ exports.createAreaData = function (yaxis, fn, duration = 24) {
   const end = Date.now();
   const start = end - duration * 60 * 60 * 1000;
 
-  const noNeedStart = start + 3 * 60 * 60 * 1000;
-  const noNeedEnd = noNeedStart + 3 * 60 * 60 * 1000;
+  // const noNeedStart = start + 3 * 60 * 60 * 1000;
+  // const noNeedEnd = noNeedStart + 3 * 60 * 60 * 1000;
 
   // console.log(new Date(noNeedStart).toLocaleString(), new Date(noNeedEnd).toLocaleString())
 
   for (let time = start; time < end; time += interval) {
     const item = { time };
-    // if (time > noNeedStart && time < noNeedEnd) {
+    // if (time >= noNeedStart && time < noNeedEnd) {
     //   data.push(item);
     //   continue;
     // }
@@ -32,6 +32,11 @@ exports.createAreaData = function (yaxis, fn, duration = 24) {
 
     data.push(item);
   }
+
+  // data.unshift({ time: start - 1 });
+  // data.unshift({ time: start - 2 });
+  // data.push({ time: end + 1 });
+  // data.push({ time: end + 2 });
 
   return data;
 };

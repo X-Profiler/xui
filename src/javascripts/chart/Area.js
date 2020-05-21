@@ -19,6 +19,35 @@ export default {
   },
 
   methods: {
+    validData(first) {
+      let yAxis = this.yAxis;
+      if (!Array.isArray(yAxis)) {
+        yAxis = [yAxis];
+      }
+
+      const chartData = this.data;
+      let length = chartData.length;
+
+      if (first) {
+        let index = 0;
+        while (index < length) {
+          const data = chartData[index];
+          if (yAxis.every(axis => isNumber(data[axis]))) {
+            return data;
+          }
+          index++;
+        }
+      } else {
+        while (length) {
+          length--;
+          const data = chartData[length];
+          if (yAxis.every(axis => isNumber(data[axis]))) {
+            return data;
+          }
+        }
+      }
+    },
+
     setWidthMap(axis, width, other) {
       if (axis) {
         this.pathWidthMap[axis] = width;
@@ -57,11 +86,20 @@ export default {
     },
 
     getScale(count, fileds) {
+      if (!this.data.length) {
+        return [];
+      }
+
+      const firstValidData = this.validData(true);
+      if (!firstValidData) {
+        return [];
+      }
+
       const needZero = fileds === this.yAxis && this.yAxisZero;
       const showTimeSpan = false;
       const data = this.data;
-      let min = needZero ? 0 : data[0][fileds[0]];
-      let max = data[0][fileds[0]];
+      let min = needZero ? 0 : firstValidData[fileds[0]];
+      let max = firstValidData[fileds[0]];
       for (const dt of data) {
         if (this.solid) {
           let tmpData = 0;
@@ -520,7 +558,7 @@ export default {
               }
             }).join(" ");
             path += lastPoints.map(p => `L${p}`).join(" ");
-            path += " Z";
+            path += path ? " Z" : "";
             data.path = path;
           }
 

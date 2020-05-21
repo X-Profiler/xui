@@ -155,6 +155,10 @@ export default {
     },
 
     list() {
+      if (!this.data) {
+        return [];
+      }
+
       const yAxis = this.yAxis;
       const data = this.data;
       const list = [];
