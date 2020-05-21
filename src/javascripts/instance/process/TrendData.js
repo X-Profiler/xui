@@ -55,6 +55,10 @@ export default {
     },
 
     checkStatus(trend) {
+      if (!trend) {
+        return;
+      }
+
       const type = this.type;
       const limit = this.limit;
       const trendStatus = {};
