@@ -157,6 +157,7 @@ export default {
     },
 
     xprofiler_processes_data() {
+      this.nodeProcesses = [];
       const { list, nodes } = this.xprofiler_processes_data;
 
       if (Array.isArray(nodes) && nodes.length) {
