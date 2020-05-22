@@ -27,6 +27,7 @@
             :yAxis="commonData.yAxis"
             :yAxisUnit="commonData.yAxisUnit"
             :noDataText="commonData.noDataText"
+            :fixedTip="commonData.fixedTip"
             :solid="solid"
             @linkage="linkage"
             @hidden="hidden"

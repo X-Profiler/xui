@@ -105,7 +105,7 @@ export default {
       return trendData.map(item => {
         const tmp = Object.assign({}, item);
         for (const key of commonData.yAxis) {
-          tmp[key] = item[key] / scale;
+          tmp[key] = Number((item[key] / scale).toFixed(2));
         }
         return tmp;
       });
@@ -131,18 +131,21 @@ export default {
         common.yAxis = ["os_cpu"];
         common.yAxisUnit = "%";
         common.noDataText = "暂无系统 CPU 趋势数据";
+        common.fixedTip = true;
       }
 
       if (type === "osMemoryTrend") {
         common.yAxis = ["os_memory"];
         common.yAxisUnit = "%";
         common.noDataText = "暂无系统内存趋势数据";
+        common.fixedTip = true;
       }
 
       if (type === "loadTrend") {
         common.yAxis = ["load1", "load5", "load15"];
         common.yAxisUnit = "";
         common.noDataText = "暂无系统 Load 负载数据";
+        common.fixedTip = true;
       }
 
       if (type === "nodeCountTrend") {

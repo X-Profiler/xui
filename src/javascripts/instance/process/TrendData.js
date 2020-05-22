@@ -260,7 +260,7 @@ export default {
         return trendData.map(item => {
           const tmp = Object.assign({}, item);
           for (const key of commonData.yAxis) {
-            tmp[key] = item[key] / scale;
+            tmp[key] = Number((item[key] / scale).toFixed(2));
           }
           return tmp;
         });
