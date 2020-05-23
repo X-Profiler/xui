@@ -71,8 +71,10 @@ export default {
     setDefaultPid() {
       // set pid from query
       const query = this.$route.query;
-      if (utils.isNumber(query.pid)) {
-        this.selectedPid = Number(query.pid);
+      const queryPid = utils.isNumber(query.pid) && Number(query.pid);
+      const vaidPids = this.xProcesses.map(proc => Number(proc.pid));
+      if (queryPid && vaidPids.includes(queryPid)) {
+        this.selectedPid = queryPid;
         return;
       }
       // set pid from data
