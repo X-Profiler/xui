@@ -43,13 +43,14 @@
           <!-- y grid -->
           <g v-for="(yAxis, index) in yAxisScale" :key="index">
             <text
+              v-show="index === yAxisScale.length - 1 || yAxis.value !== 0"
               class="axisScale"
               style="text-anchor: end;"
               :x="paddingLeft"
               :y="paddingTop + (viewHeight - paddingTop - paddingBottom ) / yAxisScaleCountInner * index"
               dx="-0.5em"
               dy="0.32em"
-            >{{ yAxis }}</text>
+            >{{ yAxis.label }}</text>
             <line
               class="axis"
               :x1="paddingLeft"
@@ -64,13 +65,14 @@
         <g>
           <text
             v-for="(xAxis, index) in xAxisScale"
+            v-show="index ===0 || xAxis.value !== 0"
             :key="index"
             class="axisScale"
             style="text-anchor: middle;"
             :x="paddingLeft + (viewWidth -paddingLeft- paddingRight) / xAxisScaleCountInner * index"
             :y="viewHeight-paddingBottom"
             dy="1.4em"
-          >{{ xAxis }}</text>
+          >{{ xAxis.label }}</text>
         </g>
 
         <!-- scale unit -->
@@ -183,14 +185,20 @@ export default {
       const interval = max / count;
       const scales = [];
       for (let i = 0; i <= count; i++) {
-        scales.push(Math.round(max - interval * i));
+        const scale = max - interval * i;
+
+        scales.push({
+          label:
+            max < 2.5 && max > 0 ? Number(scale.toFixed(2)) : Math.round(scale),
+          value: scale
+        });
       }
       return scales;
     },
 
     getCx(data) {
       const xData = data[this.fields[0]];
-      const xMaxData = this.xAxisScale[this.xAxisScale.length - 1];
+      const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
       const offset = xMaxData
         ? (xData / xMaxData) *
           (this.viewWidth - this.paddingLeft - this.paddingRight)
@@ -202,7 +210,7 @@ export default {
 
     getCy(data) {
       const yData = data[this.fields[1]];
-      const yMaxData = this.yAxisScale[0];
+      const yMaxData = this.yAxisScale[0].value;
       const offset = yMaxData
         ? (yData / yMaxData) *
           (this.viewHeight - this.paddingTop - this.paddingBottom)
