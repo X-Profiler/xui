@@ -16,7 +16,12 @@ import { isNumber } from "@/javascripts/lib/utils";
 
 export default {
   props: {
-    minWidth: Number
+    minWidth: Number,
+    clientOffset: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
   },
 
   mounted() {
@@ -39,8 +44,10 @@ export default {
       const tooltipHeight = parseInt(computedStyle.height, 10);
       const tooltipWidth = parseInt(computedStyle.width, 10);
 
-      const pageX = event.clientX - offsetX;
-      const pageY = event.clientY;
+      const pageX = this.clientOffset
+        ? event.clientX - offsetX
+        : event.pageX - offsetX;
+      const pageY = this.clientOffset ? event.clientY : event.pageY;
 
       const x =
         pageX + 10 + tooltipWidth < maxWidth

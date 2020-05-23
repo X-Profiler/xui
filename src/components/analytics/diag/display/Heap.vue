@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- tooltip -->
-    <x-tooltip :min-width="100" ref="tooltip">
+    <x-tooltip :min-width="100" clientOffset ref="tooltip">
       <div slot="content" class="tooltip-content">{{ selectedData.name }}: {{ selectedData.size }}</div>
     </x-tooltip>
 
