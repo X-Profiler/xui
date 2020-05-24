@@ -1,59 +1,62 @@
 <template>
-  <div class="pie" ref="pie">
+  <div ref="pie">
     <!-- chartip -->
     <x-chartip ref="chartip">
       <div slot="content" class="chartip-content">
-        <div>
+        <div class="chartip-content-group">
           <div class="chartip-label" :style="'background-color: ' + selectedData.color"></div>
           <div class="chartip-key">{{ selectedData.axis }}:</div>
         </div>
         <div style="margin-left: 10px;">
-          <div>{{ selectedData.value }}{{ yAxisUnit }}</div>
+          <div>{{ formatValue(selectedData.value) }}{{ yAxisUnit }}</div>
         </div>
       </div>
     </x-chartip>
 
-    <svg
-      v-if="viewWidth"
-      :width="viewWidth"
-      :height="viewHeight"
-      :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
-    >
-      <circle
-        v-for="(data, index) in list"
-        :key="index"
-        :ref="data.axis"
-        :r="radius"
-        :cx="cx"
-        :cy="cy"
-        fill="none"
-        :stroke="data.color"
-        :stroke-width="pieStrokeWidth"
-        :stroke-dasharray="`${data.occupy} ${dashbase}`"
-        :stroke-dashoffset="`${-data.offset}`"
-        @mousemove="mousemove(data, $event)"
-        @mouseleave="mouseleave"
-        class="circle"
-      />
-    </svg>
-
-    <div class="label" :style="'padding-top: ' + paddingTop + 'px;'">
-      <div
-        v-for="(axis, index) in yAxis"
-        :key="index"
-        class="label-group"
-        @mousemove="mousemoveLabel(index)"
-        @mouseleave="mouseleaveLabel(index)"
+    <!-- pie chart -->
+    <div class="pie">
+      <svg
+        v-if="viewWidth"
+        :width="viewWidth"
+        :height="viewHeight"
+        :viewBox="`0, 0, ${viewWidth}, ${viewHeight}`"
       >
-        <div class="label-icon" :style="'background-color: ' + getColor(axis)"></div>
-        <div class="label-value">{{ axis }}</div>
+        <circle
+          v-for="(data, index) in list"
+          :key="index"
+          :ref="data.axis"
+          :r="radius"
+          :cx="cx"
+          :cy="cy"
+          fill="none"
+          :stroke="data.color"
+          :stroke-width="pieStrokeWidth"
+          :stroke-dasharray="`${data.occupy} ${dashbase}`"
+          :stroke-dashoffset="`${-data.offset}`"
+          @mousemove="mousemove(data, $event)"
+          @mouseleave="mouseleave"
+          class="circle"
+        />
+      </svg>
+
+      <div class="label" :style="'padding-top: ' + paddingTop + 'px;'">
+        <div
+          v-for="(axis, index) in yAxis"
+          :key="index"
+          class="label-group"
+          @mousemove="mousemoveLabel(index)"
+          @mouseleave="mouseleaveLabel(index)"
+        >
+          <div class="label-icon" :style="'background-color: ' + getColor(axis)"></div>
+          <div class="label-value">{{ axis }}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { createLaterFunction } from "@/javascripts/lib/utils";
+import { createLaterFunction, isNumber } from "@/javascripts/lib/utils";
 
 export default {
   props: {
@@ -103,6 +106,13 @@ export default {
         return;
       }
       this.pieWidth = width;
+    },
+
+    formatValue(value) {
+      if (isNumber(value)) {
+        return value.toFixed(2);
+      }
+      return value;
     },
 
     setViewBox() {
@@ -239,5 +249,9 @@ export default {
 .chartip-content {
   display: flex;
   padding: 5px;
+}
+
+.chartip-key {
+  margin-left: 5px;
 }
 </style>
