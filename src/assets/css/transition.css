@@ -88,7 +88,6 @@
   z-index: -9999;
 }
 
-
 /* drawer */
 .drawer-enter {
   opacity: 0;
@@ -154,11 +153,9 @@
 .modal-content-leave-to {
   opacity: 0;
 }
-
 /* modal content end */
 
 /* histogram start */
-
 .slide-histogram-enter {
   opacity: 0;
 }
@@ -174,5 +171,22 @@
 .slide-histogram-leave-to {
   opacity: 0;
 }
-
 /* histogram end */
+
+/* area start */
+.slide-chart-enter {
+  opacity: 0;
+}
+
+.slide-chart-enter-active {
+  transition: opacity 0.5s ease;
+}
+
+.slide-chart-leave {
+  opacity: 0;
+}
+
+.slide-chart-leave-to {
+  opacity: 0;
+}
+/* area end */

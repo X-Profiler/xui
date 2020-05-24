@@ -161,25 +161,20 @@
                 <stop offset="100%" stop-opacity="0.01" :stop-color="y.bg" />
               </linearGradient>
             </defs>
-            <transition name="slide-noward">
-              <g v-if="!noFill">
+            <g v-if="!noFill">
+              <transition v-if="!solid" name="slide-chart">
                 <path
-                  v-if="!solid"
                   v-show="pathWidthMap[y.axis]"
                   :d="y.path"
                   :fill="'url(#' + 'color_bg_' + y.axis + ')'"
                   stroke="none"
                 />
-                <path
-                  v-else
-                  v-show="pathWidthMap[y.axis]"
-                  :d="y.path"
-                  :fill="y.color"
-                  stroke="none"
-                />
-              </g>
-            </transition>
-            <transition name="slide-noward">
+              </transition>
+              <transition v-else name="slide-chart">
+                <path v-show="pathWidthMap[y.axis]" :d="y.path" :fill="y.color" stroke="none" />
+              </transition>
+            </g>
+            <transition name="slide-chart">
               <polyline
                 v-show="pathWidthMap[y.axis]"
                 :stroke-opacity="y.opacity"
