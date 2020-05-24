@@ -10,7 +10,7 @@
           {{ actionTip }}操作成功，请访问
           <router-link class="x-modal-link" :to="{path:`/app/${appId}/file`}" target="_blank">文件列表</router-link>&nbsp;查看详情。
         </p>
-        <p style="margin-top: 8px;">生成文件路径: {{ take_action_data }}</p>
+        <p class="file-tip">生成文件路径: {{ take_action_data }}</p>
       </div>
     </div>
 
@@ -27,3 +27,11 @@ export default {
   ...takeActionModule
 };
 </script>
+
+<style scoped>
+.file-tip {
+  margin-top: 8px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+</style>

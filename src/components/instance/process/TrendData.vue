@@ -25,7 +25,7 @@
           <!-- pie chart -->
           <x-pie
             v-if="solid"
-            class="pie"
+            class="circle"
             :data="selectedData"
             :yAxis="commonData.yAxis"
             :yAxisUnit="commonData.yAxisUnit"
@@ -86,7 +86,7 @@ export default {
   flex-wrap: wrap;
 }
 
-.pie {
+.circle {
   flex-basis: 315px;
 }
 
