@@ -5,6 +5,12 @@ import * as utils from "@/javascripts/lib/utils";
 const { mapState: mapStateProcess, mapMutations: mapMutationsProcess } = utils.createNamespace("dashboard/instance/process");
 
 export default {
+  created() {
+    if (this.trendMap) {
+      this.durationGroup = [];
+    }
+  },
+
   methods: {
     ...mapMutationsProcess(["setTakeActionModal"]),
 

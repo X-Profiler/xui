@@ -8,7 +8,10 @@ export default {
     diagData: {},
 
     gcDrawer: undefined,
-    gcData: {}
+    gcData: {},
+
+    trendDrawer: undefined,
+    trendData: {},
   },
 
   mutations: {
@@ -29,6 +32,16 @@ export default {
 
       if (gcData) {
         state.gcData = gcData;
+      }
+    },
+
+    setTrendDrawer(state, { status, trendData }) {
+      if (status === false || status === true) {
+        state.trendDrawer = status;
+      }
+
+      if (trendData) {
+        state.trendData = trendData;
       }
     }
   }

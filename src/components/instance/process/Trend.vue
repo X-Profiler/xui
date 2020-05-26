@@ -16,7 +16,7 @@
     <transition name="slide-noward">
       <div v-if="!xprofiler_processes_loading && !xprofiler_processes_load_error">
         <!-- trend panel -->
-        <div class="panel" :style="'background-color: ' + color">
+        <div v-if="!disablePanel" class="panel" :style="'background-color: ' + color">
           <div class="line-group">
             <div class="title">PID: {{ proc.pid }}</div>
             <div class="action">
@@ -61,6 +61,7 @@
               :title="dt.label"
               :solid="dt.solid"
               :duration="duration"
+              :data="trendMap && trendMap[dt.value] || undefined"
               @linkage="linkage"
               @hidden="hidden"
               @broadcast="broadcast"
@@ -79,6 +80,19 @@ import trendModule from "@/javascripts/instance/process/Trend";
 import xTrendData from "@/components/instance/process/TrendData";
 
 export default {
+  props: {
+    disablePanel: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+
+    trendMap: {
+      required: false,
+      type: Object
+    }
+  },
+
   components: {
     "x-trend-data": xTrendData
   },

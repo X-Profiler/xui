@@ -18,7 +18,7 @@ export default {
   methods: {
     ...mapMutations(["setErrorModal"]),
 
-    ...mapMutationsWrapper(["setDiagDrawer", "setGcDrawer"]),
+    ...mapMutationsWrapper(["setDiagDrawer", "setGcDrawer", "setTrendDrawer"]),
 
     ...mapActions(["doTransfer", "doFavor"]),
 
@@ -171,6 +171,10 @@ export default {
 
       if (fileType === "gcprofile") {
         this.setGcDrawer({ status: true, gcData: data });
+      }
+
+      if (fileType === "trend") {
+        this.setTrendDrawer({ status: true, trendData: data });
       }
     },
 
