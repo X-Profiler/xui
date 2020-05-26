@@ -62,7 +62,11 @@ export default {
     type: String,
     title: String,
     solid: Boolean,
-    duration: Number
+    duration: Number,
+    data: {
+      required: false,
+      type: Object
+    }
   },
 
   data() {

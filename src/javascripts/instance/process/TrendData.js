@@ -24,7 +24,24 @@ export default {
       }
     },
 
+    setData(data) {
+      const { list } = data;
+      if (Array.isArray(list)) {
+        this.trendData = list;
+      }
+      if (utils.isNumber(data.limit)) {
+        this.limit = data.limit;
+      }
+      this.checkStatus(this.lastValidData);
+      this.updateSelectedData(this.lastValidData);
+    },
+
     getTrendData() {
+      if (this.data) {
+        this.setData(this.data);
+        return;
+      }
+
       this.loading = true;
       this
         .getProcessTrend({ cancelToken: this.cancelToken.token, trendType: this.type, duration: this.duration })
@@ -32,16 +49,7 @@ export default {
           if (Object.keys(data).length === 0) {
             return;
           }
-
-          const { list } = data;
-          if (Array.isArray(list)) {
-            this.trendData = list;
-          }
-          if (utils.isNumber(data.limit)) {
-            this.limit = data.limit;
-          }
-          this.checkStatus(this.lastValidData);
-          this.updateSelectedData(this.lastValidData);
+          this.setData(data);
           this.loading = false;
         })
         .catch(err => {
