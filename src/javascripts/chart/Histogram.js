@@ -91,12 +91,15 @@ export default {
         }
       }
       const interval = (max - min) / count;
+      if (interval === 0) {
+        return [{ label: max, value: max }];
+      }
       const scales = [];
       for (let i = 0; i <= count; i++) {
         const scale = max - interval * i;
 
         scales.push({
-          label: interval <= 1 ? Number(scale.toFixed(2)) : Math.round(scale),
+          label: interval <= 1 ? Number(scale.toFixed(2)) : Math.ceil(scale),
           value: scale
         });
       }

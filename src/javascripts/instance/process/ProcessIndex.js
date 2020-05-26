@@ -139,7 +139,9 @@ export default {
 
   watch: {
     $route(...args) {
-      utils.watchRoute.call(this, args, "pid", "selectedPid");
+      if (this.selectedPid) {
+        utils.watchRoute.call(this, args, "pid", "selectedPid");
+      }
     },
 
     selectedPid(...args) {

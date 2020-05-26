@@ -189,7 +189,7 @@ export default {
 
         scales.push({
           label:
-            max < 2.5 && max > 0 ? Number(scale.toFixed(2)) : Math.round(scale),
+            max < 2.5 && max > 0 ? Number(scale.toFixed(2)) : Math.ceil(scale),
           value: scale
         });
       }
