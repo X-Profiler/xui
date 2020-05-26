@@ -104,10 +104,14 @@ export default {
       const scales = [];
       for (let i = 0; i <= count; i++) {
         const scale = max - interval * i;
-        scales.push({
-          label: interval <= 0.5 ? Number(scale.toFixed(2)) : Math.round(scale),
+        const data = {
+          label: interval <= 0.5 ? Number(scale.toFixed(2)) : Math.ceil(scale),
           value: scale
-        });
+        };
+        if(interval === 0 && i != 0){
+          continue;
+        }
+        scales.push(data);
       }
 
       if (max <= 0 || min >= 0) {
@@ -164,7 +168,7 @@ export default {
     getCx(data) {
       const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
       const xMinData = this.xAxisScale[0].value;
-      const offset = xMaxData
+      const offset = xMaxData && xMaxData - xMinData
         ? ((data - xMinData) / (xMaxData - xMinData)) *
           (this.viewWidth - this.paddingLeft - this.paddingRight)
         : 0;

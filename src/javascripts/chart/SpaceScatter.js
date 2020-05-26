@@ -124,12 +124,15 @@ export default {
         }
       }
       const interval = (max - min) / count;
+      if (interval === 0) {
+        return [{ label: max, value: max }];
+      }
       const scales = [];
       for (let i = 0; i <= count; i++) {
         const scale = max - interval * i;
 
         scales.push({
-          label: interval <= 0.5 ? Number(scale.toFixed(2)) : Math.round(scale),
+          label: interval <= 0.5 ? Number(scale.toFixed(2)) : Math.ceil(scale),
           value: scale
         });
       }
@@ -139,7 +142,7 @@ export default {
     getCx({ index }) {
       const xMaxData = this.xAxisScale[this.xAxisScale.length - 1].value;
       const xMinData = this.xAxisScale[0].value;
-      const offset = xMaxData
+      const offset = xMaxData && xMaxData - xMinData
         ? ((index - xMinData) / (xMaxData - xMinData)) *
         (this.viewWidth - this.paddingLeft - this.paddingRight)
         : 0;

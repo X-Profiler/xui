@@ -136,12 +136,15 @@ export default {
       }
 
       const interval = (max - min) / count;
+      if (interval === 0) {
+        return [{ label: max, value: max }];
+      }
       const scales = [];
       for (let i = 0; i <= count; i++) {
         const scale = max - interval * i;
 
         scales.push({
-          label: max < 2.5 && max > 0 ? Number(scale.toFixed(2)) : Math.round(scale),
+          label: max < 2.5 && max > 0 ? Number(scale.toFixed(2)) : Math.ceil(scale),
           value: scale,
           showTimeSpan
         });
@@ -225,10 +228,13 @@ export default {
       for (const dt of list) {
         const time = dt[xAxis];
         // x position
-        const xOffset =
-          ((time - xMinData) / (xMaxData - xMinData)) *
-          (this.viewWidth - this.paddingLeft - this.paddingRight);
+        let xOffset = 0;
+        if (xMaxData - xMinData) {
+          xOffset = ((time - xMinData) / (xMaxData - xMinData)) *
+            (this.viewWidth - this.paddingLeft - this.paddingRight);
+        }
         const xPosition = this.paddingLeft + xOffset;
+
 
         const timeKey = this.xAxis === "time" ?
           moment(time).format("YYYY-MM-DD HH:mm") : time;
@@ -280,6 +286,7 @@ export default {
             yPosition,
             color: this.getColor(axis)
           });
+
           group[axis].push(`${xPosition},${yPosition}`);
         }
       }
@@ -552,6 +559,10 @@ export default {
               const buttom = this.viewHeight - this.paddingBottom;
               path += ` L${last.split(",")[0]},${buttom}`;
               path += ` L${first.split(",")[0]},${buttom} Z`;
+            }
+            if (first && !last) {
+              points = points.map(p => `L${p}`);
+              path += `M${first} ` + points.join(" ") + " Z";
             }
             data.path = path;
           } else {
