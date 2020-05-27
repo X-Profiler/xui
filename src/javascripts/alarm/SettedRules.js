@@ -46,7 +46,7 @@ export default {
       if (Array.isArray(data)) {
         this.rules = data.map((item, index) => {
           const tmp = Object.assign({
-            disabled: false,
+            disabled: Number(item.status) === 0,
             index
           }, item);
           return tmp;
