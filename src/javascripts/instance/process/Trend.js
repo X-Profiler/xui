@@ -12,7 +12,7 @@ export default {
   },
 
   methods: {
-    ...mapMutationsProcess(["setTakeActionModal"]),
+    ...mapMutationsProcess(["setTakeActionModal", "setSaveTrendModal"]),
 
     mouseover(bt) {
       bt.ghost = false;
@@ -31,7 +31,11 @@ export default {
     },
 
     takeAction(bt) {
-      this.setTakeActionModal({ status: true, actionData: { pid: this.proc.pid, action: bt.value } });
+      if (bt.value === "save") {
+        this.setSaveTrendModal({ status: true, processData: { pid: this.proc.pid } });
+      } else {
+        this.setTakeActionModal({ status: true, actionData: { pid: this.proc.pid, action: bt.value } });
+      }
     },
 
     showTip(refs, data) {
