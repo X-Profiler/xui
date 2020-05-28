@@ -104,7 +104,8 @@ export default {
         { label: "Heap Profile", value: "heapprofile", ghost: true },
         { label: "GC 追踪", value: "gcprofile", ghost: true },
         { label: "堆快照", value: "heapsnapshot", ghost: true },
-        { label: "Node.js 实时诊断", value: "diag", ghost: true }
+        { label: "Node.js 实时诊断", value: "diag", ghost: true },
+        { label: "保存趋势数据", value: "save", ghost: true }
       ],
       chartGroup: [
         [
