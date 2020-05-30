@@ -37,7 +37,7 @@ export default {
     },
 
     setRiskModules(state, riskModules) {
-      state.riskModules = riskModules || {};
+      state.riskModules = riskModules;
     },
 
     setRiskDetailModal(state, { status, riskModalData }) {

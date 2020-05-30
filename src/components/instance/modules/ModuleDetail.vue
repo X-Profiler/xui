@@ -34,6 +34,7 @@
               @click="openRiskModal(row)"
             >{{ row.level }}</div>
           </div>
+          <div class="font" v-else-if="row.risk === undefined">{{ row.level }}</div>
           <!-- no risk -->
           <div v-else class="padding">
             <Icon class="no-risk" type="md-checkmark" />

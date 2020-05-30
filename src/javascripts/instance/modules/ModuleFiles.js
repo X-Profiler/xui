@@ -70,6 +70,14 @@ export default {
         return riskTip;
       }
       const risk = data[0].risk;
+      if (!risk) {
+        riskTip.tip = "当前项目引入的 Npm 模块未进行安全扫描";
+        riskTip.alertType = "info";
+        riskTip.iconType = "ios-alert-outline";
+        riskTip.color = "#2376b7";
+        return riskTip;
+      }
+
       const vulnerabilities = risk.vulnerabilities || {};
       const tipPrefix = "当前项目引入的 Npm 模块";
       const tipSuffix = `（扫描 <code>${risk.totalDependencies}</code> 个模块于 <code>${risk.scanTime}</code>）`;
