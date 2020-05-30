@@ -31,7 +31,7 @@ export default {
 
     checkSeverity(name, level) {
       const riskModules = this.riskModules;
-      if (!riskModules[name]) {
+      if (!riskModules || !riskModules[name]) {
         return false;
       }
       return riskModules[name].some(info => info.severity === level);
@@ -63,7 +63,10 @@ export default {
       // risks
       for (const [name, version] of Object.entries(data)) {
         const riskData = {};
-        if (this.checkSeverity(name, "critical")) {
+        if (!this.riskModules) {
+          riskData.risk = undefined;
+          riskData.level = "-";
+        } else if (this.checkSeverity(name, "critical")) {
           riskData.risk = true;
           riskData.level = "极危";
           riskData.color = "#e33900";
