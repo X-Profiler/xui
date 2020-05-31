@@ -176,7 +176,7 @@ export default {
           { value: "xprofiler_log", label: "X-Profiler 插件日志" },
           { value: "xtransit_notification", label: "X-Transit 通知信息" },
           { value: "system_log", label: "操作系统指标日志" },
-          { value: "error_log", label: "Node.js 应用错误日志" }
+          { value: "error_log", label: "Node 应用错误日志" }
         ],
         pushType: [
           { value: "p1", label: "P1 (致电)" },
@@ -207,12 +207,12 @@ export default {
           {
             value: "fast_rule_dependence_security_risk",
             label: "应用依赖的 Npm 模块安全漏洞预警"
-          },
-          { value: "fast_rule_coredump", label: "Coredump 文件生成预警" },
-          {
-            value: "fast_rule_node_process_exit",
-            label: "Node.js 进程退出预警"
           }
+          // { value: "fast_rule_coredump", label: "Coredump 文件生成预警" },
+          // {
+          //   value: "fast_rule_node_process_exit",
+          //   label: "Node.js 进程退出预警"
+          // }
         ]
       },
       placeholderMap: {
