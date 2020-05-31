@@ -180,16 +180,16 @@ export default {
           modelMap.customRuleExpr = "@critical > 0 || @high > 0";
           modelMap.customRuleDesc = "项目依赖发现极危漏洞 ${@critical} 个，高危漏洞 ${@high} 个，请尽快升级修复";
           break;
-        case "fast_rule_coredump":
-          modelMap.contextType = "xtransit_notification";
-          modelMap.customRuleExpr = "@corefile_created";
-          modelMap.customRuleDesc = "服务器生成 coredump 文件，路径为：${@corefile}，请分析查看原因!";
-          break;
-        case "fast_rule_node_process_exit":
-          modelMap.contextType = "xtransit_notification";
-          modelMap.customRuleExpr = "@node_process_exit";
-          modelMap.customRuleDesc = "实例 ${@agent_id} 上 Node.js 进程 ${@pid} 退出，命令信息：${@cmd}";
-          break;
+        // case "fast_rule_coredump":
+        //   modelMap.contextType = "xtransit_notification";
+        //   modelMap.customRuleExpr = "@corefile_created";
+        //   modelMap.customRuleDesc = "服务器生成 coredump 文件，路径为：${@corefile}，请分析查看原因!";
+        //   break;
+        // case "fast_rule_node_process_exit":
+        //   modelMap.contextType = "xtransit_notification";
+        //   modelMap.customRuleExpr = "@node_process_exit";
+        //   modelMap.customRuleDesc = "实例 ${@agent_id} 上 Node.js 进程 ${@pid} 退出，命令信息：${@cmd}";
+        //   break;
         default:
           modelMap.contextType = "xprofiler_log";
           modelMap.customRuleExpr = undefined;

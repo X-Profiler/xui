@@ -38,7 +38,7 @@ export default {
           label = "操作系统指标日志";
           break;
         case "error_log":
-          label = "Node.js 应用错误日志";
+          label = "Node 应用错误日志";
           break;
         default:
           break;

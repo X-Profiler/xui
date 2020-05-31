@@ -95,29 +95,12 @@ export default {
         qps
       } = overview_data;
 
-      if (isNumber(load1) && isNumber(load5) && isNumber(load15)) {
-        metrics[0].push({ key: "Load1 / 5 / 15", value: `${load1} / ${load5} / ${load15}` });
-      }
-
-      if (isNumber(nodeCount)) {
-        metrics[0].push({ key: "Node.js 进程数", value: nodeCount });
-      }
-
-      if (isNumber(scavengeTotal) && isNumber(scavengeAverage)) {
-        metrics[1].push({ key: "Scavenge Total / Avg", value: `${formatTime(scavengeTotal)} / ${formatTime(scavengeAverage)}` });
-      }
-
-      if (isNumber(marksweepTotal) && isNumber(marksweepAverage)) {
-        metrics[1].push({ key: "Marksweep Total / Avg", value: `${formatTime(marksweepTotal)} / ${formatTime(marksweepAverage)}` });
-      }
-
-      if (isNumber(rtAverage) && isNumber(rtExpired)) {
-        metrics[2].push({ key: "RT Expired / Avg", value: `${formatTime(rtAverage)} / ${rtExpired}` });
-      }
-
-      if (isNumber(qps)) {
-        metrics[2].push({ key: "QPS", value: qps });
-      }
+      metrics[0].push({ key: "Load1 / 5 / 15", value: `${isNumber(load1) || "-"} / ${isNumber(load5) || "-"} / ${isNumber(load15) || "-"}` });
+      metrics[0].push({ key: "Node.js 进程数", value: isNumber(nodeCount) || "-" });
+      metrics[1].push({ key: "Scavenge Total / Avg", value: `${isNumber(scavengeTotal) && formatTime(scavengeTotal) || "-"} / ${isNumber(scavengeAverage) && formatTime(scavengeAverage) || "-"}` });
+      metrics[1].push({ key: "Marksweep Total / Avg", value: `${isNumber(marksweepTotal) && formatTime(marksweepTotal) || "-"} / ${isNumber(marksweepAverage) && formatTime(marksweepAverage) || "-"}` });
+      metrics[2].push({ key: "RT Expired / Avg", value: `${isNumber(rtAverage) && formatTime(rtAverage) || "-"} / ${isNumber(rtExpired) || "-"}` });
+      metrics[2].push({ key: "QPS", value: isNumber(qps) || "-" });
 
       return metrics;
     }
