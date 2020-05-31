@@ -28,7 +28,7 @@
 
       <!-- dependencies type -->
       <transition name="slide">
-        <div class="tag-group" v-show="files_data.length">
+        <div class="tag-group mod-group" v-show="files_data.length">
           <div
             :class="'tag' + (dependencies ? ' tag-selected' : '')"
             @click="changeDevType(true)"
@@ -78,7 +78,12 @@ export default {
 
 .tab {
   display: flex;
+  position: relative;
   align-items: flex-end;
   margin-top: 11px;
+}
+
+.mod-group {
+  right: 0;
 }
 </style>
