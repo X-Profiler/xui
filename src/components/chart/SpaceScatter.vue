@@ -195,7 +195,8 @@ export default {
       circleLabel: "scatter-label",
       intersectionFixed: false,
       validDataMap: {},
-      circleOpacity: 0.5
+      circleOpacity: 0.5,
+      radiusMap: {}
     };
   },
 

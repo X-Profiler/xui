@@ -78,6 +78,9 @@ export default {
       if (filterType) {
         data = data.filter(dt => this.needShow(dt, filterType));
       }
+      if (!data.length) {
+        return [];
+      }
       const needZero = axis === this.yAxis && this.yAxisZero;
       data = data.map(dt => dt[axis]);
       let min = needZero ? 0 : data[0];

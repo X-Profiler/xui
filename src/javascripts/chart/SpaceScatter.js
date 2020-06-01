@@ -1,6 +1,6 @@
 "use strict";
 
-import { formatTime, createLaterFunction } from "@/javascripts/lib/utils";
+import { formatTime, createLaterFunction, isNumber } from "@/javascripts/lib/utils";
 
 export default {
   created() {
@@ -170,7 +170,7 @@ export default {
       const count = this.validDataMap[space];
       if (count > maxRadius) {
         const interval = Math.round(count / maxRadius);
-        return index % interval === 1;
+        return index % interval === 0;
       } else {
         return true;
       }
@@ -181,6 +181,15 @@ export default {
       if (!size || !this.needShow(info, value)) {
         return 0;
       }
+
+      // check cache
+      const key = `${info.index}::${value}`;
+      const radiusMap = this.radiusMap;
+      if (isNumber(radiusMap[key])) {
+        return radiusMap[key];
+      }
+
+      // get radius
       const maxSize = 16;
       const minSize = 4;
       // const spaceInfo = this.spacesInfo[value];
@@ -189,6 +198,7 @@ export default {
       radius = radius > maxSize ? maxSize : radius;
       radius = radius < minSize ? this.needShowRadius(info.index, value) ? minSize : 0 : radius;
 
+      radiusMap[key] = radius;
       return radius;
     },
 
