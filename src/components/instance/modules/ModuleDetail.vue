@@ -1,7 +1,7 @@
 <template>
   <transition name="slide-noward">
     <div v-show="!module_loading && !module_load_error">
-      <x-table :columns="columns" :data="modules" noDataText="当前应用暂无模块依赖信息" no-data-head>
+      <x-table :columns="columns" :data="modules" noDataText="当前应用暂无模块依赖信息" no-data-head stribe2>
         <!-- module name -->
         <template v-slot:moduleName="{ row }">
           <div class="padding name font">
