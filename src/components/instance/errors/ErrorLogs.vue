@@ -84,5 +84,6 @@ export default {
 <style scoped>
 .error-content {
   font-size: 12px;
+  word-break: break-all;
 }
 </style>

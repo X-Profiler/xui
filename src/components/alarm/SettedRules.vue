@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-table :columns="columns" :data="rules" noDataText="应用下暂无已配置告警规则" no-data-head>
+    <x-table :columns="columns" :data="rules" noDataText="应用下暂无已配置告警规则" no-data-head hover>
       <!-- push type -->
       <template v-slot:pushType="{ row }">
         <div
