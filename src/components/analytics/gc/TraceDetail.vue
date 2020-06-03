@@ -17,6 +17,7 @@
             xAxis="index"
             yAxis="pause"
             yAxisUnit="ms"
+            :xAxisScaleCount="getXAxisScaleCount(pauseTimeWithStart)"
             yAxisZero
             @broadcast="broadcast('histogram', arguments)"
             @linkage="linkage('histogram', arguments)"
@@ -32,7 +33,7 @@
             :data="heapTrendWithStart"
             xAxis="index"
             :yAxis="['heap_size']"
-            :xAxisScaleCount="5"
+            :xAxisScaleCount="getXAxisScaleCount(heapTrendWithStart)"
             yAxisUnit="MB"
             @broadcast="broadcast('area', arguments)"
             @linkage="linkage('area', arguments)"
@@ -49,6 +50,7 @@
             xAxis="index"
             yAxis="changeAbs"
             yAxisUnit="MB"
+            :xAxisScaleCount="getXAxisScaleCount(pauseTimeWithStart)"
             yAxisZero
             @broadcast="broadcast('histogram2', arguments)"
             @linkage="linkage('histogram2', arguments)"
@@ -63,6 +65,7 @@
             xAxis="index"
             :yAxis="spaceTrendWithStart.spaces"
             yAxisUnit="MB"
+            :xAxisScaleCount="getXAxisScaleCount(spaceTrendWithStart.list)"
             yAxisZero
             @broadcast="broadcast('scatter', arguments)"
             @linkage="linkage('scatter', arguments)"

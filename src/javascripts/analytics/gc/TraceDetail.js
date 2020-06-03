@@ -29,6 +29,10 @@ export default {
           this.$refs[chart.name].hiddenTip();
         }
       }
+    },
+
+    getXAxisScaleCount(data) {
+      return (data.length - 1) < 5 ? data.length - 1 : 5;
     }
   },
 
