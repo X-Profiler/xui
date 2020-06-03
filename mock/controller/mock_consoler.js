@@ -54,7 +54,8 @@ module.exports = app => {
     const data = {
       instanceCount: getInstances(appId).count,
       alarmCount: parseInt(Math.random() * 10e4),
-      riskCount: parseInt(Math.random() * 100)
+      riskCount: parseInt(Math.random() * 100),
+      riskCountAgentId: 'largest-risk'
     };
 
     setTimeout(() => res.send({ ok: true, data }), 550);

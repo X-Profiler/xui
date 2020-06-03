@@ -132,6 +132,11 @@ export default {
         } else {
           app[key] = "-";
         }
+
+        const agentKey = `${key}AgentId`;
+        if (data[agentKey]) {
+          app[agentKey] = data[agentKey];
+        }
         app[`${key}Loading`] = false;
       }
     },
@@ -161,7 +166,7 @@ export default {
       this.$router.push({ path: `/app/${appId}/${func}` });
     },
 
-    goToFunction2(appId, metricType) {
+    goToFunction2(appId, metricType, agentId) {
       let func = "";
       const query = {};
       if (metricType === "instanceCount") {
@@ -171,6 +176,7 @@ export default {
       } else if (metricType === "riskCount") {
         func = "instance";
         query.tab = "module_risk";
+        query.agentId = agentId;
       }
       this.$router.push({ path: `/app/${appId}/${func}`, query });
     },

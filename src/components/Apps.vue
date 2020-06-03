@@ -76,7 +76,7 @@
                     <p
                       v-show="!app[`${metric.value}Loading`]"
                       class="app-content-title-metric-value app-content-select"
-                      @click="goToFunction2(app.appId, metric.value)"
+                      @click="goToFunction2(app.appId, metric.value, app[`${metric.value}AgentId`])"
                     >{{ formatCount(app[metric.value]) }}</p>
                   </transition>
                 </div>
