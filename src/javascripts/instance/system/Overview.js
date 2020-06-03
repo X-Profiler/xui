@@ -95,12 +95,12 @@ export default {
         qps
       } = overview_data;
 
-      metrics[0].push({ key: "Load1 / 5 / 15", value: `${isNumber(load1) || "-"} / ${isNumber(load5) || "-"} / ${isNumber(load15) || "-"}` });
-      metrics[0].push({ key: "Node.js 进程数", value: isNumber(nodeCount) || "-" });
+      metrics[0].push({ key: "Load1 / 5 / 15", value: `${isNumber(load1) && load1 || "-"} / ${isNumber(load5) && load5 || "-"} / ${isNumber(load15) && load15 || "-"}` });
+      metrics[0].push({ key: "Node.js 进程数", value: isNumber(nodeCount) && nodeCount || "-" });
       metrics[1].push({ key: "Scavenge Total / Avg", value: `${isNumber(scavengeTotal) && formatTime(scavengeTotal) || "-"} / ${isNumber(scavengeAverage) && formatTime(scavengeAverage) || "-"}` });
       metrics[1].push({ key: "Marksweep Total / Avg", value: `${isNumber(marksweepTotal) && formatTime(marksweepTotal) || "-"} / ${isNumber(marksweepAverage) && formatTime(marksweepAverage) || "-"}` });
-      metrics[2].push({ key: "RT Expired / Avg", value: `${isNumber(rtAverage) && formatTime(rtAverage) || "-"} / ${isNumber(rtExpired) || "-"}` });
-      metrics[2].push({ key: "QPS", value: isNumber(qps) || "-" });
+      metrics[2].push({ key: "RT Expired / Avg", value: `${isNumber(rtAverage) && formatTime(rtAverage) || "-"} / ${isNumber(rtExpired) && rtExpired || "-"}` });
+      metrics[2].push({ key: "QPS", value: isNumber(qps) && qps || "-" });
 
       return metrics;
     }

@@ -3,6 +3,14 @@
     <!-- loading -->
     <x-loading top="35vh" :loading="app_list_loading" type="dot"></x-loading>
 
+    <!-- invitations -->
+    <x-invitations
+      v-if="type === 'myApps' && !app_list_loading && !app_list_load_error && invitations.length"
+      class="invitations"
+      :invitations="invitations"
+      @refreshApps="refreshApps"
+    ></x-invitations>
+
     <!-- error message -->
     <x-error-message
       v-show="app_list_load_error"
@@ -15,14 +23,6 @@
       <div v-show="!app_list_loading && !app_list_load_error">
         <!-- no apps -->
         <x-error-message v-show="apps.length === 0" :message="noAppTip" top="calc(35vh - 20px)"></x-error-message>
-
-        <!-- invitations -->
-        <x-invitations
-          v-if="type === 'myApps' && invitations.length"
-          class="invitations"
-          :invitations="invitations"
-          @refreshApps="refreshApps"
-        ></x-invitations>
 
         <!-- app overview -->
         <div
