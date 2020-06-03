@@ -99,7 +99,7 @@ export default {
       metrics[0].push({ key: "Node.js 进程数", value: isNumber(nodeCount) && nodeCount || "-" });
       metrics[1].push({ key: "Scavenge Total / Avg", value: `${isNumber(scavengeTotal) && formatTime(scavengeTotal) || "-"} / ${isNumber(scavengeAverage) && formatTime(scavengeAverage) || "-"}` });
       metrics[1].push({ key: "Marksweep Total / Avg", value: `${isNumber(marksweepTotal) && formatTime(marksweepTotal) || "-"} / ${isNumber(marksweepAverage) && formatTime(marksweepAverage) || "-"}` });
-      metrics[2].push({ key: "RT Expired / Avg", value: `${isNumber(rtAverage) && formatTime(rtAverage) || "-"} / ${isNumber(rtExpired) && rtExpired || "-"}` });
+      metrics[2].push({ key: "RT Expired / Avg", value: `${isNumber(rtExpired) && rtExpired || "-"} / ${isNumber(rtAverage) && formatTime(rtAverage) || "-"}` });
       metrics[2].push({ key: "QPS", value: isNumber(qps) && qps || "-" });
 
       return metrics;

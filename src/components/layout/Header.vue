@@ -1,11 +1,11 @@
 <template>
   <div>
     <Header class="header" :style="headerStyle">
-      <!-- <a href="https://github.com/hyj1991/easy-monitor" target="_blank" class="logo"> -->
-      <router-link class="logo" :to="{path:`/`}">
+      <a href="https://github.com/hyj1991/easy-monitor" target="_blank" class="logo">
+        <!-- <router-link class="logo" :to="{path:`/`}"> -->
         <Icon class="icon" type="md-desktop" />EZM 3.0
-      </router-link>
-      <!-- </a> -->
+        <!-- </router-link> -->
+      </a>
       <span
         v-for="(nav, index) in navActions"
         :class="'nav-selection' + (nav.active ? ' active' :'')"
