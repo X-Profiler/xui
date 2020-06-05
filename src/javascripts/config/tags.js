@@ -223,7 +223,7 @@ export default {
     en: "GC"
   },
   rssUsage: {
-    ch: "物理内存占用",
+    ch: "常驻内存占用",
     en: "RSS"
   },
   uvHandles: {
