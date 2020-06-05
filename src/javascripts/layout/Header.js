@@ -57,6 +57,8 @@ export default {
           }
           this.$router.push({ path: target, query });
         }
+      } else if (nav.value === "docs") {
+        window.open("https://www.yuque.com/hyj1991/easy-monitor", "_blank");
       } else if (nav.href) {
         const { href } = this.$router.resolve({ path: nav.href });
         window.open(href, "_blank");
