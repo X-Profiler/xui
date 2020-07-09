@@ -14,6 +14,11 @@
     <x-drawer ref="trend" @close="closeTrendDrawer()">
       <x-trend slot="content" class="analytics"></x-trend>
     </x-drawer>
+
+    <!-- show profile flamegraph -->
+    <x-drawer ref="flamegraph" @close="closeFlameGraphDrawer()">
+      <x-flamegraph slot="content" class="analytics"></x-flamegraph>
+    </x-drawer>
   </div>
 </template>
 
@@ -22,12 +27,14 @@ import analyticsModule from "@/javascripts/file/Analytics";
 import xDiag from "@/components/analytics/diag/DiagIndex";
 import xGc from "@/components/analytics/gc/GcIndex";
 import xTrend from "@/components/analytics/trend/TrendIndex";
+import xFlamegraph from "@/components/analytics/flamegraph/FlamegraphIndex";
 
 export default {
   components: {
     "x-diag": xDiag,
     "x-gc": xGc,
-    "x-trend": xTrend
+    "x-trend": xTrend,
+    "x-flamegraph": xFlamegraph
   },
 
   data() {
@@ -35,6 +42,7 @@ export default {
       diagDrawerKey: "diag-analytics",
       gcDrawerKey: "gc-analytics",
       trendDrawerKey: "show-trend",
+      flamegraphDrawerKey: "show-flamegraph",
       whiteQueryKeys: ["filterType", "page"],
       forceGoBack: true
     };

@@ -32,7 +32,7 @@ export default {
       operations: [],
       devtools: ["cpuprofile", "heapprofile", "heapsnapshot"],
       devtools2: ["cpuprofile", "heapprofile", "heapsnapshot"],
-      xprofiler: ["gcprofile", "diag", "trend"],
+      xprofiler: ["gcprofile", "diag", "trend", "cpuprofile"],
       normalColor: "#515a6e",
       disableColor: "#c5c8ce",
       successColor: "#2a9446",
