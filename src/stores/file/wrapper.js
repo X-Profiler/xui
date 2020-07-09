@@ -12,6 +12,9 @@ export default {
 
     trendDrawer: undefined,
     trendData: {},
+
+    flamegraphDrawer: undefined,
+    flamegraphData: {},
   },
 
   mutations: {
@@ -42,6 +45,16 @@ export default {
 
       if (trendData) {
         state.trendData = trendData;
+      }
+    },
+
+    setFlamegraphDrawer(state, { status, flamegraphData }) {
+      if (status === false || status === true) {
+        state.flamegraphDrawer = status;
+      }
+
+      if (flamegraphData) {
+        state.flamegraphData = flamegraphData;
       }
     }
   }

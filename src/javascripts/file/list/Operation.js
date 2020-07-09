@@ -18,7 +18,7 @@ export default {
   methods: {
     ...mapMutations(["setErrorModal"]),
 
-    ...mapMutationsWrapper(["setDiagDrawer", "setGcDrawer", "setTrendDrawer"]),
+    ...mapMutationsWrapper(["setDiagDrawer", "setGcDrawer", "setTrendDrawer", "setFlamegraphDrawer"]),
 
     ...mapActions(["doTransfer", "doFavor"]),
 
@@ -175,6 +175,10 @@ export default {
 
       if (fileType === "trend") {
         this.setTrendDrawer({ status: true, trendData: data });
+      }
+
+      if (fileType === "cpuprofile") {
+        this.setFlamegraphDrawer({ status: true, flamegraphData: data });
       }
     },
 
