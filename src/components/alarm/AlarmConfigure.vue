@@ -46,7 +46,7 @@
         <div v-if="checkNeedShow(cfg, 'input')" class="input-group">
           <Input
             v-model="modelMap[cfg.value]"
-            :placeholder="cfg.placeholder || placeholderMap[modelMap[cfg.placeholderValue]]"
+            :placeholder="getPlaceholder(cfg)"
             class="input"
             clearable
           />
@@ -131,7 +131,7 @@ export default {
           value: "webhookSign",
           dependent: "checkbox",
           dependentValue: "webhookPush",
-          placeholder: "&sign=xxxxxx"
+          placeholderValue: "webhookType"
         },
         {
           label: "预设规则列表",
@@ -184,7 +184,10 @@ export default {
           { value: "p3", label: "P3 (邮件通知)" },
           { value: "p4", label: "P4 (数据记录)" }
         ],
-        webhookType: [{ value: "dingtalk", label: "钉钉推送" }],
+        webhookType: [
+          { value: "dingtalk", label: "钉钉推送" },
+          { value: "qywx", label: "企业微信" }
+        ],
         fastRules: [
           { value: "fast_rule_memory", label: "进程 Heap Memory 预警" },
           { value: "fast_rule_cpu", label: "进程 CPU 使用率预警" },
@@ -215,8 +218,12 @@ export default {
           // }
         ]
       },
-      placeholderMap: {
-        dingtalk: "https://oapi.dingtalk.com/robot/send?access_token=xxxxxx"
+      webhookAddressPlaceholderMap: {
+        dingtalk: "https://oapi.dingtalk.com/robot/send?access_token=xxxxxx",
+        qywx: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxxxx"
+      },
+      webhookSignPlaceholderMap: {
+        dingtalk: "&sign=xxxxxx"
       }
     };
   },

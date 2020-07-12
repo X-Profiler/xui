@@ -32,11 +32,13 @@ export default {
       this.resetState();
     },
 
-    checkNeedShow({ type, dependent, dependentValue }, showType) {
+    checkNeedShow({ type, value, dependent, dependentValue, placeholderValue }, showType) {
       const needShow = showType === "label" || type === showType;
 
       if (dependent === "checkbox") {
-        return needShow && this.checkboxMap[dependentValue];
+        const placeholderMap = this[`${value}PlaceholderMap`];
+        const selfNeed = placeholderMap ? placeholderMap[this.modelMap[placeholderValue]] : true;
+        return needShow && selfNeed && this.checkboxMap[dependentValue];
       }
 
       return needShow;
@@ -117,6 +119,14 @@ export default {
           this.setTipModal({ status: true, data });
         })
         .then(() => this[loading] = false);
+    },
+
+    getPlaceholder(cfg) {
+      const modelMap = this.modelMap;
+      const { value, placeholder, placeholderValue } = cfg;
+
+      return placeholder
+        || this[`${value}PlaceholderMap`][modelMap[placeholderValue]];
     }
   },
 
