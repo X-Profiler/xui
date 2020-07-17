@@ -24,6 +24,10 @@ export default {
         cancelToken,
         rawData: true,
 
+        headers: {
+          "accept-encoding": "gzip"
+        },
+
         // user data
         url: rootState.url.downloadFile,
         data: {

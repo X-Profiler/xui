@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const utils = require('../../lib/utils');
+const zlib = require('zlib');
+const gzip = zlib.createGzip();
 
 const fileLoadingMap = {};
 
@@ -112,14 +114,21 @@ module.exports = app => {
     console.log(`download fileType ${fileType} fileId ${fileId}`);
 
     res.setHeader('Content-Type', 'application/octet-stream');
+    res.setHeader('Content-Encoding', 'gzip');
     res.setHeader('Content-Disposition', `attachment;filename=x-test-profiler-21182-20190930-75431.${fileType}`);
     const tmp = path.join(__dirname, `../../data/profiler/mock.${fileType}`);
 
     setTimeout(() => {
       if (fs.existsSync(tmp)) {
-        fs.createReadStream(tmp).pipe(res);
+        fs.createReadStream(tmp)
+          .pipe(gzip)
+          .pipe(res)
+          .on('error', err => reject(new Error(`gzip pipe file ${tmp} failed: ${err.message}`)));
       } else {
-        fs.createReadStream(__filename).pipe(res);
+        fs.createReadStream(__filename)
+          .pipe(gzip)
+          .pipe(res)
+          .on('error', err => reject(new Error(`gzip pipe file ${__filename} failed: ${err.message}`)));
       }
     }, 1000);
   });
