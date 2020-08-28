@@ -32,18 +32,20 @@ function copyNewTarget(source, target) {
   exec(`cp -rf ${source} ${target}`);
 }
 
+const xprofilerPath = 'xprofiler-console';
+
 // build vue
-exec("vue-cli-service build");
-exec("rm -rf ../xprofiler-console/app/view/index.html");
-exec("mv dist/index.html ../xprofiler-console/app/view/");
-exec("rm -rf ../xprofiler-console/app/public/*")
-exec("mv dist/* ../xprofiler-console/app/public/");
+exec('vue-cli-service build');
+exec(`rm -rf ../${xprofilerPath}/app/view/index.html`);
+exec(`mv dist/index.html ../${xprofilerPath}/app/view/`);
+exec(`rm -rf ../${xprofilerPath}/app/public/*`)
+exec(`mv dist/* ../${xprofilerPath}/app/public/`);
 
 // build devtools
 const newDevtoolsSrc = path.join(__dirname, '../mock/public/dashboard/devtools-new');
 const oldDevtoolsSrc = path.join(__dirname, '../mock/public/dashboard/devtools-old');
-const newDevtoolsTarget = path.join(__dirname, '../../xprofiler-console/app/public/devtools/new');
-const oldDevtoolsTarget = path.join(__dirname, '../../xprofiler-console/app/public/devtools/old');
+const newDevtoolsTarget = path.join(__dirname, `../../${xprofilerPath}/app/public/devtools/new`);
+const oldDevtoolsTarget = path.join(__dirname, `../../${xprofilerPath}/app/public/devtools/old`);
 
 createBaseDir(newDevtoolsTarget);
 createBaseDir(oldDevtoolsTarget);
