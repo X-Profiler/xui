@@ -420,7 +420,7 @@ export default {
     },
 
     restore(axis) {
-      this.setWidthMap(axis, 1, 1);
+      this.setWidthMap(axis, 1.2, 1.2);
 
       // scale
       const style = this.$refs[this.labelKey + axis][0].style;
