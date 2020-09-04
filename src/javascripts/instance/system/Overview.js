@@ -6,6 +6,16 @@ const { isNumber, formatTime } = utils;
 const { mapState: mapStateInstance } = utils.createNamespace("dashboard/instance");
 const { mapState, mapActions } = utils.createNamespace("dashboard/instance/system");
 
+function serializeMetric(value, formateAsTime) {
+  const invalid = "-";
+
+  if (formateAsTime) {
+    return isNumber(value) ? formatTime(value) : invalid;
+  }
+
+  return isNumber(value) ? value : invalid;
+}
+
 export default {
   created() {
     this.cancelToken = utils.createCancelToken();
@@ -95,12 +105,12 @@ export default {
         qps
       } = overview_data;
 
-      metrics[0].push({ key: "Load1 / 5 / 15", value: `${isNumber(load1) && load1 || "-"} / ${isNumber(load5) && load5 || "-"} / ${isNumber(load15) && load15 || "-"}` });
-      metrics[0].push({ key: "Node.js 进程数", value: isNumber(nodeCount) && nodeCount || "-" });
-      metrics[1].push({ key: "Scavenge Total / Avg", value: `${isNumber(scavengeTotal) && formatTime(scavengeTotal) || "-"} / ${isNumber(scavengeAverage) && formatTime(scavengeAverage) || "-"}` });
-      metrics[1].push({ key: "Marksweep Total / Avg", value: `${isNumber(marksweepTotal) && formatTime(marksweepTotal) || "-"} / ${isNumber(marksweepAverage) && formatTime(marksweepAverage) || "-"}` });
-      metrics[2].push({ key: "RT Expired / Avg", value: `${isNumber(rtExpired) && rtExpired || "-"} / ${isNumber(rtAverage) && formatTime(rtAverage) || "-"}` });
-      metrics[2].push({ key: "QPS", value: isNumber(qps) && qps || "-" });
+      metrics[0].push({ key: "Load1 / 5 / 15", value: `${serializeMetric(load1)} / ${serializeMetric(load5)} / ${serializeMetric(load15)}` });
+      metrics[0].push({ key: "Node.js 进程数", value: serializeMetric(nodeCount) });
+      metrics[1].push({ key: "Scavenge Total / Avg", value: `${serializeMetric(scavengeTotal, true)} / ${serializeMetric(scavengeAverage, true)}` });
+      metrics[1].push({ key: "Marksweep Total / Avg", value: `${serializeMetric(marksweepTotal, true)} / ${serializeMetric(marksweepAverage, true)}` });
+      metrics[2].push({ key: "RT Expired / Avg", value: `${serializeMetric(rtExpired)} / ${serializeMetric(rtAverage, true)}` });
+      metrics[2].push({ key: "QPS", value: serializeMetric(qps) });
 
       return metrics;
     }
