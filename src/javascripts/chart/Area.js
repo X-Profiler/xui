@@ -657,7 +657,7 @@ export default {
     },
 
     paddingLeft() {
-      return this.left || 40;
+      return this.left || 46;
     },
 
     paddingRight() {
