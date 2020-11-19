@@ -18,8 +18,8 @@
         <!-- trend panel -->
         <div v-if="!disablePanel" class="panel" :style="'background-color: ' + color">
           <div class="line-group">
-            <div class="title">PID: {{ proc.pid }}</div>
-            <div class="action">
+            <div class="title">PID: {{ displayPid }}</div>
+            <div v-if="!!proc" class="action">
               <div
                 class="bt-wrapper"
                 v-for="(bt, index) in bts"
@@ -35,7 +35,7 @@
             </div>
           </div>
 
-          <div class="cmd">{{ proc.cmd }}</div>
+          <div class="cmd">{{ displayCmd }}</div>
         </div>
 
         <!-- trend duration -->
