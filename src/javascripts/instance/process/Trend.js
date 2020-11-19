@@ -72,7 +72,7 @@ export default {
   },
 
   computed: {
-    ...mapStateProcess(["colors", "processTrendData",
+    ...mapStateProcess(["colors", "diedProcessColor", "processTrendData",
       "xprofiler_processes_loading", "xprofiler_processes_load_error", "xprofiler_processes_data"]),
 
     cmdMap() {
@@ -89,6 +89,9 @@ export default {
     color() {
       const colors = this.colors;
       const proc = this.proc;
+      if (!proc) {
+        return this.diedProcessColor;
+      }
       const index = this.cmdMap.indexOf(proc.cmd);
       return colors[index % colors.length] || colors[0];
     },
@@ -101,6 +104,22 @@ export default {
         }
       }
       return refs;
+    },
+
+    displayPid() {
+      const proc = this.proc;
+      if (!proc) {
+        return this.$route.query.pid || "未知";
+      }
+      return proc.pid;
+    },
+
+    displayCmd() {
+      const proc = this.proc;
+      if (!proc) {
+        return "未知";
+      }
+      return proc.cmd;
     }
   }
 };
