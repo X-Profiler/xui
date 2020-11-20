@@ -34,6 +34,7 @@ export default {
       this.globalProcessTip = undefined;
       this.selectedPid = undefined;
       this.xProcesses = [];
+      this.onlyAlived = true;
     },
 
     formatXprocesses(list) {
@@ -45,8 +46,10 @@ export default {
         // add process line color
         const colors = this.colors;
         const index = cmdMap.indexOf(proc.cmd);
-        proc.color = colors[index % colors.length];
+        proc.color = proc.cmd ? colors[index % colors.length] : this.diedProcessColor;
         proc.selected = false;
+        proc.historical = !proc.cmd;
+        proc.cmd = proc.cmd || "unknown command";
 
         // format time
         proc.startTimeFmt = moment(proc.startTime).format("YYYY-MM-DD HH:mm:ss");
@@ -72,26 +75,26 @@ export default {
       // set pid from query
       const query = this.$route.query;
       const queryPid = utils.isNumber(query.pid) && Number(query.pid);
-      const vaidPids = this.xProcesses.map(proc => Number(proc.pid));
+      const vaidPids = this.showedProcesses.map(proc => Number(proc.pid));
       if (queryPid && vaidPids.includes(queryPid)) {
         this.selectedPid = queryPid;
         return;
       }
       // set pid from data
-      if (this.xProcesses.length > 0) {
-        this.selectedPid = this.xProcesses[0].pid;
+      if (this.showedProcesses.length > 0) {
+        this.selectedPid = this.showedProcesses[0].pid;
       }
     },
 
     selectPid(index) {
-      const data = this.xProcesses[index];
+      const data = this.showedProcesses[index];
       this.selectedPid = data.pid;
     },
 
     dispatchProc() {
       // get line
       let procData;
-      for (const data of this.xProcesses) {
+      for (const data of this.showedProcesses) {
         if (data.pid == this.selectedPid) {
           procData = data;
         }
@@ -114,7 +117,7 @@ export default {
 
     ...mapStateInstance(["agentId"]),
 
-    ...mapStateProcess(["colors", "xprofiler_processes_loading", "xprofiler_processes_load_error", "xprofiler_processes_data"]),
+    ...mapStateProcess(["colors", "diedProcessColor", "xprofiler_processes_loading", "xprofiler_processes_load_error", "xprofiler_processes_data"]),
 
     lineTitle() {
       return utils.getTag(tags.lineTitle);
@@ -125,15 +128,19 @@ export default {
         return;
       }
 
-      const xProcesses = this.xProcesses;
+      const showedProcesses = this.showedProcesses;
       const nodeProcesses = this.nodeProcesses;
-      if (xProcesses.length === 0 && nodeProcesses.length === 0) {
+      if (showedProcesses.length === 0 && nodeProcesses.length === 0) {
         return "无法连接到此实例，请确认此实例上的应用已安装并启动了 xtransit，且已正确配置 appid 和 secret";
       }
     },
 
     display() {
       return !this.xprofiler_processes_loading && !this.xprofiler_processes_load_error && !this.globalProcessTip;
+    },
+
+    showedProcesses() {
+      return this.onlyAlived ? this.xProcesses.filter(proc => !proc.historical) : this.xProcesses;
     }
   },
 

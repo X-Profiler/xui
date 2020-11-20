@@ -49,13 +49,13 @@
           <!-- process detail -->
           <div class="panel-chapter">{{ processDetailTag }}</div>
           <div class="panel-long-button">
-            <Button size="small" type="primary" ghost long @click="checkXprofiler">
+            <Button size="small" type="primary" ghost long @click="checkXprofiler" :disabled="processData.historical">
               <div class="panel-button-value">{{ checkXprofilerTag }}</div>
             </Button>
           </div>
           <div class="panel-button">
             <div class="panel-normal-button" v-for="(button, index) in detailButtons" :key="index">
-              <Button size="small" type="info" long @click="actDetail(button.value)">
+              <Button size="small" :type="processData.historical ? 'primary' : 'info'" long @click="actDetail(button.value)" :ghost="processData.historical">
                 <div class="panel-button-value">{{ button.label }}</div>
               </Button>
             </div>
@@ -70,7 +70,7 @@
               :key="index"
               :style="index === actionButtons.length - 1 && index % 2 === 0 ? 'width: 100%':''"
             >
-              <Button size="small" type="info" long @click="takeAction(button.value)">
+              <Button size="small" type="info" long @click="takeAction(button.value)" :disabled="processData.historical">
                 <div class="panel-button-value">{{ button.label }}</div>
               </Button>
             </div>

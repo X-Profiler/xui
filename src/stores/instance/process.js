@@ -49,7 +49,7 @@ export default {
       "rgb(34, 153, 84)"
     ],
 
-    diedProcessColor: "#c1c5ce",
+    diedProcessColor: "rgb(193, 197, 206)",
   },
 
   mutations: {

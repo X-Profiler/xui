@@ -19,7 +19,7 @@
         <div v-if="!disablePanel" class="panel" :style="'background-color: ' + color">
           <div class="line-group">
             <div class="title">PID: {{ displayPid }}</div>
-            <div v-if="!!proc" class="action">
+            <div v-if="proc.cmd" class="action">
               <div
                 class="bt-wrapper"
                 v-for="(bt, index) in bts"
