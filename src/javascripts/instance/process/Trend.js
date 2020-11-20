@@ -89,7 +89,7 @@ export default {
     color() {
       const colors = this.colors;
       const proc = this.proc;
-      if (!proc) {
+      if (!proc || !proc.cmd) {
         return this.diedProcessColor;
       }
       const index = this.cmdMap.indexOf(proc.cmd);

@@ -31,7 +31,7 @@
             style="height: 100%"
             ref="panel"
             v-show="display"
-            :processes="xProcesses"
+            :processes="showedProcesses"
             @selectPid="selectPid"
           ></x-panel>
         </transition>
@@ -41,11 +41,16 @@
       <div class="data">
         <!-- process line -->
         <div class="process-line-body">
-          <div class="section-title">{{ lineTitle }}</div>
+          <div class="section-title-group">
+            <div class="section-title">{{ lineTitle }}</div>
+            <Checkbox v-model="onlyAlived" style="margin-left: 7px;">
+              <span></span>
+            </Checkbox>
+          </div>
 
           <!-- show process line -->
           <transition name="slide-rightward">
-            <x-line ref="line" v-show="display" :processes="xProcesses" @selectPid="selectPid"></x-line>
+            <x-line ref="line" v-show="display" :processes="showedProcesses" @selectPid="selectPid"></x-line>
           </transition>
         </div>
 
@@ -56,7 +61,7 @@
             <x-catalogue
               ref="catalogue"
               v-show="display"
-              :processes="xProcesses"
+              :processes="showedProcesses"
               @selectPid="selectPid"
             ></x-catalogue>
           </transition>
@@ -71,7 +76,7 @@
             <x-scatter
               ref="scatter"
               :display="display"
-              :processes="xProcesses"
+              :processes="showedProcesses"
               @selectPid="selectPid"
             ></x-scatter>
           </div>
@@ -105,7 +110,8 @@ export default {
       selectedPid: undefined,
       xProcesses: [],
       nodeProcesses: [],
-      nessaryQueryArgs: ["tab", "agentId"]
+      nessaryQueryArgs: ["tab", "agentId"],
+      onlyAlived: true,
     };
   },
 

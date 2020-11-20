@@ -67,6 +67,11 @@ body::-webkit-scrollbar{
   background-color: #eff1f4;
 }
 
+.section-title-group {
+  display: flex;
+  align-items: center;
+}
+
 .section-title {
   font-weight: bold;
   text-align: left;
