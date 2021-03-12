@@ -11,6 +11,8 @@ const { mapMethods: mapMethodsTrend, mapWatch: mapWatchTrend, handleMounted: han
   utils.drawerRouteFactory("trendDrawerKey", "trendDrawer", "trend", "setTrendDrawer", "trendData");
 const { mapMethods: mapMethodsFlamegraph, mapWatch: mapWatchFlamegraph, handleMounted: handleMountedFlamegraph } =
   utils.drawerRouteFactory("flamegraphDrawerKey", "flamegraphDrawer", "flamegraph", "setFlamegraphDrawer", "flamegraphData");
+const { mapMethods: mapMethodsSnapshot, mapWatch: mapWatchSnapshot, handleMounted: handleMountedSnapshot } =
+  utils.drawerRouteFactory("snapshotDrawerKey", "snapshotDrawer", "snapshot", "setSnapshotDrawer", "snapshotData");
 
 export default {
   mounted() {
@@ -18,10 +20,11 @@ export default {
     handleMountedGc.call(this, "handleGcDrawer", true);
     handleMountedTrend.call(this, "handleTrendDrawer", true);
     handleMountedFlamegraph.call(this, "handleFlamegraphDrawer", true);
+    handleMountedSnapshot.call(this, "handleSnapshotDrawer", true);
   },
 
   methods: {
-    ...mapMutations(["setDiagDrawer", "setGcDrawer", "setTrendDrawer", "setFlamegraphDrawer"]),
+    ...mapMutations(["setDiagDrawer", "setGcDrawer", "setTrendDrawer", "setFlamegraphDrawer", "setSnapshotDrawer"]),
 
     ...mapMethodsDiag("handleDiagDrawer"),
 
@@ -30,6 +33,8 @@ export default {
     ...mapMethodsTrend("handleTrendDrawer"),
 
     ...mapMethodsFlamegraph("handleFlamegraphDrawer"),
+
+    ...mapMethodsSnapshot("handleSnapshotDrawer"),
 
     closeDiagDrawer() {
       this.setDiagDrawer({ status: false });
@@ -45,7 +50,11 @@ export default {
 
     closeFlameGraphDrawer() {
       this.setFlamegraphDrawer({ status: false });
-    }
+    },
+
+    closeSnapshotDrawer() {
+      this.setSnapshotDrawer({ status: false });
+    },
   },
 
   computed: {
@@ -53,7 +62,8 @@ export default {
       "diagDrawer", "diagData",
       "gcDrawer", "gcData",
       "trendDrawer", "trendData",
-      "flamegraphDrawer", "flamegraphData"
+      "flamegraphDrawer", "flamegraphData",
+      "snapshotDrawer", "snapshotData",
     ])
   },
 
@@ -66,11 +76,14 @@ export default {
 
     ...mapWatchFlamegraph,
 
+    ...mapWatchSnapshot,
+
     $route(to) {
       this.handleDiagDrawer(to.query);
       this.handleGcDrawer(to.query);
       this.handleTrendDrawer(to.query);
       this.handleFlamegraphDrawer(to.query);
+      this.handleSnapshotDrawer(to.query);
     }
   }
 };

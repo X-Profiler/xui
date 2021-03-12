@@ -122,13 +122,15 @@ module.exports = app => {
       if (fs.existsSync(tmp)) {
         fs.createReadStream(tmp)
           .pipe(gzip)
+          .on('error', err => console.error(new Error(`gzip file ${tmp} failed: ${err.message}`)))
           .pipe(res)
-          .on('error', err => reject(new Error(`gzip pipe file ${tmp} failed: ${err.message}`)));
+          .on('error', err => console.error(new Error(`pipe file ${tmp} failed: ${err.message}`)));
       } else {
         fs.createReadStream(__filename)
           .pipe(gzip)
+          .on('error', err => console.error(new Error(`gzip file ${__filename} failed: ${err.message}`)))
           .pipe(res)
-          .on('error', err => reject(new Error(`gzip pipe file ${__filename} failed: ${err.message}`)));
+          .on('error', err => console.error(new Error(`pipe file ${__filename} failed: ${err.message}`)));
       }
     }, 1000);
   });
