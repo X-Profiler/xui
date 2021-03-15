@@ -22,6 +22,12 @@
         top="calc(40vh - 57px)"
       ></x-error-message>
 
+      <x-error-message
+        v-show="progress"
+        :message="progress"
+        top="calc(40vh - 57px)"
+      ></x-error-message>
+
       <transition name="slide-noward">
         <div v-if="!loading && !error" class="snapshot-detail"></div>
       </transition>
@@ -36,7 +42,10 @@ export default {
   data() {
     return {
       loading: true,
+      progress: null,
       error: null,
+      request: null,
+      file: null,
     };
   },
 
