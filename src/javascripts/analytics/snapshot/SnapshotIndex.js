@@ -20,7 +20,7 @@ export default {
 
   methods: {
     downloadFile({ fileId, fileType, fileName }) {
-      const xhr = new XMLHttpRequest();
+      const xhr = this.request = new XMLHttpRequest();
       const url = `/file/download?fileId=${fileId}&fileType=${fileType}`;
       xhr.open("GET", url, true);
       xhr.responseType = "blob";
@@ -31,8 +31,10 @@ export default {
       const that = this;
 
       function progress(e) {
-        const progress = `已下载: ${utils.formatSize(e.loaded)}`;
-        this.progress = progress;
+        const progress = `${utils.formatSize(e.loaded)}`;
+        that.theme = 1;
+        that.progress = { left: "已下载", right: `${progress}` };
+        that.loading = false;
       }
 
       async function onload() {
@@ -41,7 +43,9 @@ export default {
           const error = `加载堆快照失败，错误码: ${status}`;
           that.error = error;
         } else {
-          this.file = new File([this.response], fileName);
+          that.file = new File([this.response], fileName);
+          that.theme = 0;
+          that.progress = "准备解析堆快照";
         }
       }
     }
