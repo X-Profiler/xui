@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const utils = require('../../lib/utils');
 const zlib = require('zlib');
-const gzip = zlib.createGzip();
 
 const fileLoadingMap = {};
 
@@ -119,6 +118,7 @@ module.exports = app => {
     const tmp = path.join(__dirname, `../../data/profiler/mock.${fileType}`);
 
     setTimeout(() => {
+      const gzip = zlib.createGzip();
       if (fs.existsSync(tmp)) {
         fs.createReadStream(tmp)
           .pipe(gzip)

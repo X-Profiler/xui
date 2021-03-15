@@ -1,10 +1,17 @@
 <template>
   <div class="error" :style="style">
-    <div class="container">
-      <div class="icon-wrapper">
+    <!-- default theme -->
+    <div v-show="theme === 0" class="container">
+      <div v-show="icon" class="icon-wrapper">
         <Icon class="icon" type="ios-alert-outline" />
       </div>
       <span>{{ message }}</span>
+    </div>
+
+    <!-- theme 1: left / right -->
+    <div v-show="theme === 1" style="width: 100%">
+      <div class="theme-1 leftpart">{{ message.left }}</div>
+      <div class="theme-1 rightpart">{{ message.right }}</div>
     </div>
   </div>
 </template>
@@ -15,7 +22,15 @@ import { isNumber } from "@/javascripts/lib/utils";
 export default {
   props: {
     message: String,
-    top: [Number, String]
+    top: [Number, String],
+    theme: {
+      type: Number,
+      default: 0,
+    },
+    icon: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   computed: {
@@ -29,8 +44,8 @@ export default {
         }
       }
       return style;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -52,5 +67,19 @@ export default {
   align-items: center;
   min-height: 50px;
   width: 100%;
+}
+
+.theme-1 {
+  display: inline-block;
+}
+
+.leftpart {
+  width: 50%;
+  text-align: right;
+}
+
+.rightpart {
+  width: 50%;
+  padding-left: 5px;
 }
 </style>

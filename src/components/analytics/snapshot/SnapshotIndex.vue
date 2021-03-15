@@ -25,6 +25,8 @@
       <x-error-message
         v-show="progress"
         :message="progress"
+        :theme="theme"
+        :icon="false"
         top="calc(40vh - 57px)"
       ></x-error-message>
 
@@ -42,6 +44,7 @@ export default {
   data() {
     return {
       loading: true,
+      theme: 0,
       progress: null,
       error: null,
       request: null,
