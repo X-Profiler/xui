@@ -1,18 +1,22 @@
 <template>
   <div class="error" :style="style">
     <!-- default theme -->
-    <div v-if="theme === 0" class="container">
-      <div v-show="icon" class="icon-wrapper">
-        <Icon class="icon" type="ios-alert-outline" />
+    <transition name="slide-noward">
+      <div v-show="theme === 0" class="container">
+        <div v-show="icon" class="icon-wrapper">
+          <Icon class="icon" type="ios-alert-outline" />
+        </div>
+        <span>{{ message }}</span>
       </div>
-      <span>{{ message }}</span>
-    </div>
+    </transition>
 
     <!-- theme 1: left / right -->
-    <div v-if="theme === 1" style="width: 100%">
-      <div class="theme-1 leftpart">{{ message.left }}</div>
-      <div class="theme-1 rightpart">{{ message.right }}</div>
-    </div>
+    <transition name="slide-noward">
+      <div v-show="theme === 1" style="width: 100%">
+        <div class="theme-1 leftpart">{{ message && message.left }}</div>
+        <div class="theme-1 rightpart">{{ message && message.right }}</div>
+      </div>
+    </transition>
   </div>
 </template>
 
