@@ -1,14 +1,16 @@
 "use strict";
 
 import BalancedJSONTokenizer from "@/javascripts/analytics/snapshot/Tokenizer";
+import SnapshotParser from "@/javascripts/analytics/snapshot/SnapshotParser";
 
 export default class SnapshotLoader {
-  constructor(progress) {
+  constructor(progress, doneCallback) {
     this._reset();
     this._progress = progress;
     this._buffer = "";
     this._dataCallback = null;
     this._done = false;
+    this._doneCallback = doneCallback;
     this._parseInput();
   }
 
@@ -33,10 +35,10 @@ export default class SnapshotLoader {
    */
   buildSnapshot() {
     this._progress.updateStatus("Building dominator tree…");
-    console.log(1333, this._snapshot)
-    // const result = new JSHeapSnapshot(this._snapshot, this._progress);
-    // this._reset();
-    // return result;
+    console.log(1333, this._snapshot);
+    const result = new SnapshotParser(this._snapshot, this._progress);
+    this._reset();
+    return result;
   }
 
   _parseUintArray() {
@@ -192,6 +194,6 @@ export default class SnapshotLoader {
     }
     this._parseStringsArray();
 
-    this.buildSnapshot();
+    this._doneCallback();
   }
 }

@@ -56,10 +56,8 @@ export default {
       this.progress = "准备解析堆快照";
       const reader = new ChunkedFileReader(this.file, 10000000);
       const loader = new SnapshotLoader({
-        updateStatus: progress => {
-          this.progress = progress;
-        }
-      });
+        updateStatus: progress => this.progress = progress
+      }, () => this.result = loader.buildSnapshot());
       const success = await reader.read(loader);
       if (!success) {
         this.error = reader.error().message;
