@@ -2,20 +2,20 @@
 
 import { isNumber } from "@/javascripts/lib/common";
 
-export function formatSize(size, fixed = 2, showPlus) {
+export function formatSize(size, fixed = 2, showPlus, showString = false) {
   const symbol = size === Math.abs(size);
   size = Math.abs(size);
   let str = "";
   size = +size;
 
   if (size / 1024 < 1) {
-    str = `${Number((size).toFixed(fixed))}Bytes`;
+    str = `${showString ? size.toFixed(fixed) : Number((size).toFixed(fixed))}Bytes`;
   } else if (size / 1024 / 1024 < 1) {
-    str = `${Number((size / 1024).toFixed(fixed))}KB`;
+    str = `${showString ? (size / 1024).toFixed(fixed) : Number((size / 1024).toFixed(fixed))}KB`;
   } else if (size / 1024 / 1024 / 1024 < 1) {
-    str = `${Number((size / 1024 / 1024).toFixed(fixed))}MB`;
+    str = `${showString ? (size / 1024 / 1024).toFixed(fixed) : Number((size / 1024 / 1024).toFixed(fixed))}MB`;
   } else {
-    str = `${(Number(size / 1024 / 1024 / 1024).toFixed(fixed))}GB`;
+    str = `${showString ? (size / 1024 / 1024 / 1024).toFixed(fixed) : (Number(size / 1024 / 1024 / 1024).toFixed(fixed))}GB`;
   }
   return size ? `${symbol ? `${showPlus ? `+${str}` : str}` : `-${str}`}` : str;
 }

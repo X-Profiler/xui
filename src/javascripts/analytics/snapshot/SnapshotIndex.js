@@ -33,7 +33,7 @@ export default {
       const that = this;
 
       function progress(e) {
-        const progress = `${utils.formatSize(e.loaded)}`;
+        const progress = `${utils.formatSize(e.loaded, 2, false, true)}`;
         that.theme = 1;
         that.progress = { left: "已下载", right: `${progress}` };
         that.loading = false;
