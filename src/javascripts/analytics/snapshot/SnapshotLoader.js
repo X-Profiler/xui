@@ -32,7 +32,7 @@ export default class SnapshotLoader {
    * @return {!JSHeapSnapshot}
    */
   buildSnapshot() {
-    this._progress.updateStatus("准备处理对快照");
+    this._progress.updateStatus("Building dominator tree…");
     // const result = new JSHeapSnapshot(this._snapshot, this._progress);
     // this._reset();
     // return result;
@@ -79,7 +79,7 @@ export default class SnapshotLoader {
   }
 
   _parseStringsArray() {
-    this._progress.updateStatus("解析 string 数组");
+    this._progress.updateStatus("Parsing strings…");
     const closingBracketIndex = this._json.lastIndexOf("]");
     if (closingBracketIndex === -1) {
       throw new Error("Incomplete JSON");
@@ -187,5 +187,7 @@ export default class SnapshotLoader {
       this._json += await this._fetchChunk();
     }
     this._parseStringsArray();
+
+    this.buildSnapshot();
   }
 }
