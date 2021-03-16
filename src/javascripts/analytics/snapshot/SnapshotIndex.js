@@ -44,10 +44,14 @@ export default {
           that.error = error;
         } else {
           that.file = new File([this.response], fileName);
-          that.theme = 0;
-          that.progress = "准备解析堆快照";
+          that.parseSnapshot();
         }
       }
+    },
+
+    parseSnapshot() {
+      this.theme = 0;
+      this.progress = "准备解析堆快照";
     }
   },
 
