@@ -1,7 +1,7 @@
 <template>
   <div class="error" :style="style">
     <!-- default theme -->
-    <div v-show="theme === 0" class="container">
+    <div v-if="theme === 0" class="container">
       <div v-show="icon" class="icon-wrapper">
         <Icon class="icon" type="ios-alert-outline" />
       </div>
@@ -9,7 +9,7 @@
     </div>
 
     <!-- theme 1: left / right -->
-    <div v-show="theme === 1" style="width: 100%">
+    <div v-if="theme === 1" style="width: 100%">
       <div class="theme-1 leftpart">{{ message.left }}</div>
       <div class="theme-1 rightpart">{{ message.right }}</div>
     </div>
@@ -21,7 +21,7 @@ import { isNumber } from "@/javascripts/lib/utils";
 
 export default {
   props: {
-    message: String,
+    message: [String, Object],
     top: [Number, String],
     theme: {
       type: Number,

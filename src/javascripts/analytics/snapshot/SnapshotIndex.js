@@ -1,6 +1,8 @@
 "use strict";
 
 import * as utils from "@/javascripts/lib/utils";
+import ChunkedFileReader from "@/javascripts/analytics/snapshot/FileReader";
+import SnapshotLoader from "@/javascripts/analytics/snapshot/SnapshotLoader";
 
 const { mapState } = utils.createNamespace("dashboard/file/wrapper");
 
@@ -49,9 +51,19 @@ export default {
       }
     },
 
-    parseSnapshot() {
+    async parseSnapshot() {
       this.theme = 0;
       this.progress = "准备解析堆快照";
+      const reader = new ChunkedFileReader(this.file, 10000000);
+      const loader = new SnapshotLoader({
+        updateStatus: progress => {
+          this.progress = progress;
+        }
+      });
+      const success = await reader.read(loader);
+      if (!success) {
+        this.error = reader.error().message;
+      }
     }
   },
 
