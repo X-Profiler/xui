@@ -33,6 +33,7 @@ export default class SnapshotLoader {
    */
   buildSnapshot() {
     this._progress.updateStatus("Building dominator tree…");
+    console.log(1333, this._snapshot)
     // const result = new JSHeapSnapshot(this._snapshot, this._progress);
     // this._reset();
     // return result;
@@ -120,7 +121,10 @@ export default class SnapshotLoader {
     this._array = length ? new Uint32Array(length) : [];
     this._arrayIndex = 0;
     while (this._parseUintArray()) {
-      this._progress.updateProgress(title, this._arrayIndex, this._array.length);
+      const total = this._array.length;
+      const value = this._arrayIndex;
+      const percentValue = ((total ? (value / total) : 0) * 100).toFixed(0);
+      this._progress.updateStatus(`Loading ${name.slice(1, name.length - 1)}…${percentValue}%`);
       this._json += await this._fetchChunk();
     }
     const result = this._array;
