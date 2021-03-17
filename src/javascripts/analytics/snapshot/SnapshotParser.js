@@ -1,6 +1,8 @@
 "use strict";
 
 import Tarjan from "@/javascripts/analytics/snapshot/Tarjan";
+import NodeUtil from "@/javascripts/analytics/snapshot/NodeUtil";
+import EdgeUtil from "@/javascripts/analytics/snapshot/EdgeUtil";
 
 export default class SnapshotParser {
   constructor(profile, progress) {
@@ -8,6 +10,10 @@ export default class SnapshotParser {
     this._progress = progress;
 
     this.init();
+    this.node_util = new NodeUtil(this);
+    this.edge_util = new EdgeUtil(this);
+    this.NodeUtil = NodeUtil;
+    this.EdgeUtil = EdgeUtil;
   }
 
   init() {
@@ -74,8 +80,5 @@ export default class SnapshotParser {
   }
 
   build() {
-
   }
-
-
 }
