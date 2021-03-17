@@ -35,7 +35,6 @@ export default class SnapshotLoader {
    */
   buildSnapshot() {
     this._progress.updateStatus("Building dominator tree…");
-    console.log(1333, this._snapshot);
     const result = new SnapshotParser(this._snapshot, this._progress);
     this._reset();
     return result;

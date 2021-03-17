@@ -57,11 +57,15 @@ export default {
       const reader = new ChunkedFileReader(this.file, 10000000);
       const loader = new SnapshotLoader({
         updateStatus: progress => this.progress = progress
-      }, () => this.result = loader.buildSnapshot());
+      }, () => this.showResult(loader.buildSnapshot()));
       const success = await reader.read(loader);
       if (!success) {
         this.error = reader.error().message;
       }
+    },
+
+    showResult(result) {
+      console.log(12333, result);
     }
   },
 
