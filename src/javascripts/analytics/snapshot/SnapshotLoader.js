@@ -35,9 +35,10 @@ export default class SnapshotLoader {
    */
   buildSnapshot() {
     this._progress.updateStatus("Building dominator tree…");
-    const result = new SnapshotParser(this._snapshot, this._progress);
+    const parser = new SnapshotParser(this._snapshot, this._progress);
+    parser.build();
     this._reset();
-    return result;
+    return parser;
   }
 
   _parseUintArray() {
