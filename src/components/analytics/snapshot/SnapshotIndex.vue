@@ -49,7 +49,6 @@ export default {
       error: null,
       request: null,
       file: null,
-      result: null,
     };
   },
 
