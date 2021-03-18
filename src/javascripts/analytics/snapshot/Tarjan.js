@@ -38,15 +38,34 @@ export default class Tarjan {
     this.size[0] = 0;
   }
 
-  compute() {
+  releaseMemory(time = 5) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
+
+  async compute() {
     this.enumerate();
-    this.build();
+    await this.build();
+
+    this.dfs = null;
+    this.semi = null;
+    this.parent = null;
+    this.bucket = null;
+    this.ancestor = null;
+    this.label = null;
+    this.size = null;
+    this.child = null;
+    this.inbounds = null;
+    this.outbounds = null;
+    await this.releaseMemory(50);
 
     for (let i = 0; i < this.length; ++i) {
       this.idominator[i] = null;
     }
 
     for (let i = 1; i < this.dom.length; i++) {
+      if (i % 50000 === 0) {
+        await this.releaseMemory();
+      }
       if (this.dom[i] === 0)
         continue;
 
@@ -62,6 +81,10 @@ export default class Tarjan {
 
       this.idominator[block] = dominator;
     }
+
+    this.vertex = null;
+    this.dom = null;
+    await this.releaseMemory(50);
   }
 
   enumerate() {
@@ -90,7 +113,7 @@ export default class Tarjan {
     }
   }
 
-  build() {
+  async build() {
     const dfs = this.dfs;
     const vertex = this.vertex;
     const semi = this.semi;
@@ -99,6 +122,10 @@ export default class Tarjan {
     const dom = this.dom;
 
     for (let w = dfs.length - 1; w >= 2; w--) {
+      if (w % 50000 === 0) {
+        await this.releaseMemory();
+      }
+
       const predecessors = this.inbounds[vertex[w]];
       if (Array.isArray(predecessors)) {
         for (let i = 0; i < predecessors.length; i++) {
