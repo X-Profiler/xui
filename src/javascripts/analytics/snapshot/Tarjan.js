@@ -43,7 +43,7 @@ export default class Tarjan {
   }
 
   async compute() {
-    this.enumerate();
+    await this.enumerate();
     await this.build();
 
     this.dfs = null;
@@ -87,11 +87,15 @@ export default class Tarjan {
     await this.releaseMemory(50);
   }
 
-  enumerate() {
+  async enumerate() {
     const queue = [this.root, 0];
     let dfs = 1;
 
+    let i = 0;
     while (queue.length !== 0) {
+      if (++i % 50000 === 0) {
+        await this.releaseMemory();
+      }
       const parent = queue.pop();
       const block = queue.pop();
       if (this.dfs[block] !== 0)

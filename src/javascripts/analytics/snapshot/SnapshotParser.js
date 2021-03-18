@@ -171,6 +171,9 @@ export default class SnapshotParser {
 
     const data = { count: node_count, root: root_index, inbounds: {}, outbounds: {} };
     for (let node_ordinal = 0; node_ordinal < node_count; ++node_ordinal) {
+      if (node_ordinal % 50000 === 0) {
+        await this.releaseMemory(5);
+      }
       const first_edge_index = first_edge_indexes[node_ordinal];
       const next_edge_index = first_edge_indexes[node_ordinal + 1];
       const node_flag = flags[node_ordinal] & page_object_flag;
