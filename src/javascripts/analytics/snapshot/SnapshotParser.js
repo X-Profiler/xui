@@ -83,6 +83,7 @@ export default class SnapshotParser {
   }
 
   build() {
+    this.calculateFlags();
     this.buildDominatorTree();
   }
 
@@ -99,7 +100,64 @@ export default class SnapshotParser {
     }
   }
 
+  calculateFlags() {
+    this._progress.updateStatus("Calculating flags…");
+
+    const node_count = this.node_count;
+    const first_edge_indexes = this.first_edge_indexes;
+    const root_index = this.root_index;
+    const edge_field_length = this.edge_field_length;
+    const node_util = this.node_util;
+    const edge_util = this.edge_util;
+    const page_object_flag = this.page_object_flag;
+    const { KSYNTHETIC } = NodeUtil.NodeTypes;
+    const { KELEMENT, KSHORTCUT, KWEAK } = EdgeUtil.EdgeTypes;
+
+    const flags = this.flags = new Array(node_count);
+    const node_to_visit = new Array(node_count);
+
+    let node_to_visit_length = 0;
+    for (let edge_index = first_edge_indexes[root_index],
+      end_edge_index = first_edge_indexes[root_index + 1];
+      edge_index < end_edge_index; edge_index += edge_field_length) {
+      const target_node = edge_util.getTargetNode(edge_index, true);
+      if (!node_util.checkOrdinalId(target_node))
+        continue;
+      const edge_type = edge_util.getTypeForInt(edge_index, true);
+      if (edge_type === KELEMENT) {
+        const node_type = node_util.getTypeForInt(target_node);
+        const node_name = node_util.getName(target_node);
+        if (!(node_type === KSYNTHETIC
+          && node_name === "(Document DOM trees)"))
+          continue;
+      } else if (edge_type !== KSHORTCUT)
+        continue;
+      node_to_visit[node_to_visit_length++] = target_node;
+      flags[target_node] |= page_object_flag;
+    }
+    // mark object from global/window/dom
+    while (node_to_visit_length) {
+      const ordinal = node_to_visit[--node_to_visit_length];
+      const begin_edge_index = first_edge_indexes[ordinal];
+      const end_edge_index = first_edge_indexes[ordinal + 1];
+      for (let edge_index = begin_edge_index;
+        edge_index < end_edge_index; edge_index += edge_field_length) {
+        const child_ordinal = edge_util.getTargetNode(edge_index, true);
+        // has been marked
+        if (flags[child_ordinal] & page_object_flag)
+          continue;
+        const child_type = edge_util.getTypeForInt(edge_index, true);
+        if (child_type === KWEAK)
+          continue;
+        node_to_visit[node_to_visit_length++] = child_ordinal;
+        flags[child_ordinal] |= page_object_flag;
+      }
+    }
+  }
+
   buildDominatorTree() {
+    this._progress.updateStatus("Building dominator tree…");
+
     const node_count = this.node_count;
     const first_edge_indexes = this.first_edge_indexes;
     const flags = this.flags;
