@@ -16,6 +16,14 @@ export default class SnapshotParser {
     this.EdgeUtil = EdgeUtil;
   }
 
+  static get NO_DISTANCE() {
+    return -5;
+  }
+
+  static get BASE_SYSTEMDISTANCE() {
+    return 100000000;
+  }
+
   init() {
     this._progress.updateStatus("Initializing snapshot…");
 
@@ -49,6 +57,8 @@ export default class SnapshotParser {
     this.page_object_flag = 4;
     this.idominator = [];
     this.dominators = {};
+    this.gcroots = 0;
+    this.gcroots_map = {};
 
     this.first_edge_indexes = this.getFirstEdgeIndexes();
 
@@ -86,6 +96,7 @@ export default class SnapshotParser {
 
   async build() {
     await this.buildTotalRetainer();
+    await this.buildDistances();
 
     // dominator tree
     await this.calculateFlags();
@@ -141,7 +152,7 @@ export default class SnapshotParser {
     for (let to_node_field_index = edge_to_node_offset, l = edges.length; to_node_field_index < l; to_node_field_index += edge_field_length) {
       const to_node_index = edges[to_node_field_index];
       if (to_node_index % node_field_length != 0) {
-        throw ("node index id is wrong!");
+        throw new Error("node index id is wrong!");
       }
       const ordinal_id = to_node_index / node_field_length;
       first_retainer_index[ordinal_id] += 1;
@@ -163,7 +174,7 @@ export default class SnapshotParser {
       for (let edge_index = first_edge_index; edge_index < next_node_first_edge_index; edge_index += edge_field_length) {
         const to_node_index = edges[edge_index + edge_to_node_offset];
         if (to_node_index % node_field_length != 0) {
-          throw ("to_node id is wrong!");
+          throw new Error("to_node id is wrong!");
         }
         const first_retainer_slot_index = first_retainer_index[to_node_index / node_field_length];
         const next_unused_retainer_slot_index = first_retainer_slot_index + (--retaining_nodes[first_retainer_slot_index]);
@@ -172,6 +183,189 @@ export default class SnapshotParser {
         retaining_edges[next_unused_retainer_slot_index] = edge_index;
       }
     }
+  }
+
+  static enqueueNode(t) {
+    if (t.node_distances[t.ordinal] != SnapshotParser.NO_DISTANCE)
+      return;
+    t.node_distances[t.ordinal] = t.distance;
+    t.node_to_visit[t.node_to_visit_length] = t.ordinal;
+    t.node_to_visit_length += 1;
+  }
+
+  bfs(node_to_visit, node_to_visit_length) {
+    const node_count = this.node_count;
+    const node_distances = this.node_distances;
+    const node_util = this.node_util;
+    const edge_util = this.edge_util;
+    const { KWEAK } = EdgeUtil.EdgeTypes;
+
+    let index = 0;
+    while (index < node_to_visit_length) {
+      const ordinal = node_to_visit[index++];
+      if (!node_util.checkOrdinalId(ordinal))
+        continue;
+      const distance = node_distances[ordinal] + 1;
+      const edges = node_util.getEdges(ordinal);
+      const edge_length = node_util.getEdgeCount(ordinal);
+      for (let i = 0; i < edge_length; i++) {
+        const edge_type = edge_util.getTypeForInt(edges[i], true);
+        // ignore weak edge
+        if (edge_type === KWEAK)
+          continue;
+        const child_ordinal = edge_util.getTargetNode(edges[i], true);
+        if (node_distances[child_ordinal] != SnapshotParser.NO_DISTANCE)
+          continue;
+        // need optimized filter
+        // if(!Filter_(ordinal, *(edges + i)))
+        // continue;
+        node_distances[child_ordinal] = distance;
+        node_to_visit[node_to_visit_length++] = child_ordinal;
+      }
+    }
+    if (node_to_visit_length > node_count) {
+      const error = "BFS failed. Nodes to visit (" + node_to_visit_length
+        + ") is more than nodes count (" + node_count + ")";
+      throw new Error(error);
+    }
+  }
+
+  forEachRoot(action, user_root, user_root_only) {
+    const root_index = this.root_index;
+    const node_util = this.node_util;
+    const edge_util = this.edge_util;
+    const { KSYNTHETIC } = NodeUtil.NodeTypes;
+    const { KWEAK } = EdgeUtil.EdgeTypes;
+
+    const visit_nodes = {};
+    let gc_roots = -1;
+    if (!node_util.checkOrdinalId(root_index))
+      return;
+    const edges = node_util.getEdges(root_index);
+    const length = node_util.getEdgeCount(root_index);
+    for (let i = 0; i < length; i++) {
+      const target_node = edge_util.getTargetNode(edges[i], true);
+      if (!node_util.checkOrdinalId(target_node))
+        continue;
+      const node_name = node_util.getName(target_node);
+      const gc_root_name = "(GC roots)";
+      if (node_name === gc_root_name) {
+        gc_roots = target_node;
+      }
+    }
+    if (gc_roots == -1 || !node_util.checkOrdinalId(gc_roots))
+      return;
+    if (user_root_only) {
+      // iterator the "true" root, set user root distance 1 -> global
+      for (let i = 0; i < length; i++) {
+        const target_node = edge_util.getTargetNode(edges[i], true);
+        if (!node_util.checkOrdinalId(target_node))
+          continue;
+        const type = node_util.getTypeForInt(target_node);
+        // type != synthetic, means user root
+        if (type !== KSYNTHETIC) {
+          if (!visit_nodes[target_node]) {
+            user_root.ordinal = target_node;
+            action(user_root);
+            visit_nodes[target_node] = true;
+          }
+        }
+      }
+      // set user root gc roots -> synthetic roots -> true roots
+      // const sub_root_edges = node_util.getEdges(gc_roots, false);
+      // const sub_root_edge_length = node_util.getEdgeCount(gc_roots, false);
+      // for (let i = 0; i < sub_root_edge_length; i++) {
+      //   const sub_root_ordinal = edge_util.getTargetNode(sub_root_edges[i], true);
+      //   const sub2_root_edges = node_util.getEdges(sub_root_ordinal, false);
+      //   const sub2_root_edge_length = node_util.getEdgeCount(sub_root_ordinal, false);
+      //   for (let j = 0; j < sub2_root_edge_length; j++) {
+      //     const sub2_root_ordinal = edge_util.getTargetNode(sub2_root_edges[j], true);
+      //     // mark sub sub gc roots
+      //     if (!visit_nodes[sub2_root_ordinal]) {
+      //       user_root.ordinal = sub2_root_ordinal;
+      //       action(user_root);
+      //       visit_nodes[sub2_root_ordinal] = true;
+      //     }
+      //   }
+      // }
+    } else {
+      const sub_root_edges = node_util.getEdges(gc_roots);
+      const sub_root_edge_length = node_util.getEdgeCount(gc_roots);
+      for (let i = 0; i < sub_root_edge_length; i++) {
+        const sub_root_ordinal = edge_util.getTargetNode(sub_root_edges[i], true);
+        if (!node_util.checkOrdinalId(sub_root_ordinal))
+          continue;
+        const sub2_root_edges = node_util.getEdges(sub_root_ordinal);
+        const sub2_root_edge_length = node_util.getEdgeCount(sub_root_ordinal);
+        let need_add_gc_root = true;
+        const sub_root_name = node_util.getName(sub_root_ordinal);
+        if (sub_root_name === "(Internalized strings)"
+          || sub_root_name === "(External strings)"
+          || sub_root_name === "(Smi roots)") {
+          need_add_gc_root = false;
+        }
+        for (let j = 0; j < sub2_root_edge_length; j++) {
+          const sub2_root_ordinal = edge_util.getTargetNode(sub2_root_edges[j], true);
+          // mark sub sub gc roots
+          if (!visit_nodes[sub2_root_ordinal]) {
+            user_root.ordinal = sub2_root_ordinal;
+            action(user_root);
+            visit_nodes[sub2_root_ordinal] = true;
+          }
+          // add gc root
+          if (need_add_gc_root) {
+            const sub_to_sub2_edge_type = edge_util.getTypeForInt(sub2_root_edges[j], true);
+            if (sub_to_sub2_edge_type !== KWEAK) {
+              this.gcroots++;
+              this.gcroots_map[sub2_root_ordinal] = true;
+            }
+          }
+        }
+
+        // mark sub gc roots
+        if (!visit_nodes[sub_root_ordinal]) {
+          user_root.ordinal = sub_root_ordinal;
+          action(user_root);
+          visit_nodes[sub_root_ordinal] = true;
+        }
+      }
+
+      // mark sub roots
+      for (let i = 0; i < length; i++) {
+        const target_node = edge_util.getTargetNode(edges[i], true);
+        if (!visit_nodes[target_node]) {
+          user_root.ordinal = target_node;
+          action(user_root);
+          visit_nodes[target_node] = true;
+        }
+      }
+    }
+  }
+
+  async buildDistances() {
+    const node_count = this.node_count;
+
+    const node_distances = this.node_distances = new Array(node_count);
+    for (let i = 0; i < node_count; i++) {
+      node_distances[i] = SnapshotParser.NO_DISTANCE;
+    }
+
+    const node_to_visit = new Array(node_count);
+    // add user root
+    const user_root = {
+      distance: 1,
+      ordinal: 0,
+      node_to_visit,
+      node_to_visit_length: 0,
+      node_distances
+    };
+    this.forEachRoot(SnapshotParser.enqueueNode, user_root, true);
+    this.bfs(node_to_visit, user_root.node_to_visit_length);
+    // add rest
+    user_root.node_to_visit_length = 0;
+    user_root.distance = SnapshotParser.BASE_SYSTEMDISTANCE;
+    this.forEachRoot(SnapshotParser.enqueueNode, user_root, false);
+    this.bfs(node_to_visit, user_root.node_to_visit_length);
   }
 
   async calculateFlags() {

@@ -21,16 +21,16 @@ export default class EdgeUtil {
     const parser = this.parser;
     const edge_field_length = parser.edge_field_length;
     if (source && id % edge_field_length != 0) {
-      throw ("edge source id is wrong!");
+      throw new Error("edge source id is wrong!");
     }
     const edge_source_index = source ? id : id * edge_field_length;
     if (edge_source_index / edge_field_length >= parser.edge_count) {
-      throw ("edge id larger than edges.length!");
+      throw new Error("edge id larger than edges.length!");
     }
     const target_node_source_id = parser.edges[edge_source_index + parser.edge_to_node_offset];
     const node_field_length = parser.node_field_length;
     if (target_node_source_id % node_field_length != 0) {
-      throw ("target node source id is wrong!");
+      throw new Error("target node source id is wrong!");
     }
     return target_node_source_id / node_field_length;
   }
@@ -39,11 +39,11 @@ export default class EdgeUtil {
     const parser = this.parser;
     const edge_field_length = parser.edge_field_length;
     if (source && id % edge_field_length != 0) {
-      throw ("edge source id is wrong!");
+      throw new Error("edge source id is wrong!");
     }
     const edge_source_index = source ? id : id * edge_field_length;
     if (edge_source_index / edge_field_length >= parser.edge_count) {
-      throw ("edge id larger than edges.length!");
+      throw new Error("edge id larger than edges.length!");
     }
     const type = parser.edges[edge_source_index + parser.edge_type_offset];
     const types = parser.edge_types;
@@ -54,11 +54,11 @@ export default class EdgeUtil {
     const parser = this.parser;
     const edge_field_length = parser.edge_field_length;
     if (source && id % edge_field_length != 0) {
-      throw ("edge source id is wrong!");
+      throw new Error("edge source id is wrong!");
     }
     const edge_source_index = source ? id : id * edge_field_length;
     if (edge_source_index / edge_field_length >= parser.edge_count) {
-      throw ("edge id larger than edges.length!");
+      throw new Error("edge id larger than edges.length!");
     }
     return parser.edges[edge_source_index + parser.edge_type_offset];
   }
@@ -67,11 +67,11 @@ export default class EdgeUtil {
     const parser = this.parser;
     const edge_field_length = parser.edge_field_length;
     if (source && id % edge_field_length != 0) {
-      throw ("edge source id is wrong!");
+      throw new Error("edge source id is wrong!");
     }
     const edge_source_index = source ? id : id * edge_field_length;
     if (edge_source_index / edge_field_length >= parser.edge_count) {
-      throw ("edge id larger than edges.length!");
+      throw new Error("edge id larger than edges.length!");
     }
     return parser.edges[edge_source_index + parser.edge_name_or_index_offset];
   }
@@ -80,11 +80,11 @@ export default class EdgeUtil {
     const parser = this.parser;
     const edge_field_length = parser.edge_field_length;
     if (source && id % edge_field_length != 0) {
-      throw ("edge source id is wrong!");
+      throw new Error("edge source id is wrong!");
     }
     const edge_source_index = source ? id : id * edge_field_length;
     if (edge_source_index / edge_field_length >= parser.edge_count) {
-      throw ("edge id larger than edges.length!");
+      throw new Error("edge id larger than edges.length!");
     }
     const type = parser.edges[edge_source_index + parser.edge_type_offset];
     const name_or_index = parser.edges[edge_source_index + parser.edge_name_or_index_offset];
