@@ -46,6 +46,9 @@ export default class SnapshotParser {
     this.edge_to_node_offset = edge_fields.indexOf("to_node");
 
     this.edge_searching_map = {};
+    this.page_object_flag = 4;
+    this.idominator = [];
+    this.dominators = {};
 
     this.first_edge_indexes = this.getFirstEdgeIndexes();
   }
@@ -80,5 +83,53 @@ export default class SnapshotParser {
   }
 
   build() {
+    this.buildDominatorTree();
+  }
+
+  isEssentialEdge(ordinal, type) {
+    return type !== EdgeUtil.EdgeTypes.KWEAK &&
+      (type !== EdgeUtil.EdgeTypes.KSHORTCUT || ordinal == this.root_index);
+  }
+
+  setBoundData(bounds, key, value) {
+    if (Array.isArray(bounds[key])) {
+      bounds[key].push(value);
+    } else {
+      bounds[key] = [value];
+    }
+  }
+
+  buildDominatorTree() {
+    const node_count = this.node_count;
+    const first_edge_indexes = this.first_edge_indexes;
+    const flags = this.flags;
+    const page_object_flag = this.page_object_flag;
+    const edge_field_length = this.edge_field_length;
+    const edge_util = this.edge_util;
+    const root_index = this.root_index;
+
+    const data = { count: node_count, root: root_index, inbounds: {}, outbounds: {} };
+    for (let node_ordinal = 0; node_ordinal < node_count; ++node_ordinal) {
+      const first_edge_index = first_edge_indexes[node_ordinal];
+      const next_edge_index = first_edge_indexes[node_ordinal + 1];
+      const node_flag = flags[node_ordinal] & page_object_flag;
+      for (let edge_index = first_edge_index; edge_index < next_edge_index; edge_index += edge_field_length) {
+        const edge_type = edge_util.getTypeForInt(edge_index, true);
+        if (!this.isEssentialEdge(node_ordinal, edge_type))
+          continue;
+        const target_node = edge_util.getTargetNode(edge_index, true);
+        const child_node_flag = flags[target_node] & page_object_flag;
+        if (node_ordinal != root_index && child_node_flag != 0 && node_flag == 0)
+          continue;
+        this.setBoundData(data.inbounds, target_node, node_ordinal);
+        this.setBoundData(data.outbounds, node_ordinal, target_node);
+      }
+    }
+    const tarjan = new Tarjan(data);
+    tarjan.compute();
+
+    // get results
+    this.idominator = tarjan.idominator;
+    this.dominators = tarjan.dominators;
   }
 }

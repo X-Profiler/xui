@@ -38,7 +38,10 @@ export default class SnapshotLoader {
     const parser = new SnapshotParser(this._snapshot, this._progress);
     parser.build();
     this._reset();
-    return parser;
+    return {
+      idominator: parser.idominator,
+      dominators: parser.dominators
+    };
   }
 
   _parseUintArray() {
