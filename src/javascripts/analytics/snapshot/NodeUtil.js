@@ -85,9 +85,49 @@ export default class NodeUtil {
     return name;
   }
 
+  checkOrdinalId(oridnal) {
+    const parser = this.parser;
+    return oridnal < parser.node_count;
+  }
+
+  getNodeId(source) {
+    const parser = this.parser;
+    const node_field_length = parser.node_field_length;
+    if (source % node_field_length != 0) {
+      throw ("node source id is wrong!");
+    }
+    return source / node_field_length;
+  }
+
+  getAddress(id) {
+    const parser = this.parser;
+    return parser.nodes[id * parser.node_field_length + parser.node_address_offset];
+  }
+
+  getType(id) {
+    const parser = this.parser;
+    const type = parser.nodes[id * parser.node_field_length + parser.node_type_offset];
+    const types = parser.node_types;
+    // with type "undefined", total 13
+    if (type > (types.length - 1)) {
+      return "undefined";
+    }
+    return types[type];
+  }
+
   getTypeForInt(id) {
     const parser = this.parser;
     return parser.nodes[id * parser.node_field_length + parser.node_type_offset];
+  }
+
+  getName(id) {
+    const parser = this.parser;
+    return parser.strings[parser.nodes[id * parser.node_field_length + parser.node_name_offset]];
+  }
+
+  getNameForInt(id) {
+    const parser = this.parser;
+    return parser.nodes[id * parser.node_field_length + parser.node_name_offset];
   }
 
   getEdges(id) {
@@ -109,5 +149,10 @@ export default class NodeUtil {
   getEdgeCount(id) {
     const parser = this.parser;
     return parser.nodes[id * parser.node_field_length + parser.node_edge_count_offset];
+  }
+
+  getSelfSize(id) {
+    const parser = this.parser;
+    return parser.nodes[id * parser.node_field_length + parser.node_self_size_offset];
   }
 }
