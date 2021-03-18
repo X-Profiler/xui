@@ -85,13 +85,35 @@ export default class SnapshotParser {
   }
 
   async build() {
-    this.calculateFlags();
+    await this.buildTotalRetainer();
+
+    // dominator tree
+    await this.calculateFlags();
+    await this.buildPostOrderIndex();
     await this.buildDominatorTree();
   }
 
   isEssentialEdge(ordinal, type) {
     return type !== EdgeUtil.EdgeTypes.KWEAK &&
       (type !== EdgeUtil.EdgeTypes.KSHORTCUT || ordinal == this.root_index);
+  }
+
+  hasOnlyWeakRetainers(ordinal) {
+    const first_retainer_index = this.first_retainer_index;
+    const retaining_edges = this.retaining_edges;
+    const edge_util = this.edge_util;
+    const { KWEAK, KSHORTCUT } = EdgeUtil.EdgeTypes;
+
+    const begin_retainer_index = first_retainer_index[ordinal];
+    const end_retainer_index = first_retainer_index[ordinal + 1];
+    for (let retainer_index = begin_retainer_index; retainer_index < end_retainer_index; ++retainer_index) {
+      const retainer_edge_index = retaining_edges[retainer_index];
+      const retainer_edge_type = edge_util.getTypeForInt(retainer_edge_index, true);
+      if (retainer_edge_type !== KWEAK
+        && retainer_edge_type !== KSHORTCUT)
+        return false;
+    }
+    return true;
   }
 
   setBoundData(bounds, key, value) {
@@ -102,7 +124,57 @@ export default class SnapshotParser {
     }
   }
 
-  calculateFlags() {
+  async buildTotalRetainer() {
+    const edges = this.edges;
+    const node_count = this.node_count;
+    const edge_count = this.edge_count;
+    const node_field_length = this.node_field_length;
+    const edge_field_length = this.edge_field_length;
+    const edge_to_node_offset = this.edge_to_node_offset;
+    const first_edge_indexes = this.first_edge_indexes;
+
+    const retaining_nodes = this.retaining_nodes = new Array(edge_count);
+    const retaining_edges = this.retaining_edges = new Array(edge_count);
+    const first_retainer_index = this.first_retainer_index = new Array(node_count + 1);
+
+    // every node's retainer count
+    for (let to_node_field_index = edge_to_node_offset, l = edges.length; to_node_field_index < l; to_node_field_index += edge_field_length) {
+      const to_node_index = edges[to_node_field_index];
+      if (to_node_index % node_field_length != 0) {
+        throw ("node index id is wrong!");
+      }
+      const ordinal_id = to_node_index / node_field_length;
+      first_retainer_index[ordinal_id] += 1;
+    }
+    // set first retainer index
+    for (let i = 0, first_unused_retainer_slot = 0; i < node_count; i++) {
+      const retainers_count = first_retainer_index[i];
+      first_retainer_index[i] = first_unused_retainer_slot;
+      retaining_nodes[first_unused_retainer_slot] = retainers_count;
+      first_unused_retainer_slot += retainers_count;
+    }
+    // for (index ~ index + 1)
+    first_retainer_index[node_count] = edge_count;
+    // set retaining slot
+    let next_node_first_edge_index = first_edge_indexes[0];
+    for (let src_node_ordinal = 0; src_node_ordinal < node_count; src_node_ordinal++) {
+      const first_edge_index = next_node_first_edge_index;
+      next_node_first_edge_index = first_edge_indexes[src_node_ordinal + 1];
+      for (let edge_index = first_edge_index; edge_index < next_node_first_edge_index; edge_index += edge_field_length) {
+        const to_node_index = edges[edge_index + edge_to_node_offset];
+        if (to_node_index % node_field_length != 0) {
+          throw ("to_node id is wrong!");
+        }
+        const first_retainer_slot_index = first_retainer_index[to_node_index / node_field_length];
+        const next_unused_retainer_slot_index = first_retainer_slot_index + (--retaining_nodes[first_retainer_slot_index]);
+        // save retainer & edge
+        retaining_nodes[next_unused_retainer_slot_index] = src_node_ordinal;
+        retaining_edges[next_unused_retainer_slot_index] = edge_index;
+      }
+    }
+  }
+
+  async calculateFlags() {
     this._progress.updateStatus("Calculating flags…");
 
     const node_count = this.node_count;
@@ -155,6 +227,87 @@ export default class SnapshotParser {
         flags[child_ordinal] |= page_object_flag;
       }
     }
+  }
+
+  async buildPostOrderIndex() {
+    const node_count = this.node_count;
+    const first_edge_indexes = this.first_edge_indexes;
+    const root_index = this.root_index;
+    const edge_util = this.edge_util;
+    const flags = this.flags;
+    const page_object_flag = this.page_object_flag;
+    const edge_field_length = this.edge_field_length;
+
+    const stack_nodes = new Array(node_count);
+    const stack_current_edge = new Array(node_count);
+    const post_order_index_to_ordinal = new Array(node_count);
+    const ordinal_to_post_order_index = new Array(node_count);
+    const visited = new Array(node_count);
+    let post_order_index = 0;
+    // set stack
+    let stack_top = 0;
+    stack_nodes[0] = root_index;
+    stack_current_edge[0] = first_edge_indexes[root_index];
+    visited[root_index] = 1;
+    let iteration = 0;
+    while (true) {
+      ++iteration;
+      // dfs
+      while (stack_top >= 0) {
+        const ordinal = stack_nodes[stack_top];
+        const edge_index = stack_current_edge[stack_top];
+        const end_edge_index = first_edge_indexes[ordinal + 1];
+        if (edge_index < end_edge_index) {
+          // stack edge current offset to next edge
+          stack_current_edge[stack_top] += edge_field_length;
+          const edge_type = edge_util.getTypeForInt(edge_index, true);
+          if (!this.isEssentialEdge(ordinal, edge_type))
+            continue;
+          const target_node = edge_util.getTargetNode(edge_index, true);
+          if (visited[target_node] == 1)
+            continue;
+          const node_flag = flags[ordinal] & page_object_flag;
+          const child_node_flag = flags[target_node] & page_object_flag;
+          if (ordinal != root_index && child_node_flag != 0 && node_flag == 0)
+            continue;
+          ++stack_top;
+          stack_nodes[stack_top] = target_node;
+          stack_current_edge[stack_top] = first_edge_indexes[target_node];
+          visited[target_node] = 1;
+        } else {
+          ordinal_to_post_order_index[ordinal] = post_order_index;
+          post_order_index_to_ordinal[post_order_index++] = ordinal;
+          --stack_top;
+        }
+      }
+      if (post_order_index == node_count || iteration > 1)
+        break;
+      // may be have some unreachable object fromm root_index, can give warnings
+      --post_order_index;
+      stack_top = 0;
+      stack_nodes[0] = root_index;
+      stack_current_edge[0] = first_edge_indexes[root_index + 1];
+      for (let i = 0; i < node_count; ++i) {
+        if (visited[i] == 1 || !this.hasOnlyWeakRetainers(i))
+          continue;
+        stack_nodes[++stack_top] = i;
+        stack_current_edge[stack_top] = first_edge_indexes[i];
+        visited[i] = 1;
+      }
+    }
+    if (post_order_index != node_count) {
+      --post_order_index;
+      for (let i = 0; i < node_count; ++i) {
+        if (visited[i] == 1)
+          continue;
+        ordinal_to_post_order_index[i] = post_order_index;
+        post_order_index_to_ordinal[post_order_index++] = i;
+      }
+      ordinal_to_post_order_index[root_index] = post_order_index;
+      post_order_index_to_ordinal[post_order_index++] = root_index;
+    }
+
+    return { ordinal_to_post_order_index, post_order_index_to_ordinal };
   }
 
   async buildDominatorTree() {
