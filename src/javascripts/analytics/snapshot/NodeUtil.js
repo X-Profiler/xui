@@ -94,7 +94,7 @@ export default class NodeUtil {
     const parser = this.parser;
     const node_field_length = parser.node_field_length;
     if (source % node_field_length != 0) {
-      throw ("node source id is wrong!");
+      throw new Error("node source id is wrong!");
     }
     return source / node_field_length;
   }
