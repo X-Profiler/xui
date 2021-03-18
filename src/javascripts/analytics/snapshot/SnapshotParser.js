@@ -135,7 +135,7 @@ export default class SnapshotParser {
 
     const retaining_nodes = this.retaining_nodes = new Array(edge_count);
     const retaining_edges = this.retaining_edges = new Array(edge_count);
-    const first_retainer_index = this.first_retainer_index = new Array(node_count + 1);
+    const first_retainer_index = this.first_retainer_index = new Array(node_count + 1).fill(0);
 
     // every node's retainer count
     for (let to_node_field_index = edge_to_node_offset, l = edges.length; to_node_field_index < l; to_node_field_index += edge_field_length) {
