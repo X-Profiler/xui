@@ -51,6 +51,8 @@ export default class SnapshotParser {
     this.dominators = {};
 
     this.first_edge_indexes = this.getFirstEdgeIndexes();
+
+    this._profile = null;
   }
 
   getFirstEdgeIndexes() {
@@ -82,9 +84,9 @@ export default class SnapshotParser {
     return first_edge_indexes;
   }
 
-  build() {
+  async build() {
     this.calculateFlags();
-    this.buildDominatorTree();
+    await this.buildDominatorTree();
   }
 
   isEssentialEdge(ordinal, type) {
@@ -155,8 +157,9 @@ export default class SnapshotParser {
     }
   }
 
-  buildDominatorTree() {
+  async buildDominatorTree() {
     this._progress.updateStatus("Building dominator tree…");
+    await this.releaseMemory();
 
     const node_count = this.node_count;
     const first_edge_indexes = this.first_edge_indexes;
@@ -184,10 +187,28 @@ export default class SnapshotParser {
       }
     }
     const tarjan = new Tarjan(data);
-    tarjan.compute();
+    await this.releaseMemory();
+    await tarjan.compute();
+    await this.clear();
 
     // get results
     this.idominator = tarjan.idominator;
     this.dominators = tarjan.dominators;
+  }
+
+  async clear() {
+    this.nodes = null;
+    this.edges = null;
+    this.snapshot = null;
+    this.strings = null;
+    this.edge_searching_map = null;
+    this.first_edge_indexes = null;
+    this.flags = null;
+
+    await this.releaseMemory();
+  }
+
+  releaseMemory(time = 100) {
+    return new Promise(resolve => setTimeout(resolve, time));
   }
 }

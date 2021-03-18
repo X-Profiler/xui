@@ -33,10 +33,10 @@ export default class SnapshotLoader {
   /**
    * @return {!JSHeapSnapshot}
    */
-  buildSnapshot() {
+  async buildSnapshot() {
     this._progress.updateStatus("Building dominator tree…");
     const parser = new SnapshotParser(this._snapshot, this._progress);
-    parser.build();
+    await parser.build();
     this._reset();
     return {
       idominator: parser.idominator,
