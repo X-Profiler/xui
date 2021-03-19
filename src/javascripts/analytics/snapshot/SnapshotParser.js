@@ -102,6 +102,7 @@ export default class SnapshotParser {
     await this.calculateFlags();
     await this.buildPostOrderIndex();
     await this.buildDominatorTree();
+    await this.calculateRetainedSizes();
   }
 
   isEssentialEdge(ordinal, type) {
@@ -381,7 +382,7 @@ export default class SnapshotParser {
     const { KSYNTHETIC } = NodeUtil.NodeTypes;
     const { KELEMENT, KSHORTCUT, KWEAK } = EdgeUtil.EdgeTypes;
 
-    const flags = this.flags = new Array(node_count);
+    const flags = this.flags = new Array(node_count).fill(0);
     const node_to_visit = new Array(node_count);
 
     let node_to_visit_length = 0;
@@ -434,8 +435,8 @@ export default class SnapshotParser {
 
     const stack_nodes = new Array(node_count);
     const stack_current_edge = new Array(node_count);
-    const post_order_index_to_ordinal = new Array(node_count);
-    const ordinal_to_post_order_index = new Array(node_count);
+    const post_order_index_to_ordinal = this.post_order_index_to_ordinal = new Array(node_count);
+    const ordinal_to_post_order_index = this.ordinal_to_post_order_index = new Array(node_count);
     const visited = new Array(node_count);
     let post_order_index = 0;
     // set stack
@@ -501,7 +502,8 @@ export default class SnapshotParser {
       post_order_index_to_ordinal[post_order_index++] = root_index;
     }
 
-    return { ordinal_to_post_order_index, post_order_index_to_ordinal };
+    this.ordinal_to_post_order_index = null;
+    await this.releaseMemory();
   }
 
   async buildDominatorTree() {
@@ -546,19 +548,41 @@ export default class SnapshotParser {
     this.dominators = tarjan.dominators;
   }
 
+  async calculateRetainedSizes() {
+    const node_count = this.node_count;
+    const node_util = this.node_util;
+    const post_order_index_to_ordinal = this.post_order_index_to_ordinal;
+
+    const retained_sizes = this.retained_sizes = new Array(node_count).fill(0);
+
+    for (let ordinal = 0; ordinal < node_count; ++ordinal) {
+      if (!node_util.checkOrdinalId(ordinal))
+        continue;
+      retained_sizes[ordinal] = node_util.getSelfSize(ordinal);
+    }
+    for (let post_order_index = 0; post_order_index < node_count - 1; ++post_order_index) {
+      let ordinal = post_order_index_to_ordinal[post_order_index];
+      // dominator_ordinal immediately dominated ordinal
+      const dominator_ordinal = this.idominator[ordinal];
+      if (dominator_ordinal != null)
+        retained_sizes[dominator_ordinal] += retained_sizes[ordinal];
+    }
+
+    this.post_order_index_to_ordinal = null;
+    await this.releaseMemory();
+  }
+
   async clear() {
-    this.nodes = null;
-    this.edges = null;
-    this.snapshot = null;
-    this.strings = null;
-    this.edge_searching_map = null;
-    this.first_edge_indexes = null;
+    this.retaining_nodes = null;
+    this.retaining_edges = null;
+    this.first_retainer_index = null;
+    this.flags = null;
     this.flags = null;
 
     await this.releaseMemory();
   }
 
-  releaseMemory(time = 100) {
+  releaseMemory(time = 50) {
     return new Promise(resolve => setTimeout(resolve, time));
   }
 }

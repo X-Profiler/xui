@@ -40,7 +40,8 @@ export default class SnapshotLoader {
     this._reset();
     return {
       idominator: parser.idominator,
-      dominators: parser.dominators
+      dominators: parser.dominators,
+      retainedSizes: parser.retained_sizes
     };
   }
 
