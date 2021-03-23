@@ -115,6 +115,8 @@ export default class Tarjan {
 
       dfs++;
     }
+
+    await this.releaseMemory(50);
   }
 
   async build() {
@@ -156,9 +158,14 @@ export default class Tarjan {
       }
     }
 
-    for (let w = 2; w < dfs.length; w++)
-      if (dom[w] !== semi[w])
+    for (let w = 2; w < dfs.length; w++) {
+      if (w % 50000 === 0) {
+        await this.releaseMemory();
+      }
+      if (dom[w] !== semi[w]) {
         dom[w] = dom[dom[w]];
+      }
+    }
     dom[1] = 0;
   }
 
