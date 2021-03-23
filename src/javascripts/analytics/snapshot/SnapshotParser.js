@@ -137,6 +137,9 @@ export default class SnapshotParser {
   }
 
   async buildTotalRetainer() {
+    this._progress.updateStatus("Building retainer…");
+    await this.releaseMemory();
+
     const edges = this.edges;
     const node_count = this.node_count;
     const edge_count = this.edge_count;
@@ -151,6 +154,9 @@ export default class SnapshotParser {
 
     // every node's retainer count
     for (let to_node_field_index = edge_to_node_offset, l = edges.length; to_node_field_index < l; to_node_field_index += edge_field_length) {
+      if (to_node_field_index % 50000 === 0) {
+        await this.releaseMemory(5);
+      }
       const to_node_index = edges[to_node_field_index];
       if (to_node_index % node_field_length != 0) {
         throw new Error("node index id is wrong!");
@@ -160,6 +166,9 @@ export default class SnapshotParser {
     }
     // set first retainer index
     for (let i = 0, first_unused_retainer_slot = 0; i < node_count; i++) {
+      if (i % 50000 === 0) {
+        await this.releaseMemory(5);
+      }
       const retainers_count = first_retainer_index[i];
       first_retainer_index[i] = first_unused_retainer_slot;
       retaining_nodes[first_unused_retainer_slot] = retainers_count;
@@ -170,6 +179,9 @@ export default class SnapshotParser {
     // set retaining slot
     let next_node_first_edge_index = first_edge_indexes[0];
     for (let src_node_ordinal = 0; src_node_ordinal < node_count; src_node_ordinal++) {
+      if (src_node_ordinal % 50000 === 0) {
+        await this.releaseMemory(5);
+      }
       const first_edge_index = next_node_first_edge_index;
       next_node_first_edge_index = first_edge_indexes[src_node_ordinal + 1];
       for (let edge_index = first_edge_index; edge_index < next_node_first_edge_index; edge_index += edge_field_length) {
@@ -184,6 +196,8 @@ export default class SnapshotParser {
         retaining_edges[next_unused_retainer_slot_index] = edge_index;
       }
     }
+
+    await this.releaseMemory();
   }
 
   static enqueueNode(t) {
@@ -344,6 +358,9 @@ export default class SnapshotParser {
   }
 
   async buildDistances() {
+    this._progress.updateStatus("Building distance…");
+    await this.releaseMemory();
+
     const node_count = this.node_count;
 
     const node_distances = this.node_distances = new Array(node_count);
@@ -367,10 +384,13 @@ export default class SnapshotParser {
     user_root.distance = SnapshotParser.BASE_SYSTEMDISTANCE;
     this.forEachRoot(SnapshotParser.enqueueNode, user_root, false);
     this.bfs(node_to_visit, user_root.node_to_visit_length);
+
+    await this.releaseMemory();
   }
 
   async calculateFlags() {
     this._progress.updateStatus("Calculating flags…");
+    await this.releaseMemory();
 
     const node_count = this.node_count;
     const first_edge_indexes = this.first_edge_indexes;
@@ -389,6 +409,9 @@ export default class SnapshotParser {
     for (let edge_index = first_edge_indexes[root_index],
       end_edge_index = first_edge_indexes[root_index + 1];
       edge_index < end_edge_index; edge_index += edge_field_length) {
+      if (node_to_visit_length % 50000 === 0) {
+        await this.releaseMemory(5);
+      }
       const target_node = edge_util.getTargetNode(edge_index, true);
       if (!node_util.checkOrdinalId(target_node))
         continue;
@@ -406,6 +429,9 @@ export default class SnapshotParser {
     }
     // mark object from global/window/dom
     while (node_to_visit_length) {
+      if (node_to_visit_length % 50000 === 0) {
+        await this.releaseMemory(5);
+      }
       const ordinal = node_to_visit[--node_to_visit_length];
       const begin_edge_index = first_edge_indexes[ordinal];
       const end_edge_index = first_edge_indexes[ordinal + 1];
@@ -422,9 +448,14 @@ export default class SnapshotParser {
         flags[child_ordinal] |= page_object_flag;
       }
     }
+
+    await this.releaseMemory();
   }
 
   async buildPostOrderIndex() {
+    this._progress.updateStatus("Building post order index…");
+    await this.releaseMemory();
+
     const node_count = this.node_count;
     const first_edge_indexes = this.first_edge_indexes;
     const root_index = this.root_index;
@@ -549,6 +580,9 @@ export default class SnapshotParser {
   }
 
   async calculateRetainedSizes() {
+    this._progress.updateStatus("Calculating retained sizes…");
+    await this.releaseMemory();
+
     const node_count = this.node_count;
     const node_util = this.node_util;
     const post_order_index_to_ordinal = this.post_order_index_to_ordinal;
