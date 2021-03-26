@@ -93,7 +93,7 @@ export default class Tarjan {
 
     let i = 0;
     while (queue.length !== 0) {
-      if (++i % 50000 === 0) {
+      if (++i % 10000 === 0) {
         await this.releaseMemory();
       }
       const parent = queue.pop();
@@ -128,7 +128,7 @@ export default class Tarjan {
     const dom = this.dom;
 
     for (let w = dfs.length - 1; w >= 2; w--) {
-      if (w % 50000 === 0) {
+      if (w % 10000 === 0) {
         await this.releaseMemory();
       }
 

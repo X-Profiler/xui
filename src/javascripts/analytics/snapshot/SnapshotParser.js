@@ -95,6 +95,7 @@ export default class SnapshotParser {
   }
 
   async build() {
+    console.time('--------- build ---------');
     await this.buildTotalRetainer();
     await this.buildDistances();
 
@@ -103,6 +104,7 @@ export default class SnapshotParser {
     await this.buildPostOrderIndex();
     await this.buildDominatorTree();
     await this.calculateRetainedSizes();
+    console.timeEnd('--------- build ---------');
   }
 
   isEssentialEdge(ordinal, type) {
