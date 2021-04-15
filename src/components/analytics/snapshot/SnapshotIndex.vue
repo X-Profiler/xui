@@ -31,7 +31,9 @@
       ></x-error-message>
 
       <transition name="slide-noward">
-        <div v-if="!loading && !error" class="snapshot-detail"></div>
+        <div v-if="!loading && !error" class="snapshot-detail">
+          {{ profile }}
+        </div>
       </transition>
     </div>
   </div>
@@ -49,6 +51,7 @@ export default {
       error: null,
       request: null,
       file: null,
+      profile: null,
     };
   },
 
