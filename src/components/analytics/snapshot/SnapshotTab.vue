@@ -2,7 +2,7 @@
   <div>
     <Tabs type="card" v-model="selectedTab">
       <TabPane
-        v-for="(tab, index) in diagTabs"
+        v-for="(tab, index) in snapshotTabs"
         :key="index"
         :label="tab.label"
         :name="tab.value"
@@ -12,28 +12,22 @@
 </template>
 
 <script>
-import dataTabModule from "@/javascripts/analytics/diag/DataTab";
+import snapshotTabModule from "@/javascripts/analytics/snapshot/SnapshotTab";
 
 export default {
   data() {
     return {
       selectedTab: undefined,
-      diagTabs: [
+      snapshotTabs: [
         { label: "JavaScript 栈", value: "jsStacks" },
         { label: "Native 栈", value: "nativeStacks" },
         { label: "Libuv 句柄", value: "libuvHandles" },
         { label: "系统信息", value: "system" },
       ],
-      nessaryQueryArgs: [
-        "filterType",
-        "page",
-        "diag-analytics",
-        "diagTab",
-        "diagData",
-      ],
+      nessaryQueryArgs: ["show-snapshot", "snapshotTab", "snapshotData"],
     };
   },
 
-  ...dataTabModule,
+  ...snapshotTabModule,
 };
 </script>
