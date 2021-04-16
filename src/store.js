@@ -18,6 +18,7 @@ import file from "@/stores/file/file";
 import wrapper from "@/stores/file/wrapper";
 import analytics from "@/stores/analytics/analytics";
 import diag from "@/stores/analytics/diag";
+import snapshot from "@/stores/analytics/snapshot";
 import gc from "@/stores/analytics/gc";
 import team from "@/stores/team/team";
 import alarm from "@/stores/alarm/alarm";
@@ -155,6 +156,7 @@ export default {
 
           modules: {
             "diag": { ...diag }, // dashboard/analytics/diag
+            "snapshot": { ...snapshot }, // dashboard/analytics/snapshot
             "gc": { ...gc } // dashboard/analytics/gc
           }
         }
