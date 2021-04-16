@@ -19,12 +19,18 @@ export default {
     return {
       selectedTab: undefined,
       snapshotTabs: [
-        { label: "JavaScript 栈", value: "jsStacks" },
-        { label: "Native 栈", value: "nativeStacks" },
-        { label: "Libuv 句柄", value: "libuvHandles" },
-        { label: "系统信息", value: "system" },
+        { label: "可疑泄漏节点", value: "suspected" },
+        { label: "Dominator", value: "dominator" },
+        { label: "Containment", value: "containment" },
+        { label: "Search", value: "search" },
       ],
-      nessaryQueryArgs: ["show-snapshot", "snapshotTab", "snapshotData"],
+      nessaryQueryArgs: [
+        "filterType",
+        "page",
+        "show-snapshot",
+        "snapshotData",
+        "snapshotTab",
+      ],
     };
   },
 
