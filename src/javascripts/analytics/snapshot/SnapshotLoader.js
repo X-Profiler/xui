@@ -43,6 +43,8 @@ export default class SnapshotLoader {
       dominators: parser.dominators,
       retainedSizes: parser.retained_sizes,
       gcroots: parser.gcroots,
+      nodes: parser.nodes.length,
+      edges: parser.edges.length,
     };
   }
 
