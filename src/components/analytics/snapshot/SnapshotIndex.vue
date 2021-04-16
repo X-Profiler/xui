@@ -32,7 +32,11 @@
 
       <transition name="slide-noward">
         <div v-if="!loading && !error && !progress" class="snapshot-detail">
+          <!-- snapshot overview -->
           <x-overview :data="overviewData"></x-overview>
+
+          <!-- snapshot tab -->
+          <x-snapshot-tab class="snapshot-tab"></x-snapshot-tab>
         </div>
       </transition>
     </div>
@@ -40,12 +44,14 @@
 </template>
 
 <script>
-import xOverview from "@/components/analytics/Overview";
 import snapshotModule from "@/javascripts/analytics/snapshot/SnapshotIndex";
+import xOverview from "@/components/analytics/Overview";
+import xSnapshotTab from "@/components/analytics/snapshot/SnapshotTab";
 
 export default {
   components: {
     "x-overview": xOverview,
+    "x-snapshot-tab": xSnapshotTab,
   },
 
   data() {
@@ -72,5 +78,9 @@ export default {
 
 .snapshot-loading {
   text-align: center;
+}
+
+.snapshot-tab {
+  margin-top: 23px;
 }
 </style>
