@@ -31,8 +31,8 @@
       ></x-error-message>
 
       <transition name="slide-noward">
-        <div v-if="!loading && !error" class="snapshot-detail">
-          {{ profile }}
+        <div v-if="!loading && !error && !progress" class="snapshot-detail">
+          <x-overview :data="overviewData"></x-overview>
         </div>
       </transition>
     </div>
@@ -40,9 +40,14 @@
 </template>
 
 <script>
+import xOverview from "@/components/analytics/Overview";
 import snapshotModule from "@/javascripts/analytics/snapshot/SnapshotIndex";
 
 export default {
+  components: {
+    "x-overview": xOverview,
+  },
+
   data() {
     return {
       loading: true,
@@ -52,6 +57,7 @@ export default {
       request: null,
       file: null,
       profile: null,
+      fileSize: null,
     };
   },
 

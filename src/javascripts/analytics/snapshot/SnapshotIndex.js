@@ -33,6 +33,7 @@ export default {
       const that = this;
 
       function progress(e) {
+        that.fileSize = e.loaded;
         const progress = `${utils.formatSize(e.loaded, 2, false, true)}`;
         that.theme = 1;
         that.progress = { left: "已下载", right: `${progress}` };
@@ -64,13 +65,26 @@ export default {
       }
     },
 
-    showResult(result) {
+    showResult(profile) {
       this.progress = null;
-      this.profile = result;
+      this.profile = profile;
+      console.log(12333, profile);
     }
   },
 
   computed: {
     ...mapState(["snapshotData"]),
+
+    overviewData() {
+      const { retainedSizes, nodes, edges, gcroots } = this.profile;
+
+      return [
+        { label: "堆快照文件", value: utils.formatSize(this.fileSize) },
+        { label: "堆空间大小", value: utils.formatSize(retainedSizes[0]) },
+        { label: "Heap Objects", value: nodes },
+        { label: "Heap Edges", value: edges },
+        { label: "GC Roots", value: gcroots }
+      ];
+    }
   }
 };
