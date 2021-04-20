@@ -30,7 +30,7 @@ export default {
           title: this.formatNode(targetNode),
         });
       }
-      return { children, lastIndex, more: lastIndex < edges.length };
+      return { children, lastIndex, more: lastIndex < edges.length, left: edges.length - lastIndex };
     },
 
     initTree() {
@@ -48,15 +48,18 @@ export default {
 
     expandNode(tree) {
       if (!tree.expand) {
-        tree.children = null;
+        return;
       }
 
-      const { children, lastIndex, more } = this.formatEdges(tree.id);
       if (!tree.children) {
-        this.$set(tree, "children", children);
-        this.$set(tree, "lastIndex", lastIndex);
-        this.$set(tree, "more", more);
+        this.$set(tree, "children", []);
       }
+
+      const { children, lastIndex, left, more } = this.formatEdges(tree.id, tree.lastIndex);
+      tree.children = tree.children.concat(children);
+      this.$set(tree, "lastIndex", lastIndex);
+      this.$set(tree, "more", more);
+      this.$set(tree, "left", left);
     }
   },
 };
