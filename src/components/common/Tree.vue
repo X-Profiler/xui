@@ -17,6 +17,13 @@
           :depth="depth + 1"
           @expandNode="expandNode"
         ></x-tree>
+        <div
+          v-if="child.more"
+          :style="marginLeft"
+          @click.stop="expandNode(child)"
+        >
+          +{{ child.left }}
+        </div>
       </div>
     </div>
   </div>
