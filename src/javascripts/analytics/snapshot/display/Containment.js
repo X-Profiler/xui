@@ -8,13 +8,20 @@ export default {
   },
 
   methods: {
-    formatNode(id) {
-      const { nodeUtils, retainedSizes } = this.profile;
+    formatNode(id, edge) {
+      const { nodeUtils, edgeUtils, retainedSizes } = this.profile;
       const name = nodeUtils.getName(id);
       const address = nodeUtils.getAddress(id);
       const type = nodeUtils.getType(id);
       const size = retainedSizes[id];
-      return `${name} @${address} (type: ${type}, size: ${utils.formatSize(size)})`;
+      let info = `${name} @${address} (type: ${type}, size: ${utils.formatSize(size)})`;
+
+      if (edge || edge === 0) {
+        const nameOrIndex = edgeUtils.getNameOrIndex(edge, true);
+        info = `${nameOrIndex} :: ${info}`;
+      }
+
+      return info;
     },
 
     formatEdges(id, start = 0, interval = 50) {
@@ -27,7 +34,7 @@ export default {
         const targetNode = edgeUtils.getTargetNode(edge, true);
         children.push({
           id: targetNode,
-          title: this.formatNode(targetNode),
+          title: this.formatNode(targetNode, edge),
         });
       }
       return { children, lastIndex, more: lastIndex < edges.length, left: edges.length - lastIndex };
