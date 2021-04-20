@@ -68,7 +68,6 @@ export default {
     showResult(profile) {
       this.progress = null;
       this.profile = profile;
-      console.log(12333, profile);
     }
   },
 

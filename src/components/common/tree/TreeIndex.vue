@@ -7,7 +7,9 @@
       :key="index"
       @click.stop="toggle(child)"
     >
-      {{ child.title }}
+      <div>
+        {{ child.title }}
+      </div>
 
       <div v-if="child.expand">
         <x-tree :data="child.children" :depth="depth + 1"></x-tree>

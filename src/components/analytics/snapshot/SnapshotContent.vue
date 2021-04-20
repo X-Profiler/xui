@@ -4,7 +4,7 @@
       <component
         v-if="snapshotTab"
         :is="activeComponent"
-        :data="profile"
+        :profile="profile"
       ></component>
     </transition>
   </div>
