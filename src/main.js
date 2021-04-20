@@ -21,7 +21,7 @@ import xLoading from "@/components/common/Loading";
 import xModal from "@/components/common/Modal";
 import xTable from "@/components/common/Table";
 import xTooltip from "@/components/common/Tooltip";
-import xTree from "@/components/common/Tree";
+import xTree from "@/components/common/tree/TreeIndex";
 
 // charts
 import xArea from "@/components/chart/Area";
