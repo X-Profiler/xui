@@ -37,6 +37,9 @@
 
           <!-- snapshot tab -->
           <x-snapshot-tab class="snapshot-tab"></x-snapshot-tab>
+
+          <!-- snapshot content -->
+          <x-snapshot-content :profile="profile"></x-snapshot-content>
         </div>
       </transition>
     </div>
@@ -47,11 +50,13 @@
 import snapshotModule from "@/javascripts/analytics/snapshot/SnapshotIndex";
 import xOverview from "@/components/analytics/Overview";
 import xSnapshotTab from "@/components/analytics/snapshot/SnapshotTab";
+import xSnapshotContent from "@/components/analytics/snapshot/SnapshotContent";
 
 export default {
   components: {
     "x-overview": xOverview,
     "x-snapshot-tab": xSnapshotTab,
+    "x-snapshot-content": xSnapshotContent,
   },
 
   data() {

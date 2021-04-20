@@ -9,7 +9,7 @@ export default {
 
   mutations: {
     setSnapshotTab(state, tab) {
-      state.diagTab = tab;
+      state.snapshotTab = tab;
     },
   }
 };
