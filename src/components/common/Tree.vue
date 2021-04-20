@@ -12,7 +12,11 @@
       </div>
 
       <div v-if="child.expand">
-        <x-tree :data="child.children" :depth="depth + 1"></x-tree>
+        <x-tree
+          :data="child.children"
+          :depth="depth + 1"
+          @expandNode="expandNode"
+        ></x-tree>
       </div>
     </div>
   </div>
@@ -35,6 +39,11 @@ export default {
   methods: {
     toggle(tree) {
       this.$set(tree, "expand", !tree.expand);
+      this.expandNode(tree);
+    },
+
+    expandNode(tree) {
+      this.$emit("expandNode", tree);
     },
   },
 
