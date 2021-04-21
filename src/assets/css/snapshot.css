@@ -1,0 +1,21 @@
+.snap-addr,
+.snap-detial,
+.snap-quto {
+  color: #808080;
+}
+
+.snap-name {
+  color: #303942;
+}
+
+.snap-hidden {
+  color: #606266;
+}
+
+.snap-property {
+  color: rgb(136, 19, 145)
+}
+
+.snap-context {
+  color: rgb(28, 0, 207)
+}

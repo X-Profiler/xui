@@ -7,9 +7,7 @@
       :key="index"
       @click.stop="toggle(child)"
     >
-      <div>
-        {{ child.title }}
-      </div>
+      <div v-html="child.title"></div>
 
       <div v-if="child.expand">
         <x-tree
@@ -67,5 +65,7 @@ export default {
 .tree {
   cursor: pointer;
   user-select: none;
+  font-family: Menlo;
+  font-size: 12px;
 }
 </style>

@@ -48,6 +48,7 @@ export default class SnapshotLoader {
       rootIndex: parser.root_index,
       nodeUtils: parser.node_util,
       edgeUtils: parser.edge_util,
+      EdgeUtils: parser.EdgeUtil,
     };
   }
 
