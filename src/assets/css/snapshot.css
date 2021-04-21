@@ -12,6 +12,16 @@
   color: #606266;
 }
 
+.snap-closure {
+  font-style: italic;
+}
+
+.snap-gcroot {
+  background-color: #c0eafd;
+  font-style: italic;
+  padding: 0 2px;
+}
+
 .snap-property {
   color: rgb(136, 19, 145)
 }

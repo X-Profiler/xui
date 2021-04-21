@@ -9,11 +9,23 @@ export default {
 
   methods: {
     formatNode(id, edge) {
-      const { nodeUtils, edgeUtils, retainedSizes, EdgeUtils } = this.profile;
-      const name = `<span class="snap-name">${nodeUtils.getName(id)}</span>`;
+      const { nodeUtils, edgeUtils, retainedSizes, gcrootsMap, NodeUtils, EdgeUtils } = this.profile;
+      const { KCLOSURE } = NodeUtils.NodeTypes;
       const address = `<span class="snap-addr">@${nodeUtils.getAddress(id)}</span>`;
       const type = nodeUtils.getType(id);
+      const nodeType = nodeUtils.getTypeForInt(id);
       const size = retainedSizes[id];
+      let name = nodeUtils.getName(id);
+      let nameClass = ["snap-name"];
+      if ([KCLOSURE].includes(nodeType)) {
+        name = `${name || "anonymous"}()`;
+        nameClass.push("snap-closure");
+      }
+      if (gcrootsMap[id] && name) {
+        nameClass.push("snap-gcroot");
+      }
+      name = `<span class="${nameClass.join(" ")}">${name}</span>`;
+      console.log(name);
       let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${utils.formatSize(size)})</span>`;
 
       if (edge || edge === 0) {
