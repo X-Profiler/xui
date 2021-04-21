@@ -46,19 +46,20 @@ export default {
           title: this.formatNode(targetNode, edge),
         });
       }
-      return { children, lastIndex, more: lastIndex < edges.length, left: edges.length - lastIndex };
+      return { children, lastIndex, more: lastIndex < edges.length, left: edges.length - lastIndex, noChild: !edges.length };
     },
 
     initTree() {
       const { rootIndex } = this.profile;
       const rootInfo = this.formatNode(rootIndex);
-      const { children, lastIndex, more } = this.formatEdges(rootIndex);
+      const { children, lastIndex, more, noChild } = this.formatEdges(rootIndex);
 
       this.profileTreeData = [{
         id: rootIndex,
         title: rootInfo,
         expand: true,
-        children, lastIndex, more
+        children, lastIndex, more,
+        noChild,
       }];
     },
 
@@ -71,11 +72,12 @@ export default {
         this.$set(tree, "children", []);
       }
 
-      const { children, lastIndex, left, more } = this.formatEdges(tree.id, tree.lastIndex);
+      const { children, lastIndex, left, more, noChild } = this.formatEdges(tree.id, tree.lastIndex);
       tree.children = tree.children.concat(children);
       this.$set(tree, "lastIndex", lastIndex);
       this.$set(tree, "more", more);
       this.$set(tree, "left", left);
+      this.$set(tree, "noChild", noChild);
     }
   },
 };
