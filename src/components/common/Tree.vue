@@ -10,6 +10,7 @@
       <div class="title">
         <div class="icon-translate">
           <Icon
+            v-if="!child.noChild"
             :ref="`dropIcon-${child.id}`"
             class="icon-rotate"
             :style="iconExpandStyle(child)"
@@ -20,7 +21,7 @@
       </div>
 
       <transition name="slide-tree">
-        <div class="child" v-show="child.expand">
+        <div class="child" v-if="child.expand">
           <x-tree
             :data="child.children"
             :depth="depth + 1"
@@ -106,10 +107,12 @@ export default {
 .title {
   display: flex;
   align-items: center;
+  min-height: 26px;
 }
 
 .icon-translate {
-  margin-right: 3px;
+  /* margin-right: 3px; */
+  min-width: 16px;
 }
 
 .icon-rotate {
