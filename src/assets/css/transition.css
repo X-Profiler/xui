@@ -190,3 +190,24 @@
   opacity: 0;
 }
 /* area end */
+
+/* tree start */
+.slide-tree-enter {
+  opacity: 0.5;
+  transform: translateY(-1px);
+}
+
+.slide-tree-enter-active {
+  /* max-height: 1000px; */
+  transition: .1s all ease-in-out;
+}
+
+.slide-tree-leave {
+  opacity: 0.5;
+}
+
+.slide-tree-leave-to {
+  opacity: 0.5;
+}
+
+/* tree end */
