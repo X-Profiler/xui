@@ -19,22 +19,22 @@
         <div v-html="child.title"></div>
       </div>
 
-      <!-- <transition name="slide-noward"> -->
-      <div v-if="child.expand">
-        <x-tree
-          :data="child.children"
-          :depth="depth + 1"
-          @expandNode="expandNode"
-        ></x-tree>
-        <div
-          v-if="child.more"
-          :style="marginLeft"
-          @click.stop="expandNode(child)"
-        >
-          +{{ child.left }}
+      <transition name="slide-tree">
+        <div class="child" v-show="child.expand">
+          <x-tree
+            :data="child.children"
+            :depth="depth + 1"
+            @expandNode="expandNode"
+          ></x-tree>
+          <div
+            v-if="child.more"
+            :style="marginLeft"
+            @click.stop="expandNode(child)"
+          >
+            +{{ child.left }}
+          </div>
         </div>
-      </div>
-      <!-- </transition> -->
+      </transition>
     </div>
   </div>
 </template>
@@ -116,5 +116,10 @@ export default {
   transform: scaleY(1.2) scaleX(1.4);
   padding-bottom: 3px;
   color: #c0c4cc;
+}
+
+.child {
+  overflow: hidden;
+  background-color: transparent;
 }
 </style>
