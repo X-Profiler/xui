@@ -9,16 +9,25 @@ export default {
 
   methods: {
     formatNode(id, edge) {
-      const { nodeUtils, edgeUtils, retainedSizes } = this.profile;
-      const name = nodeUtils.getName(id);
-      const address = nodeUtils.getAddress(id);
+      const { nodeUtils, edgeUtils, retainedSizes, EdgeUtils } = this.profile;
+      const name = `<span class="snap-name">${nodeUtils.getName(id)}</span>`;
+      const address = `<span class="snap-addr">@${nodeUtils.getAddress(id)}</span>`;
       const type = nodeUtils.getType(id);
       const size = retainedSizes[id];
-      let info = `${name} @${address} (type: ${type}, size: ${utils.formatSize(size)})`;
+      let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${utils.formatSize(size)})</span>`;
 
       if (edge || edge === 0) {
         const nameOrIndex = edgeUtils.getNameOrIndex(edge, true);
-        info = `${nameOrIndex} :: ${info}`;
+        const edgeType = edgeUtils.getTypeForInt(edge, true);
+        const { KELEMENT, KPROPERTY, KSHORTCUT, KCONTEXTVARIABLE } = EdgeUtils.EdgeTypes;
+        let prot = `<span class="snap-hidden">${nameOrIndex}</span>`;
+        if ([KELEMENT, KPROPERTY, KSHORTCUT].includes(edgeType)) {
+          prot = `<span class="snap-property">${nameOrIndex}</span>`;
+        }
+        if ([KCONTEXTVARIABLE].includes(edgeType)) {
+          prot = `<span class="snap-context">${nameOrIndex}</span>`;
+        }
+        info = `${prot} <span class="snap-quto">::</span> ${info}`;
       }
 
       return info;

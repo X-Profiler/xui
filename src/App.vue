@@ -18,4 +18,5 @@ export default {};
 @import url(assets/css/chart.css);
 @import url(assets/css/modal.css);
 @import url(assets/css/alert.css);
+@import url(assets/css/snapshot.css);
 </style>
