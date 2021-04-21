@@ -10,22 +10,31 @@ export default {
   methods: {
     formatNode(id, edge) {
       const { nodeUtils, edgeUtils, retainedSizes, gcrootsMap, NodeUtils, EdgeUtils } = this.profile;
-      const { KCLOSURE } = NodeUtils.NodeTypes;
+      const { KCLOSURE, KSTRING, KCONCATENATED_STRING, KSLICED_STRING } = NodeUtils.NodeTypes;
       const address = `<span class="snap-addr">@${nodeUtils.getAddress(id)}</span>`;
       const type = nodeUtils.getType(id);
       const nodeType = nodeUtils.getTypeForInt(id);
       const size = retainedSizes[id];
       let name = nodeUtils.getName(id);
+      if (nodeType === KCONCATENATED_STRING) {
+        name = nodeUtils.getConsStringName(id);
+      }
+      if (typeof name === "string" && name.length > 100) {
+        name = name.substr(0, 100);
+      }
+
       let nameClass = ["snap-name"];
       if ([KCLOSURE].includes(nodeType)) {
         name = `${name || "anonymous"}()`;
         nameClass.push("snap-closure");
       }
+      if ([KSTRING, KSLICED_STRING, KCONCATENATED_STRING].includes(nodeType)) {
+        nameClass.push("snap-string");
+      }
       if (gcrootsMap[id] && name) {
         nameClass.push("snap-gcroot");
       }
       name = `<span class="${nameClass.join(" ")}">${name}</span>`;
-      console.log(name);
       let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${utils.formatSize(size)})</span>`;
 
       if (edge || edge === 0) {
