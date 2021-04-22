@@ -2,7 +2,7 @@
 
 import { isNumber } from "@/javascripts/lib/common";
 
-export function formatSize(size, fixed = 2, showPlus, showString = false, seg = '') {
+export function formatSize(size, fixed = 2, showPlus, showString = false, seg = "") {
   const symbol = size === Math.abs(size);
   size = Math.abs(size);
   let str = "";
