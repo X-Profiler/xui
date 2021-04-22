@@ -33,3 +33,7 @@
 .snap-context {
   color: rgb(28, 0, 207)
 }
+
+.snap-disabled {
+  opacity: 0.5;
+}
