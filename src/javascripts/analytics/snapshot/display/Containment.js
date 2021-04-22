@@ -17,7 +17,7 @@ export default {
       const type = nodeUtils.getType(id);
       const nodeType = nodeUtils.getTypeForInt(id);
       const size = retainedSizes[id];
-      let name = nodeUtils.getName(id);
+      let name = utils.htmlEscape(nodeUtils.getName(id));
       if (nodeType === KCONCATENATED_STRING) {
         name = nodeUtils.getConsStringName(id);
       }
@@ -37,11 +37,12 @@ export default {
         nameClass.push("snap-gcroot");
       }
       name = `<span class="${nameClass.join(" ")}">${name}</span>`;
-      let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${utils.formatSize(size, 2, false, false, ' ')})</span>`;
+      let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${utils.formatSize(size, 2, false, false, " ")})</span>`;
 
       // edge info
       if (edge || edge === 0) {
-        const nameOrIndex = edgeUtils.getNameOrIndex(edge, true);
+        const nameOrIndex = utils.htmlEscape(edgeUtils.getNameOrIndex(edge, true));
+        const type = edgeUtils.GetType(edge, true);
         const edgeType = edgeUtils.getTypeForInt(edge, true);
         const { KELEMENT, KPROPERTY, KSHORTCUT, KCONTEXTVARIABLE } = EdgeUtils.EdgeTypes;
         let prot = `<span class="snap-hidden">${nameOrIndex}</span>`;
@@ -51,9 +52,10 @@ export default {
         if ([KCONTEXTVARIABLE].includes(edgeType)) {
           prot = `<span class="snap-context">${nameOrIndex}</span>`;
         }
-        info = `${prot} <span class="snap-quto">::</span> ${info}`;
+        info = `<span title="${type}">${prot}</title> <span class="snap-quto">::</span> ${info}`;
       }
 
+      // if disabled
       if (parents && parents.includes(id)) {
         info = `<span class="snap-disabled">${info}</span>`;
       }

@@ -49,3 +49,14 @@ export function getCsrfToken() {
     }
   }
 }
+
+export function htmlEscape(text) {
+  return text.replace(/[<>"&]/g,  match=> {
+    switch (match) {
+      case "<": return "&lt;";
+      case ">": return "&gt;";
+      case "&": return "&amp;";
+      case "\"": return "&quot;";
+    }
+  });
+}

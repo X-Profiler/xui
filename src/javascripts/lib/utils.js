@@ -10,7 +10,8 @@ import { drawerRouteFactory, modalRouteFactory } from "@/javascripts/lib/routerF
 import { dichotomy } from "@/javascripts/lib/dichotomy";
 import {
   hashCode, isNumber, createLaterFunction,
-  isBooleanString, stringToBoolean, getCsrfToken
+  isBooleanString, stringToBoolean, getCsrfToken,
+  htmlEscape
 } from "@/javascripts/lib/common";
 
 export {
@@ -23,5 +24,6 @@ export {
   drawerRouteFactory, modalRouteFactory,
   dichotomy,
   hashCode, isNumber, createLaterFunction,
-  isBooleanString, stringToBoolean, getCsrfToken
+  isBooleanString, stringToBoolean, getCsrfToken,
+  htmlEscape,
 };
