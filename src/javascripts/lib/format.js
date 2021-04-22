@@ -2,20 +2,20 @@
 
 import { isNumber } from "@/javascripts/lib/common";
 
-export function formatSize(size, fixed = 2, showPlus, showString = false) {
+export function formatSize(size, fixed = 2, showPlus, showString = false, seg = '') {
   const symbol = size === Math.abs(size);
   size = Math.abs(size);
   let str = "";
   size = +size;
 
   if (size / 1024 < 1) {
-    str = `${showString ? size.toFixed(fixed) : Number((size).toFixed(fixed))}Bytes`;
+    str = `${showString ? size.toFixed(fixed) : Number((size).toFixed(fixed))}${seg}Bytes`;
   } else if (size / 1024 / 1024 < 1) {
-    str = `${showString ? (size / 1024).toFixed(fixed) : Number((size / 1024).toFixed(fixed))}KB`;
+    str = `${showString ? (size / 1024).toFixed(fixed) : Number((size / 1024).toFixed(fixed))}${seg}KB`;
   } else if (size / 1024 / 1024 / 1024 < 1) {
-    str = `${showString ? (size / 1024 / 1024).toFixed(fixed) : Number((size / 1024 / 1024).toFixed(fixed))}MB`;
+    str = `${showString ? (size / 1024 / 1024).toFixed(fixed) : Number((size / 1024 / 1024).toFixed(fixed))}${seg}MB`;
   } else {
-    str = `${showString ? (size / 1024 / 1024 / 1024).toFixed(fixed) : (Number(size / 1024 / 1024 / 1024).toFixed(fixed))}GB`;
+    str = `${showString ? (size / 1024 / 1024 / 1024).toFixed(fixed) : (Number(size / 1024 / 1024 / 1024).toFixed(fixed))}${seg}GB`;
   }
   return size ? `${symbol ? `${showPlus ? `+${str}` : str}` : `-${str}`}` : str;
 }
