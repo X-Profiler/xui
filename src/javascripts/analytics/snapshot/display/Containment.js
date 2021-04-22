@@ -8,8 +8,10 @@ export default {
   },
 
   methods: {
-    formatNode(id, edge) {
+    formatNode(id, edge, parents) {
       const { nodeUtils, edgeUtils, retainedSizes, gcrootsMap, NodeUtils, EdgeUtils } = this.profile;
+
+      // node info
       const { KCLOSURE, KSTRING, KCONCATENATED_STRING, KSLICED_STRING } = NodeUtils.NodeTypes;
       const address = `<span class="snap-addr">@${nodeUtils.getAddress(id)}</span>`;
       const type = nodeUtils.getType(id);
@@ -37,6 +39,7 @@ export default {
       name = `<span class="${nameClass.join(" ")}">${name}</span>`;
       let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${utils.formatSize(size)})</span>`;
 
+      // edge info
       if (edge || edge === 0) {
         const nameOrIndex = edgeUtils.getNameOrIndex(edge, true);
         const edgeType = edgeUtils.getTypeForInt(edge, true);
@@ -51,10 +54,14 @@ export default {
         info = `${prot} <span class="snap-quto">::</span> ${info}`;
       }
 
+      if (parents && parents.includes(id)) {
+        info = `<span class="snap-disabled">${info}</span>`;
+      }
+
       return info;
     },
 
-    formatEdges(id, start = 0, interval = 50) {
+    formatEdges(id, start = 0, parents = [], interval = 50) {
       const { nodeUtils, edgeUtils } = this.profile;
       const edges = nodeUtils.getEdges(id);
       const lastIndex = Math.min(edges.length, start + interval);
@@ -64,7 +71,9 @@ export default {
         const targetNode = edgeUtils.getTargetNode(edge, true);
         children.push({
           id: targetNode,
-          title: this.formatNode(targetNode, edge),
+          title: this.formatNode(targetNode, edge, parents),
+          parents: [targetNode].concat(parents),
+          disabled: parents.includes(targetNode),
         });
       }
       return { children, lastIndex, more: lastIndex < edges.length, left: edges.length - lastIndex, noChild: !edges.length };
@@ -81,6 +90,7 @@ export default {
         expand: true,
         children, lastIndex, more,
         noChild,
+        parents: [rootIndex]
       }];
     },
 
@@ -93,7 +103,7 @@ export default {
         this.$set(tree, "children", []);
       }
 
-      const { children, lastIndex, left, more, noChild } = this.formatEdges(tree.id, tree.lastIndex);
+      const { children, lastIndex, left, more, noChild } = this.formatEdges(tree.id, tree.lastIndex, tree.parents);
       tree.children = tree.children.concat(children);
       this.$set(tree, "lastIndex", lastIndex);
       this.$set(tree, "more", more);

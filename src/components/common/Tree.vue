@@ -32,7 +32,9 @@
             :style="marginLeft"
             @click.stop="expandNode(child)"
           >
-            +{{ child.left }}
+            <Button size="small" type="primary" ghost class="remain"
+              ><span>加载更多 &lt;{{ child.left }}&gt;</span></Button
+            >
           </div>
         </div>
       </transition>
@@ -63,6 +65,10 @@ export default {
 
   methods: {
     toggle(tree) {
+      if (tree.disabled) {
+        return;
+      }
+
       this.$set(tree, "expand", !tree.expand);
       this.expandNode(tree);
 
@@ -124,5 +130,10 @@ export default {
 .child {
   overflow: hidden;
   background-color: transparent;
+}
+
+.remain {
+  font-size: 12px;
+  margin: 3px 0 5px 8px;
 }
 </style>
