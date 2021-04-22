@@ -37,7 +37,7 @@ export default {
         nameClass.push("snap-gcroot");
       }
       name = `<span class="${nameClass.join(" ")}">${name}</span>`;
-      let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${utils.formatSize(size)})</span>`;
+      let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${utils.formatSize(size, 2, false, false, ' ')})</span>`;
 
       // edge info
       if (edge || edge === 0) {
@@ -63,7 +63,7 @@ export default {
 
     formatEdges(id, start = 0, parents = [], interval = 50) {
       const { nodeUtils, edgeUtils } = this.profile;
-      const edges = nodeUtils.getEdges(id);
+      const edges = nodeUtils.getSortedEdges(id);
       const lastIndex = Math.min(edges.length, start + interval);
       const children = [];
       for (let index = start; index < lastIndex; index++) {

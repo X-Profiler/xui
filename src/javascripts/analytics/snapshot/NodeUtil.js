@@ -7,6 +7,7 @@ export default class NodeUtil {
     this.first_int = -1;
     this.second_int = -1;
     this.lazy_string_map = {};
+    this.lazy_sorted_edge_map = {};
   }
 
   static get NodeTypes() {
@@ -143,6 +144,25 @@ export default class NodeUtil {
     for (let i = first_edge_index; i < next_first_edge_index; i += parser.edge_field_length) {
       edges[(i - first_edge_index) / parser.edge_field_length] = i;
     }
+    return edges;
+  }
+
+  getSortedEdges(id) {
+    const lazy_sorted_edge_map = this.lazy_sorted_edge_map;
+    const parser = this.parser;
+
+    const retained_sizes = parser.retained_sizes;
+
+    if (lazy_sorted_edge_map[id]) {
+      return lazy_sorted_edge_map[id];
+    }
+    const edges = this.getEdges(id);
+    edges.sort((o, n) => {
+      const ot = parser.edge_util.getTargetNode(o, true);
+      const nt = parser.edge_util.getTargetNode(n, true);
+      return retained_sizes[ot] < retained_sizes[nt] ? 1 : -1;
+    });
+    lazy_sorted_edge_map[id] = edges;
     return edges;
   }
 
