@@ -1,6 +1,9 @@
 "use strict";
 
 import * as utils from "@/javascripts/lib/utils";
+import treeHelper from "@/javascripts/analytics/snapshot/display/TreeHelper";
+
+const { methods: treeMethods } = treeHelper;
 
 export default {
   created() {
@@ -8,6 +11,21 @@ export default {
   },
 
   methods: {
+    initTree() {
+      const { rootIndex } = this.profile;
+      const rootInfo = this.formatNode(rootIndex);
+      const { children, lastIndex, more, noChild } = this.formatEdges(rootIndex);
+
+      this.profileTreeData = [{
+        id: rootIndex,
+        title: rootInfo,
+        expand: true,
+        children, lastIndex, more,
+        noChild,
+        parents: [rootIndex]
+      }];
+    },
+
     formatNode(id, edge, parents) {
       const { nodeUtils, edgeUtils, retainedSizes, gcrootsMap, NodeUtils, EdgeUtils } = this.profile;
 
@@ -81,36 +99,6 @@ export default {
       return { children, lastIndex, more: lastIndex < edges.length, left: edges.length - lastIndex, noChild: !edges.length };
     },
 
-    initTree() {
-      const { rootIndex } = this.profile;
-      const rootInfo = this.formatNode(rootIndex);
-      const { children, lastIndex, more, noChild } = this.formatEdges(rootIndex);
-
-      this.profileTreeData = [{
-        id: rootIndex,
-        title: rootInfo,
-        expand: true,
-        children, lastIndex, more,
-        noChild,
-        parents: [rootIndex]
-      }];
-    },
-
-    expandNode(tree) {
-      if (!tree.expand) {
-        return;
-      }
-
-      if (!tree.children) {
-        this.$set(tree, "children", []);
-      }
-
-      const { children, lastIndex, left, more, noChild } = this.formatEdges(tree.id, tree.lastIndex, tree.parents);
-      tree.children = tree.children.concat(children);
-      this.$set(tree, "lastIndex", lastIndex);
-      this.$set(tree, "more", more);
-      this.$set(tree, "left", left);
-      this.$set(tree, "noChild", noChild);
-    }
+    ...treeMethods
   },
 };
