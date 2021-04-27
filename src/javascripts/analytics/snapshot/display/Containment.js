@@ -26,7 +26,7 @@ export default {
     },
 
     formatEdges(id, start = 0, parents = [], interval = 50) {
-      const { nodeUtils, edgeUtils } = this.profile;
+      const { nodeUtils, edgeUtils, retainedSizes } = this.profile;
       const edges = nodeUtils.getSortedEdges(id);
       const lastIndex = Math.min(edges.length, start + interval);
       const children = [];
@@ -35,7 +35,8 @@ export default {
         const targetNode = edgeUtils.getTargetNode(edge, true);
         children.push({
           id: targetNode,
-          title: this.formatNode(targetNode, edge, parents),
+          title: this.formatNode(targetNode, edge, parents,
+            { parentRetainedSize: retainedSizes[id] - nodeUtils.getSelfSize(id), parentChilds: edges.length }),
           parents: [targetNode].concat(parents),
           disabled: parents.includes(targetNode),
         });

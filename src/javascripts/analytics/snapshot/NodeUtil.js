@@ -37,11 +37,11 @@ export default class NodeUtil {
       return lazy_string_map[id];
 
     // max length
-    const node_stack = new Array[128]();
+    const node_stack = new Array(128).fill(0);
     node_stack[0] = id;
     let length = 1;
     let name = "";
-    while (length > 0 && name.length() < 256) {
+    while (length > 0 && name.length < 256) {
       const index = node_stack[--length];
       if (this.getTypeForInt(index) != KCONCATENATED_STRING) {
         const cons = strings[parser.nodes[index * parser.node_field_length + parser.node_name_offset]];

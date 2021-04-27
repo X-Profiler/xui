@@ -26,6 +26,7 @@ export default {
     },
 
     formatEdges(id, start = 0, parents = [], interval = 50) {
+      const { nodeUtils, retainedSizes } = this.profile;
       const childs = this.profile.getSortedDominators(id);
       const lastIndex = Math.min(childs.length, start + interval);
       const children = [];
@@ -34,7 +35,8 @@ export default {
         const edge = this.profile.getEdgeByParentAndChild(id, targetNode);
         children.push({
           id: targetNode,
-          title: this.formatNode(targetNode, edge === -1 ? null : edge, parents),
+          title: this.formatNode(targetNode, edge === -1 ? null : edge, parents,
+            { parentRetainedSize: retainedSizes[id] - nodeUtils.getSelfSize(id), parentChilds: childs.length }),
           parents: [targetNode].concat(parents),
           disabled: parents.includes(targetNode),
         });

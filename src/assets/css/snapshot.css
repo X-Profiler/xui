@@ -22,7 +22,6 @@
 
 .snap-gcroot {
   background-color: #c0eafd;
-  font-style: italic;
   padding: 0 2px;
 }
 
@@ -36,4 +35,13 @@
 
 .snap-disabled {
   opacity: 0.5;
+}
+
+.snap-leak-high {
+  color: #d20d0d;
+}
+
+.snap-leak-warn {
+  color: #ff9800;
+  font-style: italic;
 }
