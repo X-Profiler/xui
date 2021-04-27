@@ -2,6 +2,8 @@
 
 import * as utils from "@/javascripts/lib/utils";
 
+const SIZE_LIMIT = 0.2;
+
 export default {
   methods: {
     expandNode(tree) {
@@ -21,7 +23,13 @@ export default {
       this.$set(tree, "noChild", noChild);
     },
 
-    formatNode(id, edge, parents) {
+    checkSizeHigh(retainedSize) {
+      const { retainedSizes, rootIndex } = this.profile;
+      const totalSize = retainedSizes[rootIndex];
+      return totalSize && retainedSize / totalSize > SIZE_LIMIT;
+    },
+
+    formatNode(id, edge, parents, { parentRetainedSize, parentChilds } = { parentRetainedSize: 0, parentChilds: 0 }) {
       const { nodeUtils, edgeUtils, retainedSizes, gcrootsMap, NodeUtils, EdgeUtils } = this.profile;
 
       // node info
@@ -29,7 +37,7 @@ export default {
       const address = `<span class="snap-addr">@${nodeUtils.getAddress(id)}</span>`;
       const type = nodeUtils.getType(id);
       const nodeType = nodeUtils.getTypeForInt(id);
-      const size = utils.formatSize(retainedSizes[id], 2, false, false, " ");
+      // node name
       let name = utils.htmlEscape(nodeUtils.getName(id));
       if (nodeType === KCONCATENATED_STRING) {
         name = nodeUtils.getConsStringName(id);
@@ -50,7 +58,16 @@ export default {
         nameClass.push("snap-gcroot");
       }
       name = `<span class="${nameClass.join(" ")}">${name}</span>`;
-      let info = `${name} ${address} <span class="snap-detial">(type: ${type}, size: ${size})</span>`;
+      // node size
+      const retainedSize = retainedSizes[id];
+      let size = `size: ${utils.formatSize(retainedSize, 2, false, false, " ")}`;
+      if (this.checkSizeHigh(retainedSize)) {
+        size = `<span class="snap-leak-high">${size}</span>`;
+      } else if (parentChilds && (this.checkSizeHigh(parentRetainedSize)) &&
+        retainedSize > (parentRetainedSize / parentChilds)) {
+        size = `<span class="snap-leak-warn">${size}</span>`;
+      }
+      let info = `${name} ${address} <span class="snap-detial">(type: ${type}, ${size})</span>`;
 
       // edge info
       if (edge || edge === 0) {

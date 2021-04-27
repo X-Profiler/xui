@@ -52,7 +52,7 @@ export function getCsrfToken() {
 
 export function htmlEscape(text) {
   if (!text) return "";
-  return text.replace(/[<>"&]/g, match => {
+  return String(text).replace(/[<>"&]/g, match => {
     switch (match) {
       case "<": return "&lt;";
       case ">": return "&gt;";
