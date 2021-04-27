@@ -59,6 +59,7 @@ export default class SnapshotParser {
     this.dominators = {};
     this.gcroots = 0;
     this.gcroots_map = {};
+    this.dominator_map = {};
 
     this.first_edge_indexes = this.getFirstEdgeIndexes();
 
@@ -620,5 +621,54 @@ export default class SnapshotParser {
 
   releaseMemory(time = 50) {
     return new Promise(resolve => setTimeout(resolve, time));
+  }
+
+  markEdge(ordinal) {
+    const node_util = this.node_util;
+    const edge_util = this.edge_util;
+    const edge_searching_map = this.edge_searching_map;
+
+    if (!node_util.checkOrdinalId(ordinal)) {
+      return;
+    }
+    const edges = node_util.getEdges(ordinal);
+    for (const edge of edges) {
+      const child = edge_util.getTargetNode(edge, true);
+      const key = ((ordinal) << 32) + child;
+      if (edge_searching_map[key] || edge_searching_map[key] === 0) {
+        continue;
+      }
+      edge_searching_map[key] = edge;
+    }
+  }
+
+  getSortedDominators(id) {
+    const dominator_map = this.dominator_map;
+
+    if (dominator_map[id]) {
+      return dominator_map[id];
+    }
+
+    const dominators = this.dominators;
+    const retained_sizes = this.retained_sizes;
+    const doms = dominators[id] || [];
+    doms.sort((o, n) => retained_sizes[o] < retained_sizes[n] ? 1 : -1);
+    dominator_map[id] = doms;
+
+    for (const dom of doms) {
+      this.markEdge(dom);
+    }
+
+    return doms;
+  }
+
+  getEdgeByParentAndChild(parent, child) {
+    const edge_searching_map = this.edge_searching_map;
+    const key = ((parent) << 32) + child;
+    const edge = edge_searching_map[key];
+    if (edge || edge === 0) {
+      return edge;
+    }
+    return -1;
   }
 }
