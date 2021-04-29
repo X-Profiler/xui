@@ -72,7 +72,11 @@ export default {
       this.$set(tree, "expand", !tree.expand);
       this.expandNode(tree);
 
-      const dropIcon = this.$refs[`dropIcon-${tree.id}`][0];
+      const list = this.$refs[`dropIcon-${tree.id}`];
+      if (!list) {
+        return;
+      }
+      const dropIcon = list[0];
       if (!dropIcon) {
         return;
       }
