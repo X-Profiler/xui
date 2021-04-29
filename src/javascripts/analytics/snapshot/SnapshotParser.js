@@ -68,6 +68,10 @@ export default class SnapshotParser {
     this._profile = null;
   }
 
+  createEdgeKey(ordinal, child) {
+    return `${ordinal}::${child}`;
+  }
+
   getFirstEdgeIndexes() {
     const nodes = this.nodes;
     const edges = this.edges;
@@ -88,7 +92,8 @@ export default class SnapshotParser {
         for (let i = edge_index; i < edge_index + offset; i += edge_field_length) {
           const child = edges[i + edge_to_node_offset];
           if (child % node_field_length == 0) {
-            const key = ((node_ordinal) << 32) + (child / node_field_length);
+            // const key = ((node_ordinal) << 32) + (child / node_field_length);
+            const key = this.createEdgeKey(node_ordinal, child / node_field_length);
             edge_searching_map[key] = i;
           }
         }
@@ -659,7 +664,8 @@ export default class SnapshotParser {
     const edges = node_util.getEdges(ordinal);
     for (const edge of edges) {
       const child = edge_util.getTargetNode(edge, true);
-      const key = ((ordinal) << 32) + child;
+      // const key = ((ordinal) << 32) + child;
+      const key = this.createEdgeKey(ordinal, child);
       if (edge_searching_map[key] || edge_searching_map[key] === 0) {
         continue;
       }
@@ -689,7 +695,8 @@ export default class SnapshotParser {
 
   getEdgeByParentAndChild(parent, child) {
     const edge_searching_map = this.edge_searching_map;
-    const key = ((parent) << 32) + child;
+    // const key = ((parent) << 32) + child;
+    const key = this.createEdgeKey(parent, child);
     const edge = edge_searching_map[key];
     if (edge || edge === 0) {
       return edge;
