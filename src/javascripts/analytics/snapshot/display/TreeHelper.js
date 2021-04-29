@@ -47,7 +47,6 @@ export default {
       if (typeof name === "string" && name.length > 100) {
         name = name.substr(0, 100);
       }
-
       let nameClass = ["snap-name"];
       if ([KCLOSURE].includes(nodeType)) {
         name = `${name || "anonymous"}()`;

@@ -54,6 +54,7 @@ export default class SnapshotLoader {
       getSortedDominators: parser.getSortedDominators.bind(parser),
       getEdgeByParentAndChild: parser.getEdgeByParentAndChild.bind(parser),
       searchOrdinalByAddress: parser.searchOrdinalByAddress.bind(parser),
+      getRetainers: parser.getRetainers.bind(parser),
     };
   }
 
