@@ -16,7 +16,7 @@ export default {
       rootIndex = rootId === -1 ? rootIndex : rootId;
 
       const { info: rootInfo, mark } = this.formatNode(rootIndex);
-      const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex);
+      const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex, 0, [rootIndex]);
 
       this.profileTreeData = [{
         id: rootIndex,
@@ -30,18 +30,13 @@ export default {
     },
 
     formatEdges(id, start = 0, parents = [], parentMark, interval = 50) {
-      const { nodeUtils, edgeUtils, retainedSizes } = this.profile;
-      const edges = nodeUtils.getSortedEdges(id);
-      const lastIndex = Math.min(edges.length, start + interval);
+      const retainers = this.profile.getRetainers(id);
+      const lastIndex = Math.min(retainers.length, start + interval);
       const children = [];
       for (let index = start; index < lastIndex; index++) {
-        const edge = edges[index];
-        const targetNode = edgeUtils.getTargetNode(edge, true);
-        const { info: title, mark } = this.formatNode(targetNode, edge, parents, {
-          parentRetainedSize: retainedSizes[id] - nodeUtils.getSelfSize(id),
-          parentChilds: edges.length,
-          parentMark
-        });
+        const retainer = retainers[index];
+        const targetNode = retainer.ordinal;
+        const { info: title, mark } = this.formatNode(targetNode, retainer.edge, parents);
         children.push({
           id: targetNode,
           title,
@@ -50,7 +45,7 @@ export default {
           mark
         });
       }
-      return { children, lastIndex, more: lastIndex < edges.length, left: edges.length - lastIndex, noChild: !edges.length };
+      return { children, lastIndex, more: lastIndex < retainers.length, left: retainers.length - lastIndex, noChild: !retainers.length };
     },
 
     ...treeMethods

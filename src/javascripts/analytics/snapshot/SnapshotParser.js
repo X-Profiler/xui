@@ -55,6 +55,7 @@ export default class SnapshotParser {
 
     this.edge_searching_map = {};
     this.address_map = {};
+    this.ordered_retainers_map = {};
     this.page_object_flag = 4;
     this.idominator = [];
     this.dominators = {};
@@ -635,10 +636,9 @@ export default class SnapshotParser {
   }
 
   async clear() {
-    this.retaining_nodes = null;
-    this.retaining_edges = null;
-    this.first_retainer_index = null;
-    this.flags = null;
+    // this.retaining_nodes = null;
+    // this.retaining_edges = null;
+    // this.first_retainer_index = null;
     this.flags = null;
 
     await this.releaseMemory();
@@ -695,5 +695,35 @@ export default class SnapshotParser {
       return edge;
     }
     return -1;
+  }
+
+  getRetainers(id) {
+    const ordered_retainers_map = this.ordered_retainers_map;
+    const first_retainer_index = this.first_retainer_index;
+    const retaining_nodes = this.retaining_nodes;
+    const retaining_edges = this.retaining_edges;
+    const node_distances = this.node_distances;
+
+    if (ordered_retainers_map[id]) {
+      return ordered_retainers_map[id];
+    }
+    const first_retainer_idx = first_retainer_index[id];
+    const next_retainer_idx = first_retainer_index[id + 1];
+    const length = next_retainer_idx - first_retainer_idx;
+    const retainers = new Array(length);
+    for (let i = first_retainer_idx; i < next_retainer_idx; i++) {
+      const retainer = {};
+      retainer.ordinal = retaining_nodes[i];
+      retainer.edge = retaining_edges[i];
+      retainer.distance = node_distances[retainer.ordinal];
+      retainers[i - first_retainer_idx] = retainer;
+    }
+    retainers.sort((lhs, rhs) => {
+      const lhs_distance = node_distances[lhs.ordinal];
+      const rhs_distance = node_distances[rhs.ordinal];
+      return lhs_distance > rhs_distance ? 1 : -1;
+    });
+    ordered_retainers_map[id] = retainers;
+    return retainers;
   }
 }

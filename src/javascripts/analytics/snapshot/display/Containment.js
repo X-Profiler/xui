@@ -16,7 +16,7 @@ export default {
       rootIndex = rootId === -1 ? rootIndex : rootId;
 
       const { info: rootInfo, mark } = this.formatNode(rootIndex);
-      const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex);
+      const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex, 0, [rootIndex]);
 
       this.profileTreeData = [{
         id: rootIndex,
