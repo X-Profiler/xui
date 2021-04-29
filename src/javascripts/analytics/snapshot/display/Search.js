@@ -11,13 +11,21 @@ export default {
         Number(addr.slice(1)) % 2 === 1;
     },
 
+    illegalId(id) {
+      return utils.isNumber(id);
+    },
+
     searchAddressOrId() {
       const addressOrId = this.addressOrId;
       if (this.illegalAddress(addressOrId)) {
+        const id = this.profile.searchOrdinalByAddress(addressOrId.slice(1));
+        if (utils.isNumber(id)) {
+          this.rootId = Number(id);
+        }
         return;
       }
 
-      if (utils.isNumber(addressOrId)) {
+      if (this.illegalId(addressOrId)) {
         this.rootId = Number(addressOrId);
         return;
       }
