@@ -13,6 +13,11 @@ export default {
       type: Object,
       default: () => ({}),
     },
+
+    rootId: {
+      type: Number,
+      default: -1,
+    },
   },
 
   data() {
