@@ -11,7 +11,10 @@ export default {
 
   methods: {
     initTree() {
-      const { rootIndex } = this.profile;
+      const rootId = this.rootId;
+      let { rootIndex } = this.profile;
+      rootIndex = rootId === -1 ? rootIndex : rootId;
+
       const { info: rootInfo, mark } = this.formatNode(rootIndex);
       const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex);
 
@@ -52,4 +55,10 @@ export default {
 
     ...treeMethods
   },
+
+  watch: {
+    rootId() {
+      this.initTree();
+    }
+  }
 };

@@ -1,11 +1,13 @@
 <template>
   <div>
     <transition name="slide-noward">
-      <component
-        v-if="snapshotTab"
-        :is="activeComponent"
-        :profile="profile"
-      ></component>
+      <keep-alive>
+        <component
+          v-if="snapshotTab"
+          :is="activeComponent"
+          :profile="profile"
+        ></component>
+      </keep-alive>
     </transition>
   </div>
 </template>
