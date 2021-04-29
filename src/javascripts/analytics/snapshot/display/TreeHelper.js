@@ -15,7 +15,8 @@ export default {
         this.$set(tree, "children", []);
       }
 
-      const { children, lastIndex, left, more, noChild } = this.formatEdges(tree.id, tree.lastIndex, tree.parents);
+      const { children, lastIndex, left, more, noChild } = this.formatEdges(tree.id,
+        tree.lastIndex, tree.parents, tree.mark);
       tree.children = tree.children.concat(children);
       this.$set(tree, "lastIndex", lastIndex);
       this.$set(tree, "more", more);
@@ -29,7 +30,8 @@ export default {
       return totalSize && retainedSize / totalSize > SIZE_LIMIT;
     },
 
-    formatNode(id, edge, parents, { parentRetainedSize, parentChilds } = { parentRetainedSize: 0, parentChilds: 0 }) {
+    formatNode(id, edge, parents, { parentRetainedSize, parentChilds, parentMark }
+      = { parentRetainedSize: 0, parentChilds: 0, parentMark: false }) {
       const { nodeUtils, edgeUtils, retainedSizes, gcrootsMap, NodeUtils, EdgeUtils } = this.profile;
 
       // node info
@@ -63,7 +65,7 @@ export default {
       let size = `size: ${utils.formatSize(retainedSize, 2, false, false, " ")}`;
       if (this.checkSizeHigh(retainedSize)) {
         size = `<span class="snap-leak-high">${size}</span>`;
-      } else if (parentChilds && (this.checkSizeHigh(parentRetainedSize)) &&
+      } else if (parentChilds && (this.checkSizeHigh(parentRetainedSize) || parentMark) &&
         retainedSize > (parentRetainedSize / parentChilds)) {
         size = `<span class="snap-leak-warn">${size}</span>`;
       }
@@ -90,7 +92,7 @@ export default {
         info = `<span class="snap-disabled">${info}</span>`;
       }
 
-      return info;
+      return { info, mark: size.includes("snap-leak") };
     },
   }
 };
