@@ -18,12 +18,19 @@
       <div class="section-title">Edge 视图</div>
       <x-containment :profile="profile" :rootId="rootId"></x-containment>
     </div>
+
+    <!-- retainer -->
+    <div class="retainer">
+      <div class="section-title">Retainer 视图</div>
+      <x-retainer :profile="profile" :rootId="rootId"></x-retainer>
+    </div>
   </div>
 </template>
 
 <script>
 import searchModule from "@/javascripts/analytics/snapshot/display/Search";
 import xContainment from "@/components/analytics/snapshot/display/Containment";
+import xRetainer from "@/components/analytics/snapshot/display/Retainer";
 
 export default {
   props: {
@@ -35,6 +42,7 @@ export default {
 
   components: {
     "x-containment": xContainment,
+    "x-retainer": xRetainer,
   },
 
   data() {
@@ -58,6 +66,10 @@ export default {
 }
 
 .edge {
+  margin-top: 15px;
+}
+
+.retainer {
   margin-top: 15px;
 }
 </style>
