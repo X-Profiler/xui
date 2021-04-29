@@ -53,6 +53,7 @@ export default class SnapshotLoader {
       EdgeUtils: parser.EdgeUtil,
       getSortedDominators: parser.getSortedDominators.bind(parser),
       getEdgeByParentAndChild: parser.getEdgeByParentAndChild.bind(parser),
+      searchOrdinalByAddress: parser.searchOrdinalByAddress.bind(parser),
     };
   }
 

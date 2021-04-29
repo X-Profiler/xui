@@ -54,6 +54,7 @@ export default class SnapshotParser {
     this.edge_to_node_offset = edge_fields.indexOf("to_node");
 
     this.edge_searching_map = {};
+    this.address_map = {};
     this.page_object_flag = 4;
     this.idominator = [];
     this.dominators = {};
@@ -97,6 +98,7 @@ export default class SnapshotParser {
 
   async build() {
     console.time("--------- build ---------");
+    await this.createAddressMap();
     await this.buildTotalRetainer();
     await this.buildDistances();
 
@@ -106,6 +108,29 @@ export default class SnapshotParser {
     await this.buildDominatorTree();
     await this.calculateRetainedSizes();
     console.timeEnd("--------- build ---------");
+  }
+
+  async createAddressMap() {
+    this._progress.updateStatus("Create address map…");
+    const node_count = this.node_count;
+    const node_util = this.node_util;
+    const address_map = this.address_map;
+
+    for (let ordinal = 0; ordinal < node_count; ordinal++) {
+      if (!node_util.checkOrdinalId(ordinal))
+        continue;
+      const address = node_util.getAddress(ordinal);
+      address_map[address] = ordinal;
+    }
+
+    await this.releaseMemory();
+  }
+
+  searchOrdinalByAddress(address) {
+    const address_map = this.address_map;
+
+    const id = address_map[address];
+    return id;
   }
 
   isEssentialEdge(ordinal, type) {
