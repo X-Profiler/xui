@@ -12,7 +12,7 @@ export default {
   methods: {
     initTree() {
       const { rootIndex } = this.profile;
-      const rootInfo = this.formatNode(rootIndex);
+      const { info: rootInfo, mark } = this.formatNode(rootIndex);
       const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex);
 
       this.profileTreeData = [{
@@ -21,11 +21,12 @@ export default {
         expand: true,
         children, lastIndex, more,
         left, noChild,
-        parents: [rootIndex]
+        parents: [rootIndex],
+        mark
       }];
     },
 
-    formatEdges(id, start = 0, parents = [], interval = 50) {
+    formatEdges(id, start = 0, parents = [], parentMark, interval = 50) {
       const { nodeUtils, edgeUtils, retainedSizes } = this.profile;
       const edges = nodeUtils.getSortedEdges(id);
       const lastIndex = Math.min(edges.length, start + interval);
@@ -33,12 +34,17 @@ export default {
       for (let index = start; index < lastIndex; index++) {
         const edge = edges[index];
         const targetNode = edgeUtils.getTargetNode(edge, true);
+        const { info: title, mark } = this.formatNode(targetNode, edge, parents, {
+          parentRetainedSize: retainedSizes[id] - nodeUtils.getSelfSize(id),
+          parentChilds: edges.length,
+          parentMark
+        });
         children.push({
           id: targetNode,
-          title: this.formatNode(targetNode, edge, parents,
-            { parentRetainedSize: retainedSizes[id] - nodeUtils.getSelfSize(id), parentChilds: edges.length }),
+          title,
           parents: [targetNode].concat(parents),
           disabled: parents.includes(targetNode),
+          mark
         });
       }
       return { children, lastIndex, more: lastIndex < edges.length, left: edges.length - lastIndex, noChild: !edges.length };
