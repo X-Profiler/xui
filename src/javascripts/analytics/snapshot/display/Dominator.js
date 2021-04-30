@@ -50,7 +50,7 @@ export default {
         if (count > 1) {
           let more = "";
           if (percent) {
-            more = `(${percent}%)`;
+            more = ` (${percent}%)`;
           }
           hiddenInfo = `<span class="snap-infohidden">重复 ${count} 次，占据 ${utils.formatSize(size, 2, false, false, " ")}${more}</span>`;
         }
