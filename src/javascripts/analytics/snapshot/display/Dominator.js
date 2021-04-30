@@ -71,8 +71,9 @@ export default {
     },
 
     showExtra({ parent, child }) {
-      if (!child.hiddenInfo) {
+      if (!child.hiddenInfoSetted) {
         child.hiddenInfo = this.getHiddenInfo(parent, child.id);
+        child.hiddenInfoSetted = true;
       }
       child.showHidden = true;
     },
