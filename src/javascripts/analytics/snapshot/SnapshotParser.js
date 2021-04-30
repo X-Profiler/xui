@@ -733,4 +733,37 @@ export default class SnapshotParser {
     ordered_retainers_map[id] = retainers;
     return retainers;
   }
+
+  getDominatorsRepeat(parent, child) {
+    const node_util = this.node_util;
+    const node_distances = this.node_distances;
+    const retained_sizes = this.retained_sizes;
+
+    // selected child
+    const child_name = node_util.getNameForInt(child);
+    const child_self_size = node_util.getSelfSize(child);
+    const child_distance = node_distances[child];
+
+    // find the same children
+    let count = 0;
+    let total_retained_size = 0;
+    const dominators = this.getSortedDominators(parent);
+    for (const dominator of dominators) {
+      const name = node_util.getNameForInt(dominator);
+      const self_size = node_util.getSelfSize(dominator);
+      const distance = node_distances[dominator];
+      if (name === child_name && self_size === child_self_size && distance === child_distance) {
+        count++;
+        total_retained_size += retained_sizes[dominator];
+      }
+    }
+
+    let percent = 0;
+    const parent_retained_size = retained_sizes[parent];
+    if (parent_retained_size) {
+      percent = Number((total_retained_size / parent_retained_size).toFixed(2));
+    }
+
+    return { count, size: total_retained_size, percent };
+  }
 }
