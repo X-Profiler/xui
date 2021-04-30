@@ -1,5 +1,6 @@
 "use strict";
 
+import * as utils from "@/javascripts/lib/utils";
 import treeHelper from "@/javascripts/analytics/snapshot/display/TreeHelper";
 
 const { methods: treeMethods } = treeHelper;
@@ -22,7 +23,9 @@ export default {
         children, lastIndex, more,
         left, noChild,
         parents: [rootIndex],
-        mark
+        mark,
+        showHidden: false,
+        hiddenInfo: ""
       }];
     },
 
@@ -40,12 +43,25 @@ export default {
           parentChilds: childs.length,
           parentMark
         });
+
+        //  info
+        const { count, size, percent } = this.profile.getDominatorsRepeat(id, targetNode);
+        let hiddenInfo = "";
+        if (count > 1) {
+          let more = "";
+          if (percent) {
+            more = `(${percent}%)`;
+          }
+          hiddenInfo = `<span class="snap-infohidden">重复 ${count} 次，占据 ${utils.formatSize(size, 2, false, false, " ")}${more}</span>`;
+        }
         children.push({
           id: targetNode,
           title,
           parents: [targetNode].concat(parents),
           disabled: parents.includes(targetNode),
-          mark
+          mark,
+          showHidden: false,
+          hiddenInfo,
         });
       }
       return { children, lastIndex, more: lastIndex < childs.length, left: childs.length - lastIndex, noChild: !childs.length };

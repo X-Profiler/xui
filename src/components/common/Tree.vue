@@ -7,7 +7,11 @@
       :key="index"
       @click.stop="toggle(child)"
     >
-      <div class="title">
+      <div
+        class="title"
+        @mousemove="() => (child.showHidden = true)"
+        @mouseleave="() => (child.showHidden = false)"
+      >
         <div class="icon-translate">
           <Icon
             v-if="!child.noChild"
@@ -18,6 +22,7 @@
           />
         </div>
         <div v-html="child.title"></div>
+        <div v-show="child.showHidden" v-html="child.hiddenInfo"></div>
       </div>
 
       <transition name="slide-tree">
@@ -118,6 +123,10 @@ export default {
   display: flex;
   align-items: center;
   min-height: 26px;
+}
+
+.title:hover {
+  background-color: #f5f7fa;
 }
 
 .icon-translate {

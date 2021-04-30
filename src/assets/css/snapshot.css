@@ -42,6 +42,14 @@
 }
 
 .snap-leak-warn {
-  color: #ff9800;
+  color: #f89501;
   font-style: italic;
+}
+
+.snap-infohidden {
+  margin-left: 13px;
+  background-color: #2689d6;
+  color:white;
+  padding: 3px 6px;
+  font-weight: bold;
 }
