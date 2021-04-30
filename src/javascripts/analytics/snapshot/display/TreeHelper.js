@@ -83,7 +83,7 @@ export default {
         if ([KCONTEXTVARIABLE].includes(edgeType)) {
           prot = `<span class="snap-context">${nameOrIndex}</span>`;
         }
-        info = `<span title="${type}">${prot}</title> <span class="snap-quto">::</span> ${info}`;
+        info = `<span title="${type}">${prot}</span> <span class="snap-quto">::</span> ${info}`;
       }
 
       // if disabled
