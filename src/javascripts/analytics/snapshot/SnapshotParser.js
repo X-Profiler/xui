@@ -738,6 +738,7 @@ export default class SnapshotParser {
     const node_util = this.node_util;
     const node_distances = this.node_distances;
     const retained_sizes = this.retained_sizes;
+    const root_index = this.root_index;
 
     // selected child
     const child_name = node_util.getNameForInt(child);
@@ -759,9 +760,9 @@ export default class SnapshotParser {
     }
 
     let percent = 0;
-    const parent_retained_size = retained_sizes[parent];
-    if (parent_retained_size) {
-      percent = Number((total_retained_size / parent_retained_size).toFixed(2));
+    const root_retained_size = retained_sizes[root_index];
+    if (root_retained_size) {
+      percent = Number((total_retained_size / root_retained_size * 100).toFixed(2));
     }
 
     return { count, size: total_retained_size, percent };
