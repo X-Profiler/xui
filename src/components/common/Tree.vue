@@ -9,7 +9,7 @@
     >
       <div
         class="title"
-        @mousemove.stop="mousemove(child)"
+        @mouseenter.stop="mousemove(child)"
         @mouseleave.stop="mouseleave(child)"
       >
         <div class="icon-translate">

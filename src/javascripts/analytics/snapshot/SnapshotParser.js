@@ -744,7 +744,6 @@ export default class SnapshotParser {
 
     const key = `${parent}::${child}`;
     if (repeat_map[key]) {
-      console.log(`${key} cached.`);
       return repeat_map[key];
     }
 
