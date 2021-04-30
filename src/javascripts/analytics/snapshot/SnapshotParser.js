@@ -56,6 +56,7 @@ export default class SnapshotParser {
     this.edge_searching_map = {};
     this.address_map = {};
     this.ordered_retainers_map = {};
+    this.repeat_map = {};
     this.page_object_flag = 4;
     this.idominator = [];
     this.dominators = {};
@@ -735,10 +736,19 @@ export default class SnapshotParser {
   }
 
   getDominatorsRepeat(parent, child) {
+    const repeat_map = this.repeat_map;
     const node_util = this.node_util;
     const node_distances = this.node_distances;
     const retained_sizes = this.retained_sizes;
     const root_index = this.root_index;
+
+    const key = `${parent}::${child}`;
+    if (repeat_map[key]) {
+      console.log(`${key} cached.`);
+      return repeat_map[key];
+    }
+
+    const result = { count: 0, size: 0, percent: 0 };
 
     // selected child
     const child_name = node_util.getNameForInt(child);
@@ -756,6 +766,7 @@ export default class SnapshotParser {
       if (name === child_name && self_size === child_self_size && distance === child_distance) {
         count++;
         total_retained_size += retained_sizes[dominator];
+        repeat_map[`${parent}::${dominator}`] = result;
       }
     }
 
@@ -764,7 +775,10 @@ export default class SnapshotParser {
     if (root_retained_size) {
       percent = Number((total_retained_size / root_retained_size * 100).toFixed(2));
     }
+    result.count = count;
+    result.size = total_retained_size;
+    result.percent = percent;
 
-    return { count, size: total_retained_size, percent };
+    return result;
   }
 }

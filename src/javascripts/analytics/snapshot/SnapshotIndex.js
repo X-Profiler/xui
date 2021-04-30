@@ -58,7 +58,11 @@ export default {
       const reader = new ChunkedFileReader(this.file, 10000000);
       const loader = new SnapshotLoader({
         updateStatus: progress => this.progress = progress
-      }, async () => this.showResult(await loader.buildSnapshot()));
+      }, async () => {
+        this.file = null;
+        await new Promise(resolve => setTimeout(resolve, 50));
+        this.showResult(await loader.buildSnapshot());
+      });
       const success = await reader.read(loader);
       if (!success) {
         this.error = reader.error().message;

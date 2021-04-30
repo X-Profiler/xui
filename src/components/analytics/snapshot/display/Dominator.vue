@@ -1,6 +1,11 @@
 <template>
   <div>
-    <x-tree :data="profileTreeData" @expandNode="expandNode"></x-tree>
+    <x-tree
+      :data="profileTreeData"
+      @expandNode="expandNode"
+      @showExtra="showExtra"
+      @hiddenExtra="hiddenExtra"
+    ></x-tree>
   </div>
 </template>
 
