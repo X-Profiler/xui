@@ -44,16 +44,6 @@ export default {
           parentMark
         });
 
-        //  info
-        const { count, size, percent } = this.profile.getDominatorsRepeat(id, targetNode);
-        let hiddenInfo = "";
-        if (count > 1) {
-          let more = "";
-          if (percent) {
-            more = ` (${percent}%)`;
-          }
-          hiddenInfo = `<span class="snap-infohidden">重复 ${count} 次，占据 ${utils.formatSize(size, 2, false, false, " ")}${more}</span>`;
-        }
         children.push({
           id: targetNode,
           title,
@@ -61,10 +51,34 @@ export default {
           disabled: parents.includes(targetNode),
           mark,
           showHidden: false,
-          hiddenInfo,
+          hiddenInfo: "",
         });
       }
       return { children, lastIndex, more: lastIndex < childs.length, left: childs.length - lastIndex, noChild: !childs.length };
+    },
+
+    getHiddenInfo(parent, child) {
+      const { count, size, percent } = this.profile.getDominatorsRepeat(parent, child);
+      let hiddenInfo = "";
+      if (count > 1) {
+        let more = "";
+        if (percent) {
+          more = ` (${percent}%)`;
+        }
+        hiddenInfo = `<span class="snap-infohidden">重复 ${count} 次，占据 ${utils.formatSize(size, 2, false, false, " ")}${more}</span>`;
+      }
+      return hiddenInfo;
+    },
+
+    showExtra({ parent, child }) {
+      if (!child.hiddenInfo) {
+        child.hiddenInfo = this.getHiddenInfo(parent, child.id);
+      }
+      child.showHidden = true;
+    },
+
+    hiddenExtra({ child }) {
+      child.showHidden = false;
     },
 
     ...treeMethods

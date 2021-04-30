@@ -9,8 +9,8 @@
     >
       <div
         class="title"
-        @mousemove="() => (child.showHidden = true)"
-        @mouseleave="() => (child.showHidden = false)"
+        @mousemove.stop="mousemove(child)"
+        @mouseleave.stop="mouseleave(child)"
       >
         <div class="icon-translate">
           <Icon
@@ -30,7 +30,10 @@
           <x-tree
             :data="child.children"
             :depth="depth + 1"
+            :parent="child.id"
             @expandNode="expandNode"
+            @showExtra="showExtra"
+            @hiddenExtra="hiddenExtra"
           ></x-tree>
           <div
             v-if="child.more"
@@ -58,6 +61,11 @@ export default {
     depth: {
       type: Number,
       default: 0,
+    },
+
+    parent: {
+      type: Number,
+      default: -1,
     },
   },
 
@@ -99,6 +107,28 @@ export default {
 
     iconExpandStyle(tree) {
       return tree.expand ? `transform: ${this.inconDownStyle}` : "";
+    },
+
+    mousemove(child) {
+      if (this.parent === -1) {
+        return;
+      }
+      this.$emit("showExtra", { parent: this.parent, child });
+    },
+
+    mouseleave(child) {
+      if (this.parent === -1) {
+        return;
+      }
+      this.$emit("hiddenExtra", { child });
+    },
+
+    showExtra(data) {
+      this.$emit("showExtra", data);
+    },
+
+    hiddenExtra(data) {
+      this.$emit("hiddenExtra", data);
     },
   },
 
