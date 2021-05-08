@@ -58,6 +58,7 @@
           class="card-content"
           :profile="profile"
           :data="getInitDoms(leak)"
+          @expandParent="expandParent"
         ></x-dominator>
       </div>
     </div>
@@ -83,6 +84,8 @@ export default {
   data() {
     return {
       leakNodes: [],
+
+      initDoms: {},
     };
   },
 
@@ -125,6 +128,6 @@ export default {
   margin-top: 10px;
   border: 1px dotted #dcdee2;
   background-color: #f8fafc;
-  padding: 10px 10px;
+  padding: 6px 10px 10px 10px;
 }
 </style>

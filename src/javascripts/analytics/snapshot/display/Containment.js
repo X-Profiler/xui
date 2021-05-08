@@ -18,15 +18,17 @@ export default {
       const { info: rootInfo, mark } = this.formatNode(rootIndex);
       const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex, 0, [rootIndex]);
 
-      this.profileTreeData = [{
-        id: rootIndex,
-        title: rootInfo,
-        expand: true,
-        children, lastIndex, more,
-        left, noChild,
-        parents: [rootIndex],
-        mark
-      }];
+      this.profileTreeData = {
+        list: [{
+          id: rootIndex,
+          title: rootInfo,
+          expand: true,
+          children, lastIndex, more,
+          left, noChild,
+          parents: [rootIndex],
+          mark
+        }]
+      };
     },
 
     formatEdges(id, start = 0, parents = [], parentMark, interval = 50) {

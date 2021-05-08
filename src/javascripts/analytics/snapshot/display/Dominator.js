@@ -12,7 +12,8 @@ export default {
 
   methods: {
     initTree() {
-      if (this.data.length) {
+      const { list } = this.data;
+      if (Array.isArray(list) && list.length) {
         this.profileTreeData = this.data;
         return;
       }
@@ -21,17 +22,19 @@ export default {
       const { info: rootInfo, mark } = this.formatNode(rootIndex);
       const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex, 0, [rootIndex]);
 
-      this.profileTreeData = [{
-        id: rootIndex,
-        title: rootInfo,
-        expand: true,
-        children, lastIndex, more,
-        left, noChild,
-        parents: [rootIndex],
-        mark,
-        showHidden: false,
-        hiddenInfo: ""
-      }];
+      this.profileTreeData = {
+        list: [{
+          id: rootIndex,
+          title: rootInfo,
+          expand: true,
+          children, lastIndex, more,
+          left, noChild,
+          parents: [rootIndex],
+          mark,
+          showHidden: false,
+          hiddenInfo: ""
+        }]
+      };
     },
 
     formatEdges(id, start = 0, parents = [], parentMark, interval = 50) {
@@ -85,6 +88,10 @@ export default {
 
     hiddenExtra({ child }) {
       child.showHidden = false;
+    },
+
+    expandParent(data) {
+      this.$emit("expandParent", data);
     },
 
     ...treeMethods
