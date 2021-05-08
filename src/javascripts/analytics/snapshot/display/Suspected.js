@@ -50,46 +50,63 @@ export default {
       this.$Message.success("地址已复制");
     },
 
-    getInitDoms(leak, limit = 10) {
+    formatDoms(leak, start = 0, limit = 10) {
+      const doms = leak.doms || [];
+      const lastIndex = Math.min(doms.length, start + limit);
+
+      const list = [];
+      for (let index = start; index < lastIndex; index++) {
+        const rootIndex = doms[index];
+        const { info: rootInfo, mark } = this.formatNode(rootIndex);
+        list.push({
+          id: rootIndex,
+          title: rootInfo,
+          expand: false,
+          children: [], lastIndex: 0, more: false,
+          left: 0, noChild: false,
+          parents: [rootIndex],
+          mark,
+          showHidden: false,
+          hiddenInfo: ""
+        });
+      }
+
+      return { key: leak.key, list, lastIndex, more: lastIndex < doms.length, left: doms.length - lastIndex };
+    },
+
+    getInitDoms(leak) {
       if (utils.isNumber(leak.id)) {
         const rootIndex = leak.id;
         const { info: rootInfo, mark } = this.formatNode(rootIndex);
 
-        return [{
-          id: rootIndex,
-          title: rootInfo,
-          expand: false,
-          children: [], lastIndex: 0, more: false,
-          left: 0, noChild: false,
-          parents: [rootIndex],
-          mark,
-          showHidden: false,
-          hiddenInfo: ""
-        }];
+        return {
+          list: [{
+            id: rootIndex,
+            title: rootInfo,
+            expand: false,
+            children: [], lastIndex: 0, more: false,
+            left: 0, noChild: false,
+            parents: [rootIndex],
+            mark,
+            showHidden: false,
+            hiddenInfo: ""
+          }]
+        };
       }
 
-      const doms = leak.doms || [];
-      const show = doms.filter((...args) => {
-        const [, index] = args;
-        return index < limit;
-      });
+      const data = this.formatDoms(leak);
+      this.initDoms[leak.key] = { leak, data };
 
-      const list = show.map(rootIndex => {
-        const { info: rootInfo, mark } = this.formatNode(rootIndex);
-        return {
-          id: rootIndex,
-          title: rootInfo,
-          expand: false,
-          children: [], lastIndex: 0, more: false,
-          left: 0, noChild: false,
-          parents: [rootIndex],
-          mark,
-          showHidden: false,
-          hiddenInfo: ""
-        };
-      });
+      return data;
+    },
 
-      return list;
+    expandParent(data) {
+      const { leak } = this.initDoms[data.key];
+      const { list, lastIndex, more, left } = this.formatDoms(leak, data.lastIndex, 50);
+      data.list = data.list.concat(list);
+      data.lastIndex = lastIndex;
+      data.more = more;
+      data.left = left;
     },
 
     ...treeMethods

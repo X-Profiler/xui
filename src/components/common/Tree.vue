@@ -3,7 +3,7 @@
     <div
       class="tree"
       :style="marginLeft"
-      v-for="(child, index) in data"
+      v-for="(child, index) in data.list"
       :key="index"
       @click.stop="toggle(child)"
     >
@@ -28,7 +28,7 @@
       <transition name="slide-tree">
         <div class="child" v-if="child.expand">
           <x-tree
-            :data="child.children"
+            :data="{ list: child.children }"
             :depth="depth + 1"
             :parent="child.id"
             @expandNode="expandNode"
@@ -47,6 +47,15 @@
         </div>
       </transition>
     </div>
+    <div
+      v-if="data.more"
+      class="first-more-btn"
+      @click.stop="expandParent(data)"
+    >
+      <Button size="small" type="primary" ghost class="remain"
+        ><span>加载更多 &lt;{{ data.left }}&gt;</span></Button
+      >
+    </div>
   </div>
 </template>
 
@@ -54,8 +63,8 @@
 export default {
   props: {
     data: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => ({ list: [], more: false, lastIndex: 0, left: 0 }),
     },
 
     depth: {
@@ -103,6 +112,10 @@ export default {
 
     expandNode(tree) {
       this.$emit("expandNode", tree);
+    },
+
+    expandParent(data) {
+      this.$emit("expandParent", data);
     },
 
     iconExpandStyle(tree) {
@@ -178,5 +191,9 @@ export default {
 .remain {
   font-size: 12px;
   margin: 3px 0 5px 8px;
+}
+
+.first-more-btn {
+  margin-left: -4px;
 }
 </style>

@@ -5,6 +5,7 @@
       @expandNode="expandNode"
       @showExtra="showExtra"
       @hiddenExtra="hiddenExtra"
+      @expandParent="expandParent"
     ></x-tree>
   </div>
 </template>
@@ -20,14 +21,14 @@ export default {
     },
 
     data: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => ({ list: [] }),
     },
   },
 
   data() {
     return {
-      profileTreeData: [],
+      profileTreeData: {},
     };
   },
 
