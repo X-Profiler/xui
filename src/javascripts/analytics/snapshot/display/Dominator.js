@@ -12,6 +12,11 @@ export default {
 
   methods: {
     initTree() {
+      if (this.data.length) {
+        this.profileTreeData = this.data;
+        return;
+      }
+
       const { rootIndex } = this.profile;
       const { info: rootInfo, mark } = this.formatNode(rootIndex);
       const { children, lastIndex, more, left, noChild } = this.formatEdges(rootIndex, 0, [rootIndex]);

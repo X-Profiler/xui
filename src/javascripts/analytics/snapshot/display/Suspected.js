@@ -1,6 +1,9 @@
 "use strict";
 
 import * as utils from "@/javascripts/lib/utils";
+import treeHelper from "@/javascripts/analytics/snapshot/display/TreeHelper";
+
+const { methods: treeMethods } = treeHelper;
 
 export default {
   created() {
@@ -45,6 +48,50 @@ export default {
       selection.addRange(range);
       document.execCommand("copy");
       this.$Message.success("地址已复制");
-    }
+    },
+
+    getInitDoms(leak, limit = 10) {
+      if (utils.isNumber(leak.id)) {
+        const rootIndex = leak.id;
+        const { info: rootInfo, mark } = this.formatNode(rootIndex);
+
+        return [{
+          id: rootIndex,
+          title: rootInfo,
+          expand: false,
+          children: [], lastIndex: 0, more: false,
+          left: 0, noChild: false,
+          parents: [rootIndex],
+          mark,
+          showHidden: false,
+          hiddenInfo: ""
+        }];
+      }
+
+      const doms = leak.doms || [];
+      const show = doms.filter((...args) => {
+        const [, index] = args;
+        return index < limit;
+      });
+
+      const list = show.map(rootIndex => {
+        const { info: rootInfo, mark } = this.formatNode(rootIndex);
+        return {
+          id: rootIndex,
+          title: rootInfo,
+          expand: false,
+          children: [], lastIndex: 0, more: false,
+          left: 0, noChild: false,
+          parents: [rootIndex],
+          mark,
+          showHidden: false,
+          hiddenInfo: ""
+        };
+      });
+
+      return list;
+    },
+
+    ...treeMethods
   }
 };

@@ -26,6 +26,8 @@
                 >
                 的空间.
               </div>
+
+              <!-- detail -->
               <div class="card-title">关键信息</div>
               <div class="card-content">
                 实例类型 <strong>{{ leak.type }},</strong> 总计
@@ -50,12 +52,21 @@
           </div>
         </div>
       </div>
+      <!-- dominator -->
+      <div class="leak-doms">
+        <x-dominator
+          class="card-content"
+          :profile="profile"
+          :data="getInitDoms(leak)"
+        ></x-dominator>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import suspectedModule from "@/javascripts/analytics/snapshot/display/Suspected";
+import xDominator from "@/components/analytics/snapshot/display/Dominator";
 
 export default {
   props: {
@@ -63,6 +74,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+  },
+
+  components: {
+    "x-dominator": xDominator,
   },
 
   data() {
@@ -104,5 +119,12 @@ export default {
 
 .content-interval {
   margin-bottom: 13px;
+}
+
+.leak-doms {
+  margin-top: 10px;
+  border: 1px dotted #dcdee2;
+  background-color: #f8fafc;
+  padding: 10px 10px;
 }
 </style>
