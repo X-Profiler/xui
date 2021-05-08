@@ -18,9 +18,10 @@ export default {
         }
 
         node.address = this.profile.nodeUtils.getAddress(node.id);
+        node.type = this.profile.nodeUtils.getType(node.id);
+        node.edgeCount = this.profile.nodeUtils.getEdgeCount(node.id);
         return node;
       });
-
   },
 
   methods: {
@@ -29,7 +30,21 @@ export default {
     },
 
     getIntervalStyle(index) {
-      return index === 0 ? "" : "margin-top: 15px"
+      return index === 0 ? "" : "margin-top: 15px";
+    },
+
+    copyAddress(index) {
+      const addressNode = this.$refs[`address-${index}`][0];
+      if (!addressNode) {
+        return;
+      }
+      const range = document.createRange();
+      range.selectNode(addressNode);
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0) selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand("copy");
+      this.$Message.success("地址已复制");
     }
   }
 };
