@@ -1,8 +1,12 @@
 <template>
-  <div>Suspected</div>
+  <div>
+    <div v-for="(leak, index) in leakNodes" :key="index">{{ leak }}</div>
+  </div>
 </template>
 
 <script>
+import suspectedModule from "@/javascripts/analytics/snapshot/display/Suspected";
+
 export default {
   props: {
     profile: {
@@ -11,8 +15,12 @@ export default {
     },
   },
 
-  created() {
-    this.profile.getSuspectedLeakNodes();
+  data() {
+    return {
+      leakNodes: [],
+    };
   },
+
+  ...suspectedModule,
 };
 </script>

@@ -864,7 +864,7 @@ export default class SnapshotParser {
     return leak_nodes;
   }
 
-  getSuspectedLeakNodes() {
+  getSuspectedLeakNodes(limit = 5) {
     console.time("--------- leak ---------");
     const NodeUtil = this.NodeUtil;
     const root_index = this.root_index;
@@ -885,7 +885,7 @@ export default class SnapshotParser {
     };
 
     this.formateDominator(root_index, 1, all_nodes);
-    let leak_nodes = this.formatLeakNodes(all_nodes, 5);
+    let leak_nodes = this.formatLeakNodes(all_nodes, limit);
 
     // check distance
     for (const leak_node of leak_nodes) {
@@ -898,7 +898,7 @@ export default class SnapshotParser {
       }
 
       delete all_nodes[leak_node.key];
-      leak_nodes.splice(leak_nodes.indexOf(leak_node), 1);
+      leak_nodes.splice(leak_nodes.indexOf(leak_node), limit);
       this.formateDominator(leak_node.id, 2, all_nodes);
     }
 
