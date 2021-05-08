@@ -56,6 +56,7 @@ export default class SnapshotLoader {
       searchOrdinalByAddress: parser.searchOrdinalByAddress.bind(parser),
       getRetainers: parser.getRetainers.bind(parser),
       getDominatorsRepeat: parser.getDominatorsRepeat.bind(parser),
+      getSuspectedLeakNodes: parser.getSuspectedLeakNodes.bind(parser),
     };
   }
 

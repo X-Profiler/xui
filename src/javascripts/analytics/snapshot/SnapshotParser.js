@@ -780,4 +780,131 @@ export default class SnapshotParser {
 
     return result;
   }
+
+  getNativeTypeInfo(types) {
+    const root_index = this.root_index;
+    const node_util = this.node_util;
+    const dominators = this.dominators;
+    const node_distances = this.node_distances;
+    const retained_sizes = this.retained_sizes;
+
+    const first_doms = dominators[root_index];
+
+    let count = 0;
+    let size = 0;
+    for (const first_dom of first_doms) {
+      const second_doms = dominators[first_dom] || [];
+      for (const second_dom of second_doms) {
+        const node_type = node_util.getTypeForInt(second_dom);
+        const distance = node_distances[second_dom];
+        if (types.includes(node_type)
+          && distance < SnapshotParser.BASE_SYSTEMDISTANCE) {
+          count++;
+          size += retained_sizes[second_dom];
+        }
+      }
+    }
+
+    return { count, size };
+  }
+
+  formateDominator(ordinal, level, map) {
+    const node_util = this.node_util;
+    const node_distances = this.node_distances;
+    const retained_sizes = this.retained_sizes;
+
+    const doms = this.getSortedDominators(ordinal);
+
+    const parent_retained_size = retained_sizes[ordinal];
+    const parent_self_size = node_util.getSelfSize(ordinal);
+    const children_total_size = parent_retained_size - parent_self_size;
+    let children_size = 0;
+
+    for (const dom of doms) {
+      const name = node_util.getName(dom);
+      const distance = node_distances[dom];
+      const self_size = node_util.getSelfSize(dom);
+      const key = `${level}::${name}::${distance}::${self_size}`;
+      if (map[key]) {
+        continue;
+      }
+
+      if (children_size / children_total_size > 0.9) {
+        continue;
+      }
+
+      const { count, size } = this.getDominatorsRepeat(ordinal, dom);
+      map[key] = { name, count, size, distance, level, key, id: dom };
+      children_size += size;
+    }
+  }
+
+  formatLeakNodes(all_nodes, length, leak_nodes = []) {
+    for (const [, info] of Object.entries(all_nodes)) {
+      if (leak_nodes.some(leak => leak.key === info.key)) {
+        continue;
+      }
+
+      if (leak_nodes.length < length) {
+        leak_nodes.push(info);
+        leak_nodes.sort((o, n) => o.size < n.size ? 1 : -1);
+        continue;
+      }
+
+      const last = leak_nodes.pop();
+      if (info.size <= last.size) {
+        leak_nodes.push(last);
+        continue;
+      }
+
+      leak_nodes.push(info);
+      leak_nodes.sort((o, n) => o.size < n.size ? 1 : -1);
+    }
+
+    return leak_nodes;
+  }
+
+  getSuspectedLeakNodes() {
+    console.time("--------- leak ---------");
+    const NodeUtil = this.NodeUtil;
+    const root_index = this.root_index;
+
+    const { KCODE,
+      KSTRING, KSLICED_STRING, KCONCATENATED_STRING } = NodeUtil.NodeTypes;
+
+    // get strings info
+    const { count: string_count, size: string_size }
+      = this.getNativeTypeInfo([KSTRING, KSLICED_STRING, KCONCATENATED_STRING]);
+    // get code info
+    const { count: code_count, size: code_size }
+      = this.getNativeTypeInfo([KCODE]);
+
+    const all_nodes = {
+      string: { name: "string", key: "1::string", count: string_count, size: string_size },
+      code: { name: "code", key: "1::code", count: code_count, size: code_size }
+    };
+
+    this.formateDominator(root_index, 1, all_nodes);
+    let leak_nodes = this.formatLeakNodes(all_nodes, 5);
+
+    // check distance
+    for (const leak_node of leak_nodes) {
+      if (leak_node.distance === undefined) {
+        continue;
+      }
+
+      if (leak_node.distance >= SnapshotParser.BASE_SYSTEMDISTANCE) {
+        continue;
+      }
+
+      delete all_nodes[leak_node.key];
+      leak_nodes.splice(leak_nodes.indexOf(leak_node), 1);
+      this.formateDominator(leak_node.id, 2, all_nodes);
+    }
+
+    leak_nodes = this.formatLeakNodes(all_nodes, 5, leak_nodes);
+    console.timeEnd("--------- leak ---------");
+
+    return leak_nodes;
+  }
 }
