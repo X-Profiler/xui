@@ -18,6 +18,11 @@ export default {
       type: Object,
       default: () => ({}),
     },
+
+    data: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   data() {

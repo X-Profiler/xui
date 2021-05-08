@@ -757,6 +757,7 @@ export default class SnapshotParser {
     // find the same children
     let count = 0;
     let total_retained_size = 0;
+    let doms = [];
     const dominators = this.getSortedDominators(parent);
     for (const dominator of dominators) {
       const name = node_util.getNameForInt(dominator);
@@ -765,6 +766,7 @@ export default class SnapshotParser {
       if (name === child_name && self_size === child_self_size && distance === child_distance) {
         count++;
         total_retained_size += retained_sizes[dominator];
+        doms.push(dominator);
         repeat_map[`${parent}::${dominator}`] = result;
       }
     }
@@ -777,6 +779,7 @@ export default class SnapshotParser {
     result.count = count;
     result.size = total_retained_size;
     result.percent = percent;
+    result.doms = doms;
 
     return result;
   }
@@ -792,6 +795,7 @@ export default class SnapshotParser {
 
     let count = 0;
     let size = 0;
+    let doms = [];
     for (const first_dom of first_doms) {
       const second_doms = dominators[first_dom] || [];
       for (const second_dom of second_doms) {
@@ -801,11 +805,14 @@ export default class SnapshotParser {
           && distance < SnapshotParser.BASE_SYSTEMDISTANCE) {
           count++;
           size += retained_sizes[second_dom];
+          doms.push(second_dom);
         }
       }
     }
 
-    return { count, size };
+    doms.sort((o, n) => retained_sizes[o] < retained_sizes[n] ? 1 : -1);
+
+    return { count, size, doms };
   }
 
   formateDominator(ordinal, level, map) {
@@ -833,8 +840,8 @@ export default class SnapshotParser {
         continue;
       }
 
-      const { count, size } = this.getDominatorsRepeat(ordinal, dom);
-      map[key] = { name, count, size, distance, level, key, id: dom };
+      const { count, size, doms } = this.getDominatorsRepeat(ordinal, dom);
+      map[key] = { name, count, size, distance, level, key, id: dom, doms };
       children_size += size;
     }
   }
@@ -873,15 +880,15 @@ export default class SnapshotParser {
       KSTRING, KSLICED_STRING, KCONCATENATED_STRING } = NodeUtil.NodeTypes;
 
     // get strings info
-    const { count: string_count, size: string_size }
+    const { count: string_count, size: string_size, doms: string_doms }
       = this.getNativeTypeInfo([KSTRING, KSLICED_STRING, KCONCATENATED_STRING]);
     // get code info
-    const { count: code_count, size: code_size }
+    const { count: code_count, size: code_size, doms: code_doms }
       = this.getNativeTypeInfo([KCODE]);
 
     const all_nodes = {
-      string: { name: "string", key: "1::string", count: string_count, size: string_size },
-      code: { name: "code", key: "1::code", count: code_count, size: code_size }
+      string: { name: "string", key: "1::string", count: string_count, size: string_size, doms: string_doms },
+      code: { name: "code", key: "1::code", count: code_count, size: code_size, doms: code_doms }
     };
 
     this.formateDominator(root_index, 1, all_nodes);
