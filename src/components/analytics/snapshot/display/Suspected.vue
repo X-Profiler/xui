@@ -52,6 +52,7 @@
           </div>
         </div>
       </div>
+
       <!-- dominator -->
       <div class="leak-doms">
         <x-dominator
@@ -61,6 +62,9 @@
           @expandParent="expandParent"
         ></x-dominator>
       </div>
+
+      <!-- textarea -->
+      <textarea class="hidden" id="input" ref="input"></textarea>
     </div>
   </div>
 </template>
@@ -129,5 +133,14 @@ export default {
   border: 1px dotted #dcdee2;
   background-color: #f8fafc;
   padding: 6px 10px 10px 10px;
+}
+
+.hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 0;
+  max-height: 0;
+  opacity: 0;
 }
 </style>

@@ -65,7 +65,7 @@ export default {
       if (this.checkSizeHigh(retainedSize)) {
         size = `<span class="snap-leak-high">${size}</span>`;
       } else if (parentChilds && (this.checkSizeHigh(parentRetainedSize) || parentMark) &&
-        retainedSize > (parentRetainedSize / parentChilds)) {
+        retainedSize >= (parentRetainedSize / parentChilds)) {
         size = `<span class="snap-leak-warn">${size}</span>`;
       }
       let info = `${name} ${address} <span class="snap-detial">(type: ${type}, ${size})</span>`;
