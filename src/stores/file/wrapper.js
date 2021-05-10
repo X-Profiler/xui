@@ -15,6 +15,9 @@ export default {
 
     flamegraphDrawer: undefined,
     flamegraphData: {},
+
+    snapshotDrawer: undefined,
+    snapshotData: {},
   },
 
   mutations: {
@@ -55,6 +58,16 @@ export default {
 
       if (flamegraphData) {
         state.flamegraphData = flamegraphData;
+      }
+    },
+
+    setSnapshotDrawer(state, { status, snapshotData }) {
+      if (status === false || status === true) {
+        state.snapshotDrawer = status;
+      }
+
+      if (snapshotData) {
+        state.snapshotData = snapshotData;
       }
     }
   }

@@ -18,7 +18,7 @@ export default {
   methods: {
     ...mapMutations(["setErrorModal"]),
 
-    ...mapMutationsWrapper(["setDiagDrawer", "setGcDrawer", "setTrendDrawer", "setFlamegraphDrawer"]),
+    ...mapMutationsWrapper(["setDiagDrawer", "setGcDrawer", "setTrendDrawer", "setFlamegraphDrawer", "setSnapshotDrawer"]),
 
     ...mapActions(["doTransfer", "doFavor"]),
 
@@ -179,6 +179,10 @@ export default {
 
       if (fileType === "cpuprofile") {
         this.setFlamegraphDrawer({ status: true, flamegraphData: data });
+      }
+
+      if (fileType === "heapsnapshot") {
+        this.setSnapshotDrawer({ status: true, snapshotData: data });
       }
     },
 

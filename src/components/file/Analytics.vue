@@ -19,6 +19,11 @@
     <x-drawer ref="flamegraph" @close="closeFlameGraphDrawer()">
       <x-flamegraph slot="content" class="analytics"></x-flamegraph>
     </x-drawer>
+
+    <!-- show snapshot -->
+    <x-drawer ref="snapshot" @close="closeSnapshotDrawer()">
+      <x-snapshot slot="content" class="analytics"></x-snapshot>
+    </x-drawer>
   </div>
 </template>
 
@@ -28,13 +33,15 @@ import xDiag from "@/components/analytics/diag/DiagIndex";
 import xGc from "@/components/analytics/gc/GcIndex";
 import xTrend from "@/components/analytics/trend/TrendIndex";
 import xFlamegraph from "@/components/analytics/flamegraph/FlamegraphIndex";
+import xSnapshot from "@/components/analytics/snapshot/SnapshotIndex";
 
 export default {
   components: {
     "x-diag": xDiag,
     "x-gc": xGc,
     "x-trend": xTrend,
-    "x-flamegraph": xFlamegraph
+    "x-flamegraph": xFlamegraph,
+    "x-snapshot": xSnapshot,
   },
 
   data() {
@@ -43,12 +50,13 @@ export default {
       gcDrawerKey: "gc-analytics",
       trendDrawerKey: "show-trend",
       flamegraphDrawerKey: "show-flamegraph",
+      snapshotDrawerKey: "show-snapshot",
       whiteQueryKeys: ["filterType", "page"],
-      forceGoBack: true
+      forceGoBack: true,
     };
   },
 
-  ...analyticsModule
+  ...analyticsModule,
 };
 </script>
 
