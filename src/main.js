@@ -21,6 +21,7 @@ import xLoading from "@/components/common/Loading";
 import xModal from "@/components/common/Modal";
 import xTable from "@/components/common/Table";
 import xTooltip from "@/components/common/Tooltip";
+import xTree from "@/components/common/Tree";
 
 // charts
 import xArea from "@/components/chart/Area";
@@ -45,6 +46,7 @@ Vue.component("x-loading", xLoading);
 Vue.component("x-modal", xModal);
 Vue.component("x-table", xTable);
 Vue.component("x-tooltip", xTooltip);
+Vue.component("x-tree", xTree);
 Vue.component("x-area", xArea);
 Vue.component("x-histogram", xHistogram);
 Vue.component("x-pie", xPie);

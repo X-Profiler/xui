@@ -1,0 +1,55 @@
+.snap-addr,
+.snap-detial,
+.snap-quto {
+  color: #808080;
+}
+
+.snap-name {
+  color: #303942;
+}
+
+.snap-hidden {
+  color: #606266;
+}
+
+.snap-closure {
+  font-style: italic;
+}
+
+.snap-string {
+  color: #4caf50;
+}
+
+.snap-gcroot {
+  background-color: #c0eafd;
+  padding: 0 2px;
+}
+
+.snap-property {
+  color: rgb(136, 19, 145)
+}
+
+.snap-context {
+  color: rgb(28, 0, 207)
+}
+
+.snap-disabled {
+  opacity: 0.5;
+}
+
+.snap-leak-high {
+  color: #d20d0d;
+}
+
+.snap-leak-warn {
+  color: #f89501;
+  font-style: italic;
+}
+
+.snap-infohidden {
+  margin-left: 13px;
+  background-color: #2689d6;
+  color:white;
+  padding: 3px 6px;
+  font-weight: bold;
+}

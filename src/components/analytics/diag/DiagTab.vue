@@ -1,7 +1,12 @@
 <template>
-  <div class="demo-tabs-style2">
+  <div>
     <Tabs type="card" v-model="selectedTab">
-      <TabPane v-for="(tab, index) in diagTabs" :key="index" :label="tab.label" :name="tab.value"></TabPane>
+      <TabPane
+        v-for="(tab, index) in diagTabs"
+        :key="index"
+        :label="tab.label"
+        :name="tab.value"
+      ></TabPane>
     </Tabs>
   </div>
 </template>
@@ -17,18 +22,18 @@ export default {
         { label: "JavaScript 栈", value: "jsStacks" },
         { label: "Native 栈", value: "nativeStacks" },
         { label: "Libuv 句柄", value: "libuvHandles" },
-        { label: "系统信息", value: "system" }
+        { label: "系统信息", value: "system" },
       ],
       nessaryQueryArgs: [
         "filterType",
         "page",
         "diag-analytics",
         "diagTab",
-        "diagData"
-      ]
+        "diagData",
+      ],
     };
   },
 
-  ...dataTabModule
+  ...dataTabModule,
 };
 </script>
