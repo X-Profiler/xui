@@ -56,8 +56,13 @@
           <x-pie2
             :percentage="leak.percentage"
             :radius="64"
-            :pieStrokeWidth="9"
-          ></x-pie2>
+            :pieStrokeWidth="8"
+            :descTop="30"
+          >
+            <div slot="percentage" class="percentage">
+              {{ leak.percentage }}%
+            </div>
+          </x-pie2>
         </div>
       </div>
 
@@ -160,6 +165,12 @@ export default {
 }
 
 .pie {
-  flex: 0 1 145px;
+  flex: 0 1 140px;
+}
+
+.percentage {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: none;
 }
 </style>

@@ -4,7 +4,9 @@
       <slot name="title">
         <div class="desc-title">{{ title }}</div>
       </slot>
-      <div class="desc-percentage">{{ percentage }}%</div>
+      <slot name="percentage">
+        <div class="desc-percentage">{{ percentage }}%</div>
+      </slot>
     </div>
     <svg
       v-if="viewWidth"
@@ -51,14 +53,22 @@ import { isNumber } from "@/javascripts/lib/utils";
 export default {
   props: {
     title: String,
+
     percentage: Number,
+
     radius: {
       type: Number,
       default: 91,
     },
+
     pieStrokeWidth: {
       type: Number,
       default: 11,
+    },
+
+    descTop: {
+      type: Number,
+      default: 30,
     },
   },
 
@@ -158,7 +168,7 @@ export default {
 
       if (pieWidth && descWidth) {
         style += "left: " + (pieWidth - descWidth) / 2 + "px;";
-        style += "top: " + (this.cy + 30) + "px;";
+        style += "top: " + (this.cy + this.descTop) + "px;";
       }
 
       return style;
