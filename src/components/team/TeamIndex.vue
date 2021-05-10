@@ -1,7 +1,13 @@
 <template>
   <div class="detail-content">
     <!-- title -->
-    <x-dashboard-title :appName="appName" :dashboardTitle="title" line></x-dashboard-title>
+    <x-dashboard-title
+      :appName="appName"
+      :dashboardTitle="title"
+      :owner="currentUserIsOwner"
+      line
+      jump
+    ></x-dashboard-title>
 
     <!-- message -->
     <Alert class="x-alert tip" type="info">

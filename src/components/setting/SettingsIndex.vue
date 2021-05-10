@@ -1,7 +1,13 @@
 <template>
   <div class="detail-content">
     <!-- title -->
-    <x-dashboard-title :appName="appName" :dashboardTitle="title" line></x-dashboard-title>
+    <x-dashboard-title
+      :appName="appName"
+      :dashboardTitle="title"
+      :owner="currentUserIsOwner"
+      line
+      jump
+    ></x-dashboard-title>
 
     <!-- loading -->
     <x-loading :loading="settings_loading" type="dot" size="middle" top="calc(40vh - 45px)"></x-loading>
