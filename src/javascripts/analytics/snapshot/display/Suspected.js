@@ -41,12 +41,17 @@ export default {
       if (!addressNode) {
         return;
       }
-      const range = document.createRange();
-      range.selectNode(addressNode);
-      const selection = window.getSelection();
-      if (selection.rangeCount > 0) selection.removeAllRanges();
-      selection.addRange(range);
+
+      const inputNode = this.$refs["input"][0];
+      if (!inputNode) {
+        return;
+      }
+
+      const text = addressNode.innerHTML;
+      inputNode.value = text;
+      inputNode.select();
       document.execCommand("copy");
+
       this.$Message.success("地址已复制");
     },
 
@@ -75,25 +80,6 @@ export default {
     },
 
     getInitDoms(leak) {
-      if (utils.isNumber(leak.id)) {
-        const rootIndex = leak.id;
-        const { info: rootInfo, mark } = this.formatNode(rootIndex);
-
-        return {
-          list: [{
-            id: rootIndex,
-            title: rootInfo,
-            expand: false,
-            children: [], lastIndex: 0, more: false,
-            left: 0, noChild: false,
-            parents: [rootIndex],
-            mark,
-            showHidden: false,
-            hiddenInfo: ""
-          }]
-        };
-      }
-
       const data = this.formatDoms(leak);
       this.initDoms[leak.key] = { leak, data };
 
