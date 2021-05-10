@@ -51,7 +51,15 @@ import { isNumber } from "@/javascripts/lib/utils";
 export default {
   props: {
     title: String,
-    percentage: Number
+    percentage: Number,
+    radius: {
+      type: Number,
+      default: 91,
+    },
+    pieStrokeWidth: {
+      type: Number,
+      default: 11,
+    },
   },
 
   mounted() {
@@ -73,12 +81,10 @@ export default {
       paddingRight: 0,
       paddingTop: 17,
       paddingBottom: 0,
-      pieStrokeWidth: 11,
-      radius: 91,
       bgPercentage: 29 / 40,
       pieWidth: 0,
       descWidth: 0,
-      needleColor: "#2376b7"
+      needleColor: "#2376b7",
     };
   },
 
@@ -110,7 +116,7 @@ export default {
       }
 
       return color;
-    }
+    },
   },
 
   computed: {
@@ -170,8 +176,8 @@ export default {
       rotate += (percentage / 100) * canRotate;
 
       return rotate;
-    }
-  }
+    },
+  },
 };
 </script>
 

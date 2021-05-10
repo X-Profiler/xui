@@ -51,6 +51,14 @@
             </div>
           </div>
         </div>
+
+        <div class="pie">
+          <x-pie2
+            :percentage="leak.percentage"
+            :radius="64"
+            :pieStrokeWidth="9"
+          ></x-pie2>
+        </div>
       </div>
 
       <!-- dominator -->
@@ -102,7 +110,7 @@ export default {
   display: flex;
   background-color: #f8fafc;
   border-left: 7px solid #9b59b6;
-  padding: 10px 15px;
+  padding: 0 20px;
 }
 
 .card-title {
@@ -142,5 +150,16 @@ export default {
   max-width: 0;
   max-height: 0;
   opacity: 0;
+}
+
+.detail {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pie {
+  flex: 0 1 145px;
 }
 </style>
