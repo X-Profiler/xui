@@ -80,14 +80,14 @@ export default {
 
     createLeftGroup(fileType) {
       const operations = [];
+      if (this.xprofiler.includes(fileType)) {
+        operations.push(...this.createDisableGroup("分析", "ios-pulse"));
+      }
       if (this.devtools.includes(fileType)) {
         operations.push(...this.createDisableGroup("devtools", "md-search"));
       }
       if (this.devtools2.includes(fileType)) {
         operations.push(...this.createDisableGroup("devtools", "md-search"));
-      }
-      if (this.xprofiler.includes(fileType)) {
-        operations.push(...this.createDisableGroup("分析", "ios-pulse"));
       }
       operations.push(...this.createDisableGroup("下载", "md-cloud-download"));
       operations.push(...this.createDisableGroup("收藏", "md-star"));
@@ -128,14 +128,14 @@ export default {
         if (data.createAgent !== "upload" && data.fileType !== "trend") {
           operations.push(...this.createDoneGroup("再转储", "md-cloud-upload", "success"));
         }
+        if (this.xprofiler.includes(data.fileType)) {
+          operations.push(...this.createDoneGroup("分析", "ios-pulse", "info"));
+        }
         if (this.devtools.includes(data.fileType)) {
           operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools-new" }, "md-search", "info"));
         }
         if (this.devtools2.includes(data.fileType)) {
           operations.push(...this.createDoneGroup({ label: "devtools", value: "devtools-old" }, "md-search", "info"));
-        }
-        if (this.xprofiler.includes(data.fileType)) {
-          operations.push(...this.createDoneGroup("分析", "ios-pulse", "info"));
         }
         operations.push(...this.createDoneGroup("下载", "md-cloud-download", "info"));
         if (data.fileFavor) {

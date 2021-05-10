@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="detail-title">
-      <div class="detail-app-name">{{ appName }}</div>
+      <div v-if="jump" class="detail-app-name" @click="jumpTo('/console')">
+        {{ appName }}
+      </div>
+      <div v-else class="detail-app-name-nojump">{{ appName }}</div>
       <div class="detail-app-seg">
         <Icon type="ios-arrow-forward" />
       </div>
@@ -20,9 +23,30 @@
 export default {
   props: {
     appName: String,
+
     dashboardTitle: String,
-    line: Boolean
-  }
+
+    line: Boolean,
+
+    jump: Boolean,
+
+    owner: {
+      type: Boolean,
+      default: true,
+    },
+  },
+
+  methods: {
+    jumpTo(path) {
+      const query = {};
+      if (this.owner) {
+        query.type = "myApps";
+      } else {
+        query.type = "joinedApps";
+      }
+      this.$router.push({ path, query });
+    },
+  },
 };
 </script>
 
@@ -38,6 +62,17 @@ export default {
 }
 
 .detail-app-name {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  user-select: none;
+}
+
+.detail-app-name:hover {
+  color: #c45a65;
+  transition: 0.1s color ease;
+}
+
+.detail-app-name-nojump {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
