@@ -1,7 +1,12 @@
 <template>
   <div class="detail-content">
     <!-- title -->
-    <x-dashboard-title :appName="appName" :dashboardTitle="title">
+    <x-dashboard-title
+      :appName="appName"
+      :dashboardTitle="title"
+      :owner="currentUserIsOwner"
+      jump
+    >
       <template slot="extra">
         <x-loading
           :loading="agents_loading"
