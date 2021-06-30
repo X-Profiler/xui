@@ -1,83 +1,92 @@
 <template>
   <div>
-    <div
-      v-for="(leak, index) in leakNodes"
-      :key="index"
-      :style="getIntervalStyle(index)"
-    >
-      <!-- card -->
-      <div class="leak-card">
-        <div class="detail">
-          <div class="card-title">{{ getCardTitle(index) }}</div>
-          <div class="card-content">
-            <!-- single node -->
-            <div v-if="leak.count === 1">
-              <div class="content-interval">
-                实例 <strong>"{{ leak.name }}"</strong> 地址
-                <strong
-                  class="leak-address"
-                  :ref="`address-${index}`"
-                  @click="copyAddress(index)"
-                  >@{{ leak.address }}</strong
-                >
-                占用了 V8 堆内
-                <strong
-                  >{{ leak.formatedSize }} ({{ leak.percentage }}%)</strong
-                >
-                的空间.
+    <div v-if="leakNodes.length">
+      <div
+        v-for="(leak, index) in leakNodes"
+        :key="index"
+        :style="getIntervalStyle(index)"
+      >
+        <!-- card -->
+        <div class="leak-card">
+          <div class="detail">
+            <div class="card-title">{{ getCardTitle(index) }}</div>
+            <div class="card-content">
+              <!-- single node -->
+              <div v-if="leak.count === 1">
+                <div class="content-interval">
+                  实例 <strong>"{{ leak.name }}"</strong> 地址
+                  <strong
+                    class="leak-address"
+                    :ref="`address-${index}`"
+                    @click="copyAddress(index)"
+                    >@{{ leak.address }}</strong
+                  >
+                  占用了 V8 堆内
+                  <strong
+                    >{{ leak.formatedSize }} ({{ leak.percentage }}%)</strong
+                  >
+                  的空间.
+                </div>
+
+                <!-- detail -->
+                <div class="card-title">关键信息</div>
+                <div class="card-content">
+                  实例类型 <strong>{{ leak.type }},</strong> 总计
+                  <strong>{{ leak.edgeCount }}</strong> 个边.
+                </div>
               </div>
 
-              <!-- detail -->
-              <div class="card-title">关键信息</div>
-              <div class="card-content">
-                实例类型 <strong>{{ leak.type }},</strong> 总计
-                <strong>{{ leak.edgeCount }}</strong> 个边.
+              <!-- muliti nodes -->
+              <div v-else>
+                <div class="content-interval">
+                  <strong>{{ leak.count }}</strong> 个
+                  <strong class="leak-address">"{{ leak.name }}"</strong>
+                  对象占用了 V8 堆内
+                  <strong
+                    >{{ leak.formatedSize }} ({{ leak.percentage }}%)</strong
+                  >
+                  的空间.
+                </div>
+                <div class="card-title">关键词</div>
+                <div class="card-content">{{ leak.name }}</div>
               </div>
             </div>
+          </div>
 
-            <!-- muliti nodes -->
-            <div v-else>
-              <div class="content-interval">
-                <strong>{{ leak.count }}</strong> 个
-                <strong class="leak-address">"{{ leak.name }}"</strong>
-                对象占用了 V8 堆内
-                <strong
-                  >{{ leak.formatedSize }} ({{ leak.percentage }}%)</strong
-                >
-                的空间.
+          <div class="pie">
+            <x-pie2
+              :percentage="leak.percentage"
+              :radius="64"
+              :pieStrokeWidth="8"
+              :descTop="30"
+            >
+              <div slot="percentage" class="percentage">
+                {{ leak.percentage }}%
               </div>
-              <div class="card-title">关键词</div>
-              <div class="card-content">{{ leak.name }}</div>
-            </div>
+            </x-pie2>
           </div>
         </div>
 
-        <div class="pie">
-          <x-pie2
-            :percentage="leak.percentage"
-            :radius="64"
-            :pieStrokeWidth="8"
-            :descTop="30"
-          >
-            <div slot="percentage" class="percentage">
-              {{ leak.percentage }}%
-            </div>
-          </x-pie2>
+        <!-- dominator -->
+        <div class="leak-doms">
+          <x-dominator
+            class="card-content"
+            :profile="profile"
+            :data="getInitDoms(leak)"
+            @expandParent="expandParent"
+          ></x-dominator>
         </div>
-      </div>
 
-      <!-- dominator -->
-      <div class="leak-doms">
-        <x-dominator
-          class="card-content"
-          :profile="profile"
-          :data="getInitDoms(leak)"
-          @expandParent="expandParent"
-        ></x-dominator>
+        <!-- textarea -->
+        <textarea class="hidden" id="input" ref="input"></textarea>
       </div>
-
-      <!-- textarea -->
-      <textarea class="hidden" id="input" ref="input"></textarea>
+    </div>
+    <div v-else>
+      <x-error-message
+        v-show="!leakNodes.length"
+        message="当前堆空间状态良好，不存在可疑内存泄漏节点"
+        top="calc(40vh - 150px)"
+      ></x-error-message>
     </div>
   </div>
 </template>

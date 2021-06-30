@@ -47,6 +47,7 @@ export default class SnapshotLoader {
       edges: parser.edges.length,
       gcrootsMap: parser.gcroots_map,
       rootIndex: parser.root_index,
+      leakNodes: parser.leak_nodes,
       nodeUtils: parser.node_util,
       edgeUtils: parser.edge_util,
       NodeUtils: parser.NodeUtil,

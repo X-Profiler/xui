@@ -7,11 +7,9 @@ const { methods: treeMethods } = treeHelper;
 
 export default {
   created() {
-    const { rootIndex, retainedSizes } = this.profile;
+    const { rootIndex, retainedSizes, leakNodes } = this.profile;
     const totalRetainedSize = retainedSizes[rootIndex];
-    this.leakNodes = this.profile
-      .getSuspectedLeakNodes()
-      .filter(node => node.size / totalRetainedSize > 0.1)
+    this.leakNodes = leakNodes
       .map(node => {
         node.percentage = Number((node.size / totalRetainedSize * 100).toFixed(2));
         node.formatedSize = utils.formatSize(node.size);
