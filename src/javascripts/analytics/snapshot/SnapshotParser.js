@@ -63,6 +63,7 @@ export default class SnapshotParser {
     this.gcroots = 0;
     this.gcroots_map = {};
     this.dominator_map = {};
+    this.leak_nodes = [];
 
     this.first_edge_indexes = this.getFirstEdgeIndexes();
 
@@ -114,6 +115,7 @@ export default class SnapshotParser {
     await this.buildPostOrderIndex();
     await this.buildDominatorTree();
     await this.calculateRetainedSizes();
+    await this.getSuspectedLeakNodes();
     console.timeEnd("--------- build ---------");
   }
 
@@ -741,6 +743,7 @@ export default class SnapshotParser {
     const node_distances = this.node_distances;
     const retained_sizes = this.retained_sizes;
     const root_index = this.root_index;
+    const NodeUtil = this.NodeUtil;
 
     const key = `${parent}::${child}`;
     if (repeat_map[key]) {
@@ -748,10 +751,12 @@ export default class SnapshotParser {
     }
 
     const result = { count: 0, size: 0, percent: 0 };
+    const { KREGEXP } = NodeUtil.NodeTypes;
 
     // selected child
     const child_name = node_util.getNameForInt(child);
     const child_self_size = node_util.getSelfSize(child);
+    const child_type = node_util.getTypeForInt(child);
     const child_distance = node_distances[child];
 
     // find the same children
@@ -762,8 +767,12 @@ export default class SnapshotParser {
     for (const dominator of dominators) {
       const name = node_util.getNameForInt(dominator);
       const self_size = node_util.getSelfSize(dominator);
+      const type = node_util.getTypeForInt(dominator);
       const distance = node_distances[dominator];
-      if (name === child_name && self_size === child_self_size && distance === child_distance) {
+      if (self_size === child_self_size && distance === child_distance &&
+        (name === child_name ||
+          ([KREGEXP].includes(child_type) && type === child_type))
+      ) {
         count++;
         total_retained_size += retained_sizes[dominator];
         doms.push(dominator);
@@ -871,10 +880,14 @@ export default class SnapshotParser {
     return leak_nodes;
   }
 
-  getSuspectedLeakNodes(limit = 5) {
+  async getSuspectedLeakNodes(limit = 5) {
+    this._progress.updateStatus("Calculating suspected leak points…");
+    await this.releaseMemory();
+
     console.time("--------- leak ---------");
     const NodeUtil = this.NodeUtil;
     const root_index = this.root_index;
+    const retained_sizes = this.retained_sizes;
 
     const { KCODE,
       KSTRING, KSLICED_STRING, KCONCATENATED_STRING } = NodeUtil.NodeTypes;
@@ -912,6 +925,10 @@ export default class SnapshotParser {
     leak_nodes = this.formatLeakNodes(all_nodes, 5, leak_nodes);
     console.timeEnd("--------- leak ---------");
 
-    return leak_nodes;
+    // get all nodes which > 10%
+    this.leak_nodes = leak_nodes
+      .filter(node => node.size / retained_sizes[root_index] > 0.1);
+
+    await this.releaseMemory();
   }
 }
