@@ -918,11 +918,11 @@ export default class SnapshotParser {
       }
 
       delete all_nodes[leak_node.key];
-      leak_nodes.splice(leak_nodes.indexOf(leak_node), limit);
+      leak_nodes.splice(leak_nodes.indexOf(leak_node), 1);
       this.formateDominator(leak_node.id, 2, all_nodes);
     }
 
-    leak_nodes = this.formatLeakNodes(all_nodes, 5, leak_nodes);
+    leak_nodes = this.formatLeakNodes(all_nodes, limit, leak_nodes);
     console.timeEnd("--------- leak ---------");
 
     // get all nodes which > 10%
