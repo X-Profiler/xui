@@ -151,10 +151,11 @@ module.exports = app => {
     let limit = 0;
 
     if (trendType === 'heapTrend') {
-      list = utils.createAreaData(["rss", "heap_total", "heap_used"], {
+      list = utils.createAreaData(["rss", "heap_total", "heap_used", "external"], {
         rss: () => (300 + parseInt(Math.random() * 50)) * 1024 * 1204,
         heap_total: () => (200 + parseInt(Math.random() * 50)) * 1024 * 1204,
-        heap_used: () => (150 + parseInt(Math.random() * 50)) * 1024 * 1204
+        heap_used: () => (150 + parseInt(Math.random() * 50)) * 1024 * 1204,
+        external: () => (100 + parseInt(Math.random() * 50)) * 1024 * 1204,
       }, duration);
       limit = 2 * 1024 * 1024 * 1024;
     }
