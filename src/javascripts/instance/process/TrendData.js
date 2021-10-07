@@ -179,7 +179,7 @@ export default {
       const type = this.type;
       const common = { yAxis: [], yAxisUnit: "", noDataText: "", showStatus: false, fixedTip: false };
       if (type === "heapTrend") {
-        common.yAxis = ["rss", "heap_total", "heap_used"];
+        common.yAxis = ["rss", "heap_total", "heap_used", "external"];
         common.yAxisUnit = "MB";
         common.noDataText = "暂无内存趋势数据";
         common.showStatus = true;
