@@ -19,7 +19,7 @@ app.get('/xapi/user', function (req, res) {
   console.log('get user info');
   const data = {
     name: 'hyj1991',
-    userId: 1
+    id: 19153670
   };
   res.send({ ok: true, data });
 });

@@ -32,7 +32,7 @@
     "less-loader": "^5.0.0",
     "nodemon": "^2.0.2",
     "vue-template-compiler": "^2.6.10",
-    "xprofiler": "^1.2.0"
+    "xprofiler": "^1.2.6"
   },
   "eslintConfig": {
     "root": true,
