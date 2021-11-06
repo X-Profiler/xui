@@ -4,7 +4,7 @@ import * as utils from "@/javascripts/lib/utils";
 
 const { mapState, mapActions } = utils.createNamespace("user");
 
-const cache = { user: { name: "" } };
+const cache = { user: { name: "", id: null } };
 const menuFlag = "MAIN_FLAG";
 
 export default {
@@ -22,6 +22,7 @@ export default {
     // get user info
     if (cache.user.name) {
       this.user.name = cache.user.name;
+      this.user.id = cache.user.id;
     } else {
       this.getUserInfo({ cancelToken: this.cancelToken.token });
     }
@@ -91,17 +92,27 @@ export default {
         style += `background-color: ${this.color};`;
       }
       return style;
+    },
+
+    showInfo() {
+      const user = this.user;
+
+      return [
+        { key: "账号", value: user.id }
+      ];
     }
   },
 
   watch: {
     "user.name": function () {
       cache.user.name = this.user.name;
+      cache.user.id = this.user.id;
     },
 
     user_data() {
       const data = this.user_data || {};
       this.user.name = data.name || "Unknown";
+      this.user.id = data.id || "Unknown";
     }
   }
 };

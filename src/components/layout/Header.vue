@@ -16,7 +16,30 @@
         @mouseout="mouseout(nav)"
       >
         <span v-if="nav.label !== 'user'">{{ nav.label }}</span>
-        <span v-else>{{ user.name }}</span>
+        <x-dropdown
+          :fontSize="14"
+          :paddingBottom="0"
+          :rawTop="35"
+          :minWidth="120"
+          :contentTop="10"
+          :contentBottom="10"
+          not-show-arrow
+          v-else
+          class="panel-title-dropdown"
+          :title="user.name"
+        >
+          <template slot="content"
+            ><div
+              v-for="(info, index) in showInfo"
+              :key="index"
+              class="show-info x-dropdown-li"
+            >
+              <div class="info-key">{{ info.key }}</div>
+              <div class="info-split"></div>
+              <div class="info-value">{{ info.value }}</div>
+            </div></template
+          >
+        </x-dropdown>
       </span>
     </Header>
   </div>
@@ -37,7 +60,8 @@ export default {
   data() {
     return {
       user: {
-        name: ""
+        name: "",
+        id: null,
       },
       navActions: [
         { active: false, label: getTag(tags.docs), value: "docs", href: "" },
@@ -81,5 +105,22 @@ export default {
 
 .nav-selection.active {
   background-color: #0f1423;
+}
+
+.show-info {
+  font-family: Avenir, Helvetica, Arial, sans-serifoptional;
+  font-size: 13px;
+  line-height: 30px;
+  padding: 0px 15px;
+  user-select: text;
+  display: flex;
+  cursor: default;
+}
+
+.info-split {
+  border-right: 1px solid #e8eaec;
+  width: 1px;
+  height: 20px;
+  margin: 0 7px;
 }
 </style>

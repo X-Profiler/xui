@@ -8,9 +8,9 @@
   >
     <div class="dropdown-list">
       <slot name="title">
-        <div style="padding-bottom: 6px;font-size: 12px;">{{ title }}</div>
+        <div :style="titleStyle">{{ title }}</div>
       </slot>
-      <div class="dropdown-icon-translate">
+      <div v-show="!notShowArrow" class="dropdown-icon-translate">
         <Icon class="dropdown-icon-rotate" type="ios-arrow-down" />
       </div>
     </div>
@@ -34,7 +34,33 @@ export default {
     position: String,
     transformY: Number,
     color: String,
-    minWidth: Number
+    minWidth: Number,
+    fontSize: Number,
+    paddingBottom: Number,
+    notShowArrow: {
+      type: Boolean,
+      default: false,
+    },
+    rawTop: {
+      type: Number,
+      default: 18,
+    },
+    contentTop: {
+      type: Number,
+      default: 15,
+    },
+    contentBottom: {
+      type: Number,
+      default: 15,
+    },
+    contentLeft: {
+      type: Number,
+      default: 0,
+    },
+    contentRight: {
+      type: Number,
+      default: 0,
+    },
   },
 
   mounted() {
@@ -61,7 +87,7 @@ export default {
       style["opacity"] = 0;
       style["pointer-events"] = "none";
       style["transform"] = "translateY(0)";
-    }
+    },
   },
 
   computed: {
@@ -92,9 +118,26 @@ export default {
         style += "min-width: 100px;";
       }
 
+      const rawTop = `top: ${this.rawTop}px;`;
+      const padding = `padding: ${this.contentTop}px ${this.contentRight}px ${this.contentBottom}px ${this.contentLeft}px;`;
+
+      style += rawTop + padding;
+
       return style;
-    }
-  }
+    },
+
+    titleStyle() {
+      const baseStyle = "width: 100%; text-align: center;";
+
+      const fontSize = this.fontSize || 12;
+      const paddingBottom = isNumber(this.paddingBottom)
+        ? this.paddingBottom
+        : 6;
+      const customStyle = `padding-bottom: ${paddingBottom}px;font-size: ${fontSize}px;`;
+
+      return baseStyle + customStyle;
+    },
+  },
 };
 </script>
 
@@ -130,12 +173,11 @@ export default {
   background-color: #fff;
   pointer-events: none;
   position: absolute;
-  top: 18px;
   opacity: 0;
   border-radius: 4px;
-  padding: 15px 0;
   transition: all 0.2s ease;
   z-index: 1000;
+  white-space: nowrap;
 }
 
 .dropdown-content.right {
