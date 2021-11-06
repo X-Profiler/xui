@@ -22,14 +22,14 @@ export default {
 
     inviteMember() {
       if (!this.invitedUserId) {
-        this.$Message.error("填写的邀请用户 ID 不能为空");
+        this.$Message.error("填写的邀请用户工号不能为空");
         return;
       }
 
       const data = this.createConfirmData(
         "invitation",
         "邀请成员",
-        `将邀请用户 <strong>${this.invitedUserId}</strong> 至本应用，请注意这里需要输入正确的用户 ID`,
+        `将邀请用户 <strong>${this.invitedUserId}</strong> 至本应用，请注意这里需要输入正确的用户工号`,
         { userId: this.invitedUserId });
       this.setConfirmModal({ status: true, data });
     }
