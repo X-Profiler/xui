@@ -22,7 +22,7 @@
     <!-- add new team member -->
     <div class="addition-wrapper">
       <div class="addition">
-        <Input class="add-team-member" v-model="invitedUserId" placeholder="请输入需要邀请的用户 ID">
+        <Input class="add-team-member" v-model="invitedUserId" placeholder="请输入需要邀请的用户工号">
           <span slot="prepend" class="addition-tip">邀请新成员</span>
         </Input>
 

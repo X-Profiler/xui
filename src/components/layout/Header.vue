@@ -20,7 +20,7 @@
           :fontSize="14"
           :paddingBottom="0"
           :rawTop="35"
-          :minWidth="120"
+          :minWidth="60"
           :contentTop="10"
           :contentBottom="10"
           not-show-arrow

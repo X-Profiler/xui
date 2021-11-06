@@ -98,7 +98,7 @@ export default {
       const user = this.user;
 
       return [
-        { key: "账号", value: user.id }
+        { key: "工号", value: user.id }
       ];
     }
   },
