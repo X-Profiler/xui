@@ -223,7 +223,7 @@ export default {
         qywx: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxxxx"
       },
       webhookSignPlaceholderMap: {
-        dingtalk: "&sign=xxxxxx"
+        dingtalk: "签名秘钥（机器人设置 — 安全设置 — 加签）"
       }
     };
   },
