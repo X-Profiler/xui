@@ -27,6 +27,9 @@ app.get('/xapi/user', function (req, res) {
 // devtools
 require('./controller/mock_devtools')(app);
 
+// third party
+require('./controller/mock_thirdparty')(app);
+
 // consoler
 require('./controller/mock_consoler')(app);
 
