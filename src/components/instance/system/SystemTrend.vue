@@ -3,7 +3,7 @@
     <div class="trend-title-group">
       <div class="trend-title system-title">
         {{ title }}
-        <span class="extra" v-if="extra">({{ extra }})</span>
+        <span class="chart-extra" v-if="extra">({{ extra }})</span>
       </div>
     </div>
 
@@ -72,10 +72,5 @@ export default {
   text-align: center;
   font-size: 13px;
   width: 100%;
-}
-
-.extra {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-size: 12px;
 }
 </style>

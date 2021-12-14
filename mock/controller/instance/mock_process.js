@@ -149,6 +149,7 @@ module.exports = app => {
 
     let list = [];
     let limit = 0;
+    let extra = undefined;
 
     if (trendType === 'heapTrend') {
       list = utils.createAreaData(["rss", "heap_total", "heap_used", "external"], {
@@ -158,6 +159,7 @@ module.exports = app => {
         external: () => (100 + parseInt(Math.random() * 50)) * 1024 * 1204,
       }, duration);
       limit = 2 * 1024 * 1024 * 1024;
+      extra = '2 GB'
     }
 
     if (trendType === 'cpuTrend') {
@@ -222,7 +224,7 @@ module.exports = app => {
 
     // agentId.Number = c;
 
-    setTimeout(() => res.send({ ok: true, data: { list, limit } }), 1000);
+    setTimeout(() => res.send({ ok: true, data: { list, limit, extra } }), 1000);
   });
 
   app.post("/xapi/process_trend", function (req, res) {

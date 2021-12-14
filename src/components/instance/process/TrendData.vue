@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="trend-title-group">
-      <div class="trend-title">{{ title }}</div>
+      <div class="trend-title">
+        {{ title }}
+        <span class="chart-extra" v-if="extra">({{ extra }})</span>
+      </div>
       <transition name="slide-noward">
         <div
           v-if="commonData.showStatus && trendStatus.status !== undefined"
@@ -74,6 +77,7 @@ export default {
       loading: false,
       loadError: undefined,
       trendData: [],
+      extra: undefined,
       trendStatus: {},
       limit: undefined,
       selectedData: {}
