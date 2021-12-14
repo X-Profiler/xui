@@ -25,13 +25,14 @@ export default {
     },
 
     setData(data) {
-      const { list } = data;
+      const { list, extra } = data;
       if (Array.isArray(list)) {
         this.trendData = list;
       }
       if (utils.isNumber(data.limit)) {
         this.limit = data.limit;
       }
+      this.extra = extra;
       this.checkStatus(this.lastValidData);
       this.updateSelectedData(this.lastValidData);
     },
