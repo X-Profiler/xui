@@ -221,19 +221,32 @@ export default {
       window.open(href, "_blank");
     },
 
+    handleNewTab(downloadPath, { fileId, fileType, fileBasename }) {
+      const query = `fileId=${fileId}&fileType=${fileType}&fileName=${fileBasename}&downloadPath=${encodeURIComponent(downloadPath)}`;
+      const href = `/dashboard/speedscope?${query}`;
+      window.open(href, "_blank");
+    },
+
     takeAction(opt) {
       const { raw, label } = opt;
       if (!raw) {
         return;
       }
 
-      if (label === "分析") {
+      const newTab = this.thirdParty.includes(raw.fileType);
+      const { downloadFile: downloadPath } = this.$store.state.url;
+
+      if (label === "分析" && newTab) {
+        this.handleNewTab(downloadPath, raw);
+      }
+
+      if (label === "分析" && !newTab) {
         this.doAnalytics(raw);
       }
 
       if (label === "下载") {
-        const { downloadFile: downloadUrl } = this.$store.state.url;
-        window.location = `${downloadUrl}?fileType=${raw.fileType}&fileId=${raw.fileId}`;
+        const downloadUrl = `${downloadPath}?fileType=${raw.fileType}&fileId=${raw.fileId}`;
+        window.location = downloadUrl;
       }
 
       if (label === "收藏") {

@@ -47,12 +47,18 @@ const oldDevtoolsSrc = path.join(__dirname, '../mock/public/dashboard/devtools-o
 const newDevtoolsTarget = path.join(__dirname, `../../${xprofilerPath}/app/public/devtools/new`);
 const oldDevtoolsTarget = path.join(__dirname, `../../${xprofilerPath}/app/public/devtools/old`);
 
+// build speedscope
+const speedscopeSrc = path.join(__dirname, '../mock/public/dashboard/speedscope');
+const speedscopeTarget = path.join(__dirname, `../../${xprofilerPath}/app/public/speedscope`);
+
 createBaseDir(newDevtoolsTarget);
 createBaseDir(oldDevtoolsTarget);
+createBaseDir(speedscopeTarget);
 
 cleanOldTarget(newDevtoolsTarget);
 cleanOldTarget(oldDevtoolsTarget);
-
+cleanOldTarget(speedscopeTarget);
 
 copyNewTarget(newDevtoolsSrc, newDevtoolsTarget);
 copyNewTarget(oldDevtoolsSrc, oldDevtoolsTarget);
+copyNewTarget(speedscopeSrc, speedscopeTarget);
