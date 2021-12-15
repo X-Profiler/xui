@@ -6,10 +6,10 @@ const path = require("path");
 
 process.env.NODE_ENV = "production";
 
-function exec(cmd) {
+function exec(cmd, { cwd } = {}) {
   console.log(cmd);
   const options = {
-    cwd: path.join(__dirname, ".."),
+    cwd: cwd || path.join(__dirname, ".."),
     env: process.env,
     stdio: "inherit"
   };
@@ -33,6 +33,9 @@ function copyNewTarget(source, target) {
 }
 
 const xprofilerPath = 'xprofiler-console';
+
+// build speedscope
+exec('npm run build', { cwd: path.join(__dirname, '../../speedscope') });
 
 // build vue
 exec('vue-cli-service build');
