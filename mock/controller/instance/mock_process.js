@@ -115,6 +115,7 @@ module.exports = app => {
         xprofilerLogdir: "/var/folders/rw/g1t4bp_x2_n0dwk_82xx_0vh0000gn/T",
         xtransitLogdir: "/tmp",
         nodeVersion: "v12.16.1",
+        alinodeVersion: "v5.16.1",
         xprofilerVersion: "v1.2.2",
         xprofilerConfig: {
           enable_fatal_error_hook: true,
