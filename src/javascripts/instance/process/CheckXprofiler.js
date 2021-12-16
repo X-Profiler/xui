@@ -85,7 +85,9 @@ export default {
         return "";
       }
       const nodeVersion = xprofiler_status_data.nodeVersion || "未知";
-      let str = `进程 ${this.pid} 使用的运行时版本为 <code style="font-size: 12px;color: #2a9446;font-weight: bold;">${nodeVersion}</code>`;
+      const alinodeVersion = xprofiler_status_data.alinodeVersion;
+      const versionInfo = `${nodeVersion}${alinodeVersion ? ` (${alinodeVersion})`: ""}`;
+      let str = `进程 ${this.pid} 使用的运行时版本为 <code style="font-size: 12px;color: #2a9446;font-weight: bold;">${versionInfo}</code>`;
       // let str = `2. 进程 ${this.pid} 使用的运行时版本为 ${nodeVersion}`;
 
       const xprofilerVersion = xprofiler_status_data.xprofilerVersion;

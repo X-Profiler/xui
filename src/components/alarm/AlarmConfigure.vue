@@ -210,8 +210,8 @@ export default {
           {
             value: "fast_rule_dependence_security_risk",
             label: "应用依赖的 Npm 模块安全漏洞预警"
-          }
-          // { value: "fast_rule_coredump", label: "Coredump 文件生成预警" },
+          },
+          { value: "fast_rule_coredump", label: "Coredump 文件生成预警" }
           // {
           //   value: "fast_rule_node_process_exit",
           //   label: "Node.js 进程退出预警"

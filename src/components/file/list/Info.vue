@@ -4,8 +4,8 @@
     <div class="file-desc">
       <a
         v-if="row.executable"
-        :href="`/file/download?fileType=executable&fileId=${row.fileId}`"
-      >可执行文件</a>
+        :href="row.fileStatus === 3 ? `/file/download?fileType=executable&fileId=${row.fileId}` : 'javascript:void(0)'"
+      >{{ getExecutableLabel(row) }}</a>
       由
       <strong class="file-desc-heilight">{{ row.fileCreator }}</strong>
     </div>
@@ -21,6 +21,17 @@
 export default {
   props: {
     row: Object
+  },
+
+  methods: {
+    getExecutableLabel(row) {
+      let label = "可执行文件";
+      if(row.createAgent !== "upload") {
+        label = row.executable;
+      }
+
+      return label;
+    }
   }
 };
 </script>
