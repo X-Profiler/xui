@@ -1,18 +1,18 @@
 <template>
   <div class="file-info">
-    <div class="file-path">{{ row.filePath }}</div>
-    <div class="file-desc">
+    <div class="file-path">{{ rowData.filePath }}</div>
+    <div :class="'file-desc' + (rowData.fileStatus === 3 ? ' show-download' : ' show-executable')">
       <a
-        v-if="row.executable"
-        :href="row.fileStatus === 3 ? `/file/download?fileType=executable&fileId=${row.fileId}` : 'javascript:void(0)'"
-      >{{ getExecutableLabel(row) }}</a>
+        v-if="rowData.executable"
+        :href="rowData.fileStatus === 3 ? `/file/download?fileType=executable&fileId=${rowData.fileId}` : 'javascript:void(0)'"
+      >{{ getExecutableLabel(rowData) }}</a>
       由
-      <strong class="file-desc-heilight">{{ row.fileCreator }}</strong>
+      <strong class="file-desc-heilight">{{ rowData.fileCreator }}</strong>
     </div>
     <div class="file-desc">
       于
-      <strong class="file-desc-heilight">{{ row.createTime }}</strong> 创建在实例
-      <strong class="file-desc-heilight">{{ row.createAgent }}</strong>
+      <strong class="file-desc-heilight">{{ rowData.createTime }}</strong> 创建在实例
+      <strong class="file-desc-heilight">{{ rowData.createAgent }}</strong>
     </div>
   </div>
 </template>
@@ -23,11 +23,21 @@ export default {
     row: Object
   },
 
+  data() {
+    return {
+      rowData: {}
+    };
+  },
+
+  mounted() {
+    this.rowData = this.row;
+  },
+
   methods: {
-    getExecutableLabel(row) {
+    getExecutableLabel(rowData) {
       let label = "可执行文件";
-      if(row.createAgent !== "upload") {
-        label = row.executable;
+      if(rowData.createAgent !== "upload") {
+        label = rowData.executable;
       }
 
       return label;
@@ -59,12 +69,18 @@ export default {
   color: #474a4c;
 }
 
-.file-desc a {
+.show-executable a {
+  color: #9f9f9f;
+  user-select: none;
+  cursor: not-allowed;
+}
+
+.show-download a {
   color: #2689d6;
   user-select: none;
 }
 
-.file-desc a:hover {
+.file-desc.show-download a:hover {
   transition: all 0.1s ease-in;
   color: rgb(43, 133, 228, 0.75);
   font-style: italic;
