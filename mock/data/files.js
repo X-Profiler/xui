@@ -358,9 +358,9 @@ module.exports = [
     coreFile: '/tmp/heapdump-84735-20190712-111932.core',
     executableFile: 'linux-v10.13.0.node',
     executableStatus: 0,
-    creator: 'TZ | 天猪',
+    creator: 'yeekwanvong',
     time: '2019-07-12 11:19:32',
-    agent: 'upload',
+    agent: '186590dd08d3.local',
     status: 1,
     fileId: 3
   },
