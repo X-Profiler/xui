@@ -193,7 +193,12 @@ export default {
         case "fast_rule_coredump":
           modelMap.contextType = "xtransit_notification";
           modelMap.customRuleExpr = "@core_count > 0";
-          modelMap.customRuleDesc = "服务器在 1 分钟内生成 ${@core_count} 个 core 文件，分别为：${@core_files}，请分析查看原因!";
+          modelMap.customRuleDesc = "服务器在 1 分钟内生成 ${@core_count} 个 core 文件，分别为：${@core_files}，请分析查看原因！";
+          break;
+        case "fast_rule_agent_offline":
+          modelMap.contextType = "xtransit_notification";
+          modelMap.customRuleExpr = "@agentOffline";
+          modelMap.customRuleDesc = "实例 ${@agentId} 下线，请判断是否符合预期！";
           break;
         // case "fast_rule_node_process_exit":
         //   modelMap.contextType = "xtransit_notification";
