@@ -145,7 +145,14 @@ export default {
         }
       }
 
-      // creating error
+      // creating failed
+      if (status === 99) {
+        operations.push(this.createButton("生成失败", "error", "md-close"));
+        operations.push(...this.createDisableGroup("转储", "md-cloud-upload"));
+        operations.push(...this.createLeftGroup(data.fileType));
+      }
+
+      // creating checking error
       if (status === 998) {
         operations.push(this.createButton("未知状态", "warning", "md-brush"));
         operations.push(...this.createDisableGroup("转储", "md-cloud-upload"));
