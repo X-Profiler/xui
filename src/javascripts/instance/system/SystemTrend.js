@@ -116,7 +116,7 @@ export default {
     ...mapStateInstance(["agentId"]),
 
     gcUnit() {
-      return this.getTimeUnit(["scavenge_avg", "marksweep_avg"]);
+      return this.getTimeUnit(["scavenge_avg", "marksweep_avg", "total_gc_avg"]);
     },
 
     rtUnit() {
@@ -155,7 +155,7 @@ export default {
       }
 
       if (type === "osGcTrend") {
-        common.yAxis = ["scavenge_avg", "marksweep_avg"];
+        common.yAxis = ["scavenge_avg", "marksweep_avg", "total_gc_avg"];
         common.yAxisUnit = this.gcUnit.label;
         common.noDataText = "暂无整体 Node.js 进程 GC 数趋势数据";
       }

@@ -161,6 +161,9 @@ export default {
         if (duration.marksweep_duration > maxDuration) {
           maxDuration = duration.marksweep_duration;
         }
+        if (duration.total_gc_duration > maxDuration) {
+          maxDuration = duration.total_gc_duration;
+        }
       }
 
       const results = {};
@@ -205,7 +208,7 @@ export default {
       }
 
       if (type === "gcTrend") {
-        common.yAxis = ["scavenge_duration", "marksweep_duration"];
+        common.yAxis = ["scavenge_duration", "marksweep_duration", "total_gc_duration"];
         common.yAxisUnit = this.gcUnit.label;
         common.noDataText = "暂无 GC 趋势数据";
         common.showStatus = true;

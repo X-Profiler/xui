@@ -77,9 +77,24 @@ module.exports = app => {
     }
 
     if (trendType === "osGcTrend") {
-      list = utils.createAreaData(["scavenge_avg", "marksweep_avg"], {
-        scavenge_avg: () => parseInt(Math.random() * 20),
-        marksweep_avg: () => 30 + parseInt(Math.random() * 20)
+      list = utils.createAreaData(["scavenge_avg", "marksweep_avg", "total_gc_avg"], {
+        cache: {
+          scavenge_avg: 0,
+          marksweep_avg: 0,
+        },
+        scavenge_avg: function () {
+          const sca = parseInt(Math.random() * 20);
+          this.cache.scavenge_avg = sca;
+          return sca;
+        },
+        marksweep_avg: function () {
+          const msa = 30 + parseInt(Math.random() * 20);
+          this.cache.marksweep_avg = msa;
+          return msa;
+        },
+        total_gc_avg: function () {
+          return this.cache.scavenge_avg + this.cache.marksweep_avg;
+        }
       }, duration);
     }
 
