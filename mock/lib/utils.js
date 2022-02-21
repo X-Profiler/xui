@@ -27,7 +27,7 @@ exports.createAreaData = function (yaxis, fn, duration = 24) {
     // }
 
     for (const y of yaxis) {
-      item[y] = fn[y]();
+      item[y] = fn[y].call(fn);
     }
 
     data.push(item);

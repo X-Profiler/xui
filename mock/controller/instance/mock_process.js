@@ -187,9 +187,24 @@ module.exports = app => {
     }
 
     if (trendType === 'gcTrend') {
-      list = utils.createAreaData(["scavenge_duration", "marksweep_duration"], {
-        scavenge_duration: () => parseInt(Math.random() * 20),
-        marksweep_duration: () => parseInt(Math.random() * 30)
+      list = utils.createAreaData(["scavenge_duration", "marksweep_duration", "total_gc_duration"], {
+        cache: {
+          scavenge_duration: 0,
+          marksweep_duration: 0,
+        },
+        scavenge_duration: function () {
+          const scd = parseInt(Math.random() * 20);
+          this.cache.scavenge_duration = scd;
+          return scd;
+        },
+        marksweep_duration: function () {
+          const msd = parseInt(Math.random() * 30);
+          this.cache.marksweep_duration = msd;
+          return msd;
+        },
+        total_gc_duration: function () {
+          return this.cache.scavenge_duration + this.cache.marksweep_duration;
+        }
       }, duration);
     }
 
