@@ -187,6 +187,7 @@ export default {
         { label: getTag(tags.heapsnapshot), value: "heapsnapshot" },
         { label: getTag(tags.heapprofile), value: "heapprofile" },
         { label: getTag(tags.gcprofile), value: "gcprofile" },
+        { label: getTag(tags.coredump), value: "core" },
         { label: getTag(tags.diag), value: "diag" }
       ],
       drawerQueryKey: "process-trend",

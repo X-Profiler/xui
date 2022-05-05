@@ -277,8 +277,13 @@ export default {
   gcprofile: {
     ch: "GC 追踪",
     en: "GC Trace"
-  }, diag: {
-    ch: "Node.js 实时诊断",
+  },
+  diag: {
+    ch: "实时诊断",
     en: "Trigger Node Report"
+  },
+  coredump: {
+    ch: "Coredump",
+    en: "Coredump"
   }
 };
