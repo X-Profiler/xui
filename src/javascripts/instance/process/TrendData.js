@@ -191,7 +191,7 @@ export default {
       }
 
       if (type === "cpuTrend") {
-        common.yAxis = ["cpu_now", "cpu_15", "cpu_30", "cpu_60"];
+        common.yAxis = ["cpu_15", "cpu_30", "cpu_60"];
         common.yAxisUnit = "%";
         common.noDataText = "暂无 CPU 趋势数据";
         common.showStatus = true;
