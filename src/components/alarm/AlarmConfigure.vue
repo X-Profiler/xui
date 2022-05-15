@@ -187,7 +187,7 @@ export default {
         webhookType: [
           { value: "dingtalk", label: "钉钉推送" },
           { value: "qywx", label: "企业微信" },
-          { value: "feishu", label: "飞书" }
+          { value: "feishu", label: "飞书通知" }
         ],
         fastRules: [
           { value: "fast_rule_memory", label: "进程 Heap Memory 预警" },
@@ -223,7 +223,7 @@ export default {
       webhookAddressPlaceholderMap: {
         dingtalk: "https://oapi.dingtalk.com/robot/send?access_token=xxxxxx",
         qywx: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxxxx",
-        feishu: 'https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxx'
+        feishu: "https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxx"
       },
       webhookSignPlaceholderMap: {
         dingtalk: "签名秘钥（机器人设置 — 安全设置 — 加签）"
