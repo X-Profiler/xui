@@ -147,8 +147,8 @@ export default {
           break;
         case "fast_rule_cpu":
           modelMap.contextType = "xprofiler_log";
-          modelMap.customRuleExpr = "@cpu_60 > 80";
-          modelMap.customRuleDesc = "1 分钟内 CPU 使用率超过 80%，当前为 ${@cpu_60}%";
+          modelMap.customRuleExpr = "@cpu_300 > 95";
+          modelMap.customRuleDesc = "5 分钟内 CPU 使用率超过 95%，当前为 ${@cpu_300}%";
           break;
         case "fast_rule_gc":
           modelMap.contextType = "xprofiler_log";
