@@ -204,7 +204,7 @@ export default {
       await handleSaveTrend(context, options, "file");
     },
 
-    async takeAction(context, { cancelToken }) {
+    async takeAction(context, { cancelToken, status }) {
       const { state, rootState, rootGetters } = context;
 
       const options = {
@@ -217,7 +217,8 @@ export default {
           appId: rootGetters.appId,
           agentId: rootGetters.agentId,
           pid: state.takeActionData.pid,
-          action: state.takeActionData.action
+          action: state.takeActionData.action,
+          status,
         }
       };
 

@@ -8,7 +8,7 @@ const { mapState, mapMutations, mapActions } = utils.createNamespace("dashboard/
 export default {
   created() {
     this.cancelToken = utils.createCancelToken();
-    this.takeAction({ cancelToken: this.cancelToken.token });
+    this.takeAction({ cancelToken: this.cancelToken.token, status: 0 });
   },
 
   beforeDestroy() {
@@ -22,6 +22,10 @@ export default {
 
     closeTakeActionModal() {
       this.setTakeActionModal({ status: false });
+    },
+
+    closeSampling() {
+      this.takeAction({ cancelToken: this.cancelToken.token, status: 1 });
     }
   },
 
@@ -36,25 +40,59 @@ export default {
       let tip = "";
       switch (action) {
         case "cpuprofile":
-          tip = "CPU 采样约 5min ";
+          tip = "CPU 采样";
           break;
         case "heapsnapshot":
-          tip = "获取堆快照";
+          tip = "堆快照";
           break;
         case "heapprofile":
-          tip = "Heap 采样约 5min ";
+          tip = "Heap 采样";
           break;
         case "gcprofile":
-          tip = "GC 采样约 5min ";
+          tip = "GC 采样";
           break;
         case "diag":
-          tip = "获取诊断报告";
+          tip = "诊断报告";
+          break;
+        case "core":
+          tip = "核心转储";
           break;
         default:
           break;
       }
 
       return tip;
-    }
+    },
+
+    actionRunningTip() {
+      const takeActionData = this.takeActionData || {};
+      const action = takeActionData.action;
+      let tip = "采样正在进行中，是否需要立即结束";
+      switch (action) {
+        case "cpuprofile":
+          tip = `CPU ${tip}`;
+          break;
+        case "heapprofile":
+          tip = `Heap ${tip}`;
+          break;
+        case "gcprofile":
+          tip = `GC ${tip}`;
+          break;
+        default:
+          break;
+      }
+
+      return tip;
+    },
+
+    isRunning() {
+      const takeActionData = this.takeActionData || {};
+      const action = takeActionData.action;
+      const error = this.take_action_load_error;
+      return !["heapsnapshot", "diag", "core"].includes(action)
+        && error
+        && error.includes("is running")
+        && !error.includes("conflict action");
+    },
   }
 };

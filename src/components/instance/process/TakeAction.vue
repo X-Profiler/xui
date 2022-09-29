@@ -3,7 +3,9 @@
     <div class="x-modal-content">
       <x-loading :loading="take_action_loading" type="dot" size="middle"></x-loading>
 
-      <x-error-message v-show="take_action_load_error" :message="take_action_load_error"></x-error-message>
+      <x-error-message v-show="take_action_load_error && !isRunning" :message="take_action_load_error"></x-error-message>
+
+      <x-error-message v-show="isRunning" :message="actionRunningTip"></x-error-message>
 
       <div v-if="!take_action_loading && !take_action_load_error" class="x-modal-results">
         <p>
@@ -16,6 +18,7 @@
 
     <div class="x-modal-footer">
       <Button v-show="!take_action_loading" type="primary" ghost @click="closeTakeActionModal">关闭</Button>
+      <Button v-show="!take_action_loading && isRunning" type="primary" style="margin-left: 10px" @click="closeSampling">结束</Button>
     </div>
   </div>
 </template>
