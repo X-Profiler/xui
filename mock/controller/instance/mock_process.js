@@ -265,7 +265,8 @@ module.exports = app => {
     const agentId = req.body.agentId;
     const pid = Number(req.body.pid);
     const action = req.body.action;
-    console.log(`take app ${appId} agent ${agentId} pid ${pid} action type ${action}`);
+    const status = req.body.status;
+    console.log(`take app ${appId} agent ${agentId} pid ${pid} action type ${action} status ${status}`);
 
     const data = {
       // file: `/var/folders/rw/g1t4bp_x2_n0dwk_82xx_0vh0000gn/T/x-diagreport-12729-20200320-430058.${action}`
@@ -273,5 +274,17 @@ module.exports = app => {
     };
 
     setTimeout(() => res.send({ ok: true, data }), 600);
+
+    // mock action running
+    // setTimeout(() => res.send({
+    //   ok: false,
+    //   message: "start_cpu_profiling is running.\n"
+    // }), 600);
+
+    // mock conflict action running
+    // setTimeout(() => res.send({
+    //   ok: false,
+    //   message: "start_cpu_profiling conflict action start_sampling_heap_profiling is running, please wait for done.\n"
+    // }), 600);
   });
 };
